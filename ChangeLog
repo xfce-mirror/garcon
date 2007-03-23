@@ -1,5 +1,11 @@
 2007-03-23	Jannis Pohlmann <jannis@xfce.org>
 
+	* libxfce4menu/*.c: Remove gettext calls for strings
+	  we don't really need to translate. Add gettext calls
+	  were it makes sense. Remove several debug messages.
+
+2007-03-23	Jannis Pohlmann <jannis@xfce.org>
+
 	* libxfce4menu/libxfce4menu.h, libxfce4menu/Makefile.am, 
 	  libxfce4menu/xfce-menu-element.{c,h}: XfceMenuElement 
 	  interface with methods xfce_menu_element_get_name() and 

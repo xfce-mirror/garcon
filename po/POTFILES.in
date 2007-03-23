@@ -1,1 +1,15 @@
-
+libxfce4menu/xfce-menu.c
+libxfce4menu/xfce-menu-item.c
+libxfce4menu/xfce-menu-directory.c
+libxfce4menu/xfce-menu-element.c
+libxfce4menu/xfce-menu-environment.c
+libxfce4menu/xfce-menu-rules.c
+libxfce4menu/xfce-menu-standard-rules.c
+libxfce4menu/xfce-menu-and-rules.c
+libxfce4menu/xfce-menu-or-rules.c
+libxfce4menu/xfce-menu-not-rules.c
+libxfce4menu/xfce-menu-item-cache.c
+libxfce4menu/xfce-menu-item-pool.c
+libxfce4menu/xfce-menu-layout.c
+libxfce4menu/xfce-menu-move.c
+libxfce4menu/xfce-menu-separator.c

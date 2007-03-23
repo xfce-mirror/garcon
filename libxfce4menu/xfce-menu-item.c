@@ -193,8 +193,8 @@ xfce_menu_item_class_init (XfceMenuItemClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_DESKTOP_ID,
                                    g_param_spec_string ("desktop-id",
-                                                        _("Desktop-File Id"),
-                                                        _("Desktop-File Id of the application"),
+                                                        "Desktop-File Id",
+                                                        "Desktop-File Id of the application",
                                                         NULL,
                                                         G_PARAM_READWRITE));
 
@@ -207,8 +207,8 @@ xfce_menu_item_class_init (XfceMenuItemClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_FILENAME,
                                    g_param_spec_string ("filename",
-                                                        _("Filename"),
-                                                        _("Absolute filename"),
+                                                        "Filename",
+                                                        "Absolute filename",
                                                         NULL,
                                                         G_PARAM_READWRITE));
 
@@ -220,8 +220,8 @@ xfce_menu_item_class_init (XfceMenuItemClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_REQUIRES_TERMINAL,
                                    g_param_spec_boolean ("requires-terminal",
-                                                         _("Requires a terminal"),
-                                                         _("Whether this application requires a terminal"),
+                                                         "Requires a terminal",
+                                                         "Whether this application requires a terminal",
                                                          FALSE,
                                                          G_PARAM_READWRITE));
 
@@ -233,8 +233,8 @@ xfce_menu_item_class_init (XfceMenuItemClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_NO_DISPLAY,
                                    g_param_spec_boolean ("no-display",
-                                                         _("No Display"),
-                                                         _("Visibility state of the menu item"),
+                                                         "No Display",
+                                                         "Visibility state of the menu item",
                                                          FALSE,
                                                          G_PARAM_READWRITE));
 
@@ -246,8 +246,8 @@ xfce_menu_item_class_init (XfceMenuItemClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_STARTUP_NOTIFICATION,
                                    g_param_spec_boolean ("supports-startup-notification",
-                                                         _("Startup notification"),
-                                                         _("Startup notification support"),
+                                                         "Startup notification",
+                                                         "Startup notification support",
                                                          FALSE,
                                                          G_PARAM_READWRITE));
 
@@ -259,8 +259,8 @@ xfce_menu_item_class_init (XfceMenuItemClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_NAME,
                                    g_param_spec_string ("name",
-                                                        _("Name"),
-                                                        _("Name of the application"),
+                                                        "Name",
+                                                        "Name of the application",
                                                         NULL,
                                                         G_PARAM_READWRITE));
 
@@ -272,8 +272,8 @@ xfce_menu_item_class_init (XfceMenuItemClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_COMMAND,
                                    g_param_spec_string ("command",
-                                                        _("Command"),
-                                                        _("Application command"),
+                                                        "Command",
+                                                        "Application command",
                                                         NULL,
                                                         G_PARAM_READWRITE));
 
@@ -285,8 +285,8 @@ xfce_menu_item_class_init (XfceMenuItemClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_TRY_EXEC,
                                    g_param_spec_string ("try-exec",
-                                                        _("TryExec"),
-                                                        _("TryExec"),
+                                                        "TryExec",
+                                                        "TryExec",
                                                         NULL,
                                                         G_PARAM_READWRITE));
 
@@ -298,8 +298,8 @@ xfce_menu_item_class_init (XfceMenuItemClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_ICON_NAME,
                                    g_param_spec_string ("icon-name",
-                                                        _("Icon name"),
-                                                        _("Name of the application icon"),
+                                                        "Icon name",
+                                                        "Name of the application icon",
                                                         NULL,
                                                         G_PARAM_READWRITE));
 }

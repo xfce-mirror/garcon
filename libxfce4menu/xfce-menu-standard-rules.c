@@ -128,8 +128,8 @@ xfce_menu_standard_rules_class_init (XfceMenuStandardRulesClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_INCLUDE,
                                    g_param_spec_boolean ("include",
-                                                         _("Include"),
-                                                         _("Treat element as include or exclude element"),
+                                                         "Include",
+                                                         "Treat element as include or exclude element",
                                                          TRUE,
                                                          G_PARAM_READWRITE));
 

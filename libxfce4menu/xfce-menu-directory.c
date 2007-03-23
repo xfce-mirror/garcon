@@ -196,8 +196,8 @@ xfce_menu_directory_class_init (XfceMenuDirectoryClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_FILENAME,
                                    g_param_spec_string ("filename",
-                                                        _("Filename"),
-                                                        _("Directory filename"),
+                                                        "Filename",
+                                                        "Directory filename",
                                                         NULL,
                                                         G_PARAM_READWRITE));
 
@@ -209,8 +209,8 @@ xfce_menu_directory_class_init (XfceMenuDirectoryClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_FILENAME,
                                    g_param_spec_string ("name",
-                                                        _("Name"),
-                                                        _("Directory name"),
+                                                        "Name",
+                                                        "Directory name",
                                                         NULL,
                                                         G_PARAM_READWRITE));
 
@@ -222,8 +222,8 @@ xfce_menu_directory_class_init (XfceMenuDirectoryClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_FILENAME,
                                    g_param_spec_string ("comment",
-                                                        _("Description"),
-                                                        _("Directory description"),
+                                                        "Description",
+                                                        "Directory description",
                                                         NULL,
                                                         G_PARAM_READWRITE));
 
@@ -235,8 +235,8 @@ xfce_menu_directory_class_init (XfceMenuDirectoryClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_FILENAME,
                                    g_param_spec_string ("icon",
-                                                        _("Icon"),
-                                                        _("Directory icon"),
+                                                        "Icon",
+                                                        "Directory icon",
                                                         NULL,
                                                         G_PARAM_READWRITE));
 
@@ -248,8 +248,8 @@ xfce_menu_directory_class_init (XfceMenuDirectoryClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_NO_DISPLAY,
                                    g_param_spec_boolean ("no-display",
-                                                         _("No Display"),
-                                                         _("Visibility state of the related menu"),
+                                                         "No Display",
+                                                         "Visibility state of the related menu",
                                                          FALSE,
                                                          G_PARAM_READWRITE));
 
@@ -550,10 +550,7 @@ xfce_menu_directory_load (XfceMenuDirectory *directory)
   entry = xfce_rc_simple_open (directory->priv->filename, TRUE);
 
   if (G_UNLIKELY (entry == NULL))
-    {
-      g_critical ("Could not load directory desktop entry %s", directory->priv->filename);
-      return;
-    }
+    return;
 
   /* Treat the file as a desktop entry */
   xfce_rc_set_group (entry, "Desktop Entry");

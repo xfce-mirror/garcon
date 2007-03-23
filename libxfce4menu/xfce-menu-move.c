@@ -125,8 +125,8 @@ xfce_menu_move_class_init (XfceMenuMoveClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_OLD,
                                    g_param_spec_string ("old",
-                                                        _("Old name"),
-                                                        _("Name of the submenu to be moved"),
+                                                        "Old name",
+                                                        "Name of the submenu to be moved",
                                                         NULL,
                                                         G_PARAM_READWRITE));
 
@@ -138,8 +138,8 @@ xfce_menu_move_class_init (XfceMenuMoveClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_NEW,
                                    g_param_spec_string ("new",
-                                                        _("New name"),
-                                                        _("Target path/name of the move/rename operation"),
+                                                        "New name",
+                                                        "Target path/name of the move/rename operation",
                                                         NULL,
                                                         G_PARAM_READWRITE));
 }

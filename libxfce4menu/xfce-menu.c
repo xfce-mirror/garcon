@@ -60,6 +60,7 @@
 static const gchar XFCE_MENU_ROOT_SPECS[][30] = 
 {
   "menus/applications.menu",
+  "menus/xfce-applications.menu",
   "menus/gnome-applications.menu",
   "menus/kde-applications.menu",
 };
@@ -446,8 +447,8 @@ xfce_menu_class_init (XfceMenuClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_FILENAME,
                                    g_param_spec_string ("filename",
-                                                        _("Filename"),
-                                                        _("XML menu filename"),
+                                                        "Filename",
+                                                        "XML menu filename",
                                                         NULL,
                                                         G_PARAM_READWRITE));
 
@@ -459,8 +460,8 @@ xfce_menu_class_init (XfceMenuClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_NAME,
                                    g_param_spec_string ("name",
-                                                        _("Name"),
-                                                        _("Menu name"),
+                                                        "Name",
+                                                        "Menu name",
                                                         NULL,
                                                         G_PARAM_READWRITE));
 
@@ -472,8 +473,8 @@ xfce_menu_class_init (XfceMenuClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_DIRECTORY,
                                    g_param_spec_object ("directory",
-                                                        _("Directory"),
-                                                        _("Directory entry associated with this menu"),
+                                                        "Directory",
+                                                        "Directory entry associated with this menu",
                                                         XFCE_TYPE_MENU_DIRECTORY,
                                                         G_PARAM_READWRITE));
 
@@ -486,10 +487,10 @@ xfce_menu_class_init (XfceMenuClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_ONLY_UNALLOCATED,
                                    g_param_spec_boolean ("only-unallocated",
-                                                        _("Only unallocated"),
-                                                        _("Whether this menu only contains unallocated entries"),
-                                                        FALSE,
-                                                        G_PARAM_READWRITE));
+                                                         "Only unallocated",
+                                                         "Whether this menu only contains unallocated entries",
+                                                         FALSE,
+                                                         G_PARAM_READWRITE));
 
   /**
    * XfceMenu:deleted:
@@ -499,10 +500,10 @@ xfce_menu_class_init (XfceMenuClass *klass)
   g_object_class_install_property (gobject_class,
                                    PROP_ONLY_UNALLOCATED,
                                    g_param_spec_boolean ("deleted",
-                                                        _("Deleted"),
-                                                        _("Whether this menu should be ignored"),
-                                                        FALSE,
-                                                        G_PARAM_READWRITE));
+                                                         "Deleted",
+                                                         "Whether this menu should be ignored",
+                                                         FALSE,
+                                                         G_PARAM_READWRITE));
 }
 
 
@@ -1471,15 +1472,10 @@ xfce_menu_start_element (GMarkupParseContext *context,
                     type = XFCE_MENU_LAYOUT_MERGE_FILES;
                   else if (g_utf8_collate (attribute_values[i], "all") == 0)
                     type = XFCE_MENU_LAYOUT_MERGE_ALL;
-                  else 
-                    g_warning ("Unsupported layout merge type <Merge type='%s'/> detected. Using type 'all'.", attribute_values[i]);
 
                   type_found = TRUE;
                 }
             }
-
-          if (G_UNLIKELY (!type_found))
-            g_warning ("Type attribute missing for <Merge> element. Using type 'all'.");
 
           /* Add merge to the menu layout */
           xfce_menu_layout_add_merge (current_menu->priv->layout, type);
@@ -1553,9 +1549,6 @@ xfce_menu_end_element (GMarkupParseContext *context,
             {
               /* Determine current menu */
               XfceMenu *current_menu = XFCE_MENU (g_list_first (menu_context->menu_stack)->data);
-
-              /* Print warning */
-              g_warning ("Ignoring <Old>%s</Old>", xfce_menu_move_get_old (menu_context->move));
 
               /* Remove move command from the menu */
               current_menu->priv->moves = g_slist_remove (current_menu->priv->moves, menu_context->move);
@@ -1647,8 +1640,6 @@ xfce_menu_characters (GMarkupParseContext *context,
     case XFCE_MENU_PARSE_NODE_TYPE_NEW:
       if (G_LIKELY (menu_context->move != NULL))
         xfce_menu_move_set_new (menu_context->move, content);
-      else
-        g_warning ("Ignoring <New>%s</New>", content);
       break;
 
     case XFCE_MENU_PARSE_NODE_TYPE_MENUNAME:

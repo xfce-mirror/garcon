@@ -189,7 +189,7 @@ xfce_menu_item_cache_init (XfceMenuItemCache *cache)
   if (G_UNLIKELY (path == NULL))
     {
       path = xfce_resource_save_location (XFCE_RESOURCE_CACHE, "libxfce4menu/items.tdb", FALSE);
-      g_warning ("Failed to create the libxfce4menu item cache in %s.", path);
+      g_warning (_("Failed to create the libxfce4menu item cache in %s."), path);
       g_free (path);
       return;
     }
@@ -199,7 +199,7 @@ xfce_menu_item_cache_init (XfceMenuItemCache *cache)
 
   /* Print warning if it could not be opened */
   if (G_UNLIKELY (cache->priv->context == NULL))
-    g_warning ("Failed to open libxfce4menu item cache in %s: %s.", path, g_strerror (errno));
+    g_warning (_("Failed to open libxfce4menu item cache in %s: %s."), path, g_strerror (errno));
 
   /* Release the path */
   g_free (path);
