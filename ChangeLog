@@ -1,3 +1,8 @@
+2008-03-23	Jannis Pohlmann <jannis@xfce.org>
+
+	* tests/Makefile.am, tests/test-display-menu.c: Test program
+	  for displaying a menu added again.
+
 2007-03-23	Jannis Pohlmann <jannis@xfce.org>
 
 	* docs/reference/tmpl/: Remove tdb related files from

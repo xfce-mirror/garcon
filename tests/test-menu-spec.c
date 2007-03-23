@@ -1,6 +1,7 @@
 /* $Id$ */
-/* vi:set expandtab sw=2 sts=2: */
 /*-
+ * vi:set et ai sts=2 sw=2 cindent:
+ *
  * Copyright (c) 2007 Jannis Pohlmann <jannis@xfce.org>
  *
  * This library is free software; you can redistribute it and/or
