@@ -1,6 +1,7 @@
 /* $Id$ */
-/* vi:set expandtab sw=2 sts=2 et: */
 /*-
+ * vi:set et ai sts=2 sw=2 cindent:
+ *
  * Copyright (c) 2006-2007 Jannis Pohlmann <jannis@xfce.org>
  *
  * This library is free software; you can redistribute it and/or
@@ -60,8 +61,8 @@
 static void          xfce_menu_item_cache_class_init (XfceMenuItemCacheClass *klass);
 static void          xfce_menu_item_cache_init       (XfceMenuItemCache      *cache);
 static void          xfce_menu_item_cache_finalize   (GObject                *object);
-static XfceMenuItem *xfce_menu_item_cache_fetch_item (XfceMenuItemCache *cache,
-                                                      const gchar       *filename);
+static XfceMenuItem *xfce_menu_item_cache_fetch_item (XfceMenuItemCache      *cache,
+                                                      const gchar            *filename);
 static void          xfce_menu_item_cache_store_item (XfceMenuItemCache      *cache,
                                                       const gchar            *filename,
                                                       XfceMenuItem           *item);

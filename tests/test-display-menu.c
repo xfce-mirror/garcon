@@ -93,8 +93,8 @@ create_item_icon (XfceMenuItem *item)
   /* Get current icon theme */
   icon_theme = gtk_icon_theme_get_default ();
 
-  icon_name = xfce_menu_item_get_icon_name (item);
-  item_name = xfce_menu_item_get_name (item);
+  item_name = xfce_menu_element_get_name (XFCE_MENU_ELEMENT (item));
+  icon_name = xfce_menu_element_get_icon_name (XFCE_MENU_ELEMENT (item));
 
   if (icon_name == NULL)
     return NULL;
@@ -200,7 +200,7 @@ create_menu_widgets (GtkWidget *gtk_menu,
 
   /* Get submenus and items based on the menu layout */
   if (G_UNLIKELY (xfce_menu_has_layout (menu)))
-    items = xfce_menu_get_layout_items (menu);
+    items = xfce_menu_get_layout_elements (menu);
   else
     {
       items = xfce_menu_get_menus (menu);
@@ -228,10 +228,12 @@ create_menu_widgets (GtkWidget *gtk_menu,
           directory = xfce_menu_get_directory (submenu);
 
           /* Determine display name */
-          display_name = directory != NULL ? xfce_menu_directory_get_name (directory) : xfce_menu_get_name (submenu);
+          display_name = xfce_menu_element_get_name (XFCE_MENU_ELEMENT (submenu));
 
           /* Determine icon name */
-          icon_name = directory != NULL ? xfce_menu_directory_get_icon (directory) : "applications-other";
+          icon_name = xfce_menu_element_get_icon_name (XFCE_MENU_ELEMENT (submenu));
+          if (icon_name == NULL)
+            icon_name = "applications-other";
 
           /* Load menu icon */
           icon = gtk_icon_theme_load_icon (icon_theme, icon_name, ICON_SIZE, GTK_ICON_LOOKUP_USE_BUILTIN, NULL);

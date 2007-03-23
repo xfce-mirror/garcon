@@ -1,4 +1,18 @@
-2008-03-23	Jannis Pohlmann <jannis@xfce.org>
+2007-03-23	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/libxfce4menu.h, libxfce4menu/Makefile.am, 
+	  libxfce4menu/xfce-menu-element.{c,h}: XfceMenuElement 
+	  interface with methods xfce_menu_element_get_name() and 
+	  xfce_menu_element_get_icon_name() added. 
+	* libxfce4menu/xfce-menu.c, libxfce4menu/xfce-menu-item.c, 
+	  libxfce4menu/xfce-menu-separator.c: Add XfceMenuElementIface
+	  to XfceMenu, XfceMenuItem and XfceMenuSeparator. Rename
+	  xfce_menu_get_layout_items() to 
+	  xfce_menu_get_layout_elements().
+	* tests/test-display-menu.c: Use XfceMenuElement methods
+	  where possible.
+
+2007-03-23	Jannis Pohlmann <jannis@xfce.org>
 
 	* tests/Makefile.am, tests/test-display-menu.c: Test program
 	  for displaying a menu added again.

@@ -14,6 +14,7 @@ lib_LTLIBRARIES = 							\
 
 libxfce4menu_headers =							\
 	xfce-menu.h							\
+	xfce-menu-element.h						\
 	xfce-menu-separator.h						\
 	xfce-menu-layout.h						\
 	xfce-menu-directory.h						\
@@ -30,6 +31,7 @@ libxfce4menu_headers =							\
 
 libxfce4menu_sources =							\
 	xfce-menu.c							\
+	xfce-menu-element.c						\
 	xfce-menu-separator.c						\
 	xfce-menu-layout.c						\
 	xfce-menu-directory.c						\

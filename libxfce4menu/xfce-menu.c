@@ -30,6 +30,7 @@
 #include <libxfce4util/libxfce4util.h>
 
 #include <libxfce4menu/xfce-menu-environment.h>
+#include <libxfce4menu/xfce-menu-element.h>
 #include <libxfce4menu/xfce-menu-item.h>
 #include <libxfce4menu/xfce-menu-rules.h>
 #include <libxfce4menu/xfce-menu-standard-rules.h>
@@ -226,6 +227,7 @@ enum
 
 
 static void               xfce_menu_class_init                             (XfceMenuClass         *klass);
+static void               xfce_menu_element_init                           (XfceMenuElementIface  *iface);
 static void               xfce_menu_instance_init                          (XfceMenu              *menu);
 static void               xfce_menu_finalize                               (GObject               *object);
 static void               xfce_menu_get_property                           (GObject               *object,
@@ -308,6 +310,8 @@ static void               xfce_menu_resolve_deleted                        (Xfce
 static void               xfce_menu_resolve_moves                          (XfceMenu              *menu);
 static gint               xfce_menu_compare_items                          (gconstpointer         *a,
                                                                             gconstpointer         *b);
+static const gchar       *xfce_menu_get_element_name                       (XfceMenuElement       *element);
+static const gchar       *xfce_menu_get_element_icon_name                  (XfceMenuElement       *element);
 
 
 
@@ -402,7 +406,15 @@ xfce_menu_get_type (void)
         NULL,
       };
 
+      static const GInterfaceInfo element_info =
+      {
+        (GInterfaceInitFunc) xfce_menu_element_init,
+        NULL,
+        NULL,
+      };
+
       type = g_type_register_static (G_TYPE_OBJECT, "XfceMenu", &info, 0);
+      g_type_add_interface_static (type, XFCE_TYPE_MENU_ELEMENT, &element_info);
     }
 
   return type;
@@ -491,6 +503,15 @@ xfce_menu_class_init (XfceMenuClass *klass)
                                                         _("Whether this menu should be ignored"),
                                                         FALSE,
                                                         G_PARAM_READWRITE));
+}
+
+
+
+static void
+xfce_menu_element_init (XfceMenuElementIface *iface)
+{
+  iface->get_name = xfce_menu_get_element_name;
+  iface->get_icon_name = xfce_menu_get_element_icon_name;
 }
 
 
@@ -2878,10 +2899,27 @@ xfce_menu_get_items (XfceMenu *menu)
 
 
 
+gboolean
+xfce_menu_has_layout (XfceMenu *menu)
+{
+  GSList *nodes;
+
+  g_return_val_if_fail (XFCE_IS_MENU (menu), FALSE);
+  g_return_val_if_fail (XFCE_IS_MENU_LAYOUT (menu->priv->layout), FALSE);
+
+  /* Fetch layout nodes */
+  nodes = xfce_menu_layout_get_nodes (menu->priv->layout);
+
+  /* Menu is supposed to have no layout when the nodes list is empty */
+  return g_slist_length (nodes) > 0;
+}
+
+
+
 static void
-layout_items_collect (GSList        **dest_list,
-                      GSList         *src_list,
-                      XfceMenuLayout *layout)
+layout_elements_collect (GSList        **dest_list,
+                         GSList         *src_list,
+                         XfceMenuLayout *layout)
 {
   XfceMenuItem *item;
   XfceMenu     *menu;
@@ -2908,25 +2946,8 @@ layout_items_collect (GSList        **dest_list,
 
 
 
-gboolean
-xfce_menu_has_layout (XfceMenu *menu)
-{
-  GSList *nodes;
-
-  g_return_val_if_fail (XFCE_IS_MENU (menu), FALSE);
-  g_return_val_if_fail (XFCE_IS_MENU_LAYOUT (menu->priv->layout), FALSE);
-
-  /* Fetch layout nodes */
-  nodes = xfce_menu_layout_get_nodes (menu->priv->layout);
-
-  /* Menu is supposed to have no layout when the nodes list is empty */
-  return g_slist_length (nodes) > 0;
-}
-
-
-
 GSList*
-xfce_menu_get_layout_items (XfceMenu *menu)
+xfce_menu_get_layout_elements (XfceMenu *menu)
 {
   GSList *items = NULL;
   GSList *menu_items;
@@ -2994,7 +3015,7 @@ xfce_menu_get_layout_items (XfceMenu *menu)
               menu_items = g_slist_sort (menu_items, (GCompareFunc) xfce_menu_compare_items);
 
               /* Append menu items to the returned item list */
-              layout_items_collect (&items, menu_items, menu->priv->layout);
+              layout_elements_collect (&items, menu_items, menu->priv->layout);
             }
           else if (merge_type == XFCE_MENU_LAYOUT_MERGE_FILES)
             {
@@ -3002,7 +3023,7 @@ xfce_menu_get_layout_items (XfceMenu *menu)
               menu_items = xfce_menu_get_items (menu);
 
               /* Append menu items to the returned item list */
-              layout_items_collect (&items, menu_items, menu->priv->layout);
+              layout_elements_collect (&items, menu_items, menu->priv->layout);
             }
           else if (merge_type == XFCE_MENU_LAYOUT_MERGE_MENUS)
             {
@@ -3010,7 +3031,7 @@ xfce_menu_get_layout_items (XfceMenu *menu)
               menu_items = xfce_menu_get_menus (menu);
 
               /* Append submenus to the returned item list */
-              layout_items_collect (&items, menu_items, menu->priv->layout);
+              layout_elements_collect (&items, menu_items, menu->priv->layout);
             }
         }
     }
@@ -3051,4 +3072,41 @@ xfce_menu_compare_items (gconstpointer *a,
 
   /* Compare display names and return the result */
   return g_utf8_collate (name1, name2);
+}
+
+
+
+static const gchar*
+xfce_menu_get_element_name (XfceMenuElement *element)
+{
+  XfceMenu    *menu;
+  const gchar *name = NULL;
+
+  g_return_val_if_fail (XFCE_IS_MENU (element), NULL);
+
+  menu = XFCE_MENU (element);
+
+  /* Try directory name first */
+  if (menu->priv->directory != NULL)
+    name = xfce_menu_directory_get_name (menu->priv->directory);
+
+  /* Otherwise use the menu name as a fallback */
+  if (name == NULL)
+    name = menu->priv->name;
+
+  return name;
+}
+
+
+
+static const gchar*
+xfce_menu_get_element_icon_name (XfceMenuElement *element)
+{
+  XfceMenu *menu;
+  
+  g_return_val_if_fail (XFCE_IS_MENU (element), NULL);
+
+  menu = XFCE_MENU (element);
+
+  return menu->priv->directory != NULL ? xfce_menu_directory_get_icon (menu->priv->directory) : NULL;
 }

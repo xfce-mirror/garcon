@@ -23,13 +23,17 @@
 #include <config.h>
 #endif
 
+#include <libxfce4menu/xfce-menu-element.h>
 #include <libxfce4menu/xfce-menu-separator.h>
 
 
 
-static void               xfce_menu_separator_class_init (XfceMenuSeparatorClass *klass);
-static void               xfce_menu_separator_init       (XfceMenuSeparator      *separator);
-static void               xfce_menu_separator_finalize   (GObject                *object);
+static void         xfce_menu_separator_class_init            (XfceMenuSeparatorClass *klass);
+static void         xfce_menu_separator_element_init          (XfceMenuElementIface   *iface);
+static void         xfce_menu_separator_init                  (XfceMenuSeparator      *separator);
+static void         xfce_menu_separator_finalize              (GObject                *object);
+static const gchar *xfce_menu_separator_get_element_name      (XfceMenuElement        *element);
+static const gchar *xfce_menu_separator_get_element_icon_name (XfceMenuElement        *element);
 
 
 
@@ -92,7 +96,15 @@ xfce_menu_separator_get_type (void)
         NULL,
       };
 
+      static const GInterfaceInfo element_info =
+      {
+        (GInterfaceInitFunc) xfce_menu_separator_element_init,
+        NULL,
+        NULL,
+      };
+
       type = g_type_register_static (G_TYPE_OBJECT, "XfceMenuSeparator", &info, 0);
+      g_type_add_interface_static (type, XFCE_TYPE_MENU_ELEMENT, &element_info);
     }
 
   return type;
@@ -110,6 +122,15 @@ xfce_menu_separator_class_init (XfceMenuSeparatorClass *klass)
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = xfce_menu_separator_finalize;
+}
+
+
+
+static void
+xfce_menu_separator_element_init (XfceMenuElementIface *iface)
+{
+  iface->get_name = xfce_menu_separator_get_element_name;
+  iface->get_icon_name = xfce_menu_separator_get_element_icon_name;
 }
 
 
@@ -133,4 +154,20 @@ XfceMenuSeparator*
 xfce_menu_separator_get_default (void)
 {
   return _xfce_menu_separator;
+}
+
+
+
+static const gchar*
+xfce_menu_separator_get_element_name (XfceMenuElement *element)
+{
+  return NULL;
+}
+
+
+
+static const gchar*
+xfce_menu_separator_get_element_icon_name (XfceMenuElement *element)
+{
+  return NULL;
 }

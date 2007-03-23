@@ -27,6 +27,7 @@
 #include <libxfce4util/libxfce4util.h>
 
 #include <libxfce4menu/xfce-menu-environment.h>
+#include <libxfce4menu/xfce-menu-element.h>
 #include <libxfce4menu/xfce-menu-item.h>
 
 
@@ -52,17 +53,20 @@ enum
 
 
 
-static void     xfce_menu_item_class_init             (XfceMenuItemClass *klass);
-static void     xfce_menu_item_init                   (XfceMenuItem      *item);
-static void     xfce_menu_item_finalize               (GObject           *object);
-static void     xfce_menu_item_get_property           (GObject           *object,
-                                                       guint              prop_id,
-                                                       GValue            *value,
-                                                       GParamSpec        *pspec);
-static void     xfce_menu_item_set_property           (GObject           *object,
-                                                       guint              prop_id,
-                                                       const GValue      *value,
-                                                       GParamSpec        *pspec);
+static void         xfce_menu_item_class_init             (XfceMenuItemClass    *klass);
+static void         xfce_menu_item_element_init           (XfceMenuElementIface *iface);
+static void         xfce_menu_item_init                   (XfceMenuItem         *item);
+static void         xfce_menu_item_finalize               (GObject              *object);
+static void         xfce_menu_item_get_property           (GObject              *object,
+                                                           guint                 prop_id,
+                                                           GValue               *value,
+                                                           GParamSpec           *pspec);
+static void         xfce_menu_item_set_property           (GObject              *object,
+                                                           guint                 prop_id,
+                                                           const GValue         *value,
+                                                           GParamSpec           *pspec);
+static const gchar *xfce_menu_item_get_element_name       (XfceMenuElement      *element);
+static const gchar *xfce_menu_item_get_element_icon_name  (XfceMenuElement      *element);
 
 
 
@@ -150,7 +154,15 @@ xfce_menu_item_get_type (void)
         NULL,
       };
 
+      static const GInterfaceInfo element_info =
+      {
+        (GInterfaceInitFunc) xfce_menu_item_element_init,
+        NULL,
+        NULL,
+      };
+
       type = g_type_register_static (G_TYPE_OBJECT, "XfceMenuItem", &info, 0);
+      g_type_add_interface_static (type, XFCE_TYPE_MENU_ELEMENT, &element_info);
     }
   
   return type;
@@ -290,6 +302,15 @@ xfce_menu_item_class_init (XfceMenuItemClass *klass)
                                                         _("Name of the application icon"),
                                                         NULL,
                                                         G_PARAM_READWRITE));
+}
+
+
+
+static void
+xfce_menu_item_element_init (XfceMenuElementIface *iface)
+{
+  iface->get_name = xfce_menu_item_get_element_name;
+  iface->get_icon_name = xfce_menu_item_get_element_icon_name;
 }
 
 
@@ -945,4 +966,30 @@ xfce_menu_item_decrement_allocated (XfceMenuItem *item)
 
   if (item->priv->num_allocated > 0)
     item->priv->num_allocated--;
+}
+
+
+
+static const gchar*
+xfce_menu_item_get_element_name (XfceMenuElement *element)
+{
+  XfceMenuItem *item;
+
+  g_return_val_if_fail (XFCE_IS_MENU_ITEM (element), NULL);
+
+  item = XFCE_MENU_ITEM (element);
+  return item->priv->name;
+}
+
+
+
+static const gchar*
+xfce_menu_item_get_element_icon_name (XfceMenuElement *element)
+{
+  XfceMenuItem *item;
+
+  g_return_val_if_fail (XFCE_IS_MENU_ITEM (element), NULL);
+
+  item = XFCE_MENU_ITEM (element);
+  return item->priv->icon_name;
 }

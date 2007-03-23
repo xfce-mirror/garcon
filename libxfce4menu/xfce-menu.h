@@ -78,7 +78,7 @@ XfceMenu          *xfce_menu_get_parent            (XfceMenu          *menu);
 XfceMenuItemPool  *xfce_menu_get_item_pool         (XfceMenu          *menu);
 GSList            *xfce_menu_get_items             (XfceMenu          *menu);
 gboolean           xfce_menu_has_layout            (XfceMenu          *menu);
-GSList            *xfce_menu_get_layout_items      (XfceMenu          *menu);
+GSList            *xfce_menu_get_layout_elements   (XfceMenu          *menu);
 
 G_END_DECLS;
 
