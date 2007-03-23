@@ -1,5 +1,10 @@
 2007-03-23	Jannis Pohlmann <jannis@xfce.org>
 
+	* libxfce4menu/libxfce4menu-0.1.pc.in: Update pkg-config
+	  information to point to the new header file location.
+
+2007-03-23	Jannis Pohlmann <jannis@xfce.org>
+
 	* libxfce4menu/Makefile.am: Install header files to 
 	  $includedir/xfce4/libxfce4menu-<version>/libxfce4menu/.
 
