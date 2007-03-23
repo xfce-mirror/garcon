@@ -44,7 +44,7 @@ libxfce4menu_sources =							\
 	xfce-menu-environment.c						\
 	xfce-menu-item.c						
 
-libxfce4menuincludedir = $(includedir)/libxfce4menu-0.1/libxfce4menu
+libxfce4menuincludedir = $(includedir)/xfce4/libxfce4menu-0.1/libxfce4menu
 
 libxfce4menuinclude_HEADERS =						\
 	$(libxfce4menu_headers)						\

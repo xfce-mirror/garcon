@@ -1,5 +1,10 @@
 2007-03-23	Jannis Pohlmann <jannis@xfce.org>
 
+	* libxfce4menu/Makefile.am: Install header files to 
+	  $includedir/xfce4/libxfce4menu-<version>/libxfce4menu/.
+
+2007-03-23	Jannis Pohlmann <jannis@xfce.org>
+
 	* Move to libxfce4menu. 
 
 2007-03-21	Jannis Pohlmann <jannis@xfce.org>
