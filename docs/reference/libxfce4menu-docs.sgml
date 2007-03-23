@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY xfce-menu SYSTEM "xml/xfce-menu.xml">
+]>
+
+<book id="index">
+  <bookinfo>
+    <title>libxfce4menu Reference Manual</title>
+    <pubdate>March 2007</pubdate>
+
+    <copyright>
+      <year>2006</year>
+      <year>2007</year>
+      <holder>Jannis Pohlmann</holder>
+    </copyright>
+
+    <legalnotice id="legalnotice">
+      <para>
+        Permission is granted to copy, distribute and/or modify this document
+        under the terms of the GNU Free Documentation License, Version 1.1 or
+        any later version published by the Free Software Foundation; with no
+        Invariant Sections, with no Front-Cover Texts, and with no Back-Cover
+        Texts. The complete license text is available from the <ulink
+        type="http" url="http://www.gnu.org/">Free Software Foundation</ulink>.
+      </para>
+    </legalnotice> 
+
+    <authorgroup>
+      <author>
+        <firstname>Jannis</firstname>
+        <surname>Pohlmann</surname>
+        <affiliation>
+          <address><email>jannis@xfce.org</email></address>
+        </affiliation>
+      </author>
+    </authorgroup>
+  </bookinfo>
+
+  <part id="introduction">
+    <title>Introduction</title>
+  </part>
+
+  <part id="externals">
+    <title>Public API</title>
+    &xfce-menu;
+  </part>
+
+  <part id="internals">
+    <title>Internals</title>
+  </part>
+
+  <index>
+    <title>Index</title>
+  </index>
+</book>
+
+<!--
+  vi:set ts=2 sw=2 et ai syntax=docbkxml:
+-->

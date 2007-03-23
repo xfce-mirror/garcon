@@ -1,0 +1,37 @@
+<!-- ##### SECTION Title ##### -->
+xfce-menu-environment
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION xfce_menu_set_environment ##### -->
+<para>
+
+</para>
+
+@env: 
+
+
+<!-- ##### FUNCTION xfce_menu_get_environment ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+

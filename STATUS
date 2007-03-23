@@ -1,0 +1,190 @@
+XDG menu specificatiom implementation status
+=======================================================================
+
+   I. Supported menu file elements
+  II. Test suite results
+ III. Filesystem monitoring
+  IV. UI interaction
+
+
+
+I. Supported menu file elements
+===============================
+
+  [x] <Menu>                    
+
+  [x] <AppDir>                 
+
+  [x] <DefaultAppDirs>
+
+  [x] <DirectoryDir>
+
+  [x] <DefaultDirectoryDirs>
+
+  [x] <Name>
+
+  [x] <Directory>
+
+  [x] <OnlyUnallocated> and <NotOnlyUnallocated>
+
+        Supported by using a two-pass resolving mechanism as stated
+        in the spec ("Generating the menus").
+  
+  [x] <Deleted> and <NotDeleted>
+
+  [x] <Include> 
+
+        Recursion scheme (only recurse on and/or/not elements):
+
+           and|or|not
+             and|or|not
+               and|or|not
+                 ...
+             category|filename
+           category|filename
+
+  [x] <Exclude>
+
+  [x] <Filename>
+
+  [x] <Category>
+
+  [x] <All>
+
+  [x] <And>
+
+  [x] <Or>
+
+  [x] <Not>
+
+  [ ] <MergeFile>
+
+  [ ] <MergeDir>
+
+  [ ] <DefaultMergeDirs>
+
+  [-] <LegacyDir>
+      
+        <LegacyDir> elements are parsed and added to the menus 
+        which contain them in the menu file. Legacy menus are created
+        for legacy dirs with a .directory file. However, their desktop
+        files are not parsed yet.
+
+  [-] <DefaultLegacyDirs>
+    
+        See <LegacyDir>
+
+  [-] <KDELegacyDirs>
+
+        See <LegacyDir>
+
+  [ ] <Move>
+
+  [ ] <Old>
+
+  [ ] <New>
+
+  [-] <Layout>
+
+        The <Layout> element is parsed including all children, but the
+	layout attributes are not handled yet.
+
+  [ ] <DefaultLayout>
+
+  [-] <Menuname>
+
+        The <Layout> element is parsed, but the XML attributes are not
+        handled yet.
+
+  [x] <Separator>
+
+  [x] <Merge>
+
+
+
+II. Test suite results
+======================
+
+  The script tests/test-menu-spec makes it possible to test our 
+  implementation with the freedesktop.org menu specification test suite:
+
+    http://webcvs.freedesktop.org/menus/menu-spec/tests/
+
+  Passed tests:
+
+    * All
+    * And
+    * AppDir-relative
+    * boolean-logic
+    * Category
+    * Deleted
+    * desktop-name-collision
+    * DesktopFileID
+    * DirectoryDir-relative
+    * Directory
+    * Exclude
+    * Filename
+    * menu-multiple-matching
+    * Merge-combined
+    * NoDisplay
+    * NoDisplay2
+    * NotOnlyUnallocated-default
+    * official-categories
+    * OnlyUnallocated
+    * Or
+    * submenu-collision
+
+  Failed tests:
+
+    * AppDir (test suite bug, missing result file)
+    * DefaultMergeDirs
+    * DirectoryDir (test suite bug, missing result file)
+    * LegacyDir-Move
+    * LegacyDir-relative
+    * MergeDir-absolute
+    * MergeDir-relative
+    * MergeFile2
+    * MergeFile3
+    * MergeFile-absolute
+    * MergeFile-parent
+    * MergeFile-path
+    * MergeFile-recursive
+    * MergeFile-relative
+    * Move-collapsing
+    * Move-ordering
+    * Move-submenu
+    * Move (unverified test suite bug)
+
+  A list of test suite bugs I found during testing can be found here:
+
+    http://lunar-linux.org/~jannis/menu-spec-testsuite.txt
+
+
+
+III. Filesystem monitoring
+==========================
+
+  With a proper GObject structure for all classes (XfceMenu, 
+  XfceMenuDirectory, XfceMenuItem etc.) reloading objects independently
+  of each other should be no problem.
+
+  The only question is how monitoring should be done. Perhaps we can 
+  copy parts of ThunarVFS for this (as using ThunarVFS would only be 
+  possible if Thunar wouldn't use libxfce4menu).
+
+  So, unless there is a better method, FAM/Gamin would be used for 
+  monitoring files and directories.
+
+
+
+IV. UI interaction
+==================
+
+  Using GObject signals it should be easy to connect to menus and
+  menu items in order to update the related widgets.
+
+
+
+Written by Jannis Pohlmann <jannis@xfce.org>.
+
+$Id: STATUS 25194 2007-03-18 15:16:39Z jannis $

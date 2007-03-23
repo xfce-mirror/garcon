@@ -1,0 +1,565 @@
+2007-03-23	Jannis Pohlmann <jannis@xfce.org>
+
+	* Move to libxfce4menu. 
+
+2007-03-21	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-item.{c,h}: Improve set methods a little. Add 
+	  support for TryExec as requested by Brian.
+
+2007-03-20	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu.c: Fix several memory leaks, among them a huge
+	  310k bomb. You don't believe me? Well, see 
+	  http://rafb.net/p/WPbFZy97.html for the numbers. All
+	  menus (except the root menu) were ref'd twice and thus, their
+	  data never got free'd anywhere.
+
+2007-03-19	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu.c: Initialize threading before anything else - this
+	  seems to be a new requirement in GLib. Initialize node_type
+	  of the parse context properly. Close directory handle at the
+	  end of frap_menu_collect_files_from_path() to avoid mem leaks.
+	* frap-menu-item-cache.c: Disable g_object_ref() calls on new
+	  menu items. They're already created with a refcount of 1 ...
+	* tests/test-display-root-menu.c: Initialize FrapMenu before
+	  GTK+ so that threading is initialized earlier.
+	* tests/test-root-menu.c: Catch possible GErrors when calling
+	  frap_menu_get_root().
+
+2007-03-19	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu.c, docs/reference/tmpl/frap-menu.sgml: Improve
+	  API docs a little bit. There's soooo much more to be 
+	  documented.
+
+2007-03-19	Jannis Pohlmann <jannis@xfce.org>
+
+	* docs/reference/libfrapmenu-docs.sgml: Remove the xmlns:xi
+	  attribute from <book>.
+
+2007-03-19	Jannis Pohlmann <jannis@xfce.org>
+
+	* configure.in.in, Makefile.am, docs/: Initial import of
+	  gtk-doc support. Still needs some tweaking though.
+
+2007-03-19	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu.c: Avoid sorting items and submenus twice if
+	  possible in frap_menu_get_layout_items().
+
+2007-03-19	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu.{c,h}: Add frap_menu_has_layout(). Return NULL
+	  from frap_menu_get_layout_nodes() if a menu has no layout.
+	  Disable crappy submenu consolidation code for now as it
+	  didn't preserve menu layouts.
+	  Sort submenus in frap_menu_get_menus() and items in 
+	  frap_menu_get_items(), so API users don't have to do this.
+	* tests/test-display-root-menu.c: Update test program to be
+	  in sync with the latest API changes.
+
+2007-03-18	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-item.c: Replace g_return_val_if_fail() calls in
+	  frap_menu_item_new() with a less verbose if statement.
+
+2007-03-18	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu.c: Fix list returned by frap_menu_get_layout_items()
+	  when no layout is used (submenus were not included).
+
+2007-03-18	Jannis Pohlmann <jannis@xfce.org>
+
+	* tests/test-display-root-menu.c: Do not skip menus without 
+	  menu directory, use the menu name as display name in this 
+	  case. 
+	* frap-menu.c, frap-menu-layout.{c,h}: Add methods for a 
+	  simplified <Menuname> support. I don't want to deal with XML 
+	  attributes right now, we can add support for them later.
+	  Don't return menus/items already used in the menu layout 
+	  elsewhere. Sort menus/items before returning them - no need
+	  for the clients to implement that by themselves anymore.
+	* STATUS: Status updated.
+
+2007-03-18	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-layout.{c,h}: FrapMenuLayout added. It only supports
+	  <Filename>, <Separator> and <Merge> elements currently.
+	* frap-menu-separator.{c,h}: FrapMenuSeparator added. This is a
+	  singleton to be inserted into the GSList returned by 
+	  frap_menu_get_layout_items() whenever a separator is required.
+	* frap-menu.{c,h}: Implement parsing of <Layout>, <Separator>
+	  and <Merge> elements. Add layout member to the FrapMenu struct.
+	  Add method to fetch all items based on the layout: 
+	  frap_menu_get_layout_items(). Call _frap_menu_separator_init()
+	  in frap_menu_init() and _frap_menu_separator_shutdown() in
+	  frap_menu_shutdown(). Check filename != NULL in 
+	  frap_menu_new(). 
+	* libfrapmenu.h: Add separator and layout to the main header.
+	* tests/test-display-root-menu.c: Use 
+	  frap_menu_get_layout_items() instead of frap_menu_get_items().
+	* Makefile.am: Add separator and layout sources.
+	* STATUS: Status updated.
+
+2007-02-14	Jannis Pohlmann <jannis@xfce.org>
+
+	* STATUS: Menu spec test suite results added.
+	* tests/test-display-root-menu.c: Fix warning caused by copying
+	  a string into a const gchar*.
+
+2007-02-14	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-item-cache.h: Fix typo - it's 
+	  frap_menu_item_cache_get_default(), not 
+	  frap_menu_item_pool_get_default().
+
+2007-02-14	Jannis Pohlmann <jannis@xfce.org>
+
+	* STATUS: <Move>, <Old> and <New> are not working yet, so mark them
+	  as not implemented yet. According to the menu test suite, everything
+	  is completely supported now, except moving/merging menus and menu 
+	  layouts!
+
+2007-02-14	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-item.{c,h}: Don't ignore items which don't match the 
+	  current desktop environment. Parse OnlyShowIn/NotShowIn and add 
+	  method frap_menu_item_show_in_environment() which returns whether the 
+	  item should be displayed in the defined desktop environment or not. 
+	  Remove frap_menu_item_matches_environment(). Don't check for != NULL 
+	  before free'ing strings (g_free won't complain anyway). 
+	* frap-menu-directory.{c,h}: Don't check for != NULL before calling
+	  g_free(). Add frap_menu_directory_show_in_environment() (see notes on
+	  frap-menu-item.c for how it works). 
+	* tests/test-display-root-menu.c: Update to the new FrapMenu API.
+
+2007-02-13	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu.c: Add frap_menu_collect_files() and 
+	  frap_menu_collect_files_from_path() in order to collect potential
+	  desktop entry filenames for each menu prior to resolving the menu
+	  items. In these methods, desktop name collisions are handled by using
+	  a (desktop-file id => absolute filename) mapping. After all filenames
+	  are collected, we can simply iterate over them in order to resolve
+	  the menu items. All in all, this mechanism adds some memory overhead
+	  but reduces filesystem I/O at the same time.
+	* ./, tdb/, tests/, tests/data/: Add better svn:ignore properties for
+	  the subdirectories.
+
+2007-02-08	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-item.c: Must have accidently reverted this file before
+	  commiting the last changes. Do not decrement the allocation counter
+	  in frap_menu_item_unref(), so excluded items won't be moved from
+	  one menu to another.
+
+2007-02-08	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-item-pool.{c,h}: Remove frap_menu_item_cache_apply_rules()
+	  and frap_menu_item_cache_remove_allocated() as include/exclude rules
+	  are handled differently now. Instead, add 
+	  frap_menu_item_cache_apply_exclude_rule().
+	* frap-menu.c: Remove frap_menu_resolve_items_from_path in favour of
+	  frap_menu_resolve_items_by_rule() and
+	  frap_menu_resolve_items_from_path_by_rule(), so items are only added
+	  to the pool if they match one of the include rules (instead of
+	  removing them later if they match no include rule). Update
+	  frap_menu_resolve_items() according to this. Call
+	  frap_menu_resolve_deleted() after resolving the items to preserve the
+	  allocation state of items allocated by the menu. 
+
+2007-02-06	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-directory.{c,h}: Add support for NoDisplay, Hidden and
+	  partial support for OnlyShowIn/NotShowIn to menu directories. Fix
+	  memory leaks when the filename of a FrapMenuDirectory is redefined
+	  and the menu directory has to be reloaded (note: Hidden attributes
+	  won't be recognized by the related menu after reloading).
+	* frap-menu.c: Handle Hidden attribute of menu directories in 
+	  frap_menu_resolve_deleted() to delete menus if necessary (gives us
+	  another passed test in the fd.o test suite).
+	* tests/test-menu-spec.c: Handle NoDisplay attributes of menu
+	  directories when printing the menus.
+
+2007-02-06	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-item-cache.c: Also acquire mutex lock in 
+	  frap_menu_item_cache_foreach() as the item cache hash table could 
+	  be modified by other threads during this call otherwise.
+
+2007-02-06	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-item-cache.c: Add GMutex variable to the item cache and
+	  lock the item cache in frap_menu_item_cache_lookup() which is the
+	  only public function where the contents of the item cache may be
+	  modified. 
+	* frap-menu.c: Initialize GThread system in frap_menu_init ().
+
+2007-02-05	Jannis Pohlmann <jannis@xfce.org>
+
+	* tests/Makefile.am, tests/test-menu-spec.c: Test program for
+	  the fd.o menu spec test suite added.
+	* frap-menu-item.{c,h}: Replce "hidden" property with "no-display" as
+	  hidden desktop entries won't even be parsed. Also replace all
+	  accessor functions with _get_no_display(), _set_no_display()
+	  equivalents. Ignore hidden desktop entries. Don't check TryExec for
+	  now (as this causes errors when testing with the fd.o menu spec
+	  test suite). Let frap_menu_item_get_allocated() return gint instead
+	  of gboolean as we need to check at least two states (allocation 
+	  counter > 1 and > 2) in FrapMenu and FrapMenuItemPool.
+	* frap-menu-item-pool.{c,h}: Implement functions for removing already
+	  allocated items (for menus with <OnlyUnallocated/>). Fix several
+	  issues related to <Include>/<Exclude> rules, which did not work
+	  properly until now.
+	* frap-menu.c: Cleanup app dir related code. Remove allocated items
+	  from menus with <OnlyUnallocated/> in the second pass of
+	  frap_menu_resolve_items(). Only set the menu directory if there is
+	  one. Don't try to load item files not ending with .desktop.
+	* tests/test-menu-item.c: Use frap_menu_item_get_no_display() instead
+	  of _is_hidden().
+
+2007-01-16	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu.c: Update documentation.
+	* *.c, tests/*.c: Update copyright years.
+
+2007-01-16	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-environment.{c,h}, libfrapmenu.h, Makefile.am: Add 
+	  functions for defining the name of the desktop environment in 
+	  order to ignore menu items belonging to other environments.
+	* frap-menu.{c,h}: Add desktop environment name parameter to
+	  frap_menu_init().
+	* tests/*.c: Sync with new API.
+	* frap-menu-item.c: Add frap_menu_item_rc_matches_environment() to check
+	  whether a desktop file should be displayed in the current environment
+	  or not. Call this method in frap_menu_new() before anything else is
+	  parsed.
+
+2007-01-15	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-item.c: Free TryExec argument list. Remove old code. Don't
+	  copy the Exec string unnecessarily. Close the XfceRc file properly
+	  at the end of the function.
+
+2007-01-14	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu.{c,h}: Add frap_menu_get_items() method as a convenience 
+	  wrapper around frap_menu_item_pool_foreach. Thanks to Benny again.
+
+2007-01-14	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu.{c,h}, frap-menu-rules.h, frap-menu-standard-rules.h,
+	frap-menu-{standard,or,and,not}-rules.{c}, tests/test-root-menu.c,
+	tests/test-display-root-menu.c, Makefile.am, STATUS: Incorporate Benny's
+	patch which he wrote for the xfce4-appbrowser mockup. This patch
+	includes a lot of changes:
+
+	  - Adds <All> support to all include/exclude rules
+	  - Makes parsing include/exclude rules more sane if markup is malformed
+	  - Adds kde-applications.menu and gnome-applications.menu to the list
+	    of root menu files to search
+	  - Adds GError support to menu loading functions
+	  - Fixes <DirectoryDir> elements accidently being skipped
+	  - Fixes use of g_access usage
+
+	And some other small fixes. Huge thanks to Benny for this.
+
+2007-01-11	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-item.{c,h}: Remove "allocated" property and replace it
+	  with a kind of reference counter. Add frap_menu_item_ref/unref 
+	  methods to be used instead of frap_menu_item_set_allocated() which
+	  has been removed. Use "guint ... : 1" notation for boolean values
+	  in the structs belonging to FrapMenuItem. 
+	* frap-menu-item-pool.c: Call frap_menu_item_ref when adding an item
+	  to the pool of a menu (instead of setting the allocated value 
+	  directly).
+	* frap-menu.c: Use "guint ... : 1" notation for boolean values in
+	  structs. Fix frap_menu_set_filename to make free'ing the filename
+	  possible. Implement recursive (bottom -> top) collecting of 
+	  directory and legacy dirs (might be wrong for legacy dirs, I need 
+	  to verify this during the next days). Implement two-pass mechanism 
+	  to resolve menu items (in order to be able to handle 
+	  <OnlyUnallocated> elements). Only set menu parse state to 
+	  _STATE_ROOT if there are no other menus left on the stack.
+	* STATUS: Update implementation STATUS.
+
+2006-11-07	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-item-pool.c: Fix backwards compatibility by passing 
+	  frap_menu_item_pool_remove to the hash table remove loop function 
+	  instead of g_object_unref (we need a function returning TRUE here).
+	* frap-menu.c: Initial import of legacy menu support by adding
+	  frap_menu_resolve_menu, frap_menu_resolve_menus methods. It's not
+	  complete yet (only FrapMenu's and FrapMenuDirectory's are created and
+	  added to the menu structure; desktop entries are not parsed yet). In
+	  addition to this, I added a workaround for distributions not
+	  installing KDE properly, by adding $KDEDIR/share/desktop-directories/
+	  to <DefaultDirectoryDirs>.
+	  Also fixed some segfaults and warnings. 
+
+2006-11-06	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu.c, frap-menu-standard-rules.c, frap-menu-item-pool.c, 
+	  frap-menu-item-cache.c: Apply patch by Jannis Pohlmann which makes
+	  FrapMenu compatible with GLib < 2.12.
+
+2006-11-03	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu.{c,h}, frap-menu-move.{c,h}, Makefile.am, STATUS: 
+	  frap_menu_get_menu_with_name() added. Implemented <Move>, <New> 
+	  and <Old> elements (also added error handling for incomplete move 
+	  instructions). A move instruction is a FrapMenuMove with properties 
+	  "old" and "new", which refers to the source and target menu names. 
+	  
+2006-10-31	Jannis Pohlmann <jannis@xfce.org>
+
+	* Makefile.am, tdb/: tdb added.
+	* tests/test-root-menu.c: Return type fixed (EXIT_SUCCESS).
+	* frap-menu-item-cache.{c,h}: Prepare for reading cached items from 
+	  a tdb. This needs a carefully written memory management 
+	  implementation of which I don't know yet how it might look like.
+	  Change the signature of frap_menu_item_cache_lookup - the desktop id
+	  is now passed as a third parameter. Add a _get_default method, so 
+	  other classes can take a reference on the singleton object.
+	* frap-menu.c: Make use of the new frap_menu_item_cache_lookup method.
+	  Update FrapMenu to keep a reference on the frap menu item cache.
+
+2006-10-15	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-item-pool.c: Fix item filter method in order to respect the
+	  order of <Include>/<Exclude> elements.
+	* frap-menu.c: Rename methods related to FrapMenuParseInfo. Don't load
+	  the menu in frap_menu_set_filename (). Instead, just set the filename
+	  and use the frap_menu_new (const gchar*) method to actually load the
+	  menu file. A method to react on filename changes may be added later,
+	  when I'm working on the filesystem monitor.
+	  Merge submenus with the same name and consolidate app and directory
+	  dirs. This is another step towards proper merging of menus according
+	  to the spec and it increases the parsing speed.
+
+2006-10-04	Jannis Pohlmann <jannis@xfce.org>
+
+	* tests/test-display-root-menu.c: Add option to load a different menu 
+	  than the default applications menu.
+
+2006-10-04	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-item.c: Revert parts of the previous commit because of 
+	  useless checks.
+	* frap-menu.c: Remove <Deleted /> menus and add notes for other 
+	  merge actions to be implemented.
+
+2006-10-04	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-item.c: Make property assignment more clean.
+
+2006-10-04	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu.c: Err, this fixes the <OnlyUnallocated /> check when
+	  resolving items.
+
+2006-10-04	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-item-pool.c: Add frap_menu_item_pool_get_empty function.
+	* tests/Makefile.am, tests/test-display-root-menu.c: Link against
+	  libxfcegui4. Do not display empty menus. Improve icon loading again
+	  and execute item command when menu items are clicked.
+	* frap-menu-item.c: Leave Exec/TryExec command as is (do not modify the
+	  url(s)/file(s) parameter. 
+	* frap-menu.c: Respect <OnlyUnallocated /> item when resolve menu items.
+
+2006-10-03	Jannis Pohlmann <jannis@xfce.org>
+
+	* STATUS: Updated the implementation status.
+	* tests/test-display-root-menu.c: Improved loading / displaying of
+	  application icons. It's still not perfect, but much better than
+	  before.
+
+2006-10-01	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu-or-rules.c, frap-menu-and-rules.c, frap-menu-not-rules.c:
+	  Improve match functions and implement desktop file id matching.
+	* Fix several compiler warnings in some of the files.
+
+2006-09-30	Jannis Pohlmann <jannis@xfce.org>
+
+	* STATUS: Status updated.
+
+2006-09-30	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu.h, frap-menu.c: Make get_rules and add_rule static methods 
+	  in frap-menu.c. Implemented parsing of all include/exclude rule
+	  elements. get_app_dirs returns all application directories from the
+	  bottom up to the root menu now. Added methods to resolve the items of
+	  a menu. This is at the moment done by 1) including all items into
+	  the pool by scanning the app dirs recursively and 2) removing them
+	  according to the include/exclude rules afterwards. 
+	* frap-menu-or-rules.c, frap-menu-and-rules.c, frap-menu-not-rules.c,
+	  frap-menu-rules.{c,h}, frap-menu-standard-rules.{c,h}: Fix and improve
+	  the rules classes. The "include" interface still needs to be moved
+	  into FrapMenuRules - Jannis, don't forget about it.
+	* frap-menu-item-pool.{c,h}: Implemented several insert, lookup and
+	  foreach methods as well as methods for applying the include/exclude
+	  rules to the item pool.
+	* tests/test-display-root-menu.c: Displays menu items now.
+	* frap-menu-item.{c,h}: Added "desktop-id" and "allocated" properties.
+	  Free private data in finalize. Don't parse/load MIME types.
+	* Makefile.am, frap-menu-item-cache.{c,h}: Cache for menu items added. 
+	  This cache currently does not save anything on your harddrives. It 
+	  just seaches for an absolute menu item path in a hash table and if 
+	  it doesn't exist, it reads the file, creates a menu item, adds it to 
+	  the hash table and passes it to the menu asking for it. That's it. 
+	  tdb stuff will be implemented later.
+
+2006-09-28	Jannis Pohlmann <jannis@xfce.org>
+
+	* Makefile.am, frap-menu-not-rules.{c,h}, frap-menu.c: FrapMenuNotRules 
+	  for handling <Not> elements implemented.
+	* tests/Makefile.am, tests/test-not-rules.c: Test program for the 
+	  <Not> rules added.
+
+2006-09-28	Jannis Pohlmann <jannis@xfce.org>
+
+	* Makefile.am, frap-menu-and-rules.{c,h}, frap-menu.c: FrapMenuAndRules 
+	  for handling <And> elements implemented.
+	* tests/Makefile.am, tests/test-and-rules.c: Test program for the 
+	  <And> rules added.
+
+2006-09-28	Jannis Pohlmann <jannis@xfce.org>
+
+	* tests/Makefile.am, tests/test-or-rules.c,
+	  tests/test-display-root-menu.c: Added two additional test programs,
+	  one for testing <Or> rules and one for displaying the root menu.
+	* frap-menu-rules.{c,h}: Make methods for adding rules to a
+	  FrapMenuRules object public. Add G_TYPE_OBJECT prerequisite to the 
+	  FrapMenuRules interface.
+	* frap-menu-standard-rules.{c,h}: Add "include" property. This will
+	  probably be moved to the FrapMenuRules interface later. Fix abstract
+	  ->match method.
+	* frap-menu-or-rules.{c,h}: Add frap_menu_or_rules_new method. Make
+	  FrapMenuOrRules a FRAP_TYPE_MENU_STANDARD_RULES type. Implement match
+	  method (does not yet check the desktop file id, because it's not clear
+	  how that is going to be handled).
+	* frap-menu-item.c: Implement frap_menu_item_add_categories method.
+	* frap-menu.c: Implement parsing of <Include>, <Exclude>, <Or>,
+	  <Filename> and <Category> elements. <And> and <Not> are still missing.
+
+2006-09-28	Jannis Pohlmann <jannis@xfce.org>
+
+	* tests/data/Makefile.am: Update desktop entry filename. I'm using 
+	  xfmedia.desktop as it provides everything I need to test (positively).
+
+2006-09-27	Jannis Pohlmann <jannis@xfce.org>
+
+	* frap-menu.{c,h}: Add frap_menu_new method to create a menu structure
+	  from a filename.
+	* frap-menu-item.{c,h}: Implement first parts of the FrapMenuItem class.
+	  This class acts as a wrapper for .desktop entries and represents one
+	  application/command.
+	* frap-menu-item-pool.{c,h}: First code for FrapMenuItemPool added.
+	  Please note that this class has no real use yet. It will probably act
+	  as a (Desktop-File Id => FrapMenuItem) mapping. Every menu will have
+	  such a pool and whenever the menu needs to access it's menu items, the
+	  pool will be queried. The pool itself doesn't store the
+	  FrapMenuItem's. They will be kept in cached FrapMenuItemDatabase and
+	  be shared among all pools.
+	* tests/, test/data/, tests/test-root-menu.c, tests/test-menu-item.c, 
+	  tests/Makefile.am, tests/data/Makefile.am, tests/data/xfmedia.desktop:
+	  Test environment added. All programs in this directory will test small
+	  parts of the menu framework. The first two (one for testing
+	  FrapMenuItem and one for loading the root menu) were also added.
+	* libfrapmenu.h: Missing headers added.
+	* frap-menu-standard-rules.c: This one is currently broken. I'll
+	  implement the properties tomorrow.
+
+2006-09-26	Jannis Pohlmann <jannis@xfce.org>
+
+	* Makefile.am, frap-menu-rules.{c.h}: FrapMenuRulesIface interface added.
+	  This interface will be used for the <And>, <Or> and <Not> elements.
+	  It provides virtual methods to add filename and category rules as
+	  well as FrapMenuRules objects (as the mentioned elements may be
+	  nested). It also provides a virtual method for matching menu items
+	  (essentially, desktop entries) against these rules.
+	* Makefile.am, frap-menu-standard-rules.{c,h}: Implemented a base
+	  class for all rule sets (<And>, <Or>, <Not>). It implements the add
+	  methods of FrapMenuRulesIface. The responsibility of implementing the
+	  match method is forwarded to subclasses of FrapMenuStandardRules.
+	* Makefile.am, frap-menu-or-rules.{c,h}: This first implementation of
+	  the FrapMenuRulesIface will be used for matching items against <Or>,
+	  <Include> and <Exclude> elements. The match method is not implemented
+	  yet, though.
+
+2006-07-28	Jannis Pohlmann <jannis@xfce.org>
+
+	* Import as libfrapmenu into the newly created libfrap development
+	  library. Makefile.am probably still needs some tweaking and I need to
+	  figure out how to link test programs in libfrap/ to this library, but
+	  apart from that, everything has been renamed and should work.
+
+2006-07-27	Jannis Pohlmann <jannis@xfce.org>
+
+	* STATUS: Implementation status updated. Directory names are now 
+	  resolved properly (and in reverse order).
+
+2006-07-27	Jannis Pohlmann <jannis@xfce.org>
+
+	* tests/display-menu.c: Removed debug statement and tooltips allocation.
+	* libxfce4menu/xfce-menu.c: Use list for possible directory names and
+	  try to load them in reverse order when resolving the menu directory of
+	  an XfceMenu object. Free string lists properly.
+
+2006-07-21	Jannis Pohlmann <jannis@xfce.org>
+
+	* STATUS: Detailled information about the implementation status added.
+
+2006-07-21	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu.c: Destroy the menu parse info in
+	  xfce_menu_finalize, not directly after parsing the menu. Free
+	  old parse info directory name when the menu directory name has 
+	  changed and the menu is parsed again. 
+	* tests/CMakeLists.txt, tests/display-menu.c: Added a test program to
+	  display the menu structure. At the moment, it only contains menus
+	  listed in the root menu file, no merged menus or menu items (as
+	  these features have not been implemented yet).
+
+2006-07-20	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu-directory.{c,h}: Remove the
+	  xfce_menu_directory_lookup method, as the lookup is performed by the
+	  menu by using its search paths.
+	* libxfce4menu/xfce-menu.{c,h}: Recursively resolve menu directories
+	  after the parsing process. xfce_menu_get_parent method added.
+	* tests/load-root-menu-test.c: Print menu directory information.
+
+2006-07-17	Jannis Pohlmann <jannis@xfce.org>
+
+	* tests/load-root-menu.c: Cleanup the test program. Print legacy
+	  and app dirs.
+
+2006-07-17	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu.{c,h}: Implement recursive <Menu> parsing.
+	  There is no support for merging menus across files and also, 
+	  directory and desktop entry lookup is still missing.
+	* tests/load-root-menu.c: Extend test program to print the complete
+	  menu hierarchy.
+
+2006-07-17	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu.{c,h}: Implemented the following elements:
+	  elements: <DirectoryDir>, <DefaultDirectoryDirs>, 
+	  <OnlyUnallocated>, <NotOnlyUnallocated>, <Deleted>, <NotDeleted>.
+	  
+	  Handle <Directory> differently, as we need to parse the whole menu
+	  before we can lookup the directory file - therefor XfceMenuParseInfo
+	  has been added, which will be used to store temporary information
+	  in order to resolve things after parsing the menu.
+	  
+	  Abort setting properties if new values are equal to the old ones.
+	* tests/load-root-menu-test.c: Display only_unallocated, delete and
+	  directory_dirs information.

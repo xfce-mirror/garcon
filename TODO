@@ -1,0 +1,9 @@
+TODO
+========================================================================
+
+  * Remove FrapMenu from libfrap during the next 24-48 hours
+  * Add libxfce4menu.spec.in for building RPMs
+  * Re-add test scripts
+  * Make sure -version-info is set correctly
+  * Keep tdb related stuff from being generated in docs/reference/tmpl/
+  * Add #ifdef's for GTK+ 2.6 and GLib 2.6

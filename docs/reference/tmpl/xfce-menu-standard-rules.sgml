@@ -1,0 +1,50 @@
+<!-- ##### SECTION Title ##### -->
+XfceMenuStandardRules
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT XfceMenuStandardRules ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG XfceMenuStandardRules:include ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION xfce_menu_standard_rules_get_include ##### -->
+<para>
+
+</para>
+
+@rules: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_standard_rules_set_include ##### -->
+<para>
+
+</para>
+
+@rules: 
+@include: 
+
+

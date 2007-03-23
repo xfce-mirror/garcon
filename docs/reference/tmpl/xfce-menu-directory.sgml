@@ -1,0 +1,172 @@
+<!-- ##### SECTION Title ##### -->
+xfce-menu-directory
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT XfceMenuDirectoryPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT XfceMenuDirectoryClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT XfceMenuDirectory ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG XfceMenuDirectory:comment ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG XfceMenuDirectory:filename ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG XfceMenuDirectory:icon ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG XfceMenuDirectory:name ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG XfceMenuDirectory:no-display ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION xfce_menu_directory_get_filename ##### -->
+<para>
+
+</para>
+
+@directory: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_directory_set_filename ##### -->
+<para>
+
+</para>
+
+@directory: 
+@name: 
+
+
+<!-- ##### FUNCTION xfce_menu_directory_get_name ##### -->
+<para>
+
+</para>
+
+@directory: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_directory_set_name ##### -->
+<para>
+
+</para>
+
+@directory: 
+@name: 
+
+
+<!-- ##### FUNCTION xfce_menu_directory_get_comment ##### -->
+<para>
+
+</para>
+
+@directory: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_directory_set_comment ##### -->
+<para>
+
+</para>
+
+@directory: 
+@comment: 
+
+
+<!-- ##### FUNCTION xfce_menu_directory_get_icon ##### -->
+<para>
+
+</para>
+
+@directory: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_directory_set_icon ##### -->
+<para>
+
+</para>
+
+@directory: 
+@icon: 
+
+
+<!-- ##### FUNCTION xfce_menu_directory_get_no_display ##### -->
+<para>
+
+</para>
+
+@directory: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_directory_set_no_display ##### -->
+<para>
+
+</para>
+
+@directory: 
+@no_display: 
+
+
+<!-- ##### FUNCTION xfce_menu_directory_get_hidden ##### -->
+<para>
+
+</para>
+
+@directory: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_directory_show_in_environment ##### -->
+<para>
+
+</para>
+
+@directory: 
+@Returns: 
+
+

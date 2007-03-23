@@ -1,0 +1,77 @@
+<!-- ##### SECTION Title ##### -->
+xfce-menu-move
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT XfceMenuMoveClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT XfceMenuMove ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION xfce_menu_move_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_move_get_old ##### -->
+<para>
+
+</para>
+
+@move: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_move_set_old ##### -->
+<para>
+
+</para>
+
+@move: 
+@old: 
+
+
+<!-- ##### FUNCTION xfce_menu_move_get_new ##### -->
+<para>
+
+</para>
+
+@move: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_move_set_new ##### -->
+<para>
+
+</para>
+
+@move: 
+@new: 
+
+

@@ -1,0 +1,48 @@
+What is it?
+===========
+
+This is libxfce4menu, a freedesktop.org compliant menu implementation for
+Xfce. 
+
+
+Current state
+=============
+
+libxfce4menu already covers the most important parts of the menu specification. 
+It is however still in development and thus, neither stable nor complete.
+
+
+Installation
+============
+
+The file 'INSTALL' contains generic installation instructions.
+
+
+Debugging Support
+=================
+
+libxfce4menu currently supports three different levels of debugging support, 
+which can be setup using the configure flag `--enable-debug' (check the output 
+of `configure --help'):
+
+  `yes'         This is the default for SVN snapshot builds. It adds all kinds
+                of checks to the code, and is therefore likely to run slower.
+                Use this for development of libxfce4menu and locating bugs in 
+                libxfce4menu.
+
+  `minimum'     This is the default for release builds. This is the recommended
+                behaviour.
+
+  `no'          Disables all sanity checks. Don't use this unless you know
+                exactly what you do.
+
+
+How to report bugs?
+===================
+
+Bugs should be reported to the Xfce bug tracking system 
+(http://bugzilla.xfce.org, product libxfce4menu). You will need to create an 
+account for yourself.
+
+Please read the HACKING file for information on where to send changes or 
+bugfixes for this package.

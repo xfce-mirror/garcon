@@ -1,0 +1,81 @@
+<!-- ##### SECTION Title ##### -->
+libxfce4menu-config
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO LIBXFCE4MENU_MAJOR_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO LIBXFCE4MENU_MINOR_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO LIBXFCE4MENU_MICRO_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO LIBXFCE4MENU_CHECK_VERSION ##### -->
+<para>
+
+</para>
+
+@major: 
+@minor: 
+@micro: 
+
+
+<!-- ##### VARIABLE libxfce4menu_major_version ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE libxfce4menu_minor_version ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### VARIABLE libxfce4menu_micro_version ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION libxfce4menu_check_version ##### -->
+<para>
+
+</para>
+
+@required_major: 
+@required_minor: 
+@required_micro: 
+@Returns: 
+
+
