@@ -1,5 +1,12 @@
 2007-03-23	Jannis Pohlmann <jannis@xfce.org>
 
+	* docs/reference/tmpl/: Remove tdb related files from
+	  SVN. They won't be installed to the system anyway.
+	* tests/Makefile.am, tests/test-menu-spec.c: Test program for
+	  the menu specification test suite added again.
+
+2007-03-23	Jannis Pohlmann <jannis@xfce.org>
+
 	* libxfce4menu/libxfce4menu-0.1.pc.in: Update pkg-config
 	  information to point to the new header file location.
 

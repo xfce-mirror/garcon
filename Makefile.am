@@ -6,6 +6,7 @@ SUBDIRS =								\
 	tdb								\
 	libxfce4menu							\
 	docs								\
+	tests								\
 	po
 
 AUTOMAKE_OPTIONS =							\

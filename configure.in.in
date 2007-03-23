@@ -207,12 +207,13 @@ Makefile
 docs/Makefile
 docs/reference/Makefile
 docs/reference/version.xml
-tdb/tdbconfig.h
-tdb/Makefile
 libxfce4menu/Makefile
 libxfce4menu/libxfce4menu-0.1.pc
 libxfce4menu/libxfce4menu-config.h
 po/Makefile.in
+tdb/tdbconfig.h
+tdb/Makefile
+tests/Makefile
 ])
 
 dnl ***************************
