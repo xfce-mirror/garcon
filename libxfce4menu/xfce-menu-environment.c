@@ -31,6 +31,15 @@ static gchar *environment = NULL;
 
 
 
+/**
+ * xfce_menu_set_environment:
+ * @env : Name of the desktop environment for which menus will
+ *        be generated (e.g. XFCE, KDE, GNOME or %NULL).
+ *
+ * Sets (or unsets) the desktop environment for which menus will generated.
+ * Menus and menu items belonging to other desktop environments will be
+ * ignored. If set to %NULL, all menu items are used.
+ */
 void
 xfce_menu_set_environment (const gchar *env)
 {
@@ -42,6 +51,12 @@ xfce_menu_set_environment (const gchar *env)
 
 
 
+/**
+ * xfce_menu_get_environment:
+ * 
+ * Return value: Name of the desktop environment (e.g. XFCE, KDE, GNOME) 
+ * which is used or %NULL.
+ */
 G_CONST_RETURN gchar*
 xfce_menu_get_environment (void)
 {

@@ -27,6 +27,7 @@ libxfce4menu_headers =							\
 	xfce-menu-item-cache.h						\
 	xfce-menu-move.h						\
 	xfce-menu-environment.h						\
+	xfce-menu-monitor.h						\
 	xfce-menu-item.h						
 
 libxfce4menu_sources =							\
@@ -44,6 +45,7 @@ libxfce4menu_sources =							\
 	xfce-menu-item-cache.c						\
 	xfce-menu-move.c						\
 	xfce-menu-environment.c						\
+	xfce-menu-monitor.c						\
 	xfce-menu-item.c						
 
 libxfce4menuincludedir = $(includedir)/xfce4/libxfce4menu-0.1/libxfce4menu

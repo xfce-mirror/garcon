@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-Desktop Environment
+Initialization and Shutdown
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -17,7 +17,7 @@ Desktop Environment
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### FUNCTION xfce_menu_set_environment ##### -->
+<!-- ##### FUNCTION xfce_menu_init ##### -->
 <para>
 
 </para>
@@ -25,11 +25,10 @@ Desktop Environment
 @env: 
 
 
-<!-- ##### FUNCTION xfce_menu_get_environment ##### -->
+<!-- ##### FUNCTION xfce_menu_shutdown ##### -->
 <para>
 
 </para>
 
-@Returns: 
 
 

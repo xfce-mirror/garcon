@@ -1,6 +1,7 @@
 #include <libxfce4menu/libxfce4menu.h>
 
 xfce_menu_get_type
+xfce_menu_element_get_type
 xfce_menu_directory_get_type
 xfce_menu_item_get_type
 xfce_menu_item_pool_get_type
@@ -11,3 +12,4 @@ xfce_menu_or_rules_get_type
 xfce_menu_and_rules_get_type
 xfce_menu_not_rules_get_type
 xfce_menu_layout_get_type
+xfce_menu_separator_get_type

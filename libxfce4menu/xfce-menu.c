@@ -43,6 +43,7 @@
 #include <libxfce4menu/xfce-menu-move.h>
 #include <libxfce4menu/xfce-menu-layout.h>
 #include <libxfce4menu/xfce-menu-separator.h>
+#include <libxfce4menu/xfce-menu-monitor.h>
 #include <libxfce4menu/xfce-menu.h>
 
 
@@ -100,6 +101,9 @@ xfce_menu_init (const gchar *env)
       /* Initialize the directory module */
       _xfce_menu_directory_init ();
 
+      /* Initialize monitoring system */
+      _xfce_menu_monitor_init ();
+
       /* Creates the menu separator */
       _xfce_menu_separator_init ();
     }
@@ -108,7 +112,7 @@ xfce_menu_init (const gchar *env)
 
 
 /**
- * xfce_menu_shutdown
+ * xfce_menu_shutdown:
  *
  * Shuts down the libxfce4menu library.
  **/
@@ -122,6 +126,9 @@ xfce_menu_shutdown (void)
 
       /* Destroys the menu separator */
       _xfce_menu_separator_shutdown ();
+
+      /* Shutdown monitoring system */
+      _xfce_menu_monitor_shutdown ();
 
       /* Shutdown the directory module */
       _xfce_menu_directory_shutdown ();
@@ -313,6 +320,8 @@ static gint               xfce_menu_compare_items                          (gcon
                                                                             gconstpointer         *b);
 static const gchar       *xfce_menu_get_element_name                       (XfceMenuElement       *element);
 static const gchar       *xfce_menu_get_element_icon_name                  (XfceMenuElement       *element);
+static void               xfce_menu_monitor_start                          (XfceMenu              *menu);
+static void               xfce_menu_monitor_stop                           (XfceMenu              *menu);
 
 
 
@@ -549,6 +558,9 @@ static void
 xfce_menu_finalize (GObject *object)
 {
   XfceMenu *menu = XFCE_MENU (object);
+
+  /* Stop monitoring */
+  xfce_menu_monitor_stop (menu);
 
   /* Free filename */
   g_free (menu->priv->filename);
@@ -1017,6 +1029,16 @@ xfce_menu_set_deleted (XfceMenu *menu,
 
 
 
+/**
+ * xfce_menu_get_directory_dirs:
+ * @menu : a #XfceMenu
+ *
+ * Returns a list with all directory dirs of @menu. Collects directory 
+ * dirs from @menu up to the root menu so that the root menu directory 
+ * dirs come first.
+ *
+ * Return value: List with all relevant directory dirs of @menu.
+ */
 GSList*
 xfce_menu_get_directory_dirs (XfceMenu *menu)
 {
@@ -1222,7 +1244,11 @@ xfce_menu_load (XfceMenu *menu, GError **error)
   xfce_menu_resolve_items (menu, FALSE);
   xfce_menu_resolve_items (menu, TRUE);
   
+  /* Remove deleted menus */
   xfce_menu_resolve_deleted (menu);
+
+  /* Start monitoring */
+  xfce_menu_monitor_start (menu);
 
   return TRUE;
 }
@@ -1863,7 +1889,8 @@ xfce_menu_add_kde_legacy_dirs (XfceMenu *menu)
   if (G_UNLIKELY (kde_legacy_dirs == NULL))
     {
       gchar       *std_out;
-      gchar       *std_err;
+      gchar       *std_err;>
+
       gint         status;
       GError      *error = NULL;
       const gchar *kde_dir = g_getenv ("KDEDIR");
@@ -1881,7 +1908,7 @@ xfce_menu_add_kde_legacy_dirs (XfceMenu *menu)
           if (G_LIKELY (occurence == NULL))
             {
               /* PATH = $PATH:$KDEDIR/bin */
-              kde_path = g_strjoin (G_SEARCHPATH_SEPARATOR_S, path, kde_bin_dir);
+              kde_path = g_strjoin (G_SEARCHPATH_SEPARATOR_S, path, kde_bin_dir, NULL);
 
               /* Set new $PATH value */
               g_setenv ("PATH", kde_path, TRUE);
@@ -3100,4 +3127,52 @@ xfce_menu_get_element_icon_name (XfceMenuElement *element)
   menu = XFCE_MENU (element);
 
   return menu->priv->directory != NULL ? xfce_menu_directory_get_icon (menu->priv->directory) : NULL;
+}
+
+
+
+static void
+item_monitor_start (const gchar  *desktop_id,
+                    XfceMenuItem *item,
+                    XfceMenu     *menu)
+{
+  xfce_menu_monitor_add_item (menu, item);
+}
+
+
+
+static void
+xfce_menu_monitor_start (XfceMenu *menu)
+{
+  GSList *iter;
+
+  g_return_if_fail (XFCE_IS_MENU (menu));
+
+  /* Monitor items in the menu pool */
+  xfce_menu_item_pool_foreach (menu->priv->pool, (GHFunc) item_monitor_start, menu);
+
+  /* Monitor items in submenus */
+  for (iter = menu->priv->submenus; iter != NULL; iter = g_slist_next (iter))
+    xfce_menu_monitor_start (XFCE_MENU (iter->data));
+}
+
+
+
+static void
+item_monitor_stop (const gchar  *desktop_id,
+                   XfceMenuItem *item,
+                   XfceMenu     *menu)
+{
+  xfce_menu_monitor_remove_item (menu, item);
+}
+
+
+
+static void
+xfce_menu_monitor_stop (XfceMenu *menu)
+{
+  g_return_if_fail (XFCE_IS_MENU (menu));
+
+  /* Stop monitoring the items */
+  xfce_menu_item_pool_foreach (menu->priv->pool, (GHFunc) item_monitor_stop, menu);
 }

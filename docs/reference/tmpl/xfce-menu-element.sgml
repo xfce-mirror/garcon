@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-XfceMenuStandardRules
+XfceMenuElement
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -17,32 +17,36 @@ XfceMenuStandardRules
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT XfceMenuStandardRules ##### -->
+<!-- ##### STRUCT XfceMenuElement ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ARG XfceMenuStandardRules:include ##### -->
+<!-- ##### STRUCT XfceMenuElementIface ##### -->
 <para>
 
 </para>
 
-<!-- ##### FUNCTION xfce_menu_standard_rules_get_include ##### -->
+@__parent__: 
+@get_name: 
+@get_icon_name: 
+
+<!-- ##### FUNCTION xfce_menu_element_get_name ##### -->
 <para>
 
 </para>
 
-@rules: 
+@element: 
 @Returns: 
 
 
-<!-- ##### FUNCTION xfce_menu_standard_rules_set_include ##### -->
+<!-- ##### FUNCTION xfce_menu_element_get_icon_name ##### -->
 <para>
 
 </para>
 
-@rules: 
-@include: 
+@element: 
+@Returns: 
 
 

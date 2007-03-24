@@ -24,6 +24,7 @@
 
 #define LIBXFCE4MENU_INSIDE_LIBXFCE4MENU_H
 
+#include <libxfce4menu/libxfce4menu-config.h>
 #include <libxfce4menu/xfce-menu-environment.h>
 #include <libxfce4menu/xfce-menu-element.h>
 #include <libxfce4menu/xfce-menu-item.h>
@@ -38,6 +39,7 @@
 #include <libxfce4menu/xfce-menu-layout.h>
 #include <libxfce4menu/xfce-menu-separator.h>
 #include <libxfce4menu/xfce-menu.h>
+#include <libxfce4menu/xfce-menu-monitor.h>
 
 #define LIBXFCE4MENU_INSIDE_LIBXFCE4MENU_H
 

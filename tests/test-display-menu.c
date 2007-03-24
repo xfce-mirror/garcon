@@ -49,6 +49,57 @@ static XfceMenu *root = NULL;
 
 
 
+/* Pseudo monitor handler */
+static guint pseudo_monitor_handler = 0;
+
+
+
+static gpointer
+monitor_file (XfceMenu    *menu,
+              const gchar *filename,
+              gpointer     user_data)
+{
+  g_debug ("%s: monitoring file %s", xfce_menu_element_get_name (XFCE_MENU_ELEMENT (menu)), filename);
+  return GUINT_TO_POINTER (++pseudo_monitor_handler);
+}
+
+
+
+static gpointer
+monitor_directory (XfceMenu    *menu,
+                   const gchar *filename,
+                   gpointer     user_data)
+{
+  g_debug ("%s: monitoring directory %s", xfce_menu_element_get_name (XFCE_MENU_ELEMENT (menu)), filename);
+  return GUINT_TO_POINTER (++pseudo_monitor_handler);
+}
+
+
+
+static void
+remove_monitor (XfceMenu *menu,
+                gpointer  monitor_handle)
+{
+  g_debug ("%s: removing monitor %d", xfce_menu_element_get_name (XFCE_MENU_ELEMENT (menu)), GPOINTER_TO_UINT (monitor_handle));
+}
+
+
+
+static void
+initialize_monitoring (void)
+{
+  XfceMenuMonitorVTable vtable = { 
+      monitor_file,
+      monitor_directory,
+      remove_monitor,
+  };
+
+  /* Pass VTable to the menu library */
+  xfce_menu_monitor_set_vtable (&vtable, NULL);
+}
+
+
+
 static void
 execute_item_command (GtkWidget    *widget,
                       XfceMenuItem *item)
@@ -329,6 +380,9 @@ main (int    argc,
 
   /* Initialize the menu library */
   xfce_menu_init ("XFCE");
+
+  /* Set up menu monitoring */
+  initialize_monitoring ();
 
   /* Initialize GTK+ */
   gtk_init (&argc, &argv);

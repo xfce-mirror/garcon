@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-Desktop Environment
+Monitoring
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -17,19 +17,21 @@ Desktop Environment
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### FUNCTION xfce_menu_set_environment ##### -->
+<!-- ##### STRUCT XfceMenuMonitorVTable ##### -->
 <para>
 
 </para>
 
-@env: 
+@monitor_file: 
+@monitor_directory: 
+@remove_monitor: 
 
-
-<!-- ##### FUNCTION xfce_menu_get_environment ##### -->
+<!-- ##### FUNCTION xfce_menu_monitor_set_vtable ##### -->
 <para>
 
 </para>
 
-@Returns: 
+@vtable: 
+@user_data: 
 
 

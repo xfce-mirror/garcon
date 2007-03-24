@@ -1,3 +1,17 @@
+2007-03-24	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/Makefile.am, libxfce4menu/xfce-menu.c, 
+	  libxfce4menu/xfce-menu-monitor.{c,h}: Add monitoring support
+	  by making it possible for library clients to define a vtable
+	  with functions to be called whenever monitoring a file or
+	  directory becomes necessary. This way Thunar and xfdesktop
+	  can use ThunarVFS for monitoring and I don't need to care
+	  about how they do it. Note: xfce_menu_monitor_notify_change()
+	  is missing but will be adedd as soon as possible.
+	* tests/test-display-menu.c: Add some dummy code for testing
+	  the monitoring system.
+	* docs/reference/: Updated and reorganized API docs.
+
 2007-03-23	Jannis Pohlmann <jannis@xfce.org>
 
 	* libxfce4menu/*.c: Remove gettext calls for strings

@@ -1,20 +1,19 @@
 <!-- ##### SECTION Title ##### -->
-xfce-menu
+XfceMenu
 
 <!-- ##### SECTION Short_Description ##### -->
 
 
 <!-- ##### SECTION Long_Description ##### -->
 <para>
-
+XfceMenu is the most important part of libxfce4menu. In almost all use 
+cases the first thing to be created is an XfceMenu based on a filename.
 </para>
-
 
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
-
 
 <!-- ##### SECTION Stability_Level ##### -->
 
@@ -61,21 +60,6 @@ xfce-menu
 <para>
 
 </para>
-
-<!-- ##### FUNCTION xfce_menu_init ##### -->
-<para>
-
-</para>
-
-@env: 
-
-
-<!-- ##### FUNCTION xfce_menu_shutdown ##### -->
-<para>
-
-</para>
-
-
 
 <!-- ##### FUNCTION xfce_menu_get_root ##### -->
 <para>
@@ -269,6 +253,15 @@ xfce-menu
 
 
 <!-- ##### FUNCTION xfce_menu_has_layout ##### -->
+<para>
+
+</para>
+
+@menu: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_get_layout_elements ##### -->
 <para>
 
 </para>
