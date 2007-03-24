@@ -8,6 +8,8 @@
 	  can use ThunarVFS for monitoring and I don't need to care
 	  about how they do it. Note: xfce_menu_monitor_notify_change()
 	  is missing but will be adedd as soon as possible.
+	  Add a missing NULL to g_strjoin() in xfce-menu.c as reported
+	  by Jens Luedicke.
 	* tests/test-display-menu.c: Add some dummy code for testing
 	  the monitoring system.
 	* docs/reference/: Updated and reorganized API docs.
