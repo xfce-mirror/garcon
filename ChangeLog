@@ -1,5 +1,11 @@
 2007-03-25	Jannis Pohlmann <jannis@xfce.org>
 
+	* libxfce4menu/xfce-menu-monitor.c: Use if statement
+	  rather than g_return_(val_)if_fail to check whether vtable 
+	  functions have been set.
+
+2007-03-25	Jannis Pohlmann <jannis@xfce.org>
+
 	* libxfce4menu/xfce-menu.c: Fix weird typo as noted by
 	  Jens Luedicke.
 
