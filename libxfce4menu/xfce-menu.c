@@ -1889,7 +1889,7 @@ xfce_menu_add_kde_legacy_dirs (XfceMenu *menu)
   if (G_UNLIKELY (kde_legacy_dirs == NULL))
     {
       gchar       *std_out;
-      gchar       *std_err;>
+      gchar       *std_err;
 
       gint         status;
       GError      *error = NULL;
