@@ -1,3 +1,9 @@
+2007-05-20	Jannis Pohlmann <jannis@xfce.org>
+
+	* configure.in.in: Disable empty AC_CHECK_FUNCS([]) call for
+	  now. Fixes syntax error on IRIX (bug #3251, reported by
+	  Daichi).
+
 2007-03-25	Jannis Pohlmann <jannis@xfce.org>
 
 	* libxfce4menu/xfce-menu-monitor.c: Use if statement
