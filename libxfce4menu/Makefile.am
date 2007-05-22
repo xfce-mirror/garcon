@@ -80,7 +80,7 @@ libxfce4menu_0_1_la_LIBADD = 						\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(top_builddir)/tdb/libtdb.la
 
-EXTRADIST =								\
+EXTRA_DIST =								\
 	libxfce4menu-config.h.in
 
 pkgconfigdir = $(libdir)/pkgconfig
