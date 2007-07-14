@@ -1,5 +1,10 @@
+2007-07-14  Daichi Kawahata <daichi@xfce.org>
+
+	* LINGUAS: Added ja.
+	* ja.po: Added Japanese translations.
+
 2007-03-23	Jannis Pohlmann <jannis@xfce.org>
-	
+
 	* POTFILES.in: Add source files.
-	* de.po, libxfce4menu-0.1.pot, LINGUAS: Add POT file and 
+	* de.po, libxfce4menu-0.1.pot, LINGUAS: Add POT file and
 	  initial German translations.
