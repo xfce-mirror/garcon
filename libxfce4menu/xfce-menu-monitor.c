@@ -43,16 +43,28 @@ static XfceMenuMonitorVTable xfce_menu_monitor_vtable = {
 /* User data as provided by the client */
 static gpointer xfce_menu_monitor_user_data = NULL;
 
-/* Hash table with (XfceMenuElement => gpointer) pairs */
-static GHashTable *xfce_menu_monitor_handles;
+/* Hash table with (XfceMenuItem => gpointer) pairs */
+static GHashTable *xfce_menu_monitor_item_handles;
+
+/* Hash table with (Directory => gpointer) pairs */
+static GHashTable *xfce_menu_monitor_shared_handles;
+
+/* Structure for directory handles */
+typedef struct _SharedHandle SharedHandle;
+struct _SharedHandle  
+{
+  gpointer monitor_handle;
+  int      references;
+};
 
 
 
 void 
 _xfce_menu_monitor_init (void)
 {
-  /* Initialize hash table */
-  xfce_menu_monitor_handles = g_hash_table_new (NULL, NULL);
+  /* Initialize hash tables */
+  xfce_menu_monitor_item_handles = g_hash_table_new (NULL, NULL);
+  xfce_menu_monitor_shared_handles = g_hash_table_new_full (NULL, NULL, g_free, g_free);
 }
 
 
@@ -61,9 +73,11 @@ void
 _xfce_menu_monitor_shutdown (void)
 {
 #if GLIB_CHECK_VERSION(2,10,0)
-  g_hash_table_unref (xfce_menu_monitor_handles);
+  g_hash_table_unref (xfce_menu_monitor_item_handles);
+  g_hash_table_unref (xfce_menu_monitor_shared_handles);
 #else
-  g_hash_table_destroy (xfce_menu_monitor_handles);
+  g_hash_table_destroy (xfce_menu_monitor_item_handles);
+  g_hash_table_destroy (xfce_menu_monitor_shared_handles);
 #endif
 }
 
@@ -114,7 +128,7 @@ xfce_menu_monitor_add_item (XfceMenu     *menu,
   if (G_LIKELY (monitor_handle != NULL))
     {
       /* Store the item => handle pair in the hash table */
-      g_hash_table_insert (xfce_menu_monitor_handles, item, monitor_handle);
+      g_hash_table_insert (xfce_menu_monitor_item_handles, item, monitor_handle);
     }
 
   return monitor_handle;
@@ -134,11 +148,178 @@ xfce_menu_monitor_remove_item (XfceMenu     *menu,
     return;
 
   /* Lookup the monitor handle for this item */
-  monitor_handle = g_hash_table_lookup (xfce_menu_monitor_handles, item);
+  monitor_handle = g_hash_table_lookup (xfce_menu_monitor_item_handles, item);
 
   if (G_LIKELY (monitor_handle != NULL))
     {
       /* Remove monitor handle from the library client */
       xfce_menu_monitor_vtable.remove_monitor (menu, monitor_handle);
+
+      /* ... and remove the item from the hash table */
+      g_hash_table_remove (xfce_menu_monitor_item_handles, item);
+    }
+}
+
+
+
+gpointer
+xfce_menu_monitor_add_directory (XfceMenu    *menu,
+                                 const gchar *directory)
+{
+  SharedHandle *shared_handle;
+  gpointer         monitor_handle;
+
+  g_return_val_if_fail (XFCE_IS_MENU (menu), NULL);
+  g_return_val_if_fail (directory != NULL, NULL);
+  
+  if (G_UNLIKELY (xfce_menu_monitor_vtable.monitor_directory == NULL))
+    return NULL;
+
+  /* Load directory handle from the hash table */
+  shared_handle = (SharedHandle *)g_hash_table_lookup (xfce_menu_monitor_shared_handles, directory);
+
+  /* Check if the directory is already monitored */
+  if (G_LIKELY (shared_handle != NULL))
+    {
+      /* Increment reference counter */
+      shared_handle->references++;
+
+      /* Return the monitor handle */
+      monitor_handle = shared_handle->monitor_handle;
+    }
+  else
+    {
+      /* Request monitor handle from the library client */
+      monitor_handle = xfce_menu_monitor_vtable.monitor_directory (menu, directory, xfce_menu_monitor_user_data);
+
+      if (G_LIKELY (monitor_handle != NULL))
+        {
+          /* Allocate new directory handle */
+          shared_handle = g_new0 (SharedHandle, 1);
+
+          /* Set values (reference counter starts with 1) */
+          shared_handle->references = 1;
+          shared_handle->monitor_handle = monitor_handle;
+
+          /* Store the item => handle pair in the hash table */
+          g_hash_table_insert (xfce_menu_monitor_shared_handles, g_strdup (directory), shared_handle);
+        }
+    }
+
+  return monitor_handle;
+}
+
+
+
+void
+xfce_menu_monitor_remove_directory (XfceMenu    *menu,
+                                    const gchar *directory)
+{
+  SharedHandle *shared_handle;
+
+  g_return_if_fail (directory != NULL);
+  
+  if (G_UNLIKELY (xfce_menu_monitor_vtable.remove_monitor == NULL))
+    return;
+
+  /* Lookup the directory handle for this directory */
+  shared_handle = g_hash_table_lookup (xfce_menu_monitor_shared_handles, directory);
+
+  if (G_LIKELY (shared_handle != NULL))
+    {
+      /* Decrement the reference counter */
+      shared_handle->references--;
+
+      /* Check if there are no references left */
+      if (G_UNLIKELY (shared_handle->references == 0)) 
+        {
+          /* Remove monitor handle from the library client */
+          xfce_menu_monitor_vtable.remove_monitor (menu, shared_handle->monitor_handle);
+
+          /* Remove directory handle from the hash table and destroy it */
+          g_hash_table_remove (xfce_menu_monitor_shared_handles, shared_handle);
+        }
+    }
+}
+
+
+
+gpointer
+xfce_menu_monitor_add_file (XfceMenu    *menu,
+                            const gchar *filename)
+{
+  SharedHandle *shared_handle;
+  gpointer      monitor_handle;
+
+  g_return_val_if_fail (XFCE_IS_MENU (menu), NULL);
+  g_return_val_if_fail (filename != NULL, NULL);
+  
+  if (G_UNLIKELY (xfce_menu_monitor_vtable.monitor_file == NULL))
+    return NULL;
+
+  /* Load filename handle from the hash table */
+  shared_handle = (SharedHandle *)g_hash_table_lookup (xfce_menu_monitor_shared_handles, filename);
+
+  /* Check if the file is already monitored */
+  if (G_LIKELY (shared_handle != NULL))
+    {
+      /* Increment reference counter */
+      shared_handle->references++;
+
+      /* Return the monitor handle */
+      monitor_handle = shared_handle->monitor_handle;
+    }
+  else
+    {
+      /* Request monitor handle from the library client */
+      monitor_handle = xfce_menu_monitor_vtable.monitor_file (menu, filename, xfce_menu_monitor_user_data);
+
+      if (G_LIKELY (monitor_handle != NULL))
+        {
+          /* Allocate new filename handle */
+          shared_handle = g_new0 (SharedHandle, 1);
+
+          /* Set values (reference counter starts with 1) */
+          shared_handle->references = 1;
+          shared_handle->monitor_handle = monitor_handle;
+
+          /* Store the item => handle pair in the hash table */
+          g_hash_table_insert (xfce_menu_monitor_shared_handles, g_strdup (filename), shared_handle);
+        }
+    }
+
+  return monitor_handle;
+}
+
+
+
+void
+xfce_menu_monitor_remove_file (XfceMenu    *menu,
+                               const gchar *filename)
+{
+  SharedHandle *shared_handle;
+
+  g_return_if_fail (filename != NULL);
+  
+  if (G_UNLIKELY (xfce_menu_monitor_vtable.remove_monitor == NULL))
+    return;
+
+  /* Lookup the filename handle for this file */
+  shared_handle = g_hash_table_lookup (xfce_menu_monitor_shared_handles, filename);
+
+  if (G_LIKELY (shared_handle != NULL))
+    {
+      /* Decrement the reference counter */
+      shared_handle->references--;
+
+      /* Check if there are no references left */
+      if (G_UNLIKELY (shared_handle->references == 0)) 
+        {
+          /* Remove monitor handle from the library client */
+          xfce_menu_monitor_vtable.remove_monitor (menu, shared_handle->monitor_handle);
+
+          /* Remove filename handle from the hash table and destroy it */
+          g_hash_table_remove (xfce_menu_monitor_shared_handles, shared_handle);
+        }
     }
 }

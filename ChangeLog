@@ -1,3 +1,18 @@
+2007-09-20	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu-monitor.{c,h}: Added methods to 
+	  monitor files and directories. That way we can now add 
+	  monitors for the main menu file as well as menu .directory 
+	  files and the application directories - I think that's
+	  all we need. Since there may be several XfceMenu's monotoring
+	  the same application directories and menu files, those
+	  are managed using a reference counting mechanism, so that
+	  the monitor is only removed when all menus have asked
+	  to remove the monitor on them.
+	* libxfce4menu/xfce-menu.c: Monitor the main menu file as
+	  well as .directory files and application directories. And
+	  of course remove the monitors when the menu is destroyed.
+
 2007-05-22	Benedikt Meurer <benny@xfce.org>
 
 	* libxfce4menu/Makefile.am: Fix typo.

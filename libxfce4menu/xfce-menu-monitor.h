@@ -34,12 +34,20 @@ G_BEGIN_DECLS;
 
 typedef struct _XfceMenuMonitorVTable XfceMenuMonitorVTable;
 
-void     xfce_menu_monitor_set_vtable  (XfceMenuMonitorVTable *vtable, 
-                                        gpointer               user_data);
-gpointer xfce_menu_monitor_add_item    (XfceMenu              *menu,
-                                        XfceMenuItem          *item);
-void     xfce_menu_monitor_remove_item (XfceMenu              *menu,
-                                        XfceMenuItem          *item);
+void     xfce_menu_monitor_set_vtable       (XfceMenuMonitorVTable *vtable, 
+                                             gpointer               user_data);
+gpointer xfce_menu_monitor_add_item         (XfceMenu              *menu,
+                                             XfceMenuItem          *item);
+void     xfce_menu_monitor_remove_item      (XfceMenu              *menu,
+                                             XfceMenuItem          *item);
+gpointer xfce_menu_monitor_add_directory    (XfceMenu              *menu,
+                                             const gchar           *directory);
+void     xfce_menu_monitor_remove_directory (XfceMenu              *menu,
+                                             const gchar           *directory);
+gpointer xfce_menu_monitor_add_file         (XfceMenu              *menu,
+                                             const gchar           *filename);
+void     xfce_menu_monitor_remove_file      (XfceMenu              *menu,
+                                             const gchar           *filename);
 
 /**
  * XfceMenuMonitorVTable:

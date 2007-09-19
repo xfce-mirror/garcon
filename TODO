@@ -1,7 +1,6 @@
 TODO
 ========================================================================
 
-  * Remove FrapMenu from libfrap during the next 24-48 hours
   * Add libxfce4menu.spec.in for building RPMs
   * Re-add test scripts
   * Add #ifdef's for GTK+ 2.6 and GLib 2.6
