@@ -3186,10 +3186,6 @@ xfce_menu_monitor_stop (XfceMenu *menu)
 
   g_return_if_fail (XFCE_IS_MENU (menu));
 
-  /* Stop monitoring items in submenus */
-  for (iter = menu->priv->submenus; iter != NULL; iter = g_slist_next (iter))
-    xfce_menu_monitor_stop (XFCE_MENU (iter->data));
-
   /* Stop monitoring the items */
   xfce_menu_item_pool_foreach (menu->priv->pool, (GHFunc) item_monitor_stop, menu);
 

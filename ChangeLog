@@ -1,5 +1,19 @@
 2007-09-20	Jannis Pohlmann <jannis@xfce.org>
 
+	* libxfce4menu/xfce-menu-monitor.c: Use g_str_hash and 
+	  g_str_equal for the file/directory to monitor handle
+	  hash table, rather than comparing the pointers directly.
+	* libxfce4menu/xfce-menu.c: Create submenu monitors after 
+	  parsing by traversing the XfceMenu tree but remove them 
+	  in xfce_menu_finalize (so creating the monitors happens
+	  in the root menu, removing is handled inside the 
+	  submenus). Now all monitors are properly removed when
+	  the root menu is destroyed.
+	* tests/test-display-root-menu.c: Print the pseudo monitor 
+	  handle ID in monitor_file and monitor_directory.
+
+2007-09-20	Jannis Pohlmann <jannis@xfce.org>
+
 	* libxfce4menu/xfce-menu-monitor.{c,h}: Added methods to 
 	  monitor files and directories. That way we can now add 
 	  monitors for the main menu file as well as menu .directory 

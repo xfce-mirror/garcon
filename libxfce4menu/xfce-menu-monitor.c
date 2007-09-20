@@ -64,7 +64,7 @@ _xfce_menu_monitor_init (void)
 {
   /* Initialize hash tables */
   xfce_menu_monitor_item_handles = g_hash_table_new (NULL, NULL);
-  xfce_menu_monitor_shared_handles = g_hash_table_new_full (NULL, NULL, g_free, g_free);
+  xfce_menu_monitor_shared_handles = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 }
 
 
@@ -299,6 +299,7 @@ xfce_menu_monitor_remove_file (XfceMenu    *menu,
 {
   SharedHandle *shared_handle;
 
+  g_return_if_fail (XFCE_IS_MENU (menu));
   g_return_if_fail (filename != NULL);
   
   if (G_UNLIKELY (xfce_menu_monitor_vtable.remove_monitor == NULL))

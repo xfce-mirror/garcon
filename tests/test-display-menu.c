@@ -59,8 +59,8 @@ monitor_file (XfceMenu    *menu,
               const gchar *filename,
               gpointer     user_data)
 {
-  g_debug ("%s: monitoring file %s", xfce_menu_element_get_name (XFCE_MENU_ELEMENT (menu)), filename);
-  return GUINT_TO_POINTER (++pseudo_monitor_handler);
+  g_debug ("%s: monitoring file %s => %d", xfce_menu_element_get_name (XFCE_MENU_ELEMENT (menu)), filename, ++pseudo_monitor_handler);
+  return GUINT_TO_POINTER (pseudo_monitor_handler);
 }
 
 
@@ -70,8 +70,8 @@ monitor_directory (XfceMenu    *menu,
                    const gchar *filename,
                    gpointer     user_data)
 {
-  g_debug ("%s: monitoring directory %s", xfce_menu_element_get_name (XFCE_MENU_ELEMENT (menu)), filename);
-  return GUINT_TO_POINTER (++pseudo_monitor_handler);
+  g_debug ("%s: monitoring directory %s => %d", xfce_menu_element_get_name (XFCE_MENU_ELEMENT (menu)), filename, ++pseudo_monitor_handler);
+  return GUINT_TO_POINTER (pseudo_monitor_handler);
 }
 
 
