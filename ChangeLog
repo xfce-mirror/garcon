@@ -1,3 +1,10 @@
+2007-09-25	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu-layout.c: Fix bug #3568 which
+	  was caused by the layout variable not being used in
+	  _set_property and _get_property. Thanks to Tomasz Mon
+	  for the hint.
+
 2007-09-20	Jannis Pohlmann <jannis@xfce.org>
 
 	* libxfce4menu/xfce-menu-monitor.c: Use g_str_hash and 

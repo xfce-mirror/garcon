@@ -167,7 +167,9 @@ xfce_menu_layout_get_property (GObject    *object,
                                GValue     *value,
                                GParamSpec *pspec)
 {
+#if 0
   XfceMenuLayout *layout = XFCE_MENU_LAYOUT (layout);
+#endif
 
   switch (prop_id)
     {
@@ -185,7 +187,9 @@ xfce_menu_layout_set_property (GObject      *object,
                                const GValue *value,
                                GParamSpec   *pspec)
 {
+#if 0
   XfceMenuLayout *layout = XFCE_MENU_LAYOUT (layout);
+#endif
 
   switch (prop_id)
     {
