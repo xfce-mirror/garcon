@@ -78,23 +78,26 @@ I. Supported menu file elements
 
         See <LegacyDir>
 
-  [ ] <Move>
+  [-] <Move>
 
-  [ ] <Old>
+        <Move> elements are parsed and functions for applying them
+        do exist. They are incomplete though: they only rename
+        menus if the <New> menu does not exist. Merging is not done
+        yet.
 
-  [ ] <New>
+  [-] <Old>
 
-  [-] <Layout>
+  [-] <New>
 
-        The <Layout> element is parsed including all children, but the
-	layout attributes are not handled yet.
+  [x] <Layout>
 
   [ ] <DefaultLayout>
 
   [-] <Menuname>
 
-        The <Layout> element is parsed, but the XML attributes are not
-        handled yet.
+        The <Menuname> element is parsed and applied, but XML 
+        attributes like show_empty, inline, inline_limit etc. are not
+        handled.
 
   [x] <Separator>
 
