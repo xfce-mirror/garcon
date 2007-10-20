@@ -96,6 +96,8 @@ void
 xfce_menu_monitor_set_vtable (XfceMenuMonitorVTable *vtable,
                               gpointer               user_data)
 {
+  g_return_if_fail (vtable != NULL);
+
   if (G_LIKELY (!xfce_menu_monitor_vtable_set))
     {
       if (G_UNLIKELY (vtable->monitor_file && vtable->monitor_directory && vtable->remove_monitor))
