@@ -30,9 +30,6 @@
 
 
 
-/* Whether the vtable has been set once */
-static gboolean xfce_menu_monitor_vtable_set = FALSE;
-
 /* Initial vtable configuration */
 static XfceMenuMonitorVTable xfce_menu_monitor_vtable = {
   NULL,
@@ -90,24 +87,31 @@ _xfce_menu_monitor_shutdown (void)
  *
  * Sets the functions to be called when monitoring a file or directory
  * becomes necessary. See #XfceMenuMonitorVTable for more detailled
- * information.
+ * information. Be careful with redefining the #XfceMenuMonitorVTable 
+ * (e.g. don't redefine it while there are any #XfceMenu's around).
+ *
+ * In order to change the user data, just pass the same 
+ * #XfceMenuMonitorVTable as you did before. Pass NULL to clear the
+ * vtable (e.g. if you want to disable monitoring support).
  */
 void
 xfce_menu_monitor_set_vtable (XfceMenuMonitorVTable *vtable,
                               gpointer               user_data)
 {
-  g_return_if_fail (vtable != NULL);
-
-  if (G_LIKELY (!xfce_menu_monitor_vtable_set))
+  if (G_UNLIKELY (vtable == NULL))
     {
-      if (G_UNLIKELY (vtable->monitor_file && vtable->monitor_directory && vtable->remove_monitor))
-        {
-          xfce_menu_monitor_vtable.monitor_file = vtable->monitor_file;
-          xfce_menu_monitor_vtable.monitor_directory = vtable->monitor_directory;
-          xfce_menu_monitor_vtable.remove_monitor = vtable->remove_monitor;
-          xfce_menu_monitor_user_data = user_data;
-        }
+      xfce_menu_monitor_vtable.monitor_file = NULL;
+      xfce_menu_monitor_vtable.monitor_directory = NULL;
+      xfce_menu_monitor_vtable.remove_monitor = NULL;
     }
+  else
+    {
+      xfce_menu_monitor_vtable.monitor_file = vtable->monitor_file;
+      xfce_menu_monitor_vtable.monitor_directory = vtable->monitor_directory;
+      xfce_menu_monitor_vtable.remove_monitor = vtable->remove_monitor;
+    }
+
+  xfce_menu_monitor_user_data = user_data;
 }
 
 

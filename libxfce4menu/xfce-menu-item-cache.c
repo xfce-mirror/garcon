@@ -61,11 +61,13 @@
 static void          xfce_menu_item_cache_class_init (XfceMenuItemCacheClass *klass);
 static void          xfce_menu_item_cache_init       (XfceMenuItemCache      *cache);
 static void          xfce_menu_item_cache_finalize   (GObject                *object);
+#if 0 /* ITEM CACHE DEACTIVATED FOR NOW */
 static XfceMenuItem *xfce_menu_item_cache_fetch_item (XfceMenuItemCache      *cache,
                                                       const gchar            *filename);
 static void          xfce_menu_item_cache_store_item (XfceMenuItemCache      *cache,
                                                       const gchar            *filename,
                                                       XfceMenuItem           *item);
+#endif
 
 
 
@@ -255,6 +257,7 @@ xfce_menu_item_cache_lookup (XfceMenuItemCache *cache,
    * item cache */
   g_mutex_lock (cache->priv->lock);
 
+#if 0
   /* Search filename in the hash table */
   item = g_hash_table_lookup (cache->priv->items, filename);
 
@@ -306,6 +309,7 @@ xfce_menu_item_cache_lookup (XfceMenuItemCache *cache,
           return item;
         }
     }
+#endif
 
   /* Last chance is to load it directly from the file */
   item = xfce_menu_item_new (filename);
@@ -315,11 +319,13 @@ xfce_menu_item_cache_lookup (XfceMenuItemCache *cache,
       /* Update desktop id */
       xfce_menu_item_set_desktop_id (item, desktop_id);
 
+#if 0 /* ITEM CACHE DEACTIVATED FOR NOW */
       /* Store updated item in cache */
       xfce_menu_item_cache_store_item (cache, filename, item);
 
       /* The file has been loaded, add the item to the hash table */
       g_hash_table_replace (cache->priv->items, g_strdup (filename), item);
+#endif
 
       /* Grab a reference on it but don't increase the allocation counter */
 #if 0
@@ -353,6 +359,7 @@ xfce_menu_item_cache_foreach (XfceMenuItemCache *cache,
 
 
 
+#if 0 /* ITEM CACHE DEACTIVATED FOR NOW */
 static XfceMenuItem*
 xfce_menu_item_cache_fetch_item (XfceMenuItemCache *cache,
                                  const gchar       *filename)
@@ -414,3 +421,4 @@ xfce_menu_item_cache_store_item (XfceMenuItemCache *cache,
    *   tdb_store (cache->priv->context, key, data, TDB_REPLACE);
    */
 }
+#endif

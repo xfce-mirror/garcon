@@ -1,3 +1,25 @@
+2007-10-20	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu-monitor.c: No, let's do it 
+	  differently: You can now redefine the vtable. You can also
+	  clear it by passing NULL. Whenever you want to change the
+	  user_data, just pass the same vtable as before.
+	* libxfce4menu/xfce-menu-item-cache.c: Deactivate the cache
+	  for now. Perhaps we can add it later, together with fast
+	  checksum support to detect filesystem changes.
+	
+2007-10-20	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu-monitor.c: Add vtable != NULL check
+	  to xfce_menu_monitor_set_vtable. Avoids crashes when passing
+	  a NULL pointer and makes other developers aware of what they
+	  might be doing wrong.
+
+2007-10-12	Jannis Pohlmann <jannis@xfce.org>
+
+	* STATUS: Updated the status file to reflect the
+	  current implementation status.
+
 2007-09-25	Jannis Pohlmann <jannis@xfce.org>
 
 	* libxfce4menu/xfce-menu-layout.c: As a follow-up to 

@@ -2666,9 +2666,9 @@ xfce_menu_resolve_item_by_rule (const gchar  *desktop_id,
                                 const gchar  *filename,
                                 XfceMenuPair *data)
 {
-  XfceMenu              *menu;
-  XfceMenuStandardRules *rule;
-  XfceMenuItem          *item;
+  XfceMenu              *menu = NULL;
+  XfceMenuStandardRules *rule = NULL;
+  XfceMenuItem          *item = NULL;
 
   g_return_if_fail (XFCE_IS_MENU (data->first));
   g_return_if_fail (XFCE_IS_MENU_STANDARD_RULES (data->second));
@@ -2774,7 +2774,7 @@ xfce_menu_resolve_moves (XfceMenu *menu)
         }
     }
 
-#if 0
+#if 0 
   XfceMenu     *submenu;
   XfceMenu     *target_submenu;
   XfceMenuMove *move;
