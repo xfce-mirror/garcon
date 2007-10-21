@@ -65,6 +65,9 @@ void          xfce_menu_item_set_name                          (XfceMenuItem *it
 const gchar  *xfce_menu_item_get_icon_name                     (XfceMenuItem *item);
 void          xfce_menu_item_set_icon_name                     (XfceMenuItem *item,
                                                                 const gchar  *icon_name);
+const gchar  *xfce_menu_item_get_path                          (XfceMenuItem *item);
+void          xfce_menu_item_set_path                          (XfceMenuItem *item,
+                                                                const gchar  *path);
 gboolean      xfce_menu_item_requires_terminal                 (XfceMenuItem *item);
 void          xfce_menu_item_set_requires_terminal             (XfceMenuItem *item,
                                                                 gboolean      requires_terminal);

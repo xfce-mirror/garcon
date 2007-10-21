@@ -1,3 +1,10 @@
+2007-10-21	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu-item.{c,h}: Add support for the "Path" 
+	  key of the .desktop entries. This makes it possible to start
+	  menu items in a special working directory. Will make fixing
+	  bug #3472 easier.
+
 2007-10-20	Jannis Pohlmann <jannis@xfce.org>
 
 	* libxfce4menu/xfce-menu-monitor.c: No, let's do it 

@@ -49,6 +49,7 @@ enum
   PROP_ICON_NAME,
   PROP_COMMAND,
   PROP_TRY_EXEC,
+  PROP_PATH,
 };
 
 
@@ -112,6 +113,9 @@ struct _XfceMenuItemPrivate
 
   /* Environments in which the menu item should be hidden */
   gchar   **not_show_in;
+
+  /* Working directory */
+  gchar    *path;
 
   /* Counter keeping the number of menus which use this item. This works
    * like a reference counter and should be increased / decreased by XfceMenu
@@ -302,6 +306,19 @@ xfce_menu_item_class_init (XfceMenuItemClass *klass)
                                                         "Name of the application icon",
                                                         NULL,
                                                         G_PARAM_READWRITE));
+
+  /**
+   * XfceMenuItem:path:
+   *
+   * Working directory the application should be started in.
+   **/
+  g_object_class_install_property (gobject_class,
+                                   PROP_PATH,
+                                   g_param_spec_string ("path",
+                                                        "Path",
+                                                        "Working directory path",
+                                                        NULL,
+                                                        G_PARAM_READWRITE));
 }
 
 
@@ -328,6 +345,7 @@ xfce_menu_item_init (XfceMenuItem *item)
   item->priv->icon_name = NULL;
   item->priv->only_show_in = NULL;
   item->priv->not_show_in = NULL;
+  item->priv->path = NULL;
   item->priv->num_allocated = 0;
 }
 
@@ -347,6 +365,8 @@ xfce_menu_item_finalize (GObject *object)
 
   g_strfreev (item->priv->only_show_in);
   g_strfreev (item->priv->not_show_in);
+  
+  g_free (item->priv->path);
 
   g_list_foreach (item->priv->categories, (GFunc) g_free, NULL);
   g_list_free (item->priv->categories);
@@ -381,6 +401,10 @@ xfce_menu_item_get_property (GObject    *object,
     case PROP_COMMAND:
     case PROP_ICON_NAME:
     case PROP_TRY_EXEC:
+      break;
+
+    case PROP_PATH:
+      g_value_set_string (value, xfce_menu_item_get_path (item));
       break;
 
     default:
@@ -437,6 +461,10 @@ xfce_menu_item_set_property (GObject      *object,
       xfce_menu_item_set_icon_name (item, g_value_get_string (value));
       break;
 
+    case PROP_PATH:
+      xfce_menu_item_set_path (item, g_value_get_string (value));
+      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -450,6 +478,7 @@ xfce_menu_item_new (const gchar *filename)
 {
   XfceMenuItem *item = NULL;
   XfceRc       *rc;
+  const gchar  *path;
   const gchar  *name;
   const gchar  *exec;
   const gchar  *try_exec;
@@ -485,6 +514,7 @@ xfce_menu_item_new (const gchar *filename)
   exec = xfce_rc_read_entry (rc, "Exec", NULL);
   try_exec = xfce_rc_read_entry (rc, "TryExec", NULL);
   icon = xfce_rc_read_entry (rc, "Icon", NULL);
+  path = xfce_rc_read_entry (rc, "Path", NULL);
 
   /* Validate Name and Exec fields */
   if (G_LIKELY (exec != NULL && name != NULL && g_utf8_validate (name, -1, NULL)))
@@ -504,6 +534,7 @@ xfce_menu_item_new (const gchar *filename)
                            "requires-terminal", terminal, 
                            "no-display", no_display, 
                            "supports-startup-notification", startup_notify, 
+                           "path", path,
                            NULL);
 
       /* Determine the categories this application should be shown in */
@@ -774,6 +805,40 @@ xfce_menu_item_set_icon_name (XfceMenuItem *item,
 
   /* Notify listeners */
   g_object_notify (G_OBJECT (item), "icon_name");
+}
+
+
+
+const gchar*
+xfce_menu_item_get_path (XfceMenuItem *item)
+{
+  g_return_val_if_fail (XFCE_IS_MENU_ITEM (item), NULL);
+  return item->priv->path;
+}
+
+
+
+void        
+xfce_menu_item_set_path (XfceMenuItem *item,
+                         const gchar  *path)
+{
+  g_return_if_fail (XFCE_IS_MENU_ITEM (item));
+
+  if (G_UNLIKELY (item->priv->path != NULL))
+    {
+      /* Abort if old and new path are equal */
+      if (G_UNLIKELY (g_utf8_collate (item->priv->path, path) == 0))
+        return;
+
+      /* Otherwise free old path */
+      g_free (item->priv->path);
+    }
+
+  /* Assign new path */
+  item->priv->path = g_strdup (path);
+
+  /* Notify listeners */
+  g_object_notify (G_OBJECT (item), "path");
 }
 
 
