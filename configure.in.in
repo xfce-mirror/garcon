@@ -30,7 +30,7 @@ AC_COPYRIGHT([Copyright (c) 2007 The Xfce development team.
 All rights reserved.
         
 Written for Xfce by Jannis Pohlmann <jannis@xfce.org>.])
-AC_INIT([xfce4menu], [libxfce4menu_version()], [http://bugzilla.xfce.org/])
+AC_INIT([xfce4menu], [libxfce4menu_version], [http://bugzilla.xfce.org/])
 AC_PREREQ([2.50])
 AC_REVISION([$Id$])
 AC_CANONICAL_TARGET()
