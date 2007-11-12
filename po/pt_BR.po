@@ -1,0 +1,35 @@
+# Portuguese translations for libxfce package.
+# Copyright (C) 2007 THE libxfce'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the libxfce package.
+# Og Maciel <ogmaciel@gnome.org>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libxfce 4menu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-09-20 22:18+0200\n"
+"PO-Revision-Date: 2007-11-11 22:58-0500\n"
+"Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
+"Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: BRAZIL\n"
+
+#. Let the caller know there was no suitable file
+#: ../libxfce4menu/xfce-menu.c:741
+msgid "Failed to locate the application root menu"
+msgstr "Falha ao localizar o menu principal de aplicações"
+
+#: ../libxfce4menu/xfce-menu-item-cache.c:192
+#, c-format
+msgid "Failed to create the libxfce4menu item cache in %s."
+msgstr "Falha ao criar item libxfce4menu de cache em %s"
+
+#: ../libxfce4menu/xfce-menu-item-cache.c:202
+#, c-format
+msgid "Failed to open libxfce4menu item cache in %s: %s."
+msgstr "Falha ao criar item libxfce4menu de cache em %s: %s."
+
