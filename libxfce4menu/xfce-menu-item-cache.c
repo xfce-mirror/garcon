@@ -61,7 +61,7 @@
 static void          xfce_menu_item_cache_class_init (XfceMenuItemCacheClass *klass);
 static void          xfce_menu_item_cache_init       (XfceMenuItemCache      *cache);
 static void          xfce_menu_item_cache_finalize   (GObject                *object);
-#if 0 /* ITEM CACHE DEACTIVATED FOR NOW */
+#if 1 /* ITEM CACHE DEACTIVATED FOR NOW */
 static XfceMenuItem *xfce_menu_item_cache_fetch_item (XfceMenuItemCache      *cache,
                                                       const gchar            *filename);
 static void          xfce_menu_item_cache_store_item (XfceMenuItemCache      *cache,
@@ -257,7 +257,7 @@ xfce_menu_item_cache_lookup (XfceMenuItemCache *cache,
    * item cache */
   g_mutex_lock (cache->priv->lock);
 
-#if 0
+#if 1
   /* Search filename in the hash table */
   item = g_hash_table_lookup (cache->priv->items, filename);
 
@@ -299,7 +299,7 @@ xfce_menu_item_cache_lookup (XfceMenuItemCache *cache,
 
           /* Grab a reference on the item, but don't increase the allocation
            * counter */
-#if 0
+#if 1
           g_object_ref (G_OBJECT (item));
 #endif
 
@@ -319,7 +319,7 @@ xfce_menu_item_cache_lookup (XfceMenuItemCache *cache,
       /* Update desktop id */
       xfce_menu_item_set_desktop_id (item, desktop_id);
 
-#if 0 /* ITEM CACHE DEACTIVATED FOR NOW */
+#if 1 /* ITEM CACHE DEACTIVATED FOR NOW */
       /* Store updated item in cache */
       xfce_menu_item_cache_store_item (cache, filename, item);
 
@@ -328,7 +328,7 @@ xfce_menu_item_cache_lookup (XfceMenuItemCache *cache,
 #endif
 
       /* Grab a reference on it but don't increase the allocation counter */
-#if 0
+#if 1
       g_object_ref (G_OBJECT (item)); 
 #endif
     }
@@ -359,7 +359,7 @@ xfce_menu_item_cache_foreach (XfceMenuItemCache *cache,
 
 
 
-#if 0 /* ITEM CACHE DEACTIVATED FOR NOW */
+#if 1 /* ITEM CACHE DEACTIVATED FOR NOW */
 static XfceMenuItem*
 xfce_menu_item_cache_fetch_item (XfceMenuItemCache *cache,
                                  const gchar       *filename)
@@ -422,3 +422,21 @@ xfce_menu_item_cache_store_item (XfceMenuItemCache *cache,
    */
 }
 #endif
+
+
+
+void
+xfce_menu_item_cache_invalidate (XfceMenuItemCache *cache)
+{
+  g_return_if_fail (XFCE_IS_MENU_ITEM_CACHE (cache));
+
+  /* Destroy the hash table */
+#if GLIB_CHECK_VERSION(2,10,0)
+  g_hash_table_unref (cache->priv->items);
+#else
+  g_hash_table_destroy (cache->priv->items);
+#endif
+  
+  /* Create a new, empty hash table */
+  cache->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, (GDestroyNotify) xfce_menu_item_unref);
+}

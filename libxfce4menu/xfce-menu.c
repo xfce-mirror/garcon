@@ -2684,11 +2684,17 @@ xfce_menu_resolve_item_by_rule (const gchar  *desktop_id,
     {
       /* Only include item if menu not only includes unallocated items
        * or if the item is not allocated yet */
-      if (!menu->priv->only_unallocated || (xfce_menu_item_get_allocated (item) < 1))
+      if (!menu->priv->only_unallocated || xfce_menu_item_get_allocated (item) == 0)
         {
           /* Add item to the pool if it matches the include rule */
           if (G_LIKELY (xfce_menu_standard_rules_get_include (rule) && xfce_menu_rules_match (XFCE_MENU_RULES (rule), item)))
-            xfce_menu_item_pool_insert (menu->priv->pool, item);
+            {
+#if 0
+              if (menu->priv->directory != NULL && g_str_equal (xfce_menu_directory_get_name (menu->priv->directory), "Other"))
+                g_debug ("Adding item %s to Other (allocated: %d)", xfce_menu_item_get_name (item), xfce_menu_item_get_allocated (item));
+#endif
+              xfce_menu_item_pool_insert (menu->priv->pool, item);
+            }
         }
     }
 }

@@ -46,6 +46,7 @@ enum
   PROP_NO_DISPLAY,
   PROP_STARTUP_NOTIFICATION,
   PROP_NAME,
+  PROP_GENERIC_NAME,
   PROP_ICON_NAME,
   PROP_COMMAND,
   PROP_TRY_EXEC,
@@ -98,6 +99,9 @@ struct _XfceMenuItemPrivate
 
   /* Name to be displayed for the menu item */
   gchar    *name;
+
+  /* Generic name of the menu item */
+  gchar    *generic_name;
 
   /* Command to be executed when the menu item is clicked */
   gchar    *command;
@@ -269,6 +273,19 @@ xfce_menu_item_class_init (XfceMenuItemClass *klass)
                                                         G_PARAM_READWRITE));
 
   /**
+   * XfceMenuItem:generic-name:
+   *
+   * GenericName of the application (will be displayed in menus etc.).
+   **/
+  g_object_class_install_property (gobject_class,
+                                   PROP_GENERIC_NAME,
+                                   g_param_spec_string ("generic-name",
+                                                        "Generic name",
+                                                        "Generic name of the application",
+                                                        NULL,
+                                                        G_PARAM_READWRITE));
+
+  /**
    * XfceMenuItem:command:
    *
    * Command to be executed when the menu item is clicked.
@@ -338,6 +355,7 @@ xfce_menu_item_init (XfceMenuItem *item)
   item->priv = XFCE_MENU_ITEM_GET_PRIVATE (item);
   item->priv->desktop_id = NULL;
   item->priv->name = NULL;
+  item->priv->generic_name = NULL;
   item->priv->filename = NULL;
   item->priv->command = NULL;
   item->priv->try_exec = NULL;
@@ -358,6 +376,7 @@ xfce_menu_item_finalize (GObject *object)
 
   g_free (item->priv->desktop_id);
   g_free (item->priv->name);
+  g_free (item->priv->generic_name);
   g_free (item->priv->filename);
   g_free (item->priv->command);
   g_free (item->priv->try_exec);
@@ -398,6 +417,7 @@ xfce_menu_item_get_property (GObject    *object,
     case PROP_NO_DISPLAY:
     case PROP_STARTUP_NOTIFICATION:
     case PROP_NAME:
+    case PROP_GENERIC_NAME:
     case PROP_COMMAND:
     case PROP_ICON_NAME:
     case PROP_TRY_EXEC:
@@ -449,6 +469,10 @@ xfce_menu_item_set_property (GObject      *object,
       xfce_menu_item_set_name (item, g_value_get_string (value));
       break;
 
+    case PROP_GENERIC_NAME:
+      xfce_menu_item_set_generic_name (item, g_value_get_string (value));
+      break;
+
     case PROP_COMMAND:
       xfce_menu_item_set_command (item, g_value_get_string (value));
       break;
@@ -480,6 +504,7 @@ xfce_menu_item_new (const gchar *filename)
   XfceRc       *rc;
   const gchar  *path;
   const gchar  *name;
+  const gchar  *generic_name;
   const gchar  *exec;
   const gchar  *try_exec;
   const gchar  *icon;
@@ -511,6 +536,7 @@ xfce_menu_item_new (const gchar *filename)
 
   /* Parse name, exec command and icon name */
   name = xfce_rc_read_entry (rc, "Name", NULL);
+  generic_name = xfce_rc_read_entry (rc, "GenericName", NULL);
   exec = xfce_rc_read_entry (rc, "Exec", NULL);
   try_exec = xfce_rc_read_entry (rc, "TryExec", NULL);
   icon = xfce_rc_read_entry (rc, "Icon", NULL);
@@ -530,6 +556,7 @@ xfce_menu_item_new (const gchar *filename)
                            "command", exec, 
                            "try-exec", try_exec,
                            "name", name, 
+                           "generic-name", generic_name,
                            "icon-name", icon, 
                            "requires-terminal", terminal, 
                            "no-display", no_display, 
@@ -776,6 +803,40 @@ xfce_menu_item_set_name (XfceMenuItem *item,
 
 
 const gchar*
+xfce_menu_item_get_generic_name (XfceMenuItem *item)
+{
+  g_return_val_if_fail (XFCE_IS_MENU_ITEM (item), NULL);
+  return item->priv->generic_name;
+}
+
+
+
+void
+xfce_menu_item_set_generic_name (XfceMenuItem *item,
+                                 const gchar  *generic_name)
+{
+  g_return_if_fail (XFCE_IS_MENU_ITEM (item));
+
+  if (G_UNLIKELY (item->priv->generic_name != NULL))
+    {
+      /* Abort if old and new generic name are equal */
+      if (G_UNLIKELY (g_utf8_collate (item->priv->generic_name, generic_name) == 0))
+        return;
+
+      /* Otherwise free old generic name */
+      g_free (item->priv->generic_name);
+    }
+
+  /* Assign new generic_name */
+  item->priv->generic_name = g_strdup (generic_name);
+
+  /* Notify listeners */
+  g_object_notify (G_OBJECT (item), "generic-name");
+}
+
+
+
+const gchar*
 xfce_menu_item_get_icon_name (XfceMenuItem *item)
 {
   g_return_val_if_fail (XFCE_IS_MENU_ITEM (item), NULL);
@@ -923,6 +984,28 @@ xfce_menu_item_set_supports_startup_notification (XfceMenuItem *item,
 
   /* Notify listeners */
   g_object_notify (G_OBJECT (item), "supports-startup-notification");
+}
+
+
+
+gboolean
+xfce_menu_item_has_category (XfceMenuItem *item,
+                             const gchar  *category)
+{
+  GList   *iter;
+  gboolean found = FALSE;
+
+  g_return_val_if_fail (XFCE_IS_MENU_ITEM (item), FALSE);
+  g_return_val_if_fail (category != NULL, FALSE);
+
+  for (iter = item->priv->categories; iter != NULL; iter = g_list_next (iter))
+    if (G_UNLIKELY (g_utf8_collate (iter->data, category) == 0))
+      {
+        found = TRUE;
+        break;
+      }
+
+  return found;
 }
 
 

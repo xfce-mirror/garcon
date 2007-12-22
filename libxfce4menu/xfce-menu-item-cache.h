@@ -51,6 +51,7 @@ XfceMenuItem      *xfce_menu_item_cache_lookup      (XfceMenuItemCache *cache,
 void               xfce_menu_item_cache_foreach     (XfceMenuItemCache *cache,
                                                      GHFunc             func, 
                                                      gpointer           user_data);
+void               xfce_menu_item_cache_invalidate  (XfceMenuItemCache *cache);
 
 #if defined(LIBXFCE4MENU_COMPILATION)
 void               _xfce_menu_item_cache_init       (void) G_GNUC_INTERNAL;

@@ -62,6 +62,9 @@ void          xfce_menu_item_set_try_exec                      (XfceMenuItem *it
 const gchar  *xfce_menu_item_get_name                          (XfceMenuItem *item);
 void          xfce_menu_item_set_name                          (XfceMenuItem *item,
                                                                 const gchar  *name);
+const gchar  *xfce_menu_item_get_generic_name                  (XfceMenuItem *item);
+void          xfce_menu_item_set_generic_name                  (XfceMenuItem *item,
+                                                                const gchar  *generic_name);
 const gchar  *xfce_menu_item_get_icon_name                     (XfceMenuItem *item);
 void          xfce_menu_item_set_icon_name                     (XfceMenuItem *item,
                                                                 const gchar  *icon_name);
@@ -80,6 +83,8 @@ void          xfce_menu_item_set_supports_startup_notification (XfceMenuItem *it
 GList        *xfce_menu_item_get_categories                    (XfceMenuItem *item);
 void          xfce_menu_item_set_categories                    (XfceMenuItem *item,
                                                                 GList        *categories);
+gboolean      xfce_menu_item_has_category                      (XfceMenuItem *item,
+                                                                const gchar  *category);
 gboolean      xfce_menu_item_show_in_environment               (XfceMenuItem *item);
 void          xfce_menu_item_ref                               (XfceMenuItem *item);
 void          xfce_menu_item_unref                             (XfceMenuItem *item);
