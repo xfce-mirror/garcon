@@ -243,7 +243,7 @@ xfce_menu_monitor_remove_directory (XfceMenu    *menu,
           xfce_menu_monitor_vtable.remove_monitor (menu, shared_handle->monitor_handle);
 
           /* Remove directory handle from the hash table and destroy it */
-          g_hash_table_remove (xfce_menu_monitor_shared_handles, shared_handle);
+          g_hash_table_remove (xfce_menu_monitor_shared_handles, directory);
         }
     }
 }

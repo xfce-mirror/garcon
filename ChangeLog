@@ -1,13 +1,19 @@
+2007-12-27	Jannis Pohlmann <jannis@xfce.org>
+	* libxfce4menu/xfce-menu-monitor.c: Use the KEY, not the VALUE pointer
+	  to remove items from the shared handle hash table. In this case, use
+	  the directory string instead of the shared handle. This should fix
+	  the issue we've had with monitoring directories only.
+
 2007-12-23	Jannis Pohlmann <jannis@xfce.org>
 
 	* libxfce4menu/xfce-menu-item.{c,h}: Add support for "GenericName" as
 	  requested by Brian. Also add a convenience function 
-		xfce_menu_item_has_category (XfceMenuItem *, const char *).
+	  xfce_menu_item_has_category (XfceMenuItem *, const char *).
 	* libxfce4menu/xfce-menu-item-cache.c: Re-add caching features, but now
 	  also allow the cache to be invalidated using _item_cache_invalidate().
-		This can be used in combination with file monitoring: Once something
-		has changed a) destroy the current menu, b) invalidate the cache and
-		c) create the menu again.
+	  This can be used in combination with file monitoring: Once something
+	  has changed a) destroy the current menu, b) invalidate the cache and
+	  c) create the menu again.
 
 2007-10-21	Jannis Pohlmann <jannis@xfce.org>
 
@@ -724,3 +730,5 @@
 	  Abort setting properties if new values are equal to the old ones.
 	* tests/load-root-menu-test.c: Display only_unallocated, delete and
 	  directory_dirs information.
+	
+vim:set sw=8 sts=8 ts=8 noexpandtab:
