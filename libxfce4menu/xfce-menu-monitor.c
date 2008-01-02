@@ -37,6 +37,9 @@ static XfceMenuMonitorVTable xfce_menu_monitor_vtable = {
   NULL,
 };
 
+/* Monitor flags */
+static XfceMenuMonitorFlags xfce_menu_monitor_flags;
+
 /* User data as provided by the client */
 static gpointer xfce_menu_monitor_user_data = NULL;
 
@@ -62,6 +65,7 @@ _xfce_menu_monitor_init (void)
   /* Initialize hash tables */
   xfce_menu_monitor_item_handles = g_hash_table_new (NULL, NULL);
   xfce_menu_monitor_shared_handles = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
+  xfce_menu_monitor_flags = XFCE_MENU_MONITOR_DIRECTORIES|XFCE_MENU_MONITOR_MENU_FILES|XFCE_MENU_MONITOR_DIRECTORY_FILES|XFCE_MENU_MONITOR_DESKTOP_FILES;
 }
 
 
@@ -329,4 +333,28 @@ xfce_menu_monitor_remove_file (XfceMenu    *menu,
           g_hash_table_remove (xfce_menu_monitor_shared_handles, shared_handle);
         }
     }
+}
+
+
+
+void 
+xfce_menu_monitor_set_flags (XfceMenuMonitorFlags flags)
+{
+  xfce_menu_monitor_flags = flags;
+}
+
+
+
+XfceMenuMonitorFlags 
+xfce_menu_monitor_get_flags (void)
+{
+  return xfce_menu_monitor_flags;
+}
+
+
+
+gboolean
+xfce_menu_monitor_has_flags (XfceMenuMonitorFlags flags)
+{
+  return (xfce_menu_monitor_flags & flags) != 0;
 }

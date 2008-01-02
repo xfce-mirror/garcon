@@ -65,6 +65,9 @@ void          xfce_menu_item_set_name                          (XfceMenuItem *it
 const gchar  *xfce_menu_item_get_generic_name                  (XfceMenuItem *item);
 void          xfce_menu_item_set_generic_name                  (XfceMenuItem *item,
                                                                 const gchar  *generic_name);
+const gchar  *xfce_menu_item_get_comment                       (XfceMenuItem *item);
+void          xfce_menu_item_set_comment                       (XfceMenuItem *item,
+                                                                const gchar  *comment);
 const gchar  *xfce_menu_item_get_icon_name                     (XfceMenuItem *item);
 void          xfce_menu_item_set_icon_name                     (XfceMenuItem *item,
                                                                 const gchar  *icon_name);

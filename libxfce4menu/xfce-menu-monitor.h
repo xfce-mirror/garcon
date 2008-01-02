@@ -32,22 +32,33 @@
 
 G_BEGIN_DECLS;
 
+typedef enum
+{
+  XFCE_MENU_MONITOR_DIRECTORIES     = 1 << 0,
+  XFCE_MENU_MONITOR_MENU_FILES      = 1 << 1,
+  XFCE_MENU_MONITOR_DIRECTORY_FILES = 1 << 2,
+  XFCE_MENU_MONITOR_DESKTOP_FILES   = 1 << 3
+} XfceMenuMonitorFlags;
+
 typedef struct _XfceMenuMonitorVTable XfceMenuMonitorVTable;
 
-void     xfce_menu_monitor_set_vtable       (XfceMenuMonitorVTable *vtable, 
-                                             gpointer               user_data);
-gpointer xfce_menu_monitor_add_item         (XfceMenu              *menu,
-                                             XfceMenuItem          *item);
-void     xfce_menu_monitor_remove_item      (XfceMenu              *menu,
-                                             XfceMenuItem          *item);
-gpointer xfce_menu_monitor_add_directory    (XfceMenu              *menu,
-                                             const gchar           *directory);
-void     xfce_menu_monitor_remove_directory (XfceMenu              *menu,
-                                             const gchar           *directory);
-gpointer xfce_menu_monitor_add_file         (XfceMenu              *menu,
-                                             const gchar           *filename);
-void     xfce_menu_monitor_remove_file      (XfceMenu              *menu,
-                                             const gchar           *filename);
+void                 xfce_menu_monitor_set_vtable       (XfceMenuMonitorVTable *vtable, 
+                                                         gpointer               user_data);
+gpointer             xfce_menu_monitor_add_item         (XfceMenu              *menu,
+                                                         XfceMenuItem          *item);
+void                 xfce_menu_monitor_remove_item      (XfceMenu              *menu,
+                                                         XfceMenuItem          *item);
+gpointer             xfce_menu_monitor_add_directory    (XfceMenu              *menu,
+                                                         const gchar           *directory);
+void                 xfce_menu_monitor_remove_directory (XfceMenu              *menu,
+                                                         const gchar           *directory);
+gpointer             xfce_menu_monitor_add_file         (XfceMenu              *menu,
+                                                         const gchar           *filename);
+void                 xfce_menu_monitor_remove_file      (XfceMenu              *menu,
+                                                         const gchar           *filename);
+void                 xfce_menu_monitor_set_flags        (XfceMenuMonitorFlags   flags);
+XfceMenuMonitorFlags xfce_menu_monitor_get_flags        (void);
+gboolean             xfce_menu_monitor_has_flags        (XfceMenuMonitorFlags   flags);
 
 /**
  * XfceMenuMonitorVTable:

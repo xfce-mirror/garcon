@@ -47,6 +47,7 @@ enum
   PROP_STARTUP_NOTIFICATION,
   PROP_NAME,
   PROP_GENERIC_NAME,
+  PROP_COMMENT,
   PROP_ICON_NAME,
   PROP_COMMAND,
   PROP_TRY_EXEC,
@@ -102,6 +103,9 @@ struct _XfceMenuItemPrivate
 
   /* Generic name of the menu item */
   gchar    *generic_name;
+
+  /* Comment/description of the item */
+  gchar    *comment;
 
   /* Command to be executed when the menu item is clicked */
   gchar    *command;
@@ -286,6 +290,20 @@ xfce_menu_item_class_init (XfceMenuItemClass *klass)
                                                         G_PARAM_READWRITE));
 
   /**
+   * XfceMenuItem:comment:
+   *
+   * Comment/description for the application. To be displayed e.g. in tooltips of
+   * GtkMenuItems.
+   **/
+  g_object_class_install_property (gobject_class,
+                                   PROP_COMMENT,
+                                   g_param_spec_string ("comment",
+                                                        "Comment",
+                                                        "Comment/description for the application",
+                                                        NULL,
+                                                        G_PARAM_READWRITE));
+
+  /**
    * XfceMenuItem:command:
    *
    * Command to be executed when the menu item is clicked.
@@ -356,6 +374,7 @@ xfce_menu_item_init (XfceMenuItem *item)
   item->priv->desktop_id = NULL;
   item->priv->name = NULL;
   item->priv->generic_name = NULL;
+  item->priv->comment = NULL;
   item->priv->filename = NULL;
   item->priv->command = NULL;
   item->priv->try_exec = NULL;
@@ -377,6 +396,7 @@ xfce_menu_item_finalize (GObject *object)
   g_free (item->priv->desktop_id);
   g_free (item->priv->name);
   g_free (item->priv->generic_name);
+  g_free (item->priv->comment);
   g_free (item->priv->filename);
   g_free (item->priv->command);
   g_free (item->priv->try_exec);
@@ -411,6 +431,10 @@ xfce_menu_item_get_property (GObject    *object,
 
     case PROP_FILENAME:
       g_value_set_string (value, xfce_menu_item_get_filename (item));
+      break;
+
+    case PROP_COMMENT:
+      g_value_set_string (value, xfce_menu_item_get_comment (item));
       break;
 
     case PROP_REQUIRES_TERMINAL:
@@ -473,6 +497,10 @@ xfce_menu_item_set_property (GObject      *object,
       xfce_menu_item_set_generic_name (item, g_value_get_string (value));
       break;
 
+    case PROP_COMMENT:
+      xfce_menu_item_set_comment (item, g_value_get_string (value));
+      break;
+
     case PROP_COMMAND:
       xfce_menu_item_set_command (item, g_value_get_string (value));
       break;
@@ -505,6 +533,7 @@ xfce_menu_item_new (const gchar *filename)
   const gchar  *path;
   const gchar  *name;
   const gchar  *generic_name;
+  const gchar  *comment;
   const gchar  *exec;
   const gchar  *try_exec;
   const gchar  *icon;
@@ -537,6 +566,7 @@ xfce_menu_item_new (const gchar *filename)
   /* Parse name, exec command and icon name */
   name = xfce_rc_read_entry (rc, "Name", NULL);
   generic_name = xfce_rc_read_entry (rc, "GenericName", NULL);
+  comment = xfce_rc_read_entry (rc, "Comment", NULL);
   exec = xfce_rc_read_entry (rc, "Exec", NULL);
   try_exec = xfce_rc_read_entry (rc, "TryExec", NULL);
   icon = xfce_rc_read_entry (rc, "Icon", NULL);
@@ -557,6 +587,7 @@ xfce_menu_item_new (const gchar *filename)
                            "try-exec", try_exec,
                            "name", name, 
                            "generic-name", generic_name,
+                           "comment", comment,
                            "icon-name", icon, 
                            "requires-terminal", terminal, 
                            "no-display", no_display, 
@@ -832,6 +863,40 @@ xfce_menu_item_set_generic_name (XfceMenuItem *item,
 
   /* Notify listeners */
   g_object_notify (G_OBJECT (item), "generic-name");
+}
+
+
+
+const gchar*
+xfce_menu_item_get_comment (XfceMenuItem *item)
+{
+  g_return_val_if_fail (XFCE_IS_MENU_ITEM (item), NULL);
+  return item->priv->comment;
+}
+
+
+
+void
+xfce_menu_item_set_comment (XfceMenuItem *item,
+                                 const gchar  *comment)
+{
+  g_return_if_fail (XFCE_IS_MENU_ITEM (item));
+
+  if (G_UNLIKELY (item->priv->comment != NULL))
+    {
+      /* Abort if old and new comment are equal */
+      if (G_UNLIKELY (g_utf8_collate (item->priv->comment, comment) == 0))
+        return;
+
+      /* Otherwise free old comment */
+      g_free (item->priv->comment);
+    }
+
+  /* Assign new comment */
+  item->priv->comment = g_strdup (comment);
+
+  /* Notify listeners */
+  g_object_notify (G_OBJECT (item), "comment");
 }
 
 

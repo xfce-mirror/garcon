@@ -351,6 +351,7 @@ create_main_window (void)
   /* Create main window */
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (window), _("XfceMenu: Display Menu Test"));
+  gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
   gtk_container_set_border_width (GTK_CONTAINER (window), 12);
   gtk_widget_show (window);
 

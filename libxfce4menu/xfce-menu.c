@@ -3155,18 +3155,21 @@ xfce_menu_monitor_start (XfceMenu *menu)
   g_return_if_fail (XFCE_IS_MENU (menu));
 
   /* Monitor the menu file */
-  xfce_menu_monitor_add_file (menu, menu->priv->filename);
+  if (G_LIKELY (xfce_menu_monitor_has_flags (XFCE_MENU_MONITOR_MENU_FILES)))
+    xfce_menu_monitor_add_file (menu, menu->priv->filename);
 
   /* Monitor the menu directory file */
-  if (XFCE_IS_MENU_DIRECTORY (menu->priv->directory))
+  if (G_LIKELY (XFCE_IS_MENU_DIRECTORY (menu->priv->directory) && xfce_menu_monitor_has_flags (XFCE_MENU_MONITOR_DIRECTORY_FILES)))
     xfce_menu_monitor_add_file (menu, xfce_menu_directory_get_filename (menu->priv->directory));
 
   /* Monitor the application directories */
-  for (iter = menu->priv->app_dirs; iter != NULL; iter = g_slist_next (iter))
-    xfce_menu_monitor_add_directory (menu, (const gchar *)iter->data);
+  if (G_LIKELY (xfce_menu_monitor_has_flags (XFCE_MENU_MONITOR_DIRECTORIES)))
+    for (iter = menu->priv->app_dirs; iter != NULL; iter = g_slist_next (iter))
+      xfce_menu_monitor_add_directory (menu, (const gchar *)iter->data);
 
   /* Monitor items in the menu pool */
-  xfce_menu_item_pool_foreach (menu->priv->pool, (GHFunc) item_monitor_start, menu);
+  if (G_LIKELY (xfce_menu_monitor_has_flags (XFCE_MENU_MONITOR_DESKTOP_FILES)))
+    xfce_menu_item_pool_foreach (menu->priv->pool, (GHFunc) item_monitor_start, menu);
 
   /* Monitor items in submenus */
   for (iter = menu->priv->submenus; iter != NULL; iter = g_slist_next (iter))

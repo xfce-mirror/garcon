@@ -1,4 +1,20 @@
+2008-01-02	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu-item.{c,h}: Add support for the Comment field
+	  via xfce_menu_item_get_comment().
+
+2007-12-29	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu-monitor.{c,h}: Add support for defining what
+	  kind of files/directories are monitored (XfceMenuMonitorFlags,
+	  xfce_menu_monitor_set_flags(), xfce_menu_monitor_get_flags(),
+	  xfce_menu_monitor_has_flags()).
+	* libxfce4menu/xfce-menu.c: Check monitor flags before adding
+	  files/directories to the monitoring system.
+	* tests/test-display-menu.c: Center window on screen.
+
 2007-12-27	Jannis Pohlmann <jannis@xfce.org>
+
 	* libxfce4menu/xfce-menu-monitor.c: Use the KEY, not the VALUE pointer
 	  to remove items from the shared handle hash table. In this case, use
 	  the directory string instead of the shared handle. This should fix
