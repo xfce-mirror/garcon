@@ -5,13 +5,13 @@
 2007-11-15  Mike Massonnet <mmassonnet@xfce.org>
 
 	* ur.po, LINGUAS: Add Urdu translation by ﻢﺤﻣﺩ ﻊﻠﻳ ﺎﻠﻤﻜﻳ
-	makki.ma@gmail.com
+	  makki.ma@gmail.com
 
 2007-11-11  Og Maciel <ogmaciel@gnome.org>
 
-    * pt_BR.po: Added Brazilian Portuguese translation
-    by Og Maciel <ogmaciel@gnome.org>
-    * LINGUAS: Added pt_BR
+	* pt_BR.po: Added Brazilian Portuguese translation
+	  by Og Maciel <ogmaciel@gnome.org>
+	* LINGUAS: Added pt_BR
 
 2007-11-11  Mike Massonnet <mmassonnet@xfce.org>
 
@@ -20,12 +20,12 @@
 2007-11-04  Jean-François Wauthy <pollux@xfce.org>
 
 	* LINGUAS, sq.po: Add Albanian translation by Besnik Bleta
-	<bbleta@otenet.gr>
+	  <bbleta@otenet.gr>
 
 2007-09-24  Mike Massonnet <mmassonnet@xfce.org>
 
 	* LINGUAS, lv.po: Add Latvian translation by RPrieditis
-	<RPrieditis@inbox.lv>
+	  <RPrieditis@inbox.lv>
 
 2007-07-14  Daichi Kawahata <daichi@xfce.org>
 
@@ -37,3 +37,5 @@
 	* POTFILES.in: Add source files.
 	* de.po, libxfce4menu-0.1.pot, LINGUAS: Add POT file and
 	  initial German translations.
+
+vim:set sw=8 sts=8 ts=8 noexpandtab:
