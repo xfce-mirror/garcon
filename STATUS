@@ -87,7 +87,11 @@ I. Supported menu file elements
 
   [-] <Old>
 
+        See <Move>
+
   [-] <New>
+
+        See <Move>
 
   [x] <Layout>
 
@@ -167,16 +171,11 @@ II. Test suite results
 III. Filesystem monitoring
 ==========================
 
-  With a proper GObject structure for all classes (XfceMenu, 
-  XfceMenuDirectory, XfceMenuItem etc.) reloading objects independently
-  of each other should be no problem.
-
-  The only question is how monitoring should be done. Perhaps we can 
-  copy parts of ThunarVFS for this (as using ThunarVFS would only be 
-  possible if Thunar wouldn't use libxfce4menu).
-
-  So, unless there is a better method, FAM/Gamin would be used for 
-  monitoring files and directories.
+  Filesystem monitoring is done by moving the actual work into the 
+  client application. Using XfceMenuMonitorVTable applications can
+  register functions to be called when monitoring of a file or 
+  directory is needed. They then have to care about monitoring 
+  themselves (see xfce-menu-monitor.{c,h} for details.
 
 
 
