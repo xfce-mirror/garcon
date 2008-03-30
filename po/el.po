@@ -1,0 +1,33 @@
+# translation of el.po to Greek
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Evaggelos Balaskas <ebalaskas@ebalaskas.gr>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: el\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-09-20 22:18+0200\n"
+"PO-Revision-Date: 2008-03-25 00:19+0200\n"
+"Last-Translator: Evaggelos Balaskas <ebalaskas@ebalaskas.gr>\n"
+"Language-Team: Greek <nls@tux.hellug.gr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#. Let the caller know there was no suitable file
+#: ../libxfce4menu/xfce-menu.c:741
+msgid "Failed to locate the application root menu"
+msgstr "Αποτυχία στον εντοπισμό της ρίζας του μενού εφαρμογών"
+
+#: ../libxfce4menu/xfce-menu-item-cache.c:192
+#, c-format
+msgid "Failed to create the libxfce4menu item cache in %s."
+msgstr "Αποτυχία στη δημιουργία προσωρινής μνήμης αντικειμένου libxfce4menu στο %s"
+
+#: ../libxfce4menu/xfce-menu-item-cache.c:202
+#, c-format
+msgid "Failed to open libxfce4menu item cache in %s: %s."
+msgstr "Αποτυχία στο άνοιγμα προσωρινής μνήμης αντικειμένου libxfce4menu στο %s: %s."
+
