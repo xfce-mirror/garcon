@@ -1,0 +1,33 @@
+# Danish translations for libxfce package.
+# Copyright (C) 2008 THE libxfce'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the libxfce package.
+# Ole Guldberg <olegb@omgwtf.dk>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libxfce 4menu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-09-20 22:18+0200\n"
+"PO-Revision-Date: 2008-05-18 18:47+0100\n"
+"Last-Translator: Ole Guldberg <olegb@omgwtf.dk>\n"
+"Language-Team: Danish\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Let the caller know there was no suitable file
+#: ../libxfce4menu/xfce-menu.c:741
+msgid "Failed to locate the application root menu"
+msgstr "Kunne ikke finde programhovedmenuen"
+
+#: ../libxfce4menu/xfce-menu-item-cache.c:192
+#, c-format
+msgid "Failed to create the libxfce4menu item cache in %s."
+msgstr "Kunne ikke oprette libxfce4menu elementcachen i %s."
+
+#: ../libxfce4menu/xfce-menu-item-cache.c:202
+#, c-format
+msgid "Failed to open libxfce4menu item cache in %s: %s."
+msgstr "Kunne ikke åbne libxfce4menu elementcachen i %s: %s."
+
