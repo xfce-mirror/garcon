@@ -1,0 +1,32 @@
+# Indonesian translations for xfce4menu package.
+# Copyright (C) 2007 Jannis Pohlmann.
+# This file is distributed under the same license as the xfce4menu package.
+# Andhika Padmawan <andhika.padmawan@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libxfce 4menu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-09-20 22:18+0200\n"
+"PO-Revision-Date: 2008-04-25 23:48+0700\n"
+"Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
+"Language-Team: Indonesian <id@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Let the caller know there was no suitable file
+#: ../libxfce4menu/xfce-menu.c:741
+msgid "Failed to locate the application root menu"
+msgstr "Gagal menentukan lokasi aplikasi menu root"
+
+#: ../libxfce4menu/xfce-menu-item-cache.c:192
+#, c-format
+msgid "Failed to create the libxfce4menu item cache in %s."
+msgstr "Gagal membuat tembolok item libxfce4menu di %s."
+
+#: ../libxfce4menu/xfce-menu-item-cache.c:202
+#, c-format
+msgid "Failed to open libxfce4menu item cache in %s: %s."
+msgstr "Gagal membuka tembolok item libxfce4menu di %s: %s."
+
