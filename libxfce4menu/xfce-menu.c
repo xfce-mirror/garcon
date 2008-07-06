@@ -279,9 +279,11 @@ static void               xfce_menu_add_legacy_dir                         (Xfce
 static void               xfce_menu_add_kde_legacy_dirs                    (XfceMenu              *menu);
 static void               xfce_menu_add_default_app_dirs                   (XfceMenu              *menu);
 
+#if 0
 static void               xfce_menu_resolve_legacy_menus                   (XfceMenu              *menu);
 static void               xfce_menu_resolve_legacy_menu                    (XfceMenu              *menu,
                                                                             const gchar           *path);
+#endif
 static void               xfce_menu_remove_duplicates                      (XfceMenu              *menu);
 static void               xfce_menu_consolidate_child_menus                (XfceMenu              *menu);
 #if 0
@@ -2105,6 +2107,7 @@ xfce_menu_get_parent (XfceMenu *menu)
 
 
 
+#if 0
 static void
 xfce_menu_resolve_legacy_menus (XfceMenu *menu)
 {
@@ -2195,6 +2198,7 @@ xfce_menu_resolve_legacy_menu (XfceMenu    *menu,
   /* Close directory handle */
   g_dir_close (dir);
 }
+#endif
 
 
 

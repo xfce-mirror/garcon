@@ -1,3 +1,10 @@
+2008-07-06	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu.c: Add #if 0 around 
+	  xfce_menu_resolve_legacy_menus() and 
+	  xfce_menu_resolve_legacy_menu(). Avoids build errors on some
+	  systems.
+
 2008-02-06	Jannis Pohlmann <jannis@xfce.org>
 
 	* STATUS: Status file updated, mainly to reflect the progress made
