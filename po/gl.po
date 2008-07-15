@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-09-20 22:18+0200\n"
-"PO-Revision-Date: 2008-06-01 15:15+0100\n"
+"PO-Revision-Date: 2008-06-28 12:35+0100\n"
 "Last-Translator: Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -23,15 +23,15 @@ msgstr ""
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:741
 msgid "Failed to locate the application root menu"
-msgstr ""
+msgstr "Fallo ó localizar o menú raíz de aplicacións"
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:192
 #, c-format
 msgid "Failed to create the libxfce4menu item cache in %s."
-msgstr ""
+msgstr "Fallo ó crear a caché de elementos de libxfce4menu en %s."
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:202
 #, c-format
 msgid "Failed to open libxfce4menu item cache in %s: %s."
-msgstr ""
+msgstr "Fallo ó abrir a caché de elementos de libxfce4menu en %s: %s."
 
