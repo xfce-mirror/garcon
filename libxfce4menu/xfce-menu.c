@@ -2031,7 +2031,7 @@ xfce_menu_add_default_app_dirs (XfceMenu *menu)
 GSList*
 xfce_menu_get_menus (XfceMenu *menu)
 {
-  GSList *menus;
+  GSList *menus = NULL;
 
   g_return_val_if_fail (XFCE_IS_MENU (menu), NULL);
   
