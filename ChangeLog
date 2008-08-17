@@ -1,3 +1,10 @@
+2008-08-17	Brian Tarricone <bjt23@cornell.edu>
+
+	* configure.in.in: Set LIBXFCE4MENU_VERSION_API independently
+	  of the package version.
+	* docs/reference/Makefile.am: use the correct API version when
+	  linking with the library
+
 2008-07-15	Jannis Pohlmann <jannis@xfce.org>
 
 	* autogen.sh: Change @REVISION@ substitution for git svn

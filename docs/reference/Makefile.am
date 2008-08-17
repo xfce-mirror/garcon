@@ -51,7 +51,7 @@ GTKDOC_LIBS =								\
 	$(GTHREAD_LIBS)							\
 	$(GTK_CFLAGS)							\
 	$(LIBXFCE4UTIL_LIBS)						\
-	$(top_builddir)/libxfce4menu/libxfce4menu-$(LIBXFCE4MENU_VERSION_MAJOR).$(LIBXFCE4MENU_VERSION_MINOR).la
+	$(top_builddir)/libxfce4menu/libxfce4menu-$(LIBXFCE4MENU_VERSION_API).la
 
 include $(top_srcdir)/gtk-doc.make
 
