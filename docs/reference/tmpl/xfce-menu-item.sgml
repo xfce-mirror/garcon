@@ -40,12 +40,22 @@ XfceMenuItem
 
 </para>
 
+<!-- ##### ARG XfceMenuItem:comment ##### -->
+<para>
+
+</para>
+
 <!-- ##### ARG XfceMenuItem:desktop-id ##### -->
 <para>
 
 </para>
 
 <!-- ##### ARG XfceMenuItem:filename ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG XfceMenuItem:generic-name ##### -->
 <para>
 
 </para>
@@ -61,6 +71,11 @@ XfceMenuItem
 </para>
 
 <!-- ##### ARG XfceMenuItem:no-display ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG XfceMenuItem:path ##### -->
 <para>
 
 </para>
