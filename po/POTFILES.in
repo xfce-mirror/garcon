@@ -13,3 +13,4 @@ libxfce4menu/xfce-menu-item-pool.c
 libxfce4menu/xfce-menu-layout.c
 libxfce4menu/xfce-menu-move.c
 libxfce4menu/xfce-menu-separator.c
+tests/test-display-menu.c

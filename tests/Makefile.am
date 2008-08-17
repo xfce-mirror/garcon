@@ -22,12 +22,12 @@ test_menu_spec_CFLAGS =							\
 	$(GLIB_CFLAGS)
 
 test_menu_spec_DEPENDENCIES =						\
-	$(top_builddir)/libxfce4menu/libxfce4menu-$(LIBXFCE4MENU_VERSION_MAJOR).$(LIBXFCE4MENU_VERSION_MINOR).la
+	$(top_builddir)/libxfce4menu/libxfce4menu-$(LIBXFCE4MENU_VERSION_API).la
 
 test_menu_spec_LDADD =							\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(GLIB_LIBS)							\
-	$(top_builddir)/libxfce4menu/libxfce4menu-$(LIBXFCE4MENU_VERSION_MAJOR).$(LIBXFCE4MENU_VERSION_MINOR).la
+	$(top_builddir)/libxfce4menu/libxfce4menu-$(LIBXFCE4MENU_VERSION_API).la
 
 test_display_menu_SOURCES =						\
 	test-display-menu.c
@@ -38,11 +38,11 @@ test_display_menu_CFLAGS =						\
 	$(GLIB_CFLAGS)
 
 test_display_menu_DEPENDENCIES =					\
-	$(top_builddir)/libxfce4menu/libxfce4menu-$(LIBXFCE4MENU_VERSION_MAJOR).$(LIBXFCE4MENU_VERSION_MINOR).la
+	$(top_builddir)/libxfce4menu/libxfce4menu-$(LIBXFCE4MENU_VERSION_API).la
 
 test_display_menu_LDADD =						\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(GTK_LIBS)							\
 	$(GLIB_LIBS)							\
-	$(top_builddir)/libxfce4menu/libxfce4menu-$(LIBXFCE4MENU_VERSION_MAJOR).$(LIBXFCE4MENU_VERSION_MINOR).la
+	$(top_builddir)/libxfce4menu/libxfce4menu-$(LIBXFCE4MENU_VERSION_API).la
 

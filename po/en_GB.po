@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-20 22:18+0200\n"
+"POT-Creation-Date: 2008-08-17 14:43-0700\n"
 "PO-Revision-Date: 2008-05-10 13:15+1000\n"
 "Last-Translator: Jeff Bailes <thepizzaking@gmail.com>\n"
 "Language-Team: English/GB\n"
@@ -18,17 +18,17 @@ msgstr ""
 "X-Poedit-Country: UNITED KINGDOM\n"
 
 #. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:741
+#: ../libxfce4menu/xfce-menu.c:743
+#, c-format
 msgid "Failed to locate the application root menu"
 msgstr "Failed to locate the application root menu"
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:192
+#: ../libxfce4menu/xfce-menu-item-cache.c:194
 #, c-format
 msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "Failed to create the libxfce4menu item cache in %s."
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:202
+#: ../libxfce4menu/xfce-menu-item-cache.c:204
 #, c-format
 msgid "Failed to open libxfce4menu item cache in %s: %s."
 msgstr "Failed to open libxfce4menu item cache in %s: %s."
-

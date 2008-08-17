@@ -32,7 +32,7 @@ AC_COPYRIGHT([Copyright (c) 2007 The Xfce development team.
 All rights reserved.
         
 Written for Xfce by Jannis Pohlmann <jannis@xfce.org>.])
-AC_INIT([xfce4menu], [libxfce4menu_version], [http://bugzilla.xfce.org/])
+AC_INIT([libxfce4menu], [libxfce4menu_version], [http://bugzilla.xfce.org/])
 AC_PREREQ([2.50])
 AC_REVISION([$Id$])
 AC_CANONICAL_TARGET()
@@ -115,7 +115,7 @@ dnl AC_CHECK_FUNCS([])
 dnl ******************************
 dnl *** Check for i18n support ***
 dnl ******************************
-XDT_I18N([@LINGUAS@], [libxfce4menu-libxfce4menu_version_major().libxfce4menu_version_minor()])
+XDT_I18N([@LINGUAS@], [libxfce4menu-libxfce4menu_version_api_major().libxfce4menu_version_api_minor()])
 
 dnl ***********************************
 dnl *** Check for required packages ***

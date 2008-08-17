@@ -2,12 +2,11 @@
 # Copyright (C) 2004-2007
 # This file is distributed under the same license as the libxfce4menu package.
 # Besnik Bleta <besnik@programeshqip.org>, 2007.
-
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu-0.1.\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-20 22:18+0200\n"
+"POT-Creation-Date: 2008-08-17 14:43-0700\n"
 "PO-Revision-Date: 2007-11-01 13:30+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <translation-team-sq@lists.sourceforge.net>\n"
@@ -16,18 +15,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:741
-#, fuzzy
+#: ../libxfce4menu/xfce-menu.c:743
+#, fuzzy, c-format
 msgid "Failed to locate the application root menu"
 msgstr "Dështova në gjetjen e menusë rrënjë për zbatimin "
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:192
+#: ../libxfce4menu/xfce-menu-item-cache.c:194
 #, c-format
 msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "Dështova në krijimin e objektit të fshehtinës libxfce4menu te %s."
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:202
+#: ../libxfce4menu/xfce-menu-item-cache.c:204
 #, c-format
 msgid "Failed to open libxfce4menu item cache in %s: %s."
 msgstr "Dështova në hapjen e objektit të fshehtinës libxfce4menu te %s: %s."
-

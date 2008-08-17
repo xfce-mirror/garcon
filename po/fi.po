@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-07 18:20+0200\n"
+"POT-Creation-Date: 2008-08-17 14:43-0700\n"
 "PO-Revision-Date: 2008-01-07 18:25+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:741
+#: ../libxfce4menu/xfce-menu.c:743
 #, c-format
 msgid "Failed to locate the application root menu"
 msgstr "Päätason sovellusvalikkoa ei löytynyt"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4menu 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-08 17:54+0900\n"
+"POT-Creation-Date: 2008-08-17 14:43-0700\n"
 "PO-Revision-Date: 2007-04-08 18:11+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
@@ -17,16 +17,17 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:741
+#: ../libxfce4menu/xfce-menu.c:743
+#, c-format
 msgid "Failed to locate the application root menu"
 msgstr "アプリケーションのルートメニューを配置できませんでした。"
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:192
+#: ../libxfce4menu/xfce-menu-item-cache.c:194
 #, c-format
 msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "アイテムのキャッシュを %s に作成できませんでした。"
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:202
+#: ../libxfce4menu/xfce-menu-item-cache.c:204
 #, c-format
 msgid "Failed to open libxfce4menu item cache in %s: %s."
 msgstr "アイテムのキャッシュを %s から開けませんでした: %s"

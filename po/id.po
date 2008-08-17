@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-20 22:18+0200\n"
+"POT-Creation-Date: 2008-08-17 14:43-0700\n"
 "PO-Revision-Date: 2008-04-25 23:48+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <id@li.org>\n"
@@ -16,17 +16,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:741
+#: ../libxfce4menu/xfce-menu.c:743
+#, c-format
 msgid "Failed to locate the application root menu"
 msgstr "Gagal menentukan lokasi aplikasi menu root"
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:192
+#: ../libxfce4menu/xfce-menu-item-cache.c:194
 #, c-format
 msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "Gagal membuat tembolok item libxfce4menu di %s."
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:202
+#: ../libxfce4menu/xfce-menu-item-cache.c:204
 #, c-format
 msgid "Failed to open libxfce4menu item cache in %s: %s."
 msgstr "Gagal membuka tembolok item libxfce4menu di %s: %s."
-
