@@ -1,5 +1,12 @@
 2008-08-31	Jannis Pohlmann <jannis@xfce.org>
 
+	* libxfce4menu/xfce-menu-item.{c,h}: Add
+	  xfce_menu_item_only_show_in_environment() function which checks
+	  whether the current environment is present in the OnlyShowIn key of
+	  a menu item. This should close bug #3741.
+
+2008-08-31	Jannis Pohlmann <jannis@xfce.org>
+
 	* autogen.sh: Don't print errors when trying to detect the
 	  revision of a git svn repository.
 

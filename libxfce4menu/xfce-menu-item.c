@@ -1093,7 +1093,7 @@ xfce_menu_item_show_in_environment (XfceMenuItem *item)
   if (G_UNLIKELY (env == NULL))
     return TRUE;
 
-  /* Check if we have a OnlyShowIn OR a NotShowIn list (only one of them will be
+  /* Check if we have an OnlyShowIn OR a NotShowIn list (only one of them will be
    * there, according to the desktop entry specification) */
   if (G_UNLIKELY (item->priv->only_show_in != NULL))
     {
@@ -1122,6 +1122,38 @@ xfce_menu_item_show_in_environment (XfceMenuItem *item)
       /* If it is, hide the menu item */
       if (G_UNLIKELY (included))
         show = FALSE;
+    }
+
+  return show;
+}
+
+
+
+gboolean
+xfce_menu_item_only_show_in_environment (XfceMenuItem *item)
+{
+  const gchar *env;
+  gboolean     show = FALSE;
+  int          i;
+
+  g_return_val_if_fail (XFCE_IS_MENU_ITEM (item), FALSE);
+
+  /* Determine current environment */
+  env = xfce_menu_get_environment ();
+
+  /* If no environment has been set, the contents of OnlyShowIn don't matter */
+  if (G_LIKELY (env == NULL))
+    return FALSE;
+
+  /* Check if we have an OnlyShowIn list */
+  if (G_UNLIKELY (item->priv->only_show_in != NULL))
+    {
+      for (i = 0; i < g_strv_length (item->priv->only_show_in); ++i)
+        if (G_UNLIKELY (g_utf8_collate (item->priv->only_show_in[i], env) == 0))
+          {
+            show = TRUE;
+            break;
+          }
     }
 
   return show;
