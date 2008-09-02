@@ -354,7 +354,7 @@ xfce_menu_item_cache_foreach (XfceMenuItemCache *cache,
   g_hash_table_foreach (cache->priv->items, func, user_data);
 
   /* Release item cache lock */
-  g_mutex_lock (cache->priv->lock);
+  g_mutex_unlock (cache->priv->lock);
 }
 
 

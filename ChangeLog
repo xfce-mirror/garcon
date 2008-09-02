@@ -1,3 +1,9 @@
+2008-09-02	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu-item-cache.c: Properly release the mutex at
+	  the end of xfce_menu_item_cache_foreach(). Calling g_mutex_lock()
+	  won't unlock the mutex ...
+
 2008-08-31	Jannis Pohlmann <jannis@xfce.org>
 
 	* libxfce4menu/xfce-menu-item.{c,h}: Add
