@@ -1,3 +1,8 @@
+2008-09-07  Stephan Arts <stephan@xfce.org>
+
+	* configure.in.in: Bump libxfce4util dependency to 4.5.90, so people
+	  won't use it with earlier versions. Remove -svn tag.
+
 2008-09-02	Jannis Pohlmann <jannis@xfce.org>
 
 	* libxfce4menu/xfce-menu-item-cache.c: Properly release the mutex at
