@@ -1,4 +1,8 @@
-2008-09-07  Stephan Arts <stephan@xfce.org>
+2008-09-12	Jannis Pohlmann <jannis@xfce.org>
+
+	* NEWS, TODO: Updated for the alpha release.
+
+2008-09-07	Stephan Arts <stephan@xfce.org>
 
 	* configure.in.in: Bump libxfce4util dependency to 4.5.90, so people
 	  won't use it with earlier versions. Remove -svn tag.

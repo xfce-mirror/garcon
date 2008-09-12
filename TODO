@@ -3,4 +3,4 @@ TODO
 
   * Add libxfce4menu.spec.in for building RPMs
   * Re-add test scripts
-  * Add #ifdef's for GTK+ 2.6 and GLib 2.6
+  * Integrate with menu spec test suite
