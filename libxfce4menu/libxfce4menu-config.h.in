@@ -1,11 +1,7 @@
 /* $Id$ */
+/* vi:set expandtab sw=2 sts=2: */
 /*-
- *
- * vi:set sw=2 sts=2 et ai cindent:
- *
- * Copyright (c) 2004-2006 os-cillation e.K.
- *
- * Written by Benedikt Meurer <benny@xfce.org>.
+ * Copyright (c) 2008 Jannis Pohlmann <jannis@xfce.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public

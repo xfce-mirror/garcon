@@ -1,8 +1,7 @@
 /* $Id$ */
 /* vi:set expandtab sw=2 sts=2: */
 /*-
- * Copyright (c) 2006-2007 Jannis Pohlmann <jannis@xfce.org>
- * Copyright (c) 2005-2006 Benedikt Meurer <benny@xfce.org>
+ * Copyright (c) 2006-2008 Jannis Pohlmann <jannis@xfce.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public

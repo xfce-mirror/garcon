@@ -1,4 +1,9 @@
-2008-10-14  Stephan Arts <stephan@xfce.org>
+2008-10-29	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/libxfce4menu-config.h.in,
+	  libxfce4menu/xfce-menu-item.c: Fix copyright header.
+
+2008-10-14	Stephan Arts <stephan@xfce.org>
 
 	* NEWS: Updated for the beta1 release.
 
