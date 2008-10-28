@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: libxfce4menu-0.1.\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-17 14:43-0700\n"
-"PO-Revision-Date: 2007-11-01 13:30+0200\n"
+"PO-Revision-Date: 2008-10-24 10:16+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <translation-team-sq@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -29,3 +29,13 @@ msgstr "Dështova në krijimin e objektit të fshehtinës libxfce4menu te %s."
 #, c-format
 msgid "Failed to open libxfce4menu item cache in %s: %s."
 msgstr "Dështova në hapjen e objektit të fshehtinës libxfce4menu te %s: %s."
+
+#: ../tests/test-display-menu.c:353
+msgid "XfceMenu: Display Menu Test"
+msgstr "XfceMenu: Provë Menuje Ekrani"
+
+#. Create button
+#: ../tests/test-display-menu.c:362
+msgid "_Show menu"
+msgstr "_Shfaq menu"
+
