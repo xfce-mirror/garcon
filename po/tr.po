@@ -1,0 +1,45 @@
+# Turkish translations for libxfce4menu.
+# Copyright (C) 2007 Jannis Pohlmann <jannis@xfce.org>
+# This file is distributed under the same license as the libxfce4menu package.
+#
+# Nimet Senem Özkızıklı <nimetsenem@gmail.com>, 2008.
+# Gökmen Görgen <gkmngrgn@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-08-17 14:56-0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
+"Language-Team: Turkish <turkce@pardus.org.tr>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Turkish\n"
+"X-Poedit-Country: TURKEY\n"
+
+#. Let the caller know there was no suitable file
+#: ../libxfce4menu/xfce-menu.c:743
+#, c-format
+msgid "Failed to locate the application root menu"
+msgstr "Uygulama ana menüsünün yeri belirlenemedi"
+
+#: ../libxfce4menu/xfce-menu-item-cache.c:194
+#, c-format
+msgid "Failed to create the libxfce4menu item cache in %s."
+msgstr "libxfce4menu öğe önbelleği oluşturulamadı: %s."
+
+#: ../libxfce4menu/xfce-menu-item-cache.c:204
+#, c-format
+msgid "Failed to open libxfce4menu item cache in %s: %s."
+msgstr "libxfce4menu öğe önbelleği, %s bölümünde açılamadı: %s."
+
+#: ../tests/test-display-menu.c:353
+msgid "XfceMenu: Display Menu Test"
+msgstr "XfceMenu: Menü Sınamasını Görüntüle"
+
+#. Create button
+#: ../tests/test-display-menu.c:362
+msgid "_Show menu"
+msgstr "_Menüyü göster"
+
