@@ -1,3 +1,9 @@
+2008-11-11	Jannis Pohlmann <jannis@xfce.org>
+
+	* == 4.5.92 released ==
+	* configure.in.in: Bump version and update dependencies.
+	* NEWS: Update NEWS file.
+
 2008-10-29	Jannis Pohlmann <jannis@xfce.org>
 
 	* libxfce4menu/libxfce4menu-config.h.in,
