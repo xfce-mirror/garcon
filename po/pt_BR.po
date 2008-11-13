@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-17 14:43-0700\n"
-"PO-Revision-Date: 2007-11-11 22:58-0500\n"
+"PO-Revision-Date: 2008-11-13 22:58-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -22,14 +22,14 @@ msgstr ""
 #: ../libxfce4menu/xfce-menu.c:743
 #, c-format
 msgid "Failed to locate the application root menu"
-msgstr "Falha ao localizar o menu principal de aplicações"
+msgstr "Falha ao localizar o menu principal de aplicativos"
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:194
 #, c-format
 msgid "Failed to create the libxfce4menu item cache in %s."
-msgstr "Falha ao criar item libxfce4menu de cache em %s"
+msgstr "Falha ao criar o cache do item libxfce4menu em %s"
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:204
 #, c-format
 msgid "Failed to open libxfce4menu item cache in %s: %s."
-msgstr "Falha ao criar item libxfce4menu de cache em %s: %s."
+msgstr "Falha ao criar o cache do item libxfce4menu em %s: %s."
