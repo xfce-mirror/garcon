@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-17 14:43-0700\n"
-"PO-Revision-Date: 2008-09-29 20:10+0100\n"
+"POT-Creation-Date: 2008-11-15 18:36+0100\n"
+"PO-Revision-Date: 2008-11-15 18:38+0100\n"
 "Last-Translator: Abel Martín <abel.martin.ruiz@gmail.com>\n"
 "Language-Team: Spanish/ES\n"
 "MIME-Version: 1.0\n"
@@ -32,4 +32,13 @@ msgstr "Fallo al crear la caché del elemento libxfce4menu en %s."
 #, c-format
 msgid "Failed to open libxfce4menu item cache in %s: %s."
 msgstr "Fallo al abrir la caché del elemento libxfce4menu en %s: %s."
+
+#: ../tests/test-display-menu.c:353
+msgid "XfceMenu: Display Menu Test"
+msgstr "XfceMenu: prueba de visualización de menú"
+
+#. Create button
+#: ../tests/test-display-menu.c:362
+msgid "_Show menu"
+msgstr "_Mostrar menú"
 
