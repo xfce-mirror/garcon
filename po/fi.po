@@ -1,5 +1,5 @@
 # Finnish translations for libxfce4menu.
-# Copyright (C) 2007 Jannis Pohlmann <jannis@xfce.org>
+# Copyright (C) 2007-2008 Jannis Pohlmann <jannis@xfce.org>
 # This file is distributed under the same license as the libxfce4menu package.
 # Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2008.
 #
@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-17 14:43-0700\n"
-"PO-Revision-Date: 2008-01-07 18:25+0200\n"
+"POT-Creation-Date: 2008-11-22 12:25+0200\n"
+"PO-Revision-Date: 2008-11-22 12:26+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,3 +30,12 @@ msgstr "libxfce4menun kohdevälimuistin luominen kohteeseen %s epäonnistui."
 #, c-format
 msgid "Failed to open libxfce4menu item cache in %s: %s."
 msgstr "libxfce4menun kohdevälimuistin %s avaaminen epäonnistui: %s."
+
+#: ../tests/test-display-menu.c:353
+msgid "XfceMenu: Display Menu Test"
+msgstr "XfceMenu: Valikkotesti"
+
+#. Create button
+#: ../tests/test-display-menu.c:362
+msgid "_Show menu"
+msgstr "_Näytä valikko"
