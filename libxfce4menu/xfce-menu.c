@@ -3073,33 +3073,8 @@ static gint
 xfce_menu_compare_items (gconstpointer *a,
                          gconstpointer *b)
 {
-  const gchar *name1;
-  const gchar *name2;
-
-  /* Determining display name of a */
-  if (XFCE_IS_MENU (a))
-    {
-      if (G_LIKELY (xfce_menu_get_directory (XFCE_MENU (a)) != NULL))
-        name1 = xfce_menu_directory_get_name (xfce_menu_get_directory (XFCE_MENU (a)));
-      else
-        name1 = xfce_menu_get_name (XFCE_MENU (a));
-    }
-  else
-    name1 = xfce_menu_item_get_name (XFCE_MENU_ITEM (a));
-
-  /* Determining display name of b */
-  if (XFCE_IS_MENU (b))
-    {
-      if (G_LIKELY (xfce_menu_get_directory (XFCE_MENU (b)) != NULL))
-        name2 = xfce_menu_directory_get_name (xfce_menu_get_directory (XFCE_MENU (b)));
-      else
-        name2 = xfce_menu_get_name (XFCE_MENU (b));
-    }
-  else
-    name2 = xfce_menu_item_get_name (XFCE_MENU_ITEM (b));
-
-  /* Compare display names and return the result */
-  return g_utf8_collate (name1, name2);
+  return g_utf8_collate (xfce_menu_element_get_name (XFCE_MENU_ELEMENT (a)), 
+                         xfce_menu_element_get_name (XFCE_MENU_ELEMENT (b)));
 }
 
 

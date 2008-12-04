@@ -219,7 +219,7 @@ create_item_widgets (XfceMenuItem *item,
   else
     image = gtk_image_new_from_icon_name ("applications-other", ICON_SIZE);
 
-  gtk_item = gtk_image_menu_item_new_with_label (xfce_menu_item_get_name (item));
+  gtk_item = gtk_image_menu_item_new_with_label (xfce_menu_element_get_name (XFCE_MENU_ELEMENT (item)));
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (gtk_item), image);
   gtk_menu_shell_append (GTK_MENU_SHELL (parent_menu), gtk_item);
   gtk_widget_show (gtk_item);

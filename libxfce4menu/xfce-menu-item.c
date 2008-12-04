@@ -1217,12 +1217,8 @@ xfce_menu_item_decrement_allocated (XfceMenuItem *item)
 static const gchar*
 xfce_menu_item_get_element_name (XfceMenuElement *element)
 {
-  XfceMenuItem *item;
-
   g_return_val_if_fail (XFCE_IS_MENU_ITEM (element), NULL);
-
-  item = XFCE_MENU_ITEM (element);
-  return item->priv->name;
+  return XFCE_MENU_ITEM (element)->priv->name;
 }
 
 
@@ -1230,10 +1226,6 @@ xfce_menu_item_get_element_name (XfceMenuElement *element)
 static const gchar*
 xfce_menu_item_get_element_icon_name (XfceMenuElement *element)
 {
-  XfceMenuItem *item;
-
   g_return_val_if_fail (XFCE_IS_MENU_ITEM (element), NULL);
-
-  item = XFCE_MENU_ITEM (element);
-  return item->priv->icon_name;
+  return XFCE_MENU_ITEM (element)->priv->icon_name;
 }

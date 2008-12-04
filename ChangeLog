@@ -1,3 +1,13 @@
+2008-12-04	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu.c: Always use xfce_menu_get_element() when
+	  comparing two menu elements instead of handling menus and items
+	  in different ways.
+	* libxfce4menu/xfce-menu-item.c: Minor cleanup of the
+	  XfceMenuElement functions.
+	* tests/test-display-menu.c: Always use xfce_menu_get_element(), never
+	  use xfce_menu_item_get_name() directly.
+
 2008-11-11	Jannis Pohlmann <jannis@xfce.org>
 
 	* == 4.5.92 released ==
