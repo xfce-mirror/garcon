@@ -1,3 +1,7 @@
+2008-12-06	Jannis Pohlmann <jannis@xfce.org>
+
+	* configure.in.in: Re-add svn version tag.
+
 2008-12-04	Jannis Pohlmann <jannis@xfce.org>
 
 	* libxfce4menu/xfce-menu.c: Always use xfce_menu_get_element() when
