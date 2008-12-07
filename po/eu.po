@@ -40,4 +40,3 @@ msgstr "XfceMenu: Pantaila menu proba"
 #: ../tests/test-display-menu.c:362
 msgid "_Show menu"
 msgstr "_Ikusi menua"
-
