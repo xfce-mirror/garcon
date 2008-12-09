@@ -1,0 +1,43 @@
+# Swedish translation for libxfce4menu.
+# Copyright (C) 2008 Free Software Foundation, Inc.
+# This file is distributed under the same license as the libxfce4menu package.
+# Daniel Nylander <po@danielnylander.se>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libxfce4menu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-12-08 20:47+0100\n"
+"PO-Revision-Date: 2008-12-09 16:55+0100\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. Let the caller know there was no suitable file
+#: ../libxfce4menu/xfce-menu.c:743
+#, c-format
+msgid "Failed to locate the application root menu"
+msgstr "Misslyckades med att htita programrotmenyn"
+
+#: ../libxfce4menu/xfce-menu-item-cache.c:194
+#, c-format
+msgid "Failed to create the libxfce4menu item cache in %s."
+msgstr "Misslyckades med att skapa mellanlagring för libxfce4menu-objekt i %s."
+
+#: ../libxfce4menu/xfce-menu-item-cache.c:204
+#, c-format
+msgid "Failed to open libxfce4menu item cache in %s: %s."
+msgstr "Misslyckades med att öppna mellanlagring för libxfce4menu-objekt i %s: %s."
+
+#: ../tests/test-display-menu.c:353
+msgid "XfceMenu: Display Menu Test"
+msgstr "XfceMenu: Visa menytest"
+
+#. Create button
+#: ../tests/test-display-menu.c:362
+msgid "_Show menu"
+msgstr "_Visa meny"
+
