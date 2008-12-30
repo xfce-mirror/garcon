@@ -1,0 +1,40 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: libxfce4menu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-08-17 14:56-0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
+"Language-Team: Hungarian <debian-l10n-hungarian@lists.d.o>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Poedit-Language: Hungarian\n"
+"X-Poedit-Country: HUNGARY\n"
+
+#. Let the caller know there was no suitable file
+#: ../libxfce4menu/xfce-menu.c:743
+#, c-format
+msgid "Failed to locate the application root menu"
+msgstr "Nem találtam az alkalmazás gyökér menüt"
+
+#: ../libxfce4menu/xfce-menu-item-cache.c:194
+#, c-format
+msgid "Failed to create the libxfce4menu item cache in %s."
+msgstr "Nem tudtam létrehozni a libxfce4menu elem gyorstárat itt: %s."
+
+#: ../libxfce4menu/xfce-menu-item-cache.c:204
+#, c-format
+msgid "Failed to open libxfce4menu item cache in %s: %s."
+msgstr "Nem tudtam megnyitni a libxfce4menu elem gyorstárat itt: %s: %s."
+
+#: ../tests/test-display-menu.c:353
+msgid "XfceMenu: Display Menu Test"
+msgstr "XfceMenu: Kijelző Menü Teszt"
+
+#. Create button
+#: ../tests/test-display-menu.c:362
+msgid "_Show menu"
+msgstr "_Menü mutatása"
+
