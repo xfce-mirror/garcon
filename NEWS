@@ -1,3 +1,8 @@
+4.5.93
+======
+- Add weak pointers to the XfceMenuItemCache and XfceMenuSeparator objects
+  to you can run xfce_menu_init() and xfce_menu_shutdown() multiple times.
+
 4.5.92
 ======
 - Translations: ca, da, ku, nb_NO, sq, tr.

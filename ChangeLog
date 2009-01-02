@@ -1,3 +1,11 @@
+2009-01-02	Nick Schermer <nick@xfce.org>
+
+	* libxfce4menu/xfce-menu-item-cache.c,
+	  libxfce4menu/xfce-menu-separator.c: Add weak pointer to 
+	  XfceMenuItemCache and XfceMenuSeparator so you can init and shutdown
+	  the library multiple times without running into trouble.
+	* NEWS: Update.
+
 2008-12-06	Jannis Pohlmann <jannis@xfce.org>
 
 	* configure.in.in: Re-add svn version tag.

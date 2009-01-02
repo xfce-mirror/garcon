@@ -80,7 +80,10 @@ void
 _xfce_menu_item_cache_init (void)
 {
   if (G_LIKELY (_xfce_menu_item_cache == NULL))
-    _xfce_menu_item_cache = g_object_new (XFCE_TYPE_MENU_ITEM_CACHE, NULL);
+    {
+      _xfce_menu_item_cache = g_object_new (XFCE_TYPE_MENU_ITEM_CACHE, NULL);
+      g_object_add_weak_pointer (G_OBJECT (_xfce_menu_item_cache), (gpointer) &_xfce_menu_item_cache);
+    }
 }
 
 
@@ -90,6 +93,7 @@ _xfce_menu_item_cache_shutdown (void)
 {
   if (G_LIKELY (_xfce_menu_item_cache != NULL))
     g_object_unref (G_OBJECT (_xfce_menu_item_cache));
+      
 }
 
 

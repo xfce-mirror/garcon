@@ -45,7 +45,10 @@ void
 _xfce_menu_separator_init (void)
 {
   if (G_LIKELY (_xfce_menu_separator == NULL))
-    _xfce_menu_separator = g_object_new (XFCE_TYPE_MENU_SEPARATOR, NULL);
+    {
+      _xfce_menu_separator = g_object_new (XFCE_TYPE_MENU_SEPARATOR, NULL);
+      g_object_add_weak_pointer (G_OBJECT (_xfce_menu_separator), (gpointer) &_xfce_menu_separator);
+    }
 }
 
 
