@@ -205,7 +205,7 @@ xfce_menu_item_cache_init (XfceMenuItemCache *cache)
 
   /* Print warning if it could not be opened */
   if (G_UNLIKELY (cache->priv->context == NULL))
-    g_warning (_("Failed to open libxfce4menu item cache in %s: %s."), path, g_strerror (errno));
+    g_warning (_("Failed to load the libxfce4menu item cache from %s: %s."), path, g_strerror (errno));
 
   /* Release the path */
   g_free (path);

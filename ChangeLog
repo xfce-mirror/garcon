@@ -1,3 +1,8 @@
+2009-01-06	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu.c, libxfce4menu/xfce-menu-item-cache.c:
+	  Review strings.
+
 2009-01-02	Nick Schermer <nick@xfce.org>
 
 	* libxfce4menu/xfce-menu-item-cache.c,

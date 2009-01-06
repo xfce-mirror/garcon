@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu-0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-17 14:56-0700\n"
+"POT-Creation-Date: 2009-01-06 01:23+0100\n"
 "PO-Revision-Date: 2008-11-27 00:40+0100\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
@@ -18,18 +18,18 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
-#, c-format
-msgid "Failed to locate the application root menu"
+#, fuzzy, c-format
+msgid "Failed to locate the system menu"
 msgstr "Huts aplikazioaren erro menua kokatzerakoan"
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:194
+#: ../libxfce4menu/xfce-menu-item-cache.c:198
 #, c-format
 msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "Huts %s-en libxfce4menu elementu cachean sortzerakoan."
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:204
-#, c-format
-msgid "Failed to open libxfce4menu item cache in %s: %s."
+#: ../libxfce4menu/xfce-menu-item-cache.c:208
+#, fuzzy, c-format
+msgid "Failed to load the libxfce4menu item cache from %s: %s."
 msgstr "Huts %s-en libxfce4menu elementu cachean irekitzean: %s."
 
 #: ../tests/test-display-menu.c:353

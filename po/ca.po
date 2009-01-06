@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-17 14:56-0700\n"
+"POT-Creation-Date: 2009-01-06 01:23+0100\n"
 "PO-Revision-Date: 2008-10-19 20:50+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
@@ -18,18 +18,18 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
-#, c-format
-msgid "Failed to locate the application root menu"
+#, fuzzy, c-format
+msgid "Failed to locate the system menu"
 msgstr "No s'ha pogut trobar el menú arrel de l'aplicació"
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:194
+#: ../libxfce4menu/xfce-menu-item-cache.c:198
 #, c-format
 msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "No s'ha pogut crear l'element cau de «libxfce4menu» a «%s»."
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:204
-#, c-format
-msgid "Failed to open libxfce4menu item cache in %s: %s."
+#: ../libxfce4menu/xfce-menu-item-cache.c:208
+#, fuzzy, c-format
+msgid "Failed to load the libxfce4menu item cache from %s: %s."
 msgstr "No s'ha pogut obrir l'element cau de «libxfce4menu» a «%s»: %s."
 
 #: ../tests/test-display-menu.c:353

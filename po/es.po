@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-15 18:36+0100\n"
+"POT-Creation-Date: 2009-01-06 01:23+0100\n"
 "PO-Revision-Date: 2008-11-15 18:38+0100\n"
 "Last-Translator: Abel Martín <abel.martin.ruiz@gmail.com>\n"
 "Language-Team: Spanish/ES <xfce-i18n@xfce.org>\n"
@@ -19,18 +19,18 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
-#, c-format
-msgid "Failed to locate the application root menu"
+#, fuzzy, c-format
+msgid "Failed to locate the system menu"
 msgstr "Fallo al localizar el menú raíz de la aplicación"
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:194
+#: ../libxfce4menu/xfce-menu-item-cache.c:198
 #, c-format
 msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "Fallo al crear la caché del elemento libxfce4menu en %s."
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:204
-#, c-format
-msgid "Failed to open libxfce4menu item cache in %s: %s."
+#: ../libxfce4menu/xfce-menu-item-cache.c:208
+#, fuzzy, c-format
+msgid "Failed to load the libxfce4menu item cache from %s: %s."
 msgstr "Fallo al abrir la caché del elemento libxfce4menu en %s: %s."
 
 #: ../tests/test-display-menu.c:353
@@ -41,4 +41,3 @@ msgstr "XfceMenu: prueba de visualización de menú"
 #: ../tests/test-display-menu.c:362
 msgid "_Show menu"
 msgstr "_Mostrar menú"
-

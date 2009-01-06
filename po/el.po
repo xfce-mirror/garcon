@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-17 14:43-0700\n"
+"POT-Creation-Date: 2009-01-06 01:23+0100\n"
 "PO-Revision-Date: 2008-03-25 00:19+0200\n"
 "Last-Translator: Evaggelos Balaskas <ebalaskas@ebalaskas.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -18,18 +18,27 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
-#, c-format
-msgid "Failed to locate the application root menu"
+#, fuzzy, c-format
+msgid "Failed to locate the system menu"
 msgstr "Αποτυχία στον εντοπισμό της ρίζας του μενού εφαρμογών"
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:194
+#: ../libxfce4menu/xfce-menu-item-cache.c:198
 #, c-format
 msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr ""
 "Αποτυχία στη δημιουργία προσωρινής μνήμης αντικειμένου libxfce4menu στο %s"
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:204
-#, c-format
-msgid "Failed to open libxfce4menu item cache in %s: %s."
+#: ../libxfce4menu/xfce-menu-item-cache.c:208
+#, fuzzy, c-format
+msgid "Failed to load the libxfce4menu item cache from %s: %s."
 msgstr ""
 "Αποτυχία στο άνοιγμα προσωρινής μνήμης αντικειμένου libxfce4menu στο %s: %s."
+
+#: ../tests/test-display-menu.c:353
+msgid "XfceMenu: Display Menu Test"
+msgstr ""
+
+#. Create button
+#: ../tests/test-display-menu.c:362
+msgid "_Show menu"
+msgstr ""

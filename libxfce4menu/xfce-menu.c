@@ -740,7 +740,7 @@ xfce_menu_get_root (GError **error)
       if (G_UNLIKELY (root_menu == NULL))
         {
           /* Let the caller know there was no suitable file */
-          g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_FAILED, _("Failed to locate the application root menu"));
+          g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_FAILED, _("Failed to locate the system menu"));
         }
     }
   else

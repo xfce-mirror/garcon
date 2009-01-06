@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-17 14:43-0700\n"
+"POT-Creation-Date: 2009-01-06 01:23+0100\n"
 "PO-Revision-Date: 2008-07-07 19:03+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: \n"
@@ -19,16 +19,25 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
-#, c-format
-msgid "Failed to locate the application root menu"
+#, fuzzy, c-format
+msgid "Failed to locate the system menu"
 msgstr "Hlavní nabídka aplikací nebyla nalezena."
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:194
+#: ../libxfce4menu/xfce-menu-item-cache.c:198
 #, c-format
 msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "Vytvoření dočasného záznamu položky libxfce4menu v %s se nezdařilo."
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:204
-#, c-format
-msgid "Failed to open libxfce4menu item cache in %s: %s."
+#: ../libxfce4menu/xfce-menu-item-cache.c:208
+#, fuzzy, c-format
+msgid "Failed to load the libxfce4menu item cache from %s: %s."
 msgstr "Otevření dočasného záznamu položky libxfce4menu v %s se nezdařilo: %s."
+
+#: ../tests/test-display-menu.c:353
+msgid "XfceMenu: Display Menu Test"
+msgstr ""
+
+#. Create button
+#: ../tests/test-display-menu.c:362
+msgid "_Show menu"
+msgstr ""

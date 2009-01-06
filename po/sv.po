@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-08 20:47+0100\n"
+"POT-Creation-Date: 2009-01-06 01:23+0100\n"
 "PO-Revision-Date: 2008-12-09 16:55+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -18,19 +18,20 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
-#, c-format
-msgid "Failed to locate the application root menu"
+#, fuzzy, c-format
+msgid "Failed to locate the system menu"
 msgstr "Misslyckades med att htita programrotmenyn"
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:194
+#: ../libxfce4menu/xfce-menu-item-cache.c:198
 #, c-format
 msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "Misslyckades med att skapa mellanlagring för libxfce4menu-objekt i %s."
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:204
-#, c-format
-msgid "Failed to open libxfce4menu item cache in %s: %s."
-msgstr "Misslyckades med att öppna mellanlagring för libxfce4menu-objekt i %s: %s."
+#: ../libxfce4menu/xfce-menu-item-cache.c:208
+#, fuzzy, c-format
+msgid "Failed to load the libxfce4menu item cache from %s: %s."
+msgstr ""
+"Misslyckades med att öppna mellanlagring för libxfce4menu-objekt i %s: %s."
 
 #: ../tests/test-display-menu.c:353
 msgid "XfceMenu: Display Menu Test"
@@ -40,4 +41,3 @@ msgstr "XfceMenu: Visa menytest"
 #: ../tests/test-display-menu.c:362
 msgid "_Show menu"
 msgstr "_Visa meny"
-
