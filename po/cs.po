@@ -42,4 +42,3 @@ msgstr "XfceMenu: Zkouška zobrazení nabídky"
 #: ../tests/test-display-menu.c:362
 msgid "_Show menu"
 msgstr "_Zobrazit nabídku"
-

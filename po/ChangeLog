@@ -1,3 +1,8 @@
+2009-01-10	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu-0.1.pot, *.po: Update translation files just to make
+	  sure they are up to date for the string-freeze release.
+
 2009-01-06  Michal Várady <miko.vaji@gmail.com>
 
 	* cs.po: Czech translation updated
