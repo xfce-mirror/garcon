@@ -1,14 +1,14 @@
 # Catalan translations for libxfce package.
 # Copyright (C) 2008 THE libxfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the libxfce package.
-# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2008.
+# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2008-2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-06 01:23+0100\n"
-"PO-Revision-Date: 2008-10-19 20:50+0100\n"
+"PO-Revision-Date: 2009-01-11 11:59+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -18,9 +18,9 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to locate the system menu"
-msgstr "No s'ha pogut trobar el menú arrel de l'aplicació"
+msgstr "No s'ha pogut trobar el menú del sistema"
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:198
 #, c-format
@@ -28,9 +28,9 @@ msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "No s'ha pogut crear l'element cau de «libxfce4menu» a «%s»."
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to load the libxfce4menu item cache from %s: %s."
-msgstr "No s'ha pogut obrir l'element cau de «libxfce4menu» a «%s»: %s."
+msgstr "No s'ha pogut obrir l'element cau de «libxfce4menu» de «%s»: %s."
 
 #: ../tests/test-display-menu.c:353
 msgid "XfceMenu: Display Menu Test"
