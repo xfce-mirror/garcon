@@ -1,3 +1,8 @@
+2009-01-11	Jannis Pohlmann <jannis@xfce.org>
+
+	* == 4.5.93 released! ==
+	* configure.in.in: Bump version and dependencies.
+
 2009-01-10	Jannis Pohlmann <jannis@xfce.org>
 
 	* NEWS: Update NEWS for the upcoming 4.5.93 (Xfce 4.6 beta3) release.
