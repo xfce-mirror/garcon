@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4menu 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-06 01:23+0100\n"
-"PO-Revision-Date: 2008-11-26 23:34+0900\n"
+"POT-Creation-Date: 2009-01-11 14:37+0900\n"
+"PO-Revision-Date: 2009-01-06 19:29+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -18,9 +18,9 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to locate the system menu"
-msgstr "アプリケーションのルートメニューを配置できませんでした。"
+msgstr "システムメニューの配置に失敗しました"
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:198
 #, c-format
@@ -28,9 +28,10 @@ msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "libxfce4menu アイテムのキャッシュを %s に作成できませんでした。"
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to load the libxfce4menu item cache from %s: %s."
-msgstr "libxfce4menu アイテムのキャッシュを %s から開けませんでした: %s"
+msgstr ""
+"%s からの libxfce4menu アイテムのキャッシュの読み込みに失敗しました: %s"
 
 #: ../tests/test-display-menu.c:353
 msgid "XfceMenu: Display Menu Test"
