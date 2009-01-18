@@ -1,14 +1,14 @@
 # Swedish translation for libxfce4menu.
-# Copyright (C) 2008 Free Software Foundation, Inc.
+# Copyright (C) 2008-2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the libxfce4menu package.
-# Daniel Nylander <po@danielnylander.se>, 2008.
+# Daniel Nylander <po@danielnylander.se>, 2008, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-06 01:23+0100\n"
-"PO-Revision-Date: 2008-12-09 16:55+0100\n"
+"POT-Creation-Date: 2009-01-18 12:14+0100\n"
+"PO-Revision-Date: 2009-01-18 12:29+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -18,9 +18,9 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to locate the system menu"
-msgstr "Misslyckades med att htita programrotmenyn"
+msgstr "Misslyckades med att hitta systemmenyn"
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:198
 #, c-format
@@ -28,10 +28,9 @@ msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "Misslyckades med att skapa mellanlagring för libxfce4menu-objekt i %s."
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to load the libxfce4menu item cache from %s: %s."
-msgstr ""
-"Misslyckades med att öppna mellanlagring för libxfce4menu-objekt i %s: %s."
+msgstr "Misslyckades med att läsa in mellanlagring för libxfce4menu-objekt i %s: %s."
 
 #: ../tests/test-display-menu.c:353
 msgid "XfceMenu: Display Menu Test"
@@ -41,3 +40,4 @@ msgstr "XfceMenu: Visa menytest"
 #: ../tests/test-display-menu.c:362
 msgid "_Show menu"
 msgstr "_Visa meny"
+
