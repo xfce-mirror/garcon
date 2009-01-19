@@ -2,6 +2,7 @@
 # Copyright (C) 2008 THE libxfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the libxfce package.
 # Terje <ter@operamail.com>, 2008.
+# Terje Uriansrud <terje@uriansrudnet>, 2009.
 #
 msgid ""
 msgstr ""
@@ -18,9 +19,9 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to locate the system menu"
-msgstr "Klarte ikke å finne basislisten med programmer"
+msgstr "Klarte ikke å finne systemmenyen"
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:198
 #, c-format
@@ -28,9 +29,9 @@ msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "Klarte ikke å opprette libxfce4menu programhurtiglager i %s."
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to load the libxfce4menu item cache from %s: %s."
-msgstr "Klarte ikke å åpne libxfce4menu programhurtiglager i %s: %s."
+msgstr "Klarte ikke å laste libxfcemenu elementhurtiglager fra %s: %s."
 
 #: ../tests/test-display-menu.c:353
 msgid "XfceMenu: Display Menu Test"
