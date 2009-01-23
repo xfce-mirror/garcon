@@ -1,3 +1,8 @@
+2009-01-23	Jannis Pohlmann <jannis@xfce.org>
+
+	* COPYING: Add GFDL 1.1 as requested by Michael Casadevall from
+	  Xubuntu.
+
 2009-01-14	Jannis Pohlmann <jannis@xfce.org>
 
 	* configure.in.in: Post-release version bump.
