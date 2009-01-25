@@ -1,6 +1,7 @@
 2009-01-25	Jannis Pohlmann <jannis@xfce.org>
 
 	* == 4.5.99.1 released! ==
+	* NEWS: Update NEWS for the release.
 	* configure.in.in: Bump version and dependencies and remove 'svn'
 	  version tag.
 
