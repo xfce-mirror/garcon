@@ -17,6 +17,7 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
+#, c-format
 msgid "Failed to locate the system menu"
 msgstr "找不到系统菜单"
 
@@ -26,6 +27,7 @@ msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "无法在 %s 建立 libxfce4menu 缓存区."
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:208
+#, c-format
 msgid "Failed to load the libxfce4menu item cache from %s: %s."
 msgstr "无法从 %s 读取 libxfce4menu 项目缓存：%s。"
 

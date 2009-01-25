@@ -1,3 +1,8 @@
+4.5.99.1
+========
+- Add GNU Free Documentation License 1.1 to COPYING.
+- Update translations: da, eu, fr, ja, nb_NO, pt_BR, sv, zh_CN.
+
 4.5.93
 ======
 - Add weak pointers to the XfceMenuItemCache and XfceMenuSeparator objects

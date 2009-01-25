@@ -43,4 +43,3 @@ msgstr "XfceMenu: Vis menuprøve"
 #: ../tests/test-display-menu.c:362
 msgid "_Show menu"
 msgstr "_Vis menu"
-

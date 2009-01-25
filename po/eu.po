@@ -18,6 +18,7 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
+#, c-format
 msgid "Failed to locate the system menu"
 msgstr "Huts sistemaren erro menua kokatzerakoan"
 
@@ -27,6 +28,7 @@ msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "Huts %s-en libxfce4menu elementu cachean sortzerakoan."
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:208
+#, c-format
 msgid "Failed to load the libxfce4menu item cache from %s: %s."
 msgstr "Huts %s-en libxfce4menu elementu katxean irekitzean: %s."
 

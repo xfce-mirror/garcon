@@ -17,6 +17,7 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
+#, c-format
 msgid "Failed to locate the system menu"
 msgstr "Impossible de localiser le menu système"
 
@@ -26,9 +27,10 @@ msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "Impossible de créer le cache d'éléments de libxfce4menu dans %s."
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:208
+#, c-format
 msgid "Failed to load the libxfce4menu item cache from %s: %s."
-msgstr "Impossible de charger le cache d'éléments de libxfce4menu depuis"
-" %s : %s."
+msgstr ""
+"Impossible de charger le cache d'éléments de libxfce4menu depuis %s : %s."
 
 #: ../tests/test-display-menu.c:353
 msgid "XfceMenu: Display Menu Test"
