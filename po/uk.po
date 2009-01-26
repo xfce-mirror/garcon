@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-06 01:23+0100\n"
-"PO-Revision-Date: 2008-06-30 17:31+0300\n"
+"PO-Revision-Date: 2009-01-26 11:01+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,9 +18,9 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to locate the system menu"
-msgstr "Помилка при пошуку меню програм адміністратора"
+msgstr "Помилка при пошуку системного меню"
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:198
 #, c-format
@@ -28,15 +28,16 @@ msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "Помилка при створенні елементу кешу libxfce4menu в %s."
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to load the libxfce4menu item cache from %s: %s."
-msgstr "Помилка при відкритті елементу кешу libxfce4menu в %s: %s."
+msgstr "Не вдалось завантажити елемент кешу libxfce4menu з %s: %s."
 
 #: ../tests/test-display-menu.c:353
 msgid "XfceMenu: Display Menu Test"
-msgstr ""
+msgstr "XfceMenu: Показати тест меню"
 
 #. Create button
 #: ../tests/test-display-menu.c:362
 msgid "_Show menu"
-msgstr ""
+msgstr "_Показати меню"
+
