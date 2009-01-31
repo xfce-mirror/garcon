@@ -20,19 +20,19 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to locate the system menu"
-msgstr "Uygulama ana menüsünün yeri belirlenemedi"
+msgstr "Sistem menüsünün yeri belirlenemedi"
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:198
 #, c-format
 msgid "Failed to create the libxfce4menu item cache in %s."
-msgstr "libxfce4menu öğe önbelleği oluşturulamadı: %s."
+msgstr "libxfce4menu öğesi önbelleği oluşturulamadı: %s."
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to load the libxfce4menu item cache from %s: %s."
-msgstr "libxfce4menu öğe önbelleği, %s bölümünde açılamadı: %s."
+msgstr "libxfce4menu öğesi önbelleği, %s bölümünden çağrılamadı: %s."
 
 #: ../tests/test-display-menu.c:353
 msgid "XfceMenu: Display Menu Test"
@@ -42,3 +42,4 @@ msgstr "XfceMenu: Menü Sınamasını Görüntüle"
 #: ../tests/test-display-menu.c:362
 msgid "_Show menu"
 msgstr "_Menüyü göster"
+
