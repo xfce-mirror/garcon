@@ -17,7 +17,7 @@ m4_define([libxfce4menu_version_minor], [5])
 m4_define([libxfce4menu_version_micro], [99])
 m4_define([libxfce4menu_version_nano], [1])
 m4_define([libxfce4menu_version_build], [r@REVISION@])
-m4_define([libxfce4menu_version_tag], [])
+m4_define([libxfce4menu_version_tag], [svn])
 m4_define([libxfce4menu_version], [libxfce4menu_version_major().libxfce4menu_version_minor().libxfce4menu_version_micro()ifelse(libxfce4menu_version_nano(), [], [], [.libxfce4menu_version_nano()])ifelse(libxfce4menu_version_tag(), [svn], [libxfce4menu_version_tag()-libxfce4menu_version_build()], [libxfce4menu_version_tag()])])
 
 dnl ********************************************

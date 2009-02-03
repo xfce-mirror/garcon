@@ -1,3 +1,11 @@
+2009-02-04	Jannis Pohlmann <jannis@xfce.org>
+
+	* COPYING: Add "no invariant sections" hint to the GFDL.
+	* configure.in.in: Post-release version bump.
+	* libxfce4mixer/xfce-menu.c: Fix crash when reading invalid menu files
+	  with characters outside the root <Menu> element. Of course this even
+	  works with documents which have no <Menu> element at all.
+
 2009-01-25	Jannis Pohlmann <jannis@xfce.org>
 
 	* == 4.5.99.1 released! ==

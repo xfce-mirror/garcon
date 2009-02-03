@@ -1167,7 +1167,8 @@ xfce_menu_get_app_dirs (XfceMenu *menu)
 
 
 static gboolean
-xfce_menu_load (XfceMenu *menu, GError **error)
+xfce_menu_load (XfceMenu *menu, 
+                GError  **error)
 {
   /* Parser structure (connect handlers etc.) */
   GMarkupParseContext *context;
@@ -1216,7 +1217,8 @@ xfce_menu_load (XfceMenu *menu, GError **error)
   context = g_markup_parse_context_new (&parser, 0, &menu_context, NULL);
 
   /* Try to parse the menu file */
-  if (!g_markup_parse_context_parse (context, contents, contents_length, error) || !g_markup_parse_context_end_parse (context, error))
+  if (!g_markup_parse_context_parse (context, contents, contents_length, error) || 
+      !g_markup_parse_context_end_parse (context, error))
     {
       g_markup_parse_context_free (context);
       return FALSE;
@@ -1614,11 +1616,19 @@ xfce_menu_characters (GMarkupParseContext *context,
                       GError             **error)
 {
   XfceMenuParseContext *menu_context = (XfceMenuParseContext *)user_data;
-  XfceMenu             *current_menu = g_list_first (menu_context->menu_stack)->data;
+  XfceMenu             *current_menu = NULL;
   XfceMenuRules        *current_rule = NULL;
+  gchar                *content;
 
-  /* Generate NULL-terminated string */
-  gchar *content = g_strndup (text, text_len);
+  /* Ignore characters outside of the root <Menu> element */
+  if (G_UNLIKELY (g_list_length (menu_context->menu_stack) == 0))
+    return;
+
+  /* Get the current menu */
+  current_menu = g_list_first (menu_context->menu_stack)->data;
+
+  /* Generate NUL-terminated string */
+  content = g_strndup (text, text_len);
 
   /* Fetch current rule from stack (if possible) */
   if (g_list_length (menu_context->rule_stack) > 0)
