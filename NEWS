@@ -1,3 +1,8 @@
+4.5.99.2
+========
+- Add hint about no invariant sections to COPYING.
+- Fix crash when reading invalid menu files (bug #4879).
+
 4.5.99.1
 ========
 - Add GNU Free Documentation License 1.1 to COPYING.

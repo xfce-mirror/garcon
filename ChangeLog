@@ -1,5 +1,9 @@
 2009-02-04	Jannis Pohlmann <jannis@xfce.org>
 
+	* NEWS: Update NEWS.
+
+2009-02-04	Jannis Pohlmann <jannis@xfce.org>
+
 	* COPYING: Add "no invariant sections" hint to the GFDL.
 	* configure.in.in: Post-release version bump.
 	* libxfce4mixer/xfce-menu.c: Fix crash when reading invalid menu files
