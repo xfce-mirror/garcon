@@ -15,9 +15,9 @@ msgstr ""
 
 #. Let the caller know there was no suitable file
 #: ../libxfce4menu/xfce-menu.c:743
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to locate the system menu"
-msgstr "Nem találtam az alkalmazás gyökér menüt"
+msgstr "Nem találtam a rendszer menüt"
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:198
 #, c-format
@@ -25,9 +25,9 @@ msgid "Failed to create the libxfce4menu item cache in %s."
 msgstr "Nem tudtam létrehozni a libxfce4menu elem gyorstárat itt: %s."
 
 #: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to load the libxfce4menu item cache from %s: %s."
-msgstr "Nem tudtam megnyitni a libxfce4menu elem gyorstárat itt: %s: %s."
+msgstr "Nem tudtam betölteni a libxfce4menu elem gyorstárat innen: %s: %s."
 
 #: ../tests/test-display-menu.c:353
 msgid "XfceMenu: Display Menu Test"
@@ -37,3 +37,4 @@ msgstr "XfceMenu: Kijelző Menü Teszt"
 #: ../tests/test-display-menu.c:362
 msgid "_Show menu"
 msgstr "_Menü mutatása"
+
