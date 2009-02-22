@@ -7,15 +7,32 @@ INCLUDES =								\
 	-DG_LOG_DOMAIN=\"libxfce4menu-tests\"
 
 TESTS =									\
+	test-menu-parser
 	test-menu-spec							\
 	test-display-menu
 
 check_PROGRAMS =							\
+	test-menu-parser						\
 	test-menu-spec							\
 	test-display-menu
 
+test_menu_parser_SOURCES =						\
+	test-menu-parser.c
+
+test_menu_parser_CFLAGS =						\
+	$(LIBXFCE4UTIL_CFLAGS)						\
+	$(GLIB_CFLAGS)
+
+test_menu_parser_DEPENDENCIES =						\
+	$(top_builddir)/libxfce4menu/libxfce4menu-$(LIBXFCE4MENU_VERSION_API).la
+
+test_menu_parser_LDADD =						\
+	$(LIBXFCE4UTIL_LIBS)						\
+	$(GLIB_LIBS)							\
+	$(top_builddir)/libxfce4menu/libxfce4menu-$(LIBXFCE4MENU_VERSION_API).la
+
 test_menu_spec_SOURCES =						\
-	test-menu-spec.c
+	test-menu-parser.c
 
 test_menu_spec_CFLAGS =							\
 	$(LIBXFCE4UTIL_CFLAGS)						\

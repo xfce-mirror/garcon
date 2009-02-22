@@ -28,7 +28,11 @@ libxfce4menu_headers =							\
 	xfce-menu-move.h						\
 	xfce-menu-environment.h						\
 	xfce-menu-monitor.h						\
-	xfce-menu-item.h						
+	xfce-menu-item.h						\
+	xfce-menu-node.h						\
+	xfce-menu-tree-provider.h					\
+	xfce-menu-merger.h						\
+	xfce-menu-parser.h
 
 libxfce4menu_sources =							\
 	xfce-menu.c							\
@@ -46,7 +50,11 @@ libxfce4menu_sources =							\
 	xfce-menu-move.c						\
 	xfce-menu-environment.c						\
 	xfce-menu-monitor.c						\
-	xfce-menu-item.c						
+	xfce-menu-item.c						\
+	xfce-menu-node.c						\
+	xfce-menu-tree-provider.c					\
+	xfce-menu-merger.c						\
+	xfce-menu-parser.c
 
 libxfce4menuincludedir = $(includedir)/xfce4/libxfce4menu-0.1/libxfce4menu
 
@@ -65,6 +73,7 @@ libxfce4menu_0_1_la_SOURCES =						\
 libxfce4menu_0_1_la_CFLAGS = 						\
 	$(GLIB_CFLAGS)							\
 	$(GTHREAD_CFLAGS)						\
+	$(GIO_CFLAGS)							\
 	$(LIBXFCE4UTIL_CFLAGS)						\
 	$(PLATFORM_CFLAGS)						
 
@@ -77,6 +86,7 @@ libxfce4menu_0_1_la_LDFLAGS =						\
 libxfce4menu_0_1_la_LIBADD = 						\
 	$(GLIB_LIBS)							\
 	$(GTHREAD_LIBS)							\
+	$(GIO_LIBS)							\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(top_builddir)/tdb/libtdb.la
 

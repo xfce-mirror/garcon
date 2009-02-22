@@ -32,14 +32,9 @@
 
 #include <glib-object.h>
 
-G_BEGIN_DECLS;
+#include "xfce-menu-node.h"
 
-typedef enum
-{
-  XFCE_MENU_LAYOUT_MERGE_MENUS,
-  XFCE_MENU_LAYOUT_MERGE_FILES,
-  XFCE_MENU_LAYOUT_MERGE_ALL,
-} XfceMenuLayoutMergeType;
+G_BEGIN_DECLS;
 
 typedef enum
 {

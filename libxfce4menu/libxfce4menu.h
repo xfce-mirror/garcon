@@ -38,6 +38,10 @@
 #include <libxfce4menu/xfce-menu-directory.h>
 #include <libxfce4menu/xfce-menu-layout.h>
 #include <libxfce4menu/xfce-menu-separator.h>
+#include <libxfce4menu/xfce-menu-node.h>
+#include <libxfce4menu/xfce-menu-tree-provider.h>
+#include <libxfce4menu/xfce-menu-merger.h>
+#include <libxfce4menu/xfce-menu-parser.h>
 #include <libxfce4menu/xfce-menu.h>
 #include <libxfce4menu/xfce-menu-monitor.h>
 

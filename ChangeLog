@@ -1,3 +1,32 @@
+2009-02-17	Jannis Pohlmann <jannis@xfce.org>
+
+	* configure.in.in: Depend on GTK+ 2.12 and GLib 2.14. Add dependency
+	  on GIO 2.14 as well. 
+	* libxfce4menu/Makefile.am: Add new source and header files.
+	* libxfce4menu/libxfce4menu.h: Add new header files.
+	* libxfce4menu/xfce-menu-node.{c,h}: Add new class XfceMenuNode which
+	  holds the information for one element in the menu DOM tree, e.g.
+	  <MergeFile>, <Name> or <Menu>
+	* libxfce4menu/xfce-menu-tree-provider.{c,h}: Add new interface
+	  XfceMenuTreeProvider for classes which hold a GNode DOM
+	  representation for .menu files.
+	* libxfce4menu/xfce-menu-parser.{c,h}: Add new parser for .menu XML
+	  files. It builds a GNode DOM representation for the XML data. Each
+	  GNode in the tree (except for the menu nodes) contains one
+	  XfceMenuNode for the XML element information. The parser implements
+	  XfceMenuTreeProvider.
+	* libxfce4menu/xfce-menu-merger.{c,h}: Add new class XfceMenuMerger
+	  which takes the DOM tree from the parser or any other 
+	  XfceMenuTreeProvider and resolves duplicates, relative paths and,
+	  most importantly, merges and deletes menus according to the
+	  information in the DOM tree. It implements XfceMenuTreeProvider. It
+	  is not complete yet because it doesn't implement <Move> elements 
+	  and is not capable of consolidating child menus with the same name
+	  at the moment.
+	* tests/Makefile.am, tests/test-menu-parser.c: Add a small test
+	  program which parses a menu file using XfceMenuParser and then runs
+	  an XfceMenuMerger and prints the output of both.
+
 2009-02-04	Jannis Pohlmann <jannis@xfce.org>
 
 	* NEWS: Update NEWS.
