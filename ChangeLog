@@ -1,5 +1,10 @@
 2009-02-24	Jannis Pohlmann <jannis@xfce.org>
 
+	* libfxce4menu/Makefile.am: Remove non-existent files and missing
+	  ones.
+
+2009-02-24	Jannis Pohlmann <jannis@xfce.org>
+
 	* libxfce4menu/xfce-menu-gio.{c,h}: Add missing source files for a few
 	  GIO/GFile utility functions.
 
