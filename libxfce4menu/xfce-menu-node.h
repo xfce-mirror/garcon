@@ -66,7 +66,7 @@ typedef enum
   XFCE_MENU_NODE_TYPE_DEFAULT_MERGE_DIRS,
 } XfceMenuNodeType;
 
-#define XFCE_MENU_NODE_TYPE            (xfce_menu_node_type_get_type ())
+
 
 typedef enum
 {
@@ -81,6 +81,8 @@ typedef enum
   XFCE_MENU_MERGE_FILE_PARENT,
 } XfceMenuMergeFileType;
 
+
+
 typedef union  _XfceMenuNodeData    XfceMenuNodeData;
 typedef struct _XfceMenuNodeClass   XfceMenuNodeClass;
 typedef struct _XfceMenuNode        XfceMenuNode;
@@ -91,8 +93,6 @@ typedef struct _XfceMenuNode        XfceMenuNode;
 #define XFCE_IS_MENU_NODE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_MENU_NODE))
 #define XFCE_IS_MENU_NODE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_MENU_NODE)
 #define XFCE_MENU_NODE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_MENU_NODE, XfceMenuNodeClass))
-
-GType                   xfce_menu_node_type_get_type                (void) G_GNUC_CONST;
 
 GType                   xfce_menu_node_get_type                     (void) G_GNUC_CONST;
 

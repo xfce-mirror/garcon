@@ -1,5 +1,18 @@
 2009-02-24	Jannis Pohlmann <jannis@xfce.org>
 
+	* libxfce4menu/libxfce4menu.c: Add missing source file.
+
+2009-02-24	Jannis Pohlmann <jannis@xfce.org>
+
+	* docs/reference/: Try to get the damn docs right.
+	* libxfce4menu/libxfce4menu.{c,h}, libxfce4menu/xfce-menu.c: Move
+	  xfce_menu_init() and xfce_menu_shutdown() into libxfce4menu.{c,h}.
+	  Fix #undef LIBXFCE4MENU_INSIDE_LIBXFCE4MENU_H. 
+	* libxfce4menu/xfce-menu-node.{c,h}: Make XfceMenuNodeType enum code
+	  private.
+
+2009-02-24	Jannis Pohlmann <jannis@xfce.org>
+
 	* docs/reference/: Remove tmpl/ subdir.
 
 2009-02-24	Jannis Pohlmann <jannis@xfce.org>

@@ -170,7 +170,7 @@ xfce_menu_node_class_init (XfceMenuNodeClass *klass)
                                    g_param_spec_enum ("node-type",
                                                       "node-type",
                                                       "node-type",
-                                                      XFCE_MENU_NODE_TYPE,
+                                                      xfce_menu_node_type_get_type (),
                                                       XFCE_MENU_NODE_TYPE_MENU,
                                                       G_PARAM_READABLE | G_PARAM_WRITABLE));
 }
