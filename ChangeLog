@@ -1,5 +1,10 @@
 2009-02-24	Jannis Pohlmann <jannis@xfce.org>
 
+	* docs/reference/: Update API docs section and stuff.
+	* libxfce4menu/xfce-menu-move.{c,h}: Remove unused source files.
+
+2009-02-24	Jannis Pohlmann <jannis@xfce.org>
+
 	* libfxce4menu/Makefile.am: Remove non-existent files and missing
 	  ones.
 

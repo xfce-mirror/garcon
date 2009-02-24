@@ -4,7 +4,6 @@
 
 <!ENTITY libxfce4menu-config SYSTEM "xml/libxfce4menu-config.xml">
 <!ENTITY xfce-menu SYSTEM "xml/xfce-menu.xml">
-<!ENTITY xfce-menu-and-rules SYSTEM "xml/xfce-menu-and-rules.xml">
 <!ENTITY xfce-menu-directory SYSTEM "xml/xfce-menu-directory.xml">
 <!ENTITY xfce-menu-element SYSTEM "xml/xfce-menu-element.xml">
 <!ENTITY xfce-menu-environment SYSTEM "xml/xfce-menu-environment.xml">
@@ -14,12 +13,11 @@
 <!ENTITY xfce-menu-item-pool SYSTEM "xml/xfce-menu-item-pool.xml">
 <!ENTITY xfce-menu-layout SYSTEM "xml/xfce-menu-layout.xml">
 <!ENTITY xfce-menu-monitor SYSTEM "xml/xfce-menu-monitor.xml">
-<!ENTITY xfce-menu-move SYSTEM "xml/xfce-menu-move.xml">
-<!ENTITY xfce-menu-not-rules SYSTEM "xml/xfce-menu-not-rules.xml">
-<!ENTITY xfce-menu-or-rules SYSTEM "xml/xfce-menu-or-rules.xml">
-<!ENTITY xfce-menu-rules SYSTEM "xml/xfce-menu-rules.xml">
 <!ENTITY xfce-menu-separator SYSTEM "xml/xfce-menu-separator.xml">
-<!ENTITY xfce-menu-standard-rules SYSTEM "xml/xfce-menu-standard-rules.xml">
+<!ENTITY xfce-menu-node SYSTEM "xml/xfce-menu-node.xml">
+<!ENTITY xfce-menu-tree-provider SYSTEM "xml/xfce-menu-tree-provider.xml">
+<!ENTITY xfce-menu-parser SYSTEM "xml/xfce-menu-parser.xml">
+<!ENTITY xfce-menu-merger SYSTEM "xml/xfce-menu-merger.xml">
 
 ]>
 
@@ -82,6 +80,10 @@
     &xfce-menu-item;
     &xfce-menu-separator;
     &xfce-menu-element;
+    <chapter id="layout">
+      <title>Menu Layouts</title>
+      &xfce-menu-layout;
+    </chapter>
   </part>
 
   <part id="utilities">
@@ -89,28 +91,20 @@
     &xfce-menu-monitor;
   </part>
 
+  <part id="parsing">
+    <title>Parsing</title>
+    &xfce-menu-node;
+    &xfce-menu-merger;
+    &xfce-menu-parser;
+    &xfce-menu-tree-provider;
+  </part>
+
   <part id="internals">
     <title>Internals</title>
-    <chapter id="layout">
-      <title>Layout</title>
-      &xfce-menu-layout;
-    </chapter>
     <chapter id="items">
       <title>Menu Items</title>
       &xfce-menu-item-pool;
       &xfce-menu-item-cache;
-    </chapter>
-    <chapter id="rules">
-      <title>Include and Exclude Rules</title>
-      &xfce-menu-rules;
-      &xfce-menu-standard-rules;
-      &xfce-menu-or-rules;
-      &xfce-menu-and-rules;
-      &xfce-menu-not-rules;
-    </chapter>
-    <chapter id="move">
-      <title>Move Instructions</title>
-      &xfce-menu-move;
     </chapter>
   </part>
 
