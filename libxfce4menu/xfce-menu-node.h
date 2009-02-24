@@ -92,6 +92,8 @@ typedef struct _XfceMenuNode        XfceMenuNode;
 #define XFCE_IS_MENU_NODE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_MENU_NODE)
 #define XFCE_MENU_NODE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_MENU_NODE, XfceMenuNodeClass))
 
+GType                   xfce_menu_node_type_get_type                (void) G_GNUC_CONST;
+
 GType                   xfce_menu_node_get_type                     (void) G_GNUC_CONST;
 
 XfceMenuNode           *xfce_menu_node_new                          (XfceMenuNodeType      node_type) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
