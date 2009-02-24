@@ -8,7 +8,7 @@ AUTOMAKE_OPTIONS = 1.8
 DOC_MODULE=libxfce4menu
 
 # Top-level SGML file
-DOC_MAIN_SGML_FILE=$(DOC_MODULE)-docs.sgml
+DOC_MAIN_SGML_FILE=$(DOC_MODULE)-docs.xml
 
 # Extra options to pass to gtkdoc-scangobj
 SCANGOBJ_OPTIONS=

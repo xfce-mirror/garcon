@@ -5,8 +5,6 @@ xfce_menu_get_type
 xfce_menu_parser_get_type
 xfce_menu_tree_provider_get_type
 xfce_menu_layout_get_type
-xfce_menu_layout_node_get_type
-xfce_menu_node_type_get_type
 xfce_menu_node_get_type
 xfce_menu_item_cache_get_type
 xfce_menu_element_get_type

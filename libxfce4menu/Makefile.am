@@ -13,6 +13,7 @@ lib_LTLIBRARIES = 							\
 	libxfce4menu-0.1.la
 
 libxfce4menu_headers =							\
+	libxfce4menu.h							\
 	xfce-menu.h							\
 	xfce-menu-gio.h							\
 	xfce-menu-element.h						\
@@ -30,6 +31,7 @@ libxfce4menu_headers =							\
 	xfce-menu-parser.h
 
 libxfce4menu_sources =							\
+	libxfce4menu.c							\
 	xfce-menu.c							\
 	xfce-menu-gio.c							\
 	xfce-menu-element.c						\

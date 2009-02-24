@@ -40,6 +40,9 @@
 #include <libxfce4menu/xfce-menu.h>
 #include <libxfce4menu/xfce-menu-monitor.h>
 
-#define LIBXFCE4MENU_INSIDE_LIBXFCE4MENU_H
+#undef LIBXFCE4MENU_INSIDE_LIBXFCE4MENU_H
 
-#endif /* !__LIBXFCE4UTIL_LIBXFCE4UTIL_H__ */
+void xfce_menu_init     (const gchar *env);
+void xfce_menu_shutdown (void);
+
+#endif /* !__LIBXFCE4MENU_LIBXFCE4MENU_H__ */

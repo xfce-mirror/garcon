@@ -54,6 +54,14 @@
 
 
 
+/**
+ * SECTION:xfce-menu
+ * @title: XfceMenu
+ * @short_description: Menu loading and library initialization/shutdown
+ **/
+
+
+
 /* Potential root menu files */
 static const gchar XFCE_MENU_ROOT_SPECS[][30] = 
 {
@@ -62,78 +70,6 @@ static const gchar XFCE_MENU_ROOT_SPECS[][30] =
   "menus/gnome-applications.menu",
   "menus/kde-applications.menu",
 };
-
-
-
-static gint xfce_menu_ref_count = 0;
-
-
-
-/**
- * xfce_menu_init:
- * @env : Name of the desktop environment (e.g. XFCE, GNOME, KDE) or %NULL.
- *
- * Initializes the libxfce4menu library and optionally defines the desktop 
- * environment for which menus will be generated. This means items belonging
- * only to other desktop environments will be ignored.
- **/
-void
-xfce_menu_init (const gchar *env)
-{
-  if (g_atomic_int_exchange_and_add (&xfce_menu_ref_count, 1) == 0)
-    {
-      /* Initialize the GThread system */
-      if (!g_thread_supported ())
-        g_thread_init (NULL);
-
-      /* Initialize the GObject type system */
-      g_type_init ();
-
-      /* Set desktop environment */
-      xfce_menu_set_environment (env);
-
-      /* Initialize the menu item cache */
-      _xfce_menu_item_cache_init ();
-
-      /* Initialize the directory module */
-      _xfce_menu_directory_init ();
-
-      /* Initialize monitoring system */
-      _xfce_menu_monitor_init ();
-
-      /* Creates the menu separator */
-      _xfce_menu_separator_init ();
-    }
-}
-
-
-
-/**
- * xfce_menu_shutdown:
- *
- * Shuts down the libxfce4menu library.
- **/
-void
-xfce_menu_shutdown (void)
-{
-  if (g_atomic_int_dec_and_test (&xfce_menu_ref_count))
-    {
-      /* Unset desktop environment */
-      xfce_menu_set_environment (NULL);
-
-      /* Destroys the menu separator */
-      _xfce_menu_separator_shutdown ();
-
-      /* Shutdown monitoring system */
-      _xfce_menu_monitor_shutdown ();
-
-      /* Shutdown the directory module */
-      _xfce_menu_directory_shutdown ();
-
-      /* Shutdown the menu item cache */
-      _xfce_menu_item_cache_shutdown ();
-    }
-}
 
 
 

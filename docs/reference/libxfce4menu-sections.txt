@@ -154,12 +154,10 @@ XFCE_MENU_LAYOUT_GET_CLASS
 <SECTION>
 <FILE>xfce-menu-node</FILE>
 XfceMenuNodeType
-XFCE_MENU_NODE_TYPE
 XfceMenuLayoutMergeType
 XfceMenuMergeFileType
 XfceMenuNodeClass
 XfceMenuNode
-xfce_menu_node_get_type
 xfce_menu_node_new
 xfce_menu_node_get_node_type
 xfce_menu_node_create
@@ -184,7 +182,7 @@ xfce_menu_node_tree_free_data
 XFCE_MENU_NODE
 XFCE_IS_MENU_NODE
 XFCE_TYPE_MENU_NODE
-xfce_menu_node_type_get_type
+xfce_menu_node_get_type
 XFCE_MENU_NODE_CLASS
 XFCE_IS_MENU_NODE_CLASS
 XFCE_MENU_NODE_GET_CLASS
@@ -300,6 +298,8 @@ g_file_get_uri_relative_to_file
 <SECTION>
 <FILE>libxfce4menu</FILE>
 LIBXFCE4MENU_INSIDE_LIBXFCE4MENU_H
+xfce_menu_init
+xfce_menu_shutdown
 </SECTION>
 
 <SECTION>

@@ -27,6 +27,15 @@
 
 
 
+/**
+ * SECTION:xfce-menu-environment
+ * @title: Desktop Environment Configuration
+ *
+ * Desktop Environment Configuration
+ **/
+
+
+
 static gchar *environment = NULL;
 
 
