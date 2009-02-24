@@ -1,5 +1,10 @@
 2009-02-24	Jannis Pohlmann <jannis@xfce.org>
 
+	* libxfce4menu/xfce-menu-gio.{c,h}: Add missing source files for a few
+	  GIO/GFile utility functions.
+
+2009-02-24	Jannis Pohlmann <jannis@xfce.org>
+
 	* STATUS: Big status update.
 	* TODO: Create a TODO list.
 	* configure.in.in, Makefile.am, tdb/: Remove TDB entirely.
