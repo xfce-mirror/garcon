@@ -1,4 +1,50 @@
-2009-02-17	Jannis Pohlmann <jannis@xfce.org>
+2009-02-24	Jannis Pohlmann <jannis@xfce.org>
+
+	* STATUS: Big status update.
+	* TODO: Create a TODO list.
+	* configure.in.in, Makefile.am, tdb/: Remove TDB entirely.
+	* libxfce4menu/libxfce4menu.h: Clean up.
+	* libxfce4menu/xfce-menu-and-rules.{c,h},
+	  libxfce4menu/xfce-menu-not-rules.{c,h},
+	  libxfce4menu/xfce-menu-or-rules.{c,h},
+	  libxfce4menu/xfce-menu-standard-rules.{c,h},
+	  libxfce4menu/xfce-menu-rules.{c,h}: Remove all the XfceMenu*Rules
+	  classes. Replace them with one very simple XfceMenuNode function.
+	* libxfce4menu/xfce-menu-directory.{c,h}: Replace the filename string
+	  property with a GFile file property. Replace
+	  xfce_menu_directory_get_filename() with 
+	  xfce_menu_directory_get_file() and remove
+	  xfce_menu_directory_set_filename(). Fix typos in the signal
+	  installation code. 
+	* libxfce4menu/xfce-menu-item-cache.c: Remove all TDB related code.
+	  Avoid memory leaks when creating new items (same patch as went into
+	  the old trunk a while ago, bug #3812).
+	* libxfce4menu/xfce-menu-item-pool.{c,h}: Update
+	  xfce_menu_item_pool_apply_exclude_rule() and
+	  xfce_menu_item_pool_filter_exclude() to use a GNode instead of an
+	  XfceMenuRuleStandardRules.
+	* libxfce4menu/xfce-menu-item.{c,h}: Accept URIs as input to
+	  xfce_menu_item_new() and convert them to paths using GFile.
+	* libxfce4menu/xfce-menu-merger.{c,h}: Implement the missing merging
+	  and moving code. Fix a lot of bugs in the code. Never access
+	  XfceMenuNodes directly, always use xfce_menu_node_tree_*()
+	  functions.
+	* libxfce4menu/xfce-menu-node.{c,h}: Add more xfce_menu_node_tree*()
+	  functions. Simplify the code. Add support for matching
+	  Include/Exclude/And/Or/etc. rules against XfceMenuItems. 
+	* libxfce4menu/xfce-menu-parser.{c,h}: Minor cleanups.
+	* libxfce4menu/xfce-menu.{c,h}: Change the first parameter of
+	  xfce_menu_new() to GFile. Remove all the parsing code. Use
+	  XfceMenuParser and XfceMenuMerger in xfce_menu_load(). Update all
+	  the menu loading code to use GNode DOM trees. Replace the filename 
+	  property with a GFile file property. Still waiting to be implemented 
+	  again is the layout stuff. Remove functions like
+	  xfce_menu_get_directory_dirs() which were not meant for public use
+	  anyway.
+	* tests/test-display-menu.c, tests/test-menu-parser.c,
+	  tests/test-menu-spec.c: Update to the new API. Cleanups.
+
+2009-02-22	Jannis Pohlmann <jannis@xfce.org>
 
 	* configure.in.in: Depend on GTK+ 2.12 and GLib 2.14. Add dependency
 	  on GIO 2.14 as well. 

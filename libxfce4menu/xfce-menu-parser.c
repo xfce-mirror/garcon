@@ -649,7 +649,6 @@ xfce_menu_parser_characters (GMarkupParseContext *context,
                              GError             **error)
 {
   XfceMenuParserContext *parser_context = (XfceMenuParserContext *)user_data;
-  XfceMenuNode          *node_;
   gchar                 *data;
 
   /* Ignore characters outside the root <Menu> element */
@@ -707,9 +706,8 @@ xfce_menu_parser_characters (GMarkupParseContext *context,
       break;
 
     case XFCE_MENU_PARSER_NODE_TYPE_MERGE_FILE:
-      node_ = parser_context->node->data;
-      if (node_ != NULL && node_->node_type == XFCE_MENU_NODE_TYPE_MERGE_FILE)
-        xfce_menu_node_set_merge_file_filename (node_, data);
+      if (xfce_menu_node_tree_get_node_type (parser_context->node) == XFCE_MENU_NODE_TYPE_MERGE_FILE)
+        xfce_menu_node_set_merge_file_filename (parser_context->node->data, data);
       break;
 
     case XFCE_MENU_PARSER_NODE_TYPE_MERGE_DIR:

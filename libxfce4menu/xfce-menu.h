@@ -1,7 +1,6 @@
-/* $Id$ */
-/* vi:set expandtab sw=2 sts=2: */
+/* vi:set et ai sw=2 sts=2 ts=2: */
 /*-
- * Copyright (c) 2006-2007 Jannis Pohlmann <jannis@xfce.org>
+ * Copyright (c) 2006-2009 Jannis Pohlmann <jannis@xfce.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -15,8 +14,8 @@
  *
  * You should have received a copy of the GNU Library General Public
  * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 #if !defined(LIBXFCE4MENU_INSIDE_LIBXFCE4MENU_H) && !defined(LIBXFCE4MENU_COMPILATION)
@@ -27,6 +26,7 @@
 #define __XFCE_MENU_H__
 
 #include <glib-object.h>
+#include <gio/gio.h>
 
 G_BEGIN_DECLS;
 
@@ -48,27 +48,14 @@ GType              xfce_menu_get_type              (void) G_GNUC_CONST;
 
 XfceMenu          *xfce_menu_get_root              (GError           **error) G_GNUC_CONST;
 
-XfceMenu          *xfce_menu_new                   (const gchar       *filename,
+XfceMenu          *xfce_menu_new                   (GFile             *file,
                                                     GError           **error) G_GNUC_MALLOC;
 
-const gchar       *xfce_menu_get_filename          (XfceMenu          *menu);
-void               xfce_menu_set_filename          (XfceMenu          *menu,
-                                                    const gchar       *filename);
+GFile             *xfce_menu_get_file              (XfceMenu          *menu);
 const gchar       *xfce_menu_get_name              (XfceMenu          *menu);
-void               xfce_menu_set_name              (XfceMenu          *menu,
-                                                    const gchar       *name);
 XfceMenuDirectory *xfce_menu_get_directory         (XfceMenu          *menu);
 void               xfce_menu_set_directory         (XfceMenu          *menu,
                                                     XfceMenuDirectory *directory);
-GSList            *xfce_menu_get_directory_dirs    (XfceMenu          *menu);
-GSList            *xfce_menu_get_legacy_dirs       (XfceMenu          *menu);
-GSList            *xfce_menu_get_app_dirs          (XfceMenu          *menu);
-gboolean           xfce_menu_get_only_unallocated  (XfceMenu          *menu);
-void               xfce_menu_set_only_unallocated  (XfceMenu          *menu,
-                                                    gboolean           only_unallocated);
-gboolean           xfce_menu_get_deleted           (XfceMenu          *menu);
-void               xfce_menu_set_deleted           (XfceMenu          *menu,
-                                                    gboolean           deleted);
 GSList            *xfce_menu_get_menus             (XfceMenu          *menu);
 void               xfce_menu_add_menu              (XfceMenu          *menu,
                                                     XfceMenu          *submenu);

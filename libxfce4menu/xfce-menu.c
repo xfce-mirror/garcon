@@ -1,7 +1,6 @@
-/* $Id$ */
-/* vi:set expandtab sw=2 sts=2 et: */
+/* vi:set et ai sw=2 sts=2 ts=2: */
 /*-
- * Copyright (c) 2006-2007 Jannis Pohlmann <jannis@xfce.org>
+ * Copyright (c) 2007-2009 Jannis Pohlmann <jannis@xfce.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -15,8 +14,8 @@
  *
  * You should have received a copy of the GNU Library General Public
  * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
  */
 
 #ifdef HAVE_CONFIG_H
@@ -32,21 +31,16 @@
 #include <libxfce4menu/xfce-menu-environment.h>
 #include <libxfce4menu/xfce-menu-element.h>
 #include <libxfce4menu/xfce-menu-item.h>
-#include <libxfce4menu/xfce-menu-rules.h>
-#include <libxfce4menu/xfce-menu-standard-rules.h>
-#include <libxfce4menu/xfce-menu-or-rules.h>
-#include <libxfce4menu/xfce-menu-and-rules.h>
-#include <libxfce4menu/xfce-menu-not-rules.h>
 #include <libxfce4menu/xfce-menu-directory.h>
 #include <libxfce4menu/xfce-menu-item-pool.h>
 #include <libxfce4menu/xfce-menu-item-cache.h>
-#include <libxfce4menu/xfce-menu-move.h>
 #include <libxfce4menu/xfce-menu-layout.h>
 #include <libxfce4menu/xfce-menu-separator.h>
 #include <libxfce4menu/xfce-menu-monitor.h>
 #include <libxfce4menu/xfce-menu-node.h>
 #include <libxfce4menu/xfce-menu-parser.h>
 #include <libxfce4menu/xfce-menu-merger.h>
+#include <libxfce4menu/xfce-menu-gio.h>
 #include <libxfce4menu/xfce-menu.h>
 
 
@@ -147,75 +141,11 @@ xfce_menu_shutdown (void)
 
 
 
-/* Menu file parser states */
-typedef enum 
-{
-  XFCE_MENU_PARSE_STATE_START,
-  XFCE_MENU_PARSE_STATE_ROOT,
-  XFCE_MENU_PARSE_STATE_MENU,
-  XFCE_MENU_PARSE_STATE_RULE,
-  XFCE_MENU_PARSE_STATE_END,
-  XFCE_MENU_PARSE_STATE_MOVE,
-  XFCE_MENU_PARSE_STATE_LAYOUT,
-
-} XfceMenuParseState;
-
-/* Menu file node types */
-typedef enum
-{
-  XFCE_MENU_PARSE_NODE_TYPE_NONE,
-  XFCE_MENU_PARSE_NODE_TYPE_NAME,
-  XFCE_MENU_PARSE_NODE_TYPE_DIRECTORY,
-  XFCE_MENU_PARSE_NODE_TYPE_APP_DIR,
-  XFCE_MENU_PARSE_NODE_TYPE_LEGACY_DIR,
-  XFCE_MENU_PARSE_NODE_TYPE_DIRECTORY_DIR,
-  XFCE_MENU_PARSE_NODE_TYPE_FILENAME,
-  XFCE_MENU_PARSE_NODE_TYPE_CATEGORY,
-  XFCE_MENU_PARSE_NODE_TYPE_OLD,
-  XFCE_MENU_PARSE_NODE_TYPE_NEW,
-  XFCE_MENU_PARSE_NODE_TYPE_MENUNAME,
-
-} XfceMenuParseNodeType;
-
-/* Menu file parse context */
-typedef struct _XfceMenuParseContext
-{
-  /* Menu to be parsed */
-  XfceMenu             *root_menu;
-
-  /* Parser state (position in XML tree */
-  XfceMenuParseState    state;
-
-  /* Menu hierarchy "stack" */
-  GList                *menu_stack;
-
-  /* Include/exclude rules stack */
-  GList                *rule_stack;
-
-  /* Current move instruction */
-  XfceMenuMove         *move;
-
-  /* Current node type (for text handler) */
-  XfceMenuParseNodeType node_type;
-
-} XfceMenuParseContext;
-
 typedef struct _XfceMenuPair
 {
   gpointer first;
   gpointer second;
 } XfceMenuPair;
-
-typedef struct _XfceMenuParseInfo
-{
-  /* Directory names */
-  GSList     *directory_names;
-
-  /* Desktop entry files items (desktop-file id => absolute filename) used for
-   * resolving the menu items */
-  GHashTable *files;
-
-} XfceMenuParseInfo;
 
 
 
@@ -224,15 +154,9 @@ enum
 {
   PROP_0,
   PROP_ENVIRONMENT,
-  PROP_FILENAME,
-  PROP_NAME,
+  PROP_FILE,
   PROP_DIRECTORY,
-  PROP_DIRECTORY_DIRS, /* TODO */
-  PROP_LEGACY_DIRS, /* TODO */
-  PROP_APP_DIRS, /* TODO Implement methods for this! */
   PROP_PARENT, /* TODO */
-  PROP_ONLY_UNALLOCATED,
-  PROP_DELETED,
 };
 
 
@@ -252,75 +176,29 @@ static void               xfce_menu_set_property                           (GObj
 
 static gboolean           xfce_menu_load                                   (XfceMenu              *menu,
                                                                             GError               **error);
-static void               xfce_menu_start_element                          (GMarkupParseContext   *context,
-                                                                            const gchar           *element_name,
-                                                                            const gchar          **attribute_names,
-                                                                            const gchar          **attribute_values,
-                                                                            gpointer               user_data,
-                                                                            GError               **error);
-static void               xfce_menu_end_element                            (GMarkupParseContext   *context,
-                                                                            const gchar           *element_name,
-                                                                            gpointer               user_data,
-                                                                            GError               **error);
-static void               xfce_menu_characters                             (GMarkupParseContext   *context,
-                                                                            const gchar           *text,
-                                                                            gsize                  text_len,
-                                                                            gpointer               user_data,
-                                                                            GError               **error);
-static void               xfce_menu_parse_info_add_directory_name          (XfceMenuParseInfo     *parse_info,
-                                                                            const gchar           *name);
-static void               xfce_menu_parse_info_free                        (XfceMenuParseInfo     *menu);
-static void               xfce_menu_parse_info_consolidate_directory_names (XfceMenuParseInfo *parse_info);
-
-static void               xfce_menu_add_directory_dir                      (XfceMenu              *menu,
-                                                                            const gchar           *dir);
-static void               xfce_menu_add_default_directory_dirs             (XfceMenu              *menu);
-static void               xfce_menu_add_app_dir                            (XfceMenu              *menu,
-                                                                            const gchar           *dir);
-static void               xfce_menu_add_legacy_dir                         (XfceMenu              *menu,
-                                                                            const gchar           *dir);
-static void               xfce_menu_add_kde_legacy_dirs                    (XfceMenu              *menu);
-static void               xfce_menu_add_default_app_dirs                   (XfceMenu              *menu);
-
 #if 0
-static void               xfce_menu_resolve_legacy_menus                   (XfceMenu              *menu);
-static void               xfce_menu_resolve_legacy_menu                    (XfceMenu              *menu,
-                                                                            const gchar           *path);
-#endif
-static void               xfce_menu_remove_duplicates                      (XfceMenu              *menu);
 static void               xfce_menu_consolidate_child_menus                (XfceMenu              *menu);
-#if 0
-static void               xfce_menu_merge_directory_name                   (const gchar           *name,
-                                                                            XfceMenu              *menu);
-static void               xfce_menu_merge_directory_dir                    (const gchar           *dir,
-                                                                            XfceMenu              *menu);
-static void               xfce_menu_merge_app_dir                          (const gchar           *dir,
-                                                                            XfceMenu              *menu);
-static void               xfce_menu_merge_rule                             (XfceMenuRules         *rule,
-                                                                            XfceMenu              *menu);
 #endif
-static void               xfce_menu_consolidate_directory_dirs             (XfceMenu              *menu);
-static void               xfce_menu_consolidate_app_dirs                   (XfceMenu              *menu);
+static void               xfce_menu_resolve_menus                          (XfceMenu              *menu);
 static void               xfce_menu_resolve_directory                      (XfceMenu              *menu);
 static XfceMenuDirectory *xfce_menu_lookup_directory                       (XfceMenu              *menu,
                                                                             const gchar           *filename);
-static void               xfce_menu_add_rule                               (XfceMenu              *menu,
-                                                                            XfceMenuRules         *rules);
-static void               xfce_menu_add_move                               (XfceMenu              *menu,
-                                                                            XfceMenuMove          *move);
-static void               xfce_menu_collect_files                          (XfceMenu              *menu);
+static void               xfce_menu_collect_files                          (XfceMenu              *menu,
+                                                                            GHashTable            *desktop_id_table);
 static void               xfce_menu_collect_files_from_path                (XfceMenu              *menu,
-                                                                            const gchar           *path,
+                                                                            GHashTable            *desktop_id_table,
+                                                                            GFile                 *path,
                                                                             const gchar           *id_prefix);
 static void               xfce_menu_resolve_items                          (XfceMenu              *menu,
+                                                                            GHashTable            *desktop_id_table,
                                                                             gboolean               only_unallocated);
 static void               xfce_menu_resolve_items_by_rule                  (XfceMenu              *menu,
-                                                                            XfceMenuStandardRules *rule);
+                                                                            GHashTable            *desktop_id_table,
+                                                                            GNode                 *node);
 static void               xfce_menu_resolve_item_by_rule                   (const gchar           *desktop_id,
-                                                                            const gchar           *filename,
+                                                                            const gchar           *uri,
                                                                             XfceMenuPair          *data);
-static void               xfce_menu_resolve_deleted                        (XfceMenu              *menu);
-static void               xfce_menu_resolve_moves                          (XfceMenu              *menu);
+static void               xfce_menu_remove_deleted_menus                   (XfceMenu              *menu);
 static gint               xfce_menu_compare_items                          (gconstpointer         *a,
                                                                             gconstpointer         *b);
 static const gchar       *xfce_menu_get_element_name                       (XfceMenuElement       *element);
@@ -332,11 +210,11 @@ static void               xfce_menu_monitor_stop                           (Xfce
 
 struct _XfceMenuPrivate
 {
-  /* Menu filename */
-  gchar             *filename;
+  /* Menu file */
+  GFile             *file;
 
-  /* Menu name */
-  gchar             *name;
+  /* DOM tree */
+  GNode             *tree;
 
   /* Directory */
   XfceMenuDirectory *directory;
@@ -347,27 +225,6 @@ struct _XfceMenuPrivate
   /* Parent menu */
   XfceMenu          *parent;
 
-  /* Directory dirs */
-  GSList            *directory_dirs;
-
-  /* Legacy dirs */
-  GSList            *legacy_dirs;
-
-  /* App dirs */
-  GSList            *app_dirs;
-
-  /* Only include desktop entries not used in other menus */
-  guint              only_unallocated : 1;
-
-  /* Whether this menu should be ignored or not */
-  guint              deleted : 1;
-
-  /* Include/exclude rules */
-  GSList            *rules;
-
-  /* Move instructions */
-  GSList            *moves;
-
   /* Menu item pool */
   XfceMenuItemPool  *pool;
 
@@ -376,9 +233,6 @@ struct _XfceMenuPrivate
 
   /* Menu layout */
   XfceMenuLayout    *layout;
-
-  /* Parse information (used for resolving) */
-  XfceMenuParseInfo *parse_info;
 };
 
 struct _XfceMenuClass
@@ -453,31 +307,17 @@ xfce_menu_class_init (XfceMenuClass *klass)
   gobject_class->set_property = xfce_menu_set_property;
 
   /**
-   * XfceMenu:filename:
+   * XfceMenu:file:
    *
-   * The filename of an %XfceMenu object. Whenever this is redefined, the
-   * menu is reloaded.
+   * The #GFile from which the %XfceMenu was loaded. 
    **/
   g_object_class_install_property (gobject_class,
-                                   PROP_FILENAME,
-                                   g_param_spec_string ("filename",
-                                                        "Filename",
-                                                        "XML menu filename",
-                                                        NULL,
-                                                        G_PARAM_READWRITE));
-
-  /**
-   * XfceMenu:name:
-   *
-   * The name of the menu.
-   **/
-  g_object_class_install_property (gobject_class,
-                                   PROP_NAME,
-                                   g_param_spec_string ("name",
-                                                        "Name",
-                                                        "Menu name",
-                                                        NULL,
-                                                        G_PARAM_READWRITE));
+                                   PROP_FILE,
+                                   g_param_spec_object ("file",
+                                                        "file",
+                                                        "file",
+                                                        G_TYPE_FILE,
+                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
   /**
    * XfceMenu:directory:
@@ -491,33 +331,6 @@ xfce_menu_class_init (XfceMenuClass *klass)
                                                         "Directory entry associated with this menu",
                                                         XFCE_TYPE_MENU_DIRECTORY,
                                                         G_PARAM_READWRITE));
-
-  /**
-   * XfceMenu:only-unallocated:
-   *
-   * Whether this menu should only contain desktop entries not used by other
-   * menus.
-   **/
-  g_object_class_install_property (gobject_class,
-                                   PROP_ONLY_UNALLOCATED,
-                                   g_param_spec_boolean ("only-unallocated",
-                                                         "Only unallocated",
-                                                         "Whether this menu only contains unallocated entries",
-                                                         FALSE,
-                                                         G_PARAM_READWRITE));
-
-  /**
-   * XfceMenu:deleted:
-   *
-   * Whether this menu should be ignored.
-   **/
-  g_object_class_install_property (gobject_class,
-                                   PROP_ONLY_UNALLOCATED,
-                                   g_param_spec_boolean ("deleted",
-                                                         "Deleted",
-                                                         "Whether this menu should be ignored",
-                                                         FALSE,
-                                                         G_PARAM_READWRITE));
 }
 
 
@@ -535,26 +348,16 @@ static void
 xfce_menu_instance_init (XfceMenu *menu)
 {
   menu->priv = XFCE_MENU_GET_PRIVATE (menu);
-  menu->priv->filename = NULL;
-  menu->priv->name = NULL;
+  menu->priv->file = NULL;
+  menu->priv->tree = NULL;
   menu->priv->directory = NULL;
   menu->priv->submenus = NULL;
   menu->priv->parent = NULL;
-  menu->priv->directory_dirs = NULL;
-  menu->priv->legacy_dirs = NULL;
-  menu->priv->app_dirs = NULL;
-  menu->priv->only_unallocated = FALSE;
-  menu->priv->rules = NULL;
-  menu->priv->moves = NULL;
   menu->priv->pool = xfce_menu_item_pool_new ();
   menu->priv->layout = xfce_menu_layout_new ();
 
   /* Take reference on the menu item cache */
   menu->priv->cache = xfce_menu_item_cache_get_default ();
-
-  menu->priv->parse_info = g_new (XfceMenuParseInfo, 1);
-  menu->priv->parse_info->directory_names = NULL;
-  menu->priv->parse_info->files = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 }
 
 
@@ -567,51 +370,29 @@ xfce_menu_finalize (GObject *object)
   /* Stop monitoring */
   xfce_menu_monitor_stop (menu);
 
-  /* Free filename */
-  g_free (menu->priv->filename);
+  /* Destroy the menu tree */
+  if (menu->priv->parent == NULL)
+    xfce_menu_node_tree_free (menu->priv->tree);
 
-  /* Free name */
-  g_free (menu->priv->name);
+  /* Free file */
+  g_object_unref (menu->priv->file);
 
   /* Free directory */
   if (G_LIKELY (menu->priv->directory != NULL))
     g_object_unref (menu->priv->directory);
 
-  /* Free directory dirs */
-  g_slist_foreach (menu->priv->directory_dirs, (GFunc) g_free, NULL);
-  g_slist_free (menu->priv->directory_dirs);
-
-  /* Free legacy dirs (check if this is the best way to free the list) */
-  g_slist_foreach (menu->priv->legacy_dirs, (GFunc) g_free, NULL);
-  g_slist_free (menu->priv->legacy_dirs);
-
-  /* Free app dirs */
-  g_slist_foreach (menu->priv->app_dirs, (GFunc) g_free, NULL);
-  g_slist_free (menu->priv->app_dirs);
-
-  /* TODO Free submenus etc. */
+  /* Free submenus */
   g_slist_foreach (menu->priv->submenus, (GFunc) g_object_unref, NULL);
   g_slist_free (menu->priv->submenus);
 
-  /* Free rules */
-  g_slist_foreach (menu->priv->rules, (GFunc) g_object_unref, NULL);
-  g_slist_free (menu->priv->rules);
-
-  /* Free move instructions */
-  g_slist_foreach (menu->priv->moves, (GFunc) g_object_unref, NULL);
-  g_slist_free (menu->priv->moves);
-
   /* Free item pool */
-  g_object_unref (G_OBJECT (menu->priv->pool));
+  g_object_unref (menu->priv->pool);
 
   /* Free menu layout */
-  g_object_unref (G_OBJECT (menu->priv->layout));
+  g_object_unref (menu->priv->layout);
 
   /* Release item cache reference */
-  g_object_unref (G_OBJECT (menu->priv->cache));
-
-  /* Free parse information */
-  xfce_menu_parse_info_free (menu->priv->parse_info);
+  g_object_unref (menu->priv->cache);
 
   (*G_OBJECT_CLASS (xfce_menu_parent_class)->finalize) (object);
 }
@@ -628,26 +409,14 @@ xfce_menu_get_property (GObject    *object,
 
   switch (prop_id)
     {
-    case PROP_FILENAME:
-      g_value_set_string (value, xfce_menu_get_filename (menu));
-      break;
-
-    case PROP_NAME:
-      g_value_set_string (value, xfce_menu_get_name (menu));
+    case PROP_FILE:
+      g_value_set_object (value, xfce_menu_get_file (menu));
       break;
 
     case PROP_DIRECTORY:
       g_value_set_object (value, xfce_menu_get_directory (menu));
       break;
 
-    case PROP_ONLY_UNALLOCATED:
-      g_value_set_boolean (value, xfce_menu_get_only_unallocated (menu));
-      break;
-
-    case PROP_DELETED:
-      g_value_set_boolean (value, xfce_menu_get_deleted (menu));
-      break;
-    
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -666,24 +435,12 @@ xfce_menu_set_property (GObject      *object,
 
   switch (prop_id)
     {
-    case PROP_FILENAME:
-      xfce_menu_set_filename (menu, g_value_get_string (value));
-      break;
-
-    case PROP_NAME:
-      xfce_menu_set_name (menu, g_value_get_string (value));
+    case PROP_FILE:
+      menu->priv->file = g_object_ref (g_value_get_object (value));
       break;
 
     case PROP_DIRECTORY:
       xfce_menu_set_directory (menu, g_value_get_object (value));
-      break;
-
-    case PROP_ONLY_UNALLOCATED:
-      xfce_menu_set_only_unallocated (menu, g_value_get_boolean (value));
-      break;
-
-    case PROP_DELETED:
-      xfce_menu_set_deleted (menu, g_value_get_boolean (value));
       break;
 
     default:
@@ -714,6 +471,7 @@ XfceMenu*
 xfce_menu_get_root (GError **error)
 {
   static XfceMenu *root_menu = NULL;
+  GFile           *file;
   gchar           *filename;
   guint            n;
 
@@ -728,14 +486,16 @@ xfce_menu_get_root (GError **error)
             continue;
 
           /* Try to load the root menu from this file */
-          root_menu = xfce_menu_new (filename, NULL);
+          file = g_file_new_for_unknown_input (filename, NULL);
+          root_menu = xfce_menu_new (file, NULL);
+
           if (G_LIKELY (root_menu != NULL))
             {
               /* Add weak pointer on the menu */
               g_object_add_weak_pointer (G_OBJECT (root_menu), (gpointer) &root_menu);
             }
 
-          /* Free filename string */
+          g_object_unref (file);
           g_free (filename);
         }
 
@@ -756,8 +516,8 @@ xfce_menu_get_root (GError **error)
 
 /**
  * xfce_menu_new:
- * @filename : filename containing the menu structure you want to load.
- * @error    : return location for errors or %NULL.
+ * @file  : A GFile containing the menu you want to load.
+ * @error : return location for errors or %NULL.
  *
  * Parses a file and returns the menu structure found in this file. This
  * may involve parsing and merging of a lot of other files. So if you call this
@@ -769,18 +529,18 @@ xfce_menu_get_root (GError **error)
  * </programlisting></informalexample>
  * when it is not used anymore.
  *
- * Return value: Menu structure found in @filename.
+ * Return value: Menu found in @file.
  **/
 XfceMenu*
-xfce_menu_new (const gchar *filename, 
-               GError     **error)
+xfce_menu_new (GFile   *file,
+               GError **error)
 {
   XfceMenu *menu;
 
-  g_return_val_if_fail (filename != NULL && g_path_is_absolute (filename), NULL);
+  g_return_val_if_fail (G_IS_FILE (file), NULL);
 
   /* Create new menu */
-  menu = g_object_new (XFCE_TYPE_MENU, "filename", filename, NULL);
+  menu = g_object_new (XFCE_TYPE_MENU, "file", file, NULL);
 
   /* Try to load the menu structure */
   if (!xfce_menu_load (menu, error))
@@ -795,50 +555,37 @@ xfce_menu_new (const gchar *filename,
 
 
 /**
- * xfce_menu_get_filename:
+ * xfce_menu_get_file:
  * @menu : a #XfceMenu.
  *
- * Returns the filename from which @menu was loaded.
+ * Returns the @GFile from which @menu was loaded. The caller is responsible
+ * to decrease the reference on the returned @GFile with 
+ * <informalexample><programlisting>
+ * g_object_unref (file);
+ * </programlisting></informalexample>
  * 
- * Return value: filename from which @menu was loaded.
+ * Return value: The @GFile from which @menu was loaded.
  */
-const gchar*
-xfce_menu_get_filename (XfceMenu *menu)
+GFile *
+xfce_menu_get_file (XfceMenu *menu)
 {
   g_return_val_if_fail (XFCE_IS_MENU (menu), NULL);
-  return menu->priv->filename;
+  return g_object_ref (menu->priv->file);
 }
 
 
 
-/**
- * xfce_menu_set_filename:
- * @menu     : a #XfceMenu.
- * @filename : new filename of the menu.
- *
- * Sets the menu filename. It should not be necessary to call this
- * function anywhere - it's only of internal use.
- */
-void
-xfce_menu_set_filename (XfceMenu *menu, const gchar *filename)
+static gboolean
+collect_name (GNode        *node,
+              const gchar **name)
 {
-  g_return_if_fail (XFCE_IS_MENU (menu));
-
-  /* Abort if filenames are equal */
-  if (G_UNLIKELY (menu->priv->filename != NULL))
+  if (xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_NAME)
     {
-      if (G_UNLIKELY (filename != NULL && g_utf8_collate (filename, menu->priv->filename) == 0))
-        return;
-
-      /* Free old filename */
-      g_free (menu->priv->filename);
+      *name = xfce_menu_node_tree_get_string (node);
+      return TRUE;
     }
-
-  /* Set the new filename */
-  menu->priv->filename = g_strdup (filename);
-
-  /* Notify listeners */
-  g_object_notify (G_OBJECT (menu), "filename");
+  else
+    return FALSE;
 }
 
 
@@ -857,43 +604,14 @@ xfce_menu_set_filename (XfceMenu *menu, const gchar *filename)
 const gchar*
 xfce_menu_get_name (XfceMenu *menu)
 {
+  const gchar *name = NULL;
+  
   g_return_val_if_fail (XFCE_IS_MENU (menu), NULL);
-  return menu->priv->name;
-}
 
+  g_node_traverse (menu->priv->tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
+                   (GNodeTraverseFunc) collect_name, &name);
 
-
-/**
- * xfce_menu_set_name:
- * @menu : a #XfceMenu
- * @name : new name of the menu.
- *
- * Sets the name of @menu. This might come in handy if you want
- * to replace certain menu names with your own names. However, in
- * most cases this function won't be useful.
- */
-void
-xfce_menu_set_name (XfceMenu    *menu, 
-                    const gchar *name)
-{
-  g_return_if_fail (XFCE_IS_MENU (menu));
-  g_return_if_fail (name != NULL);
-
-  /* Abort if names are equal */
-  if (G_UNLIKELY (menu->priv->name != NULL))
-    {
-      if (G_UNLIKELY (g_utf8_collate (name, menu->priv->name) == 0))
-        return;
-
-      /* Free old name */
-      g_free (menu->priv->name);
-    }
-
-  /* Set the new filename */
-  menu->priv->name = g_strdup (name);
-
-  /* Notify listeners */
-  g_object_notify (G_OBJECT (menu), "name");
+  return name;
 }
 
 
@@ -944,11 +662,7 @@ xfce_menu_set_directory (XfceMenu          *menu,
     g_object_unref (menu->priv->directory);
 
   /* Remove the floating reference and acquire a normal one */
-#if GLIB_CHECK_VERSION(2,10,0)
   g_object_ref_sink (G_OBJECT (directory));
-#else
-  g_object_ref (G_OBJECT (directory));
-#endif
 
   /* Set the new directory */
   menu->priv->directory = directory;
@@ -959,1084 +673,60 @@ xfce_menu_set_directory (XfceMenu          *menu,
 
 
 
-/**
- * xfce_menu_get_only_unallocated:
- * @menu : a #XfceMenu.
- *
- * Returns whether @menu only contains #XfceMenuItem<!---->s which
- * are not already included in other menus.
- *
- * Return value: Whether the menu contains only items not used already
- *               included in other menus.
- */
-gboolean
-xfce_menu_get_only_unallocated (XfceMenu *menu)
-{
-  g_return_val_if_fail (XFCE_IS_MENU (menu), FALSE);
-  return menu->priv->only_unallocated;
-}
-
-
-
-/**
- * xfce_menu_set_only_unallocated:
- * @menu             : a #XfceMenu.
- * @only_unallocated : Whether to include only unused 
- *                     #XfceMenuItem<!---->s
- *
- * Since all items are resolved directly after parsing the
- * menu file, this won't be useful other than internally.
- */
-void
-xfce_menu_set_only_unallocated (XfceMenu *menu,
-                                gboolean  only_unallocated)
-{
-  g_return_if_fail (XFCE_IS_MENU (menu));
-
-  /* Abort if values are equal */
-  if (menu->priv->only_unallocated == only_unallocated)
-    return;
-
-  /* Set new value */
-  menu->priv->only_unallocated = only_unallocated;
-
-  /* Notify listeners */
-  g_object_notify (G_OBJECT (menu), "only-unallocated");
-}
-
-
-
-gboolean
-xfce_menu_get_deleted (XfceMenu *menu)
-{
-  g_return_val_if_fail (XFCE_IS_MENU (menu), FALSE);
-  return menu->priv->deleted;
-}
-
-
-
-void
-xfce_menu_set_deleted (XfceMenu *menu,
-                       gboolean  deleted)
-{
-  g_return_if_fail (XFCE_IS_MENU (menu));
-
-  /* Abort if values are equal */
-  if (menu->priv->deleted == deleted)
-    return;
-
-  /* Set new value */
-  menu->priv->deleted = deleted;
-
-  /* Notify listeners */
-  g_object_notify (G_OBJECT (menu), "deleted");
-}
-
-
-
-/**
- * xfce_menu_get_directory_dirs:
- * @menu : a #XfceMenu
- *
- * Returns a list with all directory dirs of @menu. Collects directory 
- * dirs from @menu up to the root menu so that the root menu directory 
- * dirs come first.
- *
- * Return value: List with all relevant directory dirs of @menu.
- */
-GSList*
-xfce_menu_get_directory_dirs (XfceMenu *menu)
-{
-  XfceMenu *current_menu;
-  GSList   *directories = NULL;
-  GList    *menus = NULL;
-  GList    *iter;
-  GSList    *iter2;
-  
-  g_return_val_if_fail (XFCE_IS_MENU (menu), NULL);
-
-  /* Collect all menus from menu -> parent -> ... -> root */
-  for (current_menu = menu; current_menu != NULL; current_menu = current_menu->priv->parent)
-    menus = g_list_prepend (menus, current_menu);
-
-  /* Iterate over all menus from root -> parent -> ... -> menu */
-  for (iter = menus; iter != NULL; iter = g_list_next (iter))
-    {
-      /* Fetch current menu */
-      current_menu = XFCE_MENU (iter->data);
-
-      /* Iterate over all directory dirs */
-      for (iter2 = current_menu->priv->directory_dirs; iter2 != NULL; iter2 = g_slist_next (iter2))
-        {
-          /* Append directory dir to the list */
-          directories = g_slist_append (directories, iter2->data);
-        }
-
-      /* Free the directory dir list */
-      g_slist_free (iter2);
-    }
-
-  /* Free menu list */
-  g_list_free (menus);
-
-  return directories;
-}
-
-
-
-GSList*
-xfce_menu_get_legacy_dirs (XfceMenu *menu)
-{
-  /* FIXME: Collecting legacy dirs from the bottom up might be wrong. Perhaps
-   *        only <Menu> items with <LegacyDir> elements are allowed to parse
-   *        legacy menu hierarchies - verify this!
-   */
-
-  XfceMenu *current_menu;
-  GSList   *directories = NULL;
-  GList    *menus = NULL;
-  GList    *iter;
-  GSList    *iter2;
-  
-  g_return_val_if_fail (XFCE_IS_MENU (menu), NULL);
-
-  /* Collect all menus from menu -> parent -> ... -> root */
-  for (current_menu = menu; current_menu != NULL; current_menu = current_menu->priv->parent)
-    menus = g_list_prepend (menus, current_menu);
-
-  /* Iterate over all menus from root -> parent -> ... -> menu */
-  for (iter = menus; iter != NULL; iter = g_list_next (iter))
-    {
-      /* Fetch current menu */
-      current_menu = XFCE_MENU (iter->data);
-
-      /* Iterate over all legacy directories */
-      for (iter2 = current_menu->priv->legacy_dirs; iter2 != NULL; iter2 = g_slist_next (iter2))
-        {
-          /* Append legacy dir to the list */
-          directories = g_slist_append (directories, iter2->data);
-        }
-
-      /* Free the legacy dir list */
-      g_slist_free (iter2);
-    }
-
-  /* Free menu list */
-  g_list_free (menus);
-
-  return directories;
-}
-
-
-
-GSList*
-xfce_menu_get_app_dirs (XfceMenu *menu)
-{
-  XfceMenu *current_menu;
-  GSList   *directories = NULL;
-  GList    *menus = NULL;
-  GList    *iter;
-  GSList    *iter2;
-  
-  g_return_val_if_fail (XFCE_IS_MENU (menu), NULL);
-
-  /* Collect all menus from menu -> parent -> ... -> root */
-  for (current_menu = menu; current_menu != NULL; current_menu = current_menu->priv->parent)
-    menus = g_list_prepend (menus, current_menu);
-
-  /* Iterate over all menus from root -> parent -> ... -> menu */
-  for (iter = menus; iter != NULL; iter = g_list_next (iter))
-    {
-      /* Fetch current menu */
-      current_menu = XFCE_MENU (iter->data);
-
-      /* Iterate over all application directories */
-      for (iter2 = current_menu->priv->app_dirs; iter2 != NULL; iter2 = g_slist_next (iter2))
-        {
-          /* Append app dir to the list */
-          directories = g_slist_append (directories, iter2->data);
-        }
-
-      /* Free the app dir list */
-      g_slist_free (iter2);
-    }
-
-  /* Free menu list */
-  g_list_free (menus);
-
-  return directories;
-}
-
-
-
 static gboolean
 xfce_menu_load (XfceMenu *menu, 
                 GError  **error)
 {
-  /* Parser structure (connect handlers etc.) */
-  GMarkupParseContext *context;
-  GMarkupParser parser = {
-      xfce_menu_start_element,
-      xfce_menu_end_element,
-      xfce_menu_characters,
-      NULL,
-      NULL
-  };
-  XfceMenuParseContext menu_context;
-
-  /* File content information */
-  gchar *contents;
-  gsize contents_length;
-  GIOStatus status;
-  GIOChannel *stream;
+  XfceMenuParser *parser;
+  XfceMenuMerger *merger;
+  GHashTable     *desktop_id_table;
+  gboolean        success = TRUE;
 
   g_return_val_if_fail (XFCE_IS_MENU (menu), FALSE);
-  g_return_val_if_fail (menu->priv->filename != NULL, FALSE);
 
-  /* Try to open the menu file */
-  stream = g_io_channel_new_file (menu->priv->filename, "r", error);
+  parser = xfce_menu_parser_new (menu->priv->file);
 
-  if (G_UNLIKELY (stream == NULL))
-    return FALSE;
-
-  /* Try to read the menu file */
-  status = g_io_channel_read_to_end (stream, &contents, &contents_length, error);
-  
-  /* Free IO handle */
-  g_io_channel_unref (stream);
-
-  if (G_UNLIKELY (status != G_IO_STATUS_NORMAL))
-    return FALSE;
-
-  /* Define menu parse context */
-  menu_context.root_menu = menu;
-  menu_context.state = XFCE_MENU_PARSE_STATE_START;
-  menu_context.node_type = XFCE_MENU_PARSE_NODE_TYPE_NONE;
-  menu_context.menu_stack = NULL;
-  menu_context.rule_stack = NULL;
-  menu_context.move = NULL;
-
-  /* Allocate parse context */
-  context = g_markup_parse_context_new (&parser, 0, &menu_context, NULL);
-
-  /* Try to parse the menu file */
-  if (!g_markup_parse_context_parse (context, contents, contents_length, error) || 
-      !g_markup_parse_context_end_parse (context, error))
+  if (G_LIKELY (xfce_menu_parser_run (parser, NULL, error)))
     {
-      g_markup_parse_context_free (context);
-      return FALSE;
+      merger = xfce_menu_merger_new (XFCE_MENU_TREE_PROVIDER (parser));
+
+      if (G_UNLIKELY (xfce_menu_merger_run (merger, NULL, error)))
+        menu->priv->tree = xfce_menu_tree_provider_get_tree (XFCE_MENU_TREE_PROVIDER (merger));
+      else
+        success = FALSE;
+
+      g_object_unref (merger);
     }
-  
-  /* Free file contents */
-  g_free (contents);
+  else
+    success = FALSE;
 
-  /* Free parse context */
-  g_markup_parse_context_free (context);
+  g_object_unref (parser);
 
-  /* Free menu parse context */
-  g_list_free (menu_context.menu_stack);
-  g_list_free (menu_context.rule_stack);
+  if (G_LIKELY (!success))
+    return FALSE;
 
-#if 0
-  xfce_menu_resolve_legacy_menus (menu);
-#endif
-  xfce_menu_remove_duplicates (menu);
+  /* Generate submenus */
+  xfce_menu_resolve_menus (menu);
+
+  /* Resolve the menu directory */
   xfce_menu_resolve_directory (menu);
-  xfce_menu_resolve_moves (menu);
 
-  /* Collect all potential menu item filenames */
-  xfce_menu_collect_files (menu);
+  desktop_id_table = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 
-  /* Resolve menu items in two steps to handle <OnlyUnallocated/> properly */
-  xfce_menu_resolve_items (menu, FALSE);
-  xfce_menu_resolve_items (menu, TRUE);
-  
+  /* Load menu items */
+  xfce_menu_collect_files (menu, desktop_id_table);
+  xfce_menu_resolve_items (menu, desktop_id_table, FALSE);
+  xfce_menu_resolve_items (menu, desktop_id_table, TRUE);
+
   /* Remove deleted menus */
-  xfce_menu_resolve_deleted (menu);
+  xfce_menu_remove_deleted_menus (menu);
+
+  g_hash_table_unref (desktop_id_table);
 
   /* Start monitoring */
   xfce_menu_monitor_start (menu);
 
   return TRUE;
-}
-
-
-
-static void
-xfce_menu_start_element (GMarkupParseContext *context,
-                         const gchar         *element_name,
-                         const gchar        **attribute_names,
-                         const gchar        **attribute_values,
-                         gpointer             user_data,
-                         GError             **error)
-{
-  XfceMenuParseContext *menu_context = (XfceMenuParseContext *)user_data;
-  XfceMenu             *current_menu;
-  XfceMenuRules        *current_rule;
-
-  switch (menu_context->state) 
-    {
-    case XFCE_MENU_PARSE_STATE_START:
-      if (g_utf8_collate (element_name, "Menu") == 0)
-        {
-          menu_context->state = XFCE_MENU_PARSE_STATE_ROOT;
-          menu_context->menu_stack = g_list_prepend (menu_context->menu_stack, menu_context->root_menu);
-        }
-      break;
-
-    case XFCE_MENU_PARSE_STATE_ROOT:
-    case XFCE_MENU_PARSE_STATE_MENU:
-      /* Fetch current menu from stack */
-      current_menu = g_list_first (menu_context->menu_stack)->data;
-
-      if (g_utf8_collate (element_name, "Name") == 0)
-        menu_context->node_type = XFCE_MENU_PARSE_NODE_TYPE_NAME;
-
-      else if (g_utf8_collate (element_name, "Directory") == 0)
-        menu_context->node_type = XFCE_MENU_PARSE_NODE_TYPE_DIRECTORY;
-      else if (g_utf8_collate (element_name, "DirectoryDir") == 0)
-        menu_context->node_type = XFCE_MENU_PARSE_NODE_TYPE_DIRECTORY_DIR;
-      else if (g_utf8_collate (element_name, "DefaultDirectoryDirs") == 0)
-        xfce_menu_add_default_directory_dirs (current_menu);
-
-      else if (g_utf8_collate (element_name, "DefaultAppDirs") == 0)
-        xfce_menu_add_default_app_dirs (current_menu);
-      else if (g_utf8_collate (element_name, "AppDir") == 0)
-        menu_context->node_type = XFCE_MENU_PARSE_NODE_TYPE_APP_DIR;
-
-      else if (g_utf8_collate (element_name, "KDELegacyDirs") == 0)
-        xfce_menu_add_kde_legacy_dirs (current_menu);
-      else if (g_utf8_collate (element_name, "LegacyDir") == 0)
-        menu_context->node_type = XFCE_MENU_PARSE_NODE_TYPE_LEGACY_DIR;
-
-      else if (g_utf8_collate (element_name, "OnlyUnallocated") == 0)
-        xfce_menu_set_only_unallocated (current_menu, TRUE);
-      else if (g_utf8_collate (element_name, "NotOnlyUnallocated") == 0)
-        xfce_menu_set_only_unallocated (current_menu, FALSE);
-
-      else if (g_utf8_collate (element_name, "Deleted") == 0)
-        xfce_menu_set_deleted (current_menu, TRUE);
-      else if (g_utf8_collate (element_name, "NotDeleted") == 0)
-        xfce_menu_set_deleted (current_menu, FALSE);
-
-      else if (g_utf8_collate (element_name, "Include") == 0)
-        {
-          /* Create include rule */
-          XfceMenuOrRules *rule = xfce_menu_or_rules_new ();
-
-          /* Set include property */
-          xfce_menu_standard_rules_set_include (XFCE_MENU_STANDARD_RULES (rule), TRUE);
-
-          /* Add rule to the menu */
-          xfce_menu_add_rule (current_menu, XFCE_MENU_RULES (rule));
-
-          /* Put rule to the stack */
-          menu_context->rule_stack = g_list_prepend (menu_context->rule_stack, rule);
-
-          /* Set parse state */
-          menu_context->state = XFCE_MENU_PARSE_STATE_RULE;
-        }
-      else if (g_utf8_collate (element_name, "Exclude") == 0)
-        {
-          /* Create exclude rule */
-          XfceMenuOrRules *rule = xfce_menu_or_rules_new ();
-
-          /* Set include property */
-          xfce_menu_standard_rules_set_include (XFCE_MENU_STANDARD_RULES (rule), FALSE);
-
-          /* Add rule to the menu */
-          xfce_menu_add_rule (current_menu, XFCE_MENU_RULES (rule));
-
-          /* Put rule to the stack */
-          menu_context->rule_stack = g_list_prepend (menu_context->rule_stack, rule);
-
-          /* Set parse state */
-          menu_context->state = XFCE_MENU_PARSE_STATE_RULE;
-        }
-
-      else if (g_utf8_collate (element_name, "Menu") == 0)
-        {
-          /* Create new menu */
-          XfceMenu *menu = g_object_new (XFCE_TYPE_MENU, "filename", current_menu->priv->filename, NULL);
-
-          /* Add menu as submenu to the current menu */
-          xfce_menu_add_menu (current_menu, menu); 
-
-          /* Menu is now owned by the current menu, so we can release it */
-          g_object_unref (menu);
-
-          /* Set parse state */
-          menu_context->state = XFCE_MENU_PARSE_STATE_MENU;
-
-          /* Push new menu to the stack */
-          menu_context->menu_stack = g_list_prepend (menu_context->menu_stack, menu);
-        }
-
-      else if (g_utf8_collate (element_name, "Move") == 0)
-        {
-          /* Set parse state */
-          menu_context->state = XFCE_MENU_PARSE_STATE_MOVE;
-        }
-      else if (g_utf8_collate (element_name, "Layout") == 0)
-        {
-          /* Set parse state */
-          menu_context->state = XFCE_MENU_PARSE_STATE_LAYOUT;
-        }
-      
-      break;
-
-    case XFCE_MENU_PARSE_STATE_RULE:
-      /* Fetch current rule from stack */
-      current_rule = XFCE_MENU_RULES (g_list_first (menu_context->rule_stack)->data);
-
-      if (g_utf8_collate (element_name, "All") == 0)
-        {
-          xfce_menu_rules_add_all (current_rule);
-        }
-      else if (g_utf8_collate (element_name, "Filename") == 0)
-        {
-          menu_context->node_type = XFCE_MENU_PARSE_NODE_TYPE_FILENAME;
-        }
-      else if (g_utf8_collate (element_name, "Category") == 0)
-        {
-          menu_context->node_type = XFCE_MENU_PARSE_NODE_TYPE_CATEGORY;
-        }
-      else if (g_utf8_collate (element_name, "And") == 0)
-        {
-          /* Create include rule */
-          XfceMenuAndRules *rule = xfce_menu_and_rules_new ();
-
-          /* Add rule to the current rule */
-          xfce_menu_rules_add_rules (current_rule, XFCE_MENU_RULES (rule));
-
-          /* Rule is now owned by current rule, so we can release it */
-          g_object_unref (rule);
-
-          /* Put rule to the stack */
-          menu_context->rule_stack = g_list_prepend (menu_context->rule_stack, rule);
-        }
-      else if (g_utf8_collate (element_name, "Or") == 0)
-        {
-          /* Create include rule */
-          XfceMenuOrRules *rule = xfce_menu_or_rules_new ();
-
-          /* Add rule to the current rule */
-          xfce_menu_rules_add_rules (current_rule, XFCE_MENU_RULES (rule));
-
-          /* Rule is now owned by current rule, so we can release it */
-          g_object_unref (rule);
-
-          /* Put rule to the stack */
-          menu_context->rule_stack = g_list_prepend (menu_context->rule_stack, rule);
-        }
-      else if (g_utf8_collate (element_name, "Not") == 0)
-        {
-          /* Create include rule */
-          XfceMenuNotRules *rule = xfce_menu_not_rules_new ();
-
-          /* Add rule to the current rule */
-          xfce_menu_rules_add_rules (current_rule, XFCE_MENU_RULES (rule));
-
-          /* Rule is now owned by current rule, so we can release it */
-          g_object_unref (rule);
-
-          /* Put rule to the stack */
-          menu_context->rule_stack = g_list_prepend (menu_context->rule_stack, rule);
-        }
-
-      break;
-
-    case XFCE_MENU_PARSE_STATE_MOVE:
-      /* Fetch current menu from stack */
-      current_menu = g_list_first (menu_context->menu_stack)->data;
-
-      if (g_utf8_collate (element_name, "Old") == 0)
-        {
-          /* Create a new move instruction in the parse context */
-          menu_context->move = xfce_menu_move_new ();
-
-          /* Add move instruction to the menu */
-          xfce_menu_add_move (current_menu, menu_context->move);
-
-          menu_context->node_type = XFCE_MENU_PARSE_NODE_TYPE_OLD;
-        }
-      else if (g_utf8_collate (element_name, "New") == 0)
-        menu_context->node_type = XFCE_MENU_PARSE_NODE_TYPE_NEW;
-
-      break;
-
-    case XFCE_MENU_PARSE_STATE_LAYOUT:
-      /* Fetch current menu from stack */
-      current_menu = g_list_first (menu_context->menu_stack)->data;
-
-      if (g_utf8_collate (element_name, "Filename") == 0)
-        {
-          /* Set node type */
-          menu_context->node_type = XFCE_MENU_PARSE_NODE_TYPE_FILENAME;
-        }
-      else if (g_utf8_collate (element_name, "Menuname") == 0)
-        {
-          /* TODO Parse attributes */
-          
-          /* Set node type */
-          menu_context->node_type = XFCE_MENU_PARSE_NODE_TYPE_MENUNAME;
-        }
-      else if (g_utf8_collate (element_name, "Separator") == 0)
-        {
-          /* Add separator to the menu layout */
-          xfce_menu_layout_add_separator (current_menu->priv->layout);
-        }
-      else if (g_utf8_collate (element_name, "Merge") == 0)
-        {
-          XfceMenuLayoutMergeType type = XFCE_MENU_LAYOUT_MERGE_ALL;
-
-          gboolean type_found = FALSE;
-          gint     i;
-
-          /* Find 'type' attribute */
-          for (i = 0; i < g_strv_length ((gchar **)attribute_names); ++i) 
-            {
-              if (g_utf8_collate (attribute_names[i], "type") == 0)
-                {
-                  /* Determine merge type */
-                  if (g_utf8_collate (attribute_values[i], "menus") == 0)
-                    type = XFCE_MENU_LAYOUT_MERGE_MENUS;
-                  else if (g_utf8_collate (attribute_values[i], "files") == 0)
-                    type = XFCE_MENU_LAYOUT_MERGE_FILES;
-                  else if (g_utf8_collate (attribute_values[i], "all") == 0)
-                    type = XFCE_MENU_LAYOUT_MERGE_ALL;
-
-                  type_found = TRUE;
-                }
-            }
-
-          /* Add merge to the menu layout */
-          xfce_menu_layout_add_merge (current_menu->priv->layout, type);
-        }
-    default:
-      break;
-    }
-}
-
-
-
-static void 
-xfce_menu_end_element (GMarkupParseContext *context,
-                       const gchar         *element_name,
-                       gpointer             user_data,
-                       GError             **error)
-{
-  XfceMenuParseContext *menu_context = (XfceMenuParseContext *)user_data;
-
-  switch (menu_context->state)
-    {
-    case XFCE_MENU_PARSE_STATE_ROOT:
-      if (g_utf8_collate (element_name, "Menu") == 0)
-        {
-          /* Remove root menu from stack */
-          menu_context->menu_stack = g_list_delete_link (menu_context->menu_stack, g_list_first (menu_context->menu_stack));
-
-          /* Set parser state */
-          menu_context->state = XFCE_MENU_PARSE_STATE_END;
-        }
-      break;
-
-    case XFCE_MENU_PARSE_STATE_MENU:
-      if (g_utf8_collate (element_name, "Menu") == 0)
-        {
-          /* Remove current menu from stack */
-          menu_context->menu_stack = g_list_delete_link (menu_context->menu_stack, g_list_first (menu_context->menu_stack));
-
-          /* Set parse state to _STATE_ROOT only if there are no other menus
-           * left on the stack. Otherwise, we're still inside a <Menu> element. */
-          if (G_LIKELY (g_list_length (menu_context->menu_stack) == 1))
-            menu_context->state = XFCE_MENU_PARSE_STATE_ROOT;
-        }
-      break;
-
-    case XFCE_MENU_PARSE_STATE_RULE:
-      if (g_utf8_collate (element_name, "Include") == 0 || g_utf8_collate (element_name, "Exclude") == 0 || g_utf8_collate (element_name, "Or") == 0 || g_utf8_collate (element_name, "And") == 0 || g_utf8_collate (element_name, "Not") == 0)
-        {
-          /* Remove current rule from stack */
-          menu_context->rule_stack = g_list_delete_link (menu_context->rule_stack, g_list_first (menu_context->rule_stack));
-
-          /* Set parse state */
-          if (g_list_length (menu_context->rule_stack) == 0)
-            {
-              if (g_list_length (menu_context->menu_stack) > 1) 
-                menu_context->state = XFCE_MENU_PARSE_STATE_MENU;
-              else
-                menu_context->state = XFCE_MENU_PARSE_STATE_ROOT;
-            }
-        }
-      break;
-
-    case XFCE_MENU_PARSE_STATE_MOVE:
-      if (g_utf8_collate (element_name, "Move") == 0)
-        {
-          /* Set menu parse state */
-          menu_context->state = XFCE_MENU_PARSE_STATE_MENU;
-
-          /* Handle incomplete move commands (those missing a <New> element) */
-          if (G_UNLIKELY (menu_context->move != NULL && xfce_menu_move_get_new (menu_context->move) == NULL))
-            {
-              /* Determine current menu */
-              XfceMenu *current_menu = XFCE_MENU (g_list_first (menu_context->menu_stack)->data);
-
-              /* Remove move command from the menu */
-              current_menu->priv->moves = g_slist_remove (current_menu->priv->moves, menu_context->move);
-
-              /* Free the move command */
-              g_object_unref (menu_context->move);
-            }
-        }
-      else if (g_utf8_collate (element_name, "New") == 0)
-        menu_context->move = NULL;
-      break;
-
-    case XFCE_MENU_PARSE_STATE_LAYOUT:
-      if (g_utf8_collate (element_name, "Layout") == 0)
-        {
-          if (g_list_length (menu_context->menu_stack) > 1)
-            menu_context->state = XFCE_MENU_PARSE_STATE_MENU;
-          else
-            menu_context->state = XFCE_MENU_PARSE_STATE_ROOT;
-        }
-      break;
-
-    default:
-      break;
-    }
-}
-
-
-
-static void
-xfce_menu_characters (GMarkupParseContext *context,
-                      const gchar         *text,
-                      gsize                text_len,
-                      gpointer             user_data,
-                      GError             **error)
-{
-  XfceMenuParseContext *menu_context = (XfceMenuParseContext *)user_data;
-  XfceMenu             *current_menu = NULL;
-  XfceMenuRules        *current_rule = NULL;
-  gchar                *content;
-
-  /* Ignore characters outside of the root <Menu> element */
-  if (G_UNLIKELY (g_list_length (menu_context->menu_stack) == 0))
-    return;
-
-  /* Get the current menu */
-  current_menu = g_list_first (menu_context->menu_stack)->data;
-
-  /* Generate NUL-terminated string */
-  content = g_strndup (text, text_len);
-
-  /* Fetch current rule from stack (if possible) */
-  if (g_list_length (menu_context->rule_stack) > 0)
-    current_rule = g_list_first (menu_context->rule_stack)->data;
-
-  switch (menu_context->node_type)
-    {
-    case XFCE_MENU_PARSE_NODE_TYPE_NAME:
-      xfce_menu_set_name (current_menu, content);
-      break;
-
-    case XFCE_MENU_PARSE_NODE_TYPE_DIRECTORY:
-      xfce_menu_parse_info_add_directory_name (current_menu->priv->parse_info, content);
-      break;
-
-    case XFCE_MENU_PARSE_NODE_TYPE_DIRECTORY_DIR:
-      xfce_menu_add_directory_dir (current_menu, content);
-      break;
-
-    case XFCE_MENU_PARSE_NODE_TYPE_APP_DIR:
-      xfce_menu_add_app_dir (current_menu, content);
-      break;
-
-    case XFCE_MENU_PARSE_NODE_TYPE_LEGACY_DIR:
-      xfce_menu_add_legacy_dir (current_menu, content);
-      break;
-
-    case XFCE_MENU_PARSE_NODE_TYPE_FILENAME:
-      if (menu_context->state == XFCE_MENU_PARSE_STATE_RULE) 
-        {
-          if (G_LIKELY (current_rule != NULL))
-            xfce_menu_rules_add_filename (current_rule, content);
-        }
-      else if (menu_context->state == XFCE_MENU_PARSE_STATE_LAYOUT)
-        xfce_menu_layout_add_filename (current_menu->priv->layout, content);
-      break;
-
-    case XFCE_MENU_PARSE_NODE_TYPE_CATEGORY:
-      if (G_LIKELY (current_rule != NULL))
-        xfce_menu_rules_add_category (current_rule, content);
-      break;
-
-    case XFCE_MENU_PARSE_NODE_TYPE_OLD:
-      xfce_menu_move_set_old (menu_context->move, content);
-      break;
-
-    case XFCE_MENU_PARSE_NODE_TYPE_NEW:
-      if (G_LIKELY (menu_context->move != NULL))
-        xfce_menu_move_set_new (menu_context->move, content);
-      break;
-
-    case XFCE_MENU_PARSE_NODE_TYPE_MENUNAME:
-      xfce_menu_layout_add_menuname (current_menu->priv->layout, content);
-      break;
-
-    default:
-      break;
-    }
-
-  /* Free string */
-  g_free (content);
-
-  /* Invalidate node type information */
-  menu_context->node_type = XFCE_MENU_PARSE_NODE_TYPE_NONE;
-}
-
-
-
-static void
-xfce_menu_parse_info_add_directory_name (XfceMenuParseInfo *parse_info,
-                                         const gchar       *name)
-{
-  g_return_if_fail (name != NULL);
-  parse_info->directory_names = g_slist_append (parse_info->directory_names, g_strdup (name));
-}
-
-
-
-static void
-xfce_menu_parse_info_consolidate_directory_names (XfceMenuParseInfo *parse_info)
-{
-  GSList *names = NULL;
-  GSList *iter;
-
-  g_return_if_fail (parse_info != NULL);
-
-  /* Iterate over directory names in reverse order */
-  for (iter = g_slist_reverse (parse_info->directory_names); iter != NULL; iter = g_slist_next (iter))
-    {
-      /* Prepend name to the new list unless it already exists */
-      if (G_LIKELY (g_slist_find_custom (names, iter->data, (GCompareFunc) g_utf8_collate) == NULL))
-        names = g_slist_prepend (names, g_strdup (iter->data));
-    }
-
-  /* Free old list */
-  g_slist_foreach (parse_info->directory_names, (GFunc) g_free, NULL);
-  g_slist_free (parse_info->directory_names);
-
-  parse_info->directory_names = names;
-}
-
-
-
-static void
-xfce_menu_parse_info_free (XfceMenuParseInfo *parse_info)
-{
-  g_return_if_fail (parse_info != NULL);
-
-  /* Free directory names */
-  g_slist_foreach (parse_info->directory_names, (GFunc) g_free, NULL);
-  g_slist_free (parse_info->directory_names);
-
-#if GLIB_CHECK_VERSION(2,12,0)
-  g_hash_table_unref (parse_info->files);
-#else
-  g_hash_table_destroy (parse_info->files);
-#endif
-
-  /* Free parse info */
-  g_free (parse_info);
-}
-
-
-
-static void
-xfce_menu_add_directory_dir (XfceMenu    *menu,
-                             const gchar *dir)
-{
-  /* Absolute path of the directory (free'd by the menu instance later) */
-  gchar *path;
-
-  g_return_if_fail (XFCE_IS_MENU (menu));
-  g_return_if_fail (dir != NULL);
-
-  if (!g_path_is_absolute (dir))
-    {
-      /* Determine the absolute path (directory) of the menu file */
-      gchar *dirname = g_path_get_dirname (menu->priv->filename);
-
-      /* Construct absolute path */
-      path = g_build_path (G_DIR_SEPARATOR_S, dirname, dir, NULL);
-
-      /* Free absolute menu file directory path */
-      g_free (dirname);
-    }
-  else
-    path = g_strdup (dir);
-
-  /* Append path */
-  menu->priv->directory_dirs = g_slist_append (menu->priv->directory_dirs, path);
-}
-
-
-
-static void
-xfce_menu_add_default_directory_dirs (XfceMenu *menu)
-{
-  int          i;
-  gchar       *path;
-  gchar       *kde_data_dir;
-  const gchar *kde_dir;
-
-  const gchar * const *dirs;
-
-  g_return_if_fail (XFCE_IS_MENU (menu));
-
-  /* Append $KDEDIR/share/desktop-directories as a workaround for distributions 
-   * not installing KDE menu files properly into $XDG_DATA_DIR */
-
-  /* Get KDEDIR environment variable */
-  kde_dir = g_getenv ("KDEDIR");
-
-  /* Check if this variable is set */
-  if (G_UNLIKELY (kde_dir != NULL))
-    {
-      /* Build KDE data dir */
-      kde_data_dir = g_build_filename (kde_dir, "share", "desktop-directories", NULL);
-
-      /* Add it as a directory dir if it exists */
-      if (G_LIKELY (g_file_test (kde_data_dir, G_FILE_TEST_IS_DIR)))
-        xfce_menu_add_directory_dir (menu, kde_data_dir);
-
-      /* Free the KDE data dir */
-      g_free (kde_data_dir);
-    }
-
-  /* The $KDEDIR workaround ends here */
-
-  /* Append system-wide data dirs */
-  dirs = g_get_system_data_dirs ();
-  for (i = 0; dirs[i] != NULL; i++)
-    {
-      path = g_build_path (G_DIR_SEPARATOR_S, dirs[i], "desktop-directories", NULL);
-      xfce_menu_add_directory_dir (menu, path);
-      g_free (path);
-    }
-
-  /* Append user data dir */
-  path = g_build_path (G_DIR_SEPARATOR_S, g_get_user_data_dir (), "desktop-directories", NULL);
-  xfce_menu_add_directory_dir (menu, path);
-  g_free (path);
-}
-
-
-
-static void
-xfce_menu_add_legacy_dir (XfceMenu    *menu,
-                          const gchar *dir)
-{
-  /* Absolute path of the directory (free'd by the menu instance later) */
-  gchar *path;
-
-  g_return_if_fail (XFCE_IS_MENU (menu));
-  g_return_if_fail (menu->priv->filename != NULL);
-  g_return_if_fail (dir != NULL);
-
-  if (!g_path_is_absolute (dir))
-    {
-      /* Determine the absolute path (directory) of the menu file */
-      gchar *dirname = g_path_get_dirname (menu->priv->filename);
-
-      /* Construct absolute path */
-      path = g_build_path (G_DIR_SEPARATOR_S, dirname, dir, NULL);
-
-      /* Free absolute menu file directory path */
-      g_free (dirname);
-    }
-  else
-    path = g_strdup (dir);
-
-  /* Check if there already are legacy dirs */
-  if (G_LIKELY (menu->priv->legacy_dirs != NULL))
-    {
-      /* Remove all previous occurences of the directory from the list */
-      /* TODO: This probably is rather dirty and should be replaced with a more
-       * clean algorithm. */
-      GSList *iter = menu->priv->legacy_dirs;
-      while (iter != NULL) 
-        {
-          gchar *data = (gchar *)iter->data;
-          if (g_utf8_collate (data, dir) == 0)
-            {
-              GSList *tmp = g_slist_next (iter);
-              menu->priv->app_dirs = g_slist_remove_link (menu->priv->legacy_dirs, iter);
-              iter = tmp;
-            }
-          else
-            iter = iter->next;
-        }
-      
-      /* Append directory */
-      menu->priv->legacy_dirs = g_slist_append (menu->priv->legacy_dirs, path);
-    }
-  else
-    {
-      /* Create new GSList and append the absolute path of the directory */
-      menu->priv->legacy_dirs = g_slist_append (menu->priv->legacy_dirs, path);
-    }
-}
-
-
-
-static void
-xfce_menu_add_kde_legacy_dirs (XfceMenu *menu)
-{
-  static gchar **kde_legacy_dirs = NULL;
-
-  g_return_if_fail (XFCE_IS_MENU (menu));
-
-  if (G_UNLIKELY (kde_legacy_dirs == NULL))
-    {
-      gchar       *std_out;
-      gchar       *std_err;
-
-      gint         status;
-      GError      *error = NULL;
-      const gchar *kde_dir = g_getenv ("KDEDIR");
-      const gchar *path = g_getenv ("PATH");
-      gchar       *kde_path;
-
-      /* Determine value of KDEDIR */
-      if (G_UNLIKELY (kde_dir != NULL))
-        {
-          /* Build KDEDIR/bin path */
-          gchar *kde_bin_dir = g_build_path (G_DIR_SEPARATOR_S, kde_dir, "bin", NULL);
-          
-          /* Expand PATH to include KDEDIR/bin - if necessary */
-          const gchar *occurence = g_strrstr (path, kde_bin_dir);
-          if (G_LIKELY (occurence == NULL))
-            {
-              /* PATH = $PATH:$KDEDIR/bin */
-              kde_path = g_strjoin (G_SEARCHPATH_SEPARATOR_S, path, kde_bin_dir, NULL);
-
-              /* Set new $PATH value */
-              g_setenv ("PATH", kde_path, TRUE);
-
-              /* Free expanded PATH value */
-              g_free (kde_path);
-            }
-              
-          /* Free KDEDIR/bin */
-          g_free (kde_bin_dir);
-        }
-
-      /* Parse output of kde-config */
-      if (g_spawn_command_line_sync ("kde-config --path apps", &std_out, &std_err, &status, &error))
-        kde_legacy_dirs = g_strsplit (g_strchomp (std_out), G_SEARCHPATH_SEPARATOR_S, 0);
-      else
-        g_error_free (error);
-
-      /* Free output buffers */
-      g_free (std_err);
-      g_free (std_out);
-    }
-
-  if (kde_legacy_dirs != NULL) /* This is neither likely nor unlikely */
-    {
-      int i;
-
-      /* Add all KDE legacy dirs to the list */
-      for (i = 0; i < g_strv_length (kde_legacy_dirs); i++) 
-        xfce_menu_add_legacy_dir (menu, kde_legacy_dirs[i]);
-    }
-}
-
-
-
-static void
-xfce_menu_add_app_dir (XfceMenu    *menu,
-                       const gchar *dir)
-{
-  /* Absolute path of the directory (free'd by the menu instance later) */
-  gchar *path;
-
-  g_return_if_fail (XFCE_IS_MENU (menu));
-  g_return_if_fail (menu->priv->filename != NULL);
-  g_return_if_fail (dir != NULL);
-
-  if (!g_path_is_absolute (dir))
-    {
-      /* Determine the absolute path (directory) of the menu file */
-      gchar *dirname = g_path_get_dirname (menu->priv->filename);
-
-      /* Construct absolute path */
-      path = g_build_path (G_DIR_SEPARATOR_S, dirname, dir, NULL);
-
-      /* Free absolute menu file directory path */
-      g_free (dirname);
-    }
-  else
-    path = g_strdup (dir);
-
-  /* Append path */
-  menu->priv->app_dirs = g_slist_append (menu->priv->app_dirs, path);
-}
-
-
-
-static void 
-xfce_menu_add_default_app_dirs (XfceMenu *menu)
-{
-  int    i;
-  gchar *path;
-  gchar *kde_data_dir;
-  const gchar *kde_dir;
-
-  const gchar * const *dirs;
-
-  g_return_if_fail (XFCE_IS_MENU (menu));
-
-  /* Append $KDEDIR/share/applications as a workaround for distributions 
-   * not installing KDE menu files properly into $XDG_DATA_DIR */
-
-  /* Get KDEDIR environment variable */
-  kde_dir = g_getenv ("KDEDIR");
-
-  /* Check if this variable is set */
-  if (G_UNLIKELY (kde_dir != NULL))
-    {
-      /* Build KDE data dir */
-      kde_data_dir = g_build_filename (kde_dir, "share", "applications", NULL);
-
-      /* Add it as an app dir if it exists */
-      if (G_LIKELY (g_file_test (kde_data_dir, G_FILE_TEST_IS_DIR)))
-        xfce_menu_add_app_dir (menu, kde_data_dir);
-
-      /* Free the KDE data dir */
-      g_free (kde_data_dir);
-    }
-
-  /* The $KDEDIR workaround ends here */
-
-  /* Append system-wide data dirs */
-  dirs = g_get_system_data_dirs ();
-  for (i = 0; dirs[i] != NULL; i++)
-    {
-      path = g_build_path (G_DIR_SEPARATOR_S, dirs[i], "applications", NULL);
-      xfce_menu_add_app_dir (menu, path);
-      g_free (path);
-    }
-
-  /* Append user data dir */
-  path = g_build_path (G_DIR_SEPARATOR_S, g_get_user_data_dir (), "applications", NULL);
-  xfce_menu_add_app_dir (menu, path);
-  g_free (path);
 }
 
 
@@ -2067,11 +757,7 @@ xfce_menu_add_menu (XfceMenu *menu,
   g_return_if_fail (XFCE_IS_MENU (submenu));
 
   /* Remove floating reference and acquire a 'real' one */
-#if GLIB_CHECK_VERSION (2,10,0)
   g_object_ref_sink (G_OBJECT (submenu));
-#else
-  g_object_ref (G_OBJECT (submenu));
-#endif
 
   /* Append menu to the list */
   menu->priv->submenus = g_slist_append (menu->priv->submenus, submenu);
@@ -2120,289 +806,80 @@ xfce_menu_get_parent (XfceMenu *menu)
 
 
 
-#if 0
-static void
-xfce_menu_resolve_legacy_menus (XfceMenu *menu)
+static gboolean
+collect_menus (GNode        *node,
+               XfceMenuPair *pair)
 {
-  GSList      *iter;
+  GNode   *self;
+  GSList **list;
 
-  g_return_if_fail (XFCE_IS_MENU (menu));
+  self = pair->first;
+  list = pair->second;
 
-  /* Iterate over list of legacy directories */
-  for (iter = menu->priv->legacy_dirs; iter != NULL; iter = g_slist_next (iter))
-    {
-      /* Check if the directory exists */
-      if (g_file_test (iter->data, G_FILE_TEST_IS_DIR))
-        {
-          /* Resolve legacy menu hierarchy found in this directory */
-          xfce_menu_resolve_legacy_menu (menu, iter->data);
-        }
-    }
+  if (node != self && xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_MENU)
+    *list = g_slist_append (*list, node);
 
-  /* Resolve legacy menus of all child menus */
-  for (iter = menu->priv->submenus; iter != NULL; iter = g_slist_next (iter))
-    {
-      xfce_menu_resolve_legacy_menus (XFCE_MENU (iter->data));
-    }
+  return FALSE;
 }
 
 
 
 static void
-xfce_menu_resolve_legacy_menu (XfceMenu    *menu,
-                               const gchar *path)
+xfce_menu_resolve_menus (XfceMenu *menu)
 {
-  XfceMenu          *legacy_menu;
-  XfceMenuDirectory *directory = NULL;
-  GDir              *dir;
-  const gchar       *filename;
-  gchar             *absolute_filename;
-
-  g_return_if_fail (XFCE_IS_MENU (menu));
-  g_return_if_fail (path != NULL && g_file_test (path, G_FILE_TEST_IS_DIR));
-
-  /* Open directory for reading */
-  dir = g_dir_open (path, 0, NULL);
-
-  /* Abort if directory could not be opened */
-  if (G_UNLIKELY (dir == NULL))
-    return;
-
-  /* Create the legacy menu */
-  legacy_menu = g_object_new (XFCE_TYPE_MENU, "filename", menu->priv->filename, NULL);
-
-  /* Set legacy menu name to the directory path */
-  xfce_menu_set_name (legacy_menu, path);
-
-  /* Iterate over directory entries */
-  while ((filename = g_dir_read_name (dir)) != NULL)
-    {
-      /* Build absolute filename for this entry */
-      absolute_filename = g_build_filename (path, filename, NULL);
-
-      if (g_file_test (absolute_filename, G_FILE_TEST_IS_DIR))
-        {
-          /* We have a subdir -> create another legacy menu for this subdirectory */
-          xfce_menu_resolve_legacy_menu (legacy_menu, absolute_filename);
-        }
-      else if (g_utf8_collate (".directory", filename) == 0) 
-        {
-          /* We have a .directory file -> create the directory object for the legacy menu */
-          directory = g_object_new (XFCE_TYPE_MENU_DIRECTORY, "filename", absolute_filename, NULL);
-        }
-    }
-
-  /* Check if there was a .directory file in the directory. Otherwise, don't add
-   * this legacy menu to its parent (-> it is ignored). */
-  if (G_LIKELY (directory != NULL))
-    {
-      /* Set the legacy menu directory */
-      xfce_menu_set_directory (legacy_menu, directory);
-
-      /* Add legacy menu to its new parent */
-      xfce_menu_add_menu (menu, legacy_menu);
-    }
-  else
-    {
-      /* Destroy the legacy menu again - no .directory file found */
-      g_object_unref (legacy_menu);
-    }
-
-  /* Close directory handle */
-  g_dir_close (dir);
-}
-#endif
-
-
-
-static void
-xfce_menu_remove_duplicates (XfceMenu *menu)
-{
-  GSList *iter;
-
-  g_return_if_fail (XFCE_IS_MENU (menu));
-
-  xfce_menu_consolidate_child_menus (menu);
-  xfce_menu_consolidate_app_dirs (menu);
-  xfce_menu_consolidate_directory_dirs (menu);
-  xfce_menu_parse_info_consolidate_directory_names (menu->priv->parse_info);
-
-  for (iter = menu->priv->submenus; iter != NULL; iter = g_slist_next (iter))
-    {
-      XfceMenu *submenu = XFCE_MENU (iter->data);
-      xfce_menu_remove_duplicates (submenu);
-    }
-}
-
-
-
-static void
-xfce_menu_consolidate_child_menus (XfceMenu *menu)
-{
-#if 0
-  GSList      *iter;
-  GSList      *merged_submenus = NULL;
-  GHashTable  *groups;
-  const gchar *name;
+  XfceMenuPair pair;
   XfceMenu    *submenu;
-  XfceMenu    *merged_menu;
+  GSList      *menus = NULL;
+  GSList      *iter;
 
   g_return_if_fail (XFCE_IS_MENU (menu));
 
-  /* Setup the hash table */
-  groups = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+  pair.first = menu->priv->tree;
+  pair.second = &menus;
 
-  /* Iterate over all submenus */
+  g_node_traverse (menu->priv->tree, G_LEVEL_ORDER, G_TRAVERSE_ALL, 2,
+                   (GNodeTraverseFunc) collect_menus, &pair);
+
+  for (iter = menus; iter != NULL; iter = g_slist_next (iter))
+    {
+      submenu = g_object_new (XFCE_TYPE_MENU, "file", menu->priv->file, NULL);
+      submenu->priv->tree = iter->data;
+
+      xfce_menu_add_menu (menu, submenu);
+      g_object_unref (submenu);
+    }
+
   for (iter = menu->priv->submenus; iter != NULL; iter = g_slist_next (iter))
-    {
-      submenu = XFCE_MENU (iter->data);
-
-      /* Get menu this submenu should be appended to */
-      merged_menu = XFCE_MENU (g_hash_table_lookup (groups, xfce_menu_get_name (submenu)));
-
-      if (G_LIKELY (merged_menu == NULL))
-        {
-          /* Create empty menu */
-          merged_menu = g_object_new (XFCE_TYPE_MENU, NULL);
-
-          /* Add new menu to the hash table */
-          g_hash_table_insert (groups, (gpointer) xfce_menu_get_name (submenu), merged_menu);
-        }
-
-      /* Copy menu information */
-      /* FIXME This introduces possible bugs. E.g. if merged_menu has one <Deleted> 
-       * element and submenu has none, the lines below would set it to <NotDeleted> 
-       * (which is the default value). This does not follow the spec! Same goes
-       * for <OnlyUnallocated>. */
-      xfce_menu_set_name (merged_menu, xfce_menu_get_name (submenu));
-      xfce_menu_set_only_unallocated (merged_menu, xfce_menu_get_only_unallocated (submenu));
-      xfce_menu_set_deleted (merged_menu, xfce_menu_get_deleted (submenu));
-      xfce_menu_set_filename (merged_menu, xfce_menu_get_filename (submenu));
-
-      /* Set parent menu */
-      merged_menu->priv->parent = menu;
-
-      /* Append directory names, directory and app dirs as well as rules to the merged menu */      
-      g_slist_foreach (submenu->priv->parse_info->directory_names, (GFunc) xfce_menu_merge_directory_name, merged_menu);
-      g_slist_foreach (submenu->priv->directory_dirs, (GFunc) xfce_menu_merge_directory_dir, merged_menu);
-      g_slist_foreach (submenu->priv->app_dirs, (GFunc) xfce_menu_merge_app_dir, merged_menu);
-      g_slist_foreach (submenu->priv->rules, (GFunc) xfce_menu_merge_rule, merged_menu);
-
-      /* TODO Merge submenus of submenu and merged_menu! */
-
-      /* Add merged menu to the new list of submenus if not included already */
-      if (g_slist_find (merged_submenus, merged_menu) == NULL)
-        merged_submenus = g_slist_append (merged_submenus, merged_menu);
-    }
-
-  /* Free old submenu list (and the submenus) */
-  g_slist_foreach (menu->priv->submenus, (GFunc) g_object_unref, NULL);
-  g_slist_free (menu->priv->submenus);
-
-  /* Use list of merged submenus as new submenu list */
-  menu->priv->submenus = merged_submenus;
-
-  /* Free hash table */
-#if GLIB_CHECK_VERSION(2,10,0)  
-  g_hash_table_unref (groups);
-#else
-  g_hash_table_destroy (groups);
-#endif
-
-#endif
+    xfce_menu_resolve_menus (iter->data);
 }
 
 
 
-#if 0
-static void
-xfce_menu_merge_directory_name (const gchar *name,
-                                XfceMenu    *menu)
+static gboolean
+collect_directories (GNode   *node,
+                     GSList **list)
 {
-  g_return_if_fail (XFCE_IS_MENU (menu));
-  menu->priv->parse_info->directory_names = g_slist_append (menu->priv->parse_info->directory_names, (gpointer) name);
+  if (xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_DIRECTORY)
+    *list = g_slist_prepend (*list, (gpointer) xfce_menu_node_tree_get_string (node));
+
+  return FALSE;
 }
 
 
 
-static void
-xfce_menu_merge_directory_dir (const gchar *dir, 
-                               XfceMenu    *menu)
+static GSList *
+xfce_menu_get_directories (XfceMenu *menu)
 {
-  g_return_if_fail (XFCE_IS_MENU (menu));
-  xfce_menu_add_directory_dir (menu, dir);
-}
-
-
-
-static void
-xfce_menu_merge_app_dir (const gchar *dir,
-                         XfceMenu    *menu)
-{
-  g_return_if_fail (XFCE_IS_MENU (menu));
-  xfce_menu_add_app_dir (menu, dir);
-}
-
-
-
-static void
-xfce_menu_merge_rule (XfceMenuRules *rules,
-                      XfceMenu      *menu)
-{
-  g_return_if_fail (XFCE_IS_MENU (menu));
-  g_return_if_fail (XFCE_IS_MENU_RULES (rules));
-  xfce_menu_add_rule (menu, rules);
-}
-#endif
-
-
-
-static void
-xfce_menu_consolidate_directory_dirs (XfceMenu *menu)
-{
-  GSList *iter;
   GSList *dirs = NULL;
 
-  g_return_if_fail (XFCE_IS_MENU (menu));
+  /* Fetch all application directories */
+  g_node_traverse (menu->priv->tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
+                   (GNodeTraverseFunc) collect_directories, &dirs);
 
-  /* Iterate over directory dirs in reverse order */
-  for (iter = g_slist_reverse (menu->priv->directory_dirs); iter != NULL; iter = g_slist_next (iter))
-    {
-      /* Prepend directory dir to the new list unless it already exists */
-      if (G_LIKELY (g_slist_find_custom (dirs, iter->data, (GCompareFunc) g_utf8_collate) == NULL))
-        dirs = g_slist_prepend (dirs, g_strdup (iter->data));
-    }
+  if (menu->priv->parent != NULL)
+    dirs = g_slist_concat (dirs, xfce_menu_get_directories (menu->priv->parent));
 
-  /* Free old list */
-  g_slist_foreach (menu->priv->directory_dirs, (GFunc) g_free, NULL);
-  g_slist_free (menu->priv->directory_dirs);
-
-  menu->priv->directory_dirs = dirs;
-}
-
-
-
-static void
-xfce_menu_consolidate_app_dirs (XfceMenu *menu)
-{
-  GSList *iter;
-  GSList *dirs = NULL;
-
-  g_return_if_fail (XFCE_IS_MENU (menu));
-
-  /* Iterate over app dirs in reverse order */
-  for (iter = menu->priv->app_dirs; iter != NULL; iter = g_slist_next (iter))
-    {
-      /* Append app dir to the new list unless it already exists */
-      if (G_LIKELY (g_slist_find_custom (dirs, iter->data, (GCompareFunc) g_utf8_collate) == NULL))
-        dirs = g_slist_append (dirs, g_strdup (iter->data));
-    }
-
-  /* Free old list */
-  g_slist_foreach (menu->priv->app_dirs, (GFunc) g_free, NULL);
-  g_slist_free (menu->priv->app_dirs);
-
-  menu->priv->app_dirs = dirs;
+  return dirs;
 }
 
 
@@ -2410,23 +887,22 @@ xfce_menu_consolidate_app_dirs (XfceMenu *menu)
 static void
 xfce_menu_resolve_directory (XfceMenu *menu)
 {
-  GSList            *directory_names;
+  GSList            *directories = NULL;
   GSList            *iter;
   XfceMenuDirectory *directory = NULL;
 
   g_return_if_fail (XFCE_IS_MENU (menu));
 
-  /* Get reverse copy of all directory names */
-  directory_names = g_slist_reverse (g_slist_copy (menu->priv->parse_info->directory_names));
+  /* Determine all directories for this menu */
+  directories = xfce_menu_get_directories (menu);
 
   /* Try to load one directory name after another */
-  for (iter = directory_names; iter != NULL; iter = g_slist_next (iter))
+  for (iter = directories; iter != NULL; iter = g_slist_next (iter))
     {
       /* Try to load the directory with this name */
       directory = xfce_menu_lookup_directory (menu, iter->data);
 
-      /* Abort search if the directory was loaded successfully */
-      if (G_LIKELY (directory != NULL))
+      if (directory != NULL)
         break;
     }
 
@@ -2437,7 +913,7 @@ xfce_menu_resolve_directory (XfceMenu *menu)
     }
 
   /* Free reverse list copy */
-  g_slist_free (directory_names);
+  g_slist_free (directories);
 
   /* ... and all submenus (recursively) */
   for (iter = menu->priv->submenus; iter != NULL; iter = g_slist_next (iter))
@@ -2446,142 +922,197 @@ xfce_menu_resolve_directory (XfceMenu *menu)
 
 
 
-static XfceMenuDirectory*
+static gboolean
+collect_directory_dirs (GNode   *node,
+                        GSList **list)
+{
+  if (xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_DIRECTORY_DIR)
+    *list = g_slist_prepend (*list, (gpointer) xfce_menu_node_tree_get_string (node));
+
+  return FALSE;
+}
+
+
+
+static GSList *
+xfce_menu_get_directory_dirs (XfceMenu *menu)
+{
+  GSList *dirs = NULL;
+
+  /* Fetch all application directories */
+  g_node_traverse (menu->priv->tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
+                   (GNodeTraverseFunc) collect_directory_dirs, &dirs);
+
+  if (menu->priv->parent != NULL)
+    dirs = g_slist_concat (dirs, xfce_menu_get_directory_dirs (menu->priv->parent));
+
+  return dirs;
+}
+
+
+
+static XfceMenuDirectory *
 xfce_menu_lookup_directory (XfceMenu    *menu,
                             const gchar *filename)
 {
   XfceMenuDirectory *directory = NULL;
-  XfceMenu          *current;
-  GSList            *dirs;
-  gchar             *dirname;
-  gchar             *absolute_path;
+  GSList            *dirs = NULL;
   GSList            *iter;
+  GFile             *file;
+  GFile             *dir;
   gboolean           found = FALSE;
   
   g_return_val_if_fail (XFCE_IS_MENU (menu), NULL);
   g_return_val_if_fail (filename != NULL, NULL);
 
-  /* Iterate through all (including parent) menus from the bottom up */
-  for (current = menu; current != NULL; current = xfce_menu_get_parent (current))
+  dirs = xfce_menu_get_directory_dirs (menu);
+
+  /* Iterate through all directories */
+  for (iter = dirs; iter != NULL && !found; iter = g_slist_next (iter))
     {
-      /* Allocate a reverse copy of the menu's directory dirs */
-      dirs = g_slist_reverse (xfce_menu_get_directory_dirs (current));
+      dir = g_file_new_relative_to_file (iter->data, menu->priv->file);
+      file = g_file_new_relative_to_file (filename, dir);
 
-      /* Iterate through all directories */
-      for (iter = dirs; iter != NULL; iter = g_slist_next (iter))
+      /* Check if the file exists and is readable */
+      if (G_LIKELY (g_file_query_exists (file, NULL)))
         {
-          /* Check if the path is absolute */
-          if (G_UNLIKELY (!g_path_is_absolute (iter->data)))
-            {
-              /* Determine directory of the menu file */
-              dirname = g_path_get_dirname (xfce_menu_get_filename (menu));
-              
-              /* Build absolute path */
-              absolute_path = g_build_filename (dirname, iter->data, filename, NULL);
+          /* Load menu directory */
+          directory = g_object_new (XFCE_TYPE_MENU_DIRECTORY, "file", file, NULL);
 
-              /* Free directory name */
-              g_free (dirname); 
-            }
-          else
-            absolute_path = g_build_filename (iter->data, filename, NULL);
-
-          /* Check if the file exists and is readable */
-          if (G_UNLIKELY (g_file_test (absolute_path, G_FILE_TEST_EXISTS)))
-            {
-              if (G_LIKELY (g_access (absolute_path, R_OK) == 0))
-                {
-                  /* Load menu directory */
-                  directory = g_object_new (XFCE_TYPE_MENU_DIRECTORY, "filename", absolute_path, NULL);
-
-                  /* Update search status */
-                  found = TRUE;
-                }
-            }
-          
-          /* Free the absolute path */
-         g_free (absolute_path);
-
-          /* Cancel search if we found the menu directory file */
-          if (G_UNLIKELY (found))
-            break;
+          /* Update search status */
+          found = TRUE;
         }
-
-      /* Free reverse copy */
-      g_slist_free (dirs);
+      
+      /* Destroy the file objects */
+      g_object_unref (file);
+      g_object_unref (dir);
     }
+
+  /* Free reverse copy */
+  g_slist_free (dirs);
+  
 
   return directory;
 }
 
 
 
-static void
-xfce_menu_collect_files (XfceMenu *menu)
+static gboolean
+collect_app_dirs (GNode   *node,
+                  GSList **list)
 {
-  GSList *app_dirs;
+  if (xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_APP_DIR)
+    *list = g_slist_prepend (*list, (gpointer) xfce_menu_node_tree_get_string (node));
+
+  return FALSE;
+}
+
+
+
+static GSList *
+xfce_menu_get_app_dirs (XfceMenu *menu)
+{
+  GSList *dirs = NULL;
+
+  /* Fetch all application directories */
+  g_node_traverse (menu->priv->tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
+                   (GNodeTraverseFunc) collect_app_dirs, &dirs);
+
+  if (menu->priv->parent != NULL)
+    dirs = g_slist_concat (dirs, xfce_menu_get_app_dirs (menu->priv->parent));
+
+  return dirs;
+}
+
+
+
+static void
+xfce_menu_collect_files (XfceMenu   *menu,
+                         GHashTable *desktop_id_table)
+{
+  GSList *app_dirs = NULL;
   GSList *iter;
+  GFile  *file;
 
   g_return_if_fail (XFCE_IS_MENU (menu));
 
-  /* Fetch all application directories */
-  app_dirs = g_slist_reverse (xfce_menu_get_app_dirs (menu));
+  app_dirs = xfce_menu_get_app_dirs (menu);
 
   /* Collect desktop entry filenames */
   for (iter = app_dirs; iter != NULL; iter = g_slist_next (iter))
-    xfce_menu_collect_files_from_path (menu, iter->data, NULL);
+    {
+      file = g_file_new_for_uri (iter->data);
+      xfce_menu_collect_files_from_path (menu, desktop_id_table, file, NULL);
+      g_object_unref (file);
+    }
 
   /* Free directory list */
   g_slist_free (app_dirs);
 
   /* Collect filenames for submenus */
   for (iter = menu->priv->submenus; iter != NULL; iter = g_slist_next (iter))
-    xfce_menu_collect_files (XFCE_MENU (iter->data));
+    xfce_menu_collect_files (iter->data, desktop_id_table);
 }
 
 
 
 static void
 xfce_menu_collect_files_from_path (XfceMenu    *menu,
-                                   const gchar *path,
+                                   GHashTable  *desktop_id_table,
+                                   GFile       *dir,
                                    const gchar *id_prefix)
 {
-  GDir        *dir;
-  const gchar *filename;
-  gchar       *absolute_path;
-  gchar       *new_id_prefix;
-  gchar       *desktop_id;
+  GFileEnumerator *enumerator;
+  GFileInfo       *file_info;
+  GFile           *file;
+  gchar           *basename;
+  gchar           *new_id_prefix;
+  gchar           *desktop_id;
 
   g_return_if_fail (XFCE_IS_MENU (menu));
-  g_return_if_fail (path != NULL && g_path_is_absolute (path));
 
   /* Skip directory if it doesn't exist */
-  if (G_UNLIKELY (!g_file_test (path, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR)))
+  if (G_UNLIKELY (!g_file_query_exists (dir, NULL)))
     return;
 
+  /* Skip directory if it's not a directory */
+  if (G_UNLIKELY (g_file_query_file_type (dir, 
+                                          G_FILE_QUERY_INFO_NONE, 
+                                          NULL) != G_FILE_TYPE_DIRECTORY))
+    {
+      return;
+    }
+
   /* Open directory for reading */
-  dir = g_dir_open (path, 0, NULL);
+  enumerator = g_file_enumerate_children (dir, "standard::name,standard::type",
+                                          G_FILE_QUERY_INFO_NONE, NULL, NULL);
 
   /* Abort if directory cannot be opened */
-  if (G_UNLIKELY (dir == NULL))
+  if (G_UNLIKELY (enumerator == NULL))
     return;
 
   /* Read file by file */
-  while ((filename = g_dir_read_name (dir)) != NULL)
+  while (TRUE)
     {
-      /* Build absolute path */
-      absolute_path = g_build_filename (path, filename, NULL);
+      file_info = g_file_enumerator_next_file (enumerator, NULL, NULL);
+
+      if (G_UNLIKELY (file_info == NULL))
+        break;
+
+      file = g_file_resolve_relative_path (dir, g_file_info_get_name (file_info));
+      basename = g_file_get_basename (file);
 
       /* Treat files and directories differently */
-      if (g_file_test (absolute_path, G_FILE_TEST_IS_DIR))
+      if (g_file_info_get_file_type (file_info) == G_FILE_TYPE_DIRECTORY)
         {
           /* Create new desktop-file id prefix */
           if (G_LIKELY (id_prefix == NULL))
-            new_id_prefix = g_strdup (filename);
+            new_id_prefix = g_strdup (basename);
           else
-            new_id_prefix = g_strjoin ("-", id_prefix, filename, NULL);
+            new_id_prefix = g_strjoin ("-", id_prefix, basename, NULL);
 
           /* Collect files in the directory */
-          xfce_menu_collect_files_from_path (menu, absolute_path, new_id_prefix);
+          xfce_menu_collect_files_from_path (menu, desktop_id_table, file, new_id_prefix);
 
           /* Free id prefix */
           g_free (new_id_prefix);
@@ -2589,62 +1120,103 @@ xfce_menu_collect_files_from_path (XfceMenu    *menu,
       else
         {
           /* Skip all filenames which do not end with .desktop */
-          if (G_LIKELY (g_str_has_suffix (filename, ".desktop")))
+          if (G_LIKELY (g_str_has_suffix (basename, ".desktop")))
             {
               /* Create desktop-file id */
               if (G_LIKELY (id_prefix == NULL))
-                desktop_id = g_strdup (filename);
+                desktop_id = g_strdup (basename);
               else
-                desktop_id = g_strjoin ("-", id_prefix, filename, NULL);
+                desktop_id = g_strjoin ("-", id_prefix, basename, NULL);
 
               /* Insert into the files hash table if the desktop-file id does not exist in there yet */
-              if (G_LIKELY (g_hash_table_lookup (menu->priv->parse_info->files, desktop_id) == NULL))
-                g_hash_table_insert (menu->priv->parse_info->files, g_strdup (desktop_id), g_strdup (absolute_path));
-
-              /* Free desktop-file id */
-              g_free (desktop_id);
+              if (G_LIKELY (g_hash_table_lookup (desktop_id_table, desktop_id) == NULL))
+                g_hash_table_insert (desktop_id_table, desktop_id, g_file_get_uri (file));
+              else
+                g_free (desktop_id);
             }
         }
 
       /* Free absolute path */
-      g_free (absolute_path);
+      g_free (basename);
+
+      /* Destroy file */
+      g_object_unref (file);
     }
 
-  /* Close directory handle */
-  g_dir_close (dir);
+  g_object_unref (enumerator);
+}
+
+
+
+static gboolean
+collect_only_unallocated (GNode    *node,
+                          gboolean *only_unallocated)
+{
+  if (xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_ONLY_UNALLOCATED)
+    {
+      *only_unallocated = TRUE;
+      return TRUE;
+    }
+  else
+    return FALSE;
+}
+
+
+
+static gboolean
+collect_rules (GNode   *node,
+               GSList **list)
+{
+  XfceMenuNodeType type;
+
+  type = xfce_menu_node_tree_get_node_type (node);
+
+  if (type == XFCE_MENU_NODE_TYPE_INCLUDE ||
+      type == XFCE_MENU_NODE_TYPE_EXCLUDE)
+    {
+      *list = g_slist_append (*list, node);
+    }
+
+  return FALSE;
 }
 
 
 
 static void
-xfce_menu_resolve_items (XfceMenu *menu,
-                         gboolean  only_unallocated)
+xfce_menu_resolve_items (XfceMenu   *menu,
+                         GHashTable *desktop_id_table,
+                         gboolean    only_unallocated)
 {
-  XfceMenuStandardRules *rule;
-  GSList                *iter;
+  GSList  *rules = NULL;
+  GSList  *iter;
+  gboolean menu_only_unallocated = FALSE;
 
   g_return_if_fail (menu != NULL && XFCE_IS_MENU (menu));
+
+  g_node_traverse (menu->priv->tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
+                   (GNodeTraverseFunc) collect_only_unallocated, &menu_only_unallocated);
 
   /* Resolve items in this menu (if it matches the only_unallocated argument.
    * This means that in the first pass, all items of menus without 
    * <OnlyUnallocated /> are resolved and in the second pass, only items of 
    * menus with <OnlyUnallocated /> are resolved */
-  if (menu->priv->only_unallocated == only_unallocated)
+  if (menu_only_unallocated == only_unallocated)
     {
-      /* Iterate over all rules */
-      for (iter = menu->priv->rules; iter != NULL; iter = g_slist_next (iter))
-        {
-          rule = XFCE_MENU_STANDARD_RULES (iter->data);
+      g_node_traverse (menu->priv->tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
+                       (GNodeTraverseFunc) collect_rules, &rules);
 
-          if (G_LIKELY (xfce_menu_standard_rules_get_include (rule)))
+      /* Iterate over all rules */
+      for (iter = rules; iter != NULL; iter = g_slist_next (iter))
+        {
+          if (G_LIKELY (xfce_menu_node_tree_get_node_type (iter->data) == XFCE_MENU_NODE_TYPE_INCLUDE))
             {
               /* Resolve available items and match them against this rule */
-              xfce_menu_resolve_items_by_rule (menu, rule);
+              xfce_menu_resolve_items_by_rule (menu, desktop_id_table, iter->data);
             }
           else
             {
               /* Remove all items matching this exclude rule from the item pool */
-              xfce_menu_item_pool_apply_exclude_rule (menu->priv->pool, rule);
+              xfce_menu_item_pool_apply_exclude_rule (menu->priv->pool, iter->data);
             }
         }
     }
@@ -2653,88 +1225,106 @@ xfce_menu_resolve_items (XfceMenu *menu,
   for (iter = menu->priv->submenus; iter != NULL; iter = g_slist_next (iter))
     {
       /* Resolve items of the submenu */
-      xfce_menu_resolve_items (XFCE_MENU (iter->data), only_unallocated);
+      xfce_menu_resolve_items (XFCE_MENU (iter->data), desktop_id_table, only_unallocated);
     }
 }
 
 
 
 static void
-xfce_menu_resolve_items_by_rule (XfceMenu              *menu,
-                                 XfceMenuStandardRules *rule)
+xfce_menu_resolve_items_by_rule (XfceMenu   *menu,
+                                 GHashTable *desktop_id_table,
+                                 GNode      *node)
 {
   XfceMenuPair pair;
 
   g_return_if_fail (XFCE_IS_MENU (menu));
-  g_return_if_fail (XFCE_IS_MENU_STANDARD_RULES (rule));
 
   /* Store menu and rule pointer in the pair */
   pair.first = menu;
-  pair.second = rule;
+  pair.second = node;
 
   /* Try to insert each of the collected desktop entry filenames into the menu */
-  g_hash_table_foreach (menu->priv->parse_info->files, (GHFunc) xfce_menu_resolve_item_by_rule, &pair);
+  g_hash_table_foreach (desktop_id_table, (GHFunc) xfce_menu_resolve_item_by_rule, &pair);
 }
 
 
 
 static void
 xfce_menu_resolve_item_by_rule (const gchar  *desktop_id,
-                                const gchar  *filename,
+                                const gchar  *uri,
                                 XfceMenuPair *data)
 {
-  XfceMenu              *menu = NULL;
-  XfceMenuStandardRules *rule = NULL;
-  XfceMenuItem          *item = NULL;
+  XfceMenuItem *item = NULL;
+  XfceMenu     *menu = NULL;
+  GNode        *node = NULL;
+  gboolean      only_unallocated = FALSE;
 
   g_return_if_fail (XFCE_IS_MENU (data->first));
-  g_return_if_fail (XFCE_IS_MENU_STANDARD_RULES (data->second));
+  g_return_if_fail (data->second != NULL);
 
   /* Restore menu and rule from the data pair */
-  menu = XFCE_MENU (data->first);
-  rule = XFCE_MENU_STANDARD_RULES (data->second);
+  menu = data->first;
+  node = data->second;
 
   /* Try to load the menu item from the cache */
-  item = xfce_menu_item_cache_lookup (menu->priv->cache, filename, desktop_id);
+  item = xfce_menu_item_cache_lookup (menu->priv->cache, uri, desktop_id);
 
   if (G_LIKELY (item != NULL))
     {
+      g_node_traverse (menu->priv->tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
+                       (GNodeTraverseFunc) collect_only_unallocated, &only_unallocated);
+
       /* Only include item if menu not only includes unallocated items
        * or if the item is not allocated yet */
-      if (!menu->priv->only_unallocated || xfce_menu_item_get_allocated (item) == 0)
+      if (!only_unallocated || xfce_menu_item_get_allocated (item) == 0)
         {
           /* Add item to the pool if it matches the include rule */
-          if (G_LIKELY (xfce_menu_standard_rules_get_include (rule) && xfce_menu_rules_match (XFCE_MENU_RULES (rule), item)))
-            {
-#if 0
-              if (menu->priv->directory != NULL && g_str_equal (xfce_menu_directory_get_name (menu->priv->directory), "Other"))
-                g_debug ("Adding item %s to Other (allocated: %d)", xfce_menu_item_get_name (item), xfce_menu_item_get_allocated (item));
-#endif
-              xfce_menu_item_pool_insert (menu->priv->pool, item);
-            }
+          if (G_LIKELY (xfce_menu_node_tree_rule_matches (node, item)))
+            xfce_menu_item_pool_insert (menu->priv->pool, item);
         }
     }
 }
 
 
 
-static void
-xfce_menu_resolve_deleted (XfceMenu *menu)
+static gboolean
+collect_deleted (GNode    *node,
+                 gboolean *deleted)
 {
-  GSList  *iter;
-  gboolean deleted;
+  if (xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_DELETED)
+    {
+      *deleted = TRUE;
+      return TRUE;
+    }
+  else
+    return FALSE;
+}
+
+
+
+static void
+xfce_menu_remove_deleted_menus (XfceMenu *menu)
+{
+  XfceMenu *submenu;
+  GSList   *iter;
+  gboolean  deleted;
 
   g_return_if_fail (XFCE_IS_MENU (menu));
 
-  /* Note: There's a limitation: if the root menu has a <Deleted /> we
+  /* Note: There's a limitation: if the root menu has a <Deleted/> we
    * can't just free the pointer here. Therefor we only check child menus. */
 
   for (iter = menu->priv->submenus; iter != NULL; iter = g_slist_next (iter))
     {
-      XfceMenu *submenu = iter->data;
+      submenu = iter->data;
+      deleted = FALSE;
+
+      /* Check whether there is a <Deleted/> element */
+      g_node_traverse (submenu->priv->tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
+                       (GNodeTraverseFunc) collect_deleted, &deleted);
 
       /* Determine whether this submenu was deleted */
-      deleted = submenu->priv->deleted;
       if (G_LIKELY (submenu->priv->directory != NULL))
         deleted = deleted || xfce_menu_directory_get_hidden (submenu->priv->directory);
 
@@ -2745,143 +1335,11 @@ xfce_menu_resolve_deleted (XfceMenu *menu)
           menu->priv->submenus = g_slist_remove_link (menu->priv->submenus, iter);
 
           /* ... and destroy it */
-          g_object_unref (G_OBJECT (submenu));
+          g_object_unref (submenu);
         }
       else
-        xfce_menu_resolve_deleted (submenu);
+        xfce_menu_remove_deleted_menus (submenu);
     }
-}
-
-
-
-static void
-xfce_menu_resolve_moves (XfceMenu *menu)
-{
-  XfceMenuMove *move;
-  XfceMenu     *source;
-  XfceMenu     *destination;
-  GSList       *iter;
-
-  g_return_if_fail (XFCE_IS_MENU (menu));
-
-  /* Recurse into the submenus which need to perform move actions first */
-  for (iter = menu->priv->submenus; iter != NULL; iter = g_slist_next (iter))
-    {
-      source = XFCE_MENU (iter->data);
-
-      /* Resolve moves of the child menu */
-      xfce_menu_resolve_moves (source);
-    }
-
-  /* Iterate over move instructions */
-  for (iter = menu->priv->moves; iter != NULL; iter = g_slist_next (iter))
-    {
-      move = XFCE_MENU_MOVE (iter->data);
-      
-      /* Determine submenu with the old name */
-      source = xfce_menu_get_menu_with_name (menu, xfce_menu_move_get_old (move));
-
-      /* Skip if there is no such submenu */
-      if (G_LIKELY (source == NULL))
-        continue;
-
-      /* Determine destination submenu */
-      destination = xfce_menu_get_menu_with_name (menu, xfce_menu_move_get_new (move));
-
-      /* If destination does not exist, simply reset the name of the source menu */
-      if (G_LIKELY (destination == NULL))
-        xfce_menu_set_name (source, xfce_menu_move_get_new (move));
-      else
-        {
-          /* TODO: See section "Merging" in the menu specification. */
-        }
-    }
-
-#if 0 
-  XfceMenu     *submenu;
-  XfceMenu     *target_submenu;
-  XfceMenuMove *move;
-  GSList       *iter;
-  GSList       *submenu_iter;
-  GSList       *removed_menus;
-
-  g_return_if_fail (XFCE_IS_MENU (menu));
-
-  /* Recurse into the submenus which need to perform move actions first */
-  for (submenu_iter = menu->priv->submenus; submenu_iter != NULL; submenu_iter = g_slist_next (submenu_iter))
-    {
-      submenu = XFCE_MENU (submenu_iter->data);
-
-      /* Resolve moves of the child menu */
-      xfce_menu_resolve_moves (submenu);
-    }
-
-  /* Iterate over the move instructions */
-  for (iter = menu->priv->moves; iter != NULL; iter = g_slist_next (iter))
-    {
-      move = XFCE_MENU_MOVE (iter->data);
-
-      /* Fetch submenu with the old name */
-      submenu = xfce_menu_get_menu_with_name (menu, xfce_menu_move_get_old (move));
-
-      /* Only go into details if there actually is a submenu with this name */
-      if (submenu != NULL)
-        {
-          /* Fetch the target submenu */
-          target_submenu = xfce_menu_get_menu_with_name (menu, xfce_menu_move_get_new (move));
-
-          /* If there is no target, just rename the submenu */
-          if (target_submenu == NULL)
-            xfce_menu_set_name (submenu, xfce_menu_move_get_new (move));
-          else
-            {
-              /* TODO Set <Deleted>, <OnlyUnallocated>, etc. See FIXME in this file for what kind 
-               * of bugs this may introduce. */
-
-              /* Append directory names, directory and app dirs as well as rules to the merged menu */      
-              g_slist_foreach (submenu->priv->parse_info->directory_names, (GFunc) xfce_menu_merge_directory_name, target_submenu);
-              g_slist_foreach (submenu->priv->directory_dirs, (GFunc) xfce_menu_merge_directory_dir, target_submenu);
-              g_slist_foreach (submenu->priv->app_dirs, (GFunc) xfce_menu_merge_app_dir, target_submenu);
-              g_slist_foreach (submenu->priv->rules, (GFunc) xfce_menu_merge_rule, target_submenu);
-              
-              /* Remove submenu from the submenu list */
-              menu->priv->submenus = g_slist_remove (menu->priv->submenus, submenu);
-
-              /* TODO Merge submenus of submenu and target_submenu. Perhaps even
-               * find a better way for merging menus as the current way is a)
-               * duplicated (see consolidate_child_menus) and b) buggy */
-
-              /* TODO Free the submenu - this introduces a strange item pool
-               * error ... */
-              /* g_object_unref (submenu); */
-            }
-        }
-    }
-#endif
-}
-
-
-
-static void
-xfce_menu_add_rule (XfceMenu      *menu,
-                    XfceMenuRules *rules)
-{
-  g_return_if_fail (XFCE_IS_MENU (menu));
-  g_return_if_fail (XFCE_IS_MENU_RULES (rules));
-
-  menu->priv->rules = g_slist_append (menu->priv->rules, rules);
-}
-
-
-
-static void
-xfce_menu_add_move (XfceMenu     *menu,
-                    XfceMenuMove *move)
-{
-  g_return_if_fail (XFCE_IS_MENU (menu));
-  g_return_if_fail (XFCE_IS_MENU_MOVE (move));
-
-  menu->priv->moves = g_slist_append (menu->priv->moves, move);
 }
 
 
@@ -3108,7 +1566,7 @@ xfce_menu_get_element_name (XfceMenuElement *element)
 
   /* Otherwise use the menu name as a fallback */
   if (name == NULL)
-    name = menu->priv->name;
+    name = xfce_menu_get_name (menu);
 
   return name;
 }
@@ -3124,7 +1582,10 @@ xfce_menu_get_element_icon_name (XfceMenuElement *element)
 
   menu = XFCE_MENU (element);
 
-  return menu->priv->directory != NULL ? xfce_menu_directory_get_icon (menu->priv->directory) : NULL;
+  if (menu->priv->directory == NULL)
+    return NULL;
+  else
+    return xfce_menu_directory_get_icon (menu->priv->directory);
 }
 
 
@@ -3146,6 +1607,7 @@ xfce_menu_monitor_start (XfceMenu *menu)
 
   g_return_if_fail (XFCE_IS_MENU (menu));
 
+#if 0
   /* Monitor the menu file */
   if (G_LIKELY (xfce_menu_monitor_has_flags (XFCE_MENU_MONITOR_MENU_FILES)))
     xfce_menu_monitor_add_file (menu, menu->priv->filename);
@@ -3158,6 +1620,7 @@ xfce_menu_monitor_start (XfceMenu *menu)
   if (G_LIKELY (xfce_menu_monitor_has_flags (XFCE_MENU_MONITOR_DIRECTORIES)))
     for (iter = menu->priv->app_dirs; iter != NULL; iter = g_slist_next (iter))
       xfce_menu_monitor_add_directory (menu, (const gchar *)iter->data);
+#endif
 
   /* Monitor items in the menu pool */
   if (G_LIKELY (xfce_menu_monitor_has_flags (XFCE_MENU_MONITOR_DESKTOP_FILES)))
@@ -3187,9 +1650,14 @@ xfce_menu_monitor_stop (XfceMenu *menu)
 
   g_return_if_fail (XFCE_IS_MENU (menu));
 
+  /* Stop monitoring items in submenus */
+  for (iter = menu->priv->submenus; iter != NULL; iter = g_slist_next (iter))
+    xfce_menu_monitor_stop (XFCE_MENU (iter->data));
+
   /* Stop monitoring the items */
   xfce_menu_item_pool_foreach (menu->priv->pool, (GHFunc) item_monitor_stop, menu);
 
+#if 0
   /* Stop monitoring the application directories */
   for (iter = menu->priv->app_dirs; iter != NULL; iter = g_slist_next (iter))
     xfce_menu_monitor_remove_directory (menu, (const gchar *)iter->data);
@@ -3200,4 +1668,5 @@ xfce_menu_monitor_stop (XfceMenu *menu)
 
   /* Stop monitoring the menu file */
   xfce_menu_monitor_remove_file (menu, menu->priv->filename);
+#endif
 }

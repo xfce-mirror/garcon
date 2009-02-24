@@ -24,9 +24,8 @@
 #endif
 
 #include <libxfce4menu/xfce-menu-item.h>
+#include <libxfce4menu/xfce-menu-node.h>
 #include <libxfce4menu/xfce-menu-item-pool.h>
-#include <libxfce4menu/xfce-menu-rules.h>
-#include <libxfce4menu/xfce-menu-standard-rules.h>
 
 
 
@@ -39,7 +38,7 @@ static void     xfce_menu_item_pool_init             (XfceMenuItemPool      *poo
 static void     xfce_menu_item_pool_finalize         (GObject               *object);
 static gboolean xfce_menu_item_pool_filter_exclude   (const gchar           *desktop_id,
                                                       XfceMenuItem          *item,
-                                                      XfceMenuStandardRules *rules);
+                                                      GNode                 *node);
 
 
 
@@ -117,7 +116,8 @@ static void
 xfce_menu_item_pool_init (XfceMenuItemPool *pool)
 {
   pool->priv = XFCE_MENU_ITEM_POOL_GET_PRIVATE (pool);
-  pool->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, (GDestroyNotify) xfce_menu_item_unref);
+  pool->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, 
+                                             (GDestroyNotify) xfce_menu_item_unref);
 }
 
 
@@ -127,11 +127,7 @@ xfce_menu_item_pool_finalize (GObject *object)
 {
   XfceMenuItemPool *pool = XFCE_MENU_ITEM_POOL (object);
 
-#if GLIB_CHECK_VERSION(2,10,0)
   g_hash_table_unref (pool->priv->items);
-#else
-  g_hash_table_destroy (pool->priv->items);
-#endif
 
   (*G_OBJECT_CLASS (xfce_menu_item_pool_parent_class)->finalize) (object);
 }
@@ -187,14 +183,14 @@ xfce_menu_item_pool_foreach (XfceMenuItemPool *pool,
 
 
 void
-xfce_menu_item_pool_apply_exclude_rule (XfceMenuItemPool      *pool,
-                                        XfceMenuStandardRules *rule)
+xfce_menu_item_pool_apply_exclude_rule (XfceMenuItemPool *pool,
+                                        GNode            *node)
 {
   g_return_if_fail (XFCE_IS_MENU_ITEM_POOL (pool));
-  g_return_if_fail (XFCE_IS_MENU_STANDARD_RULES (rule));
+  g_return_if_fail (node != NULL);
 
   /* Remove all items which match this exclude rule */
-  g_hash_table_foreach_remove (pool->priv->items, (GHRFunc) xfce_menu_item_pool_filter_exclude, rule);
+  g_hash_table_foreach_remove (pool->priv->items, (GHRFunc) xfce_menu_item_pool_filter_exclude, node);
 }
 
 
@@ -202,12 +198,12 @@ xfce_menu_item_pool_apply_exclude_rule (XfceMenuItemPool      *pool,
 static gboolean
 xfce_menu_item_pool_filter_exclude (const gchar           *desktop_id,
                                     XfceMenuItem          *item,
-                                    XfceMenuStandardRules *rule)
+                                    GNode                 *node)
 {
-  g_return_val_if_fail (XFCE_IS_MENU_STANDARD_RULES (rule), FALSE);
   g_return_val_if_fail (XFCE_IS_MENU_ITEM (item), FALSE);
-
-  return xfce_menu_rules_match (XFCE_MENU_RULES (rule), item);
+  g_return_val_if_fail (node != NULL, FALSE);
+  
+  return xfce_menu_node_tree_rule_matches (node, item);
 }
 
 

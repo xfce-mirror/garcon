@@ -3,7 +3,6 @@
 # vi:set ts=8 sw=8 noet ai nocindent:
 
 SUBDIRS =								\
-	tdb								\
 	libxfce4menu							\
 	docs								\
 	tests								\

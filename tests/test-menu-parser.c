@@ -28,6 +28,7 @@
 
 #include <glib.h>
 
+#include <libxfce4util/libxfce4util.h>
 #include <libxfce4menu/libxfce4menu.h>
 
 
@@ -44,11 +45,7 @@ static gboolean print_node (GNode *node,
 const gchar *
 node_name (GNode *node)
 {
-  XfceMenuNode *node_ = node->data;
-
-  if (node_ == NULL) return "Menu";
-
-  switch (node_->node_type)
+  switch (xfce_menu_node_tree_get_node_type (node))
     {
       case XFCE_MENU_NODE_TYPE_INCLUDE: return "Include"; break;
       case XFCE_MENU_NODE_TYPE_EXCLUDE: return "Exclude"; break;
@@ -68,11 +65,8 @@ print_child_nodes (GNode *node,
                    gint   depth)
 {
   GNode *child;
-  gint   i;
 
-  for (i = 0, child = g_node_nth_child (node, i); 
-       child != NULL; 
-       ++i, child = g_node_nth_child (node, i))
+  for (child = g_node_first_child (node); child != NULL; child = g_node_next_sibling (child))
     {
       g_node_traverse (child, G_PRE_ORDER, G_TRAVERSE_ALL, 1, 
                        (GNodeTraverseFunc) print_node, GINT_TO_POINTER (depth+2));
@@ -85,19 +79,18 @@ static gboolean
 print_node (GNode *node,
             gint   depth)
 {
-  XfceMenuNode *node_ = node->data;
-  gint          i;
+  gint i;
 
 #define INDENT {for (i = 0; i < depth; ++i) g_print (" ");}
 
-  if (G_UNLIKELY (node_ == NULL || 
-                  node_->node_type == XFCE_MENU_NODE_TYPE_INCLUDE ||
-                  node_->node_type == XFCE_MENU_NODE_TYPE_EXCLUDE ||
-                  node_->node_type == XFCE_MENU_NODE_TYPE_OR ||
-                  node_->node_type == XFCE_MENU_NODE_TYPE_AND ||
-                  node_->node_type == XFCE_MENU_NODE_TYPE_NOT ||
-                  node_->node_type == XFCE_MENU_NODE_TYPE_MOVE ||
-                  node_->node_type == XFCE_MENU_NODE_TYPE_LAYOUT))
+  if (G_UNLIKELY (xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_MENU ||
+                  xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_INCLUDE ||
+                  xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_EXCLUDE ||
+                  xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_OR ||
+                  xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_AND ||
+                  xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_NOT ||
+                  xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_MOVE ||
+                  xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_LAYOUT))
     {
       INDENT; g_print ("<%s>\n", node_name (node));
       print_child_nodes (node, depth);
@@ -105,22 +98,22 @@ print_node (GNode *node,
     }
   else
     {
-      switch (node_->node_type)
+      switch (xfce_menu_node_tree_get_node_type (node))
         {
         case XFCE_MENU_NODE_TYPE_NAME:
-          INDENT; g_print ("<Name>%s</Name>\n", node_->data.string);
+          INDENT; g_print ("<Name>%s</Name>\n", xfce_menu_node_tree_get_string (node));
           break;
         case XFCE_MENU_NODE_TYPE_DIRECTORY:
-          INDENT; g_print ("<Directory>%s</Directory>\n", node_->data.string);
+          INDENT; g_print ("<Directory>%s</Directory>\n", xfce_menu_node_tree_get_string (node));
           break;
         case XFCE_MENU_NODE_TYPE_DIRECTORY_DIR:
-          INDENT; g_print ("<DirectoryDir>%s</DirectoryDir>\n", node_->data.string);
+          INDENT; g_print ("<DirectoryDir>%s</DirectoryDir>\n", xfce_menu_node_tree_get_string (node));
           break;
         case XFCE_MENU_NODE_TYPE_DEFAULT_DIRECTORY_DIRS:
           INDENT; g_print ("<DefaultDirectoryDirs/>\n");
           break;
         case XFCE_MENU_NODE_TYPE_APP_DIR:
-          INDENT; g_print ("<AppDir>%s</AppDir>\n", node_->data.string);
+          INDENT; g_print ("<AppDir>%s</AppDir>\n", xfce_menu_node_tree_get_string (node));
           break;
         case XFCE_MENU_NODE_TYPE_DEFAULT_APP_DIRS:
           INDENT; g_print ("<DefaultAppDirs/>\n");
@@ -138,26 +131,26 @@ print_node (GNode *node,
           INDENT; g_print ("<NotDeleted/>\n");
           break;
         case XFCE_MENU_NODE_TYPE_FILENAME:
-          INDENT; g_print ("<Filename>%s</Filename>\n", node_->data.string);
+          INDENT; g_print ("<Filename>%s</Filename>\n", xfce_menu_node_tree_get_string (node));
           break;
         case XFCE_MENU_NODE_TYPE_CATEGORY:
-          INDENT; g_print ("<Category>%s</Category>\n", node_->data.string);
+          INDENT; g_print ("<Category>%s</Category>\n", xfce_menu_node_tree_get_string (node));
           break;
         case XFCE_MENU_NODE_TYPE_OLD:
-          INDENT; g_print ("<Old>%s</Old>\n", node_->data.string);
+          INDENT; g_print ("<Old>%s</Old>\n", xfce_menu_node_tree_get_string (node));
           break;
         case XFCE_MENU_NODE_TYPE_NEW:
-          INDENT; g_print ("<New>%s</New>\n", node_->data.string);
+          INDENT; g_print ("<New>%s</New>\n", xfce_menu_node_tree_get_string (node));
           break;
         case XFCE_MENU_NODE_TYPE_MENUNAME:
-          INDENT; g_print ("<Menuname>%s</Menuname>\n", node_->data.string);
+          INDENT; g_print ("<Menuname>%s</Menuname>\n", xfce_menu_node_tree_get_string (node));
           break;
         case XFCE_MENU_NODE_TYPE_SEPARATOR:
           INDENT; g_print ("<Separator/>\n");
           break;
         case XFCE_MENU_NODE_TYPE_MERGE:
           INDENT; 
-          switch (node_->data.layout_merge_type)
+          switch (xfce_menu_node_tree_get_layout_merge_type (node->data))
             {
             case XFCE_MENU_LAYOUT_MERGE_ALL:
               g_print ("<Merge type=\"all\"/>\n");
@@ -172,11 +165,11 @@ print_node (GNode *node,
           break;
         case XFCE_MENU_NODE_TYPE_MERGE_FILE:
           INDENT;
-          switch (node_->data.merge_file.type)
+          switch (xfce_menu_node_tree_get_merge_file_type (node))
             {
             case XFCE_MENU_MERGE_FILE_PATH:
               g_print ("<MergeFile type=\"path\">%s</MergeFile>\n", 
-                       node_->data.merge_file.filename);
+                       xfce_menu_node_tree_get_merge_file_filename (node));
               break;
             case XFCE_MENU_MERGE_FILE_PARENT:
               g_print ("<MergeFile type=\"parent\"/>\n");
@@ -184,7 +177,7 @@ print_node (GNode *node,
             }
           break;
         case XFCE_MENU_NODE_TYPE_MERGE_DIR:
-          INDENT; g_print ("<MergeDir>%s</MergeDir>\n", node_->data.string);
+          INDENT; g_print ("<MergeDir>%s</MergeDir>\n", xfce_menu_node_tree_get_string (node));
           break;
         case XFCE_MENU_NODE_TYPE_DEFAULT_MERGE_DIRS:
           INDENT; g_print ("<DefaultMergeDirs/>\n");
@@ -213,6 +206,16 @@ print_tree (XfceMenuTreeProvider *provider)
 
 
 
+static const gchar ROOT_SPECS[][30] = 
+{
+  "menus/applications.menu",
+  "menus/xfce-applications.menu",
+  "menus/gnome-applications.menu",
+  "menus/kde-applications.menu",
+};
+
+
+
 int
 main (int    argc,
       char **argv)
@@ -220,15 +223,42 @@ main (int    argc,
   XfceMenuParser *parser;
   XfceMenuMerger *merger;
   GError         *error = NULL;
-  GFile          *file;
+  GFile          *file = NULL;
+  gchar          *filename;
   gint            result = EXIT_SUCCESS;
+  gint            n;
 
   if (!g_thread_supported ())
     g_thread_init (NULL);
 
   xfce_menu_init ("XFCE");
 
-  file = g_file_new_for_path (argc > 1 ? argv[1] : FILENAME);
+  if (argc > 1)
+    {
+      file = g_file_new_for_path (argv[1]);
+    }
+  else
+    {
+      /* Search for a usable root menu file */
+      for (n = 0; n < G_N_ELEMENTS (ROOT_SPECS) && file == NULL; ++n)
+        {
+          /* Search for the root menu file */
+          filename = xfce_resource_lookup (XFCE_RESOURCE_CONFIG, ROOT_SPECS[n]);
+          if (G_UNLIKELY (filename == NULL))
+            continue;
+
+          /* Try to load the root menu from this file */
+          file = g_file_new_for_path (filename);
+          g_free (filename);
+
+          if (!g_file_query_exists (file, NULL))
+            {
+              g_object_unref (file);
+              file = NULL;
+            }
+        }
+    }
+
   parser = xfce_menu_parser_new (file);
   g_object_unref (file);
   

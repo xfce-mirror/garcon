@@ -23,6 +23,8 @@
 #include <config.h>
 #endif
 
+#include <gio/gio.h>
+
 #include <libxfce4util/libxfce4util.h>
 
 #include <libxfce4menu/xfce-menu-environment.h>
@@ -525,10 +527,12 @@ xfce_menu_item_set_property (GObject      *object,
 
 
 XfceMenuItem*
-xfce_menu_item_new (const gchar *filename)
+xfce_menu_item_new (const gchar *uri)
 {
   XfceMenuItem *item = NULL;
   XfceRc       *rc;
+  GFile        *file;
+  GList        *categories = NULL;
   const gchar  *path;
   const gchar  *name;
   const gchar  *generic_name;
@@ -536,12 +540,20 @@ xfce_menu_item_new (const gchar *filename)
   const gchar  *exec;
   const gchar  *try_exec;
   const gchar  *icon;
-  gchar       **mt;
-  gchar       **str_list;
-  GList        *categories = NULL;
   gboolean      terminal;
   gboolean      no_display;
   gboolean      startup_notify;
+  gchar        *filename;
+  gchar       **mt;
+  gchar       **str_list;
+
+  g_return_val_if_fail (uri != NULL, NULL);
+
+  /* TODO: Use GFile, GKeyFile instead of XfceRc */
+
+  file = g_file_new_for_uri (uri);
+  filename = g_file_get_path (file);
+  g_object_unref (file);
 
   /* Return NULL if the filename is not an absolute path or if the file does not exists */
   if (G_UNLIKELY (!g_path_is_absolute (filename) || !g_file_test (filename, G_FILE_TEST_EXISTS)))

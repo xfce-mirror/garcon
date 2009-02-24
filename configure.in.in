@@ -83,21 +83,6 @@ AC_PROG_INTLTOOL([0.31], [no-xml])
 AC_PROG_LIBTOOL()
 AM_PROG_CC_C_O()
 
-dnl ***********************************************
-dnl *** Determine the u32 type required for tdb ***
-dnl ***********************************************
-AC_CHECK_SIZEOF([int])
-AC_CHECK_SIZEOF([long])
-AC_CHECK_SIZEOF([short])
-AC_MSG_CHECKING([for 32bit unsigned integer])
-case 4 in
-$ac_cv_sizeof_int)   TDB_U32_TYPE="unsigned int" ;;
-$ac_cv_sizeof_long)  TDB_U32_TYPE="unsigned long" ;;
-$ac_cv_sizeof_short) TDB_U32_TYPE="unsigned short" ;;
-esac
-AC_SUBST([TDB_U32_TYPE])
-AC_MSG_RESULT([$TDB_U32_TYPE])
-
 dnl ***************************************
 dnl *** Check for standard header files ***
 dnl ***************************************
@@ -218,8 +203,6 @@ libxfce4menu/Makefile
 libxfce4menu/libxfce4menu-0.1.pc
 libxfce4menu/libxfce4menu-config.h
 po/Makefile.in
-tdb/tdbconfig.h
-tdb/Makefile
 tests/Makefile
 ])
 

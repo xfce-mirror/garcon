@@ -33,6 +33,7 @@
 #include <glib.h>
 #include <glib-object.h>
 #include <glib/gprintf.h>
+#include <gio/gio.h>
 
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4menu/libxfce4menu.h>
@@ -59,7 +60,9 @@ monitor_file (XfceMenu    *menu,
               const gchar *filename,
               gpointer     user_data)
 {
+#if 0
   g_debug ("%s: monitoring file %s => %d", xfce_menu_element_get_name (XFCE_MENU_ELEMENT (menu)), filename, ++pseudo_monitor_handler);
+#endif
   return GUINT_TO_POINTER (pseudo_monitor_handler);
 }
 
@@ -70,7 +73,9 @@ monitor_directory (XfceMenu    *menu,
                    const gchar *filename,
                    gpointer     user_data)
 {
+#if 0
   g_debug ("%s: monitoring directory %s => %d", xfce_menu_element_get_name (XFCE_MENU_ELEMENT (menu)), filename, ++pseudo_monitor_handler);
+#endif
   return GUINT_TO_POINTER (pseudo_monitor_handler);
 }
 
@@ -80,7 +85,9 @@ static void
 remove_monitor (XfceMenu *menu,
                 gpointer  monitor_handle)
 {
+#if 0
   g_debug ("%s: removing monitor %d", xfce_menu_element_get_name (XFCE_MENU_ELEMENT (menu)), GPOINTER_TO_UINT (monitor_handle));
+#endif
 }
 
 
@@ -376,7 +383,8 @@ int
 main (int    argc,
       char **argv)
 {
-  GError *error     = NULL;
+  GError *error = NULL;
+  GFile  *file;
   gint    exit_code = EXIT_SUCCESS;
 
   /* Initialize the menu library */
@@ -390,7 +398,11 @@ main (int    argc,
 
   /* Try to load the menu */
   if (G_UNLIKELY (g_strv_length (argv) > 1))
-    root = xfce_menu_new (argv[1], &error);
+    {
+      file = g_file_new_for_commandline_arg (argv[1]);
+      root = xfce_menu_new (file, &error);
+      g_object_unref (file);
+    }
   else
     root = xfce_menu_get_root (&error);
 

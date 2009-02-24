@@ -25,6 +25,7 @@
 #include <glib.h>
 #include <glib-object.h>
 
+#include <libxfce4menu/xfce-menu-item.h>
 #include <libxfce4menu/xfce-menu-node.h>
 
 
@@ -53,6 +54,31 @@ static void xfce_menu_node_free_data    (XfceMenuNode      *node);
 
 
 
+struct _XfceMenuNodeClass
+{
+  GObjectClass __parent__;
+};
+
+union _XfceMenuNodeData
+{
+  XfceMenuLayoutMergeType layout_merge_type;
+  struct 
+  {
+    XfceMenuMergeFileType type;
+    gchar                *filename;
+  } merge_file;
+  gchar                  *string;
+};
+
+struct _XfceMenuNode
+{
+  GObject          __parent__;
+
+  XfceMenuNodeType node_type;
+  XfceMenuNodeData data;
+};
+
+
 
 static GObjectClass *xfce_menu_node_parent_class = NULL;
 
@@ -64,6 +90,8 @@ xfce_menu_node_type_get_type (void)
   static GType      type = G_TYPE_INVALID;
   static GEnumValue values[] = 
   {
+    { XFCE_MENU_NODE_TYPE_INVALID, "XFCE_MENU_NODE_TYPE_INVALID", "Invalid" },
+    { XFCE_MENU_NODE_TYPE_MENU, "XFCE_MENU_NODE_TYPE_MENU", "Menu" },
     { XFCE_MENU_NODE_TYPE_NAME, "XFCE_MENU_NODE_TYPE_NAME", "Name" },
     { XFCE_MENU_NODE_TYPE_DIRECTORY, "XFCE_MENU_NODE_TYPE_DIRECTORY", "Directory" },
     { XFCE_MENU_NODE_TYPE_DIRECTORY_DIR, "XFCE_MENU_NODE_TYPE_DIRECTORY_DIR", "DirectoryDir" },
@@ -143,7 +171,7 @@ xfce_menu_node_class_init (XfceMenuNodeClass *klass)
                                                       "node-type",
                                                       "node-type",
                                                       XFCE_MENU_NODE_TYPE,
-                                                      0,
+                                                      XFCE_MENU_NODE_TYPE_MENU,
                                                       G_PARAM_READABLE | G_PARAM_WRITABLE));
 }
 
@@ -261,22 +289,7 @@ xfce_menu_node_create (XfceMenuNodeType node_type,
       node->data.merge_file.filename = NULL;
       break;
 
-    case XFCE_MENU_NODE_TYPE_DEFAULT_DIRECTORY_DIRS:
-    case XFCE_MENU_NODE_TYPE_DEFAULT_APP_DIRS:
-    case XFCE_MENU_NODE_TYPE_ONLY_UNALLOCATED:
-    case XFCE_MENU_NODE_TYPE_NOT_ONLY_UNALLOCATED:
-    case XFCE_MENU_NODE_TYPE_DELETED:
-    case XFCE_MENU_NODE_TYPE_NOT_DELETED:
-    case XFCE_MENU_NODE_TYPE_INCLUDE:
-    case XFCE_MENU_NODE_TYPE_EXCLUDE:
-    case XFCE_MENU_NODE_TYPE_ALL:
-    case XFCE_MENU_NODE_TYPE_OR:
-    case XFCE_MENU_NODE_TYPE_AND:
-    case XFCE_MENU_NODE_TYPE_NOT:
-    case XFCE_MENU_NODE_TYPE_MOVE:
-    case XFCE_MENU_NODE_TYPE_LAYOUT:
-    case XFCE_MENU_NODE_TYPE_SEPARATOR:
-    case XFCE_MENU_NODE_TYPE_DEFAULT_MERGE_DIRS:
+    default:
       break;
     }
 
@@ -319,22 +332,7 @@ xfce_menu_node_copy (XfceMenuNode *node)
       copy->data.merge_file.filename = g_strdup (node->data.merge_file.filename);
       break;
 
-    case XFCE_MENU_NODE_TYPE_DEFAULT_DIRECTORY_DIRS:
-    case XFCE_MENU_NODE_TYPE_DEFAULT_APP_DIRS:
-    case XFCE_MENU_NODE_TYPE_ONLY_UNALLOCATED:
-    case XFCE_MENU_NODE_TYPE_NOT_ONLY_UNALLOCATED:
-    case XFCE_MENU_NODE_TYPE_DELETED:
-    case XFCE_MENU_NODE_TYPE_NOT_DELETED:
-    case XFCE_MENU_NODE_TYPE_INCLUDE:
-    case XFCE_MENU_NODE_TYPE_EXCLUDE:
-    case XFCE_MENU_NODE_TYPE_ALL:
-    case XFCE_MENU_NODE_TYPE_OR:
-    case XFCE_MENU_NODE_TYPE_AND:
-    case XFCE_MENU_NODE_TYPE_NOT:
-    case XFCE_MENU_NODE_TYPE_MOVE:
-    case XFCE_MENU_NODE_TYPE_LAYOUT:
-    case XFCE_MENU_NODE_TYPE_SEPARATOR:
-    case XFCE_MENU_NODE_TYPE_DEFAULT_MERGE_DIRS:
+    default:
       break;
     }
 
@@ -363,24 +361,7 @@ xfce_menu_node_free_data (XfceMenuNode *node)
       g_free (node->data.string);
       break;
 
-    case XFCE_MENU_NODE_TYPE_DEFAULT_DIRECTORY_DIRS:
-    case XFCE_MENU_NODE_TYPE_DEFAULT_APP_DIRS:
-    case XFCE_MENU_NODE_TYPE_ONLY_UNALLOCATED:
-    case XFCE_MENU_NODE_TYPE_NOT_ONLY_UNALLOCATED:
-    case XFCE_MENU_NODE_TYPE_DELETED:
-    case XFCE_MENU_NODE_TYPE_NOT_DELETED:
-    case XFCE_MENU_NODE_TYPE_INCLUDE:
-    case XFCE_MENU_NODE_TYPE_EXCLUDE:
-    case XFCE_MENU_NODE_TYPE_ALL:
-    case XFCE_MENU_NODE_TYPE_OR:
-    case XFCE_MENU_NODE_TYPE_AND:
-    case XFCE_MENU_NODE_TYPE_NOT:
-    case XFCE_MENU_NODE_TYPE_MOVE:
-    case XFCE_MENU_NODE_TYPE_LAYOUT:
-    case XFCE_MENU_NODE_TYPE_SEPARATOR:
-    case XFCE_MENU_NODE_TYPE_MERGE:
-    case XFCE_MENU_NODE_TYPE_MERGE_FILE:
-    case XFCE_MENU_NODE_TYPE_DEFAULT_MERGE_DIRS:
+    default:
       break;
     }
 }
@@ -454,6 +435,112 @@ xfce_menu_node_set_merge_file_filename (XfceMenuNode *node,
 
 
 
+gboolean
+xfce_menu_node_tree_rule_matches (GNode        *node,
+                                  XfceMenuItem *item)
+{
+  GNode   *child;
+  gboolean matches = FALSE;
+  gboolean child_matches = FALSE;
+
+  switch (xfce_menu_node_tree_get_node_type (node))
+    {
+    case XFCE_MENU_NODE_TYPE_INCLUDE:
+    case XFCE_MENU_NODE_TYPE_EXCLUDE:
+    case XFCE_MENU_NODE_TYPE_OR:
+      for (child = g_node_first_child (node); child != NULL; child = g_node_next_sibling (child))
+        matches = matches || xfce_menu_node_tree_rule_matches (child, item);
+      break;
+
+    case XFCE_MENU_NODE_TYPE_AND:
+      matches = TRUE;
+      for (child = g_node_first_child (node); child != NULL; child = g_node_next_sibling (child))
+        matches = matches && xfce_menu_node_tree_rule_matches (child, item);
+      break;
+
+    case XFCE_MENU_NODE_TYPE_NOT:
+      for (child = g_node_first_child (node); child != NULL; child = g_node_next_sibling (child))
+        child_matches = child_matches || xfce_menu_node_tree_rule_matches (child, item);
+      matches = !child_matches;
+      break;
+
+    case XFCE_MENU_NODE_TYPE_FILENAME:
+      matches = g_str_equal (xfce_menu_node_tree_get_string (node),
+                             xfce_menu_item_get_desktop_id (item));
+      break;
+
+    case XFCE_MENU_NODE_TYPE_CATEGORY:
+      matches = xfce_menu_item_has_category (item, xfce_menu_node_tree_get_string (node));
+      break;
+
+    case XFCE_MENU_NODE_TYPE_ALL:
+      matches = TRUE;
+      break;
+
+    default:
+      break;
+    }
+
+  return matches;
+}
+
+
+
+
+
+
+XfceMenuNodeType 
+xfce_menu_node_tree_get_node_type (GNode *tree)
+{
+  if (tree == NULL)
+    return XFCE_MENU_NODE_TYPE_INVALID;
+
+  if (tree->data == NULL)
+    return XFCE_MENU_NODE_TYPE_MENU;
+
+  return xfce_menu_node_get_node_type (tree->data);
+}
+
+
+
+const gchar * 
+xfce_menu_node_tree_get_string (GNode *tree)
+{
+  if (tree == NULL || tree->data == NULL)
+    return NULL;
+  else
+    return xfce_menu_node_get_string (tree->data);
+}
+
+
+
+XfceMenuLayoutMergeType
+xfce_menu_node_tree_get_layout_merge_type (GNode *tree)
+{
+  g_return_val_if_fail (xfce_menu_node_tree_get_node_type (tree) != XFCE_MENU_NODE_TYPE_LAYOUT, 0);
+  return ((XfceMenuNode *)tree->data)->data.layout_merge_type;
+}
+
+
+
+XfceMenuMergeFileType 
+xfce_menu_node_tree_get_merge_file_type (GNode *tree)
+{
+  g_return_val_if_fail (xfce_menu_node_tree_get_node_type (tree) != XFCE_MENU_NODE_TYPE_MERGE_FILE, 0);
+  return xfce_menu_node_get_merge_file_type (tree->data);
+}
+
+
+
+const gchar *
+xfce_menu_node_tree_get_merge_file_filename (GNode *tree)
+{
+  g_return_val_if_fail (xfce_menu_node_tree_get_node_type (tree) != XFCE_MENU_NODE_TYPE_MERGE_FILE, NULL);
+  return xfce_menu_node_get_merge_file_filename (tree->data);
+}
+
+
+
 gint
 xfce_menu_node_tree_compare (GNode *tree,
                              GNode *other_tree)
@@ -490,23 +577,7 @@ xfce_menu_node_tree_compare (GNode *tree,
                              other_node->data.merge_file.filename);
       break;
 
-    case XFCE_MENU_NODE_TYPE_DEFAULT_DIRECTORY_DIRS:
-    case XFCE_MENU_NODE_TYPE_DEFAULT_APP_DIRS:
-    case XFCE_MENU_NODE_TYPE_ONLY_UNALLOCATED:
-    case XFCE_MENU_NODE_TYPE_NOT_ONLY_UNALLOCATED:
-    case XFCE_MENU_NODE_TYPE_DELETED:
-    case XFCE_MENU_NODE_TYPE_NOT_DELETED:
-    case XFCE_MENU_NODE_TYPE_INCLUDE:
-    case XFCE_MENU_NODE_TYPE_EXCLUDE:
-    case XFCE_MENU_NODE_TYPE_ALL:
-    case XFCE_MENU_NODE_TYPE_OR:
-    case XFCE_MENU_NODE_TYPE_AND:
-    case XFCE_MENU_NODE_TYPE_NOT:
-    case XFCE_MENU_NODE_TYPE_MOVE:
-    case XFCE_MENU_NODE_TYPE_LAYOUT:
-    case XFCE_MENU_NODE_TYPE_MERGE:
-    case XFCE_MENU_NODE_TYPE_SEPARATOR:
-    case XFCE_MENU_NODE_TYPE_DEFAULT_MERGE_DIRS:
+    default:
       return 0;
       break;
     }

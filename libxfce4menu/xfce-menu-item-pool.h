@@ -27,7 +27,6 @@
 #define __XFCE_MENU_ITEM_POOL_H__
 
 #include <glib-object.h>
-#include <libxfce4menu/xfce-menu-standard-rules.h>
 
 G_BEGIN_DECLS;
 
@@ -54,7 +53,7 @@ void              xfce_menu_item_pool_foreach            (XfceMenuItemPool      
                                                           GHFunc                 func, 
                                                           gpointer               user_data);
 void              xfce_menu_item_pool_apply_exclude_rule (XfceMenuItemPool      *pool,
-                                                          XfceMenuStandardRules *rule);
+                                                          GNode                 *node);
 gboolean          xfce_menu_item_pool_get_empty          (XfceMenuItemPool      *pool);
 
 G_END_DECLS;

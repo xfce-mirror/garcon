@@ -36,17 +36,25 @@
 
 
 void
-print_menu (XfceMenu *menu, gboolean is_root)
+print_menu (XfceMenu *menu, const gchar *path)
 {
   XfceMenuDirectory *directory;
   GSList            *menus;
   GSList            *items;
   GSList            *iter;
-  const gchar       *name;
+  gchar             *name;
 
   /* Determine menu name */
   directory = xfce_menu_get_directory (menu);
-  name = is_root ? "" : (directory == NULL ? xfce_menu_get_name (menu) : xfce_menu_directory_get_name (directory));
+
+  if (G_UNLIKELY (path == NULL))
+    name = g_strdup ("");
+  else
+    {
+      name = g_strdup_printf ("%s%s/", path, (directory == NULL ? 
+                                              xfce_menu_get_name (menu) : 
+                                              xfce_menu_directory_get_name (directory)));
+    }
 
   /* Fetch submenus */
   menus = xfce_menu_get_menus (menu);
@@ -58,7 +66,7 @@ print_menu (XfceMenu *menu, gboolean is_root)
 
       /* Don't display hidden menus */
       if (G_LIKELY (submenu_directory == NULL || !xfce_menu_directory_get_no_display (submenu_directory)))
-        print_menu (XFCE_MENU (iter->data), FALSE);
+        print_menu (XFCE_MENU (iter->data), name);
     }
 
   /* Free submenu list */
@@ -73,11 +81,14 @@ print_menu (XfceMenu *menu, gboolean is_root)
       XfceMenuItem      *item = iter->data;
 
       if (G_UNLIKELY (!xfce_menu_item_get_no_display (item)))
-        g_printf ("%s/\t%s\t%s\n", name, xfce_menu_item_get_desktop_id (item), xfce_menu_item_get_filename (item));
+        g_printf ("%s\t%s\t%s\n", name, xfce_menu_item_get_desktop_id (item), xfce_menu_item_get_filename (item));
     }
 
   /* Free menu item list */
   g_slist_free (items);
+
+  /* Free name */
+  g_free (name);
 }
 
 
@@ -94,6 +105,8 @@ main (int    argc,
   int       exit_code = 0;
 #endif
 
+  g_set_prgname ("test-menu-spec");
+
   /* Initialize menu library */
   xfce_menu_init (NULL);
 
@@ -103,7 +116,7 @@ main (int    argc,
   if (G_LIKELY (menu != NULL)) 
     {
       /* Print menu contents according to the test suite criteria */
-      print_menu (menu, TRUE);
+      print_menu (menu, NULL);
     }
   else
     {

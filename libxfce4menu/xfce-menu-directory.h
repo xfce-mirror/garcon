@@ -27,6 +27,7 @@
 #define __XFCE_MENU_DIRECTORY_H__
 
 #include <glib-object.h>
+#include <gio/gio.h>
 
 G_BEGIN_DECLS;
 
@@ -43,9 +44,7 @@ typedef struct _XfceMenuDirectory        XfceMenuDirectory;
 
 GType                    xfce_menu_directory_get_type            (void) G_GNUC_CONST;
 
-const gchar             *xfce_menu_directory_get_filename        (XfceMenuDirectory *directory);
-void                     xfce_menu_directory_set_filename        (XfceMenuDirectory *directory,
-                                                                  const gchar       *name);
+GFile                   *xfce_menu_directory_get_file            (XfceMenuDirectory *directory);
 const gchar             *xfce_menu_directory_get_name            (XfceMenuDirectory *directory);
 void                     xfce_menu_directory_set_name            (XfceMenuDirectory *directory,
                                                                   const gchar       *name);

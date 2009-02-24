@@ -30,11 +30,6 @@
 #include <libxfce4menu/xfce-menu-item.h>
 #include <libxfce4menu/xfce-menu-item-pool.h>
 #include <libxfce4menu/xfce-menu-item-cache.h>
-#include <libxfce4menu/xfce-menu-rules.h>
-#include <libxfce4menu/xfce-menu-standard-rules.h>
-#include <libxfce4menu/xfce-menu-or-rules.h>
-#include <libxfce4menu/xfce-menu-and-rules.h>
-#include <libxfce4menu/xfce-menu-not-rules.h>
 #include <libxfce4menu/xfce-menu-directory.h>
 #include <libxfce4menu/xfce-menu-layout.h>
 #include <libxfce4menu/xfce-menu-separator.h>

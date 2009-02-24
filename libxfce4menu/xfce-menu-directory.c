@@ -72,7 +72,7 @@ static const gchar *desktop_entry_keys[] =
 enum
 {
   PROP_0,
-  PROP_FILENAME,
+  PROP_FILE,
   PROP_NAME,
   PROP_COMMENT,
   PROP_NO_DISPLAY,
@@ -83,6 +83,7 @@ enum
 
 static void       xfce_menu_directory_class_init       (XfceMenuDirectoryClass       *klass);
 static void       xfce_menu_directory_init             (XfceMenuDirectory            *directory);
+static void       xfce_menu_directory_constructed      (GObject                      *object);
 static void       xfce_menu_directory_finalize         (GObject                      *object);
 static void       xfce_menu_directory_get_property     (GObject                      *object,
                                                         guint                         prop_id,
@@ -99,8 +100,8 @@ static void       xfce_menu_directory_load             (XfceMenuDirectory       
 
 struct _XfceMenuDirectoryPrivate
 {
-  /* Directory filename */
-  gchar             *filename;
+  /* Directory file */
+  GFile             *file;
 
   /* Directory name */
   gchar             *name;
@@ -183,6 +184,7 @@ xfce_menu_directory_class_init (XfceMenuDirectoryClass *klass)
   xfce_menu_directory_parent_class = g_type_class_peek_parent (klass);
 
   gobject_class = G_OBJECT_CLASS (klass);
+  gobject_class->constructed = xfce_menu_directory_constructed;
   gobject_class->finalize = xfce_menu_directory_finalize; 
   gobject_class->get_property = xfce_menu_directory_get_property;
   gobject_class->set_property = xfce_menu_directory_set_property;
@@ -190,16 +192,16 @@ xfce_menu_directory_class_init (XfceMenuDirectoryClass *klass)
   /**
    * XfceMenuDirectory:filename:
    *
-   * The filename of an %XfceMenuDirectory object. Whenever this is redefined, the
-   * directory entry is parsed again.
+   * The @GFile of an %XfceMenuDirectory. 
    **/
   g_object_class_install_property (gobject_class,
-                                   PROP_FILENAME,
-                                   g_param_spec_string ("filename",
-                                                        "Filename",
-                                                        "Directory filename",
-                                                        NULL,
-                                                        G_PARAM_READWRITE));
+                                   PROP_FILE,
+                                   g_param_spec_object ("file",
+                                                        "File",
+                                                        "File",
+                                                        G_TYPE_FILE,
+                                                        G_PARAM_READWRITE | 
+                                                        G_PARAM_CONSTRUCT_ONLY));
 
   /**
    * XfceMenuDirectory:name:
@@ -207,7 +209,7 @@ xfce_menu_directory_class_init (XfceMenuDirectoryClass *klass)
    * Name of the directory.
    **/
   g_object_class_install_property (gobject_class,
-                                   PROP_FILENAME,
+                                   PROP_NAME,
                                    g_param_spec_string ("name",
                                                         "Name",
                                                         "Directory name",
@@ -220,7 +222,7 @@ xfce_menu_directory_class_init (XfceMenuDirectoryClass *klass)
    * Directory description (comment).
    **/
   g_object_class_install_property (gobject_class,
-                                   PROP_FILENAME,
+                                   PROP_COMMENT,
                                    g_param_spec_string ("comment",
                                                         "Description",
                                                         "Directory description",
@@ -233,7 +235,7 @@ xfce_menu_directory_class_init (XfceMenuDirectoryClass *klass)
    * Icon associated with this directory.
    **/
   g_object_class_install_property (gobject_class,
-                                   PROP_FILENAME,
+                                   PROP_ICON,
                                    g_param_spec_string ("icon",
                                                         "Icon",
                                                         "Directory icon",
@@ -261,13 +263,22 @@ static void
 xfce_menu_directory_init (XfceMenuDirectory *directory)
 {
   directory->priv = XFCE_MENU_DIRECTORY_GET_PRIVATE (directory);
-  directory->priv->filename = NULL;
+  directory->priv->file = NULL;
   directory->priv->name = NULL;
   directory->priv->icon = NULL;
   directory->priv->only_show_in = NULL;
   directory->priv->not_show_in = NULL;
   directory->priv->hidden = FALSE;
   directory->priv->no_display = FALSE;
+}
+
+
+
+static void 
+xfce_menu_directory_constructed (GObject *object)
+{
+  XfceMenuDirectory *directory = XFCE_MENU_DIRECTORY (object);
+  xfce_menu_directory_load (directory);
 }
 
 
@@ -280,9 +291,8 @@ xfce_menu_directory_finalize (GObject *object)
   /* Free private data */
   xfce_menu_directory_free_private (directory);
 
-  /* Free filename */
-  if (G_LIKELY (directory->priv->filename != NULL))
-    g_free (directory->priv->filename);
+  /* Free file */
+  g_object_unref (directory->priv->file);
 
   (*G_OBJECT_CLASS (xfce_menu_directory_parent_class)->finalize) (object);
 }
@@ -299,8 +309,8 @@ xfce_menu_directory_get_property (GObject    *object,
 
   switch (prop_id)
     {
-    case PROP_FILENAME:
-      g_value_set_string (value, xfce_menu_directory_get_filename (directory));
+    case PROP_FILE:
+      g_value_set_object (value, xfce_menu_directory_get_file (directory));
       break;
 
     case PROP_NAME:
@@ -337,8 +347,8 @@ xfce_menu_directory_set_property (GObject      *object,
 
   switch (prop_id)
     {
-    case PROP_FILENAME:
-      xfce_menu_directory_set_filename (directory, g_value_get_string (value));
+    case PROP_FILE:
+      directory->priv->file = g_object_ref (g_value_get_object (value));
       break;
 
     case PROP_NAME:
@@ -365,42 +375,11 @@ xfce_menu_directory_set_property (GObject      *object,
 
 
 
-const gchar*
-xfce_menu_directory_get_filename (XfceMenuDirectory *directory)
+GFile *
+xfce_menu_directory_get_file (XfceMenuDirectory *directory)
 {
   g_return_val_if_fail (XFCE_IS_MENU_DIRECTORY (directory), NULL);
-  return directory->priv->filename;
-}
-
-
-
-void
-xfce_menu_directory_set_filename (XfceMenuDirectory *directory, const gchar *filename)
-{
-  g_return_if_fail (XFCE_IS_MENU_DIRECTORY (directory));
-  g_return_if_fail (filename != NULL);
-
-  /* Check if there is an old filename */
-  if (G_UNLIKELY (directory->priv->filename != NULL))
-    {
-      if (G_UNLIKELY (filename != NULL && g_utf8_collate (directory->priv->filename, filename) == 0))
-        return;
-
-      /* Free old filename */
-      g_free (directory->priv->filename);
-    }
-
-  /* Set the new filename */
-  directory->priv->filename = g_strdup (filename);
-
-  /* Free private data before reloading the directory */
-  xfce_menu_directory_free_private (directory);
-
-  /* Reload the menu */
-  xfce_menu_directory_load (directory);
-
-  /* Notify listeners */
-  g_object_notify (G_OBJECT (directory), "filename");
+  return directory->priv->file;
 }
 
 
@@ -472,7 +451,6 @@ void
 xfce_menu_directory_set_icon (XfceMenuDirectory *directory, const gchar *icon)
 {
   g_return_if_fail (XFCE_IS_MENU_DIRECTORY (directory));
-  g_return_if_fail (icon != NULL);
 
   /* Free old name */
   if (G_UNLIKELY (directory->priv->icon != NULL))
@@ -539,15 +517,20 @@ xfce_menu_directory_free_private (XfceMenuDirectory *directory)
 static void
 xfce_menu_directory_load (XfceMenuDirectory *directory)
 {
-  XfceRc       *entry;
-  const gchar  *name;
-  const gchar  *comment;
-  const gchar  *icon;
+  XfceRc      *entry;
+  const gchar *name;
+  const gchar *comment;
+  const gchar *icon;
+  gchar       *filename;
 
   g_return_if_fail (XFCE_IS_MENU_DIRECTORY (directory));
-  g_return_if_fail (directory->priv->filename != NULL);
 
-  entry = xfce_rc_simple_open (directory->priv->filename, TRUE);
+  /* TODO: Use get_uri() here, together with g_file_read() and
+   * g_key_file_load_from_data() */
+
+  filename = g_file_get_path (directory->priv->file);
+  entry = xfce_rc_simple_open (filename, TRUE);
+  g_free (filename);
 
   if (G_UNLIKELY (entry == NULL))
     return;
