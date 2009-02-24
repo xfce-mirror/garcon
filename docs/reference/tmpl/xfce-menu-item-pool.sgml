@@ -78,7 +78,7 @@ XfceMenuItemPool
 </para>
 
 @pool: 
-@rule: 
+@node: 
 
 
 <!-- ##### FUNCTION xfce_menu_item_pool_get_empty ##### -->

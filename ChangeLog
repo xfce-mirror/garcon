@@ -1,5 +1,9 @@
 2009-02-24	Jannis Pohlmann <jannis@xfce.org>
 
+	* docs/reference/: Update API docs.
+
+2009-02-24	Jannis Pohlmann <jannis@xfce.org>
+
 	* libxfce4menu/xfce-menu-node.h: Add missing declaration for
 	  xfce_menu_node_type_get_type().
 

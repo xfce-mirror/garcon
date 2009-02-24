@@ -40,7 +40,7 @@ XfceMenuDirectory
 
 </para>
 
-<!-- ##### ARG XfceMenuDirectory:filename ##### -->
+<!-- ##### ARG XfceMenuDirectory:file ##### -->
 <para>
 
 </para>
@@ -60,22 +60,13 @@ XfceMenuDirectory
 
 </para>
 
-<!-- ##### FUNCTION xfce_menu_directory_get_filename ##### -->
+<!-- ##### FUNCTION xfce_menu_directory_get_file ##### -->
 <para>
 
 </para>
 
 @directory: 
 @Returns: 
-
-
-<!-- ##### FUNCTION xfce_menu_directory_set_filename ##### -->
-<para>
-
-</para>
-
-@directory: 
-@name: 
 
 
 <!-- ##### FUNCTION xfce_menu_directory_get_name ##### -->

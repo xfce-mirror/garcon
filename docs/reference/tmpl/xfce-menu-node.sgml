@@ -1,0 +1,286 @@
+<!-- ##### SECTION Title ##### -->
+XfceMenuNode
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM XfceMenuNodeType ##### -->
+<para>
+
+</para>
+
+@XFCE_MENU_NODE_TYPE_INVALID: 
+@XFCE_MENU_NODE_TYPE_MENU: 
+@XFCE_MENU_NODE_TYPE_NAME: 
+@XFCE_MENU_NODE_TYPE_DIRECTORY: 
+@XFCE_MENU_NODE_TYPE_DIRECTORY_DIR: 
+@XFCE_MENU_NODE_TYPE_DEFAULT_DIRECTORY_DIRS: 
+@XFCE_MENU_NODE_TYPE_APP_DIR: 
+@XFCE_MENU_NODE_TYPE_DEFAULT_APP_DIRS: 
+@XFCE_MENU_NODE_TYPE_ONLY_UNALLOCATED: 
+@XFCE_MENU_NODE_TYPE_NOT_ONLY_UNALLOCATED: 
+@XFCE_MENU_NODE_TYPE_DELETED: 
+@XFCE_MENU_NODE_TYPE_NOT_DELETED: 
+@XFCE_MENU_NODE_TYPE_INCLUDE: 
+@XFCE_MENU_NODE_TYPE_EXCLUDE: 
+@XFCE_MENU_NODE_TYPE_ALL: 
+@XFCE_MENU_NODE_TYPE_FILENAME: 
+@XFCE_MENU_NODE_TYPE_CATEGORY: 
+@XFCE_MENU_NODE_TYPE_OR: 
+@XFCE_MENU_NODE_TYPE_AND: 
+@XFCE_MENU_NODE_TYPE_NOT: 
+@XFCE_MENU_NODE_TYPE_MOVE: 
+@XFCE_MENU_NODE_TYPE_OLD: 
+@XFCE_MENU_NODE_TYPE_NEW: 
+@XFCE_MENU_NODE_TYPE_LAYOUT: 
+@XFCE_MENU_NODE_TYPE_MENUNAME: 
+@XFCE_MENU_NODE_TYPE_SEPARATOR: 
+@XFCE_MENU_NODE_TYPE_MERGE: 
+@XFCE_MENU_NODE_TYPE_MERGE_FILE: 
+@XFCE_MENU_NODE_TYPE_MERGE_DIR: 
+@XFCE_MENU_NODE_TYPE_DEFAULT_MERGE_DIRS: 
+
+<!-- ##### MACRO XFCE_MENU_NODE_TYPE ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### ENUM XfceMenuLayoutMergeType ##### -->
+<para>
+
+</para>
+
+@XFCE_MENU_LAYOUT_MERGE_MENUS: 
+@XFCE_MENU_LAYOUT_MERGE_FILES: 
+@XFCE_MENU_LAYOUT_MERGE_ALL: 
+
+<!-- ##### ENUM XfceMenuMergeFileType ##### -->
+<para>
+
+</para>
+
+@XFCE_MENU_MERGE_FILE_PATH: 
+@XFCE_MENU_MERGE_FILE_PARENT: 
+
+<!-- ##### STRUCT XfceMenuNodeClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT XfceMenuNode ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG XfceMenuNode:node-type ##### -->
+<para>
+
+</para>
+
+<!-- ##### FUNCTION xfce_menu_node_get_type ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_new ##### -->
+<para>
+
+</para>
+
+@node_type: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_get_node_type ##### -->
+<para>
+
+</para>
+
+@node: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_create ##### -->
+<para>
+
+</para>
+
+@node_type: 
+@first_value: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_copy ##### -->
+<para>
+
+</para>
+
+@node: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_get_string ##### -->
+<para>
+
+</para>
+
+@node: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_set_string ##### -->
+<para>
+
+</para>
+
+@node: 
+@string: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_get_merge_file_type ##### -->
+<para>
+
+</para>
+
+@node: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_set_merge_file_type ##### -->
+<para>
+
+</para>
+
+@node: 
+@type: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_get_merge_file_filename ##### -->
+<para>
+
+</para>
+
+@node: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_set_merge_file_filename ##### -->
+<para>
+
+</para>
+
+@node: 
+@filename: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_tree_rule_matches ##### -->
+<para>
+
+</para>
+
+@tree: 
+@item: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_tree_get_node_type ##### -->
+<para>
+
+</para>
+
+@tree: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_tree_get_string ##### -->
+<para>
+
+</para>
+
+@tree: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_tree_get_layout_merge_type ##### -->
+<para>
+
+</para>
+
+@tree: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_tree_get_merge_file_type ##### -->
+<para>
+
+</para>
+
+@tree: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_tree_get_merge_file_filename ##### -->
+<para>
+
+</para>
+
+@tree: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_tree_compare ##### -->
+<para>
+
+</para>
+
+@tree: 
+@other_tree: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_tree_copy ##### -->
+<para>
+
+</para>
+
+@tree: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_tree_free ##### -->
+<para>
+
+</para>
+
+@tree: 
+
+
+<!-- ##### FUNCTION xfce_menu_node_tree_free_data ##### -->
+<para>
+
+</para>
+
+@tree: 
+
+

@@ -64,3 +64,11 @@ XfceMenuItemCache
 @user_data: 
 
 
+<!-- ##### FUNCTION xfce_menu_item_cache_invalidate ##### -->
+<para>
+
+</para>
+
+@cache: 
+
+

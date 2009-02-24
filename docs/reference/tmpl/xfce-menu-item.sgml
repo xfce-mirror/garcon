@@ -194,6 +194,42 @@ XfceMenuItem
 @name: 
 
 
+<!-- ##### FUNCTION xfce_menu_item_get_generic_name ##### -->
+<para>
+
+</para>
+
+@item: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_item_set_generic_name ##### -->
+<para>
+
+</para>
+
+@item: 
+@generic_name: 
+
+
+<!-- ##### FUNCTION xfce_menu_item_get_comment ##### -->
+<para>
+
+</para>
+
+@item: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_item_set_comment ##### -->
+<para>
+
+</para>
+
+@item: 
+@comment: 
+
+
 <!-- ##### FUNCTION xfce_menu_item_get_icon_name ##### -->
 <para>
 
@@ -210,6 +246,24 @@ XfceMenuItem
 
 @item: 
 @icon_name: 
+
+
+<!-- ##### FUNCTION xfce_menu_item_get_path ##### -->
+<para>
+
+</para>
+
+@item: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_item_set_path ##### -->
+<para>
+
+</para>
+
+@item: 
+@path: 
 
 
 <!-- ##### FUNCTION xfce_menu_item_requires_terminal ##### -->
@@ -284,7 +338,26 @@ XfceMenuItem
 @categories: 
 
 
+<!-- ##### FUNCTION xfce_menu_item_has_category ##### -->
+<para>
+
+</para>
+
+@item: 
+@category: 
+@Returns: 
+
+
 <!-- ##### FUNCTION xfce_menu_item_show_in_environment ##### -->
+<para>
+
+</para>
+
+@item: 
+@Returns: 
+
+
+<!-- ##### FUNCTION xfce_menu_item_only_show_in_environment ##### -->
 <para>
 
 </para>

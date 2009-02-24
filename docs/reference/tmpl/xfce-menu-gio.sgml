@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-XfceMenuOrRules
+xfce-menu-gio
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -9,31 +9,43 @@ XfceMenuOrRules
 
 </para>
 
+
 <!-- ##### SECTION See_Also ##### -->
 <para>
 
 </para>
 
+
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT XfceMenuOrRules ##### -->
+<!-- ##### FUNCTION g_file_new_for_unknown_input ##### -->
 <para>
 
 </para>
 
+@path: 
+@parent: 
+@Returns: 
 
-<!-- ##### STRUCT XfceMenuOrRulesClass ##### -->
+
+<!-- ##### FUNCTION g_file_new_relative_to_file ##### -->
 <para>
 
 </para>
 
+@path: 
+@file: 
+@Returns: 
 
-<!-- ##### FUNCTION xfce_menu_or_rules_new ##### -->
+
+<!-- ##### FUNCTION g_file_get_uri_relative_to_file ##### -->
 <para>
 
 </para>
 
+@path: 
+@file: 
 @Returns: 
 
 

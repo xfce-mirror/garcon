@@ -36,30 +36,30 @@ cases the first thing to be created is an XfceMenu based on a filename.
 </para>
 
 
-<!-- ##### ARG XfceMenu:deleted ##### -->
-<para>
-
-</para>
-
 <!-- ##### ARG XfceMenu:directory ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG XfceMenu:filename ##### -->
+<!-- ##### ARG XfceMenu:file ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG XfceMenu:name ##### -->
+<!-- ##### FUNCTION xfce_menu_init ##### -->
 <para>
 
 </para>
 
-<!-- ##### ARG XfceMenu:only-unallocated ##### -->
+@env: 
+
+
+<!-- ##### FUNCTION xfce_menu_shutdown ##### -->
 <para>
 
 </para>
+
+
 
 <!-- ##### FUNCTION xfce_menu_get_root ##### -->
 <para>
@@ -75,27 +75,18 @@ cases the first thing to be created is an XfceMenu based on a filename.
 
 </para>
 
-@filename: 
+@file: 
 @error: 
 @Returns: 
 
 
-<!-- ##### FUNCTION xfce_menu_get_filename ##### -->
+<!-- ##### FUNCTION xfce_menu_get_file ##### -->
 <para>
 
 </para>
 
 @menu: 
 @Returns: 
-
-
-<!-- ##### FUNCTION xfce_menu_set_filename ##### -->
-<para>
-
-</para>
-
-@menu: 
-@filename: 
 
 
 <!-- ##### FUNCTION xfce_menu_get_name ##### -->
@@ -105,15 +96,6 @@ cases the first thing to be created is an XfceMenu based on a filename.
 
 @menu: 
 @Returns: 
-
-
-<!-- ##### FUNCTION xfce_menu_set_name ##### -->
-<para>
-
-</para>
-
-@menu: 
-@name: 
 
 
 <!-- ##### FUNCTION xfce_menu_get_directory ##### -->
@@ -132,69 +114,6 @@ cases the first thing to be created is an XfceMenu based on a filename.
 
 @menu: 
 @directory: 
-
-
-<!-- ##### FUNCTION xfce_menu_get_directory_dirs ##### -->
-<para>
-
-</para>
-
-@menu: 
-@Returns: 
-
-
-<!-- ##### FUNCTION xfce_menu_get_legacy_dirs ##### -->
-<para>
-
-</para>
-
-@menu: 
-@Returns: 
-
-
-<!-- ##### FUNCTION xfce_menu_get_app_dirs ##### -->
-<para>
-
-</para>
-
-@menu: 
-@Returns: 
-
-
-<!-- ##### FUNCTION xfce_menu_get_only_unallocated ##### -->
-<para>
-
-</para>
-
-@menu: 
-@Returns: 
-
-
-<!-- ##### FUNCTION xfce_menu_set_only_unallocated ##### -->
-<para>
-
-</para>
-
-@menu: 
-@only_unallocated: 
-
-
-<!-- ##### FUNCTION xfce_menu_get_deleted ##### -->
-<para>
-
-</para>
-
-@menu: 
-@Returns: 
-
-
-<!-- ##### FUNCTION xfce_menu_set_deleted ##### -->
-<para>
-
-</para>
-
-@menu: 
-@deleted: 
 
 
 <!-- ##### FUNCTION xfce_menu_get_menus ##### -->

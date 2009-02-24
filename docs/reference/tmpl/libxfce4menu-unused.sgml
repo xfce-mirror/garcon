@@ -22,35 +22,336 @@
 config
 
 
-<!-- ##### SECTION ./tmpl/libxfce4menu.sgml:Long_Description ##### -->
+<!-- ##### SECTION ./tmpl/xfce-menu-and-rules.sgml:Long_Description ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### SECTION ./tmpl/libxfce4menu.sgml:See_Also ##### -->
+<!-- ##### SECTION ./tmpl/xfce-menu-and-rules.sgml:See_Also ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### SECTION ./tmpl/libxfce4menu.sgml:Short_Description ##### -->
+<!-- ##### SECTION ./tmpl/xfce-menu-and-rules.sgml:Short_Description ##### -->
 
 
 
-<!-- ##### SECTION ./tmpl/libxfce4menu.sgml:Stability_Level ##### -->
+<!-- ##### SECTION ./tmpl/xfce-menu-and-rules.sgml:Stability_Level ##### -->
 
 
 
-<!-- ##### SECTION ./tmpl/libxfce4menu.sgml:Title ##### -->
-libxfce4menu
+<!-- ##### SECTION ./tmpl/xfce-menu-and-rules.sgml:Title ##### -->
+XfceMenuAndRules
 
 
-<!-- ##### MACRO LIBXFCE4MENU_INSIDE_LIBXFCE4MENU_H ##### -->
+<!-- ##### SECTION ./tmpl/xfce-menu-init-shutdown.sgml:Long_Description ##### -->
 <para>
 
 </para>
 
+
+<!-- ##### SECTION ./tmpl/xfce-menu-init-shutdown.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-init-shutdown.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-init-shutdown.sgml:Stability_Level ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-init-shutdown.sgml:Title ##### -->
+Initialization and Shutdown
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-move.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-move.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-move.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-move.sgml:Stability_Level ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-move.sgml:Title ##### -->
+XfceMenuMove
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-not-rules.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-not-rules.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-not-rules.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-not-rules.sgml:Stability_Level ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-not-rules.sgml:Title ##### -->
+XfceMenuNotRules
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-or-rules.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-or-rules.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-or-rules.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-or-rules.sgml:Stability_Level ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-or-rules.sgml:Title ##### -->
+XfceMenuOrRules
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-rules.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-rules.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-rules.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-rules.sgml:Stability_Level ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-rules.sgml:Title ##### -->
+XfceMenuRules
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-standard-rules.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-standard-rules.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-standard-rules.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-standard-rules.sgml:Stability_Level ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/xfce-menu-standard-rules.sgml:Title ##### -->
+XfceMenuStandardRules
+
+
+<!-- ##### ARG XfceMenu:deleted ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG XfceMenu:filename ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG XfceMenu:name ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG XfceMenu:only-unallocated ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT XfceMenuAndRules ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT XfceMenuAndRulesClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG XfceMenuDirectory:filename ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT XfceMenuMove ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT XfceMenuMoveClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT XfceMenuNotRules ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT XfceMenuNotRulesClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT XfceMenuOrRules ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT XfceMenuOrRulesClass ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT XfceMenuRules ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT XfceMenuRulesIface ##### -->
+<para>
+
+</para>
+
+@__parent__: 
+@match: 
+@add_rules: 
+@add_all: 
+@add_filename: 
+@add_category: 
+
+<!-- ##### STRUCT XfceMenuStandardRules ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG XfceMenuStandardRules:include ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION xfce_menu_and_rules_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+<!-- ##### FUNCTION xfce_menu_directory_get_filename ##### -->
+<para>
+
+</para>
+
+@directory: 
+@Returns: 
+
+<!-- ##### FUNCTION xfce_menu_directory_set_filename ##### -->
+<para>
+
+</para>
+
+@directory: 
+@name: 
+
+<!-- ##### FUNCTION xfce_menu_get_app_dirs ##### -->
+<para>
+
+</para>
+
+@menu: 
+@Returns: 
+
+<!-- ##### FUNCTION xfce_menu_get_deleted ##### -->
+<para>
+
+</para>
+
+@menu: 
+@Returns: 
+
+<!-- ##### FUNCTION xfce_menu_get_directory_dirs ##### -->
+<para>
+
+</para>
+
+@menu: 
+@Returns: 
+
+<!-- ##### FUNCTION xfce_menu_get_filename ##### -->
+<para>
+
+</para>
+
+@menu: 
+@Returns: 
 
 <!-- ##### FUNCTION xfce_menu_get_layout_items ##### -->
 <para>
@@ -59,4 +360,161 @@ libxfce4menu
 
 @menu: 
 @Returns: 
+
+<!-- ##### FUNCTION xfce_menu_get_legacy_dirs ##### -->
+<para>
+
+</para>
+
+@menu: 
+@Returns: 
+
+<!-- ##### FUNCTION xfce_menu_get_only_unallocated ##### -->
+<para>
+
+</para>
+
+@menu: 
+@Returns: 
+
+<!-- ##### FUNCTION xfce_menu_move_get_new ##### -->
+<para>
+
+</para>
+
+@move: 
+@Returns: 
+
+<!-- ##### FUNCTION xfce_menu_move_get_old ##### -->
+<para>
+
+</para>
+
+@move: 
+@Returns: 
+
+<!-- ##### FUNCTION xfce_menu_move_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+<!-- ##### FUNCTION xfce_menu_move_set_new ##### -->
+<para>
+
+</para>
+
+@move: 
+@new: 
+
+<!-- ##### FUNCTION xfce_menu_move_set_old ##### -->
+<para>
+
+</para>
+
+@move: 
+@old: 
+
+<!-- ##### FUNCTION xfce_menu_not_rules_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+<!-- ##### FUNCTION xfce_menu_or_rules_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+<!-- ##### FUNCTION xfce_menu_rules_add_all ##### -->
+<para>
+
+</para>
+
+@rules: 
+
+<!-- ##### FUNCTION xfce_menu_rules_add_category ##### -->
+<para>
+
+</para>
+
+@rules: 
+@category: 
+
+<!-- ##### FUNCTION xfce_menu_rules_add_filename ##### -->
+<para>
+
+</para>
+
+@rules: 
+@filename: 
+
+<!-- ##### FUNCTION xfce_menu_rules_add_rules ##### -->
+<para>
+
+</para>
+
+@rules: 
+@additional_rules: 
+
+<!-- ##### FUNCTION xfce_menu_rules_match ##### -->
+<para>
+
+</para>
+
+@rules: 
+@item: 
+@Returns: 
+
+<!-- ##### FUNCTION xfce_menu_set_deleted ##### -->
+<para>
+
+</para>
+
+@menu: 
+@deleted: 
+
+<!-- ##### FUNCTION xfce_menu_set_filename ##### -->
+<para>
+
+</para>
+
+@menu: 
+@filename: 
+
+<!-- ##### FUNCTION xfce_menu_set_name ##### -->
+<para>
+
+</para>
+
+@menu: 
+@name: 
+
+<!-- ##### FUNCTION xfce_menu_set_only_unallocated ##### -->
+<para>
+
+</para>
+
+@menu: 
+@only_unallocated: 
+
+<!-- ##### FUNCTION xfce_menu_standard_rules_get_include ##### -->
+<para>
+
+</para>
+
+@rules: 
+@Returns: 
+
+<!-- ##### FUNCTION xfce_menu_standard_rules_set_include ##### -->
+<para>
+
+</para>
+
+@rules: 
+@include: 
 

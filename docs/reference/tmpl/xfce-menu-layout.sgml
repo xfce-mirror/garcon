@@ -17,15 +17,6 @@ XfceMenuLayout
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### ENUM XfceMenuLayoutMergeType ##### -->
-<para>
-
-</para>
-
-@XFCE_MENU_LAYOUT_MERGE_MENUS: 
-@XFCE_MENU_LAYOUT_MERGE_FILES: 
-@XFCE_MENU_LAYOUT_MERGE_ALL: 
-
 <!-- ##### ENUM XfceMenuLayoutNodeType ##### -->
 <para>
 

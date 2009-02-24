@@ -1,5 +1,5 @@
 <!-- ##### SECTION Title ##### -->
-XfceMenuStandardRules
+XfceMenuParser
 
 <!-- ##### SECTION Short_Description ##### -->
 
@@ -17,32 +17,40 @@ XfceMenuStandardRules
 <!-- ##### SECTION Stability_Level ##### -->
 
 
-<!-- ##### STRUCT XfceMenuStandardRules ##### -->
+<!-- ##### STRUCT XfceMenuParserPrivate ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### ARG XfceMenuStandardRules:include ##### -->
+<!-- ##### FUNCTION xfce_menu_parser_new ##### -->
 <para>
 
 </para>
 
-<!-- ##### FUNCTION xfce_menu_standard_rules_get_include ##### -->
-<para>
-
-</para>
-
-@rules: 
+@file: 
 @Returns: 
 
 
-<!-- ##### FUNCTION xfce_menu_standard_rules_set_include ##### -->
+<!-- ##### FUNCTION xfce_menu_parser_run ##### -->
 <para>
 
 </para>
 
-@rules: 
-@include: 
+@parser: 
+@cancellable: 
+@error: 
+@Returns: 
 
+
+<!-- ##### STRUCT XfceMenuParser ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ARG XfceMenuParser:file ##### -->
+<para>
+
+</para>
 
