@@ -47,6 +47,7 @@ node_name (GNode *node)
 {
   switch (xfce_menu_node_tree_get_node_type (node))
     {
+      case XFCE_MENU_NODE_TYPE_MENU: return "Menu"; break;
       case XFCE_MENU_NODE_TYPE_INCLUDE: return "Include"; break;
       case XFCE_MENU_NODE_TYPE_EXCLUDE: return "Exclude"; break;
       case XFCE_MENU_NODE_TYPE_OR: return "Or"; break;
@@ -150,7 +151,7 @@ print_node (GNode *node,
           break;
         case XFCE_MENU_NODE_TYPE_MERGE:
           INDENT; 
-          switch (xfce_menu_node_tree_get_layout_merge_type (node->data))
+          switch (xfce_menu_node_tree_get_layout_merge_type (node))
             {
             case XFCE_MENU_LAYOUT_MERGE_ALL:
               g_print ("<Merge type=\"all\"/>\n");
@@ -234,9 +235,7 @@ main (int    argc,
   xfce_menu_init ("XFCE");
 
   if (argc > 1)
-    {
-      file = g_file_new_for_path (argv[1]);
-    }
+    file = g_file_new_for_path (argv[1]);
   else
     {
       /* Search for a usable root menu file */
@@ -275,11 +274,14 @@ main (int    argc,
         }
       else
         {
-          g_error ("Could not merge menus in %s: %s", 
-                   argc > 1 ? argv[1] : FILENAME, 
-                   error->message);
+          if (error != NULL)
+            {
+              g_error ("Could not merge menus in %s: %s", 
+                       argc > 1 ? argv[1] : FILENAME, 
+                       error->message);
 
-          g_error_free (error);
+              g_error_free (error);
+            }
 
           result = EXIT_FAILURE;
         }
@@ -288,8 +290,11 @@ main (int    argc,
     }
   else
     {
-      g_error ("Could not parse %s: %s", argc > 1 ? argv[1] : FILENAME, error->message);
-      g_error_free (error);
+      if (error != NULL)
+        {
+          g_error ("Could not parse %s: %s", argc > 1 ? argv[1] : FILENAME, error->message);
+          g_error_free (error);
+        }
 
       result = EXIT_FAILURE;
     }

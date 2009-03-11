@@ -379,13 +379,13 @@ xfce_menu_node_get_string (XfceMenuNode *node)
 
 void
 xfce_menu_node_set_string (XfceMenuNode *node,
-                           const gchar  *string)
+                           const gchar  *value)
 {
   g_return_if_fail (XFCE_IS_MENU_NODE (node));
-  g_return_if_fail (string != NULL);
+  g_return_if_fail (value != NULL);
 
   g_free (node->data.string);
-  node->data.string = g_strdup (string);
+  node->data.string = g_strdup (value);
 }
 
 
@@ -431,6 +431,175 @@ xfce_menu_node_set_merge_file_filename (XfceMenuNode *node,
 
   g_free (node->data.merge_file.filename);
   node->data.merge_file.filename = g_strdup (filename);
+}
+
+
+
+typedef struct
+{
+  XfceMenuNodeType type;
+  GNode           *self;
+  gboolean         reverse;
+  gpointer         value;
+} Pair;
+
+
+
+gboolean
+collect_children (GNode *node,
+                  Pair  *pair)
+{
+  if (node == pair->self)
+    return FALSE;
+
+  if (xfce_menu_node_tree_get_node_type (node) == pair->type)
+    {
+      if (pair->reverse)
+        pair->value = g_list_prepend (pair->value, node);
+      else
+        pair->value = g_list_append (pair->value, node);
+    }
+
+  return FALSE;
+}
+
+
+
+GList *
+xfce_menu_node_tree_get_child_nodes (GNode            *tree,
+                                     XfceMenuNodeType  type,
+                                     gboolean          reverse)
+{
+  Pair pair;
+
+  pair.type = type;
+  pair.reverse = reverse;
+  pair.value = NULL;
+  pair.self = tree;
+
+  g_node_traverse (tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
+                   (GNodeTraverseFunc) collect_children, &pair);
+
+  return pair.value;
+}
+
+
+
+gboolean
+collect_strings (GNode *node,
+                 Pair  *pair)
+{
+  gpointer string;
+
+  if (node == pair->self)
+    return FALSE;
+
+  if (xfce_menu_node_tree_get_node_type (node) == pair->type)
+    {
+      string = (gpointer) xfce_menu_node_tree_get_string (node);
+
+      if (pair->reverse)
+        pair->value = g_list_prepend (pair->value, string);
+      else
+        pair->value = g_list_append (pair->value, string);
+    }
+
+  return FALSE;
+}
+
+
+
+GList *
+xfce_menu_node_tree_get_string_children (GNode            *tree,
+                                         XfceMenuNodeType  type,
+                                         gboolean          reverse)
+{
+  Pair pair;
+
+  pair.type = type;
+  pair.reverse = reverse;
+  pair.value = NULL;
+  pair.self = tree;
+
+  g_node_traverse (tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
+                   (GNodeTraverseFunc) collect_strings, &pair);
+
+  return pair.value;
+}
+
+
+
+static gboolean
+collect_boolean (GNode *node,
+                 Pair  *pair)
+{
+  if (node == pair->self)
+    return FALSE;
+
+  if (xfce_menu_node_tree_get_node_type (node) == pair->type)
+    {
+      pair->value = GUINT_TO_POINTER (1);
+      return TRUE;
+    }
+
+  return FALSE;
+}
+
+
+
+gboolean 
+xfce_menu_node_tree_get_boolean_child (GNode            *tree,
+                                       XfceMenuNodeType  type)
+{
+  Pair pair;
+
+  pair.value = GUINT_TO_POINTER (0);
+  pair.self = tree;
+  pair.type = type;
+
+  g_node_traverse (tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
+                   (GNodeTraverseFunc) collect_boolean, &pair);
+
+  return !!GPOINTER_TO_UINT (pair.value);
+}
+
+
+
+static gboolean
+collect_string (GNode *node,
+                Pair  *pair)
+{
+  const gchar **string = pair->value;
+
+  if (node == pair->self)
+    return FALSE;
+
+  if (xfce_menu_node_tree_get_node_type (node) == pair->type)
+    {
+      *string = xfce_menu_node_tree_get_string (node);
+      return TRUE;
+    }
+
+  return FALSE;
+}
+
+
+
+const gchar *
+xfce_menu_node_tree_get_string_child (GNode            *tree,
+                                      XfceMenuNodeType  type)
+{
+  Pair         pair;
+  const gchar *string = NULL;
+
+  pair.type = type;
+  pair.value = &string;
+  pair.self = tree;
+
+  g_node_traverse (tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
+                   (GNodeTraverseFunc) collect_string, &pair);
+
+  return string;
 }
 
 
@@ -514,6 +683,29 @@ xfce_menu_node_tree_get_string (GNode *tree)
 
 
 
+void
+xfce_menu_node_tree_set_string (GNode       *tree,
+                                const gchar *value)
+{
+  XfceMenuNodeType type;
+
+  type = xfce_menu_node_tree_get_node_type (tree);
+
+  g_return_if_fail (type == XFCE_MENU_NODE_TYPE_NAME ||
+                    type == XFCE_MENU_NODE_TYPE_DIRECTORY ||
+                    type == XFCE_MENU_NODE_TYPE_DIRECTORY_DIR ||
+                    type == XFCE_MENU_NODE_TYPE_APP_DIR ||
+                    type == XFCE_MENU_NODE_TYPE_FILENAME ||
+                    type == XFCE_MENU_NODE_TYPE_CATEGORY ||
+                    type == XFCE_MENU_NODE_TYPE_OLD ||
+                    type == XFCE_MENU_NODE_TYPE_NEW ||
+                    type == XFCE_MENU_NODE_TYPE_MENUNAME ||
+                    type == XFCE_MENU_NODE_TYPE_MERGE_DIR);
+
+  xfce_menu_node_set_string (tree->data, value);
+}
+
+
 XfceMenuLayoutMergeType
 xfce_menu_node_tree_get_layout_merge_type (GNode *tree)
 {
@@ -526,7 +718,7 @@ xfce_menu_node_tree_get_layout_merge_type (GNode *tree)
 XfceMenuMergeFileType 
 xfce_menu_node_tree_get_merge_file_type (GNode *tree)
 {
-  g_return_val_if_fail (xfce_menu_node_tree_get_node_type (tree) != XFCE_MENU_NODE_TYPE_MERGE_FILE, 0);
+  g_return_val_if_fail (xfce_menu_node_tree_get_node_type (tree) == XFCE_MENU_NODE_TYPE_MERGE_FILE, 0);
   return xfce_menu_node_get_merge_file_type (tree->data);
 }
 
@@ -535,8 +727,18 @@ xfce_menu_node_tree_get_merge_file_type (GNode *tree)
 const gchar *
 xfce_menu_node_tree_get_merge_file_filename (GNode *tree)
 {
-  g_return_val_if_fail (xfce_menu_node_tree_get_node_type (tree) != XFCE_MENU_NODE_TYPE_MERGE_FILE, NULL);
+  g_return_val_if_fail (xfce_menu_node_tree_get_node_type (tree) == XFCE_MENU_NODE_TYPE_MERGE_FILE, NULL);
   return xfce_menu_node_get_merge_file_filename (tree->data);
+}
+
+
+
+void
+xfce_menu_node_tree_set_merge_file_filename (GNode       *tree,
+                                             const gchar *filename)
+{
+  g_return_if_fail (xfce_menu_node_tree_get_node_type (tree) == XFCE_MENU_NODE_TYPE_MERGE_FILE);
+  xfce_menu_node_set_merge_file_filename (tree->data, filename);
 }
 
 

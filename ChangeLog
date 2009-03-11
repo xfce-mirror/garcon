@@ -1,3 +1,34 @@
+2009-03-12	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu-directory.{c,h}: Add function
+	  xfce_menu_directory_equal() which compares two XfceMenuDirectory
+	  objects based on their GFile members.
+	* libxfce4menu/xfce-menu-layout.{c,h}: Use GList instead of GSList
+	  everywhere.
+	* libxfce4menu/xfce-menu-merger.{c,h}: Never access GNode data
+	  directly. Instead always use the xfce_menu_node_tree*() functions.
+	* libxfce4menu/xfce-menu-node.{c,h}: Add functions
+	  xfce_menu_node_tree_get_child_nodes(),
+	  xfce_menu_node_tree_get_string_children(),
+	  xfce_menu_node_tree_get_boolean_child() and
+	  xfce_menu_node_tree_get_string_child() to collect the values of
+	  immediate children of a GNode tree.  Add new functions
+	  xfce_menu_node_tree_set_string() and
+	  xfce_menu_node_tree_set_merge_file_filename() so that GNode data
+	  needs to be accessed less often. Fix assertions in a few other
+	  functions.
+	* libxfce4menu/xfce-menu-parser.c: Fix segmentation fault due to an
+	  uninitialized GError in GIO.
+	* libxfce4menu/xfce-menu.{c,h}: Use GList instead of GSList everywhere.
+	  Improve API docs for a few public functions. Change xfce_menu_new()
+	  again to expect a filename as the first parameter. Add a separate
+	  function xfce_menu_new_for_file() to create an XfceMenu from a
+	  GFile. Rename xfce_menu_get_root() to xfce_menu_new_applications().
+	  Replace a lot of traversing code with the new
+	  xfce_menu_node_tree_get*() functions.
+	* tests/test-display-menu.c, tests/test-menu-parser.c,
+	  tests/test-menu-spec.c: Update to new libxfce4menu API.
+
 2009-02-24	Jannis Pohlmann <jannis@xfce.org>
 
 	* libxfce4menu/libxfce4menu.c: Add missing source file.

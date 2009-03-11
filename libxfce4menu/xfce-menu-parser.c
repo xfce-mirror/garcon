@@ -302,7 +302,15 @@ xfce_menu_parser_run (XfceMenuParser *parser,
                                          &data, &data_length, NULL, error)))
     {
       gchar *uri = g_file_get_uri (parser->priv->file);
-      g_warning (_("Could not load menu file data from %s: %s"), uri, (*error)->message);
+      
+      if (error != NULL)
+        {
+          g_warning (_("Could not load menu file data from %s: %s"), uri, (*error)->message);
+          g_error_free (*error);
+        }
+      else
+        g_warning (_("Could not load menu file data from %s"), uri);
+
       g_free (uri);
       return FALSE;
     }
@@ -317,12 +325,11 @@ xfce_menu_parser_run (XfceMenuParser *parser,
   context = g_markup_parse_context_new (&markup_parser, 0, &parser_context, NULL); 
 
   /* Try to parse the menu file */
-  if (g_markup_parse_context_parse (context, data, data_length, error) &&
-      g_markup_parse_context_end_parse (context, error))
+  if (!g_markup_parse_context_parse (context, data, data_length, error) ||
+      !g_markup_parse_context_end_parse (context, error))
     {
+      result = FALSE;
     }
-  else
-    result = FALSE;
 
   g_markup_parse_context_free (context);
   g_free (data);

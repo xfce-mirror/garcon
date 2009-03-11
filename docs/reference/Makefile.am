@@ -10,6 +10,8 @@ DOC_MODULE=libxfce4menu
 # Top-level SGML file
 DOC_MAIN_SGML_FILE=$(DOC_MODULE)-docs.xml
 
+SCAN_OPTIONS=--rebuild-sections
+
 # Extra options to pass to gtkdoc-scangobj
 SCANGOBJ_OPTIONS=
 

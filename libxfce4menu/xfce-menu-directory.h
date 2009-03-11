@@ -59,6 +59,8 @@ void                     xfce_menu_directory_set_no_display      (XfceMenuDirect
                                                                   gboolean           no_display);
 gboolean                 xfce_menu_directory_get_hidden          (XfceMenuDirectory *directory);
 gboolean                 xfce_menu_directory_show_in_environment (XfceMenuDirectory *directory);
+gboolean                 xfce_menu_directory_equal               (XfceMenuDirectory *directory,
+                                                                  XfceMenuDirectory *other);
 
 #if defined(LIBXFCE4MENU_COMPILATION)
 void _xfce_menu_directory_init     (void) G_GNUC_INTERNAL;

@@ -555,16 +555,16 @@ xfce_menu_merger_resolve_relative_paths (GNode                 *node,
     {
       relative_path = (gchar *)xfce_menu_node_tree_get_string (node);
       absolute_path = g_file_get_uri_relative_to_file (relative_path, source_file);
-      xfce_menu_node_set_string (node->data, absolute_path);
+      xfce_menu_node_tree_set_string (node, absolute_path);
       g_free (absolute_path);
     }
   else if (xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_MERGE_FILE)
     {
-      if (xfce_menu_node_get_merge_file_type (node->data) == XFCE_MENU_MERGE_FILE_PATH)
+      if (xfce_menu_node_tree_get_merge_file_type (node) == XFCE_MENU_MERGE_FILE_PATH)
         {
-          relative_path = (gchar *)xfce_menu_node_get_merge_file_filename (node->data);
+          relative_path = (gchar *)xfce_menu_node_tree_get_merge_file_filename (node);
           absolute_path = g_file_get_uri_relative_to_file (relative_path, source_file);
-          xfce_menu_node_set_merge_file_filename (node->data, absolute_path);
+          xfce_menu_node_tree_set_merge_file_filename (node, absolute_path);
           g_free (absolute_path);
         }
       else
@@ -593,12 +593,12 @@ xfce_menu_merger_resolve_relative_paths (GNode                 *node,
                       absolute_path = g_file_get_uri (absolute);
 
                       /* Destroy the MenuFile type="parent" information */
-                      g_object_unref (node->data);
+                      xfce_menu_node_tree_free_data (node);
 
                       /* Replace it with a MergeFile type="path" element */
                       node->data = xfce_menu_node_create (XFCE_MENU_NODE_TYPE_MERGE_FILE,
                                                           GUINT_TO_POINTER (XFCE_MENU_MERGE_FILE_PATH));
-                      xfce_menu_node_set_merge_file_filename (node->data, absolute_path);
+                      xfce_menu_node_tree_set_merge_file_filename (node, absolute_path);
                     }
                   g_object_unref (absolute);
                   break;
@@ -791,7 +791,7 @@ xfce_menu_merger_resolve_merge_dirs (GNode                 *node,
               file = g_file_resolve_relative_path (dir, g_file_info_get_name (file_info));
               uri = g_file_get_uri (file);
 
-              xfce_menu_node_set_merge_file_filename (file_node->data, uri);
+              xfce_menu_node_tree_set_merge_file_filename (file_node, uri);
 
               g_free (uri);
               g_object_unref (file);
@@ -855,13 +855,13 @@ xfce_menu_merger_process_merge_files (GNode                 *node,
 
   g_return_val_if_fail (context != NULL, FALSE);
 
-  if (xfce_menu_node_tree_get_node_type (node) != XFCE_MENU_NODE_TYPE_MERGE_FILE)
-    return FALSE;
+  if (xfce_menu_node_tree_get_node_type (node) != XFCE_MENU_NODE_TYPE_MERGE_FILE ||
+      xfce_menu_node_tree_get_merge_file_type (node) != XFCE_MENU_MERGE_FILE_PATH)
+    {
+      return FALSE;
+    }
 
-  if (xfce_menu_node_get_merge_file_type (node->data) != XFCE_MENU_MERGE_FILE_PATH)
-    return FALSE;
-
-  file = g_file_new_for_uri (xfce_menu_node_get_merge_file_filename (node->data));
+  file = g_file_new_for_uri (xfce_menu_node_tree_get_merge_file_filename (node));
 
   if (G_UNLIKELY (g_list_find_custom (context->file_stack, file, 
                                       (GCompareFunc) compare_files) != NULL))

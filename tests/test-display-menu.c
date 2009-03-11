@@ -248,8 +248,8 @@ create_menu_widgets (GtkWidget *gtk_menu,
   GtkWidget         *gtk_submenu;
   GtkWidget         *image;
   GdkPixbuf         *icon;
-  GSList            *iter;
-  GSList            *items;
+  GList             *iter;
+  GList             *items;
   const gchar       *display_name;
   const gchar       *icon_name;
 
@@ -262,11 +262,11 @@ create_menu_widgets (GtkWidget *gtk_menu,
   else
     {
       items = xfce_menu_get_menus (menu);
-      items = g_slist_concat (items, xfce_menu_get_items (menu));
+      items = g_list_concat (items, xfce_menu_get_items (menu));
     }
 
   /* Iterate over menu items */
-  for (iter = items; iter != NULL; iter = g_slist_next (iter))
+  for (iter = items; iter != NULL; iter = g_list_next (iter))
     {
       if (XFCE_IS_MENU_ITEM (iter->data))
         {
@@ -321,7 +321,7 @@ create_menu_widgets (GtkWidget *gtk_menu,
     }
 
   /* Free menu item list */
-  g_slist_free (items);
+  g_list_free (items);
 }
 
 
@@ -384,7 +384,6 @@ main (int    argc,
       char **argv)
 {
   GError *error = NULL;
-  GFile  *file;
   gint    exit_code = EXIT_SUCCESS;
 
   /* Initialize the menu library */
@@ -398,16 +397,12 @@ main (int    argc,
 
   /* Try to load the menu */
   if (G_UNLIKELY (g_strv_length (argv) > 1))
-    {
-      file = g_file_new_for_commandline_arg (argv[1]);
-      root = xfce_menu_new (file, &error);
-      g_object_unref (file);
-    }
+    root = xfce_menu_new (argv[1]);
   else
-    root = xfce_menu_get_root (&error);
+    root = xfce_menu_new_applications ();
 
   /* Check if the menu was loaded */
-  if (G_LIKELY (root != NULL))
+  if (G_LIKELY (xfce_menu_load (root, NULL, &error)))
     {
       /* Create main window */
       create_main_window ();

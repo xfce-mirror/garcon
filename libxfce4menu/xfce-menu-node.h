@@ -104,7 +104,7 @@ XfceMenuNode           *xfce_menu_node_create                       (XfceMenuNod
 XfceMenuNode           *xfce_menu_node_copy                         (XfceMenuNode         *node) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 const gchar            *xfce_menu_node_get_string                   (XfceMenuNode         *node);
 void                    xfce_menu_node_set_string                   (XfceMenuNode         *node,
-                                                                     const gchar          *string);
+                                                                     const gchar          *value);
 XfceMenuMergeFileType   xfce_menu_node_get_merge_file_type          (XfceMenuNode         *node);
 void                    xfce_menu_node_set_merge_file_type          (XfceMenuNode         *node,
                                                                      XfceMenuMergeFileType type);
@@ -112,13 +112,27 @@ const gchar            *xfce_menu_node_get_merge_file_filename      (XfceMenuNod
 void                    xfce_menu_node_set_merge_file_filename      (XfceMenuNode         *node,
                                                                      const gchar          *filename);
 
+GList                  *xfce_menu_node_tree_get_child_nodes         (GNode                *tree,
+                                                                     XfceMenuNodeType      type,
+                                                                     gboolean              reverse);
+GList                  *xfce_menu_node_tree_get_string_children     (GNode                *tree,
+                                                                     XfceMenuNodeType      type,
+                                                                     gboolean              reverse);
+gboolean                xfce_menu_node_tree_get_boolean_child       (GNode                *tree,
+                                                                     XfceMenuNodeType      type);
+const gchar            *xfce_menu_node_tree_get_string_child        (GNode                *tree,
+                                                                     XfceMenuNodeType      type);
 gboolean                xfce_menu_node_tree_rule_matches            (GNode                *tree,
                                                                      XfceMenuItem         *item);
 XfceMenuNodeType        xfce_menu_node_tree_get_node_type           (GNode                *tree);
 const gchar            *xfce_menu_node_tree_get_string              (GNode                *tree);
+void                    xfce_menu_node_tree_set_string              (GNode                *tree,
+                                                                     const gchar          *value);
 XfceMenuLayoutMergeType xfce_menu_node_tree_get_layout_merge_type   (GNode                *tree);
 XfceMenuMergeFileType   xfce_menu_node_tree_get_merge_file_type     (GNode                *tree);
 const gchar            *xfce_menu_node_tree_get_merge_file_filename (GNode                *tree);
+void                    xfce_menu_node_tree_set_merge_file_filename (GNode                *tree,
+                                                                     const gchar          *filename);
 gint                    xfce_menu_node_tree_compare                 (GNode                *tree,
                                                                      GNode                *other_tree);
 GNode                  *xfce_menu_node_tree_copy                    (GNode                *tree);

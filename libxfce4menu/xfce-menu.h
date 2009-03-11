@@ -25,7 +25,6 @@
 #ifndef __XFCE_MENU_H__
 #define __XFCE_MENU_H__
 
-#include <glib-object.h>
 #include <gio/gio.h>
 
 G_BEGIN_DECLS;
@@ -46,26 +45,21 @@ void               xfce_menu_shutdown              (void);
 
 GType              xfce_menu_get_type              (void) G_GNUC_CONST;
 
-XfceMenu          *xfce_menu_get_root              (GError           **error) G_GNUC_CONST;
-
-XfceMenu          *xfce_menu_new                   (GFile             *file,
-                                                    GError           **error) G_GNUC_MALLOC;
-
+XfceMenu          *xfce_menu_new                   (const gchar       *filename) G_GNUC_MALLOC;
+XfceMenu          *xfce_menu_new_for_file          (GFile             *file) G_GNUC_MALLOC;
+XfceMenu          *xfce_menu_new_applications      (void) G_GNUC_MALLOC;
+gboolean           xfce_menu_load                  (XfceMenu          *menu, 
+                                                    GCancellable      *cancellable,
+                                                    GError           **error);
 GFile             *xfce_menu_get_file              (XfceMenu          *menu);
-const gchar       *xfce_menu_get_name              (XfceMenu          *menu);
 XfceMenuDirectory *xfce_menu_get_directory         (XfceMenu          *menu);
-void               xfce_menu_set_directory         (XfceMenu          *menu,
-                                                    XfceMenuDirectory *directory);
-GSList            *xfce_menu_get_menus             (XfceMenu          *menu);
-void               xfce_menu_add_menu              (XfceMenu          *menu,
-                                                    XfceMenu          *submenu);
+GList             *xfce_menu_get_menus             (XfceMenu          *menu);
 XfceMenu          *xfce_menu_get_menu_with_name    (XfceMenu          *menu,
                                                     const gchar       *name);
 XfceMenu          *xfce_menu_get_parent            (XfceMenu          *menu);
-XfceMenuItemPool  *xfce_menu_get_item_pool         (XfceMenu          *menu);
-GSList            *xfce_menu_get_items             (XfceMenu          *menu);
+GList             *xfce_menu_get_items             (XfceMenu          *menu);
 gboolean           xfce_menu_has_layout            (XfceMenu          *menu);
-GSList            *xfce_menu_get_layout_elements   (XfceMenu          *menu);
+GList             *xfce_menu_get_layout_elements   (XfceMenu          *menu);
 
 G_END_DECLS;
 

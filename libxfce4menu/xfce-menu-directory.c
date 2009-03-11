@@ -619,3 +619,14 @@ xfce_menu_directory_show_in_environment (XfceMenuDirectory *directory)
 
   return show;
 }
+
+
+
+gboolean
+xfce_menu_directory_equal (XfceMenuDirectory *directory,
+                           XfceMenuDirectory *other)
+{
+  g_return_val_if_fail (XFCE_IS_MENU_DIRECTORY (directory), FALSE);
+  g_return_val_if_fail (XFCE_IS_MENU_DIRECTORY (other), FALSE);
+  return g_file_equal (directory->priv->file, other->priv->file);
+}

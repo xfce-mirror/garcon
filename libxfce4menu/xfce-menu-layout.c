@@ -74,7 +74,7 @@ struct _XfceMenuLayoutClass
 
 struct _XfceMenuLayoutPrivate
 {
-  GSList *nodes;
+  GList *nodes;
 };
 
 struct _XfceMenuLayout
@@ -153,8 +153,8 @@ xfce_menu_layout_finalize (GObject *object)
   XfceMenuLayout *layout = XFCE_MENU_LAYOUT (object);
 
   /* Free nodes */
-  g_slist_foreach (layout->priv->nodes, (GFunc) xfce_menu_layout_free_node, NULL);
-  g_slist_free (layout->priv->nodes);
+  g_list_foreach (layout->priv->nodes, (GFunc) xfce_menu_layout_free_node, NULL);
+  g_list_free (layout->priv->nodes);
 
   (*G_OBJECT_CLASS (xfce_menu_layout_parent_class)->finalize) (object);
 }
@@ -235,7 +235,7 @@ xfce_menu_layout_add_filename (XfceMenuLayout *layout,
   node->data.filename = g_strdup (filename);
 
   /* Append node to the list */
-  layout->priv->nodes = g_slist_append (layout->priv->nodes, node);
+  layout->priv->nodes = g_list_append (layout->priv->nodes, node);
 }
 
 
@@ -253,7 +253,7 @@ xfce_menu_layout_add_menuname (XfceMenuLayout *layout,
   node->data.menuname = g_strdup (menuname);
 
   /* Append node to the list */
-  layout->priv->nodes = g_slist_append (layout->priv->nodes, node);
+  layout->priv->nodes = g_list_append (layout->priv->nodes, node);
 }
 
 
@@ -268,7 +268,7 @@ xfce_menu_layout_add_separator (XfceMenuLayout *layout)
   node->type = XFCE_MENU_LAYOUT_NODE_SEPARATOR;
 
   /* Append node to the list */
-  layout->priv->nodes = g_slist_append (layout->priv->nodes, node);
+  layout->priv->nodes = g_list_append (layout->priv->nodes, node);
 }
 
 
@@ -285,12 +285,12 @@ xfce_menu_layout_add_merge (XfceMenuLayout         *layout,
   node->data.merge_type = type;
 
   /* Append node to the list */
-  layout->priv->nodes = g_slist_append (layout->priv->nodes, node);
+  layout->priv->nodes = g_list_append (layout->priv->nodes, node);
 }
 
 
 
-GSList*
+GList *
 xfce_menu_layout_get_nodes (XfceMenuLayout *layout)
 {
   g_return_val_if_fail (XFCE_IS_MENU_LAYOUT (layout), NULL);
@@ -304,13 +304,13 @@ xfce_menu_layout_get_filename_used (XfceMenuLayout *layout,
                                     const gchar    *filename)
 {
   XfceMenuLayoutNode *node;
-  GSList             *iter;
+  GList              *iter;
   gboolean            found = FALSE;
 
   g_return_val_if_fail (XFCE_IS_MENU_LAYOUT (layout), FALSE);
   g_return_val_if_fail (filename != NULL, FALSE);
 
-  for (iter = layout->priv->nodes; iter != NULL; iter = g_slist_next (iter))
+  for (iter = layout->priv->nodes; iter != NULL; iter = g_list_next (iter))
     {
       node = (XfceMenuLayoutNode *)iter->data;
 
@@ -334,13 +334,13 @@ xfce_menu_layout_get_menuname_used (XfceMenuLayout *layout,
                                     const gchar    *menuname)
 {
   XfceMenuLayoutNode *node;
-  GSList             *iter;
+  GList              *iter;
   gboolean            found = FALSE;
 
   g_return_val_if_fail (XFCE_IS_MENU_LAYOUT (layout), FALSE);
   g_return_val_if_fail (menuname != NULL, FALSE);
 
-  for (iter = layout->priv->nodes; iter != NULL; iter = g_slist_next (iter))
+  for (iter = layout->priv->nodes; iter != NULL; iter = g_list_next (iter))
     {
       node = (XfceMenuLayoutNode *)iter->data;
 

@@ -39,9 +39,9 @@ void
 print_menu (XfceMenu *menu, const gchar *path)
 {
   XfceMenuDirectory *directory;
-  GSList            *menus;
-  GSList            *items;
-  GSList            *iter;
+  GList             *menus;
+  GList             *items;
+  GList             *iter;
   gchar             *name;
 
   /* Determine menu name */
@@ -52,7 +52,7 @@ print_menu (XfceMenu *menu, const gchar *path)
   else
     {
       name = g_strdup_printf ("%s%s/", path, (directory == NULL ? 
-                                              xfce_menu_get_name (menu) : 
+                                              xfce_menu_element_get_name (XFCE_MENU_ELEMENT (menu)) :
                                               xfce_menu_directory_get_name (directory)));
     }
 
@@ -60,7 +60,7 @@ print_menu (XfceMenu *menu, const gchar *path)
   menus = xfce_menu_get_menus (menu);
 
   /* Print child menus */
-  for (iter = menus; iter != NULL; iter = g_slist_next (iter)) 
+  for (iter = menus; iter != NULL; iter = g_list_next (iter)) 
     {
       XfceMenuDirectory *submenu_directory = xfce_menu_get_directory (XFCE_MENU (iter->data));
 
@@ -70,13 +70,13 @@ print_menu (XfceMenu *menu, const gchar *path)
     }
 
   /* Free submenu list */
-  g_slist_free (menus);
+  g_list_free (menus);
 
   /* Fetch menu items */
   items = xfce_menu_get_items (menu);
 
   /* Print menu items */
-  for (iter = items; iter != NULL; iter = g_slist_next (iter)) 
+  for (iter = items; iter != NULL; iter = g_list_next (iter)) 
     {
       XfceMenuItem      *item = iter->data;
 
@@ -85,7 +85,7 @@ print_menu (XfceMenu *menu, const gchar *path)
     }
 
   /* Free menu item list */
-  g_slist_free (items);
+  g_list_free (items);
 
   /* Free name */
   g_free (name);
@@ -111,9 +111,9 @@ main (int    argc,
   xfce_menu_init (NULL);
 
   /* Try to get the root menu */
-  menu = xfce_menu_get_root (&error);
+  menu = xfce_menu_new_applications ();
 
-  if (G_LIKELY (menu != NULL)) 
+  if (G_LIKELY (xfce_menu_load (menu, NULL, &error)))
     {
       /* Print menu contents according to the test suite criteria */
       print_menu (menu, NULL);

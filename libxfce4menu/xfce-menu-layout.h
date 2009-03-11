@@ -68,7 +68,7 @@ void                    xfce_menu_layout_add_menuname        (XfceMenuLayout    
 void                    xfce_menu_layout_add_separator       (XfceMenuLayout          *layout);
 void                    xfce_menu_layout_add_merge           (XfceMenuLayout          *layout,
                                                               XfceMenuLayoutMergeType  type);
-GSList                 *xfce_menu_layout_get_nodes           (XfceMenuLayout          *layout);
+GList                  *xfce_menu_layout_get_nodes           (XfceMenuLayout          *layout);
 gboolean                xfce_menu_layout_get_filename_used   (XfceMenuLayout          *layout,
                                                               const gchar             *filename);
 gboolean                xfce_menu_layout_get_menuname_used   (XfceMenuLayout          *layout,
