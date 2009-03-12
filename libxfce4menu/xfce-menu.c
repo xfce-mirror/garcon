@@ -1222,7 +1222,7 @@ xfce_menu_get_items (XfceMenu *menu)
  * xfce_menu_has_layout:
  * @menu : a #XfceMenu
  *
- * Checks whether @menu has a <Layout> or <DefaultLayout> element. If
+ * Checks whether @menu has a &lt;Layout&gt; or &lt;DefaultLayout&gt; element. If
  * this is the case, you can call xfce_menu_get_layout_elements() to get
  * the submenus, separators and items arranged according to the layout.
  *

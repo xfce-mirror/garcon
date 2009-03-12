@@ -75,14 +75,24 @@ gboolean             xfce_menu_monitor_has_flags        (XfceMenuMonitorFlags   
  */
 struct _XfceMenuMonitorVTable
 {
+  /**
+   * Callback to be used when a file has to be monitored.
+   */
   gpointer (*monitor_file)      (XfceMenu    *menu,
                                  const gchar *filename,
                                  gpointer     user_data);
 
+  /**
+   * Callback to be used when a directory has to be monitored.
+   */
   gpointer (*monitor_directory) (XfceMenu    *menu,
                                  const gchar *filename,
                                  gpointer     user_data);
 
+  /**
+   * Callback to be used when a file or directory monitor should
+   * be cancelled.
+   */
   void     (*remove_monitor)    (XfceMenu    *menu,
                                  gpointer     monitor_handle);
 };
