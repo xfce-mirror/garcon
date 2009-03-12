@@ -37,7 +37,7 @@
  * SECTION:xfce-menu-init-shutdown
  * @title: Library Initialization and Shutdown
  *
- * Library Initialization and Shutdown
+ * Library Initialization and Shutdown.
  **/
 
 
@@ -48,11 +48,13 @@ static gint xfce_menu_ref_count = 0;
 
 /**
  * xfce_menu_init:
- * @env : Name of the desktop environment (e.g. XFCE, GNOME, KDE) or %NULL.
+ * @env : name of the desktop environment (e.g. XFCE, GNOME or KDE) 
+ *        or %NULL.
  *
- * Initializes the libxfce4menu library and optionally defines the desktop 
- * environment for which menus will be generated. This means items belonging
- * only to other desktop environments will be ignored.
+ * Initializes the libxfce4menu library. @env optionally defines the 
+ * name of the desktop environment for which menus will be generated. 
+ * This means that items belonging only to other desktop environments 
+ * will be ignored.
  **/
 void
 xfce_menu_init (const gchar *env)

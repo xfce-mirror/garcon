@@ -62,6 +62,13 @@ gboolean             xfce_menu_monitor_has_flags        (XfceMenuMonitorFlags   
 
 /**
  * XfceMenuMonitorVTable:
+ * @monitor_file      : Function called by libxfce4menu to request that
+ *                      a file should be monitored.
+ * @monitor_directory : Function called by libxfce4menu to request that
+ *                      a directory should be monitored.
+ * @remove_monitor    : Function called by libxfce4menu to request that
+ *                      a file or directory monitor should be 
+ *                      cancelled/removed.
  *
  * This structure can be used by clients of the libxfce4menu API to 
  * register functions which will be called whenever monitoring a
@@ -72,27 +79,17 @@ gboolean             xfce_menu_monitor_has_flags        (XfceMenuMonitorFlags   
  * This mechanism was invented because the two main API clients, 
  * Thunar and xfdesktop are already linked to ThunarVFS which has
  * monitoring capabilities.
- */
+ **/
 struct _XfceMenuMonitorVTable
 {
-  /**
-   * Callback to be used when a file has to be monitored.
-   */
   gpointer (*monitor_file)      (XfceMenu    *menu,
                                  const gchar *filename,
                                  gpointer     user_data);
 
-  /**
-   * Callback to be used when a directory has to be monitored.
-   */
   gpointer (*monitor_directory) (XfceMenu    *menu,
                                  const gchar *filename,
                                  gpointer     user_data);
 
-  /**
-   * Callback to be used when a file or directory monitor should
-   * be cancelled.
-   */
   void     (*remove_monitor)    (XfceMenu    *menu,
                                  gpointer     monitor_handle);
 };
