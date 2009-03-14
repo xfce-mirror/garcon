@@ -30,7 +30,7 @@
 #include <glib.h>
 #include <libxfce4menu/libxfce4menu.h>
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 typedef enum
 {
@@ -99,6 +99,6 @@ void _xfce_menu_monitor_init     (void) G_GNUC_INTERNAL;
 void _xfce_menu_monitor_shutdown (void) G_GNUC_INTERNAL;
 #endif
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__XFCE_MENU_MONITOR_H__ */

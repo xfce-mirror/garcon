@@ -28,7 +28,7 @@
 #include <glib-object.h>
 #include <gio/gio.h>
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 typedef struct _XfceMenuParserPrivate XfceMenuParserPrivate;
 typedef struct _XfceMenuParserClass   XfceMenuParserClass;
@@ -62,6 +62,6 @@ struct _XfceMenuParser
   XfceMenuParserPrivate *priv;
 };
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__XFCE_MENU_PARSER_H__ */

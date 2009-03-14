@@ -28,7 +28,7 @@
 
 #include <glib-object.h>
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 typedef struct _XfceMenuSeparatorClass XfceMenuSeparatorClass;
 typedef struct _XfceMenuSeparator      XfceMenuSeparator;
@@ -50,6 +50,6 @@ void               _xfce_menu_separator_init       (void) G_GNUC_INTERNAL;
 void               _xfce_menu_separator_shutdown   (void) G_GNUC_INTERNAL;
 #endif
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__XFCE_MENU_SEPARATOR_H__ */

@@ -34,7 +34,7 @@
 
 #include "xfce-menu-node.h"
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 typedef enum
 {
@@ -79,7 +79,7 @@ const gchar            *xfce_menu_layout_node_get_filename   (XfceMenuLayoutNode
 const gchar            *xfce_menu_layout_node_get_menuname   (XfceMenuLayoutNode       *node);
 XfceMenuLayoutMergeType xfce_menu_layout_node_get_merge_type (XfceMenuLayoutNode       *node);
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__XFCE_MENU_LAYOUT_H__ */
 

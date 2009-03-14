@@ -1,5 +1,11 @@
 2009-03-14	Jannis Pohlmann <jannis@xfce.org>
 
+	* libxfce4menu/*.h: Remove trailing semicolons after G_BEGIN_DECLS and
+	  G_END_DECLS because it makes gobject-introspection freak out and its
+	  also a bit of a syntax error. Reported by Travis Watkins.
+
+2009-03-14	Jannis Pohlmann <jannis@xfce.org>
+
 	* INSTALL: Update the install information.
 	* configure.in.in, libxfce4menu/libxfce4menu-0.1.pc.in, 
 	  libxfce4menu/xfce-menu-directory.c, 

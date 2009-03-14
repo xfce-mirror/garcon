@@ -29,7 +29,7 @@
 
 #include <glib-object.h>
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 typedef struct _XfceMenuElement      XfceMenuElement;
 typedef struct _XfceMenuElementIface XfceMenuElementIface;
@@ -53,6 +53,6 @@ GType        xfce_menu_element_get_type      (void) G_GNUC_CONST;
 const gchar *xfce_menu_element_get_name      (XfceMenuElement *element);
 const gchar *xfce_menu_element_get_icon_name (XfceMenuElement *element);
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__XFCE_MENU_ELEMENT_H__ */

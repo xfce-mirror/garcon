@@ -29,7 +29,7 @@
 
 #include <libxfce4menu/xfce-menu-item.h>
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 /* Types for the menu nodes */
 typedef enum
@@ -140,6 +140,6 @@ void                    xfce_menu_node_tree_free                    (GNode      
 void                    xfce_menu_node_tree_free_data               (GNode                *tree);
 
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__XFCE_MENU_NODE_H__ */

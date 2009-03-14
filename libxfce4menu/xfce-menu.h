@@ -27,7 +27,7 @@
 
 #include <gio/gio.h>
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 typedef struct _XfceMenuPrivate XfceMenuPrivate;
 typedef struct _XfceMenuClass   XfceMenuClass;
@@ -58,6 +58,6 @@ GList             *xfce_menu_get_items             (XfceMenu          *menu);
 gboolean           xfce_menu_has_layout            (XfceMenu          *menu);
 GList             *xfce_menu_get_layout_elements   (XfceMenu          *menu);
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__XFCE_MENU_H__ */

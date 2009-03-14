@@ -29,7 +29,7 @@
 
 #include <glib-object.h>
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 typedef struct _XfceMenuItemPrivate XfceMenuItemPrivate;
 typedef struct _XfceMenuItemClass   XfceMenuItemClass;
@@ -96,6 +96,6 @@ gint          xfce_menu_item_get_allocated                     (XfceMenuItem *it
 void          xfce_menu_item_increment_allocated               (XfceMenuItem *item);
 void          xfce_menu_item_decrement_allocated               (XfceMenuItem *item);
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__XFCE_MENU_ITEM_H__ */

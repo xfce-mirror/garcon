@@ -24,6 +24,8 @@
 
 #define LIBXFCE4MENU_INSIDE_LIBXFCE4MENU_H
 
+#include <glib.h>
+
 #include <libxfce4menu/libxfce4menu-config.h>
 #include <libxfce4menu/xfce-menu-environment.h>
 #include <libxfce4menu/xfce-menu-element.h>
@@ -42,9 +44,13 @@
 
 #undef LIBXFCE4MENU_INSIDE_LIBXFCE4MENU_H
 
+G_BEGIN_DECLS
+
 void   libxfce4menu_init       (const gchar *env);
 void   libxfce4menu_shutdown   (void);
 
 gchar *xfce_menu_config_lookup (const gchar *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+
+G_END_DECLS
 
 #endif /* !__LIBXFCE4MENU_LIBXFCE4MENU_H__ */

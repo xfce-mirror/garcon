@@ -28,7 +28,7 @@
 #include <glib-object.h>
 #include <gio/gio.h>
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 typedef struct _XfceMenuTreeProviderIface   XfceMenuTreeProviderIface;
 typedef struct _XfceMenuTreeProvider        XfceMenuTreeProvider;
@@ -52,6 +52,6 @@ struct _XfceMenuTreeProviderIface
   GFile *(*get_file) (XfceMenuTreeProvider *provider);
 };
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__XFCE_MENU_TREE_PROVIDER_H__ */

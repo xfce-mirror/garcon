@@ -27,7 +27,7 @@
 
 #include <gio/gio.h>
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 GFile *g_file_new_for_unknown_input    (const gchar *path,
                                         GFile       *parent);
@@ -36,6 +36,6 @@ GFile *g_file_new_relative_to_file     (const gchar *path,
 gchar *g_file_get_uri_relative_to_file (const gchar *path,
                                         GFile       *file);
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__XFCE_MENU_GIO_H__ */

@@ -28,7 +28,11 @@
 
 #include <glib.h>
 
+G_BEGIN_DECLS
+
 void                  xfce_menu_set_environment (const gchar *env);
 G_CONST_RETURN gchar *xfce_menu_get_environment (void);
+
+G_END_DECLS
 
 #endif /* !__XFCE_MENU_ENVIRONMENT_H__ */

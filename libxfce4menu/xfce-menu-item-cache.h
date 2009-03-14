@@ -28,7 +28,7 @@
 
 #include <glib-object.h>
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 typedef struct _XfceMenuItemCachePrivate XfceMenuItemCachePrivate;
 typedef struct _XfceMenuItemCacheClass   XfceMenuItemCacheClass;
@@ -58,6 +58,6 @@ void               _xfce_menu_item_cache_init       (void) G_GNUC_INTERNAL;
 void               _xfce_menu_item_cache_shutdown   (void) G_GNUC_INTERNAL;
 #endif
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__XFCE_MENU_ITEM_CACHE_H__ */

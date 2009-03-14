@@ -28,7 +28,7 @@
 
 #include <glib-object.h>
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 #define LIBXFCE4MENU_MAJOR_VERSION 4
 #define LIBXFCE4MENU_MINOR_VERSION 5
@@ -50,6 +50,6 @@ const gchar *libxfce4menu_check_version (guint required_major,
                                          guint required_minor,
                                          guint required_micro);
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__LIBXFCE4MENU_CONFIG_H__ */

@@ -28,7 +28,7 @@
 
 #include <glib-object.h>
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 typedef struct _XfceMenuItemPoolPrivate XfceMenuItemPoolPrivate;
 typedef struct _XfceMenuItemPoolClass   XfceMenuItemPoolClass;
@@ -56,6 +56,6 @@ void              xfce_menu_item_pool_apply_exclude_rule (XfceMenuItemPool      
                                                           GNode                 *node);
 gboolean          xfce_menu_item_pool_get_empty          (XfceMenuItemPool      *pool);
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__XFCE_MENU_ITEM_POOL_H__ */

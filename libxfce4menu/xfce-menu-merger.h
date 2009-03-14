@@ -29,7 +29,7 @@
 
 #include "xfce-menu-tree-provider.h"
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 typedef struct _XfceMenuMergerPrivate XfceMenuMergerPrivate;
 typedef struct _XfceMenuMergerClass   XfceMenuMergerClass;
@@ -63,6 +63,6 @@ struct _XfceMenuMerger
   XfceMenuMergerPrivate *priv;
 };
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__XFCE_MENU_MERGER_H__ */

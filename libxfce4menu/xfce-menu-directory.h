@@ -29,7 +29,7 @@
 #include <glib-object.h>
 #include <gio/gio.h>
 
-G_BEGIN_DECLS;
+G_BEGIN_DECLS
 
 typedef struct _XfceMenuDirectoryPrivate XfceMenuDirectoryPrivate;
 typedef struct _XfceMenuDirectoryClass   XfceMenuDirectoryClass;
@@ -67,6 +67,6 @@ void _xfce_menu_directory_init     (void) G_GNUC_INTERNAL;
 void _xfce_menu_directory_shutdown (void) G_GNUC_INTERNAL;
 #endif
 
-G_END_DECLS;
+G_END_DECLS
 
 #endif /* !__XFCE_MENU_DIRECTORY_H__ */
