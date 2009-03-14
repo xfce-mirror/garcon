@@ -66,8 +66,6 @@ XFCE_MENU_SEPARATOR_GET_CLASS
 XfceMenuPrivate
 XfceMenuClass
 XfceMenu
-xfce_menu_init
-xfce_menu_shutdown
 xfce_menu_new
 xfce_menu_new_for_file
 xfce_menu_new_applications
@@ -303,8 +301,9 @@ g_file_get_uri_relative_to_file
 <SECTION>
 <FILE>libxfce4menu</FILE>
 LIBXFCE4MENU_INSIDE_LIBXFCE4MENU_H
-xfce_menu_init
-xfce_menu_shutdown
+libxfce4menu_init
+libxfce4menu_shutdown
+xfce_menu_config_lookup
 </SECTION>
 
 <SECTION>

@@ -42,7 +42,9 @@
 
 #undef LIBXFCE4MENU_INSIDE_LIBXFCE4MENU_H
 
-void xfce_menu_init     (const gchar *env);
-void xfce_menu_shutdown (void);
+void   libxfce4menu_init       (const gchar *env);
+void   libxfce4menu_shutdown   (void);
+
+gchar *xfce_menu_config_lookup (const gchar *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 
 #endif /* !__LIBXFCE4MENU_LIBXFCE4MENU_H__ */

@@ -40,8 +40,6 @@
 #include <string.h>
 #endif
 
-#include <libxfce4util/libxfce4util.h>
-
 #include <libxfce4menu/xfce-menu-item.h>
 #include <libxfce4menu/xfce-menu-item-cache.h>
 

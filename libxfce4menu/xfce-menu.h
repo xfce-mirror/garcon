@@ -40,9 +40,6 @@ typedef struct _XfceMenu        XfceMenu;
 #define XFCE_IS_MENU_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_MENU))
 #define XFCE_MENU_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_MENU, XfceMenuClass))
 
-void               xfce_menu_init                  (const gchar *env);
-void               xfce_menu_shutdown              (void);
-
 GType              xfce_menu_get_type              (void) G_GNUC_CONST;
 
 XfceMenu          *xfce_menu_new                   (const gchar       *filename) G_GNUC_MALLOC;

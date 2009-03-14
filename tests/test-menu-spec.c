@@ -30,7 +30,6 @@
 
 #include <glib/gprintf.h>
 
-#include <libxfce4util/libxfce4util.h>
 #include <libxfce4menu/libxfce4menu.h>
 
 
@@ -108,7 +107,7 @@ main (int    argc,
   g_set_prgname ("test-menu-spec");
 
   /* Initialize menu library */
-  xfce_menu_init (NULL);
+  libxfce4menu_init (NULL);
 
   /* Try to get the root menu */
   menu = xfce_menu_new_applications ();
@@ -120,7 +119,7 @@ main (int    argc,
     }
   else
     {
-      g_error (error->message);
+      g_error ("%s", error->message);
       g_error_free (error);
 #ifdef HAVE_STDLIB_H
       exit_code = EXIT_FAILURE;
@@ -130,7 +129,7 @@ main (int    argc,
     }
 
   /* Shut down the menu library */
-  xfce_menu_shutdown ();
+  libxfce4menu_shutdown ();
 
   return exit_code;
 }

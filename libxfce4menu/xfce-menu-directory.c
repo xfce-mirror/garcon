@@ -25,7 +25,6 @@
 
 #include <locale.h>
 #include <glib.h>
-#include <libxfce4util/libxfce4util.h>
 
 #include <libxfce4menu/xfce-menu-environment.h>
 #include <libxfce4menu/xfce-menu-directory.h>
@@ -517,7 +516,8 @@ xfce_menu_directory_free_private (XfceMenuDirectory *directory)
 static void
 xfce_menu_directory_load (XfceMenuDirectory *directory)
 {
-  XfceRc      *entry;
+  GKeyFile    *entry;
+  GError      *error = NULL;
   const gchar *name;
   const gchar *comment;
   const gchar *icon;
@@ -529,32 +529,33 @@ xfce_menu_directory_load (XfceMenuDirectory *directory)
    * g_key_file_load_from_data() */
 
   filename = g_file_get_path (directory->priv->file);
-  entry = xfce_rc_simple_open (filename, TRUE);
+  entry = g_key_file_new ();
+  g_key_file_load_from_file (entry, filename, G_KEY_FILE_NONE, &error);
   g_free (filename);
 
-  if (G_UNLIKELY (entry == NULL))
-    return;
-
-  /* Treat the file as a desktop entry */
-  xfce_rc_set_group (entry, "Desktop Entry");
+  if (G_UNLIKELY (error != NULL))
+    {
+      g_error_free (error);
+      return;
+    }
 
   /* Read directory information */
-  name = xfce_rc_read_entry (entry, "Name", NULL);
-  comment = xfce_rc_read_entry (entry, "Comment", NULL);
-  icon = xfce_rc_read_entry (entry, "Icon", NULL);
+  name = g_key_file_get_locale_string (entry, "Desktop Entry", "Name", NULL, NULL);
+  comment = g_key_file_get_locale_string (entry, "Desktop Entry", "Comment", NULL, NULL);
+  icon = g_key_file_get_locale_string (entry, "Desktop Entry", "Icon", NULL, NULL);
 
   /* Pass data to the directory */
   xfce_menu_directory_set_name (directory, name);
   xfce_menu_directory_set_comment (directory, comment);
   xfce_menu_directory_set_icon (directory, icon);
-  xfce_menu_directory_set_no_display (directory, xfce_rc_read_bool_entry (entry, "NoDisplay", FALSE));
+  xfce_menu_directory_set_no_display (directory, g_key_file_get_boolean (entry, "Desktop Entry", "NoDisplay", NULL));
 
   /* Set rest of the private data directly */
-  directory->priv->only_show_in = xfce_rc_read_list_entry (entry, "OnlyShowIn", ";");
-  directory->priv->not_show_in = xfce_rc_read_list_entry (entry, "NotShowIn", ";");
-  directory->priv->hidden = xfce_rc_read_bool_entry (entry, "Hidden", FALSE);
+  directory->priv->only_show_in = g_key_file_get_string_list (entry, "Desktop Entry", "OnlyShowIn", NULL, NULL);
+  directory->priv->not_show_in = g_key_file_get_string_list (entry, "Desktop Entry", "NotShowIn", NULL, NULL);
+  directory->priv->hidden = g_key_file_get_boolean (entry, "Desktop Entry", "Hidden", NULL);
 
-  xfce_rc_close (entry);
+  g_key_file_free (entry);
 }
 
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-06 01:23+0100\n"
+"POT-Creation-Date: 2009-03-14 02:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,27 +16,21 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:743
+#: .././libxfce4menu/xfce-menu-parser.c:307
 #, c-format
-msgid "Failed to locate the system menu"
+msgid "Could not load menu file data from %s: %s"
 msgstr ""
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:198
+#: .././libxfce4menu/xfce-menu-parser.c:311
 #, c-format
-msgid "Failed to create the libxfce4menu item cache in %s."
+msgid "Could not load menu file data from %s"
 msgstr ""
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, c-format
-msgid "Failed to load the libxfce4menu item cache from %s: %s."
-msgstr ""
-
-#: ../tests/test-display-menu.c:353
+#: .././tests/test-display-menu.c:360
 msgid "XfceMenu: Display Menu Test"
 msgstr ""
 
 #. Create button
-#: ../tests/test-display-menu.c:362
+#: .././tests/test-display-menu.c:369
 msgid "_Show menu"
 msgstr ""

@@ -26,8 +26,6 @@
 #include <unistd.h>
 #endif
 
-#include <libxfce4util/libxfce4util.h>
-
 #include <libxfce4menu/xfce-menu-environment.h>
 #include <libxfce4menu/xfce-menu-element.h>
 #include <libxfce4menu/xfce-menu-item.h>
@@ -43,6 +41,7 @@
 #include <libxfce4menu/xfce-menu-gio.h>
 #include <libxfce4menu/xfce-menu.h>
 
+#include <glib/gi18n.h>
 
 
 /* Use g_access() on win32 */
@@ -472,7 +471,7 @@ xfce_menu_new_applications (void)
   for (n = 0; menu == NULL && n < G_N_ELEMENTS (XFCE_MENU_ROOT_SPECS); ++n)
     {
       /* Search for the applications menu file */
-      filename = xfce_resource_lookup (XFCE_RESOURCE_CONFIG, XFCE_MENU_ROOT_SPECS[n]);
+      filename = xfce_menu_config_lookup (XFCE_MENU_ROOT_SPECS[n]);
 
       /* Create menu if the file exists */
       if (G_UNLIKELY (filename != NULL))

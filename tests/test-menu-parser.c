@@ -28,7 +28,6 @@
 
 #include <glib.h>
 
-#include <libxfce4util/libxfce4util.h>
 #include <libxfce4menu/libxfce4menu.h>
 
 
@@ -232,7 +231,7 @@ main (int    argc,
   if (!g_thread_supported ())
     g_thread_init (NULL);
 
-  xfce_menu_init ("XFCE");
+  libxfce4menu_init ("XFCE");
 
   if (argc > 1)
     file = g_file_new_for_path (argv[1]);
@@ -242,7 +241,7 @@ main (int    argc,
       for (n = 0; n < G_N_ELEMENTS (ROOT_SPECS) && file == NULL; ++n)
         {
           /* Search for the root menu file */
-          filename = xfce_resource_lookup (XFCE_RESOURCE_CONFIG, ROOT_SPECS[n]);
+          filename = xfce_menu_config_lookup (ROOT_SPECS[n]);
           if (G_UNLIKELY (filename == NULL))
             continue;
 
@@ -301,7 +300,7 @@ main (int    argc,
 
   g_object_unref (parser);
 
-  xfce_menu_shutdown ();
+  libxfce4menu_shutdown ();
 
   return result;
 }

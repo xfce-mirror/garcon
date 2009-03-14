@@ -34,7 +34,7 @@
 
 
 /**
- * SECTION:xfce-menu-init-shutdown
+ * SECTION:libxfce4menu
  * @title: Library Initialization and Shutdown
  *
  * Library Initialization and Shutdown.
@@ -47,7 +47,7 @@ static gint xfce_menu_ref_count = 0;
 
 
 /**
- * xfce_menu_init:
+ * libxfce4menu_init:
  * @env : name of the desktop environment (e.g. XFCE, GNOME or KDE) 
  *        or %NULL.
  *
@@ -57,7 +57,7 @@ static gint xfce_menu_ref_count = 0;
  * will be ignored.
  **/
 void
-xfce_menu_init (const gchar *env)
+libxfce4menu_init (const gchar *env)
 {
   if (g_atomic_int_exchange_and_add (&xfce_menu_ref_count, 1) == 0)
     {
@@ -88,12 +88,12 @@ xfce_menu_init (const gchar *env)
 
 
 /**
- * xfce_menu_shutdown:
+ * libxfce4menu_shutdown:
  *
- * Shuts down the libxfce4menu library.
+ * Shuts the libxfce4menu library down.
  **/
 void
-xfce_menu_shutdown (void)
+libxfce4menu_shutdown (void)
 {
   if (g_atomic_int_dec_and_test (&xfce_menu_ref_count))
     {
@@ -112,4 +112,38 @@ xfce_menu_shutdown (void)
       /* Shutdown the menu item cache */
       _xfce_menu_item_cache_shutdown ();
     }
+}
+
+
+
+gchar *
+xfce_menu_config_lookup (const gchar *filename)
+{
+  const gchar * const *dirs;
+  gchar               *path;
+  gint                 i;
+
+  g_return_val_if_fail (filename != NULL && g_utf8_strlen (filename, -1) > 0, NULL);
+
+  path = g_build_path (G_DIR_SEPARATOR_S, g_get_user_config_dir (), filename, NULL);
+
+  if (!g_file_test (path, G_FILE_TEST_EXISTS))
+    {
+      g_free (path);
+
+      dirs = g_get_system_config_dirs ();
+
+      for (i = 0; path == NULL && dirs[i] != NULL; ++i)
+        {
+          if (g_path_is_absolute (dirs[i]))
+            {
+              path = g_build_path (G_DIR_SEPARATOR_S, dirs[i], filename, NULL);
+
+              if (!g_file_test (path, G_FILE_TEST_IS_REGULAR))
+                g_free (path);
+            }
+        }
+    }
+  
+  return path;
 }

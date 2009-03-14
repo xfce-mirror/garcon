@@ -1,3 +1,27 @@
+2009-03-14	Jannis Pohlmann <jannis@xfce.org>
+
+	* INSTALL: Update the install information.
+	* configure.in.in, libxfce4menu/libxfce4menu-0.1.pc.in, 
+	  libxfce4menu/xfce-menu-directory.c, 
+	  libxfce4menu/xfce-menu-item-cache.c, libxfce4menu/xfce-menu-item.c,
+	  libxfce4menu/xfce-menu-merger.c, libxfce4menu/xfce-menu-parser.c: Get
+	  rid of libxfce4util and related code like xfce_resource_dirs(). Use 
+	  GKeyFile instead of XfceRc. A lot of this code comes from Travis 
+	  Watkins <amaranth@ubuntu.com> who was kind enough to provide a
+	  patch.
+	* docs/reference/libxfce4menu-sections.txt: Update sections.
+	* libxfce4menu/libxfce4menu.{c,h}: Rename xfce_menu_init() and
+	  xfce_menu_shutdown() to libxfce4menu_init() and
+	  libxfce4menu_shutdown(). Add new function 
+	  xfce_menu_config_lookup(). 
+	* libxfce4menu/xfce-menu.{c,h}: Use xfce_menu_config_lookup() instead 
+	  of xfce_resource_lookup(). Remove xfce_menu_init() and 
+	  xfce_menu_shutdown() declaration in the header file.
+	* tdb/: Remove TDB entirely.
+	* tests/test-display-menu.c, tests/test-menu-parser.c,
+	  tests/test-menu-spec.c: Update to new API and get rid of
+	  libxfce4util code.
+
 2009-03-12	Jannis Pohlmann <jannis@xfce.org>
 
 	* libxfce4menu/xfce-menu-monitor.h, libxfce4menu/libxfce4menu.c:

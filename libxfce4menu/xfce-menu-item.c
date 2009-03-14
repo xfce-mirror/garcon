@@ -25,8 +25,6 @@
 
 #include <gio/gio.h>
 
-#include <libxfce4util/libxfce4util.h>
-
 #include <libxfce4menu/xfce-menu-environment.h>
 #include <libxfce4menu/xfce-menu-element.h>
 #include <libxfce4menu/xfce-menu-item.h>
@@ -530,26 +528,25 @@ XfceMenuItem*
 xfce_menu_item_new (const gchar *uri)
 {
   XfceMenuItem *item = NULL;
-  XfceRc       *rc;
+  GKeyFile     *rc;
+  GError       *error = NULL;
   GFile        *file;
   GList        *categories = NULL;
-  const gchar  *path;
-  const gchar  *name;
-  const gchar  *generic_name;
-  const gchar  *comment;
-  const gchar  *exec;
-  const gchar  *try_exec;
-  const gchar  *icon;
   gboolean      terminal;
   gboolean      no_display;
   gboolean      startup_notify;
+  gchar        *path;
+  gchar        *name;
+  gchar        *generic_name;
+  gchar        *comment;
+  gchar        *exec;
+  gchar        *try_exec;
+  gchar        *icon;
   gchar        *filename;
   gchar       **mt;
   gchar       **str_list;
 
   g_return_val_if_fail (uri != NULL, NULL);
-
-  /* TODO: Use GFile, GKeyFile instead of XfceRc */
 
   file = g_file_new_for_uri (uri);
   filename = g_file_get_path (file);
@@ -560,36 +557,38 @@ xfce_menu_item_new (const gchar *uri)
     return NULL;
 
   /* Try to open the .desktop file */
-  rc = xfce_rc_simple_open (filename, TRUE);
-  if (G_UNLIKELY (rc == NULL))
-    return NULL;
-
-  /* Use the Desktop Entry section of the desktop file */
-  xfce_rc_set_group (rc, "Desktop Entry");
+  rc = g_key_file_new ();
+  g_key_file_load_from_file (rc, filename, G_KEY_FILE_NONE, &error);
+  if (G_UNLIKELY (error != NULL))
+    {
+      g_error_free (error);
+      return NULL;
+    }
 
   /* Abort if the file has been marked as "deleted"/hidden */
-  if (G_UNLIKELY (xfce_rc_read_bool_entry (rc, "Hidden", FALSE)))
+  if (G_UNLIKELY (g_key_file_get_boolean (rc, "Desktop Entry", "Hidden", NULL)))
     {
-      xfce_rc_close (rc);
+      g_key_file_free (rc);
       return NULL;
     }
 
   /* Parse name, exec command and icon name */
-  name = xfce_rc_read_entry (rc, "Name", NULL);
-  generic_name = xfce_rc_read_entry (rc, "GenericName", NULL);
-  comment = xfce_rc_read_entry (rc, "Comment", NULL);
-  exec = xfce_rc_read_entry (rc, "Exec", NULL);
-  try_exec = xfce_rc_read_entry (rc, "TryExec", NULL);
-  icon = xfce_rc_read_entry (rc, "Icon", NULL);
-  path = xfce_rc_read_entry (rc, "Path", NULL);
+  name = g_key_file_get_locale_string (rc, "Desktop Entry", "Name", NULL, NULL);
+  generic_name = g_key_file_get_locale_string (rc, "Desktop Entry", "GenericName", NULL, NULL);
+  comment = g_key_file_get_locale_string (rc, "Desktop Entry", "Comment", NULL, NULL);
+  exec = g_key_file_get_string (rc, "Desktop Entry", "Exec", NULL);
+  try_exec = g_key_file_get_string (rc, "Desktop Entry", "TryExec", NULL);
+  icon = g_key_file_get_string (rc, "Desktop Entry", "Icon", NULL);
+  path = g_key_file_get_string (rc, "Desktop Entry", "Path", NULL);
 
   /* Validate Name and Exec fields */
   if (G_LIKELY (exec != NULL && name != NULL && g_utf8_validate (name, -1, NULL)))
     {
       /* Determine other application properties */
-      terminal = xfce_rc_read_bool_entry (rc, "Terminal", FALSE);
-      no_display = xfce_rc_read_bool_entry (rc, "NoDisplay", FALSE);
-      startup_notify = xfce_rc_read_bool_entry (rc, "StartupNotify", FALSE) || xfce_rc_read_bool_entry (rc, "X-KDE-StartupNotify", FALSE);
+      terminal = g_key_file_get_boolean (rc, "Desktop Entry", "Terminal", NULL);
+      no_display = g_key_file_get_boolean (rc, "Desktop Entry", "NoDisplay", NULL);
+      startup_notify = g_key_file_get_boolean (rc, "Desktop Entry", "StartupNotify", NULL) ||
+                       g_key_file_get_boolean (rc, "Desktop Entry", "X-KDE-StartupNotify", NULL);
 
       /* Allocate a new menu item instance */
       item = g_object_new (XFCE_TYPE_MENU_ITEM, 
@@ -607,7 +606,7 @@ xfce_menu_item_new (const gchar *uri)
                            NULL);
 
       /* Determine the categories this application should be shown in */
-      str_list = xfce_rc_read_list_entry (rc, "Categories", ";");
+      str_list = g_key_file_get_string_list (rc, "Desktop Entry", "Categories", NULL, NULL);
       if (G_LIKELY (str_list != NULL))
         {
           for (mt = str_list; *mt != NULL; ++mt)
@@ -624,12 +623,21 @@ xfce_menu_item_new (const gchar *uri)
         }
 
       /* Set the rest of the private data directly */
-      item->priv->only_show_in = xfce_rc_read_list_entry (rc, "OnlyShowIn", ";");
-      item->priv->not_show_in = xfce_rc_read_list_entry (rc, "NotShowIn", ";");
+      item->priv->only_show_in = g_key_file_get_string_list (rc, "Desktop Entry", "OnlyShowIn", NULL, NULL);
+      item->priv->not_show_in = g_key_file_get_string_list (rc, "Desktop Entry", "NotShowIn", NULL, NULL);
     }
 
+  /* Free strings */
+  g_free (name);
+  g_free (generic_name);
+  g_free (comment);
+  g_free (exec);
+  g_free (try_exec);
+  g_free (icon);
+  g_free (path);
+
   /* Close file handle */
-  xfce_rc_close (rc);
+  g_key_file_free (rc);
 
   return item;
 }

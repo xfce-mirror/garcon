@@ -25,8 +25,6 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <libxfce4util/libxfce4util.h>
-
 #include <libxfce4menu/xfce-menu-node.h>
 #include <libxfce4menu/xfce-menu-tree-provider.h>
 #include <libxfce4menu/xfce-menu-parser.h>
@@ -536,11 +534,12 @@ static gboolean
 xfce_menu_merger_resolve_relative_paths (GNode                 *node,
                                          XfceMenuMergerContext *context)
 {
-  GFile  *source_file;
-  gchar **config_dirs;
-  gchar  *absolute_path = NULL;
-  gchar  *relative_path = NULL;
-  gint    i;
+  GFile               *source_file;
+  const gchar * const *system_config_dirs;
+  const gchar        **config_dirs;
+  gchar               *absolute_path = NULL;
+  gchar               *relative_path = NULL;
+  gint                 i;
 
   g_return_val_if_fail (context != NULL, FALSE);
 
@@ -569,10 +568,18 @@ xfce_menu_merger_resolve_relative_paths (GNode                 *node,
         }
       else
         {
-          config_dirs = xfce_resource_dirs (XFCE_RESOURCE_CONFIG);
+          system_config_dirs = g_get_system_config_dirs ();
+
+          config_dirs = g_new0 (const gchar *, 2 + g_strv_length ((gchar **)system_config_dirs));
+
+          config_dirs[0] = g_get_user_config_dir ();
+          config_dirs[1 + g_strv_length ((gchar **)system_config_dirs)] = NULL;
+
+          for (i = 0; system_config_dirs[i] != NULL; ++i)
+            config_dirs[i+1] = system_config_dirs[i];
 
           /* Find the parent XDG_CONFIG_DIRS entry for the current menu file */
-          for (i = 0; relative_path == NULL && i < g_strv_length ((gchar **)config_dirs); ++i)
+          for (i = 0; relative_path == NULL && config_dirs[i] != NULL; ++i)
             {
               GFile *config_dir = g_file_new_for_unknown_input (config_dirs[i], NULL);
               relative_path = g_file_get_relative_path (config_dir, source_file);
@@ -581,7 +588,7 @@ xfce_menu_merger_resolve_relative_paths (GNode                 *node,
 
           /* Look for the same relative path in the XDG_CONFIG_DIRS entries after the parent 
            * of the current menu file */
-          for (; relative_path != NULL && i < g_strv_length ((gchar **)config_dirs); ++i)
+          for (; relative_path != NULL && config_dirs[i] != NULL; ++i)
             {
               GFile *config_dir = g_file_new_for_unknown_input (config_dirs[i], NULL);
               GFile *absolute = g_file_resolve_relative_path (config_dir, relative_path);
@@ -615,7 +622,7 @@ xfce_menu_merger_resolve_relative_paths (GNode                 *node,
 
           g_free (absolute_path);
           g_free (relative_path);
-          g_strfreev (config_dirs);
+          g_free (config_dirs);
         }
     }
 

@@ -24,10 +24,9 @@
 
 #include <glib.h>
 #include <glib-object.h>
+#include <glib/gi18n.h>
 
 #include <gio/gio.h>
-
-#include <libxfce4util/libxfce4util.h>
 
 #include <libxfce4menu/xfce-menu-node.h>
 #include <libxfce4menu/xfce-menu-tree-provider.h>

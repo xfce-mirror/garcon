@@ -33,9 +33,9 @@
 #include <glib.h>
 #include <glib-object.h>
 #include <glib/gprintf.h>
+#include <glib/gi18n.h>
 #include <gio/gio.h>
 
-#include <libxfce4util/libxfce4util.h>
 #include <libxfce4menu/libxfce4menu.h>
 
 
@@ -387,7 +387,7 @@ main (int    argc,
   gint    exit_code = EXIT_SUCCESS;
 
   /* Initialize the menu library */
-  xfce_menu_init ("XFCE");
+  libxfce4menu_init ("XFCE");
 
   /* Set up menu monitoring */
   initialize_monitoring ();
@@ -415,12 +415,12 @@ main (int    argc,
     }
   else
     {
-      g_error (error->message);
+      g_error ("%s", error->message);
       exit_code = EXIT_FAILURE;
     }
 
   /* Shut down the menu library */
-  xfce_menu_shutdown ();
+  libxfce4menu_shutdown ();
 
   return exit_code;
 }
