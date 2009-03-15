@@ -1,5 +1,10 @@
 2009-03-15	Jannis Pohlmann <jannis@xfce.org>
 
+	* libxfce4menu/xfce-menu-node.c: Fix type macro typo in
+	  xfce_menu_node_tree_get_layout_merge_type().
+
+2009-03-15	Jannis Pohlmann <jannis@xfce.org>
+
 	* libxfce4menu/xfce-menu-merger.c: Remove duplicate layout nodes and
 	  only keep the last one.
 

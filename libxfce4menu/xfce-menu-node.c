@@ -709,7 +709,7 @@ xfce_menu_node_tree_set_string (GNode       *tree,
 XfceMenuLayoutMergeType
 xfce_menu_node_tree_get_layout_merge_type (GNode *tree)
 {
-  g_return_val_if_fail (xfce_menu_node_tree_get_node_type (tree) != XFCE_MENU_NODE_TYPE_LAYOUT, 0);
+  g_return_val_if_fail (xfce_menu_node_tree_get_node_type (tree) != XFCE_MENU_NODE_TYPE_MERGE, 0);
   return ((XfceMenuNode *)tree->data)->data.layout_merge_type;
 }
 
