@@ -1,3 +1,8 @@
+2009-03-15	Jannis Pohlmann <jannis@xfce.org>
+
+	* libxfce4menu/xfce-menu-merger.c: Remove duplicate layout nodes and
+	  only keep the last one.
+
 2009-03-14	Jannis Pohlmann <jannis@xfce.org>
 
 	* libxfce4menu/*.h: Remove trailing semicolons after G_BEGIN_DECLS and
