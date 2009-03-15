@@ -79,13 +79,15 @@ I. Supported menu file elements
 
   [x] <Layout>
 
-  [ ] <DefaultLayout>
+  [-] <DefaultLayout>
+
+        <DefaultLayout> elements are parsed and work fine but their
+        optional XML attributes (show_empty, inline etc.) are currently
+        being ignored.
 
   [-] <Menuname>
 
-        The <Menuname> element is parsed and applied, but XML 
-        attributes like show_empty, inline, inline_limit etc. are not
-        handled.
+        See <DefaultLayout>.
 
   [x] <Separator>
 

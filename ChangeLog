@@ -1,5 +1,9 @@
 2009-03-15	Jannis Pohlmann <jannis@xfce.org>
 
+	* STATUS: Update STATUS file.
+
+2009-03-15	Jannis Pohlmann <jannis@xfce.org>
+
 	* docs/reference/: Update API docs.
 	* libxfce4menu/libxfce4menu.c: Set path pointer to NULL after freeing
 	  it to avoid random data in it.
