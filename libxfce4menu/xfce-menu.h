@@ -54,9 +54,7 @@ GList             *xfce_menu_get_menus             (XfceMenu          *menu);
 XfceMenu          *xfce_menu_get_menu_with_name    (XfceMenu          *menu,
                                                     const gchar       *name);
 XfceMenu          *xfce_menu_get_parent            (XfceMenu          *menu);
-GList             *xfce_menu_get_items             (XfceMenu          *menu);
-gboolean           xfce_menu_has_layout            (XfceMenu          *menu);
-GList             *xfce_menu_get_layout_elements   (XfceMenu          *menu);
+GList             *xfce_menu_get_elements          (XfceMenu          *menu);
 
 G_END_DECLS
 

@@ -75,9 +75,7 @@ xfce_menu_get_directory
 xfce_menu_get_menus
 xfce_menu_get_menu_with_name
 xfce_menu_get_parent
-xfce_menu_get_items
-xfce_menu_has_layout
-xfce_menu_get_layout_elements
+xfce_menu_get_elements
 <SUBSECTION Standard>
 XFCE_MENU
 XFCE_IS_MENU
@@ -117,35 +115,6 @@ XFCE_IS_MENU_TREE_PROVIDER
 XFCE_TYPE_MENU_TREE_PROVIDER
 xfce_menu_tree_provider_get_type
 XFCE_MENU_TREE_PROVIDER_GET_IFACE
-</SECTION>
-
-<SECTION>
-<FILE>xfce-menu-layout</FILE>
-XfceMenuLayoutNodeType
-XfceMenuLayoutNode
-XfceMenuLayoutPrivate
-XfceMenuLayoutClass
-XfceMenuLayout
-xfce_menu_layout_new
-xfce_menu_layout_add_filename
-xfce_menu_layout_add_menuname
-xfce_menu_layout_add_separator
-xfce_menu_layout_add_merge
-xfce_menu_layout_get_nodes
-xfce_menu_layout_get_filename_used
-xfce_menu_layout_get_menuname_used
-xfce_menu_layout_node_get_type
-xfce_menu_layout_node_get_filename
-xfce_menu_layout_node_get_menuname
-xfce_menu_layout_node_get_merge_type
-<SUBSECTION Standard>
-XFCE_MENU_LAYOUT
-XFCE_IS_MENU_LAYOUT
-XFCE_TYPE_MENU_LAYOUT
-xfce_menu_layout_get_type
-XFCE_MENU_LAYOUT_CLASS
-XFCE_IS_MENU_LAYOUT_CLASS
-XFCE_MENU_LAYOUT_GET_CLASS
 </SECTION>
 
 <SECTION>

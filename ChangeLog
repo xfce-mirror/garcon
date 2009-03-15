@@ -1,5 +1,18 @@
 2009-03-15	Jannis Pohlmann <jannis@xfce.org>
 
+	* docs/reference/libxfce4menu-sections.txt,
+	  docs/reference/libxfce4menu.types, libxfce4menu/Makefile.am,
+	  libxfce4menu/libxfce4menu.h, libxfce4menu/xfce-menu.{c,h}, 
+	  libxfce4menu/xfce-menu-layout.{c,h}: Remove XfceMenuLayout class.
+	  Also remove xfce_menu_get_items() and rename
+	  xfce_menu_get_layout_elements() to xfce_menu_get_elements(). Make
+	  menu layouts work again with the GNode trees we have instead of
+	  XfceMenuLayout now.
+	* tests/test-display-menu.c, tests/test-menu-spec.c: Update tests to
+	  the latest API.
+
+2009-03-15	Jannis Pohlmann <jannis@xfce.org>
+
 	* libxfce4menu/xfce-menu-node.c: Really fix the typo this time.
 	* libxfce4menu/xfce-menu-parser.c: Remove break inside an if statement
 	  and thereby fix the parsing of <Layout> child elements.

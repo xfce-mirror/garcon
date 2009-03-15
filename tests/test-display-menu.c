@@ -257,13 +257,7 @@ create_menu_widgets (GtkWidget *gtk_menu,
   icon_theme = gtk_icon_theme_get_default ();
 
   /* Get submenus and items based on the menu layout */
-  if (G_UNLIKELY (xfce_menu_has_layout (menu)))
-    items = xfce_menu_get_layout_elements (menu);
-  else
-    {
-      items = xfce_menu_get_menus (menu);
-      items = g_list_concat (items, xfce_menu_get_items (menu));
-    }
+  items = xfce_menu_get_elements (menu);
 
   /* Iterate over menu items */
   for (iter = items; iter != NULL; iter = g_list_next (iter))

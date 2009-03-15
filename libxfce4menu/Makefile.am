@@ -18,7 +18,6 @@ libxfce4menu_headers =							\
 	xfce-menu-gio.h							\
 	xfce-menu-element.h						\
 	xfce-menu-separator.h						\
-	xfce-menu-layout.h						\
 	xfce-menu-directory.h						\
 	xfce-menu-item-pool.h						\
 	xfce-menu-item-cache.h						\
@@ -36,7 +35,6 @@ libxfce4menu_sources =							\
 	xfce-menu-gio.c							\
 	xfce-menu-element.c						\
 	xfce-menu-separator.c						\
-	xfce-menu-layout.c						\
 	xfce-menu-directory.c						\
 	xfce-menu-item-pool.c						\
 	xfce-menu-item-cache.c						\

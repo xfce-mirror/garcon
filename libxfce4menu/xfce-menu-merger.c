@@ -355,6 +355,7 @@ xfce_menu_merger_run (XfceMenuMerger *merger,
 
   xfce_menu_merger_clean_up_elements (merger->priv->menu, XFCE_MENU_NODE_TYPE_DELETED);
   xfce_menu_merger_clean_up_elements (merger->priv->menu, XFCE_MENU_NODE_TYPE_ONLY_UNALLOCATED);
+  /* TODO Resolve <DefaultLayout> and empty <Layout> elements */
   xfce_menu_merger_clean_up_elements (merger->priv->menu, XFCE_MENU_NODE_TYPE_LAYOUT);
 
   g_list_foreach (context.file_stack, (GFunc) g_object_unref, NULL);

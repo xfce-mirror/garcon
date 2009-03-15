@@ -32,7 +32,6 @@
 #include <libxfce4menu/xfce-menu-directory.h>
 #include <libxfce4menu/xfce-menu-item-pool.h>
 #include <libxfce4menu/xfce-menu-item-cache.h>
-#include <libxfce4menu/xfce-menu-layout.h>
 #include <libxfce4menu/xfce-menu-separator.h>
 #include <libxfce4menu/xfce-menu-monitor.h>
 #include <libxfce4menu/xfce-menu-node.h>
@@ -161,9 +160,6 @@ struct _XfceMenuPrivate
 
   /* Shared menu item cache */
   XfceMenuItemCache *cache;
-
-  /* Menu layout */
-  XfceMenuLayout    *layout;
 };
 
 struct _XfceMenuClass
@@ -285,7 +281,6 @@ xfce_menu_instance_init (XfceMenu *menu)
   menu->priv->submenus = NULL;
   menu->priv->parent = NULL;
   menu->priv->pool = xfce_menu_item_pool_new ();
-  menu->priv->layout = xfce_menu_layout_new ();
 
   /* Take reference on the menu item cache */
   menu->priv->cache = xfce_menu_item_cache_get_default ();
@@ -318,9 +313,6 @@ xfce_menu_finalize (GObject *object)
 
   /* Free item pool */
   g_object_unref (menu->priv->pool);
-
-  /* Free menu layout */
-  g_object_unref (menu->priv->layout);
 
   /* Release item cache reference */
   g_object_unref (menu->priv->cache);
@@ -1217,56 +1209,80 @@ xfce_menu_get_items (XfceMenu *menu)
 
 
 
-/**
- * xfce_menu_has_layout:
- * @menu : a #XfceMenu
- *
- * Checks whether @menu has a &lt;Layout&gt; or &lt;DefaultLayout&gt; element. If
- * this is the case, you can call xfce_menu_get_layout_elements() to get
- * the submenus, separators and items arranged according to the layout.
- *
- * Return value: %TRUE if @menu has a layout, %FALSE if not.
- **/
 gboolean
-xfce_menu_has_layout (XfceMenu *menu)
+get_layout_node (GNode  *node,
+                 GNode **layout)
 {
-  GList *nodes;
+  if (xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_LAYOUT)
+    {
+      *layout = node;
+      return TRUE;
+    }
+  else
+    return FALSE;
+}
 
-  g_return_val_if_fail (XFCE_IS_MENU (menu), FALSE);
-  g_return_val_if_fail (XFCE_IS_MENU_LAYOUT (menu->priv->layout), FALSE);
 
-  /* Fetch layout nodes */
-  nodes = xfce_menu_layout_get_nodes (menu->priv->layout);
 
-  /* Menu is supposed to have no layout when the nodes list is empty */
-  return g_list_length (nodes) > 0;
+gboolean
+layout_has_menuname (GNode       *layout,
+                     const gchar *name)
+{
+  GList   *nodes;
+  GList   *iter;
+  gboolean has_menuname = FALSE;  
+
+  nodes = xfce_menu_node_tree_get_child_nodes (layout, XFCE_MENU_NODE_TYPE_MENUNAME, FALSE);
+
+  for (iter = g_list_first (nodes); !has_menuname && iter != NULL; iter = g_list_next (iter))
+    if (g_str_equal (xfce_menu_node_tree_get_string (iter->data), name))
+      has_menuname = TRUE;
+
+  g_list_free (nodes);
+
+  return has_menuname;
+}
+
+
+
+gboolean
+layout_has_filename (GNode       *layout,
+                     const gchar *desktop_id)
+{
+  GList   *nodes;
+  GList   *iter;
+  gboolean has_filename = FALSE;  
+
+  nodes = xfce_menu_node_tree_get_child_nodes (layout, XFCE_MENU_NODE_TYPE_FILENAME, FALSE);
+
+  for (iter = g_list_first (nodes); !has_filename && iter != NULL; iter = g_list_next (iter))
+    if (g_str_equal (xfce_menu_node_tree_get_string (iter->data), desktop_id))
+      has_filename = TRUE;
+
+  g_list_free (nodes);
+
+  return has_filename;
 }
 
 
 
 static void
-layout_elements_collect (GList        **dest_list,
-                         GList         *src_list,
-                         XfceMenuLayout *layout)
+layout_elements_collect (GList **dest_list,
+                         GList  *src_list,
+                         GNode  *layout)
 {
-  XfceMenuItem *item;
-  XfceMenu     *menu;
-  GList       *iter;
+  GList *iter;
 
   for (iter = src_list; iter != NULL; iter = g_list_next (iter))
     {
       if (XFCE_IS_MENU (iter->data))
         {
-          menu = XFCE_MENU (iter->data);
-
-          if (G_LIKELY (!xfce_menu_layout_get_menuname_used (layout, xfce_menu_get_name (menu))))
+          if (G_LIKELY (!layout_has_menuname (layout, xfce_menu_get_name (iter->data))))
             *dest_list = g_list_append (*dest_list, iter->data);
         }
       else if (XFCE_IS_MENU_ITEM (iter->data))
         {
-          item = XFCE_MENU_ITEM (iter->data);
-
-          if (G_LIKELY (!xfce_menu_layout_get_filename_used (layout, xfce_menu_item_get_desktop_id (item))))
+          if (G_LIKELY (!layout_has_filename (layout, xfce_menu_item_get_desktop_id (iter->data))))
             *dest_list = g_list_append (*dest_list, iter->data);
         }
     }
@@ -1275,61 +1291,61 @@ layout_elements_collect (GList        **dest_list,
 
 
 GList *
-xfce_menu_get_layout_elements (XfceMenu *menu)
+xfce_menu_get_elements (XfceMenu *menu)
 {
-  GList *items = NULL;
-  GList *menu_items;
-  GList *nodes;
-  GList *iter;
+  XfceMenuLayoutMergeType merge_type;
+  XfceMenuNodeType        type;
+  XfceMenuItem           *item;
+  XfceMenu               *submenu;
+  GList                  *items = NULL;
+  GList                  *menu_items;
+  GNode                  *layout = NULL;
+  GNode                  *node;
 
   g_return_val_if_fail (XFCE_IS_MENU (menu), NULL);
 
-  /* Return NULL if there is no layout */
-  if (G_UNLIKELY (!xfce_menu_has_layout (menu)))
-    return NULL;
+  /* Determine layout node */
+  g_node_traverse (menu->priv->tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
+                   (GNodeTraverseFunc) get_layout_node, &layout);
 
-  /* Fetch layout nodes */
-  nodes = xfce_menu_layout_get_nodes (menu->priv->layout);
+  /* There should always be a layout, otherwise XfceMenuMerger is broken */
+  g_return_val_if_fail (layout != NULL, NULL);
 
   /* Process layout nodes in order */
-  for (iter = nodes; iter != NULL; iter = g_list_next (iter))
+  for (node = g_node_first_child (layout); node != NULL; node = g_node_next_sibling (node))
     {
-      XfceMenuLayoutNode     *node = (XfceMenuLayoutNode *)iter->data;
-      XfceMenuLayoutNodeType  type;
-      XfceMenuLayoutMergeType merge_type;
-      XfceMenuItem           *item;
-      XfceMenu               *submenu;
-
       /* Determine layout node type */
-      type = xfce_menu_layout_node_get_type (node);
+      type = xfce_menu_node_tree_get_node_type (node);
 
-      if (type == XFCE_MENU_LAYOUT_NODE_FILENAME)
+      if (type == XFCE_MENU_NODE_TYPE_FILENAME)
         {
           /* Search for desktop ID in the item pool */
-          item = xfce_menu_item_pool_lookup (menu->priv->pool, xfce_menu_layout_node_get_filename (node));
+          item = xfce_menu_item_pool_lookup (menu->priv->pool, 
+                                             xfce_menu_node_tree_get_string (node));
 
           /* If the item with this desktop ID is included in the menu, append it to the list */
           if (G_LIKELY (item != NULL))
             items = g_list_append (items, item);
         }
-      if (type == XFCE_MENU_LAYOUT_NODE_MENUNAME)
+      if (type == XFCE_MENU_NODE_TYPE_MENUNAME)
         {
           /* Search submenu with this name */
-          submenu = xfce_menu_get_menu_with_name (menu, xfce_menu_layout_node_get_menuname (node));
+          submenu = xfce_menu_get_menu_with_name (menu, 
+                                                  xfce_menu_node_tree_get_string (node));
 
           /* If there is such a menu, append it to the list */
           if (G_LIKELY (submenu != NULL))
             items = g_list_append (items, submenu);
         }
-      else if (type == XFCE_MENU_LAYOUT_NODE_SEPARATOR)
+      else if (type == XFCE_MENU_NODE_TYPE_SEPARATOR)
         {
           /* Append separator to the list */
           items = g_list_append (items, xfce_menu_separator_get_default ());
         }
-      else if (type == XFCE_MENU_LAYOUT_NODE_MERGE)
+      else if (type == XFCE_MENU_NODE_TYPE_MERGE)
         {
           /* Determine merge type */
-          merge_type = xfce_menu_layout_node_get_merge_type (node);
+          merge_type = xfce_menu_node_tree_get_layout_merge_type (node);
 
           if (merge_type == XFCE_MENU_LAYOUT_MERGE_ALL)
             {
@@ -1343,7 +1359,7 @@ xfce_menu_get_layout_elements (XfceMenu *menu)
               menu_items = g_list_sort (menu_items, (GCompareFunc) xfce_menu_compare_items);
 
               /* Append menu items to the returned item list */
-              layout_elements_collect (&items, menu_items, menu->priv->layout);
+              layout_elements_collect (&items, menu_items, layout);
             }
           else if (merge_type == XFCE_MENU_LAYOUT_MERGE_FILES)
             {
@@ -1351,7 +1367,7 @@ xfce_menu_get_layout_elements (XfceMenu *menu)
               menu_items = xfce_menu_get_items (menu);
 
               /* Append menu items to the returned item list */
-              layout_elements_collect (&items, menu_items, menu->priv->layout);
+              layout_elements_collect (&items, menu_items, layout);
             }
           else if (merge_type == XFCE_MENU_LAYOUT_MERGE_MENUS)
             {
@@ -1359,7 +1375,7 @@ xfce_menu_get_layout_elements (XfceMenu *menu)
               menu_items = xfce_menu_get_menus (menu);
 
               /* Append submenus to the returned item list */
-              layout_elements_collect (&items, menu_items, menu->priv->layout);
+              layout_elements_collect (&items, menu_items, layout);
             }
         }
     }

@@ -72,15 +72,16 @@ print_menu (XfceMenu *menu, const gchar *path)
   g_list_free (menus);
 
   /* Fetch menu items */
-  items = xfce_menu_get_items (menu);
+  items = xfce_menu_get_elements (menu);
 
   /* Print menu items */
   for (iter = items; iter != NULL; iter = g_list_next (iter)) 
     {
-      XfceMenuItem      *item = iter->data;
-
-      if (G_UNLIKELY (!xfce_menu_item_get_no_display (item)))
-        g_printf ("%s\t%s\t%s\n", name, xfce_menu_item_get_desktop_id (item), xfce_menu_item_get_filename (item));
+      if (!XFCE_IS_MENU_ITEM (iter->data))
+        continue;
+      
+      if (G_UNLIKELY (!xfce_menu_item_get_no_display (iter->data)))
+        g_printf ("%s\t%s\t%s\n", name, xfce_menu_item_get_desktop_id (iter->data), xfce_menu_item_get_filename (iter->data));
     }
 
   /* Free menu item list */
