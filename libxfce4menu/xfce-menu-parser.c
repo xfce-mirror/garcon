@@ -538,8 +538,6 @@ xfce_menu_parser_start_element (GMarkupParseContext *context,
                 type = XFCE_MENU_LAYOUT_MERGE_MENUS;
               else if (g_str_equal (attribute_values[0], "files"))
                 type = XFCE_MENU_LAYOUT_MERGE_FILES;
-
-              break;
             }
 
           node_ = xfce_menu_node_create (XFCE_MENU_NODE_TYPE_MERGE, GUINT_TO_POINTER (type));
