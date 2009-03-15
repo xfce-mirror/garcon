@@ -113,6 +113,7 @@ xfce_menu_node_type_get_type (void)
     { XFCE_MENU_NODE_TYPE_MOVE, "XFCE_MENU_NODE_TYPE_MOVE", "Move" },
     { XFCE_MENU_NODE_TYPE_OLD, "XFCE_MENU_NODE_TYPE_OLD", "Old" },
     { XFCE_MENU_NODE_TYPE_NEW, "XFCE_MENU_NODE_TYPE_NEW", "New" },
+    { XFCE_MENU_NODE_TYPE_DEFAULT_LAYOUT, "XFCE_MENU_NODE_TYPE_DEFAULT_LAYOUT", "DefaultLayout" },
     { XFCE_MENU_NODE_TYPE_LAYOUT, "XFCE_MENU_NODE_TYPE_LAYOUT", "Layout" },
     { XFCE_MENU_NODE_TYPE_MENUNAME, "XFCE_MENU_NODE_TYPE_MENUNAME", "Menuname" },
     { XFCE_MENU_NODE_TYPE_SEPARATOR, "XFCE_MENU_NODE_TYPE_SEPARATOR", "Separator" },
@@ -465,10 +466,31 @@ collect_children (GNode *node,
 
 
 
+GNode *
+xfce_menu_node_tree_get_child_node (GNode           *tree,
+                                    XfceMenuNodeType type,
+                                    gboolean         reverse)
+{
+  GNode *node = NULL;
+  GNode *child;
+
+  for (child = reverse ? g_node_last_child (tree) : g_node_first_child (tree); 
+       node == NULL && child != NULL; 
+       child = reverse ? g_node_prev_sibling (child) : g_node_next_sibling (child))
+    {
+      if (xfce_menu_node_tree_get_node_type (child) == type)
+        node = child;
+    }
+
+  return node;
+}
+
+
+
 GList *
-xfce_menu_node_tree_get_child_nodes (GNode            *tree,
-                                     XfceMenuNodeType  type,
-                                     gboolean          reverse)
+xfce_menu_node_tree_get_child_nodes (GNode           *tree,
+                                     XfceMenuNodeType type,
+                                     gboolean         reverse)
 {
   Pair pair;
 

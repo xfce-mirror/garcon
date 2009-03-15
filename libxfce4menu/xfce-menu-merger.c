@@ -89,6 +89,7 @@ static gboolean xfce_menu_merger_process_merge_files        (GNode              
 static void     xfce_menu_merger_clean_up_elements          (GNode                     *node,
                                                              XfceMenuNodeType           type);
 static void     xfce_menu_merger_resolve_moves              (GNode                     *node);
+static void     xfce_menu_merger_prepend_default_layout     (GNode                     *node);
 
 
 
@@ -355,7 +356,8 @@ xfce_menu_merger_run (XfceMenuMerger *merger,
 
   xfce_menu_merger_clean_up_elements (merger->priv->menu, XFCE_MENU_NODE_TYPE_DELETED);
   xfce_menu_merger_clean_up_elements (merger->priv->menu, XFCE_MENU_NODE_TYPE_ONLY_UNALLOCATED);
-  /* TODO Resolve <DefaultLayout> and empty <Layout> elements */
+
+  xfce_menu_merger_prepend_default_layout (merger->priv->menu);
   xfce_menu_merger_clean_up_elements (merger->priv->menu, XFCE_MENU_NODE_TYPE_LAYOUT);
 
   g_list_foreach (context.file_stack, (GFunc) g_object_unref, NULL);
@@ -953,6 +955,13 @@ xfce_menu_merger_clean_up_elements (GNode            *node,
 
   g_list_foreach (destroy_list, (GFunc) xfce_menu_node_tree_free, NULL);
   g_list_free (destroy_list);
+
+  if (type == XFCE_MENU_NODE_TYPE_LAYOUT 
+      && remaining_node != NULL 
+      && G_NODE_IS_LEAF (remaining_node))
+    {
+      xfce_menu_node_tree_free (remaining_node);
+    }
 }
 
 
@@ -1160,4 +1169,27 @@ xfce_menu_merger_resolve_moves (GNode *node)
 
   g_list_foreach (pairs, (GFunc) g_free, NULL);
   g_list_free (pairs);
+}
+
+
+
+static void
+xfce_menu_merger_prepend_default_layout (GNode *node)
+{
+  XfceMenuNode *node_;
+  GNode        *layout;
+
+  if (xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_MENU)
+    {
+      node_ = xfce_menu_node_create (XFCE_MENU_NODE_TYPE_DEFAULT_LAYOUT, NULL);
+      layout = g_node_prepend_data (node, node_);
+
+      node_ = xfce_menu_node_create (XFCE_MENU_NODE_TYPE_MERGE, 
+                                     GUINT_TO_POINTER (XFCE_MENU_LAYOUT_MERGE_MENUS));
+      g_node_append_data (layout, node_);
+
+      node_ = xfce_menu_node_create (XFCE_MENU_NODE_TYPE_MERGE,
+                                     GUINT_TO_POINTER (XFCE_MENU_LAYOUT_MERGE_FILES));
+      g_node_append_data (layout, node_);
+    }
 }

@@ -409,7 +409,12 @@ main (int    argc,
     }
   else
     {
-      g_error ("%s", error->message);
+      gchar *uri;
+
+      uri = g_file_get_uri (xfce_menu_get_file (root));
+      g_error ("Could not load menu from %s: %s", uri, error->message);
+      g_free (uri);
+
       exit_code = EXIT_FAILURE;
     }
 

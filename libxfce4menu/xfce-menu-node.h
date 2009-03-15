@@ -57,6 +57,7 @@ typedef enum
   XFCE_MENU_NODE_TYPE_MOVE,
   XFCE_MENU_NODE_TYPE_OLD,
   XFCE_MENU_NODE_TYPE_NEW,
+  XFCE_MENU_NODE_TYPE_DEFAULT_LAYOUT,
   XFCE_MENU_NODE_TYPE_LAYOUT,
   XFCE_MENU_NODE_TYPE_MENUNAME,
   XFCE_MENU_NODE_TYPE_SEPARATOR,
@@ -112,6 +113,9 @@ const gchar            *xfce_menu_node_get_merge_file_filename      (XfceMenuNod
 void                    xfce_menu_node_set_merge_file_filename      (XfceMenuNode         *node,
                                                                      const gchar          *filename);
 
+GNode                  *xfce_menu_node_tree_get_child_node          (GNode                *tree,
+                                                                     XfceMenuNodeType      type,
+                                                                     gboolean              reverse);
 GList                  *xfce_menu_node_tree_get_child_nodes         (GNode                *tree,
                                                                      XfceMenuNodeType      type,
                                                                      gboolean              reverse);

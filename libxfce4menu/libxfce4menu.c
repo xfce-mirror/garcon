@@ -130,6 +130,7 @@ xfce_menu_config_lookup (const gchar *filename)
   if (!g_file_test (path, G_FILE_TEST_EXISTS))
     {
       g_free (path);
+      path = NULL;
 
       dirs = g_get_system_config_dirs ();
 
@@ -140,7 +141,10 @@ xfce_menu_config_lookup (const gchar *filename)
               path = g_build_path (G_DIR_SEPARATOR_S, dirs[i], filename, NULL);
 
               if (!g_file_test (path, G_FILE_TEST_IS_REGULAR))
-                g_free (path);
+                {
+                  g_free (path);
+                  path = NULL;
+                }
             }
         }
     }

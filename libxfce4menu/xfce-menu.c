@@ -1209,22 +1209,37 @@ xfce_menu_get_items (XfceMenu *menu)
 
 
 
-gboolean
-get_layout_node (GNode  *node,
-                 GNode **layout)
+static GNode *
+xfce_menu_get_layout (XfceMenu *menu,
+                      gboolean  default_only)
 {
-  if (xfce_menu_node_tree_get_node_type (node) == XFCE_MENU_NODE_TYPE_LAYOUT)
+  GNode *layout = NULL;
+
+  g_return_val_if_fail (XFCE_IS_MENU (menu), NULL);
+
+  if (G_LIKELY (!default_only))
     {
-      *layout = node;
-      return TRUE;
+      layout = xfce_menu_node_tree_get_child_node (menu->priv->tree, 
+                                                   XFCE_MENU_NODE_TYPE_LAYOUT,
+                                                   TRUE);
     }
-  else
-    return FALSE;
+
+  if (layout == NULL)
+    {
+      layout = xfce_menu_node_tree_get_child_node (menu->priv->tree,
+                                                   XFCE_MENU_NODE_TYPE_DEFAULT_LAYOUT,
+                                                   TRUE);
+
+      if (layout == NULL && menu->priv->parent != NULL)
+        layout = xfce_menu_get_layout (menu->priv->parent, TRUE);
+    }
+
+  return layout;
 }
 
 
 
-gboolean
+static gboolean
 layout_has_menuname (GNode       *layout,
                      const gchar *name)
 {
@@ -1245,7 +1260,7 @@ layout_has_menuname (GNode       *layout,
 
 
 
-gboolean
+static gboolean
 layout_has_filename (GNode       *layout,
                      const gchar *desktop_id)
 {
@@ -1305,8 +1320,7 @@ xfce_menu_get_elements (XfceMenu *menu)
   g_return_val_if_fail (XFCE_IS_MENU (menu), NULL);
 
   /* Determine layout node */
-  g_node_traverse (menu->priv->tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
-                   (GNodeTraverseFunc) get_layout_node, &layout);
+  layout = xfce_menu_get_layout (menu, FALSE);
 
   /* There should always be a layout, otherwise XfceMenuMerger is broken */
   g_return_val_if_fail (layout != NULL, NULL);
@@ -1452,6 +1466,7 @@ xfce_menu_monitor_start (XfceMenu *menu)
 
   g_return_if_fail (XFCE_IS_MENU (menu));
 
+  /* TODO Make monitoring work properly again */
 #if 0
   /* Monitor the menu file */
   if (G_LIKELY (xfce_menu_monitor_has_flags (XFCE_MENU_MONITOR_MENU_FILES)))
@@ -1502,6 +1517,7 @@ xfce_menu_monitor_stop (XfceMenu *menu)
   /* Stop monitoring the items */
   xfce_menu_item_pool_foreach (menu->priv->pool, (GHFunc) item_monitor_stop, menu);
 
+  /* TODO Make monitoring work properly again */
 #if 0
   /* Stop monitoring the application directories */
   for (iter = menu->priv->app_dirs; iter != NULL; iter = g_list_next (iter))

@@ -448,7 +448,14 @@ xfce_menu_parser_start_element (GMarkupParseContext *context,
           parser_context->node = g_node_append_data (parser_context->node, node_);
           parser_context->state = XFCE_MENU_PARSER_STATE_MOVE;
         }
-      
+
+      else if (g_str_equal (element_name, "DefaultLayout"))
+        {
+          /* TODO Parse attributes */
+          node_ = xfce_menu_node_create (XFCE_MENU_NODE_TYPE_DEFAULT_LAYOUT, NULL);
+          parser_context->node = g_node_append_data (parser_context->node, node_);
+          parser_context->state = XFCE_MENU_PARSER_STATE_LAYOUT;
+        }
       else if (g_str_equal (element_name, "Layout"))
         {
           node_ = xfce_menu_node_create (XFCE_MENU_NODE_TYPE_LAYOUT, NULL);
@@ -623,7 +630,7 @@ xfce_menu_parser_end_element (GMarkupParseContext *context,
       break;
 
     case XFCE_MENU_PARSER_STATE_LAYOUT:
-      if (g_str_equal (element_name, "Layout"))
+      if (g_str_equal (element_name, "Layout") || g_str_equal (element_name, "DefaultLayout"))
         {
           parser_context->node = parser_context->node->parent;
 

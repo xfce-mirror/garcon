@@ -120,7 +120,12 @@ main (int    argc,
     }
   else
     {
-      g_error ("%s", error->message);
+      gchar *uri;
+
+      uri = g_file_get_uri (xfce_menu_get_file (menu));
+      g_error ("Could not load menu from %s: %s", uri, error->message);
+      g_free (uri);
+
       g_error_free (error);
 #ifdef HAVE_STDLIB_H
       exit_code = EXIT_FAILURE;
