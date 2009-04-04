@@ -133,6 +133,7 @@ static gint               xfce_menu_compare_items                          (gcon
                                                                             gconstpointer         *b);
 static const gchar       *xfce_menu_get_element_name                       (XfceMenuElement       *element);
 static const gchar       *xfce_menu_get_element_icon_name                  (XfceMenuElement       *element);
+static gboolean           xfce_menu_get_element_visible                    (XfceMenuElement       *element);
 static void               xfce_menu_monitor_start                          (XfceMenu              *menu);
 static void               xfce_menu_monitor_stop                           (XfceMenu              *menu);
 
@@ -267,6 +268,7 @@ xfce_menu_element_init (XfceMenuElementIface *iface)
 {
   iface->get_name = xfce_menu_get_element_name;
   iface->get_icon_name = xfce_menu_get_element_icon_name;
+  iface->get_visible = xfce_menu_get_element_visible;
 }
 
 
@@ -1445,6 +1447,37 @@ xfce_menu_get_element_icon_name (XfceMenuElement *element)
     return NULL;
   else
     return xfce_menu_directory_get_icon (menu->priv->directory);
+}
+
+
+
+static gboolean
+xfce_menu_get_element_visible (XfceMenuElement *element)
+{
+  XfceMenu *menu;
+  GList    *items;
+  GList    *iter;
+  gboolean  visible = FALSE;
+
+  g_return_val_if_fail (XFCE_IS_MENU (element), FALSE);
+
+  menu = XFCE_MENU (element);
+
+  if (menu->priv->directory != NULL)
+    {
+      if (!xfce_menu_directory_get_visible (menu->priv->directory))
+        return FALSE;
+    }
+
+  items = xfce_menu_get_elements (menu);
+  for (iter = items; visible != TRUE && iter != NULL; iter = g_list_next (iter))
+    {
+      if (xfce_menu_element_get_visible (XFCE_MENU_ELEMENT (iter->data)))
+        visible = TRUE;
+    }
+
+  g_list_free (items);
+  return visible;
 }
 
 

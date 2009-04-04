@@ -59,6 +59,7 @@ void                     xfce_menu_directory_set_no_display      (XfceMenuDirect
                                                                   gboolean           no_display);
 gboolean                 xfce_menu_directory_get_hidden          (XfceMenuDirectory *directory);
 gboolean                 xfce_menu_directory_show_in_environment (XfceMenuDirectory *directory);
+gboolean                 xfce_menu_directory_get_visible         (XfceMenuDirectory *directory);
 gboolean                 xfce_menu_directory_equal               (XfceMenuDirectory *directory,
                                                                   XfceMenuDirectory *other);
 

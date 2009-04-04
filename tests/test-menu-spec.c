@@ -43,6 +43,9 @@ print_menu (XfceMenu *menu, const gchar *path)
   GList             *iter;
   gchar             *name;
 
+  if (!xfce_menu_element_get_visible (XFCE_MENU_ELEMENT (menu)))
+    return;
+
   /* Determine menu name */
   directory = xfce_menu_get_directory (menu);
 
@@ -61,10 +64,8 @@ print_menu (XfceMenu *menu, const gchar *path)
   /* Print child menus */
   for (iter = menus; iter != NULL; iter = g_list_next (iter)) 
     {
-      XfceMenuDirectory *submenu_directory = xfce_menu_get_directory (XFCE_MENU (iter->data));
-
-      /* Don't display hidden menus */
-      if (G_LIKELY (submenu_directory == NULL || !xfce_menu_directory_get_no_display (submenu_directory)))
+      /* Only display menus which are not hidden or excluded from this environment */
+      if (G_LIKELY (xfce_menu_element_get_visible (iter->data)))
         print_menu (XFCE_MENU (iter->data), name);
     }
 
@@ -77,10 +78,7 @@ print_menu (XfceMenu *menu, const gchar *path)
   /* Print menu items */
   for (iter = items; iter != NULL; iter = g_list_next (iter)) 
     {
-      if (!XFCE_IS_MENU_ITEM (iter->data))
-        continue;
-      
-      if (G_UNLIKELY (!xfce_menu_item_get_no_display (iter->data)))
+      if (XFCE_IS_MENU_ITEM (iter->data) && xfce_menu_element_get_visible (iter->data))
         g_printf ("%s\t%s\t%s\n", name, xfce_menu_item_get_desktop_id (iter->data), xfce_menu_item_get_filename (iter->data));
     }
 

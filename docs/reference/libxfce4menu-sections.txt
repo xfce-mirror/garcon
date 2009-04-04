@@ -35,6 +35,7 @@ xfce_menu_directory_get_no_display
 xfce_menu_directory_set_no_display
 xfce_menu_directory_get_hidden
 xfce_menu_directory_show_in_environment
+xfce_menu_directory_get_visible
 xfce_menu_directory_equal
 <SUBSECTION Standard>
 XFCE_MENU_DIRECTORY
@@ -186,6 +187,7 @@ XfceMenuElement
 XfceMenuElementIface
 xfce_menu_element_get_name
 xfce_menu_element_get_icon_name
+xfce_menu_element_get_visible
 <SUBSECTION Standard>
 XFCE_MENU_ELEMENT
 XFCE_IS_MENU_ELEMENT

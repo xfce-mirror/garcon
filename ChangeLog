@@ -1,3 +1,22 @@
+2009-04-04	Jannis Pohlmann <jannis@xfce.org>
+
+	* AUTHORS: Add Travis Watkins as a contributor.
+	* docs/reference: Update API docs.
+	* libxfce4menu/xfce-menu-directory.{c,h},
+	  libxfce4menu/xfce-menu-element.{c,h},
+	  libxfce4menu/xfce-menu-item.c,
+	  libxfce4menu/xfce-menu-separator.c, libxfce4menu/xfce-menu.c: Add
+	  xfce_menu_element_get_visible() to XfceMenuElement. The
+	  XfceMenuSeparator implementation always returns TRUE while the
+	  XfceMenuItem implementation checks the Hidden/OnlyShowIn/NotShowIn
+	  values of the corresponding desktop entry. XfceMenu checks the
+	  Hidden/OnlyShowIn/NotShowIn values of its XfceMenuDirectory as well
+	  as whether there are any visible child elements. Thanks to Travis
+	  Watkins for the patch.
+	* tests/test-display-menu.c, tests/test-menu-spec.c: Update tests to
+	  reflect the latest API changes. Thanks to Travis for updating
+	  test-display-menu.c.
+
 2009-03-15	Jannis Pohlmann <jannis@xfce.org>
 
 	* STATUS: Update STATUS file.

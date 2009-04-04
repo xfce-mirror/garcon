@@ -262,6 +262,9 @@ create_menu_widgets (GtkWidget *gtk_menu,
   /* Iterate over menu items */
   for (iter = items; iter != NULL; iter = g_list_next (iter))
     {
+      if (!xfce_menu_element_get_visible (iter->data))
+        continue;
+
       if (XFCE_IS_MENU_ITEM (iter->data))
         {
           /* Add menu item to the menu */

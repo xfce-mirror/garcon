@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-15 04:13+0100\n"
+"POT-Creation-Date: 2009-04-04 23:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,11 +26,11 @@ msgstr ""
 msgid "Could not load menu file data from %s"
 msgstr ""
 
-#: .././tests/test-display-menu.c:354
+#: .././tests/test-display-menu.c:357
 msgid "XfceMenu: Display Menu Test"
 msgstr ""
 
 #. Create button
-#: .././tests/test-display-menu.c:363
+#: .././tests/test-display-menu.c:366
 msgid "_Show menu"
 msgstr ""

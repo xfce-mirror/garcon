@@ -69,6 +69,7 @@ static void         xfce_menu_item_set_property           (GObject              
                                                            GParamSpec           *pspec);
 static const gchar *xfce_menu_item_get_element_name       (XfceMenuElement      *element);
 static const gchar *xfce_menu_item_get_element_icon_name  (XfceMenuElement      *element);
+static gboolean     xfce_menu_item_get_element_visible    (XfceMenuElement      *element);
 
 
 
@@ -362,6 +363,7 @@ xfce_menu_item_element_init (XfceMenuElementIface *iface)
 {
   iface->get_name = xfce_menu_item_get_element_name;
   iface->get_icon_name = xfce_menu_item_get_element_icon_name;
+  iface->get_visible = xfce_menu_item_get_element_visible;
 }
 
 
@@ -1249,3 +1251,25 @@ xfce_menu_item_get_element_icon_name (XfceMenuElement *element)
   g_return_val_if_fail (XFCE_IS_MENU_ITEM (element), NULL);
   return XFCE_MENU_ITEM (element)->priv->icon_name;
 }
+
+
+
+gboolean
+xfce_menu_item_get_element_visible (XfceMenuElement *element)
+{
+  XfceMenuItem *item;
+
+  g_return_val_if_fail (XFCE_IS_MENU_ITEM (element), FALSE);
+
+  item = XFCE_MENU_ITEM (element);
+
+  if (!xfce_menu_item_show_in_environment (item))
+    return FALSE;
+  else if (xfce_menu_item_get_no_display (item))
+    return FALSE;
+
+  /* TODO Check TryExec as well */
+
+  return TRUE;
+}
+

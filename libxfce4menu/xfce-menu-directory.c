@@ -624,6 +624,23 @@ xfce_menu_directory_show_in_environment (XfceMenuDirectory *directory)
 
 
 gboolean
+xfce_menu_directory_get_visible (XfceMenuDirectory *directory)
+{
+  g_return_val_if_fail (XFCE_IS_MENU_DIRECTORY (directory), FALSE);
+
+  if (!xfce_menu_directory_show_in_environment (directory))
+    return FALSE;
+  else if (xfce_menu_directory_get_hidden (directory))
+    return FALSE;
+  else if (xfce_menu_directory_get_no_display (directory))
+    return FALSE;
+
+  return TRUE;
+}
+
+
+
+gboolean
 xfce_menu_directory_equal (XfceMenuDirectory *directory,
                            XfceMenuDirectory *other)
 {

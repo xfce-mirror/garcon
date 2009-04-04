@@ -83,3 +83,13 @@ xfce_menu_element_get_icon_name (XfceMenuElement *element)
   g_return_val_if_fail (XFCE_IS_MENU_ELEMENT (element), NULL);
   return (*XFCE_MENU_ELEMENT_GET_IFACE (element)->get_icon_name) (element);
 }
+
+
+
+gboolean
+xfce_menu_element_get_visible (XfceMenuElement *element)
+{
+  g_return_val_if_fail (XFCE_IS_MENU_ELEMENT (element), FALSE);
+  return (*XFCE_MENU_ELEMENT_GET_IFACE (element)->get_visible) (element);
+}
+
