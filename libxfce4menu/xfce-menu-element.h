@@ -44,18 +44,22 @@ struct _XfceMenuElementIface
   GTypeInterface __parent__;
 
   /* Virtual methods */
-  const gchar *(*get_name)      (XfceMenuElement *element);
-  const gchar *(*get_comment)   (XfceMenuElement *element);
-  const gchar *(*get_icon_name) (XfceMenuElement *element);
-  gboolean     (*get_visible)   (XfceMenuElement *element);
+  const gchar *(*get_name)                (XfceMenuElement *element);
+  const gchar *(*get_comment)             (XfceMenuElement *element);
+  const gchar *(*get_icon_name)           (XfceMenuElement *element);
+  gboolean     (*get_visible)             (XfceMenuElement *element);
+  gboolean     (*get_show_in_environment) (XfceMenuElement *element);
+  gboolean     (*get_no_display)          (XfceMenuElement *element);
 };
 
 GType        xfce_menu_element_get_type      (void) G_GNUC_CONST;
 
-const gchar *xfce_menu_element_get_name      (XfceMenuElement *element);
-const gchar *xfce_menu_element_get_comment   (XfceMenuElement *element);
-const gchar *xfce_menu_element_get_icon_name (XfceMenuElement *element);
-gboolean     xfce_menu_element_get_visible   (XfceMenuElement *element);
+const gchar *xfce_menu_element_get_name                (XfceMenuElement *element);
+const gchar *xfce_menu_element_get_comment             (XfceMenuElement *element);
+const gchar *xfce_menu_element_get_icon_name           (XfceMenuElement *element);
+gboolean     xfce_menu_element_get_visible             (XfceMenuElement *element);
+gboolean     xfce_menu_element_get_show_in_environment (XfceMenuElement *element);
+gboolean     xfce_menu_element_get_no_display          (XfceMenuElement *element);
 
 G_END_DECLS
 

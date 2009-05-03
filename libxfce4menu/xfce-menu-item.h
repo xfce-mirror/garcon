@@ -88,7 +88,7 @@ void          xfce_menu_item_set_categories                    (XfceMenuItem *it
                                                                 GList        *categories);
 gboolean      xfce_menu_item_has_category                      (XfceMenuItem *item,
                                                                 const gchar  *category);
-gboolean      xfce_menu_item_show_in_environment               (XfceMenuItem *item);
+gboolean      xfce_menu_item_get_show_in_environment           (XfceMenuItem *item);
 gboolean      xfce_menu_item_only_show_in_environment          (XfceMenuItem *item);
 void          xfce_menu_item_ref                               (XfceMenuItem *item);
 void          xfce_menu_item_unref                             (XfceMenuItem *item);

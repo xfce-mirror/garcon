@@ -34,7 +34,7 @@ xfce_menu_directory_set_icon
 xfce_menu_directory_get_no_display
 xfce_menu_directory_set_no_display
 xfce_menu_directory_get_hidden
-xfce_menu_directory_show_in_environment
+xfce_menu_directory_get_show_in_environment
 xfce_menu_directory_get_visible
 xfce_menu_directory_equal
 <SUBSECTION Standard>
@@ -189,6 +189,8 @@ xfce_menu_element_get_name
 xfce_menu_element_get_comment
 xfce_menu_element_get_icon_name
 xfce_menu_element_get_visible
+xfce_menu_element_get_show_in_environment
+xfce_menu_element_get_no_display
 <SUBSECTION Standard>
 XFCE_MENU_ELEMENT
 XFCE_IS_MENU_ELEMENT
@@ -230,7 +232,7 @@ xfce_menu_item_set_supports_startup_notification
 xfce_menu_item_get_categories
 xfce_menu_item_set_categories
 xfce_menu_item_has_category
-xfce_menu_item_show_in_environment
+xfce_menu_item_get_show_in_environment
 xfce_menu_item_only_show_in_environment
 xfce_menu_item_ref
 xfce_menu_item_unref

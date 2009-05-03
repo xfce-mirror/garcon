@@ -67,11 +67,13 @@ static void         xfce_menu_item_set_property           (GObject              
                                                            guint                 prop_id,
                                                            const GValue         *value,
                                                            GParamSpec           *pspec);
-static const gchar *xfce_menu_item_get_element_name       (XfceMenuElement      *element);
-static const gchar *xfce_menu_item_get_element_comment    (XfceMenuElement      *element);
-static const gchar *xfce_menu_item_get_element_icon_name  (XfceMenuElement      *element);
-static gboolean     xfce_menu_item_get_element_visible    (XfceMenuElement      *element);
 
+static const gchar *xfce_menu_item_get_element_name                (XfceMenuElement      *element);
+static const gchar *xfce_menu_item_get_element_comment             (XfceMenuElement      *element);
+static const gchar *xfce_menu_item_get_element_icon_name           (XfceMenuElement      *element);
+static gboolean     xfce_menu_item_get_element_visible             (XfceMenuElement      *element);
+static gboolean     xfce_menu_item_get_element_show_in_environment (XfceMenuElement *element);
+static gboolean     xfce_menu_item_get_element_no_display          (XfceMenuElement *element);
 
 
 struct _XfceMenuItemClass
@@ -366,6 +368,8 @@ xfce_menu_item_element_init (XfceMenuElementIface *iface)
   iface->get_comment = xfce_menu_item_get_element_comment;
   iface->get_icon_name = xfce_menu_item_get_element_icon_name;
   iface->get_visible = xfce_menu_item_get_element_visible;
+  iface->get_show_in_environment = xfce_menu_item_get_element_show_in_environment;
+  iface->get_no_display = xfce_menu_item_get_element_no_display;
 }
 
 
@@ -1099,7 +1103,7 @@ xfce_menu_item_has_category (XfceMenuItem *item,
 
 
 gboolean
-xfce_menu_item_show_in_environment (XfceMenuItem *item)
+xfce_menu_item_get_show_in_environment (XfceMenuItem *item)
 {
   const gchar *env;
   gboolean     show = TRUE;
@@ -1274,7 +1278,7 @@ xfce_menu_item_get_element_visible (XfceMenuElement *element)
 
   item = XFCE_MENU_ITEM (element);
 
-  if (!xfce_menu_item_show_in_environment (item))
+  if (!xfce_menu_item_get_show_in_environment (item))
     return FALSE;
   else if (xfce_menu_item_get_no_display (item))
     return FALSE;
@@ -1282,5 +1286,23 @@ xfce_menu_item_get_element_visible (XfceMenuElement *element)
   /* TODO Check TryExec as well */
 
   return TRUE;
+}
+
+
+
+gboolean
+xfce_menu_item_get_element_show_in_environment (XfceMenuElement *element)
+{
+  g_return_val_if_fail (XFCE_IS_MENU_ITEM (element), FALSE);
+  return xfce_menu_item_get_show_in_environment (XFCE_MENU_ITEM (element));
+}
+
+
+
+gboolean
+xfce_menu_item_get_element_no_display (XfceMenuElement *element)
+{
+  g_return_val_if_fail (XFCE_IS_MENU_ITEM (element), FALSE);
+  return xfce_menu_item_get_no_display (XFCE_MENU_ITEM (element));
 }
 

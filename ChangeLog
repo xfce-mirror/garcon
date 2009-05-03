@@ -1,3 +1,15 @@
+2009-05-04	Travis Watkins <amaranth@ubuntu.com>
+
+	* docs/reference/libxfce4menu-sections.txt,
+	  libxfce4menu/xfce-menu-directory.{c,h},
+	  libxfce4menu/xfce-menu-element.{c,h},
+	  libxfce4menu/xfce-menu-item.{c,h}, 
+	  libxfce4menu/xfce-menu-separator.c,
+	  libxfce4menu/xfce-menu.c: Add xfce_menu_element_get_no_display() and
+	  xfce_menu_element_get_visible_in_environment() to the
+	  XfceMenuElement interface. Implement this in XfceMenu, 
+	  XfceMenuDirectory, XfceMenuItem and XfceMenuSeparator. 
+
 2009-05-03	Travis Watkins <amaranth@ubuntu.com>
 
 	* docs/reference/libxfce4menu-sections.txt, libxfce4menu/xfce-menu.c,

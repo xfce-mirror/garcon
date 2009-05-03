@@ -135,6 +135,8 @@ static const gchar       *xfce_menu_get_element_name                       (Xfce
 static const gchar       *xfce_menu_get_element_comment                    (XfceMenuElement       *element);
 static const gchar       *xfce_menu_get_element_icon_name                  (XfceMenuElement       *element);
 static gboolean           xfce_menu_get_element_visible                    (XfceMenuElement       *element);
+static gboolean           xfce_menu_get_element_show_in_environment        (XfceMenuElement       *element);
+static gboolean           xfce_menu_get_element_no_display                 (XfceMenuElement       *element);
 static void               xfce_menu_monitor_start                          (XfceMenu              *menu);
 static void               xfce_menu_monitor_stop                           (XfceMenu              *menu);
 
@@ -271,6 +273,8 @@ xfce_menu_element_init (XfceMenuElementIface *iface)
   iface->get_comment = xfce_menu_get_element_comment;
   iface->get_icon_name = xfce_menu_get_element_icon_name;
   iface->get_visible = xfce_menu_get_element_visible;
+  iface->get_show_in_environment = xfce_menu_get_element_show_in_environment;
+  iface->get_no_display = xfce_menu_get_element_no_display;
 }
 
 
@@ -408,7 +412,7 @@ xfce_menu_new (const gchar *filename)
   XfceMenu *menu;
   GFile    *file;
 
-  g_return_val_if_fail (file != NULL, NULL);
+  g_return_val_if_fail (filename != NULL, NULL);
 
   /* Create new menu */
   file = g_file_new_for_unknown_input (filename, NULL);
@@ -1497,6 +1501,40 @@ xfce_menu_get_element_visible (XfceMenuElement *element)
 
   g_list_free (items);
   return visible;
+}
+
+
+
+static gboolean
+xfce_menu_get_element_show_in_environment (XfceMenuElement *element)
+{
+  XfceMenu *menu;
+
+  g_return_val_if_fail (XFCE_IS_MENU (element), FALSE);
+
+  menu = XFCE_MENU (element);
+
+  if (menu->priv->directory == NULL)
+    return FALSE;
+  else
+    return xfce_menu_directory_get_show_in_environment (menu->priv->directory);
+}
+
+
+
+static gboolean
+xfce_menu_get_element_no_display (XfceMenuElement *element)
+{
+  XfceMenu *menu;
+
+  g_return_val_if_fail (XFCE_IS_MENU (element), FALSE);
+
+  menu = XFCE_MENU (element);
+
+  if (menu->priv->directory == NULL)
+    return FALSE;
+  else
+    return xfce_menu_directory_get_no_display (menu->priv->directory);
 }
 
 

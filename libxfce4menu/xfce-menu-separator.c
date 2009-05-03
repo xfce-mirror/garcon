@@ -32,11 +32,13 @@ static void         xfce_menu_separator_class_init            (XfceMenuSeparator
 static void         xfce_menu_separator_element_init          (XfceMenuElementIface   *iface);
 static void         xfce_menu_separator_init                  (XfceMenuSeparator      *separator);
 static void         xfce_menu_separator_finalize              (GObject                *object);
-static const gchar *xfce_menu_separator_get_element_name      (XfceMenuElement        *element);
-static const gchar *xfce_menu_separator_get_element_comment   (XfceMenuElement        *element);
-static const gchar *xfce_menu_separator_get_element_icon_name (XfceMenuElement        *element);
-static gboolean     xfce_menu_separator_get_element_visible   (XfceMenuElement        *element);
 
+static const gchar *xfce_menu_separator_get_element_name                (XfceMenuElement *element);
+static const gchar *xfce_menu_separator_get_element_comment             (XfceMenuElement *element);
+static const gchar *xfce_menu_separator_get_element_icon_name           (XfceMenuElement *element);
+static gboolean     xfce_menu_separator_get_element_visible             (XfceMenuElement *element);
+static gboolean     xfce_menu_separator_get_element_show_in_environment (XfceMenuElement *element);
+static gboolean     xfce_menu_separator_get_element_no_display          (XfceMenuElement *element);
 
 
 static XfceMenuSeparator *_xfce_menu_separator = NULL;
@@ -138,6 +140,8 @@ xfce_menu_separator_element_init (XfceMenuElementIface *iface)
   iface->get_comment = xfce_menu_separator_get_element_comment;
   iface->get_icon_name = xfce_menu_separator_get_element_icon_name;
   iface->get_visible = xfce_menu_separator_get_element_visible;
+  iface->get_show_in_environment = xfce_menu_separator_get_element_show_in_environment;
+  iface->get_no_display = xfce_menu_separator_get_element_no_display;
 }
 
 
@@ -193,5 +197,21 @@ static gboolean
 xfce_menu_separator_get_element_visible (XfceMenuElement *element)
 {
   return TRUE;
+}
+
+
+
+static gboolean
+xfce_menu_separator_get_element_show_in_environment (XfceMenuElement *element)
+{
+  return TRUE;
+}
+
+
+
+static gboolean
+xfce_menu_separator_get_element_no_display (XfceMenuElement *element)
+{
+  return FALSE;
 }
 
