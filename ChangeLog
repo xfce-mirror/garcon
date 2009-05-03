@@ -1,3 +1,11 @@
+2009-05-03	Travis Watkins <amaranth@ubuntu.com>
+
+	* docs/reference/libxfce4menu-sections.txt, libxfce4menu/xfce-menu.c,
+	  libxfce4menu/xfce-menu-element.{c,h}, libxfce4menu/xfce-menu-item.c,
+	  libxfce4menu/xfce-menu-separator.c: Add new function 
+	  xfce_menu_element_get_comment() to the XfceMenuElement interface and
+	  implement it in XfceMenu, XfceMenuItem and XfceMenuSeparator.
+
 2009-04-04	Jannis Pohlmann <jannis@xfce.org>
 
 	* AUTHORS: Add Travis Watkins as a contributor.

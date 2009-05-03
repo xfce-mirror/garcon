@@ -33,6 +33,7 @@ static void         xfce_menu_separator_element_init          (XfceMenuElementIf
 static void         xfce_menu_separator_init                  (XfceMenuSeparator      *separator);
 static void         xfce_menu_separator_finalize              (GObject                *object);
 static const gchar *xfce_menu_separator_get_element_name      (XfceMenuElement        *element);
+static const gchar *xfce_menu_separator_get_element_comment   (XfceMenuElement        *element);
 static const gchar *xfce_menu_separator_get_element_icon_name (XfceMenuElement        *element);
 static gboolean     xfce_menu_separator_get_element_visible   (XfceMenuElement        *element);
 
@@ -134,6 +135,7 @@ static void
 xfce_menu_separator_element_init (XfceMenuElementIface *iface)
 {
   iface->get_name = xfce_menu_separator_get_element_name;
+  iface->get_comment = xfce_menu_separator_get_element_comment;
   iface->get_icon_name = xfce_menu_separator_get_element_icon_name;
   iface->get_visible = xfce_menu_separator_get_element_visible;
 }
@@ -165,6 +167,14 @@ xfce_menu_separator_get_default (void)
 
 static const gchar*
 xfce_menu_separator_get_element_name (XfceMenuElement *element)
+{
+  return NULL;
+}
+
+
+
+static const gchar*
+xfce_menu_separator_get_element_comment (XfceMenuElement *element)
 {
   return NULL;
 }

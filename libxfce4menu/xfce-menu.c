@@ -132,6 +132,7 @@ static void               xfce_menu_remove_deleted_menus                   (Xfce
 static gint               xfce_menu_compare_items                          (gconstpointer         *a,
                                                                             gconstpointer         *b);
 static const gchar       *xfce_menu_get_element_name                       (XfceMenuElement       *element);
+static const gchar       *xfce_menu_get_element_comment                    (XfceMenuElement       *element);
 static const gchar       *xfce_menu_get_element_icon_name                  (XfceMenuElement       *element);
 static gboolean           xfce_menu_get_element_visible                    (XfceMenuElement       *element);
 static void               xfce_menu_monitor_start                          (XfceMenu              *menu);
@@ -267,6 +268,7 @@ static void
 xfce_menu_element_init (XfceMenuElementIface *iface)
 {
   iface->get_name = xfce_menu_get_element_name;
+  iface->get_comment = xfce_menu_get_element_comment;
   iface->get_icon_name = xfce_menu_get_element_icon_name;
   iface->get_visible = xfce_menu_get_element_visible;
 }
@@ -1430,6 +1432,23 @@ xfce_menu_get_element_name (XfceMenuElement *element)
     name = xfce_menu_get_name (menu);
 
   return name;
+}
+
+
+
+static const gchar*
+xfce_menu_get_element_comment (XfceMenuElement *element)
+{
+  XfceMenu *menu;
+
+  g_return_val_if_fail (XFCE_IS_MENU (element), NULL);
+
+  menu = XFCE_MENU (element);
+
+  if (menu->priv->directory == NULL)
+    return NULL;
+  else
+    return xfce_menu_directory_get_comment (menu->priv->directory);
 }
 
 

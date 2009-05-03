@@ -186,6 +186,7 @@ XFCE_MENU_ITEM_CACHE_GET_CLASS
 XfceMenuElement
 XfceMenuElementIface
 xfce_menu_element_get_name
+xfce_menu_element_get_comment
 xfce_menu_element_get_icon_name
 xfce_menu_element_get_visible
 <SUBSECTION Standard>
