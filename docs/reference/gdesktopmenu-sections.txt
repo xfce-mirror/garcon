@@ -166,9 +166,6 @@ G_DESKTOP_MENU_ITEM_CACHE_GET_CLASS
 <SECTION>
 <FILE>gdesktopmenu</FILE>
 GDESKTOPMENU_INSIDE_GDESKTOPMENU_H
-g_desktop_menu_init
-g_desktop_menu_shutdown
-g_desktop_menu_config_lookup
 GDesktopMenuPrivate
 GDesktopMenuClass
 GDesktopMenu
@@ -185,7 +182,6 @@ g_desktop_menu_get_elements
 <SUBSECTION Standard>
 G_DESKTOP_MENU
 G_IS_DESKTOP_MENU
-G_TYPE_DESKTOP_MENU
 g_desktop_menu_get_type
 G_DESKTOP_MENU_CLASS
 G_IS_DESKTOP_MENU_CLASS
@@ -284,6 +280,14 @@ g_desktop_menu_monitor_remove_file
 g_desktop_menu_monitor_set_flags
 g_desktop_menu_monitor_get_flags
 g_desktop_menu_monitor_has_flags
+</SECTION>
+
+<SECTION>
+<FILE>gdesktopmenumain</FILE>
+g_desktop_menu_init
+g_desktop_menu_shutdown
+g_desktop_menu_config_lookup
+G_TYPE_DESKTOP_MENU
 </SECTION>
 
 <SECTION>

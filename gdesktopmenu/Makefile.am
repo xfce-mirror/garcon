@@ -36,6 +36,7 @@ libgdesktopmenu_headers =						\
 	gdesktopmenuitempool.h						\
 	gdesktopmenuitemcache.h						\
 	gdesktopmenuenvironment.h					\
+	gdesktopmenumain.h						\
 	gdesktopmenumonitor.h						\
 	gdesktopmenuitem.h						\
 	gdesktopmenunode.h						\
@@ -52,6 +53,7 @@ libgdesktopmenu_sources =						\
 	gdesktopmenuitempool.c						\
 	gdesktopmenuitemcache.c						\
 	gdesktopmenuenvironment.c					\
+	gdesktopmenumain.c						\
 	gdesktopmenumonitor.c						\
 	gdesktopmenuitem.c						\
 	gdesktopmenunode.c						\

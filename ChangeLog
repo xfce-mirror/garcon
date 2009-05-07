@@ -1,5 +1,12 @@
 2009-05-07	Jannis Pohlmann <jannis@xfce.org>
 
+	* docs/reference/: Improve API docs structure.
+	* gdesktopmenu/Makefile.am, gdesktopmenu/gdesktopmenu.{c,h},
+	  gdesktopmenu/gdesktopmenumain.{c,h}: Move init/shutdown code into
+	  gdesktopmenumain.{c,h}.
+
+2009-05-07	Jannis Pohlmann <jannis@xfce.org>
+
 	* Fix compilation errors, missing "lib" prefix and set the API version
 	  to 1 (not the libtool one).
 

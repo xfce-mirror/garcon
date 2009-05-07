@@ -24,17 +24,22 @@
 #include <gio/gio.h>
 
 #define GDESKTOPMENU_INSIDE_GDESKTOPMENU_H
+#include <gdesktopmenu/gdesktopmenu-config.h>
 #include <gdesktopmenu/gdesktopmenudirectory.h>
+#include <gdesktopmenu/gdesktopmenuelement.h>
+#include <gdesktopmenu/gdesktopmenuenvironment.h>
+#include <gdesktopmenu/gdesktopmenuitem.h>
+#include <gdesktopmenu/gdesktopmenuitemcache.h>
+#include <gdesktopmenu/gdesktopmenumain.h>
+#include <gdesktopmenu/gdesktopmenutreeprovider.h>
+#include <gdesktopmenu/gdesktopmenumerger.h>
+#include <gdesktopmenu/gdesktopmenunode.h>
+#include <gdesktopmenu/gdesktopmenuparser.h>
+#include <gdesktopmenu/gdesktopmenuseparator.h>
 #undef GDESKTOPMENU_INSIDE_GDESKTOPMENU_H
 
 G_BEGIN_DECLS
 
-void                   g_desktop_menu_init               (const gchar *env);
-void                   g_desktop_menu_shutdown           (void);
-
-gchar                 *g_desktop_menu_config_lookup      (const gchar *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
-
-#define G_TYPE_DESKTOP_MENU            (g_desktop_menu_get_type ())
 #define G_DESKTOP_MENU(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), G_TYPE_DESKTOP_MENU, GDesktopMenu))
 #define G_DESKTOP_MENU_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), G_TYPE_DESKTOP_MENU, GDesktopMenuClass))
 #define G_IS_DESKTOP_MENU(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), G_TYPE_DESKTOP_MENU))
@@ -64,17 +69,7 @@ GList                 *g_desktop_menu_get_elements       (GDesktopMenu *menu);
 G_END_DECLS
 
 #define GDESKTOPMENU_INSIDE_GDESKTOPMENU_H
-#include <gdesktopmenu/gdesktopmenu-config.h>
-#include <gdesktopmenu/gdesktopmenuenvironment.h>
-#include <gdesktopmenu/gdesktopmenuelement.h>
-#include <gdesktopmenu/gdesktopmenuitem.h>
 #include <gdesktopmenu/gdesktopmenuitempool.h>
-#include <gdesktopmenu/gdesktopmenuitemcache.h>
-#include <gdesktopmenu/gdesktopmenuseparator.h>
-#include <gdesktopmenu/gdesktopmenunode.h>
-#include <gdesktopmenu/gdesktopmenutreeprovider.h>
-#include <gdesktopmenu/gdesktopmenumerger.h>
-#include <gdesktopmenu/gdesktopmenuparser.h>
 #include <gdesktopmenu/gdesktopmenumonitor.h>
 #undef GDESKTOPMENU_INSIDE_GDESKTOPMENU_H
 
