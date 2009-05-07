@@ -1,0 +1,55 @@
+/* $Id$ */
+/* vi:set expandtab sw=2 sts=2: */
+/*-
+ * Copyright (c) 2008 Jannis Pohlmann <jannis@xfce.org>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
+#if !defined (GDESKTOPMENU_INSIDE_GDESKTOPMENU_H) && !defined (GDESKTOPMENU_COMPILATION)
+#error "Only <gdesktopmenu/gdesktopmenu.h> can be included directly, this file may disappear or change contents."
+#endif
+
+#ifndef __GDESKTOPMENU_CONFIG_H__
+#define __GDESKTOPMENU_CONFIG_H__
+
+#include <glib-object.h>
+
+G_BEGIN_DECLS;
+
+#define GDESKTOPMENU_MAJOR_VERSION @GDESKTOPMENU_VERSION_MAJOR@
+#define GDESKTOPMENU_MINOR_VERSION @GDESKTOPMENU_VERSION_MINOR@
+#define GDESKTOPMENU_MICRO_VERSION @GDESKTOPMENU_VERSION_MICRO@
+
+#define GDESKTOPMENU_CHECK_VERSION(major,minor,micro) \
+  (GDESKTOPMENU_MAJOR_VERSION > (major) \
+   || (GDESKTOPMENU_MAJOR_VERSION == (major) \
+       && GDESKTOPMENU_MINOR_VERSION > (minor)) \
+   || (GDESKTOPMENU_MAJOR_VERSION == (major) \
+       && GDESKTOPMENU_MINOR_VERSION == (minor) \
+       && GDESKTOPMENU_MICRO_VERSION >= (micro)))
+
+extern const guint gdesktopmenu_major_version;
+extern const guint gdesktopmenu_minor_version;
+extern const guint gdesktopmenu_micro_version;
+
+const gchar *gdesktopmenu_check_version (guint required_major,
+                                         guint required_minor,
+                                         guint required_micro);
+
+G_END_DECLS;
+
+#endif /* !__GDESKTOPMENU_CONFIG_H__ */

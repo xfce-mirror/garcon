@@ -1,11 +1,26 @@
-# $Id$
-#
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
+# 
+# Copyright (c) 2009 Jannis Pohlmann <jannis@xfce.org>
+# 
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Library General Public
+# License as published by the Free Software Foundation; either
+# version 2 of the License, or (at your option) any later version.
+# 
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+# GNU Library General Public License for more details.
+# 
+# You should have received a copy of the GNU Library General 
+# Public License along with this library; if not, write to the 
+# Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+# Boston, MA 02110-1301, USA.
 
 AUTOMAKE_OPTIONS = 1.8
 
 # Name of the module
-DOC_MODULE=libxfce4menu
+DOC_MODULE=gdesktopmenu
 
 # Top-level SGML file
 DOC_MAIN_SGML_FILE=$(DOC_MODULE)-docs.xml
@@ -16,7 +31,7 @@ SCAN_OPTIONS=--rebuild-sections
 SCANGOBJ_OPTIONS=
 
 # Directory containing the source code
-DOC_SOURCE_DIR=../../libxfce4menu
+DOC_SOURCE_DIR=../../gdesktopmenu
 
 # Extra options to supply to gtkdoc-mkdb
 MKDB_OPTIONS=--sgml-mode --output-format=xml
@@ -25,8 +40,8 @@ MKDB_OPTIONS=--sgml-mode --output-format=xml
 FIXXREF_OPTIONS=
 
 # Used for dependencies
-HFILE_GLOB=$(top_srcdir)/libxfce4menu/*.h
-CFILE_GLOB=$(top_srcdir)/libxfce4menu/*.c
+HFILE_GLOB=$(top_srcdir)/gdesktopmenu/*.h
+CFILE_GLOB=$(top_srcdir)/gdesktopmenu/*.c
 
 # Extra files to add when scanning (relative to $srcdir)
 EXTRA_HFILES=
@@ -53,7 +68,7 @@ GTKDOC_LIBS =								\
 	$(GTHREAD_LIBS)							\
 	$(GTK_CFLAGS)							\
 	$(LIBXFCE4UTIL_LIBS)						\
-	$(top_builddir)/libxfce4menu/libxfce4menu-$(LIBXFCE4MENU_VERSION_API).la
+	$(top_builddir)/gdesktopmenu/gdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
 
 include $(top_srcdir)/gtk-doc.make
 

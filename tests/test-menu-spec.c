@@ -30,56 +30,62 @@
 
 #include <glib/gprintf.h>
 
-#include <libxfce4menu/libxfce4menu.h>
+#include <gdesktopmenu/gdesktopmenu.h>
 
 
 
 void
-print_menu (XfceMenu *menu, const gchar *path)
+print_menu (GDesktopMenu *menu, 
+            const gchar  *path)
 {
-  XfceMenuDirectory *directory;
-  GList             *menus;
-  GList             *items;
-  GList             *iter;
-  gchar             *name;
+  GDesktopMenuDirectory *directory;
+  GList                 *menus;
+  GList                 *items;
+  GList                 *iter;
+  gchar                 *name;
 
-  if (!xfce_menu_element_get_visible (XFCE_MENU_ELEMENT (menu)))
+  if (!g_desktop_menu_element_get_visible (G_DESKTOP_MENU_ELEMENT (menu)))
     return;
 
   /* Determine menu name */
-  directory = xfce_menu_get_directory (menu);
+  directory = g_desktop_menu_get_directory (menu);
 
   if (G_UNLIKELY (path == NULL))
     name = g_strdup ("");
   else
     {
-      name = g_strdup_printf ("%s%s/", path, (directory == NULL ? 
-                                              xfce_menu_element_get_name (XFCE_MENU_ELEMENT (menu)) :
-                                              xfce_menu_directory_get_name (directory)));
+      name = g_strdup_printf ("%s%s/", path, 
+                              (directory == NULL 
+                               ? g_desktop_menu_element_get_name (G_DESKTOP_MENU_ELEMENT (menu)) 
+                               : g_desktop_menu_directory_get_name (directory)));
     }
 
   /* Fetch submenus */
-  menus = xfce_menu_get_menus (menu);
+  menus = g_desktop_menu_get_menus (menu);
 
   /* Print child menus */
   for (iter = menus; iter != NULL; iter = g_list_next (iter)) 
     {
       /* Only display menus which are not hidden or excluded from this environment */
-      if (G_LIKELY (xfce_menu_element_get_visible (iter->data)))
-        print_menu (XFCE_MENU (iter->data), name);
+      if (G_LIKELY (g_desktop_menu_element_get_visible (iter->data)))
+        print_menu (G_DESKTOP_MENU (iter->data), name);
     }
 
   /* Free submenu list */
   g_list_free (menus);
 
   /* Fetch menu items */
-  items = xfce_menu_get_elements (menu);
+  items = g_desktop_menu_get_elements (menu);
 
   /* Print menu items */
   for (iter = items; iter != NULL; iter = g_list_next (iter)) 
     {
-      if (XFCE_IS_MENU_ITEM (iter->data) && xfce_menu_element_get_visible (iter->data))
-        g_printf ("%s\t%s\t%s\n", name, xfce_menu_item_get_desktop_id (iter->data), xfce_menu_item_get_filename (iter->data));
+      if (G_IS_DESKTOP_MENU_ITEM (iter->data) 
+          && g_desktop_menu_element_get_visible (iter->data))
+        {
+          g_printf ("%s\t%s\t%s\n", name, g_desktop_menu_item_get_desktop_id (iter->data), 
+                    g_desktop_menu_item_get_filename (iter->data));
+        }
     }
 
   /* Free menu item list */
@@ -95,23 +101,23 @@ int
 main (int    argc,
       char **argv)
 {
-  XfceMenu *menu;
-  GError   *error = NULL;
+  GDesktopMenu *menu;
+  GError       *error = NULL;
 #ifdef HAVE_STDLIB_H
-  int       exit_code = EXIT_SUCCESS;
+  int           exit_code = EXIT_SUCCESS;
 #else
-  int       exit_code = 0;
+  int           exit_code = 0;
 #endif
 
   g_set_prgname ("test-menu-spec");
 
   /* Initialize menu library */
-  libxfce4menu_init (NULL);
+  g_desktop_menu_init (NULL);
 
   /* Try to get the root menu */
-  menu = xfce_menu_new_applications ();
+  menu = g_desktop_menu_new_applications ();
 
-  if (G_LIKELY (xfce_menu_load (menu, NULL, &error)))
+  if (G_LIKELY (g_desktop_menu_load (menu, NULL, &error)))
     {
       /* Print menu contents according to the test suite criteria */
       print_menu (menu, NULL);
@@ -120,7 +126,7 @@ main (int    argc,
     {
       gchar *uri;
 
-      uri = g_file_get_uri (xfce_menu_get_file (menu));
+      uri = g_file_get_uri (g_desktop_menu_get_file (menu));
       g_error ("Could not load menu from %s: %s", uri, error->message);
       g_free (uri);
 
@@ -133,7 +139,7 @@ main (int    argc,
     }
 
   /* Shut down the menu library */
-  libxfce4menu_shutdown ();
+  g_desktop_menu_shutdown ();
 
   return exit_code;
 }

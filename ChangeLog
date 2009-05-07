@@ -1,3 +1,8 @@
+2009-05-07	Jannis Pohlmann <jannis@xfce.org>
+
+	* Rename to gdesktopmenu. This will need a few more commits to work
+	  again though.
+
 2009-05-04	Travis Watkins <amaranth@ubuntu.com>
 
 	* docs/reference/libxfce4menu-sections.txt,
