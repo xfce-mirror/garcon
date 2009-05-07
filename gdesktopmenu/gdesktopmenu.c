@@ -187,7 +187,7 @@ g_desktop_menu_get_type (void)
       };
 
       type = g_type_register_static_simple (G_TYPE_OBJECT,
-                                            "GDesktopMenuClass",
+                                            "GDesktopMenu",
                                             sizeof (GDesktopMenuClass),
                                             (GClassInitFunc) g_desktop_menu_class_init,
                                             sizeof (GDesktopMenu),
