@@ -166,19 +166,6 @@ struct _GDesktopMenuPrivate
   GDesktopMenuItemCache *cache;
 };
 
-struct _GDesktopMenuClass
-{
-  GObjectClass __parent__;
-};
-
-struct _GDesktopMenu
-{
-  GObject              __parent__;
-
-  /* < private > */
-  GDesktopMenuPrivate *priv;
-};
-
 
 
 static GObjectClass *g_desktop_menu_parent_class = NULL;

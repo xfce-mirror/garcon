@@ -1,5 +1,11 @@
 2009-05-07	Jannis Pohlmann <jannis@xfce.org>
 
+	* gdesktopmenu/gdesktopmenu.{c,h}: Move _GDesktopMenu and
+	  _GDesktopMenuClass into the header file in order for
+	  GObject-introspection to work.
+
+2009-05-07	Jannis Pohlmann <jannis@xfce.org>
+
 	* docs/reference/: Improve API docs structure.
 	* gdesktopmenu/Makefile.am, gdesktopmenu/gdesktopmenu.{c,h},
 	  gdesktopmenu/gdesktopmenumain.{c,h}: Move init/shutdown code into

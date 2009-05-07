@@ -66,6 +66,19 @@ GDesktopMenu          *g_desktop_menu_get_menu_with_name (GDesktopMenu *menu,
 GDesktopMenu          *g_desktop_menu_get_parent         (GDesktopMenu *menu);
 GList                 *g_desktop_menu_get_elements       (GDesktopMenu *menu);
 
+struct _GDesktopMenuClass
+{
+  GObjectClass __parent__;
+};
+
+struct _GDesktopMenu
+{
+  GObject              __parent__;
+
+  /* < private > */
+  GDesktopMenuPrivate *priv;
+};
+
 G_END_DECLS
 
 #define GDESKTOPMENU_INSIDE_GDESKTOPMENU_H
