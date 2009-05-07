@@ -25,14 +25,9 @@
 #ifndef __G_DESKTOP_MENU_PARSER_H__
 #define __G_DESKTOP_MENU_PARSER_H__
 
-#include <glib-object.h>
 #include <gio/gio.h>
 
 G_BEGIN_DECLS
-
-typedef struct _GDesktopMenuParserPrivate GDesktopMenuParserPrivate;
-typedef struct _GDesktopMenuParserClass   GDesktopMenuParserClass;
-typedef struct _GDesktopMenuParser        GDesktopMenuParser;
 
 #define G_TYPE_DESKTOP_MENU_PARSER            (g_desktop_menu_parser_get_type ())
 #define G_DESKTOP_MENU_PARSER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), G_TYPE_DESKTOP_MENU_PARSER, GDesktopMenuParser))
@@ -40,6 +35,10 @@ typedef struct _GDesktopMenuParser        GDesktopMenuParser;
 #define G_IS_DESKTOP_MENU_PARSER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), G_TYPE_DESKTOP_MENU_PARSER))
 #define G_IS_DESKTOP_MENU_PARSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), G_TYPE_DESKTOP_MENU_PARSER)
 #define G_DESKTOP_MENU_PARSER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), G_TYPE_DESKTOP_MENU_PARSER, GDesktopMenuParserClass))
+
+typedef struct _GDesktopMenuParserPrivate GDesktopMenuParserPrivate;
+typedef struct _GDesktopMenuParserClass   GDesktopMenuParserClass;
+typedef struct _GDesktopMenuParser        GDesktopMenuParser;
 
 GType               g_desktop_menu_parser_get_type (void) G_GNUC_CONST;
 

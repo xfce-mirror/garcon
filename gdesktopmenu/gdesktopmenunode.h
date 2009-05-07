@@ -25,9 +25,7 @@
 #ifndef __G_DESKTOP_MENU_NODE_H__
 #define __G_DESKTOP_MENU_NODE_H__
 
-#include <glib-object.h>
-
-#include <gdesktopmenu/gdesktopmenuitem.h>
+#include <gdesktopmenu/gdesktopmenu.h>
 
 G_BEGIN_DECLS
 

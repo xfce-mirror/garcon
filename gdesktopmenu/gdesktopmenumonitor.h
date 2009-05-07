@@ -25,7 +25,6 @@
 #ifndef __G_DESKTOP_MENU_MONITOR_H__
 #define __G_DESKTOP_MENU_MONITOR_H__
 
-#include <glib.h>
 #include <gdesktopmenu/gdesktopmenu.h>
 
 G_BEGIN_DECLS

@@ -30,9 +30,6 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GDesktopMenuSeparatorClass GDesktopMenuSeparatorClass;
-typedef struct _GDesktopMenuSeparator      GDesktopMenuSeparator;
-
 #define G_TYPE_DESKTOP_MENU_SEPARATOR            (g_desktop_menu_separator_get_type())
 #define G_DESKTOP_MENU_SEPARATOR(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), G_TYPE_DESKTOP_MENU_SEPARATOR, GDesktopMenuSeparator))
 #define G_DESKTOP_MENU_SEPARATOR_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), G_TYPE_DESKTOP_MENU_SEPARATOR, GDesktopMenuSeparatorClass))
@@ -40,6 +37,8 @@ typedef struct _GDesktopMenuSeparator      GDesktopMenuSeparator;
 #define G_IS_DESKTOP_MENU_SEPARATOR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), G_TYPE_DESKTOP_MENU_SEPARATOR))
 #define G_DESKTOP_MENU_SEPARATOR_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), G_TYPE_DESKTOP_MENU_SEPARATOR, GDesktopMenuSeparatorClass))
 
+typedef struct _GDesktopMenuSeparatorClass GDesktopMenuSeparatorClass;
+typedef struct _GDesktopMenuSeparator      GDesktopMenuSeparator;
 
 GType                  g_desktop_menu_separator_get_type    (void) G_GNUC_CONST;
 

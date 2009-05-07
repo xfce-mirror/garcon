@@ -24,21 +24,7 @@
 #include <gio/gio.h>
 
 #define GDESKTOPMENU_INSIDE_GDESKTOPMENU_H
-
-#include <gdesktopmenu/gdesktopmenu-config.h>
-#include <gdesktopmenu/gdesktopmenuenvironment.h>
-#include <gdesktopmenu/gdesktopmenuelement.h>
-#include <gdesktopmenu/gdesktopmenuitem.h>
-#include <gdesktopmenu/gdesktopmenuitempool.h>
-#include <gdesktopmenu/gdesktopmenuitemcache.h>
 #include <gdesktopmenu/gdesktopmenudirectory.h>
-#include <gdesktopmenu/gdesktopmenuseparator.h>
-#include <gdesktopmenu/gdesktopmenunode.h>
-#include <gdesktopmenu/gdesktopmenutreeprovider.h>
-#include <gdesktopmenu/gdesktopmenumerger.h>
-#include <gdesktopmenu/gdesktopmenuparser.h>
-#include <gdesktopmenu/gdesktopmenumonitor.h>
-
 #undef GDESKTOPMENU_INSIDE_GDESKTOPMENU_H
 
 G_BEGIN_DECLS
@@ -76,5 +62,20 @@ GDesktopMenu          *g_desktop_menu_get_parent         (GDesktopMenu *menu);
 GList                 *g_desktop_menu_get_elements       (GDesktopMenu *menu);
 
 G_END_DECLS
+
+#define GDESKTOPMENU_INSIDE_GDESKTOPMENU_H
+#include <gdesktopmenu/gdesktopmenu-config.h>
+#include <gdesktopmenu/gdesktopmenuenvironment.h>
+#include <gdesktopmenu/gdesktopmenuelement.h>
+#include <gdesktopmenu/gdesktopmenuitem.h>
+#include <gdesktopmenu/gdesktopmenuitempool.h>
+#include <gdesktopmenu/gdesktopmenuitemcache.h>
+#include <gdesktopmenu/gdesktopmenuseparator.h>
+#include <gdesktopmenu/gdesktopmenunode.h>
+#include <gdesktopmenu/gdesktopmenutreeprovider.h>
+#include <gdesktopmenu/gdesktopmenumerger.h>
+#include <gdesktopmenu/gdesktopmenuparser.h>
+#include <gdesktopmenu/gdesktopmenumonitor.h>
+#undef GDESKTOPMENU_INSIDE_GDESKTOPMENU_H
 
 #endif /* !__G_DESKTOP_MENU_H__ */

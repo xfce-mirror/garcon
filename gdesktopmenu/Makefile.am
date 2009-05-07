@@ -25,64 +25,64 @@ INCLUDES = 								\
 	$(PLATFORM_CFLAGS)
 
 lib_LTLIBRARIES = 							\
-	gdesktopmenu-1.la
+	libgdesktopmenu-1.la
 
-gdesktopmenu_headers =							\
+libgdesktopmenu_headers =						\
 	gdesktopmenu.h							\
 	gdesktopmenugio.h						\
 	gdesktopmenuelement.h						\
 	gdesktopmenuseparator.h						\
 	gdesktopmenudirectory.h						\
-	gdesktopmenuitem-pool.h						\
-	gdesktopmenuitem-cache.h					\
+	gdesktopmenuitempool.h						\
+	gdesktopmenuitemcache.h						\
 	gdesktopmenuenvironment.h					\
 	gdesktopmenumonitor.h						\
 	gdesktopmenuitem.h						\
 	gdesktopmenunode.h						\
-	gdesktopmenutree-provider.h					\
+	gdesktopmenutreeprovider.h					\
 	gdesktopmenumerger.h						\
 	gdesktopmenuparser.h
 
-gdesktopmenu_sources =							\
+libgdesktopmenu_sources =						\
 	gdesktopmenu.c							\
 	gdesktopmenugio.c						\
 	gdesktopmenuelement.c						\
 	gdesktopmenuseparator.c						\
 	gdesktopmenudirectory.c						\
-	gdesktopmenuitem-pool.c						\
-	gdesktopmenuitem-cache.c					\
+	gdesktopmenuitempool.c						\
+	gdesktopmenuitemcache.c						\
 	gdesktopmenuenvironment.c					\
 	gdesktopmenumonitor.c						\
 	gdesktopmenuitem.c						\
 	gdesktopmenunode.c						\
-	gdesktopmenutree-provider.c					\
+	gdesktopmenutreeprovider.c					\
 	gdesktopmenumerger.c						\
 	gdesktopmenuparser.c
 
-gdesktopmenuincludedir = $(includedir)/gdesktopmenu-1/gdesktopmenu
+libgdesktopmenuincludedir = $(includedir)/gdesktopmenu-1/gdesktopmenu
 
-gdesktopmenuinclude_HEADERS =						\
-	$(gdesktopmenu_headers)						\
+libgdesktopmenuinclude_HEADERS =					\
+	$(libgdesktopmenu_headers)					\
 	gdesktopmenu.h							\
 	gdesktopmenu-config.h
 
-gdesktopmenu_1_la_SOURCES =						\
-	$(gdesktopmenu_sources)						\
-	$(gdesktopmenu_headers)
+libgdesktopmenu_1_la_SOURCES =						\
+	$(libgdesktopmenu_sources)					\
+	$(libgdesktopmenu_headers)
 
-gdesktopmenu_1_la_CFLAGS = 						\
+libgdesktopmenu_1_la_CFLAGS = 						\
 	$(GLIB_CFLAGS)							\
 	$(GTHREAD_CFLAGS)						\
 	$(GIO_CFLAGS)							\
 	$(PLATFORM_CFLAGS)
 
-gdesktopmenu_1_la_LDFLAGS =						\
+libgdesktopmenu_1_la_LDFLAGS =						\
 	-no-undefined							\
 	-export-dynamic							\
 	-version-info $(GDESKTOPMENU_VERINFO)				\
 	$(PLATFORM_LDFLAGS)
 	
-gdesktopmenu_1_la_LIBADD = 						\
+libgdesktopmenu_1_la_LIBADD = 						\
 	$(GLIB_LIBS)							\
 	$(GTHREAD_LIBS)							\
 	$(GIO_LIBS)

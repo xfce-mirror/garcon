@@ -24,7 +24,7 @@
 
 #include <gdesktopmenu/gdesktopmenuitem.h>
 #include <gdesktopmenu/gdesktopmenunode.h>
-#include <gdesktopmenu/gdesktopmenuitem-pool.h>
+#include <gdesktopmenu/gdesktopmenuitempool.h>
 
 
 

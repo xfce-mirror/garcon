@@ -39,12 +39,12 @@ test_menu_parser_CFLAGS =						\
 	$(GLIB_CFLAGS)
 
 test_menu_parser_DEPENDENCIES =						\
-	$(top_builddir)/gdesktopmenu/gdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
+	$(top_builddir)/gdesktopmenu/libgdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
 
 test_menu_parser_LDADD =						\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(GLIB_LIBS)							\
-	$(top_builddir)/gdesktopmenu/gdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
+	$(top_builddir)/gdesktopmenu/libgdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
 
 test_menu_spec_SOURCES =						\
 	test-menu-spec.c
@@ -54,12 +54,12 @@ test_menu_spec_CFLAGS =							\
 	$(GLIB_CFLAGS)
 
 test_menu_spec_DEPENDENCIES =						\
-	$(top_builddir)/gdesktopmenu/gdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
+	$(top_builddir)/gdesktopmenu/libgdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
 
 test_menu_spec_LDADD =							\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(GLIB_LIBS)							\
-	$(top_builddir)/gdesktopmenu/gdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
+	$(top_builddir)/gdesktopmenu/libgdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
 
 test_display_menu_SOURCES =						\
 	test-display-menu.c
@@ -70,11 +70,11 @@ test_display_menu_CFLAGS =						\
 	$(GLIB_CFLAGS)
 
 test_display_menu_DEPENDENCIES =					\
-	$(top_builddir)/gdesktopmenu/gdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
+	$(top_builddir)/gdesktopmenu/libgdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
 
 test_display_menu_LDADD =						\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(GTK_LIBS)							\
 	$(GLIB_LIBS)							\
-	$(top_builddir)/gdesktopmenu/gdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
+	$(top_builddir)/gdesktopmenu/libgdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
 

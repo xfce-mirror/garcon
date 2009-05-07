@@ -21,7 +21,7 @@ dnl ***************************
 dnl *** Version information ***
 dnl ***************************
 m4_define([gdesktopmenu_verinfo], [0:0:0])
-m4_define([gdesktopmenu_version_api_major], [0])
+m4_define([gdesktopmenu_version_api_major], [1])
 m4_define([gdesktopmenu_version_major], [0])
 m4_define([gdesktopmenu_version_minor], [1])
 m4_define([gdesktopmenu_version_micro], [0])

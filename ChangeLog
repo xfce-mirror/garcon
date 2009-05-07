@@ -1,5 +1,10 @@
 2009-05-07	Jannis Pohlmann <jannis@xfce.org>
 
+	* Fix compilation errors, missing "lib" prefix and set the API version
+	  to 1 (not the libtool one).
+
+2009-05-07	Jannis Pohlmann <jannis@xfce.org>
+
 	* Rename to gdesktopmenu. This will need a few more commits to work
 	  again though.
 

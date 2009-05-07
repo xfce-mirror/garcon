@@ -68,7 +68,7 @@ GTKDOC_LIBS =								\
 	$(GTHREAD_LIBS)							\
 	$(GTK_CFLAGS)							\
 	$(LIBXFCE4UTIL_LIBS)						\
-	$(top_builddir)/gdesktopmenu/gdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
+	$(top_builddir)/gdesktopmenu/libgdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
 
 include $(top_srcdir)/gtk-doc.make
 

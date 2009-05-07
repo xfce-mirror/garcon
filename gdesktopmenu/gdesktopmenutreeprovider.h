@@ -25,23 +25,22 @@
 #ifndef __G_DESKTOP_MENU_TREE_PROVIDER_H__
 #define __G_DESKTOP_MENU_TREE_PROVIDER_H__
 
-#include <glib-object.h>
 #include <gio/gio.h>
 
 G_BEGIN_DECLS
-
-typedef struct _GDesktopMenuTreeProviderIface GDesktopMenuTreeProviderIface;
-typedef struct _GDesktopMenuTreeProvider      GDesktopMenuTreeProvider;
 
 #define G_TYPE_DESKTOP_MENU_TREE_PROVIDER            (g_desktop_menu_tree_provider_get_type ())
 #define G_DESKTOP_MENU_TREE_PROVIDER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), G_TYPE_DESKTOP_MENU_TREE_PROVIDER, GDesktopMenuTreeProvider))
 #define G_IS_DESKTOP_MENU_TREE_PROVIDER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), G_TYPE_DESKTOP_MENU_TREE_PROVIDER))
 #define G_DESKTOP_MENU_TREE_PROVIDER_GET_IFACE(obj)  (G_TYPE_INSTANCE_GET_INTERFACE ((obj), G_TYPE_DESKTOP_MENU_TREE_PROVIDER, GDesktopMenuTreeProviderIface))
 
+typedef struct _GDesktopMenuTreeProviderIface GDesktopMenuTreeProviderIface;
+typedef struct _GDesktopMenuTreeProvider      GDesktopMenuTreeProvider;
+
 GType  g_desktop_menu_tree_provider_get_type (void) G_GNUC_CONST;
 
-GNode *g_desktop_menu_tree_provider_get_tree (GDesktopMenuTreeProvider *provider);
-GFile *g_desktop_menu_tree_provider_get_file (GDesktopMenuTreeProvider *provider);
+GNode *g_desktop_menu_tree_provider_get_tree (GDesktopMenuTreeProvider *provider) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+GFile *g_desktop_menu_tree_provider_get_file (GDesktopMenuTreeProvider *provider) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 
 struct _GDesktopMenuTreeProviderIface
 {

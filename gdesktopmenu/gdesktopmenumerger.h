@@ -25,9 +25,7 @@
 #ifndef __G_DESKTOP_MENU_MERGER_H__
 #define __G_DESKTOP_MENU_MERGER_H__
 
-#include <glib-object.h>
-
-#include "gdesktopmenutree-provider.h"
+#include <gdesktopmenu/gdesktopmenu.h>
 
 G_BEGIN_DECLS
 

@@ -32,15 +32,15 @@
 #include <gdesktopmenu/gdesktopmenuelement.h>
 #include <gdesktopmenu/gdesktopmenuitem.h>
 #include <gdesktopmenu/gdesktopmenudirectory.h>
-#include <gdesktopmenu/gdesktopmenuitem-pool.h>
-#include <gdesktopmenu/gdesktopmenuitem-cache.h>
+#include <gdesktopmenu/gdesktopmenuitempool.h>
+#include <gdesktopmenu/gdesktopmenuitemcache.h>
 #include <gdesktopmenu/gdesktopmenuseparator.h>
 #include <gdesktopmenu/gdesktopmenumonitor.h>
 #include <gdesktopmenu/gdesktopmenunode.h>
 #include <gdesktopmenu/gdesktopmenuparser.h>
 #include <gdesktopmenu/gdesktopmenumerger.h>
 #include <gdesktopmenu/gdesktopmenugio.h>
-#include <gdesktopmenu/gdesktopmenuh>
+#include <gdesktopmenu/gdesktopmenu.h>
 
 
 
@@ -67,7 +67,7 @@ static gint g_desktop_menu_ref_count = 0;
 
 
 /**
- * gdesktopmenu_init:
+ * g_desktop_menu_init:
  * @env : name of the desktop environment (e.g. XFCE, GNOME or KDE) 
  *        or %NULL.
  *
@@ -77,7 +77,7 @@ static gint g_desktop_menu_ref_count = 0;
  * will be ignored.
  **/
 void
-gdesktopmenu_init (const gchar *env)
+g_desktop_menu_init (const gchar *env)
 {
   if (g_atomic_int_exchange_and_add (&g_desktop_menu_ref_count, 1) == 0)
     {
@@ -108,12 +108,12 @@ gdesktopmenu_init (const gchar *env)
 
 
 /**
- * gdesktopmenu_shutdown:
+ * g_desktop_menu_shutdown:
  *
  * Shuts the gdesktopmenu library down.
  **/
 void
-gdesktopmenu_shutdown (void)
+g_desktop_menu_shutdown (void)
 {
   if (g_atomic_int_dec_and_test (&g_desktop_menu_ref_count))
     {
