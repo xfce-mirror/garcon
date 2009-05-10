@@ -1,5 +1,5 @@
 TODO
 ========================================================================
 
-  * Add gdesktopmenu.spec.in for building RPMs
+  * Add garcon.spec.in for building RPMs
   * Integrate with menu spec test suite

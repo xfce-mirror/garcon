@@ -154,7 +154,7 @@ III. Filesystem monitoring
 ==========================
 
   Filesystem monitoring is done by moving the actual work into the 
-  client application. Using GDesktopMenuMonitorVTable applications 
+  client application. Using GarconMenuMonitorVTable applications 
   can register functions to be called when monitoring of a file or
   directory is needed. They then have to care about monitoring 
-  themselves (see gdesktopmenumonitor.{c,h} for details.
+  themselves (see garconmenumonitor.{c,h} for details.

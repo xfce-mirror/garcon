@@ -20,7 +20,7 @@
 AUTOMAKE_OPTIONS = 1.8
 
 # Name of the module
-DOC_MODULE=gdesktopmenu
+DOC_MODULE=garcon
 
 # Top-level SGML file
 DOC_MAIN_SGML_FILE=$(DOC_MODULE)-docs.xml
@@ -31,7 +31,7 @@ SCAN_OPTIONS=--rebuild-sections
 SCANGOBJ_OPTIONS=
 
 # Directory containing the source code
-DOC_SOURCE_DIR=../../gdesktopmenu
+DOC_SOURCE_DIR=../../garcon
 
 # Extra options to supply to gtkdoc-mkdb
 MKDB_OPTIONS=--sgml-mode --output-format=xml
@@ -40,8 +40,8 @@ MKDB_OPTIONS=--sgml-mode --output-format=xml
 FIXXREF_OPTIONS=
 
 # Used for dependencies
-HFILE_GLOB=$(top_srcdir)/gdesktopmenu/*.h
-CFILE_GLOB=$(top_srcdir)/gdesktopmenu/*.c
+HFILE_GLOB=$(top_srcdir)/garcon/*.h
+CFILE_GLOB=$(top_srcdir)/garcon/*.c
 
 # Extra files to add when scanning (relative to $srcdir)
 EXTRA_HFILES=
@@ -68,7 +68,7 @@ GTKDOC_LIBS =								\
 	$(GTHREAD_LIBS)							\
 	$(GTK_CFLAGS)							\
 	$(LIBXFCE4UTIL_LIBS)						\
-	$(top_builddir)/gdesktopmenu/libgdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
+	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
 
 include $(top_srcdir)/gtk-doc.make
 

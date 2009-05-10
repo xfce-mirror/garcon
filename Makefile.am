@@ -18,7 +18,7 @@
 # Boston, MA 02110-1301, USA.
 
 SUBDIRS =								\
-	gdesktopmenu							\
+	garcon							\
 	docs								\
 	tests								\
 	po
@@ -46,7 +46,7 @@ EXTRA_DIST =								\
 	intltool-update.in
 
 DISTCLEANFILES =							\
-	gdesktopmenu.spec						\
+	garcon.spec						\
 	intltool-extract						\
 	intltool-merge							\
 	intltool-update
