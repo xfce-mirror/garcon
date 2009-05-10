@@ -28,18 +28,18 @@
 
 #include <glib/gi18n.h>
 
-#include <garcon/garconenvironment.h>
-#include <garcon/garconmenuelement.h>
-#include <garcon/garconmenuitem.h>
-#include <garcon/garconmenudirectory.h>
-#include <garcon/garconmenuitempool.h>
-#include <garcon/garconmenuitemcache.h>
-#include <garcon/garconmenuseparator.h>
-#include <garcon/garconmenumonitor.h>
-#include <garcon/garconmenunode.h>
-#include <garcon/garconmenuparser.h>
-#include <garcon/garconmenumerger.h>
-#include <garcon/garcongio.h>
+#include <garcon/garcon-environment.h>
+#include <garcon/garcon-menu-element.h>
+#include <garcon/garcon-menu-item.h>
+#include <garcon/garcon-menu-directory.h>
+#include <garcon/garcon-menu-item-pool.h>
+#include <garcon/garcon-menu-item-cache.h>
+#include <garcon/garcon-menu-separator.h>
+#include <garcon/garcon-menu-monitor.h>
+#include <garcon/garcon-menu-node.h>
+#include <garcon/garcon-menu-parser.h>
+#include <garcon/garcon-menu-merger.h>
+#include <garcon/garcon-gio.h>
 #include <garcon/garcon.h>
 
 

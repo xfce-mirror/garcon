@@ -24,7 +24,7 @@
 
 #include <gio/gio.h>
 
-#include <garcon/garcongio.h>
+#include <garcon/garcon-gio.h>
 
 
 

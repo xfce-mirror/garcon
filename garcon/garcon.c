@@ -25,11 +25,11 @@
 #include <glib-object.h>
 
 #include <garcon/garcon.h>
-#include <garcon/garconenvironment.h>
-#include <garcon/garconmenuitemcache.h>
-#include <garcon/garconmenudirectory.h>
-#include <garcon/garconmenumonitor.h>
-#include <garcon/garconmenuseparator.h>
+#include <garcon/garcon-environment.h>
+#include <garcon/garcon-menu-item-cache.h>
+#include <garcon/garcon-menu-directory.h>
+#include <garcon/garcon-menu-monitor.h>
+#include <garcon/garcon-menu-separator.h>
 
 
 

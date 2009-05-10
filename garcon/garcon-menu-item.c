@@ -24,9 +24,9 @@
 
 #include <gio/gio.h>
 
-#include <garcon/garconenvironment.h>
-#include <garcon/garconmenuelement.h>
-#include <garcon/garconmenuitem.h>
+#include <garcon/garcon-environment.h>
+#include <garcon/garcon-menu-element.h>
+#include <garcon/garcon-menu-item.h>
 
 
 

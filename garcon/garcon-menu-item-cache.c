@@ -38,8 +38,8 @@
 #include <string.h>
 #endif
 
-#include <garcon/garconmenuitem.h>
-#include <garcon/garconmenuitemcache.h>
+#include <garcon/garcon-menu-item.h>
+#include <garcon/garcon-menu-item-cache.h>
 
 
 

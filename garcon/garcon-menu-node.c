@@ -25,8 +25,8 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <garcon/garconmenuitem.h>
-#include <garcon/garconmenunode.h>
+#include <garcon/garcon-menu-item.h>
+#include <garcon/garcon-menu-node.h>
 
 
 

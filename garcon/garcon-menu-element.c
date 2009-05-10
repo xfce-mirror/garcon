@@ -22,7 +22,7 @@
 #include <config.h>
 #endif
 
-#include <garcon/garconmenuelement.h>
+#include <garcon/garcon-menu-element.h>
 
 
 

@@ -29,37 +29,39 @@ lib_LTLIBRARIES = 							\
 
 libgarcon_headers =							\
 	garcon.h							\
-	garcongio.h							\
-	garconmenuelement.h						\
-	garconmenuseparator.h						\
-	garconmenudirectory.h						\
-	garconmenuitempool.h						\
-	garconmenuitemcache.h						\
-	garconenvironment.h						\
-	garconmenu.h							\
-	garconmenumonitor.h						\
-	garconmenuitem.h						\
-	garconmenunode.h						\
-	garconmenutreeprovider.h					\
-	garconmenumerger.h						\
-	garconmenuparser.h
+	garcon-config.h							\
+	garcon-gio.h							\
+	garcon-menu-element.h						\
+	garcon-menu-separator.h						\
+	garcon-menu-directory.h						\
+	garcon-menu-item-pool.h						\
+	garcon-menu-item-cache.h					\
+	garcon-environment.h						\
+	garcon-menu.h							\
+	garcon-menu-monitor.h						\
+	garcon-menu-item.h						\
+	garcon-menu-node.h						\
+	garcon-menu-tree-provider.h					\
+	garcon-menu-merger.h						\
+	garcon-menu-parser.h
 
 libgarcon_sources =							\
 	garcon.c							\
-	garcongio.c							\
-	garconmenuelement.c						\
-	garconmenuseparator.c						\
-	garconmenudirectory.c						\
-	garconmenuitempool.c						\
-	garconmenuitemcache.c						\
-	garconenvironment.c						\
-	garconmenu.c							\
-	garconmenumonitor.c						\
-	garconmenuitem.c						\
-	garconmenunode.c						\
-	garconmenutreeprovider.c					\
-	garconmenumerger.c						\
-	garconmenuparser.c
+	garcon-config.c							\
+	garcon-gio.c							\
+	garcon-menu-element.c						\
+	garcon-menu-separator.c						\
+	garcon-menu-directory.c						\
+	garcon-menu-item-pool.c						\
+	garcon-menu-item-cache.c					\
+	garcon-environment.c						\
+	garcon-menu.c							\
+	garcon-menu-monitor.c						\
+	garcon-menu-item.c						\
+	garcon-menu-node.c						\
+	garcon-menu-tree-provider.c					\
+	garcon-menu-merger.c						\
+	garcon-menu-parser.c
 
 libgarconincludedir = $(includedir)/garcon-1/garcon
 

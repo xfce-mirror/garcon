@@ -25,11 +25,11 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include <garcon/garconmenunode.h>
-#include <garcon/garconmenutreeprovider.h>
-#include <garcon/garconmenuparser.h>
-#include <garcon/garconmenumerger.h>
-#include <garcon/garcongio.h>
+#include <garcon/garcon-menu-node.h>
+#include <garcon/garcon-menu-tree-provider.h>
+#include <garcon/garcon-menu-parser.h>
+#include <garcon/garcon-menu-merger.h>
+#include <garcon/garcon-gio.h>
 
 
 

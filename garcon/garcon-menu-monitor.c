@@ -22,9 +22,9 @@
 #include <config.h>
 #endif
 
-#include <garcon/garconmenumonitor.h>
+#include <garcon/garcon-menu-monitor.h>
+#include <garcon/garcon-menu-item.h>
 #include <garcon/garcon.h>
-#include <garcon/garconmenuitem.h>
 
 
 

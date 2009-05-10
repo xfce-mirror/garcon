@@ -28,9 +28,9 @@
 
 #include <gio/gio.h>
 
-#include <garcon/garconmenunode.h>
-#include <garcon/garconmenutreeprovider.h>
-#include <garcon/garconmenuparser.h>
+#include <garcon/garcon-menu-node.h>
+#include <garcon/garcon-menu-tree-provider.h>
+#include <garcon/garcon-menu-parser.h>
 
 
 

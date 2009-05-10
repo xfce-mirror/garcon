@@ -23,12 +23,12 @@
 #include <config.h>
 #endif
 
-#include <garcon/garconenvironment.h>
+#include <garcon/garcon-environment.h>
 
 
 
 /**
- * SECTION:garconmenuenvironment
+ * SECTION:garcon-menu-environment
  * @title: Desktop Environment Configuration
  *
  * Desktop Environment Configuration

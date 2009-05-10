@@ -22,7 +22,7 @@
 #include <config.h>
 #endif
 
-#include <garcon/garconmenutreeprovider.h>
+#include <garcon/garcon-menu-tree-provider.h>
 
 
 

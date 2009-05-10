@@ -22,8 +22,8 @@
 #include <config.h>
 #endif
 
-#include <garcon/garconmenuelement.h>
-#include <garcon/garconmenuseparator.h>
+#include <garcon/garcon-menu-element.h>
+#include <garcon/garcon-menu-separator.h>
 
 
 

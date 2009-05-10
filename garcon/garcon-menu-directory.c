@@ -25,8 +25,8 @@
 #include <locale.h>
 #include <glib.h>
 
-#include <garcon/garconenvironment.h>
-#include <garcon/garconmenudirectory.h>
+#include <garcon/garcon-environment.h>
+#include <garcon/garcon-menu-directory.h>
 
 
 

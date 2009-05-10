@@ -26,19 +26,19 @@
 #define GARCON_INSIDE_GARCON_H
 
 #include <garcon/garcon-config.h>
-#include <garcon/garconmenudirectory.h>
-#include <garcon/garconmenuelement.h>
-#include <garcon/garconenvironment.h>
-#include <garcon/garconmenu.h>
-#include <garcon/garconmenuitem.h>
-#include <garcon/garconmenuitemcache.h>
-#include <garcon/garconmenuitempool.h>
-#include <garcon/garconmenunode.h>
-#include <garcon/garconmenumerger.h>
-#include <garcon/garconmenumonitor.h>
-#include <garcon/garconmenuparser.h>
-#include <garcon/garconmenuseparator.h>
-#include <garcon/garconmenutreeprovider.h>
+#include <garcon/garcon-menu-directory.h>
+#include <garcon/garcon-menu-element.h>
+#include <garcon/garcon-environment.h>
+#include <garcon/garcon-menu.h>
+#include <garcon/garcon-menu-item.h>
+#include <garcon/garcon-menu-item-cache.h>
+#include <garcon/garcon-menu-item-pool.h>
+#include <garcon/garcon-menu-node.h>
+#include <garcon/garcon-menu-merger.h>
+#include <garcon/garcon-menu-monitor.h>
+#include <garcon/garcon-menu-parser.h>
+#include <garcon/garcon-menu-separator.h>
+#include <garcon/garcon-menu-tree-provider.h>
 
 #undef GARCON_INSIDE_GARCON_H
 
