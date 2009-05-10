@@ -58,33 +58,33 @@
 
   <part id="garcon-menus">
     <title>Menus and Menu Items</title>
-    <xi:include href="xml/garconmenu.xml"/>
-    <xi:include href="xml/garconmenudirectory.xml"/>
-    <xi:include href="xml/garconmenuelement.xml"/>
-    <xi:include href="xml/garconmenuitem.xml"/>
-    <xi:include href="xml/garconmenuitemcache.xml"/>
-    <xi:include href="xml/garconmenuitempool.xml"/>
-    <xi:include href="xml/garconmenuseparator.xml"/>
+    <xi:include href="xml/garcon-menu.xml"/>
+    <xi:include href="xml/garcon-menu-directory.xml"/>
+    <xi:include href="xml/garcon-menu-element.xml"/>
+    <xi:include href="xml/garcon-menu-item.xml"/>
+    <xi:include href="xml/garcon-menu-item-cache.xml"/>
+    <xi:include href="xml/garcon-menu-item-pool.xml"/>
+    <xi:include href="xml/garcon-menu-separator.xml"/>
   </part>
 
   <part id="garcon-parsing">
     <title>Parsing and Modifying the Menu Tree</title>
-    <xi:include href="xml/garconmnumerger.xml"/>
-    <xi:include href="xml/garconmnunode.xml"/>
-    <xi:include href="xml/garconmnuparser.xml"/>
-    <xi:include href="xml/garconmnutreeprovider.xml"/>
+    <xi:include href="xml/garcon-menu-merger.xml"/>
+    <xi:include href="xml/garcon-menu-node.xml"/>
+    <xi:include href="xml/garcon-menu-parser.xml"/>
+    <xi:include href="xml/garcon-menu-tree-provider.xml"/>
   </part>
 
   <part id="garcon-monitoring">
     <title>Monitoring</title>
-    <xi:include href="xml/garconmenumonitor.xml"/>
+    <xi:include href="xml/garcon-menu-monitor.xml"/>
   </part>
 
   <part id="garcon-miscellaneous">
     <title>Miscellaneous</title>
-    <xi:include href="xml/garconenvironment.xml"/>
+    <xi:include href="xml/garcon-environment.xml"/>
     <xi:include href="xml/garcon.xml"/>
-    <xi:include href="xml/garcongio.xml"/>
+    <xi:include href="xml/garcon-gio.xml"/>
     <xi:include href="xml/garcon-config.xml"/>
   </part>
 
