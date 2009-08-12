@@ -30,54 +30,69 @@
 
 #include <glib/gprintf.h>
 
-#include <libxfce4util/libxfce4util.h>
-#include <libxfce4menu/libxfce4menu.h>
+#include <gdesktopmenu/gdesktopmenu.h>
 
 
 
 void
-print_menu (XfceMenu *menu, gboolean is_root)
+print_menu (GDesktopMenu *menu, 
+            const gchar  *path)
 {
-  XfceMenuDirectory *directory;
-  GSList            *menus;
-  GSList            *items;
-  GSList            *iter;
-  const gchar       *name;
+  GDesktopMenuDirectory *directory;
+  GList                 *menus;
+  GList                 *items;
+  GList                 *iter;
+  gchar                 *name;
+
+  if (!g_desktop_menu_element_get_visible (G_DESKTOP_MENU_ELEMENT (menu)))
+    return;
 
   /* Determine menu name */
-  directory = xfce_menu_get_directory (menu);
-  name = is_root ? "" : (directory == NULL ? xfce_menu_get_name (menu) : xfce_menu_directory_get_name (directory));
+  directory = g_desktop_menu_get_directory (menu);
+
+  if (G_UNLIKELY (path == NULL))
+    name = g_strdup ("");
+  else
+    {
+      name = g_strdup_printf ("%s%s/", path, 
+                              (directory == NULL 
+                               ? g_desktop_menu_element_get_name (G_DESKTOP_MENU_ELEMENT (menu)) 
+                               : g_desktop_menu_directory_get_name (directory)));
+    }
 
   /* Fetch submenus */
-  menus = xfce_menu_get_menus (menu);
+  menus = g_desktop_menu_get_menus (menu);
 
   /* Print child menus */
-  for (iter = menus; iter != NULL; iter = g_slist_next (iter)) 
+  for (iter = menus; iter != NULL; iter = g_list_next (iter)) 
     {
-      XfceMenuDirectory *submenu_directory = xfce_menu_get_directory (XFCE_MENU (iter->data));
-
-      /* Don't display hidden menus */
-      if (G_LIKELY (submenu_directory == NULL || !xfce_menu_directory_get_no_display (submenu_directory)))
-        print_menu (XFCE_MENU (iter->data), FALSE);
+      /* Only display menus which are not hidden or excluded from this environment */
+      if (G_LIKELY (g_desktop_menu_element_get_visible (iter->data)))
+        print_menu (G_DESKTOP_MENU (iter->data), name);
     }
 
   /* Free submenu list */
-  g_slist_free (menus);
+  g_list_free (menus);
 
   /* Fetch menu items */
-  items = xfce_menu_get_items (menu);
+  items = g_desktop_menu_get_elements (menu);
 
   /* Print menu items */
-  for (iter = items; iter != NULL; iter = g_slist_next (iter)) 
+  for (iter = items; iter != NULL; iter = g_list_next (iter)) 
     {
-      XfceMenuItem      *item = iter->data;
-
-      if (G_UNLIKELY (!xfce_menu_item_get_no_display (item)))
-        g_printf ("%s/\t%s\t%s\n", name, xfce_menu_item_get_desktop_id (item), xfce_menu_item_get_filename (item));
+      if (G_IS_DESKTOP_MENU_ITEM (iter->data) 
+          && g_desktop_menu_element_get_visible (iter->data))
+        {
+          g_printf ("%s\t%s\t%s\n", name, g_desktop_menu_item_get_desktop_id (iter->data), 
+                    g_desktop_menu_item_get_filename (iter->data));
+        }
     }
 
   /* Free menu item list */
-  g_slist_free (items);
+  g_list_free (items);
+
+  /* Free name */
+  g_free (name);
 }
 
 
@@ -86,28 +101,35 @@ int
 main (int    argc,
       char **argv)
 {
-  XfceMenu *menu;
-  GError   *error = NULL;
+  GDesktopMenu *menu;
+  GError       *error = NULL;
 #ifdef HAVE_STDLIB_H
-  int       exit_code = EXIT_SUCCESS;
+  int           exit_code = EXIT_SUCCESS;
 #else
-  int       exit_code = 0;
+  int           exit_code = 0;
 #endif
 
+  g_set_prgname ("test-menu-spec");
+
   /* Initialize menu library */
-  xfce_menu_init (NULL);
+  g_desktop_menu_init (NULL);
 
   /* Try to get the root menu */
-  menu = xfce_menu_get_root (&error);
+  menu = g_desktop_menu_new_applications ();
 
-  if (G_LIKELY (menu != NULL)) 
+  if (G_LIKELY (g_desktop_menu_load (menu, NULL, &error)))
     {
       /* Print menu contents according to the test suite criteria */
-      print_menu (menu, TRUE);
+      print_menu (menu, NULL);
     }
   else
     {
-      g_error (error->message);
+      gchar *uri;
+
+      uri = g_file_get_uri (g_desktop_menu_get_file (menu));
+      g_error ("Could not load menu from %s: %s", uri, error->message);
+      g_free (uri);
+
       g_error_free (error);
 #ifdef HAVE_STDLIB_H
       exit_code = EXIT_FAILURE;
@@ -117,7 +139,7 @@ main (int    argc,
     }
 
   /* Shut down the menu library */
-  xfce_menu_shutdown ();
+  g_desktop_menu_shutdown ();
 
   return exit_code;
 }

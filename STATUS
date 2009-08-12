@@ -57,51 +57,37 @@ I. Supported menu file elements
 
   [x] <Not>
 
-  [ ] <MergeFile>
+  [x] <MergeFile>
 
-  [ ] <MergeDir>
+  [x] <MergeDir>
 
-  [ ] <DefaultMergeDirs>
+  [x] <DefaultMergeDirs>
 
-  [-] <LegacyDir>
+  [ ] <LegacyDir>
       
-        <LegacyDir> elements are parsed and added to the menus 
-        which contain them in the menu file. Legacy menus are created
-        for legacy dirs with a .directory file. However, their desktop
-        files are not parsed yet.
-
-  [-] <DefaultLegacyDirs>
+  [ ] <DefaultLegacyDirs>
     
         See <LegacyDir>
 
-  [-] <KDELegacyDirs>
+  [ ] <KDELegacyDirs>
 
-        See <LegacyDir>
+  [x] <Move>
 
-  [-] <Move>
+  [x] <Old>
 
-        <Move> elements are parsed and functions for applying them
-        do exist. They are incomplete though: they only rename
-        menus if the <New> menu does not exist. Merging is not done
-        yet.
-
-  [-] <Old>
-
-        See <Move>
-
-  [-] <New>
-
-        See <Move>
+  [x] <New>
 
   [x] <Layout>
 
-  [ ] <DefaultLayout>
+  [-] <DefaultLayout>
+
+        <DefaultLayout> elements are parsed and work fine but their
+        optional XML attributes (show_empty, inline etc.) are currently
+        being ignored.
 
   [-] <Menuname>
 
-        The <Menuname> element is parsed and applied, but XML 
-        attributes like show_empty, inline, inline_limit etc. are not
-        handled.
+        See <DefaultLayout>.
 
   [x] <Separator>
 
@@ -122,32 +108,15 @@ II. Test suite results
     * All
     * And
     * AppDir-relative
-    * boolean-logic
     * Category
+    * DefaultMergeDirs
     * Deleted
-    * desktop-name-collision
     * DesktopFileID
-    * DirectoryDir-relative
     * Directory
+    * DirectoryDir-relative
     * Exclude
     * Filename
-    * menu-multiple-matching
     * Merge-combined
-    * NoDisplay
-    * NoDisplay2
-    * NotOnlyUnallocated-default
-    * official-categories
-    * OnlyUnallocated
-    * Or
-    * submenu-collision
-
-  Failed tests:
-
-    * AppDir (test suite bug, missing result file)
-    * DefaultMergeDirs
-    * DirectoryDir (test suite bug, missing result file)
-    * LegacyDir-Move
-    * LegacyDir-relative
     * MergeDir-absolute
     * MergeDir-relative
     * MergeFile2
@@ -157,14 +126,27 @@ II. Test suite results
     * MergeFile-path
     * MergeFile-recursive
     * MergeFile-relative
+    * Move
     * Move-collapsing
     * Move-ordering
     * Move-submenu
-    * Move (unverified test suite bug)
+    * NoDisplay
+    * NoDisplay2
+    * NotOnlyUnallocated-default
+    * OnlyUnallocated
+    * Or
+    * boolean-logic
+    * desktop-name-collision
+    * menu-multiple-matching
+    * official-categories
+    * submenu-collision
 
-  A list of test suite bugs I found during testing can be found here:
+  Failed tests:
 
-    http://lunar-linux.org/~jannis/menu-spec-testsuite.txt
+    * AppDir (test suite bug, missing result file)
+    * DirectoryDir (test suite bug, missing result file)
+    * LegacyDir-Move
+    * LegacyDir-relative
 
 
 
@@ -172,21 +154,7 @@ III. Filesystem monitoring
 ==========================
 
   Filesystem monitoring is done by moving the actual work into the 
-  client application. Using XfceMenuMonitorVTable applications can
-  register functions to be called when monitoring of a file or 
+  client application. Using GarconMenuMonitorVTable applications 
+  can register functions to be called when monitoring of a file or
   directory is needed. They then have to care about monitoring 
-  themselves (see xfce-menu-monitor.{c,h} for details.
-
-
-
-IV. UI interaction
-==================
-
-  Using GObject signals it should be easy to connect to menus and
-  menu items in order to update the related widgets.
-
-
-
-Written by Jannis Pohlmann <jannis@xfce.org>.
-
-$Id: STATUS 25194 2007-03-18 15:16:39Z jannis $
+  themselves (see garconmenumonitor.{c,h} for details.

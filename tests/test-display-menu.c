@@ -33,9 +33,10 @@
 #include <glib.h>
 #include <glib-object.h>
 #include <glib/gprintf.h>
+#include <glib/gi18n.h>
+#include <gio/gio.h>
 
-#include <libxfce4util/libxfce4util.h>
-#include <libxfce4menu/libxfce4menu.h>
+#include <gdesktopmenu/gdesktopmenu.h>
 
 
 
@@ -45,7 +46,7 @@
 
 
 /* Root menu */
-static XfceMenu *root = NULL;
+static GDesktopMenu *root = NULL;
 
 
 
@@ -55,32 +56,44 @@ static guint pseudo_monitor_handler = 0;
 
 
 static gpointer
-monitor_file (XfceMenu    *menu,
-              const gchar *filename,
-              gpointer     user_data)
+monitor_file (GDesktopMenu *menu,
+              const gchar  *filename,
+              gpointer      user_data)
 {
-  g_debug ("%s: monitoring file %s => %d", xfce_menu_element_get_name (XFCE_MENU_ELEMENT (menu)), filename, ++pseudo_monitor_handler);
+#if 0
+  g_debug ("%s: monitoring file %s => %d", 
+           g_desktop_menu_element_get_name (G_DESKTOP_MENU_ELEMENT (menu)), 
+           filename, ++pseudo_monitor_handler);
+#endif
   return GUINT_TO_POINTER (pseudo_monitor_handler);
 }
 
 
 
 static gpointer
-monitor_directory (XfceMenu    *menu,
-                   const gchar *filename,
-                   gpointer     user_data)
+monitor_directory (GDesktopMenu *menu,
+                   const gchar  *filename,
+                   gpointer      user_data)
 {
-  g_debug ("%s: monitoring directory %s => %d", xfce_menu_element_get_name (XFCE_MENU_ELEMENT (menu)), filename, ++pseudo_monitor_handler);
+#if 0
+  g_debug ("%s: monitoring directory %s => %d", 
+           g_desktop_menu_element_get_name (G_DESKTOP_MENU_ELEMENT (menu)), 
+           filename, ++pseudo_monitor_handler);
+#endif
   return GUINT_TO_POINTER (pseudo_monitor_handler);
 }
 
 
 
 static void
-remove_monitor (XfceMenu *menu,
-                gpointer  monitor_handle)
+remove_monitor (GDesktopMenu *menu,
+                gpointer      monitor_handle)
 {
-  g_debug ("%s: removing monitor %d", xfce_menu_element_get_name (XFCE_MENU_ELEMENT (menu)), GPOINTER_TO_UINT (monitor_handle));
+#if 0
+  g_debug ("%s: removing monitor %d", 
+           g_desktop_menu_element_get_name (G_DESKTOP_MENU_ELEMENT (menu)), 
+           GPOINTER_TO_UINT (monitor_handle));
+#endif
 }
 
 
@@ -88,21 +101,21 @@ remove_monitor (XfceMenu *menu,
 static void
 initialize_monitoring (void)
 {
-  XfceMenuMonitorVTable vtable = { 
-      monitor_file,
-      monitor_directory,
-      remove_monitor,
+  GDesktopMenuMonitorVTable vtable = { 
+    monitor_file,
+    monitor_directory,
+    remove_monitor,
   };
 
   /* Pass VTable to the menu library */
-  xfce_menu_monitor_set_vtable (&vtable, NULL);
+  g_desktop_menu_monitor_set_vtable (&vtable, NULL);
 }
 
 
 
 static void
-execute_item_command (GtkWidget    *widget,
-                      XfceMenuItem *item)
+execute_item_command (GtkWidget        *widget,
+                      GDesktopMenuItem *item)
 {
 #if 0
   GError      *error = NULL;
@@ -111,15 +124,16 @@ execute_item_command (GtkWidget    *widget,
   gboolean     terminal;
   gboolean     startup_notification;
 
-  command = xfce_menu_item_get_command (item);
-  terminal = xfce_menu_item_requires_terminal (item);
-  startup_notification = xfce_menu_item_supports_startup_notification (item);
+  command = g_desktop_menu_item_get_command (item);
+  terminal = g_desktop_menu_item_requires_terminal (item);
+  startup_notification = g_desktop_menu_item_supports_startup_notification (item);
 
   if (G_UNLIKELY (command == NULL))
     return;
 
 #if 0
-  if (!xfce_exec_on_screen (gdk_screen_get_default (), command, terminal, startup_notification, &error))
+  if (!xfce_exec_on_screen (gdk_screen_get_default (), command, terminal, 
+                            startup_notification, &error))
     {
       xfce_err (error->message);
       g_error_free (error);
@@ -130,7 +144,7 @@ execute_item_command (GtkWidget    *widget,
 
 
 static GdkPixbuf*
-create_item_icon (XfceMenuItem *item)
+create_item_icon (GDesktopMenuItem *item)
 {
   GdkPixbuf    *icon = NULL;
   GtkIconTheme *icon_theme;
@@ -144,8 +158,8 @@ create_item_icon (XfceMenuItem *item)
   /* Get current icon theme */
   icon_theme = gtk_icon_theme_get_default ();
 
-  item_name = xfce_menu_element_get_name (XFCE_MENU_ELEMENT (item));
-  icon_name = xfce_menu_element_get_icon_name (XFCE_MENU_ELEMENT (item));
+  item_name = g_desktop_menu_element_get_name (G_DESKTOP_MENU_ELEMENT (item));
+  icon_name = g_desktop_menu_element_get_icon_name (G_DESKTOP_MENU_ELEMENT (item));
 
   if (icon_name == NULL)
     return NULL;
@@ -204,8 +218,8 @@ create_item_icon (XfceMenuItem *item)
 
 
 static void
-create_item_widgets (XfceMenuItem *item, 
-                     GtkWidget    *parent_menu)
+create_item_widgets (GDesktopMenuItem *item, 
+                     GtkWidget        *parent_menu)
 {
   GtkWidget *gtk_item;
   GtkWidget *image;
@@ -219,7 +233,7 @@ create_item_widgets (XfceMenuItem *item,
   else
     image = gtk_image_new_from_icon_name ("applications-other", ICON_SIZE);
 
-  gtk_item = gtk_image_menu_item_new_with_label (xfce_menu_element_get_name (XFCE_MENU_ELEMENT (item)));
+  gtk_item = gtk_image_menu_item_new_with_label (g_desktop_menu_element_get_name (G_DESKTOP_MENU_ELEMENT (item)));
   gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (gtk_item), image);
   gtk_menu_shell_append (GTK_MENU_SHELL (parent_menu), gtk_item);
   gtk_widget_show (gtk_item);
@@ -231,58 +245,55 @@ create_item_widgets (XfceMenuItem *item,
 
 
 static void
-create_menu_widgets (GtkWidget *gtk_menu, 
-                     XfceMenu  *menu)
+create_menu_widgets (GtkWidget    *gtk_menu, 
+                     GDesktopMenu *menu)
 {
-  XfceMenuDirectory *directory;
-  XfceMenu          *submenu;
-  GtkIconTheme      *icon_theme;
-  GtkWidget         *gtk_item;
-  GtkWidget         *gtk_submenu;
-  GtkWidget         *image;
-  GdkPixbuf         *icon;
-  GSList            *iter;
-  GSList            *items;
-  const gchar       *display_name;
-  const gchar       *icon_name;
+  GDesktopMenuDirectory *directory;
+  GDesktopMenu          *submenu;
+  GtkIconTheme          *icon_theme;
+  GtkWidget             *gtk_item;
+  GtkWidget             *gtk_submenu;
+  GtkWidget             *image;
+  GdkPixbuf             *icon;
+  GList                 *iter;
+  GList                 *items;
+  const gchar           *display_name;
+  const gchar           *icon_name;
 
   /* Get current icon theme */
   icon_theme = gtk_icon_theme_get_default ();
 
   /* Get submenus and items based on the menu layout */
-  if (G_UNLIKELY (xfce_menu_has_layout (menu)))
-    items = xfce_menu_get_layout_elements (menu);
-  else
-    {
-      items = xfce_menu_get_menus (menu);
-      items = g_slist_concat (items, xfce_menu_get_items (menu));
-    }
+  items = g_desktop_menu_get_elements (menu);
 
   /* Iterate over menu items */
-  for (iter = items; iter != NULL; iter = g_slist_next (iter))
+  for (iter = items; iter != NULL; iter = g_list_next (iter))
     {
-      if (XFCE_IS_MENU_ITEM (iter->data))
+      if (!g_desktop_menu_element_get_visible (iter->data))
+        continue;
+
+      if (G_IS_DESKTOP_MENU_ITEM (iter->data))
         {
           /* Add menu item to the menu */
-          create_item_widgets (XFCE_MENU_ITEM (iter->data), gtk_menu);
+          create_item_widgets (G_DESKTOP_MENU_ITEM (iter->data), gtk_menu);
         }
-      else if (XFCE_IS_MENU_SEPARATOR (iter->data))
+      else if (G_IS_DESKTOP_MENU_SEPARATOR (iter->data))
         {
           /* Add separator to the menu */
           gtk_item = gtk_separator_menu_item_new ();
           gtk_menu_shell_append (GTK_MENU_SHELL (gtk_menu), gtk_item);
           gtk_widget_show (gtk_item);
         }
-      else if (XFCE_IS_MENU (iter->data))
+      else if (G_IS_DESKTOP_MENU (iter->data))
         {
-          submenu = XFCE_MENU (iter->data);
-          directory = xfce_menu_get_directory (submenu);
+          submenu = G_DESKTOP_MENU (iter->data);
+          directory = g_desktop_menu_get_directory (submenu);
 
           /* Determine display name */
-          display_name = xfce_menu_element_get_name (XFCE_MENU_ELEMENT (submenu));
+          display_name = g_desktop_menu_element_get_name (G_DESKTOP_MENU_ELEMENT (submenu));
 
           /* Determine icon name */
-          icon_name = xfce_menu_element_get_icon_name (XFCE_MENU_ELEMENT (submenu));
+          icon_name = g_desktop_menu_element_get_icon_name (G_DESKTOP_MENU_ELEMENT (submenu));
           if (icon_name == NULL)
             icon_name = "applications-other";
 
@@ -314,7 +325,7 @@ create_menu_widgets (GtkWidget *gtk_menu,
     }
 
   /* Free menu item list */
-  g_slist_free (items);
+  g_list_free (items);
 }
 
 
@@ -350,7 +361,7 @@ create_main_window (void)
 
   /* Create main window */
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_title (GTK_WINDOW (window), _("XfceMenu: Display Menu Test"));
+  gtk_window_set_title (GTK_WINDOW (window), _("GDesktopMenu: Display Menu Test"));
   gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER);
   gtk_container_set_border_width (GTK_CONTAINER (window), 12);
   gtk_widget_show (window);
@@ -376,11 +387,11 @@ int
 main (int    argc,
       char **argv)
 {
-  GError *error     = NULL;
+  GError *error = NULL;
   gint    exit_code = EXIT_SUCCESS;
 
   /* Initialize the menu library */
-  xfce_menu_init ("XFCE");
+  g_desktop_menu_init ("XFCE");
 
   /* Set up menu monitoring */
   initialize_monitoring ();
@@ -390,12 +401,12 @@ main (int    argc,
 
   /* Try to load the menu */
   if (G_UNLIKELY (g_strv_length (argv) > 1))
-    root = xfce_menu_new (argv[1], &error);
+    root = g_desktop_menu_new (argv[1]);
   else
-    root = xfce_menu_get_root (&error);
+    root = g_desktop_menu_new_applications ();
 
   /* Check if the menu was loaded */
-  if (G_LIKELY (root != NULL))
+  if (G_LIKELY (g_desktop_menu_load (root, NULL, &error)))
     {
       /* Create main window */
       create_main_window ();
@@ -408,12 +419,17 @@ main (int    argc,
     }
   else
     {
-      g_error (error->message);
+      gchar *uri;
+
+      uri = g_file_get_uri (g_desktop_menu_get_file (root));
+      g_error ("Could not load menu from %s: %s", uri, error->message);
+      g_free (uri);
+
       exit_code = EXIT_FAILURE;
     }
 
   /* Shut down the menu library */
-  xfce_menu_shutdown ();
+  g_desktop_menu_shutdown ();
 
   return exit_code;
 }
