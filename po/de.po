@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-31 15:24+0100\n"
+"POT-Creation-Date: 2009-04-04 23:40+0200\n"
 "PO-Revision-Date: 2009-01-31 15:30+0100\n"
 "Last-Translator: Enrico Tröger <enrico@xfce.org>\n"
 "Language-Team: German <xfce-i18n-de@xfce.org>\n"
@@ -17,27 +17,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:743
+#: .././libxfce4menu/xfce-menu-parser.c:307
 #, c-format
-msgid "Failed to locate the system menu"
-msgstr "Konnte das Hauptmenü nicht finden"
+msgid "Could not load menu file data from %s: %s"
+msgstr "Konnte das Menü nicht aus der Datei %s laden: %s"
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:198
+#: .././libxfce4menu/xfce-menu-parser.c:311
 #, c-format
-msgid "Failed to create the libxfce4menu item cache in %s."
-msgstr "Konnte Zwischenspeicher für libxfce4menu in %s nicht erstellen."
+msgid "Could not load menu file data from %s"
+msgstr "Konnte das Menü nicht aus der Datei %s laden"
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, c-format
-msgid "Failed to load the libxfce4menu item cache from %s: %s."
-msgstr "Konnte Zwischenspeicher für libxfce4menu in %s nicht öffnen: %s."
-
-#: ../tests/test-display-menu.c:353
+#: .././tests/test-display-menu.c:357
 msgid "XfceMenu: Display Menu Test"
 msgstr "XfceMenu: Menü-Anzeige-Test"
 
 #. Create button
-#: ../tests/test-display-menu.c:362
+#: .././tests/test-display-menu.c:366
 msgid "_Show menu"
 msgstr "_Menü anzeigen"
+
+#~ msgid "Failed to locate the system menu"
+#~ msgstr "Konnte das Hauptmenü nicht finden"
+
+#~ msgid "Failed to create the libxfce4menu item cache in %s."
+#~ msgstr "Konnte Zwischenspeicher für libxfce4menu in %s nicht erstellen."
