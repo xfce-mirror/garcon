@@ -3,5 +3,3 @@ TODO
 
   * Add garcon.spec.in for building RPMs
   * Integrate with menu spec test suite
-
-This is just a test.
