@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4menu 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-06 01:23+0100\n"
+"POT-Creation-Date: 2009-08-15 03:27+0200\n"
 "PO-Revision-Date: 2009-01-06 19:29+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
@@ -16,28 +16,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:743
-#, c-format
-msgid "Failed to locate the system menu"
-msgstr "システムメニューの配置に失敗しました"
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:198
-#, c-format
-msgid "Failed to create the libxfce4menu item cache in %s."
-msgstr "libxfce4menu アイテムのキャッシュを %s に作成できませんでした。"
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, c-format
-msgid "Failed to load the libxfce4menu item cache from %s: %s."
+#: .././garcon/garcon-menu-parser.c:308
+#, fuzzy, c-format
+msgid "Could not load menu file data from %s: %s"
 msgstr ""
 "%s からの libxfce4menu アイテムのキャッシュの読み込みに失敗しました: %s"
 
-#: ../tests/test-display-menu.c:353
-msgid "XfceMenu: Display Menu Test"
-msgstr "XfceMenu: メニュー表示テスト"
+#: .././garcon/garcon-menu-parser.c:313
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr ""
 
-#. Create button
-#: ../tests/test-display-menu.c:362
-msgid "_Show menu"
-msgstr "メニューを表示(_S)"
+#~ msgid "XfceMenu: Display Menu Test"
+#~ msgstr "XfceMenu: メニュー表示テスト"
+
+#~ msgid "_Show menu"
+#~ msgstr "メニューを表示(_S)"
+
+#~ msgid "Failed to locate the system menu"
+#~ msgstr "システムメニューの配置に失敗しました"
+
+#~ msgid "Failed to create the libxfce4menu item cache in %s."
+#~ msgstr "libxfce4menu アイテムのキャッシュを %s に作成できませんでした。"

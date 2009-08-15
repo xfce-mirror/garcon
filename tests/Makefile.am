@@ -19,17 +19,15 @@
 
 INCLUDES =								\
 	-I$(top_srcdir)							\
-	-DG_LOG_DOMAIN=\"gdesktopmenu-tests\"
+	-DG_LOG_DOMAIN=\"garcon-tests\"
 
 TESTS =									\
 	test-menu-parser						\
-	test-menu-spec							\
-	test-display-menu
+	test-menu-spec
 
 check_PROGRAMS =							\
 	test-menu-parser						\
-	test-menu-spec							\
-	test-display-menu
+	test-menu-spec
 
 test_menu_parser_SOURCES =						\
 	test-menu-parser.c
@@ -39,12 +37,12 @@ test_menu_parser_CFLAGS =						\
 	$(GLIB_CFLAGS)
 
 test_menu_parser_DEPENDENCIES =						\
-	$(top_builddir)/gdesktopmenu/libgdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
+	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
 
 test_menu_parser_LDADD =						\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(GLIB_LIBS)							\
-	$(top_builddir)/gdesktopmenu/libgdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
+	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
 
 test_menu_spec_SOURCES =						\
 	test-menu-spec.c
@@ -54,27 +52,9 @@ test_menu_spec_CFLAGS =							\
 	$(GLIB_CFLAGS)
 
 test_menu_spec_DEPENDENCIES =						\
-	$(top_builddir)/gdesktopmenu/libgdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
+	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
 
 test_menu_spec_LDADD =							\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(GLIB_LIBS)							\
-	$(top_builddir)/gdesktopmenu/libgdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
-
-test_display_menu_SOURCES =						\
-	test-display-menu.c
-
-test_display_menu_CFLAGS =						\
-	$(LIBXFCE4UTIL_CFLAGS)						\
-	$(GTK_CFLAGS)							\
-	$(GLIB_CFLAGS)
-
-test_display_menu_DEPENDENCIES =					\
-	$(top_builddir)/gdesktopmenu/libgdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
-
-test_display_menu_LDADD =						\
-	$(LIBXFCE4UTIL_LIBS)						\
-	$(GTK_LIBS)							\
-	$(GLIB_LIBS)							\
-	$(top_builddir)/gdesktopmenu/libgdesktopmenu-$(GDESKTOPMENU_VERSION_API).la
-
+	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la

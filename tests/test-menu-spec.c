@@ -30,25 +30,25 @@
 
 #include <glib/gprintf.h>
 
-#include <gdesktopmenu/gdesktopmenu.h>
+#include <garcon/garcon.h>
 
 
 
 void
-print_menu (GDesktopMenu *menu, 
-            const gchar  *path)
+print_menu (GarconMenu  *menu, 
+            const gchar *path)
 {
-  GDesktopMenuDirectory *directory;
-  GList                 *menus;
-  GList                 *items;
-  GList                 *iter;
-  gchar                 *name;
+  GarconMenuDirectory *directory;
+  GList               *menus;
+  GList               *items;
+  GList               *iter;
+  gchar               *name;
 
-  if (!g_desktop_menu_element_get_visible (G_DESKTOP_MENU_ELEMENT (menu)))
+  if (!garcon_menu_element_get_visible (GARCON_MENU_ELEMENT (menu)))
     return;
 
   /* Determine menu name */
-  directory = g_desktop_menu_get_directory (menu);
+  directory = garcon_menu_get_directory (menu);
 
   if (G_UNLIKELY (path == NULL))
     name = g_strdup ("");
@@ -56,35 +56,35 @@ print_menu (GDesktopMenu *menu,
     {
       name = g_strdup_printf ("%s%s/", path, 
                               (directory == NULL 
-                               ? g_desktop_menu_element_get_name (G_DESKTOP_MENU_ELEMENT (menu)) 
-                               : g_desktop_menu_directory_get_name (directory)));
+                               ? garcon_menu_element_get_name (GARCON_MENU_ELEMENT (menu)) 
+                               : garcon_menu_directory_get_name (directory)));
     }
 
   /* Fetch submenus */
-  menus = g_desktop_menu_get_menus (menu);
+  menus = garcon_menu_get_menus (menu);
 
   /* Print child menus */
   for (iter = menus; iter != NULL; iter = g_list_next (iter)) 
     {
       /* Only display menus which are not hidden or excluded from this environment */
-      if (G_LIKELY (g_desktop_menu_element_get_visible (iter->data)))
-        print_menu (G_DESKTOP_MENU (iter->data), name);
+      if (G_LIKELY (garcon_menu_element_get_visible (iter->data)))
+        print_menu (GARCON_MENU (iter->data), name);
     }
 
   /* Free submenu list */
   g_list_free (menus);
 
   /* Fetch menu items */
-  items = g_desktop_menu_get_elements (menu);
+  items = garcon_menu_get_elements (menu);
 
   /* Print menu items */
   for (iter = items; iter != NULL; iter = g_list_next (iter)) 
     {
-      if (G_IS_DESKTOP_MENU_ITEM (iter->data) 
-          && g_desktop_menu_element_get_visible (iter->data))
+      if (GARCON_IS_MENU_ITEM (iter->data) 
+          && garcon_menu_element_get_visible (iter->data))
         {
-          g_printf ("%s\t%s\t%s\n", name, g_desktop_menu_item_get_desktop_id (iter->data), 
-                    g_desktop_menu_item_get_filename (iter->data));
+          g_printf ("%s\t%s\t%s\n", name, garcon_menu_item_get_desktop_id (iter->data), 
+                    garcon_menu_item_get_filename (iter->data));
         }
     }
 
@@ -101,23 +101,23 @@ int
 main (int    argc,
       char **argv)
 {
-  GDesktopMenu *menu;
-  GError       *error = NULL;
+  GarconMenu *menu;
+  GError     *error = NULL;
 #ifdef HAVE_STDLIB_H
-  int           exit_code = EXIT_SUCCESS;
+  int         exit_code = EXIT_SUCCESS;
 #else
-  int           exit_code = 0;
+  int         exit_code = 0;
 #endif
 
   g_set_prgname ("test-menu-spec");
 
   /* Initialize menu library */
-  g_desktop_menu_init (NULL);
+  garcon_init (NULL);
 
   /* Try to get the root menu */
-  menu = g_desktop_menu_new_applications ();
+  menu = garcon_menu_new_applications ();
 
-  if (G_LIKELY (g_desktop_menu_load (menu, NULL, &error)))
+  if (G_LIKELY (garcon_menu_load (menu, NULL, &error)))
     {
       /* Print menu contents according to the test suite criteria */
       print_menu (menu, NULL);
@@ -126,7 +126,7 @@ main (int    argc,
     {
       gchar *uri;
 
-      uri = g_file_get_uri (g_desktop_menu_get_file (menu));
+      uri = g_file_get_uri (garcon_menu_get_file (menu));
       g_error ("Could not load menu from %s: %s", uri, error->message);
       g_free (uri);
 
@@ -139,7 +139,7 @@ main (int    argc,
     }
 
   /* Shut down the menu library */
-  g_desktop_menu_shutdown ();
+  garcon_shutdown ();
 
   return exit_code;
 }

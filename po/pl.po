@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-06 01:23+0100\n"
+"POT-Creation-Date: 2009-08-15 03:27+0200\n"
 "PO-Revision-Date: 2009-01-29 13:18+0100\n"
 "Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
 "Language-Team: Polish\n"
@@ -15,28 +15,26 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:743
+#: .././garcon/garcon-menu-parser.c:308
+#, fuzzy, c-format
+msgid "Could not load menu file data from %s: %s"
+msgstr ""
+"Nie udało się wczytać pamięci podręcznej elementu libxfce4menu z %s: %s."
+
+#: .././garcon/garcon-menu-parser.c:313
 #, c-format
-msgid "Failed to locate the system menu"
-msgstr "Nie udało się zlokalizować menu systemowego"
+msgid "Could not load menu file data from %s"
+msgstr ""
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:198
-#, c-format
-msgid "Failed to create the libxfce4menu item cache in %s."
-msgstr "Nie udało się utworzyć pamięci podręcznej elementu libxfce4menu w %s."
+#~ msgid "XfceMenu: Display Menu Test"
+#~ msgstr "XfceMenu: test wyświetlania menu"
 
-#: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, c-format
-msgid "Failed to load the libxfce4menu item cache from %s: %s."
-msgstr "Nie udało się wczytać pamięci podręcznej elementu libxfce4menu z %s: %s."
+#~ msgid "_Show menu"
+#~ msgstr "_Wyświetl menu"
 
-#: ../tests/test-display-menu.c:353
-msgid "XfceMenu: Display Menu Test"
-msgstr "XfceMenu: test wyświetlania menu"
+#~ msgid "Failed to locate the system menu"
+#~ msgstr "Nie udało się zlokalizować menu systemowego"
 
-#. Create button
-#: ../tests/test-display-menu.c:362
-msgid "_Show menu"
-msgstr "_Wyświetl menu"
-
+#~ msgid "Failed to create the libxfce4menu item cache in %s."
+#~ msgstr ""
+#~ "Nie udało się utworzyć pamięci podręcznej elementu libxfce4menu w %s."

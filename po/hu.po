@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-06 01:23+0100\n"
+"POT-Creation-Date: 2009-08-15 03:27+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
 "Language-Team: Hungarian <debian-l10n-hungarian@lists.d.o>\n"
@@ -13,28 +13,24 @@ msgstr ""
 "X-Poedit-Language: Hungarian\n"
 "X-Poedit-Country: HUNGARY\n"
 
-#. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:743
-#, c-format
-msgid "Failed to locate the system menu"
-msgstr "Nem találtam a rendszer menüt"
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:198
-#, c-format
-msgid "Failed to create the libxfce4menu item cache in %s."
-msgstr "Nem tudtam létrehozni a libxfce4menu elem gyorstárat itt: %s."
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, c-format
-msgid "Failed to load the libxfce4menu item cache from %s: %s."
+#: .././garcon/garcon-menu-parser.c:308
+#, fuzzy, c-format
+msgid "Could not load menu file data from %s: %s"
 msgstr "Nem tudtam betölteni a libxfce4menu elem gyorstárat innen: %s: %s."
 
-#: ../tests/test-display-menu.c:353
-msgid "XfceMenu: Display Menu Test"
-msgstr "XfceMenu: Kijelző Menü Teszt"
+#: .././garcon/garcon-menu-parser.c:313
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr ""
 
-#. Create button
-#: ../tests/test-display-menu.c:362
-msgid "_Show menu"
-msgstr "_Menü mutatása"
+#~ msgid "XfceMenu: Display Menu Test"
+#~ msgstr "XfceMenu: Kijelző Menü Teszt"
 
+#~ msgid "_Show menu"
+#~ msgstr "_Menü mutatása"
+
+#~ msgid "Failed to locate the system menu"
+#~ msgstr "Nem találtam a rendszer menüt"
+
+#~ msgid "Failed to create the libxfce4menu item cache in %s."
+#~ msgstr "Nem tudtam létrehozni a libxfce4menu elem gyorstárat itt: %s."

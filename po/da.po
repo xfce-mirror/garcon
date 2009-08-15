@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu 4.5.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-06 01:23+0100\n"
+"POT-Creation-Date: 2009-08-15 03:27+0200\n"
 "PO-Revision-Date: 2009-01-22 09:13+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -19,27 +19,24 @@ msgstr ""
 "X-Poedit-Country: DENMARK\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:743
-#, c-format
-msgid "Failed to locate the system menu"
-msgstr "Kunne ikke finde systemmenuen"
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:198
-#, c-format
-msgid "Failed to create the libxfce4menu item cache in %s."
-msgstr "Kunne ikke oprette elementcachen for libxfce4-menu i %s."
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, c-format
-msgid "Failed to load the libxfce4menu item cache from %s: %s."
+#: .././garcon/garcon-menu-parser.c:308
+#, fuzzy, c-format
+msgid "Could not load menu file data from %s: %s"
 msgstr "Kunne ikke indlæse elementcachen for libxfce4menu i %s: %s."
 
-#: ../tests/test-display-menu.c:353
-msgid "XfceMenu: Display Menu Test"
-msgstr "XfceMenu: Vis menuprøve"
+#: .././garcon/garcon-menu-parser.c:313
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr ""
 
-#. Create button
-#: ../tests/test-display-menu.c:362
-msgid "_Show menu"
-msgstr "_Vis menu"
+#~ msgid "XfceMenu: Display Menu Test"
+#~ msgstr "XfceMenu: Vis menuprøve"
+
+#~ msgid "_Show menu"
+#~ msgstr "_Vis menu"
+
+#~ msgid "Failed to locate the system menu"
+#~ msgstr "Kunne ikke finde systemmenuen"
+
+#~ msgid "Failed to create the libxfce4menu item cache in %s."
+#~ msgstr "Kunne ikke oprette elementcachen for libxfce4-menu i %s."

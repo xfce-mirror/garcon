@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-06 01:23+0100\n"
+"POT-Creation-Date: 2009-08-15 03:27+0200\n"
 "PO-Revision-Date: 2009-01-15 08:53-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -18,27 +18,24 @@ msgstr ""
 "X-Poedit-Language: Portuguese\n"
 "X-Poedit-Country: BRAZIL\n"
 
-#. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:743
-#, c-format
-msgid "Failed to locate the system menu"
-msgstr "Falha ao localizar o menu do sistema"
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:198
-#, c-format
-msgid "Failed to create the libxfce4menu item cache in %s."
-msgstr "Falha ao criar o cache do item libxfce4menu em %s."
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, c-format
-msgid "Failed to load the libxfce4menu item cache from %s: %s."
+#: .././garcon/garcon-menu-parser.c:308
+#, fuzzy, c-format
+msgid "Could not load menu file data from %s: %s"
 msgstr "Falha ao carregar o cache do item libxfce4menu de %s: %s."
 
-#: ../tests/test-display-menu.c:353
-msgid "XfceMenu: Display Menu Test"
-msgstr "XfceMenu: Mostrar o menu de teste"
+#: .././garcon/garcon-menu-parser.c:313
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr ""
 
-#. Create button
-#: ../tests/test-display-menu.c:362
-msgid "_Show menu"
-msgstr "_Mostrar menu"
+#~ msgid "XfceMenu: Display Menu Test"
+#~ msgstr "XfceMenu: Mostrar o menu de teste"
+
+#~ msgid "_Show menu"
+#~ msgstr "_Mostrar menu"
+
+#~ msgid "Failed to locate the system menu"
+#~ msgstr "Falha ao localizar o menu do sistema"
+
+#~ msgid "Failed to create the libxfce4menu item cache in %s."
+#~ msgstr "Falha ao criar o cache do item libxfce4menu em %s."

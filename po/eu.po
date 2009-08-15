@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu-0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-06 01:23+0100\n"
+"POT-Creation-Date: 2009-08-15 03:27+0200\n"
 "PO-Revision-Date: 2008-11-27 00:40+0100\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
@@ -16,27 +16,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:743
-#, c-format
-msgid "Failed to locate the system menu"
-msgstr "Huts sistemaren erro menua kokatzerakoan"
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:198
-#, c-format
-msgid "Failed to create the libxfce4menu item cache in %s."
-msgstr "Huts %s-en libxfce4menu elementu cachean sortzerakoan."
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, c-format
-msgid "Failed to load the libxfce4menu item cache from %s: %s."
+#: .././garcon/garcon-menu-parser.c:308
+#, fuzzy, c-format
+msgid "Could not load menu file data from %s: %s"
 msgstr "Huts %s-en libxfce4menu elementu katxean irekitzean: %s."
 
-#: ../tests/test-display-menu.c:353
-msgid "XfceMenu: Display Menu Test"
-msgstr "XfceMenu: Pantaila menu proba"
+#: .././garcon/garcon-menu-parser.c:313
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr ""
 
-#. Create button
-#: ../tests/test-display-menu.c:362
-msgid "_Show menu"
-msgstr "_Ikusi menua"
+#~ msgid "XfceMenu: Display Menu Test"
+#~ msgstr "XfceMenu: Pantaila menu proba"
+
+#~ msgid "_Show menu"
+#~ msgstr "_Ikusi menua"
+
+#~ msgid "Failed to locate the system menu"
+#~ msgstr "Huts sistemaren erro menua kokatzerakoan"
+
+#~ msgid "Failed to create the libxfce4menu item cache in %s."
+#~ msgstr "Huts %s-en libxfce4menu elementu cachean sortzerakoan."

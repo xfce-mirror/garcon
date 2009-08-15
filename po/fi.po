@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-25 09:20+0200\n"
+"POT-Creation-Date: 2009-08-15 03:27+0200\n"
 "PO-Revision-Date: 2009-01-25 09:23+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -15,27 +15,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:743
-#, c-format
-msgid "Failed to locate the system menu"
-msgstr "Järjestelmävalikkoa ei löydy"
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:198
-#, c-format
-msgid "Failed to create the libxfce4menu item cache in %s."
-msgstr "libxfce4menun kohdevälimuistin luominen kohteeseen %s epäonnistui."
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, c-format
-msgid "Failed to load the libxfce4menu item cache from %s: %s."
+#: .././garcon/garcon-menu-parser.c:308
+#, fuzzy, c-format
+msgid "Could not load menu file data from %s: %s"
 msgstr "libxfce4menun välimuistin avaaminen kohteesta %s epäonnistui: %s."
 
-#: ../tests/test-display-menu.c:353
-msgid "XfceMenu: Display Menu Test"
-msgstr "XfceMenu: Valikkotesti"
+#: .././garcon/garcon-menu-parser.c:313
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr ""
 
-#. Create button
-#: ../tests/test-display-menu.c:362
-msgid "_Show menu"
-msgstr "_Näytä valikko"
+#~ msgid "XfceMenu: Display Menu Test"
+#~ msgstr "XfceMenu: Valikkotesti"
+
+#~ msgid "_Show menu"
+#~ msgstr "_Näytä valikko"
+
+#~ msgid "Failed to locate the system menu"
+#~ msgstr "Järjestelmävalikkoa ei löydy"
+
+#~ msgid "Failed to create the libxfce4menu item cache in %s."
+#~ msgstr "libxfce4menun kohdevälimuistin luominen kohteeseen %s epäonnistui."

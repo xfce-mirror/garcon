@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4menu 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-06 01:23+0100\n"
+"POT-Creation-Date: 2009-08-15 03:27+0200\n"
 "PO-Revision-Date: 2007-10-28 14:46+0300\n"
 "Last-Translator: Rihards Priedītis <rprieditis@inbox.lv>\n"
 "Language-Team: Latvian <rprieditis@inbox.lv>\n"
@@ -15,27 +15,19 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:743
+#: .././garcon/garcon-menu-parser.c:308
 #, fuzzy, c-format
-msgid "Failed to locate the system menu"
-msgstr "Netika atrasta lietotņu saknes izvēlne"
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:198
-#, c-format
-msgid "Failed to create the libxfce4menu item cache in %s."
-msgstr "Nevarēja izveidot libxfce4menu vienuma kešatmiņu iekš %s."
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, fuzzy, c-format
-msgid "Failed to load the libxfce4menu item cache from %s: %s."
+msgid "Could not load menu file data from %s: %s"
 msgstr "Nevarēja atvērt libxfce4menu vienuma kešatmiņu iekš %s: %s."
 
-#: ../tests/test-display-menu.c:353
-msgid "XfceMenu: Display Menu Test"
+#: .././garcon/garcon-menu-parser.c:313
+#, c-format
+msgid "Could not load menu file data from %s"
 msgstr ""
 
-#. Create button
-#: ../tests/test-display-menu.c:362
-msgid "_Show menu"
-msgstr ""
+#, fuzzy
+#~ msgid "Failed to locate the system menu"
+#~ msgstr "Netika atrasta lietotņu saknes izvēlne"
+
+#~ msgid "Failed to create the libxfce4menu item cache in %s."
+#~ msgstr "Nevarēja izveidot libxfce4menu vienuma kešatmiņu iekš %s."

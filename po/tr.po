@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-06 01:23+0100\n"
+"POT-Creation-Date: 2009-08-15 03:27+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
 "Language-Team: Turkish <turkce@pardus.org.tr>\n"
@@ -18,28 +18,24 @@ msgstr ""
 "X-Poedit-Language: Turkish\n"
 "X-Poedit-Country: TURKEY\n"
 
-#. Let the caller know there was no suitable file
-#: ../libxfce4menu/xfce-menu.c:743
-#, c-format
-msgid "Failed to locate the system menu"
-msgstr "Sistem menüsünün yeri belirlenemedi"
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:198
-#, c-format
-msgid "Failed to create the libxfce4menu item cache in %s."
-msgstr "libxfce4menu öğesi önbelleği oluşturulamadı: %s."
-
-#: ../libxfce4menu/xfce-menu-item-cache.c:208
-#, c-format
-msgid "Failed to load the libxfce4menu item cache from %s: %s."
+#: .././garcon/garcon-menu-parser.c:308
+#, fuzzy, c-format
+msgid "Could not load menu file data from %s: %s"
 msgstr "libxfce4menu öğesi önbelleği, %s bölümünden çağrılamadı: %s."
 
-#: ../tests/test-display-menu.c:353
-msgid "XfceMenu: Display Menu Test"
-msgstr "XfceMenu: Menü Sınamasını Görüntüle"
+#: .././garcon/garcon-menu-parser.c:313
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr ""
 
-#. Create button
-#: ../tests/test-display-menu.c:362
-msgid "_Show menu"
-msgstr "_Menüyü göster"
+#~ msgid "XfceMenu: Display Menu Test"
+#~ msgstr "XfceMenu: Menü Sınamasını Görüntüle"
 
+#~ msgid "_Show menu"
+#~ msgstr "_Menüyü göster"
+
+#~ msgid "Failed to locate the system menu"
+#~ msgstr "Sistem menüsünün yeri belirlenemedi"
+
+#~ msgid "Failed to create the libxfce4menu item cache in %s."
+#~ msgstr "libxfce4menu öğesi önbelleği oluşturulamadı: %s."

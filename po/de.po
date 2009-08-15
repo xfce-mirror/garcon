@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-04 23:40+0200\n"
+"POT-Creation-Date: 2009-08-15 03:27+0200\n"
 "PO-Revision-Date: 2009-01-31 15:30+0100\n"
 "Last-Translator: Enrico Tröger <enrico@xfce.org>\n"
 "Language-Team: German <xfce-i18n-de@xfce.org>\n"
@@ -17,24 +17,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .././libxfce4menu/xfce-menu-parser.c:307
+#: .././garcon/garcon-menu-parser.c:308
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Konnte das Menü nicht aus der Datei %s laden: %s"
 
-#: .././libxfce4menu/xfce-menu-parser.c:311
+#: .././garcon/garcon-menu-parser.c:313
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Konnte das Menü nicht aus der Datei %s laden"
 
-#: .././tests/test-display-menu.c:357
-msgid "XfceMenu: Display Menu Test"
-msgstr "XfceMenu: Menü-Anzeige-Test"
+#~ msgid "XfceMenu: Display Menu Test"
+#~ msgstr "XfceMenu: Menü-Anzeige-Test"
 
-#. Create button
-#: .././tests/test-display-menu.c:366
-msgid "_Show menu"
-msgstr "_Menü anzeigen"
+#~ msgid "_Show menu"
+#~ msgstr "_Menü anzeigen"
 
 #~ msgid "Failed to locate the system menu"
 #~ msgstr "Konnte das Hauptmenü nicht finden"
