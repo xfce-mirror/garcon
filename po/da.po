@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: libxfce4menu 4.5.92\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-08-15 03:27+0200\n"
-"PO-Revision-Date: 2009-01-22 09:13+0100\n"
+"PO-Revision-Date: 2009-08-15 19:29+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -20,23 +20,21 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: .././garcon/garcon-menu-parser.c:308
-#, fuzzy, c-format
+#, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Kunne ikke indlæse elementcachen for libxfce4menu i %s: %s."
+msgstr "Kunne ikke indlæse data til menufil fra %s: %s."
 
 #: .././garcon/garcon-menu-parser.c:313
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
+msgstr "Kunne ikke indlæse data til menufil fra %s"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: Vis menuprøve"
-
 #~ msgid "_Show menu"
 #~ msgstr "_Vis menu"
-
 #~ msgid "Failed to locate the system menu"
 #~ msgstr "Kunne ikke finde systemmenuen"
-
 #~ msgid "Failed to create the libxfce4menu item cache in %s."
 #~ msgstr "Kunne ikke oprette elementcachen for libxfce4-menu i %s."
+
