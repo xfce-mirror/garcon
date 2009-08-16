@@ -208,6 +208,7 @@ garcon_menu_parser_get_property (GObject    *object,
     case PROP_FILE:
       g_value_set_object (value, parser->priv->file);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -229,6 +230,7 @@ garcon_menu_parser_set_property (GObject      *object,
     case PROP_FILE:
       parser->priv->file = g_object_ref (g_value_get_object (value));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;

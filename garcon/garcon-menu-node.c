@@ -188,6 +188,7 @@ garcon_menu_node_get_property (GObject    *object,
     case PROP_NODE_TYPE:
       g_value_set_enum (value, node->node_type);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -210,7 +211,7 @@ garcon_menu_node_set_property (GObject      *object,
       node->node_type = g_value_get_enum (value);
       g_object_notify (G_OBJECT (node), "node-type");
       break;
-      break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;

@@ -292,7 +292,7 @@ garcon_menu_get_property (GObject    *object,
   switch (prop_id)
     {
     case PROP_FILE:
-      g_value_set_object (value, garcon_menu_get_file (menu));
+      g_value_set_object (value, menu->priv->file);
       break;
 
     case PROP_DIRECTORY:
@@ -446,6 +446,8 @@ garcon_menu_new_applications (void)
  *
  * Returns the #GFile of @menu. It refers to the .menu file from which 
  * @menu was or will be loaded.
+ * The caller is responsible to free the returned object using
+ * g_object_unref() when no longer needed.
  * 
  * Return value: the @GFile of @menu.
  */

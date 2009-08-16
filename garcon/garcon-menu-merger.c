@@ -189,8 +189,9 @@ garcon_menu_merger_get_property (GObject    *object,
   switch (prop_id)
     {
     case PROP_TREE_PROVIDER:
-      g_value_set_object (value, g_object_ref (merger->priv->tree_provider));
+      g_value_set_object (value, merger->priv->tree_provider);
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -212,6 +213,7 @@ garcon_menu_merger_set_property (GObject      *object,
     case PROP_TREE_PROVIDER:
       merger->priv->tree_provider = g_object_ref (g_value_get_object (value));
       break;
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;

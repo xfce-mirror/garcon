@@ -417,13 +417,35 @@ garcon_menu_item_get_property (GObject    *object,
       break;
 
     case PROP_REQUIRES_TERMINAL:
+      g_value_set_boolean (value, garcon_menu_item_requires_terminal (item));
+      break;
+
     case PROP_NO_DISPLAY:
+      g_value_set_boolean (value, garcon_menu_item_get_no_display (item));
+      break;
+
     case PROP_STARTUP_NOTIFICATION:
+      g_value_set_boolean (value, garcon_menu_item_supports_startup_notification (item));
+      break;
+
     case PROP_NAME:
+      g_value_set_string (value, garcon_menu_item_get_name (item));
+      break;
+
     case PROP_GENERIC_NAME:
+      g_value_set_string (value, garcon_menu_item_get_generic_name (item));
+      break;
+
     case PROP_COMMAND:
+      g_value_set_string (value, garcon_menu_item_get_command (item));
+      break;
+
     case PROP_ICON_NAME:
+      g_value_set_string (value, garcon_menu_item_get_icon_name (item));
+      break;
+
     case PROP_TRY_EXEC:
+      g_value_set_string (value, garcon_menu_item_get_try_exec (item));
       break;
 
     case PROP_PATH:
