@@ -531,7 +531,6 @@ garcon_menu_item_new (const gchar *uri)
 {
   GarconMenuItem *item = NULL;
   GKeyFile       *rc = NULL;
-  GError         *error = NULL;
   GFile          *file;
   GList          *categories = NULL;
   gboolean        terminal;
@@ -560,12 +559,8 @@ garcon_menu_item_new (const gchar *uri)
 
   /* Try to open the .desktop file */
   rc = g_key_file_new ();
-  g_key_file_load_from_file (rc, filename, G_KEY_FILE_NONE, &error);
-  if (G_UNLIKELY (error != NULL))
-    {
-      g_error_free (error);
-      goto error;
-    }
+  if (!g_key_file_load_from_file (rc, filename, G_KEY_FILE_NONE, NULL))
+    goto error;
 
   /* Abort if the file has been marked as "deleted"/hidden */
   if (G_UNLIKELY (g_key_file_get_boolean (rc, "Desktop Entry", "Hidden", NULL)))
