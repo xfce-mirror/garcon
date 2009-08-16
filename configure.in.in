@@ -25,8 +25,8 @@ m4_define([garcon_version_api_major], [1])
 m4_define([garcon_version_major], [0])
 m4_define([garcon_version_minor], [1])
 m4_define([garcon_version_micro], [0])
-m4_define([garcon_version_build], [r@REVISION@])
-m4_define([garcon_version_tag], [svn])
+m4_define([garcon_version_build], [@REVISION@])
+m4_define([garcon_version_tag], [git])
 m4_define([garcon_version], [garcon_version_major().garcon_version_minor().garcon_version_micro()ifelse(garcon_version_tag(), [svn], [garcon_version_tag()-garcon_version_build()], [garcon_version_tag()])])
 
 dnl ********************************************
@@ -40,7 +40,7 @@ dnl ***************************
 AC_COPYRIGHT([Copyright (c) 2007-2009 Jannis Pohlmann <jannis@xfce.org>])
 AC_INIT([garcon], [garcon_version], [http://bugzilla.xfce.org/])
 AC_PREREQ([2.50])
-AC_REVISION([$Id$])
+AC_REVISION([@REVISION@])
 AC_CANONICAL_TARGET()
 
 dnl ***************************
