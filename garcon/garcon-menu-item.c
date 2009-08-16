@@ -727,7 +727,7 @@ garcon_menu_item_set_desktop_id (GarconMenuItem *item,
   item->priv->desktop_id = g_strdup (desktop_id);
 
   /* Notify listeners */
-  g_object_notify (G_OBJECT (item), "desktop_id");
+  g_object_notify (G_OBJECT (item), "desktop-id");
 }
 
 
@@ -963,7 +963,7 @@ garcon_menu_item_set_icon_name (GarconMenuItem *item,
   item->priv->icon_name = g_strdup (icon_name);
 
   /* Notify listeners */
-  g_object_notify (G_OBJECT (item), "icon_name");
+  g_object_notify (G_OBJECT (item), "icon-name");
 }
 
 

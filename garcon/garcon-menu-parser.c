@@ -264,6 +264,7 @@ garcon_menu_parser_run (GarconMenuParser *parser,
   gboolean                  result = TRUE;
   gchar                    *data;
   gsize                     data_length;
+  gchar                    *uri;
 
   g_return_val_if_fail (GARCON_IS_MENU_PARSER (parser), FALSE);
   g_return_val_if_fail (G_IS_FILE (parser->priv->file), FALSE);
@@ -273,7 +274,7 @@ garcon_menu_parser_run (GarconMenuParser *parser,
   if (G_UNLIKELY (!g_file_load_contents (parser->priv->file, cancellable,
                                          &data, &data_length, NULL, error)))
     {
-      gchar *uri = g_file_get_uri (parser->priv->file);
+      uri = g_file_get_uri (parser->priv->file);
 
       if (error != NULL)
         {
