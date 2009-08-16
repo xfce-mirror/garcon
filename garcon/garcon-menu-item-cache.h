@@ -46,7 +46,7 @@ GType                garcon_menu_item_cache_get_type    (void) G_GNUC_CONST;
 GarconMenuItemCache *garcon_menu_item_cache_get_default (void);
 
 GarconMenuItem      *garcon_menu_item_cache_lookup      (GarconMenuItemCache *cache,
-                                                         const gchar         *filename,
+                                                         const gchar         *uri,
                                                          const gchar         *desktop_id);
 void                 garcon_menu_item_cache_foreach     (GarconMenuItemCache *cache,
                                                          GHFunc               func,

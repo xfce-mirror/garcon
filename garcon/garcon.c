@@ -114,33 +114,29 @@ garcon_config_lookup (const gchar *filename)
 {
   const gchar * const *dirs;
   gchar               *path;
-  gint                 i;
+  guint                i;
 
-  g_return_val_if_fail (filename != NULL && g_utf8_strlen (filename, -1) > 0, NULL);
+  g_return_val_if_fail (filename != NULL && *filename != '\0', NULL);
 
-  path = g_build_path (G_DIR_SEPARATOR_S, g_get_user_config_dir (), filename, NULL);
+  /* Look for the file in the user's config directory */
+  path = g_build_filename (g_get_user_config_dir (), filename, NULL);
+  if (g_path_is_absolute (path)
+      && g_file_test (path, G_FILE_TEST_IS_REGULAR))
+    return path;
+  g_free (path);
 
-  if (!g_file_test (path, G_FILE_TEST_EXISTS))
+  /* Look for the file in the system config directories */
+  dirs = g_get_system_config_dirs ();
+  for (i = 0; dirs[i] != NULL; ++i)
     {
+      /* Build the filename, if the file exists return the path */
+      path = g_build_filename (dirs[i], filename, NULL);
+      if (g_path_is_absolute (path)
+          && g_file_test (path, G_FILE_TEST_IS_REGULAR))
+        return path;
       g_free (path);
-      path = NULL;
-
-      dirs = g_get_system_config_dirs ();
-
-      for (i = 0; path == NULL && dirs[i] != NULL; ++i)
-        {
-          if (g_path_is_absolute (dirs[i]))
-            {
-              path = g_build_path (G_DIR_SEPARATOR_S, dirs[i], filename, NULL);
-
-              if (!g_file_test (path, G_FILE_TEST_IS_REGULAR))
-                {
-                  g_free (path);
-                  path = NULL;
-                }
-            }
-        }
     }
 
-  return path;
+  /* Nothing found */
+  return NULL;
 }
