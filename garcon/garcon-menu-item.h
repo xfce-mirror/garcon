@@ -49,13 +49,12 @@ GarconMenuItem *garcon_menu_item_new                               (GFile       
 GarconMenuItem *garcon_menu_item_new_for_path                      (const gchar    *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 GarconMenuItem *garcon_menu_item_new_for_uri                       (const gchar    *uri) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 
+GFile          *garcon_menu_item_get_file                          (GarconMenuItem *item);
+
 const gchar    *garcon_menu_item_get_desktop_id                    (GarconMenuItem *item);
 void            garcon_menu_item_set_desktop_id                    (GarconMenuItem *item,
                                                                     const gchar    *desktop_id);
 
-const gchar    *garcon_menu_item_get_filename                      (GarconMenuItem *item);
-void            garcon_menu_item_set_filename                      (GarconMenuItem *item,
-                                                                    const gchar    *filename);
 const gchar    *garcon_menu_item_get_command                       (GarconMenuItem *item);
 void            garcon_menu_item_set_command                       (GarconMenuItem *item,
                                                                     const gchar    *command);

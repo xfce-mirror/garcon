@@ -38,8 +38,8 @@
 enum
 {
   PROP_0,
+  PROP_FILE,
   PROP_DESKTOP_ID,
-  PROP_FILENAME,
   PROP_REQUIRES_TERMINAL,
   PROP_NO_DISPLAY,
   PROP_STARTUP_NOTIFICATION,
@@ -79,11 +79,11 @@ struct _GarconMenuItemClass
 
 struct _GarconMenuItemPrivate
 {
+  /* Source file of the menu item */
+  GFile    *file;
+
   /* Desktop file id */
   gchar    *desktop_id;
-
-  /* Absolute filename */
-  gchar    *filename;
 
   /* List of categories */
   GList    *categories;
@@ -161,6 +161,21 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
   gobject_class->set_property = garcon_menu_item_set_property;
 
   /**
+   * GarconMenu:file:
+   *
+   * The #GFile from which the %GarconMenuItem was loaded. 
+   **/
+  g_object_class_install_property (gobject_class,
+                                   PROP_FILE,
+                                   g_param_spec_object ("file",
+                                                        "file",
+                                                        "file",
+                                                        G_TYPE_FILE,
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS |
+                                                        G_PARAM_CONSTRUCT_ONLY));
+
+  /**
    * GarconMenuItem:desktop-id:
    *
    * The desktop-file id of this application.
@@ -170,21 +185,6 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                    g_param_spec_string ("desktop-id",
                                                         "Desktop-File Id",
                                                         "Desktop-File Id of the application",
-                                                        NULL,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
-
-  /**
-   * GarconMenuItem:filename:
-   *
-   * The (absolute) filename of the %GarconMenuItem. Whenever this changes, the
-   * complete file is reloaded. 
-   **/
-  g_object_class_install_property (gobject_class,
-                                   PROP_FILENAME,
-                                   g_param_spec_string ("filename",
-                                                        "Filename",
-                                                        "Absolute filename",
                                                         NULL,
                                                         G_PARAM_READWRITE |
                                                         G_PARAM_STATIC_STRINGS));
@@ -350,11 +350,11 @@ static void
 garcon_menu_item_init (GarconMenuItem *item)
 {
   item->priv = GARCON_MENU_ITEM_GET_PRIVATE (item);
+  item->priv->file = NULL;
   item->priv->desktop_id = NULL;
   item->priv->name = NULL;
   item->priv->generic_name = NULL;
   item->priv->comment = NULL;
-  item->priv->filename = NULL;
   item->priv->command = NULL;
   item->priv->try_exec = NULL;
   item->priv->categories = NULL;
@@ -376,7 +376,6 @@ garcon_menu_item_finalize (GObject *object)
   g_free (item->priv->name);
   g_free (item->priv->generic_name);
   g_free (item->priv->comment);
-  g_free (item->priv->filename);
   g_free (item->priv->command);
   g_free (item->priv->try_exec);
   g_free (item->priv->icon_name);
@@ -388,6 +387,9 @@ garcon_menu_item_finalize (GObject *object)
 
   g_list_foreach (item->priv->categories, (GFunc) g_free, NULL);
   g_list_free (item->priv->categories);
+
+  if (item->priv->file != NULL)
+    g_object_unref (G_OBJECT (item->priv->file));
 
   (*G_OBJECT_CLASS (garcon_menu_item_parent_class)->finalize) (object);
 }
@@ -404,12 +406,12 @@ garcon_menu_item_get_property (GObject    *object,
 
   switch (prop_id)
     {
-    case PROP_DESKTOP_ID:
-      g_value_set_string (value, garcon_menu_item_get_desktop_id (item));
+    case PROP_FILE:
+      g_value_set_object (value, garcon_menu_item_get_file (item));
       break;
 
-    case PROP_FILENAME:
-      g_value_set_string (value, garcon_menu_item_get_filename (item));
+    case PROP_DESKTOP_ID:
+      g_value_set_string (value, garcon_menu_item_get_desktop_id (item));
       break;
 
     case PROP_COMMENT:
@@ -470,12 +472,12 @@ garcon_menu_item_set_property (GObject      *object,
 
   switch (prop_id)
     {
-    case PROP_DESKTOP_ID:
-      garcon_menu_item_set_desktop_id (item, g_value_get_string (value));
+    case PROP_FILE:
+      item->priv->file = g_object_ref (g_value_get_object (value));
       break;
 
-    case PROP_FILENAME:
-      garcon_menu_item_set_filename (item, g_value_get_string (value));
+    case PROP_DESKTOP_ID:
+      garcon_menu_item_set_desktop_id (item, g_value_get_string (value));
       break;
 
     case PROP_REQUIRES_TERMINAL:
@@ -545,7 +547,6 @@ garcon_menu_item_new (GFile *file)
   gchar          *exec;
   gchar          *try_exec;
   gchar          *icon;
-  gchar          *filename;
   gchar         **mt;
   gchar         **str_list;
 
@@ -584,12 +585,9 @@ garcon_menu_item_new (GFile *file)
       startup_notify = g_key_file_get_boolean (rc, "Desktop Entry", "StartupNotify", NULL) ||
                        g_key_file_get_boolean (rc, "Desktop Entry", "X-KDE-StartupNotify", NULL);
 
-      /* Get the filename */
-      filename = g_file_get_path (file);
-
       /* Allocate a new menu item instance */
       item = g_object_new (GARCON_TYPE_MENU_ITEM, 
-                           "filename", filename,
+                           "file", file,
                            "command", exec, 
                            "try-exec", try_exec,
                            "name", name, 
@@ -601,9 +599,6 @@ garcon_menu_item_new (GFile *file)
                            "supports-startup-notification", startup_notify, 
                            "path", path,
                            NULL);
-
-      /* Cleanup */
-      g_free (filename);
 
       /* Determine the categories this application should be shown in */
       str_list = g_key_file_get_string_list (rc, "Desktop Entry", "Categories", NULL, NULL);
@@ -684,6 +679,15 @@ garcon_menu_item_new_for_uri (const gchar *uri)
 
 
 
+GFile *
+garcon_menu_item_get_file (GarconMenuItem *item)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
+  return item->priv->file;
+}
+
+
+
 const gchar *
 garcon_menu_item_get_desktop_id (GarconMenuItem *item)
 {
@@ -717,44 +721,6 @@ garcon_menu_item_set_desktop_id (GarconMenuItem *item,
   /* Notify listeners */
   g_object_notify (G_OBJECT (item), "desktop_id");
 }
-
-
-
-const gchar *
-garcon_menu_item_get_filename (GarconMenuItem *item)
-{
-  g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
-  return item->priv->filename;
-}
-
-
-
-void
-garcon_menu_item_set_filename (GarconMenuItem *item,
-                               const gchar    *filename)
-{
-  g_return_if_fail (GARCON_IS_MENU_ITEM (item));
-  g_return_if_fail (filename != NULL);
-  g_return_if_fail (g_path_is_absolute (filename));
-
-  /* Check if there is an old filename */
-  if (G_UNLIKELY (item->priv->filename != NULL))
-    {
-      /* Abort if old and new filename are equal */
-      if (G_UNLIKELY (g_utf8_collate (item->priv->filename, filename) == 0))
-        return;
-
-      /* Otherwise free the old filename */
-      g_free (item->priv->filename);
-    }
-
-  /* Assign the new filename */
-  item->priv->filename = g_strdup (filename);
-
-  /* Notify listeners */
-  g_object_notify (G_OBJECT (item), "filename");
-}
-
 
 
 
