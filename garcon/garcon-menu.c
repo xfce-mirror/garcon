@@ -290,7 +290,7 @@ garcon_menu_get_property (GObject    *object,
       break;
 
     case PROP_DIRECTORY:
-      g_value_set_object (value, garcon_menu_get_directory (menu));
+      g_value_set_object (value, menu->priv->directory);
       break;
 
     default:
@@ -439,12 +439,11 @@ garcon_menu_new_applications (void)
  * garcon_menu_get_file:
  * @menu : a #GarconMenu.
  *
- * Returns the #GFile of @menu. It refers to the .menu file from which 
+ * Get the file for @menu. It refers to the .menu file from which 
  * @menu was or will be loaded.
- * The caller is responsible to free the returned object using
- * g_object_unref() when no longer needed.
  * 
- * Return value: the @GFile of @menu.
+ * Return value: a #GFile. The returned object 
+ * should be unreffed with g_object_unref() when no longer needed. 
  */
 GFile *
 garcon_menu_get_file (GarconMenu *menu)
@@ -476,7 +475,8 @@ garcon_menu_get_name (GarconMenu *menu)
  * should show up in etc.
  *
  * Return value: #GarconMenuDirectory of @menu or %NULL if
- *               @menu has no valid directory element.
+ *               @menu has no valid directory element. The returned object 
+ *               should be unreffed with g_object_unref() when no longer needed. 
  */
 GarconMenuDirectory*
 garcon_menu_get_directory (GarconMenu *menu)

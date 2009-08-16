@@ -282,7 +282,7 @@ garcon_menu_directory_get_property (GObject    *object,
   switch (prop_id)
     {
     case PROP_FILE:
-      g_value_set_object (value, garcon_menu_directory_get_file (directory));
+      g_value_set_object (value, directory->priv->file);
       break;
 
     case PROP_NAME:
@@ -347,11 +347,19 @@ garcon_menu_directory_set_property (GObject      *object,
 
 
 
+/**
+ * garcon_menu_directory_get_file:
+ *
+ * Get the file for @directory.
+ * 
+ * Return value: a #GFile. The returned object 
+ * should be unreffed with g_object_unref() when no longer needed. 
+ */
 GFile *
 garcon_menu_directory_get_file (GarconMenuDirectory *directory)
 {
   g_return_val_if_fail (GARCON_IS_MENU_DIRECTORY (directory), NULL);
-  return directory->priv->file;
+  return g_object_ref (directory->priv->file);
 }
 
 

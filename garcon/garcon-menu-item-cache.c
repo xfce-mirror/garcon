@@ -138,6 +138,14 @@ garcon_menu_item_cache_init (GarconMenuItemCache *cache)
 
 
 
+/**
+ * garcon_menu_item_cache_get_default:
+ *
+ * Returns the default #GarconMenuItemCache.
+ * 
+ * Return value: the default #GarconMenuItemCache. The returned object 
+ * should be unreffed with g_object_unref() when no longer needed. 
+ */
 GarconMenuItemCache*
 garcon_menu_item_cache_get_default (void)
 {

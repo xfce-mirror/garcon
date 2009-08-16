@@ -407,7 +407,7 @@ garcon_menu_item_get_property (GObject    *object,
   switch (prop_id)
     {
     case PROP_FILE:
-      g_value_set_object (value, garcon_menu_item_get_file (item));
+      g_value_set_object (value, item->priv->file);
       break;
 
     case PROP_DESKTOP_ID:
@@ -679,11 +679,19 @@ garcon_menu_item_new_for_uri (const gchar *uri)
 
 
 
+/**
+ * garcon_menu_item_get_file:
+ *
+ * Get the file for @item.
+ * 
+ * Return value: a #GFile. The returned object 
+ * should be unreffed with g_object_unref() when no longer needed. 
+ */
 GFile *
 garcon_menu_item_get_file (GarconMenuItem *item)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
-  return item->priv->file;
+  return g_object_ref (item->priv->file);
 }
 
 
