@@ -194,7 +194,7 @@ garcon_menu_item_cache_lookup (GarconMenuItemCache *cache,
     }
 
   /* Last chance is to load it directly from the file */
-  item = garcon_menu_item_new (uri);
+  item = garcon_menu_item_new_for_uri (uri);
 
   if (G_LIKELY (item != NULL))
     {

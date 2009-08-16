@@ -527,14 +527,13 @@ garcon_menu_item_set_property (GObject      *object,
 
 
 GarconMenuItem *
-garcon_menu_item_new (const gchar *uri)
+garcon_menu_item_new (GFile *file)
 {
   GarconMenuItem *item = NULL;
   GKeyFile       *rc = NULL;
   gchar          *contents;
   gsize           length;
   gboolean        succeed;
-  GFile          *file;
   GList          *categories = NULL;
   gboolean        terminal;
   gboolean        no_display;
@@ -550,10 +549,9 @@ garcon_menu_item_new (const gchar *uri)
   gchar         **mt;
   gchar         **str_list;
 
-  g_return_val_if_fail (uri != NULL, NULL);
+  g_return_val_if_fail (G_IS_FILE (file), NULL);
 
   /* Load the contents of the file */
-  file = g_file_new_for_uri (uri);
   if (!g_file_load_contents (file, NULL, &contents, &length, NULL, NULL))
     goto error;
 
@@ -646,6 +644,40 @@ error:
   /* Close file handle */
   if (G_LIKELY (rc != NULL))
     g_key_file_free (rc);
+
+  return item;
+}
+
+
+
+GarconMenuItem *
+garcon_menu_item_new_for_path (const gchar *filename)
+{
+  GFile          *file;
+  GarconMenuItem *item;
+
+  g_return_val_if_fail (filename != NULL, NULL);
+
+  file = g_file_new_for_path (filename);
+  item = garcon_menu_item_new (file);
+  g_object_unref (G_OBJECT (file));
+
+  return item;
+}
+
+
+
+GarconMenuItem *
+garcon_menu_item_new_for_uri (const gchar *uri)
+{
+  GFile          *file;
+  GarconMenuItem *item;
+
+  g_return_val_if_fail (uri != NULL, NULL);
+
+  file = g_file_new_for_uri (uri);
+  item = garcon_menu_item_new (file);
+  g_object_unref (G_OBJECT (file));
 
   return item;
 }

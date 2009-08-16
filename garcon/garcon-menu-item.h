@@ -28,6 +28,7 @@
 #define __GARCON_MENU_ITEM_H__
 
 #include <glib-object.h>
+#include <gio/gio.h>
 
 G_BEGIN_DECLS
 
@@ -44,7 +45,9 @@ typedef struct _GarconMenuItem        GarconMenuItem;
 
 GType           garcon_menu_item_get_type                          (void) G_GNUC_CONST;
 
-GarconMenuItem *garcon_menu_item_new                               (const gchar  *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+GarconMenuItem *garcon_menu_item_new                               (GFile          *file) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+GarconMenuItem *garcon_menu_item_new_for_path                      (const gchar    *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+GarconMenuItem *garcon_menu_item_new_for_uri                       (const gchar    *uri) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 
 const gchar    *garcon_menu_item_get_desktop_id                    (GarconMenuItem *item);
 void            garcon_menu_item_set_desktop_id                    (GarconMenuItem *item,
