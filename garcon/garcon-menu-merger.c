@@ -258,7 +258,7 @@ garcon_menu_merger_new (GarconMenuTreeProvider *provider)
 
 
 
-gboolean
+static gboolean
 garcon_menu_merger_prepare_merging (GarconMenuMerger        *merger,
                                     GNode                   *tree,
                                     GarconMenuMergerContext *context)
@@ -400,7 +400,7 @@ garcon_menu_merger_insert_default_dirs (GNode *parent,
   int                  i;
   gchar               *path;
   gchar               *kde_data_dir;
-  const gchar         *basename;
+  const gchar         *base_name;
 
   g_return_if_fail (parent != NULL);
   g_return_if_fail (defaults_node != NULL);
@@ -409,12 +409,12 @@ garcon_menu_merger_insert_default_dirs (GNode *parent,
 
   if  (garcon_menu_node_tree_get_node_type (defaults_node) == GARCON_MENU_NODE_TYPE_DEFAULT_DIRECTORY_DIRS)
     {
-      basename = "desktop-directories";
+      base_name = "desktop-directories";
       type = GARCON_MENU_NODE_TYPE_DIRECTORY_DIR;
     }
   else
     {
-      basename = "applications";
+      base_name = "applications";
       type = GARCON_MENU_NODE_TYPE_APP_DIR;
     }
 
@@ -429,7 +429,7 @@ garcon_menu_merger_insert_default_dirs (GNode *parent,
   if (G_UNLIKELY (kde_dir != NULL))
     {
       /* Build KDE data dir */
-      kde_data_dir = g_build_filename (kde_dir, "share", basename, NULL);
+      kde_data_dir = g_build_filename (kde_dir, "share", base_name, NULL);
 
       /* Add it as a directory dir if it exists */
       if (G_LIKELY (g_file_test (kde_data_dir, G_FILE_TEST_IS_DIR)))
@@ -448,7 +448,7 @@ garcon_menu_merger_insert_default_dirs (GNode *parent,
   dirs = g_get_system_data_dirs ();
   for (i = 0; dirs[i] != NULL; i++)
     {
-      path = g_build_path (G_DIR_SEPARATOR_S, dirs[i], basename, NULL);
+      path = g_build_path (G_DIR_SEPARATOR_S, dirs[i], base_name, NULL);
       if (G_LIKELY (g_file_test (path, G_FILE_TEST_IS_DIR)))
         {
           node = g_node_new (garcon_menu_node_create (type, path));
@@ -458,7 +458,7 @@ garcon_menu_merger_insert_default_dirs (GNode *parent,
     }
 
   /* Append user data dir */
-  path = g_build_path (G_DIR_SEPARATOR_S, g_get_user_data_dir (), basename, NULL);
+  path = g_build_path (G_DIR_SEPARATOR_S, g_get_user_data_dir (), base_name, NULL);
   if (G_LIKELY (g_file_test (path, G_FILE_TEST_IS_DIR)))
     {
       node = g_node_new (garcon_menu_node_create (type, path));
@@ -541,7 +541,7 @@ garcon_menu_merger_resolve_relative_paths (GNode                   *node,
   const gchar        **config_dirs;
   gchar               *absolute_path = NULL;
   gchar               *relative_path = NULL;
-  gint                 i;
+  guint                i;
 
   g_return_val_if_fail (context != NULL, FALSE);
 

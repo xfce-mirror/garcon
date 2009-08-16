@@ -66,9 +66,7 @@ libgarcon_sources =							\
 libgarconincludedir = $(includedir)/garcon-1/garcon
 
 libgarconinclude_HEADERS =						\
-	$(libgarcon_headers)						\
-	garcon.h							\
-	garcon-config.h
+	$(libgarcon_headers)
 
 libgarcon_1_la_SOURCES =						\
 	$(libgarcon_sources)						\

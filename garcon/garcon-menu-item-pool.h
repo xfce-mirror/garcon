@@ -26,6 +26,7 @@
 #define __GARCON_MENU_ITEM_POOL_H__
 
 #include <glib-object.h>
+#include <garcon/garcon-menu-item.h>
 
 G_BEGIN_DECLS
 

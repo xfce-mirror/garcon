@@ -569,7 +569,7 @@ garcon_menu_directory_get_show_in_environment (GarconMenuDirectory *directory)
   const gchar *env;
   gboolean     show = TRUE;
   gboolean     included;
-  int          i;
+  guint        i;
 
   g_return_val_if_fail (GARCON_IS_MENU_DIRECTORY (directory), FALSE);
   

@@ -22,7 +22,6 @@
 #include <config.h>
 #endif
 
-#include <garcon/garcon-menu-item.h>
 #include <garcon/garcon-menu-node.h>
 #include <garcon/garcon-menu-item-pool.h>
 

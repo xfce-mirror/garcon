@@ -32,7 +32,6 @@
 #include <garcon/garcon-menu-element.h>
 #include <garcon/garcon-menu-item.h>
 #include <garcon/garcon-menu-directory.h>
-#include <garcon/garcon-menu-item-pool.h>
 #include <garcon/garcon-menu-item-cache.h>
 #include <garcon/garcon-menu-separator.h>
 #include <garcon/garcon-menu-monitor.h>
@@ -898,7 +897,7 @@ garcon_menu_collect_files_from_path (GarconMenu  *menu,
   GFileEnumerator *enumerator;
   GFileInfo       *file_info;
   GFile           *file;
-  gchar           *basename;
+  gchar           *base_name;
   gchar           *new_id_prefix;
   gchar           *desktop_id;
 
@@ -933,16 +932,16 @@ garcon_menu_collect_files_from_path (GarconMenu  *menu,
         break;
 
       file = g_file_resolve_relative_path (dir, g_file_info_get_name (file_info));
-      basename = g_file_get_basename (file);
+      base_name = g_file_get_basename (file);
 
       /* Treat files and directories differently */
       if (g_file_info_get_file_type (file_info) == G_FILE_TYPE_DIRECTORY)
         {
           /* Create new desktop-file id prefix */
           if (G_LIKELY (id_prefix == NULL))
-            new_id_prefix = g_strdup (basename);
+            new_id_prefix = g_strdup (base_name);
           else
-            new_id_prefix = g_strjoin ("-", id_prefix, basename, NULL);
+            new_id_prefix = g_strjoin ("-", id_prefix, base_name, NULL);
 
           /* Collect files in the directory */
           garcon_menu_collect_files_from_path (menu, desktop_id_table, file, new_id_prefix);
@@ -953,13 +952,13 @@ garcon_menu_collect_files_from_path (GarconMenu  *menu,
       else
         {
           /* Skip all filenames which do not end with .desktop */
-          if (G_LIKELY (g_str_has_suffix (basename, ".desktop")))
+          if (G_LIKELY (g_str_has_suffix (base_name, ".desktop")))
             {
               /* Create desktop-file id */
               if (G_LIKELY (id_prefix == NULL))
-                desktop_id = g_strdup (basename);
+                desktop_id = g_strdup (base_name);
               else
-                desktop_id = g_strjoin ("-", id_prefix, basename, NULL);
+                desktop_id = g_strjoin ("-", id_prefix, base_name, NULL);
 
               /* Insert into the files hash table if the desktop-file id does not exist there yet */
               if (G_LIKELY (g_hash_table_lookup (desktop_id_table, desktop_id) == NULL))
@@ -970,7 +969,7 @@ garcon_menu_collect_files_from_path (GarconMenu  *menu,
         }
 
       /* Free absolute path */
-      g_free (basename);
+      g_free (base_name);
 
       /* Destroy file */
       g_object_unref (file);

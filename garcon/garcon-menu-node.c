@@ -446,7 +446,7 @@ typedef struct
 
 
 
-gboolean
+static gboolean
 collect_children (GNode *node,
                   Pair  *pair)
 {
@@ -507,7 +507,7 @@ garcon_menu_node_tree_get_child_nodes (GNode             *tree,
 
 
 
-gboolean
+static gboolean
 collect_strings (GNode *node,
                  Pair  *pair)
 {

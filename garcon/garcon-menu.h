@@ -22,6 +22,7 @@
 #define __GARCON_MENU_H__
 
 #include <gio/gio.h>
+#include <garcon/garcon-menu-item-pool.h>
 
 G_BEGIN_DECLS
 
@@ -47,9 +48,13 @@ gboolean             garcon_menu_load               (GarconMenu   *menu,
 GFile               *garcon_menu_get_file           (GarconMenu   *menu);
 GarconMenuDirectory *garcon_menu_get_directory      (GarconMenu   *menu);
 GList               *garcon_menu_get_menus          (GarconMenu   *menu);
+void                 garcon_menu_add_menu           (GarconMenu   *menu,
+                                                     GarconMenu   *submenu);
 GarconMenu          *garcon_menu_get_menu_with_name (GarconMenu   *menu,
                                                      const gchar  *name);
 GarconMenu          *garcon_menu_get_parent         (GarconMenu   *menu);
+GarconMenuItemPool  *garcon_menu_get_item_pool      (GarconMenu   *menu);
+GList               *garcon_menu_get_items          (GarconMenu   *menu);
 GList               *garcon_menu_get_elements       (GarconMenu   *menu);
 
 struct _GarconMenuClass

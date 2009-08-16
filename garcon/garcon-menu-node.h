@@ -93,6 +93,7 @@ typedef struct _GarconMenuNode      GarconMenuNode;
 #define GARCON_IS_MENU_NODE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_NODE)
 #define GARCON_MENU_NODE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_NODE, GarconMenuNodeClass))
 
+GType                     garcon_menu_node_type_get_type                (void);
 GType                     garcon_menu_node_get_type                     (void) G_GNUC_CONST;
 
 GarconMenuNode           *garcon_menu_node_new                          (GarconMenuNodeType      node_type) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;

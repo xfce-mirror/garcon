@@ -1099,7 +1099,7 @@ garcon_menu_item_get_show_in_environment (GarconMenuItem *item)
   const gchar *env;
   gboolean     show = TRUE;
   gboolean     included;
-  int          i;
+  guint        i;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
 
@@ -1152,7 +1152,7 @@ garcon_menu_item_only_show_in_environment (GarconMenuItem *item)
 {
   const gchar *env;
   gboolean     show = FALSE;
-  int          i;
+  guint        i;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
 
