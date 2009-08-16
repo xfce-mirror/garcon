@@ -94,9 +94,7 @@ enum
 
 
 
-static void                 garcon_menu_class_init                      (GarconMenuClass         *klass);
 static void                 garcon_menu_element_init                    (GarconMenuElementIface  *iface);
-static void                 garcon_menu_instance_init                   (GarconMenu              *menu);
 static void                 garcon_menu_finalize                        (GObject                 *object);
 static void                 garcon_menu_get_property                    (GObject                 *object,
                                                                          guint                    prop_id,
@@ -167,37 +165,8 @@ struct _GarconMenuPrivate
 
 
 
-static GObjectClass *garcon_menu_parent_class = NULL;
-
-
-
-GType
-garcon_menu_get_type (void)
-{
-  static GType type = G_TYPE_INVALID;
-
-  if (G_UNLIKELY (type == G_TYPE_INVALID))
-    {
-      static const GInterfaceInfo element_info =
-      {
-        (GInterfaceInitFunc) garcon_menu_element_init,
-        NULL,
-        NULL,
-      };
-
-      type = g_type_register_static_simple (G_TYPE_OBJECT,
-                                            "GarconMenu",
-                                            sizeof (GarconMenuClass),
-                                            (GClassInitFunc) garcon_menu_class_init,
-                                            sizeof (GarconMenu),
-                                            (GInstanceInitFunc) garcon_menu_instance_init,
-                                            0);
-
-      g_type_add_interface_static (type, GARCON_TYPE_MENU_ELEMENT, &element_info);
-    }
-
-  return type;
-}
+G_DEFINE_TYPE_WITH_CODE (GarconMenu, garcon_menu, G_TYPE_OBJECT,
+    G_IMPLEMENT_INTERFACE (GARCON_TYPE_MENU_ELEMENT, garcon_menu_element_init))
 
 
 
@@ -259,7 +228,7 @@ garcon_menu_element_init (GarconMenuElementIface *iface)
 
 
 static void
-garcon_menu_instance_init (GarconMenu *menu)
+garcon_menu_init (GarconMenu *menu)
 {
   menu->priv = GARCON_MENU_GET_PRIVATE (menu);
   menu->priv->file = NULL;

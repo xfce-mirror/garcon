@@ -88,9 +88,7 @@ enum
 
 
 
-static void   garcon_menu_parser_class_init    (GarconMenuParserClass       *klass);
 static void   garcon_menu_parser_provider_init (GarconMenuTreeProviderIface *iface);
-static void   garcon_menu_parser_init          (GarconMenuParser            *parser);
 static void   garcon_menu_parser_finalize      (GObject                     *object);
 static void   garcon_menu_parser_get_property  (GObject                     *object,
                                                 guint                        prop_id,
@@ -131,37 +129,8 @@ struct _GarconMenuParserPrivate
 
 
 
-static GObjectClass *garcon_menu_parser_parent_class = NULL;
-
-
-
-GType
-garcon_menu_parser_get_type (void)
-{
-  static GType type = G_TYPE_INVALID;
-
-  if (G_UNLIKELY (type == G_TYPE_INVALID))
-    {
-      static const GInterfaceInfo provider_info = 
-      {
-        (GInterfaceInitFunc) garcon_menu_parser_provider_init,
-        NULL,
-        NULL,
-      };
-
-      type = g_type_register_static_simple (G_TYPE_OBJECT,
-                                            "GarconMenuParser",
-                                            sizeof (GarconMenuParserClass),
-                                            (GClassInitFunc) garcon_menu_parser_class_init,
-                                            sizeof (GarconMenuParser),
-                                            (GInstanceInitFunc) garcon_menu_parser_init,
-                                            0);
-
-      g_type_add_interface_static (type, GARCON_TYPE_MENU_TREE_PROVIDER, &provider_info);
-    }
-
-  return type;
-}
+G_DEFINE_TYPE_WITH_CODE (GarconMenuParser, garcon_menu_parser, G_TYPE_OBJECT,
+    G_IMPLEMENT_INTERFACE (GARCON_TYPE_MENU_TREE_PROVIDER, garcon_menu_parser_provider_init))
 
 
 

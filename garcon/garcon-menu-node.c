@@ -39,8 +39,6 @@ enum
 
 
 
-static void garcon_menu_node_class_init   (GarconMenuNodeClass *klass);
-static void garcon_menu_node_init         (GarconMenuNode      *node);
 static void garcon_menu_node_finalize     (GObject             *object);
 static void garcon_menu_node_get_property (GObject             *object,
                                            guint                prop_id,
@@ -77,10 +75,6 @@ struct _GarconMenuNode
   GarconMenuNodeType node_type;
   GarconMenuNodeData data;
 };
-
-
-
-static GObjectClass *garcon_menu_node_parent_class = NULL;
 
 
 
@@ -132,24 +126,7 @@ garcon_menu_node_type_get_type (void)
 
 
 
-GType
-garcon_menu_node_get_type (void)
-{
-  static GType type = G_TYPE_INVALID;
-
-  if (G_UNLIKELY (type == G_TYPE_INVALID))
-    {
-      type = g_type_register_static_simple (G_TYPE_OBJECT, 
-                                            "GarconMenuNode",
-                                            sizeof (GarconMenuNodeClass),
-                                            (GClassInitFunc) garcon_menu_node_class_init,
-                                            sizeof (GarconMenuNode),
-                                            (GInstanceInitFunc) garcon_menu_node_init,
-                                            0);
-    }
-
-  return type;
-}
+G_DEFINE_TYPE (GarconMenuNode, garcon_menu_node, G_TYPE_OBJECT)
 
 
 

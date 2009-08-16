@@ -60,9 +60,7 @@ enum
 
 
 
-static void     garcon_menu_merger_class_init              (GarconMenuMergerClass       *klass);
 static void     garcon_menu_merger_provider_init           (GarconMenuTreeProviderIface *iface);
-static void     garcon_menu_merger_init                    (GarconMenuMerger            *merger);
 static void     garcon_menu_merger_constructed             (GObject                     *object);
 static void     garcon_menu_merger_finalize                (GObject                     *object);
 static void     garcon_menu_merger_get_property            (GObject                     *object,
@@ -102,37 +100,8 @@ struct _GarconMenuMergerPrivate
 
 
 
-static GObjectClass *garcon_menu_merger_parent_class = NULL;
-
-
-
-GType
-garcon_menu_merger_get_type (void)
-{
-  static GType type = G_TYPE_INVALID;
-
-  if (G_UNLIKELY (type == G_TYPE_INVALID))
-    {
-      static const GInterfaceInfo provider_info = 
-      {
-        (GInterfaceInitFunc) garcon_menu_merger_provider_init,
-        NULL,
-        NULL,
-      };
-
-      type = g_type_register_static_simple (G_TYPE_OBJECT, 
-                                            "GarconMenuMerger",
-                                            sizeof (GarconMenuMergerClass),
-                                            (GClassInitFunc) garcon_menu_merger_class_init,
-                                            sizeof (GarconMenuMerger),
-                                            (GInstanceInitFunc) garcon_menu_merger_init,
-                                            0);
-
-      g_type_add_interface_static (type, GARCON_TYPE_MENU_TREE_PROVIDER, &provider_info);
-    }
-
-  return type;
-}
+G_DEFINE_TYPE_WITH_CODE (GarconMenuMerger, garcon_menu_merger, G_TYPE_OBJECT,
+    G_IMPLEMENT_INTERFACE (GARCON_TYPE_MENU_TREE_PROVIDER, garcon_menu_merger_provider_init))
 
 
 

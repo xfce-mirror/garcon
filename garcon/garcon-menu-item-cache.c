@@ -47,8 +47,6 @@
 
 
 
-static void garcon_menu_item_cache_class_init (GarconMenuItemCacheClass *klass);
-static void garcon_menu_item_cache_init       (GarconMenuItemCache      *cache);
 static void garcon_menu_item_cache_finalize   (GObject                  *object);
 
 
@@ -105,28 +103,7 @@ struct _GarconMenuItemCache
 
 
 
-static GObjectClass *garcon_menu_item_cache_parent_class = NULL;
-
-
-
-GType
-garcon_menu_item_cache_get_type (void)
-{
-  static GType type = G_TYPE_INVALID;
-
-  if (G_UNLIKELY (type == G_TYPE_INVALID))
-    {
-      type = g_type_register_static_simple (G_TYPE_OBJECT,
-                                            "GarconMenuItemCache",
-                                            sizeof (GarconMenuItemCacheClass),
-                                            (GClassInitFunc) garcon_menu_item_cache_class_init,
-                                            sizeof (GarconMenuItemCache),
-                                            (GInstanceInitFunc) garcon_menu_item_cache_init,
-                                            0);
-    }
-  
-  return type;
-}
+G_DEFINE_TYPE (GarconMenuItemCache, garcon_menu_item_cache, G_TYPE_OBJECT)
 
 
 

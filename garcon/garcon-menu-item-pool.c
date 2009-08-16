@@ -31,8 +31,6 @@
 
 
 
-static void     garcon_menu_item_pool_class_init     (GarconMenuItemPoolClass *klass);
-static void     garcon_menu_item_pool_init           (GarconMenuItemPool      *pool);
 static void     garcon_menu_item_pool_finalize       (GObject                 *object);
 static gboolean garcon_menu_item_pool_filter_exclude (const gchar             *desktop_id,
                                                       GarconMenuItem          *item,
@@ -61,28 +59,7 @@ struct _GarconMenuItemPool
 
 
 
-static GObjectClass *garcon_menu_item_pool_parent_class = NULL;
-
-
-
-GType
-garcon_menu_item_pool_get_type (void)
-{
-  static GType type = G_TYPE_INVALID;
-
-  if (G_UNLIKELY (type == G_TYPE_INVALID))
-    {
-      type = g_type_register_static_simple (G_TYPE_OBJECT,
-                                            "GarconMenuItemPool",
-                                            sizeof (GarconMenuItemPoolClass),
-                                            (GClassInitFunc) garcon_menu_item_pool_class_init,
-                                            sizeof (GarconMenuItemPool),
-                                            (GInstanceInitFunc) garcon_menu_item_pool_init,
-                                            0);
-    }
-  
-  return type;
-}
+G_DEFINE_TYPE (GarconMenuItemPool, garcon_menu_item_pool, G_TYPE_OBJECT)
 
 
 

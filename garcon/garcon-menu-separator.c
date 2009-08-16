@@ -27,9 +27,7 @@
 
 
 
-static void         garcon_menu_separator_class_init                      (GarconMenuSeparatorClass *klass);
 static void         garcon_menu_separator_element_init                    (GarconMenuElementIface   *iface);
-static void         garcon_menu_separator_init                            (GarconMenuSeparator      *separator);
 static void         garcon_menu_separator_finalize                        (GObject                  *object);
 
 static const gchar *garcon_menu_separator_get_element_name                (GarconMenuElement        *element);
@@ -80,37 +78,8 @@ struct _GarconMenuSeparator
 
 
 
-static GObjectClass *garcon_menu_separator_parent_class = NULL;
-
-
-
-GType
-garcon_menu_separator_get_type (void)
-{
-  static GType type = G_TYPE_INVALID;
-
-  if (G_UNLIKELY (type == G_TYPE_INVALID))
-    {
-      static const GInterfaceInfo element_info =
-      {
-        (GInterfaceInitFunc) garcon_menu_separator_element_init,
-        NULL,
-        NULL,
-      };
-
-      type = g_type_register_static_simple (G_TYPE_OBJECT,
-                                            "GarconMenuSeparator",
-                                            sizeof (GarconMenuSeparatorClass),
-                                            (GClassInitFunc) garcon_menu_separator_class_init,
-                                            sizeof (GarconMenuSeparator),
-                                            (GInstanceInitFunc) garcon_menu_separator_init,
-                                            0);
-
-      g_type_add_interface_static (type, GARCON_TYPE_MENU_ELEMENT, &element_info);
-    }
-
-  return type;
-}
+G_DEFINE_TYPE_WITH_CODE (GarconMenuSeparator, garcon_menu_separator, G_TYPE_OBJECT,
+    G_IMPLEMENT_INTERFACE (GARCON_TYPE_MENU_ELEMENT, garcon_menu_separator_element_init))
 
 
 

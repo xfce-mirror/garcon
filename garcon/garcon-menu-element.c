@@ -26,36 +26,28 @@
 
 
 
-static void garcon_menu_element_class_init (GarconMenuElementIface *klass);
-
-
-
 GType
 garcon_menu_element_get_type (void)
 {
-  static GType type = G_TYPE_INVALID;
+  static volatile gsize type__volatile = 0;
+  GType                 type;
 
-  if (G_UNLIKELY (type == G_TYPE_INVALID))
+  if (g_once_init_enter (&type__volatile))
     {
       type = g_type_register_static_simple (G_TYPE_INTERFACE,
-                                            "GarconMenuElement",
+                                            g_intern_static_string ("GarconMenuElement"),
                                             sizeof (GarconMenuElementIface),
-                                            (GClassInitFunc) garcon_menu_element_class_init,
+                                            NULL,
                                             0,
                                             NULL,
                                             0);
 
       g_type_interface_add_prerequisite (type, G_TYPE_OBJECT);
+
+      g_once_init_leave (&type__volatile, type);
     }
 
-  return type;
-}
-
-
-
-static void
-garcon_menu_element_class_init (GarconMenuElementIface *klass)
-{
+  return type__volatile;
 }
 
 
