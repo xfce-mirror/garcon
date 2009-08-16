@@ -1275,7 +1275,11 @@ garcon_menu_item_get_element_icon_name (GarconMenuElement *element)
 gboolean
 garcon_menu_item_get_element_visible (GarconMenuElement *element)
 {
-  GarconMenuItem *item;
+  GarconMenuItem  *item;
+  const gchar     *try_exec;
+  gchar          **mt;
+  gboolean         result = TRUE;
+  gchar           *command;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), FALSE);
 
@@ -1286,9 +1290,26 @@ garcon_menu_item_get_element_visible (GarconMenuElement *element)
   else if (garcon_menu_item_get_no_display (item))
     return FALSE;
 
-  /* TODO Check TryExec as well */
+  /* Check the TryExec field */
+  try_exec = garcon_menu_item_get_try_exec (item);
+  if (try_exec != NULL && g_shell_parse_argv (try_exec, NULL, &mt, NULL))
+    {
+      /* Check if we have an absolute path to an existing file */
+      result = g_file_test (mt[0], G_FILE_TEST_EXISTS);
 
-  return TRUE;
+      /* Else, we may have a program in $PATH */
+      if (!result)
+        {
+          command = g_find_program_in_path (mt[0]);
+          result = (command != NULL);
+          g_free (command);
+        }
+
+      /* Cleanup */
+      g_strfreev (mt);
+    }
+
+  return result;
 }
 
 
