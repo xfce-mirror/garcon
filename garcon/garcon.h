@@ -35,7 +35,6 @@
 #include <garcon/garcon-menu-item-pool.h>
 #include <garcon/garcon-menu-node.h>
 #include <garcon/garcon-menu-merger.h>
-#include <garcon/garcon-menu-monitor.h>
 #include <garcon/garcon-menu-parser.h>
 #include <garcon/garcon-menu-separator.h>
 #include <garcon/garcon-menu-tree-provider.h>

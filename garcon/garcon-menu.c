@@ -34,7 +34,6 @@
 #include <garcon/garcon-menu-directory.h>
 #include <garcon/garcon-menu-item-cache.h>
 #include <garcon/garcon-menu-separator.h>
-#include <garcon/garcon-menu-monitor.h>
 #include <garcon/garcon-menu-node.h>
 #include <garcon/garcon-menu-parser.h>
 #include <garcon/garcon-menu-merger.h>
@@ -134,8 +133,6 @@ static const gchar         *garcon_menu_get_element_icon_name           (GarconM
 static gboolean             garcon_menu_get_element_visible             (GarconMenuElement       *element);
 static gboolean             garcon_menu_get_element_show_in_environment (GarconMenuElement       *element);
 static gboolean             garcon_menu_get_element_no_display          (GarconMenuElement       *element);
-static void                 garcon_menu_monitor_start                   (GarconMenu              *menu);
-static void                 garcon_menu_monitor_stop                    (GarconMenu              *menu);
 
 
 
@@ -251,9 +248,6 @@ static void
 garcon_menu_finalize (GObject *object)
 {
   GarconMenu *menu = GARCON_MENU (object);
-
-  /* Stop monitoring */
-  garcon_menu_monitor_stop (menu);
 
   /* Destroy the menu tree */
   if (menu->priv->parent == NULL)
@@ -592,9 +586,6 @@ garcon_menu_load (GarconMenu   *menu,
   garcon_menu_remove_deleted_menus (menu);
 
   g_hash_table_unref (desktop_id_table);
-
-  /* Start monitoring */
-  garcon_menu_monitor_start (menu);
 
   return TRUE;
 }
@@ -1494,92 +1485,4 @@ garcon_menu_get_element_no_display (GarconMenuElement *element)
     return FALSE;
   else
     return garcon_menu_directory_get_no_display (menu->priv->directory);
-}
-
-
-
-static void
-item_monitor_start (const gchar    *desktop_id,
-                    GarconMenuItem *item,
-                    GarconMenu     *menu)
-{
-  garcon_menu_monitor_add_item (menu, item);
-}
-
-
-
-static void
-garcon_menu_monitor_start (GarconMenu *menu)
-{
-  GList *iter;
-
-  g_return_if_fail (GARCON_IS_MENU (menu));
-
-  /* TODO Make monitoring work properly again */
-#if 0
-  /* Monitor the menu file */
-  if (G_LIKELY (garcon_menu_monitor_has_flags (GARCON_MENU_MONITOR_MENU_FILES)))
-    garcon_menu_monitor_add_file (menu, menu->priv->filename);
-
-  /* Monitor the menu directory file */
-  if (G_LIKELY (GARCON_IS_MENU_DIRECTORY (menu->priv->directory) 
-                && garcon_menu_monitor_has_flags (GARCON_MENU_MONITOR_DIRECTORY_FILES)))
-    {
-      garcon_menu_monitor_add_file (menu, garcon_menu_directory_get_filename (menu->priv->directory));
-    }
-
-  /* Monitor the application directories */
-  if (G_LIKELY (garcon_menu_monitor_has_flags (GARCON_MENU_MONITOR_DIRECTORIES)))
-    for (iter = menu->priv->app_dirs; iter != NULL; iter = g_list_next (iter))
-      garcon_menu_monitor_add_directory (menu, (const gchar *)iter->data);
-#endif
-
-  /* Monitor items in the menu pool */
-  if (G_LIKELY (garcon_menu_monitor_has_flags (GARCON_MENU_MONITOR_DESKTOP_FILES)))
-    garcon_menu_item_pool_foreach (menu->priv->pool, (GHFunc) item_monitor_start, menu);
-
-  /* Monitor items in submenus */
-  for (iter = menu->priv->submenus; iter != NULL; iter = g_list_next (iter))
-    garcon_menu_monitor_start (GARCON_MENU (iter->data));
-}
-
-
-
-static void
-item_monitor_stop (const gchar    *desktop_id,
-                   GarconMenuItem *item,
-                   GarconMenu     *menu)
-{
-  garcon_menu_monitor_remove_item (menu, item);
-}
-
-
-
-static void
-garcon_menu_monitor_stop (GarconMenu *menu)
-{
-  GList *iter;
-
-  g_return_if_fail (GARCON_IS_MENU (menu));
-
-  /* Stop monitoring items in submenus */
-  for (iter = menu->priv->submenus; iter != NULL; iter = g_list_next (iter))
-    garcon_menu_monitor_stop (GARCON_MENU (iter->data));
-
-  /* Stop monitoring the items */
-  garcon_menu_item_pool_foreach (menu->priv->pool, (GHFunc) item_monitor_stop, menu);
-
-  /* TODO Make monitoring work properly again */
-#if 0
-  /* Stop monitoring the application directories */
-  for (iter = menu->priv->app_dirs; iter != NULL; iter = g_list_next (iter))
-    garcon_menu_monitor_remove_directory (menu, (const gchar *)iter->data);
-
-  /* Stop monitoring the menu directory file */
-  if (GARCON_IS_MENU_DIRECTORY (menu->priv->directory))
-    garcon_menu_monitor_remove_file (menu, garcon_menu_directory_get_filename (menu->priv->directory));
-
-  /* Stop monitoring the menu file */
-  garcon_menu_monitor_remove_file (menu, menu->priv->filename);
-#endif
 }

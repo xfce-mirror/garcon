@@ -38,7 +38,6 @@ libgarcon_headers =							\
 	garcon-menu-item-cache.h					\
 	garcon-environment.h						\
 	garcon-menu.h							\
-	garcon-menu-monitor.h						\
 	garcon-menu-item.h						\
 	garcon-menu-node.h						\
 	garcon-menu-tree-provider.h					\
@@ -56,7 +55,6 @@ libgarcon_sources =							\
 	garcon-menu-item-cache.c					\
 	garcon-environment.c						\
 	garcon-menu.c							\
-	garcon-menu-monitor.c						\
 	garcon-menu-item.c						\
 	garcon-menu-node.c						\
 	garcon-menu-tree-provider.c					\
