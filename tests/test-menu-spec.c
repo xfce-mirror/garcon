@@ -35,7 +35,7 @@
 
 
 void
-print_menu (GarconMenu  *menu, 
+print_menu (GarconMenu  *menu,
             const gchar *path)
 {
   GarconMenuDirectory *directory;
@@ -54,9 +54,9 @@ print_menu (GarconMenu  *menu,
     name = g_strdup ("");
   else
     {
-      name = g_strdup_printf ("%s%s/", path, 
-                              (directory == NULL 
-                               ? garcon_menu_element_get_name (GARCON_MENU_ELEMENT (menu)) 
+      name = g_strdup_printf ("%s%s/", path,
+                              (directory == NULL
+                               ? garcon_menu_element_get_name (GARCON_MENU_ELEMENT (menu))
                                : garcon_menu_directory_get_name (directory)));
     }
 
@@ -64,7 +64,7 @@ print_menu (GarconMenu  *menu,
   menus = garcon_menu_get_menus (menu);
 
   /* Print child menus */
-  for (iter = menus; iter != NULL; iter = g_list_next (iter)) 
+  for (iter = menus; iter != NULL; iter = g_list_next (iter))
     {
       /* Only display menus which are not hidden or excluded from this environment */
       if (G_LIKELY (garcon_menu_element_get_visible (iter->data)))
@@ -78,12 +78,12 @@ print_menu (GarconMenu  *menu,
   items = garcon_menu_get_elements (menu);
 
   /* Print menu items */
-  for (iter = items; iter != NULL; iter = g_list_next (iter)) 
+  for (iter = items; iter != NULL; iter = g_list_next (iter))
     {
-      if (GARCON_IS_MENU_ITEM (iter->data) 
+      if (GARCON_IS_MENU_ITEM (iter->data)
           && garcon_menu_element_get_visible (iter->data))
         {
-          g_printf ("%s\t%s\t%s\n", name, garcon_menu_item_get_desktop_id (iter->data), 
+          g_printf ("%s\t%s\t%s\n", name, garcon_menu_item_get_desktop_id (iter->data),
                     garcon_menu_item_get_filename (iter->data));
         }
     }

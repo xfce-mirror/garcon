@@ -2,19 +2,19 @@
 /*-
  * Copyright (c) 2009 Jannis Pohlmann <jannis@xfce.org>.
  *
- * This program is free software; you can redistribute it and/or modify 
- * it under the terms of the GNU General Public License as published by 
- * the Free Software Foundation; either version 2 of the License, or (at 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
  * your option) any later version.
  *
- * This program is distributed in the hope that it will be useful, but 
- * WITHOUT ANY WARRANTY; without even the implied warranty of 
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU 
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License 
- * along with this program; if not, write to the Free Software 
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston,
  * MA  02111-1307  USA
  */
 
@@ -60,7 +60,7 @@ struct _GarconMenuNodeClass
 union _GarconMenuNodeData
 {
   GarconMenuLayoutMergeType layout_merge_type;
-  struct 
+  struct
   {
     GarconMenuMergeFileType type;
     gchar                  *filename;
@@ -82,7 +82,7 @@ GType
 garcon_menu_node_type_get_type (void)
 {
   static GType      type = G_TYPE_INVALID;
-  static GEnumValue values[] = 
+  static GEnumValue values[] =
   {
     { GARCON_MENU_NODE_TYPE_INVALID, "GARCON_MENU_NODE_TYPE_INVALID", "Invalid" },
     { GARCON_MENU_NODE_TYPE_MENU, "GARCON_MENU_NODE_TYPE_MENU", "Menu" },
@@ -139,7 +139,7 @@ garcon_menu_node_class_init (GarconMenuNodeClass *klass)
   garcon_menu_node_parent_class = g_type_class_peek_parent (klass);
 
   gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->finalize = garcon_menu_node_finalize; 
+  gobject_class->finalize = garcon_menu_node_finalize;
   gobject_class->get_property = garcon_menu_node_get_property;
   gobject_class->set_property = garcon_menu_node_set_property;
 
@@ -453,8 +453,8 @@ garcon_menu_node_tree_get_child_node (GNode             *tree,
   GNode *node = NULL;
   GNode *child;
 
-  for (child = reverse ? g_node_last_child (tree) : g_node_first_child (tree); 
-       node == NULL && child != NULL; 
+  for (child = reverse ? g_node_last_child (tree) : g_node_first_child (tree);
+       node == NULL && child != NULL;
        child = reverse ? g_node_prev_sibling (child) : g_node_next_sibling (child))
     {
       if (garcon_menu_node_tree_get_node_type (child) == type)
@@ -548,7 +548,7 @@ collect_boolean (GNode *node,
 
 
 
-gboolean 
+gboolean
 garcon_menu_node_tree_get_boolean_child (GNode             *tree,
                                          GarconMenuNodeType type)
 {
@@ -659,7 +659,7 @@ garcon_menu_node_tree_rule_matches (GNode          *node,
 
 
 
-GarconMenuNodeType 
+GarconMenuNodeType
 garcon_menu_node_tree_get_node_type (GNode *tree)
 {
   if (tree == NULL)
@@ -673,7 +673,7 @@ garcon_menu_node_tree_get_node_type (GNode *tree)
 
 
 
-const gchar * 
+const gchar *
 garcon_menu_node_tree_get_string (GNode *tree)
 {
   if (tree == NULL || tree->data == NULL)
@@ -716,7 +716,7 @@ garcon_menu_node_tree_get_layout_merge_type (GNode *tree)
 
 
 
-GarconMenuMergeFileType 
+GarconMenuMergeFileType
 garcon_menu_node_tree_get_merge_file_type (GNode *tree)
 {
   g_return_val_if_fail (garcon_menu_node_tree_get_node_type (tree) == GARCON_MENU_NODE_TYPE_MERGE_FILE, 0);
@@ -776,7 +776,7 @@ garcon_menu_node_tree_compare (GNode *tree,
       break;
 
     case GARCON_MENU_NODE_TYPE_MERGE_FILE:
-      return g_utf8_collate (node->data.merge_file.filename, 
+      return g_utf8_collate (node->data.merge_file.filename,
                              other_node->data.merge_file.filename);
       break;
 

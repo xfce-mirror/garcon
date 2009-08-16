@@ -36,7 +36,7 @@
 
 
 
-static gboolean print_node (GNode *node, 
+static gboolean print_node (GNode *node,
                             gint   depth);
 
 
@@ -68,7 +68,7 @@ print_child_nodes (GNode *node,
 
   for (child = g_node_first_child (node); child != NULL; child = g_node_next_sibling (child))
     {
-      g_node_traverse (child, G_PRE_ORDER, G_TRAVERSE_ALL, 1, 
+      g_node_traverse (child, G_PRE_ORDER, G_TRAVERSE_ALL, 1,
                        (GNodeTraverseFunc) print_node, GINT_TO_POINTER (depth+2));
     }
 }
@@ -149,7 +149,7 @@ print_node (GNode *node,
           INDENT; g_print ("<Separator/>\n");
           break;
         case GARCON_MENU_NODE_TYPE_MERGE:
-          INDENT; 
+          INDENT;
           switch (garcon_menu_node_tree_get_layout_merge_type (node))
             {
             case GARCON_MENU_LAYOUT_MERGE_ALL:
@@ -168,7 +168,7 @@ print_node (GNode *node,
           switch (garcon_menu_node_tree_get_merge_file_type (node))
             {
             case GARCON_MENU_MERGE_FILE_PATH:
-              g_print ("<MergeFile type=\"path\">%s</MergeFile>\n", 
+              g_print ("<MergeFile type=\"path\">%s</MergeFile>\n",
                        garcon_menu_node_tree_get_merge_file_filename (node));
               break;
             case GARCON_MENU_MERGE_FILE_PARENT:
@@ -206,7 +206,7 @@ print_tree (GarconMenuTreeProvider *provider)
 
 
 
-static const gchar ROOT_SPECS[][30] = 
+static const gchar ROOT_SPECS[][30] =
 {
   "menus/applications.menu",
   "menus/xfce-applications.menu",
@@ -259,7 +259,7 @@ main (int    argc,
 
   parser = garcon_menu_parser_new (file);
   g_object_unref (file);
-  
+
   if (G_LIKELY (garcon_menu_parser_run (parser, NULL, &error)))
     {
       print_tree (GARCON_MENU_TREE_PROVIDER (parser));
@@ -275,8 +275,8 @@ main (int    argc,
         {
           if (error != NULL)
             {
-              g_error ("Could not merge menus in %s: %s", 
-                       argc > 1 ? argv[1] : FILENAME, 
+              g_error ("Could not merge menus in %s: %s",
+                       argc > 1 ? argv[1] : FILENAME,
                        error->message);
 
               g_error_free (error);

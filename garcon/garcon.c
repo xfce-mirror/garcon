@@ -9,11 +9,11 @@
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
  *
- * You should have received a copy of the GNU Library General 
- * Public License along with this library; if not, write to the 
+ * You should have received a copy of the GNU Library General
+ * Public License along with this library; if not, write to the
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
@@ -47,12 +47,12 @@ static gint garcon_ref_count = 0;
 
 /**
  * garcon_init:
- * @env : name of the desktop environment (e.g. XFCE, GNOME or KDE) 
+ * @env : name of the desktop environment (e.g. XFCE, GNOME or KDE)
  *        or %NULL.
  *
- * Initializes the garcon library. @env optionally defines the 
- * name of the desktop environment for which menus will be generated. 
- * This means that items belonging only to other desktop environments 
+ * Initializes the garcon library. @env optionally defines the
+ * name of the desktop environment for which menus will be generated.
+ * This means that items belonging only to other desktop environments
  * will be ignored.
  **/
 void
@@ -141,6 +141,6 @@ garcon_config_lookup (const gchar *filename)
             }
         }
     }
-  
+
   return path;
 }

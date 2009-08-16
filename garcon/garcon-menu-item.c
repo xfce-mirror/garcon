@@ -9,11 +9,11 @@
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
  *
- * You should have received a copy of the GNU Library General 
- * Public License along with this library; if not, write to the 
+ * You should have received a copy of the GNU Library General
+ * Public License along with this library; if not, write to the
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
@@ -163,7 +163,7 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
   /**
    * GarconMenu:file:
    *
-   * The #GFile from which the %GarconMenuItem was loaded. 
+   * The #GFile from which the %GarconMenuItem was loaded.
    **/
   g_object_class_install_property (gobject_class,
                                    PROP_FILE,
@@ -382,7 +382,7 @@ garcon_menu_item_finalize (GObject *object)
 
   g_strfreev (item->priv->only_show_in);
   g_strfreev (item->priv->not_show_in);
-  
+
   g_free (item->priv->path);
 
   g_list_foreach (item->priv->categories, (GFunc) g_free, NULL);
@@ -586,17 +586,17 @@ garcon_menu_item_new (GFile *file)
                        g_key_file_get_boolean (rc, "Desktop Entry", "X-KDE-StartupNotify", NULL);
 
       /* Allocate a new menu item instance */
-      item = g_object_new (GARCON_TYPE_MENU_ITEM, 
+      item = g_object_new (GARCON_TYPE_MENU_ITEM,
                            "file", file,
-                           "command", exec, 
+                           "command", exec,
                            "try-exec", try_exec,
-                           "name", name, 
+                           "name", name,
                            "generic-name", generic_name,
                            "comment", comment,
-                           "icon-name", icon, 
-                           "requires-terminal", terminal, 
-                           "no-display", no_display, 
-                           "supports-startup-notification", startup_notify, 
+                           "icon-name", icon,
+                           "requires-terminal", terminal,
+                           "no-display", no_display,
+                           "supports-startup-notification", startup_notify,
                            "path", path,
                            NULL);
 
@@ -610,7 +610,7 @@ garcon_menu_item_new (GFile *file)
                 categories = g_list_prepend (categories, g_strdup (*mt));
             }
 
-          /* Free list */          
+          /* Free list */
           g_strfreev (str_list);
 
           /* Assign categories list to the menu item */
@@ -683,9 +683,9 @@ garcon_menu_item_new_for_uri (const gchar *uri)
  * garcon_menu_item_get_file:
  *
  * Get the file for @item.
- * 
- * Return value: a #GFile. The returned object 
- * should be unreffed with g_object_unref() when no longer needed. 
+ *
+ * Return value: a #GFile. The returned object
+ * should be unreffed with g_object_unref() when no longer needed.
  */
 GFile *
 garcon_menu_item_get_file (GarconMenuItem *item)
@@ -943,7 +943,7 @@ garcon_menu_item_get_icon_name (GarconMenuItem *item)
 
 
 
-void        
+void
 garcon_menu_item_set_icon_name (GarconMenuItem *item,
                                 const gchar    *icon_name)
 {
@@ -977,7 +977,7 @@ garcon_menu_item_get_path (GarconMenuItem *item)
 
 
 
-void        
+void
 garcon_menu_item_set_path (GarconMenuItem *item,
                            const gchar    *path)
 {
@@ -1011,12 +1011,12 @@ garcon_menu_item_requires_terminal (GarconMenuItem *item)
 
 
 
-void        
+void
 garcon_menu_item_set_requires_terminal (GarconMenuItem *item,
                                         gboolean        requires_terminal)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
-  
+
   /* Abort if old and new value are equal */
   if (item->priv->requires_terminal == requires_terminal)
     return;
@@ -1030,7 +1030,7 @@ garcon_menu_item_set_requires_terminal (GarconMenuItem *item,
 
 
 
-gboolean    
+gboolean
 garcon_menu_item_get_no_display (GarconMenuItem *item)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
@@ -1039,12 +1039,12 @@ garcon_menu_item_get_no_display (GarconMenuItem *item)
 
 
 
-void        
+void
 garcon_menu_item_set_no_display (GarconMenuItem *item,
                                  gboolean        no_display)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
-  
+
   /* Abort if old and new value are equal */
   if (item->priv->no_display == no_display)
     return;
@@ -1058,7 +1058,7 @@ garcon_menu_item_set_no_display (GarconMenuItem *item,
 
 
 
-gboolean    
+gboolean
 garcon_menu_item_supports_startup_notification (GarconMenuItem *item)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
@@ -1067,12 +1067,12 @@ garcon_menu_item_supports_startup_notification (GarconMenuItem *item)
 
 
 
-void        
+void
 garcon_menu_item_set_supports_startup_notification (GarconMenuItem *item,
                                                     gboolean        supports_startup_notification)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
-  
+
   /* Abort if old and new value are equal */
   if (item->priv->supports_startup_notification == supports_startup_notification)
     return;
@@ -1132,7 +1132,7 @@ garcon_menu_item_get_show_in_environment (GarconMenuItem *item)
     {
       /* Determine whether our environment is included in this list */
       included = FALSE;
-      for (i = 0; i < g_strv_length (item->priv->only_show_in); ++i) 
+      for (i = 0; i < g_strv_length (item->priv->only_show_in); ++i)
         {
           if (G_UNLIKELY (g_utf8_collate (item->priv->only_show_in[i], env) == 0))
             included = TRUE;

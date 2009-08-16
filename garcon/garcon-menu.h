@@ -42,7 +42,7 @@ GType                garcon_menu_get_type           (void) G_GNUC_CONST;
 GarconMenu          *garcon_menu_new                (GFile        *file) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 GarconMenu          *garcon_menu_new_for_path       (const gchar  *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 GarconMenu          *garcon_menu_new_applications   (void) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
-gboolean             garcon_menu_load               (GarconMenu   *menu, 
+gboolean             garcon_menu_load               (GarconMenu   *menu,
                                                      GCancellable *cancellable,
                                                      GError      **error);
 GFile               *garcon_menu_get_file           (GarconMenu   *menu);

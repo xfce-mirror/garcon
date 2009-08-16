@@ -116,7 +116,7 @@ garcon_menu_merger_class_init (GarconMenuMergerClass *klass)
   garcon_menu_merger_parent_class = g_type_class_peek_parent (klass);
 
   gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->finalize = garcon_menu_merger_finalize; 
+  gobject_class->finalize = garcon_menu_merger_finalize;
   gobject_class->constructed = garcon_menu_merger_constructed;
   gobject_class->get_property = garcon_menu_merger_get_property;
   gobject_class->set_property = garcon_menu_merger_set_property;
@@ -134,7 +134,7 @@ garcon_menu_merger_class_init (GarconMenuMergerClass *klass)
 
 
 
-static void 
+static void
 garcon_menu_merger_provider_init (GarconMenuTreeProviderIface *iface)
 {
   iface->get_tree = garcon_menu_merger_get_tree;
@@ -241,7 +241,7 @@ garcon_menu_merger_prepare_merging (GarconMenuMerger        *merger,
 
   context->node_type = GARCON_MENU_NODE_TYPE_INVALID;
   g_node_traverse (tree, G_IN_ORDER, G_TRAVERSE_ALL, -1,
-                   (GNodeTraverseFunc) garcon_menu_merger_resolve_default_dirs, 
+                   (GNodeTraverseFunc) garcon_menu_merger_resolve_default_dirs,
                    context);
 
   context->node_type = GARCON_MENU_NODE_TYPE_MERGE_DIR;
@@ -391,8 +391,8 @@ garcon_menu_merger_insert_default_dirs (GNode *parent,
       type = GARCON_MENU_NODE_TYPE_APP_DIR;
     }
 
-  /* Append $KDEDIR/share/desktop-directories and $KDEDIR/share/applications 
-   * as a workaround for distributions not installing KDE menu files 
+  /* Append $KDEDIR/share/desktop-directories and $KDEDIR/share/applications
+   * as a workaround for distributions not installing KDE menu files
    * properly into $XDG_DATA_DIRS */
 
   /* Get KDEDIR environment variable */
@@ -471,7 +471,7 @@ garcon_menu_merger_insert_default_merge_dirs (GNode *parent,
     }
 
   /* Append user config dir */
-  path = g_build_path (G_DIR_SEPARATOR_S, g_get_user_config_dir (), "menus", 
+  path = g_build_path (G_DIR_SEPARATOR_S, g_get_user_config_dir (), "menus",
                        "applications-merged", NULL);
   if (G_LIKELY (g_file_test (path, G_FILE_TEST_IS_DIR)))
     {
@@ -483,7 +483,7 @@ garcon_menu_merger_insert_default_merge_dirs (GNode *parent,
 
 
 
-static gboolean 
+static gboolean
 garcon_menu_merger_resolve_default_dirs (GNode                   *node,
                                          GarconMenuMergerContext *context)
 {
@@ -505,7 +505,7 @@ garcon_menu_merger_resolve_default_dirs (GNode                   *node,
 
 
 
-static gboolean 
+static gboolean
 garcon_menu_merger_resolve_relative_paths (GNode                   *node,
                                            GarconMenuMergerContext *context)
 {
@@ -561,7 +561,7 @@ garcon_menu_merger_resolve_relative_paths (GNode                   *node,
               g_object_unref (config_dir);
             }
 
-          /* Look for the same relative path in the XDG_CONFIG_DIRS entries after the parent 
+          /* Look for the same relative path in the XDG_CONFIG_DIRS entries after the parent
            * of the current menu file */
           for (; relative_path != NULL && config_dirs[i] != NULL; ++i)
             {
@@ -630,7 +630,7 @@ garcon_menu_merger_remove_duplicate_paths (GNode             *node,
       if (garcon_menu_node_tree_get_node_type (child) != type)
         continue;
 
-      if (G_LIKELY (g_list_find_custom (remaining_nodes, child, 
+      if (G_LIKELY (g_list_find_custom (remaining_nodes, child,
                                         (GCompareFunc) garcon_menu_node_tree_compare) == NULL))
         {
           remaining_nodes = g_list_prepend (remaining_nodes, child);
@@ -753,7 +753,7 @@ garcon_menu_merger_resolve_merge_dirs (GNode                   *node,
 
   dir = g_file_new_for_unknown_input (garcon_menu_node_tree_get_string (node), NULL);
 
-  enumerator = g_file_enumerate_children (dir, G_FILE_ATTRIBUTE_STANDARD_NAME, 
+  enumerator = g_file_enumerate_children (dir, G_FILE_ATTRIBUTE_STANDARD_NAME,
                                           G_FILE_QUERY_INFO_NONE, NULL, NULL);
 
   if (G_UNLIKELY (enumerator != NULL))
@@ -780,7 +780,7 @@ garcon_menu_merger_resolve_merge_dirs (GNode                   *node,
 
               g_node_insert_after (node->parent, node, file_node);
             }
-          
+
           g_object_unref (file_info);
         }
 
@@ -845,7 +845,7 @@ garcon_menu_merger_process_merge_files (GNode                   *node,
 
   file = g_file_new_for_uri (garcon_menu_node_tree_get_merge_file_filename (node));
 
-  if (G_UNLIKELY (g_list_find_custom (context->file_stack, file, 
+  if (G_UNLIKELY (g_list_find_custom (context->file_stack, file,
                                       (GCompareFunc) compare_files) != NULL))
     {
       g_object_unref (file);
@@ -874,7 +874,7 @@ garcon_menu_merger_process_merge_files (GNode                   *node,
           g_node_destroy (tree);
         }
     }
-  
+
   garcon_menu_node_tree_free (node);
 
   return FALSE;
@@ -882,7 +882,7 @@ garcon_menu_merger_process_merge_files (GNode                   *node,
 
 
 
-static void 
+static void
 garcon_menu_merger_clean_up_elements (GNode             *node,
                                       GarconMenuNodeType type)
 {
@@ -898,7 +898,7 @@ garcon_menu_merger_clean_up_elements (GNode             *node,
           continue;
         }
 
-      if (type == GARCON_MENU_NODE_TYPE_DELETED 
+      if (type == GARCON_MENU_NODE_TYPE_DELETED
           && garcon_menu_node_tree_get_node_type (node) != GARCON_MENU_NODE_TYPE_DELETED
           && garcon_menu_node_tree_get_node_type (node) != GARCON_MENU_NODE_TYPE_NOT_DELETED)
         {
@@ -911,13 +911,13 @@ garcon_menu_merger_clean_up_elements (GNode             *node,
         {
           continue;
         }
-      
-      if (type == GARCON_MENU_NODE_TYPE_LAYOUT 
+
+      if (type == GARCON_MENU_NODE_TYPE_LAYOUT
           && garcon_menu_node_tree_get_node_type (child) != GARCON_MENU_NODE_TYPE_LAYOUT)
         {
           continue;
         }
-      
+
       if (remaining_node != NULL)
         destroy_list = g_list_prepend (destroy_list, child);
       else
@@ -927,8 +927,8 @@ garcon_menu_merger_clean_up_elements (GNode             *node,
   g_list_foreach (destroy_list, (GFunc) garcon_menu_node_tree_free, NULL);
   g_list_free (destroy_list);
 
-  if (type == GARCON_MENU_NODE_TYPE_LAYOUT 
-      && remaining_node != NULL 
+  if (type == GARCON_MENU_NODE_TYPE_LAYOUT
+      && remaining_node != NULL
       && G_NODE_IS_LEAF (remaining_node))
     {
       garcon_menu_node_tree_free (remaining_node);
@@ -1062,7 +1062,7 @@ garcon_menu_merger_create_menu (GNode  *node,
   if (G_LIKELY (child == NULL))
     {
       child = g_node_append_data (node, NULL);
-      g_node_append_data (child, garcon_menu_node_create (GARCON_MENU_NODE_TYPE_NAME, 
+      g_node_append_data (child, garcon_menu_node_create (GARCON_MENU_NODE_TYPE_NAME,
                                                           path[position]));
     }
 
@@ -1115,9 +1115,9 @@ garcon_menu_merger_resolve_moves (GNode *node)
       iter = g_list_next (iter);
       new_path = g_strsplit (iter->data, "/", -1);
 
-      old_node = garcon_menu_merger_find_menu (node, old_path, 0, 
+      old_node = garcon_menu_merger_find_menu (node, old_path, 0,
                                                g_strv_length (old_path)-1, NULL);
-      new_node = garcon_menu_merger_find_menu (node, new_path, 0, 
+      new_node = garcon_menu_merger_find_menu (node, new_path, 0,
                                                g_strv_length (new_path)-1, NULL);
 
       if (G_LIKELY (old_node != NULL && old_node != new_node))
@@ -1130,7 +1130,7 @@ garcon_menu_merger_resolve_moves (GNode *node)
               garcon_menu_merger_move_nodes (old_node, new_node, NULL);
             }
           else
-            garcon_menu_merger_move_nodes (old_node, new_node, 
+            garcon_menu_merger_move_nodes (old_node, new_node,
                                            g_node_first_child (new_node));
 
           g_node_destroy (old_node);
@@ -1157,7 +1157,7 @@ garcon_menu_merger_prepend_default_layout (GNode *node)
       node_ = garcon_menu_node_create (GARCON_MENU_NODE_TYPE_DEFAULT_LAYOUT, NULL);
       layout = g_node_prepend_data (node, node_);
 
-      node_ = garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE, 
+      node_ = garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE,
                                        GUINT_TO_POINTER (GARCON_MENU_LAYOUT_MERGE_MENUS));
       g_node_append_data (layout, node_);
 

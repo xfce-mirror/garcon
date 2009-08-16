@@ -9,11 +9,11 @@
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
  *
- * You should have received a copy of the GNU Library General 
- * Public License along with this library; if not, write to the 
+ * You should have received a copy of the GNU Library General
+ * Public License along with this library; if not, write to the
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
@@ -50,7 +50,7 @@ _garcon_menu_directory_shutdown (void)
 
 /* Desktop entry keys */
 #if 0
-static const gchar *desktop_entry_keys[] = 
+static const gchar *desktop_entry_keys[] =
 {
   "Name",
   "Comment",
@@ -152,14 +152,14 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->constructed = garcon_menu_directory_constructed;
-  gobject_class->finalize = garcon_menu_directory_finalize; 
+  gobject_class->finalize = garcon_menu_directory_finalize;
   gobject_class->get_property = garcon_menu_directory_get_property;
   gobject_class->set_property = garcon_menu_directory_set_property;
 
   /**
    * GarconMenuDirectory:filename:
    *
-   * The @GFile of an %GarconMenuDirectory. 
+   * The @GFile of an %GarconMenuDirectory.
    **/
   g_object_class_install_property (gobject_class,
                                    PROP_FILE,
@@ -167,7 +167,7 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
                                                         "File",
                                                         "File",
                                                         G_TYPE_FILE,
-                                                        G_PARAM_READWRITE | 
+                                                        G_PARAM_READWRITE |
                                                         G_PARAM_STATIC_STRINGS |
                                                         G_PARAM_CONSTRUCT_ONLY));
 
@@ -246,7 +246,7 @@ garcon_menu_directory_init (GarconMenuDirectory *directory)
 
 
 
-static void 
+static void
 garcon_menu_directory_constructed (GObject *object)
 {
   GarconMenuDirectory *directory = GARCON_MENU_DIRECTORY (object);
@@ -351,9 +351,9 @@ garcon_menu_directory_set_property (GObject      *object,
  * garcon_menu_directory_get_file:
  *
  * Get the file for @directory.
- * 
- * Return value: a #GFile. The returned object 
- * should be unreffed with g_object_unref() when no longer needed. 
+ *
+ * Return value: a #GFile. The returned object
+ * should be unreffed with g_object_unref() when no longer needed.
  */
 GFile *
 garcon_menu_directory_get_file (GarconMenuDirectory *directory)
@@ -374,7 +374,7 @@ garcon_menu_directory_get_name (GarconMenuDirectory *directory)
 
 
 void
-garcon_menu_directory_set_name (GarconMenuDirectory *directory, 
+garcon_menu_directory_set_name (GarconMenuDirectory *directory,
                                 const gchar         *name)
 {
   g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
@@ -403,7 +403,7 @@ garcon_menu_directory_get_comment (GarconMenuDirectory *directory)
 
 
 void
-garcon_menu_directory_set_comment (GarconMenuDirectory *directory, 
+garcon_menu_directory_set_comment (GarconMenuDirectory *directory,
                                    const gchar         *comment)
 {
   g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
@@ -430,7 +430,7 @@ garcon_menu_directory_get_icon (GarconMenuDirectory *directory)
 
 
 void
-garcon_menu_directory_set_icon (GarconMenuDirectory *directory, 
+garcon_menu_directory_set_icon (GarconMenuDirectory *directory,
                                 const gchar         *icon)
 {
   g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
@@ -457,12 +457,12 @@ garcon_menu_directory_get_no_display (GarconMenuDirectory *directory)
 
 
 
-void        
+void
 garcon_menu_directory_set_no_display (GarconMenuDirectory *directory,
                                       gboolean             no_display)
 {
   g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
-  
+
   /* Abort if old and new value are equal */
   if (directory->priv->no_display == no_display)
     return;
@@ -562,7 +562,7 @@ garcon_menu_directory_get_show_in_environment (GarconMenuDirectory *directory)
   guint        i;
 
   g_return_val_if_fail (GARCON_IS_MENU_DIRECTORY (directory), FALSE);
-  
+
   /* Determine current environment */
   env = garcon_get_environment ();
 
@@ -577,7 +577,7 @@ garcon_menu_directory_get_show_in_environment (GarconMenuDirectory *directory)
     {
       /* Determine whether our environment is included in this list */
       included = FALSE;
-      for (i = 0; i < g_strv_length (directory->priv->only_show_in); ++i) 
+      for (i = 0; i < g_strv_length (directory->priv->only_show_in); ++i)
         {
           if (G_UNLIKELY (g_utf8_collate (directory->priv->only_show_in[i], env) == 0))
             included = TRUE;

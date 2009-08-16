@@ -9,11 +9,11 @@
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
  *
- * You should have received a copy of the GNU Library General 
- * Public License along with this library; if not, write to the 
+ * You should have received a copy of the GNU Library General
+ * Public License along with this library; if not, write to the
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
@@ -62,7 +62,7 @@ _garcon_menu_item_cache_init (void)
   if (G_LIKELY (_garcon_menu_item_cache == NULL))
     {
       _garcon_menu_item_cache = g_object_new (GARCON_TYPE_MENU_ITEM_CACHE, NULL);
-      g_object_add_weak_pointer (G_OBJECT (_garcon_menu_item_cache), 
+      g_object_add_weak_pointer (G_OBJECT (_garcon_menu_item_cache),
                                  (gpointer) &_garcon_menu_item_cache);
     }
 }
@@ -74,7 +74,7 @@ _garcon_menu_item_cache_shutdown (void)
 {
   if (G_LIKELY (_garcon_menu_item_cache != NULL))
     g_object_unref (G_OBJECT (_garcon_menu_item_cache));
-      
+
 }
 
 
@@ -132,7 +132,7 @@ garcon_menu_item_cache_init (GarconMenuItemCache *cache)
   cache->priv->lock = g_mutex_new ();
 
   /* Create empty hash table */
-  cache->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, 
+  cache->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
                                               (GDestroyNotify) garcon_menu_item_unref);
 }
 
@@ -142,9 +142,9 @@ garcon_menu_item_cache_init (GarconMenuItemCache *cache)
  * garcon_menu_item_cache_get_default:
  *
  * Returns the default #GarconMenuItemCache.
- * 
- * Return value: the default #GarconMenuItemCache. The returned object 
- * should be unreffed with g_object_unref() when no longer needed. 
+ *
+ * Return value: the default #GarconMenuItemCache. The returned object
+ * should be unreffed with g_object_unref() when no longer needed.
  */
 GarconMenuItemCache*
 garcon_menu_item_cache_get_default (void)
@@ -181,8 +181,8 @@ garcon_menu_item_cache_lookup (GarconMenuItemCache *cache,
   g_return_val_if_fail (uri != NULL, NULL);
   g_return_val_if_fail (desktop_id != NULL, NULL);
 
-  /* Acquire lock on the item cache as it's likely that we need to load 
-   * items from the hard drive and store it in the hash table of the 
+  /* Acquire lock on the item cache as it's likely that we need to load
+   * items from the hard drive and store it in the hash table of the
    * item cache */
   g_mutex_lock (cache->priv->lock);
 
@@ -221,7 +221,7 @@ garcon_menu_item_cache_lookup (GarconMenuItemCache *cache,
 
 
 
-void 
+void
 garcon_menu_item_cache_foreach (GarconMenuItemCache *cache,
                                 GHFunc               func,
                                 gpointer             user_data)
@@ -246,8 +246,8 @@ garcon_menu_item_cache_invalidate (GarconMenuItemCache *cache)
 
   /* Destroy the hash table */
   g_hash_table_unref (cache->priv->items);
-  
+
   /* Create a new, empty hash table */
-  cache->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, 
+  cache->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
                                               (GDestroyNotify) garcon_menu_item_unref);
 }

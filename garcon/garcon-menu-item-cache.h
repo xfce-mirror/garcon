@@ -49,7 +49,7 @@ GarconMenuItem      *garcon_menu_item_cache_lookup      (GarconMenuItemCache *ca
                                                          const gchar         *filename,
                                                          const gchar         *desktop_id);
 void                 garcon_menu_item_cache_foreach     (GarconMenuItemCache *cache,
-                                                         GHFunc               func, 
+                                                         GHFunc               func,
                                                          gpointer             user_data);
 void                 garcon_menu_item_cache_invalidate  (GarconMenuItemCache *cache);
 

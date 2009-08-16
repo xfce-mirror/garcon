@@ -145,7 +145,7 @@ garcon_menu_parser_class_init (GarconMenuParserClass *klass)
   garcon_menu_parser_parent_class = g_type_class_peek_parent (klass);
 
   gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->finalize = garcon_menu_parser_finalize; 
+  gobject_class->finalize = garcon_menu_parser_finalize;
   gobject_class->get_property = garcon_menu_parser_get_property;
   gobject_class->set_property = garcon_menu_parser_set_property;
 
@@ -162,7 +162,7 @@ garcon_menu_parser_class_init (GarconMenuParserClass *klass)
 
 
 
-static void 
+static void
 garcon_menu_parser_provider_init (GarconMenuTreeProviderIface *iface)
 {
   iface->get_tree = garcon_menu_parser_get_tree;
@@ -274,10 +274,10 @@ garcon_menu_parser_run (GarconMenuParser *parser,
                                          &data, &data_length, NULL, error)))
     {
       gchar *uri = g_file_get_uri (parser->priv->file);
-      
+
       if (error != NULL)
         {
-          g_warning (_("Could not load menu file data from %s: %s"), 
+          g_warning (_("Could not load menu file data from %s: %s"),
                      uri, (*error)->message);
           g_error_free (*error);
         }
@@ -295,7 +295,7 @@ garcon_menu_parser_run (GarconMenuParser *parser,
   parser_context.node = NULL;
 
   /* Create markup parse context */
-  context = g_markup_parse_context_new (&markup_parser, 0, &parser_context, NULL); 
+  context = g_markup_parse_context_new (&markup_parser, 0, &parser_context, NULL);
 
   /* Try to parse the menu file */
   if (!g_markup_parse_context_parse (context, data, data_length, error) ||
@@ -526,14 +526,14 @@ garcon_menu_parser_start_element (GMarkupParseContext *context,
         }
       break;
 
-    default: 
+    default:
       break;
     }
 }
 
 
 
-static void 
+static void
 garcon_menu_parser_end_element (GMarkupParseContext *context,
                                 const gchar         *element_name,
                                 gpointer             user_data,
@@ -561,7 +561,7 @@ garcon_menu_parser_end_element (GMarkupParseContext *context,
 
           if (parser_context->node->parent == NULL)
             parser_context->state = GARCON_MENU_PARSER_STATE_ROOT;
-          else 
+          else
             parser_context->state = GARCON_MENU_PARSER_STATE_MENU;
         }
       break;
@@ -646,7 +646,7 @@ garcon_menu_parser_characters (GMarkupParseContext *context,
   switch (parser_context->node_type)
     {
     case GARCON_MENU_PARSER_NODE_TYPE_NAME:
-      g_node_append_data (parser_context->node, 
+      g_node_append_data (parser_context->node,
                           garcon_menu_node_create (GARCON_MENU_NODE_TYPE_NAME, data));
       break;
 

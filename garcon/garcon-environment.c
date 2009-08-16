@@ -9,11 +9,11 @@
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
  *
- * You should have received a copy of the GNU Library General 
- * Public License along with this library; if not, write to the 
+ * You should have received a copy of the GNU Library General
+ * Public License along with this library; if not, write to the
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
@@ -62,8 +62,8 @@ garcon_set_environment (const gchar *env)
 
 /**
  * garcon_get_environment:
- * 
- * Return value: Name of the desktop environment (e.g. XFCE, KDE, GNOME) 
+ *
+ * Return value: Name of the desktop environment (e.g. XFCE, KDE, GNOME)
  * which is used or %NULL.
  */
 const gchar *

@@ -9,11 +9,11 @@
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
  *
- * You should have received a copy of the GNU Library General 
- * Public License along with this library; if not, write to the 
+ * You should have received a copy of the GNU Library General
+ * Public License along with this library; if not, write to the
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
@@ -83,7 +83,7 @@ static void
 garcon_menu_item_pool_init (GarconMenuItemPool *pool)
 {
   pool->priv = GARCON_MENU_ITEM_POOL_GET_PRIVATE (pool);
-  pool->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, 
+  pool->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
                                              (GDestroyNotify) garcon_menu_item_unref);
 }
 
@@ -137,7 +137,7 @@ garcon_menu_item_pool_lookup (GarconMenuItemPool *pool,
 
 
 
-void 
+void
 garcon_menu_item_pool_foreach (GarconMenuItemPool *pool,
                                GHFunc              func,
                                gpointer            user_data)
@@ -169,7 +169,7 @@ garcon_menu_item_pool_filter_exclude (const gchar    *desktop_id,
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (node != NULL, FALSE);
-  
+
   return garcon_menu_node_tree_rule_matches (node, item);
 }
 

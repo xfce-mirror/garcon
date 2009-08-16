@@ -59,7 +59,7 @@
 
 
 /* Potential root menu files */
-static const gchar GARCON_MENU_ROOT_SPECS[][30] = 
+static const gchar GARCON_MENU_ROOT_SPECS[][30] =
 {
   "menus/applications.menu",
   "menus/xfce-applications.menu",
@@ -178,14 +178,14 @@ garcon_menu_class_init (GarconMenuClass *klass)
   garcon_menu_parent_class = g_type_class_peek_parent (klass);
 
   gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->finalize = garcon_menu_finalize; 
+  gobject_class->finalize = garcon_menu_finalize;
   gobject_class->get_property = garcon_menu_get_property;
   gobject_class->set_property = garcon_menu_set_property;
 
   /**
    * GarconMenu:file:
    *
-   * The #GFile from which the %GarconMenu was loaded. 
+   * The #GFile from which the %GarconMenu was loaded.
    **/
   g_object_class_install_property (gobject_class,
                                    PROP_FILE,
@@ -200,7 +200,7 @@ garcon_menu_class_init (GarconMenuClass *klass)
   /**
    * GarconMenu:directory:
    *
-   * The directory entry associated with this menu. 
+   * The directory entry associated with this menu.
    **/
   g_object_class_install_property (gobject_class,
                                    PROP_DIRECTORY,
@@ -332,9 +332,9 @@ garcon_menu_set_property (GObject      *object,
  * @file  : #GFile for the .menu file you want to load.
  *
  * Creates a new #GarconMenu for the .menu file referred to by @file.
- * This operation only fails @file is invalid. To load the menu 
+ * This operation only fails @file is invalid. To load the menu
  * tree from the file, you need to call garcon_menu_load() with the
- * returned #GarconMenu. 
+ * returned #GarconMenu.
  *
  * The caller is responsible to destroy the returned #GarconMenu
  * using g_object_unref().
@@ -357,13 +357,13 @@ garcon_menu_new (GFile *file)
  * @filename : Path/URI of the .menu file you want to load.
  *
  * Creates a new #GarconMenu for the .menu file referred to by @filename.
- * This operation only fails if the filename is NULL. To load the menu 
+ * This operation only fails if the filename is NULL. To load the menu
  * tree from the file, you need to call garcon_menu_load() with the
- * returned #GarconMenu. 
+ * returned #GarconMenu.
  *
  * <informalexample><programlisting>
  * GarconMenu *menu = garcon_menu_new (filename);
- * 
+ *
  * if (garcon_menu_load (menu, &error))
  *   ...
  * else
@@ -429,7 +429,7 @@ garcon_menu_new_applications (void)
 
       g_free (filename);
     }
-  
+
   return menu;
 }
 
@@ -439,11 +439,11 @@ garcon_menu_new_applications (void)
  * garcon_menu_get_file:
  * @menu : a #GarconMenu.
  *
- * Get the file for @menu. It refers to the .menu file from which 
+ * Get the file for @menu. It refers to the .menu file from which
  * @menu was or will be loaded.
- * 
- * Return value: a #GFile. The returned object 
- * should be unreffed with g_object_unref() when no longer needed. 
+ *
+ * Return value: a #GFile. The returned object
+ * should be unreffed with g_object_unref() when no longer needed.
  */
 GFile *
 garcon_menu_get_file (GarconMenu *menu)
@@ -470,13 +470,13 @@ garcon_menu_get_name (GarconMenu *menu)
  *
  * Returns the #GarconMenuDirectory of @menu or %NULL if the &lt;Menu&gt;
  * element that corresponds to @menu has no valid &lt;Directory&gt; element.
- * The menu directory may contain a lot of useful information about 
- * the menu like the display and icon name, desktop environments it 
+ * The menu directory may contain a lot of useful information about
+ * the menu like the display and icon name, desktop environments it
  * should show up in etc.
  *
  * Return value: #GarconMenuDirectory of @menu or %NULL if
- *               @menu has no valid directory element. The returned object 
- *               should be unreffed with g_object_unref() when no longer needed. 
+ *               @menu has no valid directory element. The returned object
+ *               should be unreffed with g_object_unref() when no longer needed.
  */
 GarconMenuDirectory*
 garcon_menu_get_directory (GarconMenu *menu)
@@ -497,7 +497,7 @@ garcon_menu_set_directory (GarconMenu          *menu,
   /* Abort if directories are equal */
   if (garcon_menu_directory_equal (directory, menu->priv->directory))
     return;
-  
+
   /* Destroy old directory */
   if (menu->priv->directory != NULL)
     g_object_unref (menu->priv->directory);
@@ -520,24 +520,24 @@ garcon_menu_set_directory (GarconMenu          *menu,
  * @cancellable : a #GCancellable
  * @error       : #GError return location
  *
- * This function loads the entire menu tree from the file referred to 
+ * This function loads the entire menu tree from the file referred to
  * by @menu. It resolves merges, moves and everything else defined
  * in the menu specification. The resulting tree information is
- * stored within @menu and can be accessed using the public #GarconMenu 
+ * stored within @menu and can be accessed using the public #GarconMenu
  * API afterwards.
  *
  * @cancellable can be used to handle blocking I/O when reading data
- * from files during the loading process. 
+ * from files during the loading process.
  *
  * @error should either be NULL or point to a #GError return location
  * where errors should be stored in.
  *
  * Return value: %TRUE if the menu was loaded successfully or
- *               %FALSE if there was an error or the process was 
+ *               %FALSE if there was an error or the process was
  *               cancelled.
  **/
 gboolean
-garcon_menu_load (GarconMenu   *menu, 
+garcon_menu_load (GarconMenu   *menu,
                   GCancellable *cancellable,
                   GError      **error)
 {
@@ -598,7 +598,7 @@ garcon_menu_get_menus (GarconMenu *menu)
   GList *menus = NULL;
 
   g_return_val_if_fail (GARCON_IS_MENU (menu), NULL);
-  
+
   /* Copy submenu list */
   menus = g_list_copy (menu->priv->submenus);
 
@@ -670,8 +670,8 @@ garcon_menu_resolve_menus (GarconMenu *menu)
 
   g_return_if_fail (GARCON_IS_MENU (menu));
 
-  menus = garcon_menu_node_tree_get_child_nodes (menu->priv->tree, 
-                                                 GARCON_MENU_NODE_TYPE_MENU, 
+  menus = garcon_menu_node_tree_get_child_nodes (menu->priv->tree,
+                                                 GARCON_MENU_NODE_TYPE_MENU,
                                                  FALSE);
 
   for (iter = menus; iter != NULL; iter = g_list_next (iter))
@@ -696,8 +696,8 @@ garcon_menu_get_directories (GarconMenu *menu)
   GList *dirs = NULL;
 
   /* Fetch all application directories */
-  dirs = garcon_menu_node_tree_get_string_children (menu->priv->tree, 
-                                                    GARCON_MENU_NODE_TYPE_DIRECTORY, 
+  dirs = garcon_menu_node_tree_get_string_children (menu->priv->tree,
+                                                    GARCON_MENU_NODE_TYPE_DIRECTORY,
                                                     TRUE);
 
   if (menu->priv->parent != NULL)
@@ -727,7 +727,7 @@ garcon_menu_resolve_directory (GarconMenu *menu)
       directory = garcon_menu_lookup_directory (menu, iter->data);
     }
 
-  if (G_LIKELY (directory != NULL)) 
+  if (G_LIKELY (directory != NULL))
     {
       /* Set the directory (assuming that we found at least one valid name) */
       menu->priv->directory = directory;
@@ -749,8 +749,8 @@ garcon_menu_get_directory_dirs (GarconMenu *menu)
   GList *dirs = NULL;
 
   /* Fetch all application directories */
-  dirs = garcon_menu_node_tree_get_string_children (menu->priv->tree, 
-                                                    GARCON_MENU_NODE_TYPE_DIRECTORY_DIR, 
+  dirs = garcon_menu_node_tree_get_string_children (menu->priv->tree,
+                                                    GARCON_MENU_NODE_TYPE_DIRECTORY_DIR,
                                                     TRUE);
 
   if (menu->priv->parent != NULL)
@@ -771,7 +771,7 @@ garcon_menu_lookup_directory (GarconMenu  *menu,
   GFile               *file;
   GFile               *dir;
   gboolean             found = FALSE;
-  
+
   g_return_val_if_fail (GARCON_IS_MENU (menu), NULL);
   g_return_val_if_fail (filename != NULL, NULL);
 
@@ -792,7 +792,7 @@ garcon_menu_lookup_directory (GarconMenu  *menu,
           /* Update search status */
           found = TRUE;
         }
-      
+
       /* Destroy the file objects */
       g_object_unref (file);
       g_object_unref (dir);
@@ -812,7 +812,7 @@ garcon_menu_get_app_dirs (GarconMenu *menu)
   GList *dirs = NULL;
 
   /* Fetch all application directories */
-  dirs = garcon_menu_node_tree_get_string_children (menu->priv->tree, 
+  dirs = garcon_menu_node_tree_get_string_children (menu->priv->tree,
                                                     GARCON_MENU_NODE_TYPE_APP_DIR,
                                                     TRUE);
 
@@ -874,8 +874,8 @@ garcon_menu_collect_files_from_path (GarconMenu  *menu,
     return;
 
   /* Skip directory if it's not a directory */
-  if (G_UNLIKELY (g_file_query_file_type (dir, 
-                                          G_FILE_QUERY_INFO_NONE, 
+  if (G_UNLIKELY (g_file_query_file_type (dir,
+                                          G_FILE_QUERY_INFO_NONE,
                                           NULL) != G_FILE_TYPE_DIRECTORY))
     {
       return;
@@ -976,12 +976,12 @@ garcon_menu_resolve_items (GarconMenu *menu,
 
   g_return_if_fail (menu != NULL && GARCON_IS_MENU (menu));
 
-  menu_only_unallocated = garcon_menu_node_tree_get_boolean_child (menu->priv->tree, 
+  menu_only_unallocated = garcon_menu_node_tree_get_boolean_child (menu->priv->tree,
                                                                    GARCON_MENU_NODE_TYPE_ONLY_UNALLOCATED);
 
   /* Resolve items in this menu (if it matches the only_unallocated argument.
-   * This means that in the first pass, all items of menus without 
-   * <OnlyUnallocated /> are resolved and in the second pass, only items of 
+   * This means that in the first pass, all items of menus without
+   * <OnlyUnallocated /> are resolved and in the second pass, only items of
    * menus with <OnlyUnallocated /> are resolved */
   if (menu_only_unallocated == only_unallocated)
     {
@@ -1088,7 +1088,7 @@ garcon_menu_remove_deleted_menus (GarconMenu *menu)
       submenu = iter->data;
 
       /* Check whether there is a <Deleted/> element */
-      deleted = garcon_menu_node_tree_get_boolean_child (submenu->priv->tree, 
+      deleted = garcon_menu_node_tree_get_boolean_child (submenu->priv->tree,
                                                          GARCON_MENU_NODE_TYPE_DELETED);
 
       /* Determine whether this submenu was deleted */
@@ -1135,7 +1135,7 @@ items_collect (const gchar    *desktop_id,
  * garcon_menu_get_items:
  * @menu : a #GarconMenu.
  *
- * Returns all #GarconMenuItem<!---->s included in @menu. The items are 
+ * Returns all #GarconMenuItem<!---->s included in @menu. The items are
  * sorted by their display names in ascending order.
  *
  * The caller is responsible to free the returned list using
@@ -1143,7 +1143,7 @@ items_collect (const gchar    *desktop_id,
  * g_list_free (list);
  * </programlisting></informalexample>
  * when no longer needed.
- * 
+ *
  * Return value: list of #GarconMenuItem<!---->s included in @menu.
  **/
 GList *
@@ -1174,7 +1174,7 @@ garcon_menu_get_layout (GarconMenu *menu,
 
   if (G_LIKELY (!default_only))
     {
-      layout = garcon_menu_node_tree_get_child_node (menu->priv->tree, 
+      layout = garcon_menu_node_tree_get_child_node (menu->priv->tree,
                                                      GARCON_MENU_NODE_TYPE_LAYOUT,
                                                      TRUE);
     }
@@ -1200,9 +1200,9 @@ layout_has_menuname (GNode       *layout,
 {
   GList   *nodes;
   GList   *iter;
-  gboolean has_menuname = FALSE;  
+  gboolean has_menuname = FALSE;
 
-  nodes = garcon_menu_node_tree_get_child_nodes (layout, GARCON_MENU_NODE_TYPE_MENUNAME, 
+  nodes = garcon_menu_node_tree_get_child_nodes (layout, GARCON_MENU_NODE_TYPE_MENUNAME,
                                                  FALSE);
 
   for (iter = g_list_first (nodes); !has_menuname && iter != NULL; iter = g_list_next (iter))
@@ -1222,9 +1222,9 @@ layout_has_filename (GNode       *layout,
 {
   GList   *nodes;
   GList   *iter;
-  gboolean has_filename = FALSE;  
+  gboolean has_filename = FALSE;
 
-  nodes = garcon_menu_node_tree_get_child_nodes (layout, GARCON_MENU_NODE_TYPE_FILENAME, 
+  nodes = garcon_menu_node_tree_get_child_nodes (layout, GARCON_MENU_NODE_TYPE_FILENAME,
                                                  FALSE);
 
   for (iter = g_list_first (nodes); !has_filename && iter != NULL; iter = g_list_next (iter))
@@ -1291,7 +1291,7 @@ garcon_menu_get_elements (GarconMenu *menu)
       if (type == GARCON_MENU_NODE_TYPE_FILENAME)
         {
           /* Search for desktop ID in the item pool */
-          item = garcon_menu_item_pool_lookup (menu->priv->pool, 
+          item = garcon_menu_item_pool_lookup (menu->priv->pool,
                                                garcon_menu_node_tree_get_string (node));
 
           /* If the item with this desktop ID is included in the menu, append it to the list */
@@ -1301,7 +1301,7 @@ garcon_menu_get_elements (GarconMenu *menu)
       if (type == GARCON_MENU_NODE_TYPE_MENUNAME)
         {
           /* Search submenu with this name */
-          submenu = garcon_menu_get_menu_with_name (menu, 
+          submenu = garcon_menu_get_menu_with_name (menu,
                                                     garcon_menu_node_tree_get_string (node));
 
           /* If there is such a menu, append it to the list */
@@ -1322,7 +1322,7 @@ garcon_menu_get_elements (GarconMenu *menu)
             {
               /* Get all menu items of this menu */
               menu_items = garcon_menu_get_items (menu);
-              
+
               /* Append submenus */
               menu_items = g_list_concat (menu_items, garcon_menu_get_menus (menu));
 
@@ -1350,7 +1350,7 @@ garcon_menu_get_elements (GarconMenu *menu)
             }
         }
     }
-  
+
   return items;
 }
 
@@ -1360,7 +1360,7 @@ static gint
 garcon_menu_compare_items (gconstpointer *a,
                            gconstpointer *b)
 {
-  return g_utf8_collate (garcon_menu_element_get_name (GARCON_MENU_ELEMENT (a)), 
+  return g_utf8_collate (garcon_menu_element_get_name (GARCON_MENU_ELEMENT (a)),
                          garcon_menu_element_get_name (GARCON_MENU_ELEMENT (b)));
 }
 
@@ -1410,7 +1410,7 @@ static const gchar*
 garcon_menu_get_element_icon_name (GarconMenuElement *element)
 {
   GarconMenu *menu;
-  
+
   g_return_val_if_fail (GARCON_IS_MENU (element), NULL);
 
   menu = GARCON_MENU (element);

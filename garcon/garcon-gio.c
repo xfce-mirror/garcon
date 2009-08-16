@@ -49,10 +49,10 @@ has_valid_scheme (const char *uri)
   if (!g_ascii_isalpha (*p))
     return FALSE;
 
-  do 
+  do
     {
       p++;
-    } 
+    }
   while (is_valid_scheme_character (*p));
 
   return *p == ':';
@@ -90,7 +90,7 @@ g_file_new_relative_to_file (const gchar *path,
 
   g_return_val_if_fail (path != NULL, NULL);
   g_return_val_if_fail (G_IS_FILE (file), NULL);
-  
+
   type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
 
   if (G_UNLIKELY (type == G_FILE_TYPE_DIRECTORY))
@@ -100,7 +100,7 @@ g_file_new_relative_to_file (const gchar *path,
 
   result = g_file_new_for_unknown_input (path, dir);
   g_object_unref (dir);
-  
+
   return result;
 }
 
@@ -116,6 +116,6 @@ g_file_get_uri_relative_to_file (const gchar *path,
   absolute_file = g_file_new_relative_to_file (path, file);
   uri = g_file_get_uri (absolute_file);
   g_object_unref (absolute_file);
-  
+
   return uri;
 }

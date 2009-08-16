@@ -34,7 +34,7 @@ garcon_menu_tree_provider_get_type (void)
 
   if (g_once_init_enter (&type__volatile))
     {
-      type = g_type_register_static_simple (G_TYPE_INTERFACE, 
+      type = g_type_register_static_simple (G_TYPE_INTERFACE,
                                             g_intern_static_string ("GarconMenuTreeProvider"),
                                             sizeof (GarconMenuTreeProviderIface),
                                             NULL,

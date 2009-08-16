@@ -9,11 +9,11 @@
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Library General Public License for more details.
  *
- * You should have received a copy of the GNU Library General 
- * Public License along with this library; if not, write to the 
+ * You should have received a copy of the GNU Library General
+ * Public License along with this library; if not, write to the
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
@@ -39,12 +39,12 @@ const guint garcon_micro_version = GARCON_MICRO_VERSION;
  * @required_minor : the required minor version.
  * @required_micro : the required micro version.
  *
- * Checks that the <systemitem class="library">garcon</systemitem> 
- * library in use is compatible with the given version. Generally you 
- * would pass in the constants #GARCON_MAJOR_VERSION, 
- * #GARCON_MINOR_VERSION and #GARCON_MICRO_VERSION as the three 
+ * Checks that the <systemitem class="library">garcon</systemitem>
+ * library in use is compatible with the given version. Generally you
+ * would pass in the constants #GARCON_MAJOR_VERSION,
+ * #GARCON_MINOR_VERSION and #GARCON_MICRO_VERSION as the three
  * arguments to this function; that produces a check that the library
- * in use is compatible with the version of 
+ * in use is compatible with the version of
  * <systemitem class="library">garcon</systemitem> the application was
  * compiled against.
  *
