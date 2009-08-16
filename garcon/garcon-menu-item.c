@@ -531,7 +531,9 @@ garcon_menu_item_new (const gchar *uri)
 {
   GarconMenuItem *item = NULL;
   GKeyFile       *rc = NULL;
-  GError         *error = NULL;
+  gchar          *contents;
+  gsize           length;
+  gboolean        succeed;
   GFile          *file;
   GList          *categories = NULL;
   gboolean        terminal;
@@ -550,22 +552,17 @@ garcon_menu_item_new (const gchar *uri)
 
   g_return_val_if_fail (uri != NULL, NULL);
 
+  /* Load the contents of the file */
   file = g_file_new_for_uri (uri);
-  filename = g_file_get_path (file);
-  g_object_unref (file);
-
-  /* Return NULL if the filename is not an absolute path or if the file does not exists */
-  if (G_UNLIKELY (!g_path_is_absolute (filename) || !g_file_test (filename, G_FILE_TEST_EXISTS)))
+  if (!g_file_load_contents (file, NULL, &contents, &length, NULL, NULL))
     goto error;
 
-  /* Try to open the .desktop file */
+  /* Open the keyfile */
   rc = g_key_file_new ();
-  g_key_file_load_from_file (rc, filename, G_KEY_FILE_NONE, &error);
-  if (G_UNLIKELY (error != NULL))
-    {
-      g_error_free (error);
-      goto error;
-    }
+  succeed = g_key_file_load_from_data (rc, contents, length, G_KEY_FILE_NONE, NULL);
+  g_free (contents);
+  if (G_UNLIKELY (!succeed))
+    goto error;
 
   /* Abort if the file has been marked as "deleted"/hidden */
   if (G_UNLIKELY (g_key_file_get_boolean (rc, "Desktop Entry", "Hidden", NULL)))
@@ -589,6 +586,9 @@ garcon_menu_item_new (const gchar *uri)
       startup_notify = g_key_file_get_boolean (rc, "Desktop Entry", "StartupNotify", NULL) ||
                        g_key_file_get_boolean (rc, "Desktop Entry", "X-KDE-StartupNotify", NULL);
 
+      /* Get the filename */
+      filename = g_file_get_path (file);
+
       /* Allocate a new menu item instance */
       item = g_object_new (GARCON_TYPE_MENU_ITEM, 
                            "filename", filename,
@@ -603,6 +603,9 @@ garcon_menu_item_new (const gchar *uri)
                            "supports-startup-notification", startup_notify, 
                            "path", path,
                            NULL);
+
+      /* Cleanup */
+      g_free (filename);
 
       /* Determine the categories this application should be shown in */
       str_list = g_key_file_get_string_list (rc, "Desktop Entry", "Categories", NULL, NULL);
@@ -634,8 +637,11 @@ garcon_menu_item_new (const gchar *uri)
   g_free (try_exec);
   g_free (icon);
   g_free (path);
+
 error:
-  g_free (filename);
+
+  /* Release gfile */
+  g_object_unref (G_OBJECT (file));
 
   /* Close file handle */
   if (G_LIKELY (rc != NULL))
