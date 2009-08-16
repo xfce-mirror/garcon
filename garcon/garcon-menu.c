@@ -196,7 +196,9 @@ garcon_menu_class_init (GarconMenuClass *klass)
                                                         "file",
                                                         "file",
                                                         G_TYPE_FILE,
-                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS |
+                                                        G_PARAM_CONSTRUCT_ONLY));
 
   /**
    * GarconMenu:directory:
@@ -209,7 +211,8 @@ garcon_menu_class_init (GarconMenuClass *klass)
                                                         "Directory",
                                                         "Directory entry associated with this menu",
                                                         GARCON_TYPE_MENU_DIRECTORY,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS));
 }
 
 

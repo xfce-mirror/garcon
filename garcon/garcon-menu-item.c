@@ -171,7 +171,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "Desktop-File Id",
                                                         "Desktop-File Id of the application",
                                                         NULL,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:filename:
@@ -185,7 +186,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "Filename",
                                                         "Absolute filename",
                                                         NULL,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:requires-terminal:
@@ -198,7 +200,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                          "Requires a terminal",
                                                          "Whether this application requires a terminal",
                                                          FALSE,
-                                                         G_PARAM_READWRITE));
+                                                         G_PARAM_READWRITE |
+                                                         G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:no-display:
@@ -211,7 +214,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                          "No Display",
                                                          "Visibility state of the menu item",
                                                          FALSE,
-                                                         G_PARAM_READWRITE));
+                                                         G_PARAM_READWRITE |
+                                                         G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:startup-notification:
@@ -224,7 +228,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                          "Startup notification",
                                                          "Startup notification support",
                                                          FALSE,
-                                                         G_PARAM_READWRITE));
+                                                         G_PARAM_READWRITE |
+                                                         G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:name:
@@ -237,7 +242,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "Name",
                                                         "Name of the application",
                                                         NULL,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:generic-name:
@@ -250,7 +256,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "Generic name",
                                                         "Generic name of the application",
                                                         NULL,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:comment:
@@ -264,7 +271,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "Comment",
                                                         "Comment/description for the application",
                                                         NULL,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:command:
@@ -277,7 +285,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "Command",
                                                         "Application command",
                                                         NULL,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:try-exec:
@@ -290,7 +299,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "TryExec",
                                                         "TryExec",
                                                         NULL,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:icon-name:
@@ -303,7 +313,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "Icon name",
                                                         "Name of the application icon",
                                                         NULL,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:path:
@@ -316,7 +327,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "Path",
                                                         "Working directory path",
                                                         NULL,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS));
 }
 
 

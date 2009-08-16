@@ -127,7 +127,9 @@ garcon_menu_merger_class_init (GarconMenuMergerClass *klass)
                                                         "tree-provider",
                                                         "tree-provider",
                                                         GARCON_TYPE_MENU_TREE_PROVIDER,
-                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS |
+                                                        G_PARAM_CONSTRUCT_ONLY));
 }
 
 

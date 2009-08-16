@@ -168,6 +168,7 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
                                                         "File",
                                                         G_TYPE_FILE,
                                                         G_PARAM_READWRITE | 
+                                                        G_PARAM_STATIC_STRINGS |
                                                         G_PARAM_CONSTRUCT_ONLY));
 
   /**
@@ -181,7 +182,8 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
                                                         "Name",
                                                         "Directory name",
                                                         NULL,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuDirectory:comment:
@@ -194,7 +196,8 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
                                                         "Description",
                                                         "Directory description",
                                                         NULL,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuDirectory:icon:
@@ -207,7 +210,8 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
                                                         "Icon",
                                                         "Directory icon",
                                                         NULL,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuDirectory:no-display:
@@ -220,7 +224,8 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
                                                          "No Display",
                                                          "Visibility state of the related menu",
                                                          FALSE,
-                                                         G_PARAM_READWRITE));
+                                                         G_PARAM_READWRITE |
+                                                         G_PARAM_STATIC_STRINGS));
 
 }
 

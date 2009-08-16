@@ -155,8 +155,9 @@ garcon_menu_parser_class_init (GarconMenuParserClass *klass)
                                                         "file",
                                                         "file",
                                                         G_TYPE_FILE,
-                                                        G_PARAM_READWRITE 
-                                                        | G_PARAM_CONSTRUCT_ONLY));
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS |
+                                                        G_PARAM_CONSTRUCT_ONLY));
 }
 
 

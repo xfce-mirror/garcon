@@ -150,7 +150,8 @@ garcon_menu_node_class_init (GarconMenuNodeClass *klass)
                                                       "node-type",
                                                       garcon_menu_node_type_get_type (),
                                                       GARCON_MENU_NODE_TYPE_MENU,
-                                                      G_PARAM_READABLE | G_PARAM_WRITABLE));
+                                                      G_PARAM_READWRITE |
+                                                      G_PARAM_STATIC_STRINGS));
 }
 
 
