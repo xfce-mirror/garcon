@@ -332,8 +332,34 @@ garcon_menu_set_property (GObject      *object,
 }
 
 
+
 /**
  * garcon_menu_new:
+ * @file  : #GFile for the .menu file you want to load.
+ *
+ * Creates a new #GarconMenu for the .menu file referred to by @file.
+ * This operation only fails @file is invalid. To load the menu 
+ * tree from the file, you need to call garcon_menu_load() with the
+ * returned #GarconMenu. 
+ *
+ * The caller is responsible to destroy the returned #GarconMenu
+ * using g_object_unref().
+ *
+ * For more information about the usage @see garcon_menu_new().
+ *
+ * Return value: a new #GarconMenu for @file.
+ **/
+GarconMenu *
+garcon_menu_new (GFile *file)
+{
+  g_return_val_if_fail (G_IS_FILE (file), NULL);
+  return g_object_new (GARCON_TYPE_MENU, "file", file, NULL);
+}
+
+
+
+/**
+ * garcon_menu_new_for_path:
  * @filename : Path/URI of the .menu file you want to load.
  *
  * Creates a new #GarconMenu for the .menu file referred to by @filename.
@@ -358,7 +384,7 @@ garcon_menu_set_property (GObject      *object,
  * Return value: a new #GarconMenu for @filename.
  **/
 GarconMenu *
-garcon_menu_new (const gchar *filename)
+garcon_menu_new_for_path (const gchar *filename)
 {
   GarconMenu *menu;
   GFile      *file;
@@ -371,31 +397,6 @@ garcon_menu_new (const gchar *filename)
   g_object_unref (file);
 
   return menu;
-}
-
-
-
-/**
- * garcon_menu_new_for_file:
- * @file  : #GFile for the .menu file you want to load.
- *
- * Creates a new #GarconMenu for the .menu file referred to by @file.
- * This operation only fails @file is invalid. To load the menu 
- * tree from the file, you need to call garcon_menu_load() with the
- * returned #GarconMenu. 
- *
- * The caller is responsible to destroy the returned #GarconMenu
- * using g_object_unref().
- *
- * For more information about the usage @see garcon_menu_new().
- *
- * Return value: a new #GarconMenu for @file.
- **/
-GarconMenu *
-garcon_menu_new_for_file (GFile *file)
-{
-  g_return_val_if_fail (G_IS_FILE (file), NULL);
-  return g_object_new (GARCON_TYPE_MENU, "file", file, NULL);
 }
 
 
@@ -428,7 +429,7 @@ garcon_menu_new_applications (void)
       if (G_UNLIKELY (filename != NULL))
         {
           file = g_file_new_for_unknown_input (filename, NULL);
-          menu = garcon_menu_new_for_file (file);
+          menu = garcon_menu_new (file);
           g_object_unref (file);
         }
 
