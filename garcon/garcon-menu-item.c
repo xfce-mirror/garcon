@@ -530,7 +530,7 @@ GarconMenuItem *
 garcon_menu_item_new (const gchar *uri)
 {
   GarconMenuItem *item = NULL;
-  GKeyFile       *rc;
+  GKeyFile       *rc = NULL;
   GError         *error = NULL;
   GFile          *file;
   GList          *categories = NULL;
@@ -556,7 +556,7 @@ garcon_menu_item_new (const gchar *uri)
 
   /* Return NULL if the filename is not an absolute path or if the file does not exists */
   if (G_UNLIKELY (!g_path_is_absolute (filename) || !g_file_test (filename, G_FILE_TEST_EXISTS)))
-    return NULL;
+    goto error;
 
   /* Try to open the .desktop file */
   rc = g_key_file_new ();
@@ -564,15 +564,12 @@ garcon_menu_item_new (const gchar *uri)
   if (G_UNLIKELY (error != NULL))
     {
       g_error_free (error);
-      return NULL;
+      goto error;
     }
 
   /* Abort if the file has been marked as "deleted"/hidden */
   if (G_UNLIKELY (g_key_file_get_boolean (rc, "Desktop Entry", "Hidden", NULL)))
-    {
-      g_key_file_free (rc);
-      return NULL;
-    }
+    goto error;
 
   /* Parse name, exec command and icon name */
   name = g_key_file_get_locale_string (rc, "Desktop Entry", "Name", NULL, NULL);
@@ -637,9 +634,12 @@ garcon_menu_item_new (const gchar *uri)
   g_free (try_exec);
   g_free (icon);
   g_free (path);
+error:
+  g_free (filename);
 
   /* Close file handle */
-  g_key_file_free (rc);
+  if (G_LIKELY (rc != NULL))
+    g_key_file_free (rc);
 
   return item;
 }
