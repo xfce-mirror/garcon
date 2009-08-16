@@ -6,7 +6,7 @@
  xmlns="http://usefulinc.com/ns/doap#">
 
  <name xml:lang="en">garcon</name>
- <shortdesc xml:lang="en">A freedesktop.org compliant menu implementation based on GLib and GIO</shortdesc>
+ <shortdesc xml:lang="en">Freedesktop.org compliant menu library</shortdesc>
  <homepage rdf:resource="http://www.xfce.org"/>
  <mailing-list rdf:resource="http://foo-projects.org/mailmain/listinfo/xfce4-dev"/>
 
