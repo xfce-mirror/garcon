@@ -1156,7 +1156,6 @@ gboolean
 garcon_menu_item_only_show_in_environment (GarconMenuItem *item)
 {
   const gchar *env;
-  gboolean     show = FALSE;
   guint        i;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
@@ -1171,15 +1170,14 @@ garcon_menu_item_only_show_in_environment (GarconMenuItem *item)
   /* Check if we have an OnlyShowIn list */
   if (G_UNLIKELY (item->priv->only_show_in != NULL))
     {
-      for (i = 0; i < g_strv_length (item->priv->only_show_in); ++i)
-        if (G_UNLIKELY (g_utf8_collate (item->priv->only_show_in[i], env) == 0))
-          {
-            show = TRUE;
-            break;
-          }
+      /* Check if your environemnt is in OnlyShowIn list */
+      for (i = 0; item->priv->only_show_in[i] != NULL; i++)
+        if (g_utf8_collate (item->priv->only_show_in[i], env) == 0)
+          return TRUE;
     }
 
-  return show;
+  /* Not in the list or not list, hide it */
+  return FALSE;
 }
 
 
