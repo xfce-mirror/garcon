@@ -320,7 +320,7 @@ garcon_menu_directory_new (GFile *file)
   GarconMenuDirectory *directory = NULL;
   gchar               *contents;
   gsize                length;
-  GKeyFile            *rc = NULL;
+  GKeyFile            *rc;
   gchar               *name;
   gchar               *comment;
   gchar               *icon;
@@ -339,7 +339,11 @@ garcon_menu_directory_new (GFile *file)
   succeed = g_key_file_load_from_data (rc, contents, length, G_KEY_FILE_NONE, NULL);
   g_free (contents);
   if (G_UNLIKELY (!succeed))
-    goto error;
+    {
+      /* Cleanup and leave */
+      g_key_file_free (rc);
+      return NULL;
+    }
 
   /* Parse name, exec command and icon name */
   name = g_key_file_get_locale_string (rc, "Desktop Entry", "Name", NULL, NULL);
@@ -356,7 +360,7 @@ garcon_menu_directory_new (GFile *file)
                             "no-display", no_display,
                             NULL);
 
-  /* Cleanup */
+  /* Free strings */
   g_free (name);
   g_free (comment);
   g_free (icon);
@@ -366,10 +370,8 @@ garcon_menu_directory_new (GFile *file)
   directory->priv->not_show_in = g_key_file_get_string_list (rc, "Desktop Entry", "NotShowIn", NULL, NULL);
   directory->priv->hidden = g_key_file_get_boolean (rc, "Desktop Entry", "Hidden", NULL);
 
-error:
   /* Cleanup */
-  if (G_LIKELY (rc != NULL))
-    g_key_file_free (rc);
+  g_key_file_free (rc);
 
   return directory;
 }

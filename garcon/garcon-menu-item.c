@@ -529,7 +529,7 @@ GarconMenuItem *
 garcon_menu_item_new (GFile *file)
 {
   GarconMenuItem *item = NULL;
-  GKeyFile       *rc = NULL;
+  GKeyFile       *rc;
   gchar          *contents;
   gsize           length;
   gboolean        succeed;
@@ -557,12 +557,14 @@ garcon_menu_item_new (GFile *file)
   rc = g_key_file_new ();
   succeed = g_key_file_load_from_data (rc, contents, length, G_KEY_FILE_NONE, NULL);
   g_free (contents);
-  if (G_UNLIKELY (!succeed))
-    goto error;
 
-  /* Abort if the file has been marked as "deleted"/hidden */
-  if (G_UNLIKELY (g_key_file_get_boolean (rc, "Desktop Entry", "Hidden", NULL)))
-    goto error;
+  /* Abort if loading failed or the file has been marked as "deleted"/hidden */
+  if (!succeed || g_key_file_get_boolean (rc, "Desktop Entry", "Hidden", NULL))
+    {
+      /* Cleanup and leave */
+      g_key_file_free (rc);
+      return NULL;
+    }
 
   /* Parse name, exec command and icon name */
   name = g_key_file_get_locale_string (rc, "Desktop Entry", "Name", NULL, NULL);
@@ -628,10 +630,8 @@ garcon_menu_item_new (GFile *file)
   g_free (icon);
   g_free (path);
 
-error:
-  /* Close file handle */
-  if (G_LIKELY (rc != NULL))
-    g_key_file_free (rc);
+  /* Cleanup */
+  g_key_file_free (rc);
 
   return item;
 }
