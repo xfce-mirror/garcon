@@ -50,6 +50,8 @@ const gchar *garcon_check_version (guint required_major,
                                    guint required_minor,
                                    guint required_micro);
 
+gchar       *garcon_config_lookup (const gchar *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+
 G_END_DECLS
 
 #endif /* !__GARCON_CONFIG_H__ */

@@ -41,13 +41,4 @@
 
 #undef GARCON_INSIDE_GARCON_H
 
-G_BEGIN_DECLS
-
-void   garcon_init          (const gchar *env);
-void   garcon_shutdown      (void);
-
-gchar *garcon_config_lookup (const gchar *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
-
-G_END_DECLS
-
 #endif /* !__GARCON_H__ */

@@ -45,7 +45,6 @@ libgarcon_headers =							\
 	garcon-menu-parser.h
 
 libgarcon_sources =							\
-	garcon.c							\
 	garcon-config.c							\
 	garcon-gio.c							\
 	garcon-menu-element.c						\

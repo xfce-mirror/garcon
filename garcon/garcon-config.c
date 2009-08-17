@@ -74,3 +74,37 @@ garcon_check_version (guint required_major,
 {
   return NULL;
 }
+
+
+
+gchar *
+garcon_config_lookup (const gchar *filename)
+{
+  const gchar * const *dirs;
+  gchar               *path;
+  guint                i;
+
+  g_return_val_if_fail (filename != NULL && *filename != '\0', NULL);
+
+  /* Look for the file in the user's config directory */
+  path = g_build_filename (g_get_user_config_dir (), filename, NULL);
+  if (g_path_is_absolute (path)
+      && g_file_test (path, G_FILE_TEST_IS_REGULAR))
+    return path;
+  g_free (path);
+
+  /* Look for the file in the system config directories */
+  dirs = g_get_system_config_dirs ();
+  for (i = 0; dirs[i] != NULL; ++i)
+    {
+      /* Build the filename, if the file exists return the path */
+      path = g_build_filename (dirs[i], filename, NULL);
+      if (g_path_is_absolute (path)
+          && g_file_test (path, G_FILE_TEST_IS_REGULAR))
+        return path;
+      g_free (path);
+    }
+
+  /* Nothing found */
+  return NULL;
+}
