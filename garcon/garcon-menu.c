@@ -784,7 +784,7 @@ garcon_menu_lookup_directory (GarconMenu  *menu,
       if (G_LIKELY (g_file_query_exists (file, NULL)))
         {
           /* Load menu directory */
-          directory = g_object_new (GARCON_TYPE_MENU_DIRECTORY, "file", file, NULL);
+          directory = garcon_menu_directory_new (file);
 
           /* Update search status */
           found = TRUE;

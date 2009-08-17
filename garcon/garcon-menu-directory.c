@@ -65,7 +65,6 @@ enum
 
 
 
-static void garcon_menu_directory_constructed  (GObject                  *object);
 static void garcon_menu_directory_finalize     (GObject                  *object);
 static void garcon_menu_directory_get_property (GObject                  *object,
                                                 guint                     prop_id,
@@ -75,7 +74,6 @@ static void garcon_menu_directory_set_property (GObject                  *object
                                                 guint                     prop_id,
                                                 const GValue             *value,
                                                 GParamSpec               *pspec);
-static void garcon_menu_directory_load         (GarconMenuDirectory      *directory);
 
 
 
@@ -120,7 +118,6 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
   g_type_class_add_private (klass, sizeof(GarconMenuDirectoryPrivate));
 
   gobject_class = G_OBJECT_CLASS (klass);
-  gobject_class->constructed = garcon_menu_directory_constructed;
   gobject_class->finalize = garcon_menu_directory_finalize;
   gobject_class->get_property = garcon_menu_directory_get_property;
   gobject_class->set_property = garcon_menu_directory_set_property;
@@ -211,15 +208,6 @@ garcon_menu_directory_init (GarconMenuDirectory *directory)
   directory->priv->not_show_in = NULL;
   directory->priv->hidden = FALSE;
   directory->priv->no_display = FALSE;
-}
-
-
-
-static void
-garcon_menu_directory_constructed (GObject *object)
-{
-  GarconMenuDirectory *directory = GARCON_MENU_DIRECTORY (object);
-  garcon_menu_directory_load (directory);
 }
 
 
@@ -326,49 +314,64 @@ garcon_menu_directory_set_property (GObject      *object,
 
 
 
-static void
-garcon_menu_directory_load (GarconMenuDirectory *directory)
+GarconMenuDirectory *
+garcon_menu_directory_new (GFile *file)
 {
-  GKeyFile    *entry;
-  GError      *error = NULL;
-  const gchar *name;
-  const gchar *comment;
-  const gchar *icon;
-  gchar       *filename;
+  GarconMenuDirectory *directory = NULL;
+  gchar               *contents;
+  gsize                length;
+  GKeyFile            *rc = NULL;
+  gchar               *name;
+  gchar               *comment;
+  gchar               *icon;
+  gboolean             no_display;
+  gboolean             succeed;
 
-  g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
+  g_return_val_if_fail (GARCON_IS_MENU_DIRECTORY (directory), NULL);
+  g_return_val_if_fail (G_IS_FILE (directory->priv->file), NULL);
 
-  /* TODO: Use get_uri() here, together with g_file_read() and
-   * g_key_file_load_from_data() */
+  /* Load the contents of the file */
+  if (!g_file_load_contents (file, NULL, &contents, &length, NULL, NULL))
+    return NULL;
 
-  filename = g_file_get_path (directory->priv->file);
-  entry = g_key_file_new ();
-  g_key_file_load_from_file (entry, filename, G_KEY_FILE_NONE, &error);
-  g_free (filename);
+  /* Open the keyfile */
+  rc = g_key_file_new ();
+  succeed = g_key_file_load_from_data (rc, contents, length, G_KEY_FILE_NONE, NULL);
+  g_free (contents);
+  if (G_UNLIKELY (!succeed))
+    goto error;
 
-  if (G_UNLIKELY (error != NULL))
-    {
-      g_error_free (error);
-      return;
-    }
+  /* Parse name, exec command and icon name */
+  name = g_key_file_get_locale_string (rc, "Desktop Entry", "Name", NULL, NULL);
+  comment = g_key_file_get_locale_string (rc, "Desktop Entry", "Comment", NULL, NULL);
+  icon = g_key_file_get_locale_string (rc, "Desktop Entry", "Icon", NULL, NULL);
+  no_display = g_key_file_get_boolean (rc, "Desktop Entry", "NoDisplay", NULL);
+  
+  /* Allocate a new directory instance */
+  directory = g_object_new (GARCON_TYPE_MENU_DIRECTORY,
+                            "file", file,
+                            "name", name,
+                            "comment", comment,
+                            "icon", icon,
+                            "no-display", no_display,
+                            NULL);
 
-  /* Read directory information */
-  name = g_key_file_get_locale_string (entry, "Desktop Entry", "Name", NULL, NULL);
-  comment = g_key_file_get_locale_string (entry, "Desktop Entry", "Comment", NULL, NULL);
-  icon = g_key_file_get_locale_string (entry, "Desktop Entry", "Icon", NULL, NULL);
-
-  /* Pass data to the directory */
-  garcon_menu_directory_set_name (directory, name);
-  garcon_menu_directory_set_comment (directory, comment);
-  garcon_menu_directory_set_icon (directory, icon);
-  garcon_menu_directory_set_no_display (directory, g_key_file_get_boolean (entry, "Desktop Entry", "NoDisplay", NULL));
+  /* Cleanup */
+  g_free (name);
+  g_free (comment);
+  g_free (icon);
 
   /* Set rest of the private data directly */
-  directory->priv->only_show_in = g_key_file_get_string_list (entry, "Desktop Entry", "OnlyShowIn", NULL, NULL);
-  directory->priv->not_show_in = g_key_file_get_string_list (entry, "Desktop Entry", "NotShowIn", NULL, NULL);
-  directory->priv->hidden = g_key_file_get_boolean (entry, "Desktop Entry", "Hidden", NULL);
+  directory->priv->only_show_in = g_key_file_get_string_list (rc, "Desktop Entry", "OnlyShowIn", NULL, NULL);
+  directory->priv->not_show_in = g_key_file_get_string_list (rc, "Desktop Entry", "NotShowIn", NULL, NULL);
+  directory->priv->hidden = g_key_file_get_boolean (rc, "Desktop Entry", "Hidden", NULL);
 
-  g_key_file_free (entry);
+error:
+  /* Cleanup */
+  if (G_LIKELY (rc != NULL))
+    g_key_file_free (rc);
+
+  return directory;
 }
 
 

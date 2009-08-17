@@ -55,25 +55,27 @@ struct _GarconMenuDirectory
 
 
 
-GType        garcon_menu_directory_get_type                (void) G_GNUC_CONST;
+GType                garcon_menu_directory_get_type                (void) G_GNUC_CONST;
 
-GFile       *garcon_menu_directory_get_file                (GarconMenuDirectory *directory);
-const gchar *garcon_menu_directory_get_name                (GarconMenuDirectory *directory);
-void         garcon_menu_directory_set_name                (GarconMenuDirectory *directory,
-                                                            const gchar         *name);
-const gchar *garcon_menu_directory_get_comment             (GarconMenuDirectory *directory);
-void         garcon_menu_directory_set_comment             (GarconMenuDirectory *directory,
-                                                            const gchar         *comment);
-const gchar *garcon_menu_directory_get_icon                (GarconMenuDirectory *directory);
-void         garcon_menu_directory_set_icon                (GarconMenuDirectory *directory,
-                                                            const gchar         *icon);
-gboolean     garcon_menu_directory_get_no_display          (GarconMenuDirectory *directory);
-void         garcon_menu_directory_set_no_display          (GarconMenuDirectory *directory,
-                                                            gboolean             no_display);
-gboolean     garcon_menu_directory_get_hidden              (GarconMenuDirectory *directory);
-gboolean     garcon_menu_directory_get_show_in_environment (GarconMenuDirectory *directory);
-gboolean     garcon_menu_directory_get_visible             (GarconMenuDirectory *directory);
-gboolean     garcon_menu_directory_equal                   (GarconMenuDirectory *directory,
+GarconMenuDirectory *garcon_menu_directory_new                     (GFile               *file) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+
+GFile               *garcon_menu_directory_get_file                (GarconMenuDirectory *directory);
+const gchar         *garcon_menu_directory_get_name                (GarconMenuDirectory *directory);
+void                 garcon_menu_directory_set_name                (GarconMenuDirectory *directory,
+                                                                    const gchar         *name);
+const gchar         *garcon_menu_directory_get_comment             (GarconMenuDirectory *directory);
+void                 garcon_menu_directory_set_comment             (GarconMenuDirectory *directory,
+                                                                    const gchar         *comment);
+const gchar         *garcon_menu_directory_get_icon                (GarconMenuDirectory *directory);
+void                 garcon_menu_directory_set_icon                (GarconMenuDirectory *directory,
+                                                                    const gchar         *icon);
+gboolean             garcon_menu_directory_get_no_display          (GarconMenuDirectory *directory);
+void                 garcon_menu_directory_set_no_display          (GarconMenuDirectory *directory,
+                                                                    gboolean             no_display);
+gboolean             garcon_menu_directory_get_hidden              (GarconMenuDirectory *directory);
+gboolean             garcon_menu_directory_get_show_in_environment (GarconMenuDirectory *directory);
+gboolean             garcon_menu_directory_get_visible             (GarconMenuDirectory *directory);
+gboolean             garcon_menu_directory_equal                   (GarconMenuDirectory *directory,
                                                             GarconMenuDirectory *other);
 
 G_END_DECLS
