@@ -518,8 +518,6 @@ gboolean
 garcon_menu_directory_get_show_in_environment (GarconMenuDirectory *directory)
 {
   const gchar *env;
-  gboolean     show = TRUE;
-  gboolean     included;
   guint        i;
 
   g_return_val_if_fail (GARCON_IS_MENU_DIRECTORY (directory), FALSE);
@@ -532,38 +530,30 @@ garcon_menu_directory_get_show_in_environment (GarconMenuDirectory *directory)
   if (G_UNLIKELY (env == NULL))
     return TRUE;
 
-  /* Check if we have a OnlyShowIn OR a NotShowIn list (only one of them will be
-   * there, according to the desktop entry specification) */
+  /* According to the spec there is either a OnlyShowIn or a NotShowIn list */
   if (G_UNLIKELY (directory->priv->only_show_in != NULL))
     {
-      /* Determine whether our environment is included in this list */
-      included = FALSE;
-      for (i = 0; i < g_strv_length (directory->priv->only_show_in); ++i)
-        {
-          if (G_UNLIKELY (g_utf8_collate (directory->priv->only_show_in[i], env) == 0))
-            included = TRUE;
-        }
+      /* Check if your environemnt is in OnlyShowIn list */
+      for (i = 0; directory->priv->only_show_in[i] != NULL; i++)
+        if (g_utf8_collate (directory->priv->only_show_in[i], env) == 0)
+          return TRUE;
 
-      /* If it's not, don't show the menu */
-      if (G_LIKELY (!included))
-        show = FALSE;
+      /* Not in the list, hide it */
+      return FALSE;
     }
   else if (G_UNLIKELY (directory->priv->not_show_in != NULL))
     {
-      /* Determine whether our environment is included in this list */
-      included = FALSE;
-      for (i = 0; i < g_strv_length (directory->priv->not_show_in); ++i)
-        {
-          if (G_UNLIKELY (g_utf8_collate (directory->priv->not_show_in[i], env) == 0))
-            included = TRUE;
-        }
+      /* Check if your environemnt is in NotShowIn list */
+      for (i = 0; directory->priv->not_show_in[i] != NULL; i++)
+        if (g_utf8_collate (directory->priv->not_show_in[i], env) == 0)
+          return FALSE;
 
-      /* If it is, hide the menu */
-      if (G_UNLIKELY (included))
-        show = FALSE;
+      /* Not in the list, show it */
+      return TRUE;
     }
 
-  return show;
+  /* No list, show it */
+  return TRUE;
 }
 
 
