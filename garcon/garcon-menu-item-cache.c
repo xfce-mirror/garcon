@@ -217,10 +217,6 @@ garcon_menu_item_cache_invalidate (GarconMenuItemCache *cache)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM_CACHE (cache));
 
-  /* Destroy the hash table */
-  g_hash_table_unref (cache->priv->items);
-
-  /* Create a new, empty hash table */
-  cache->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
-                                              (GDestroyNotify) garcon_menu_item_unref);
+  /* Remove all items from the hash table */
+  g_hash_table_remove_all (cache->priv->items);
 }
