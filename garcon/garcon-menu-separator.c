@@ -98,13 +98,13 @@ garcon_menu_separator_get_default (void)
 
   if (G_UNLIKELY (separator == NULL))
     {
-      /* create a new cache */
+      /* Create a new separator */
       separator = g_object_new (GARCON_TYPE_MENU_SEPARATOR, NULL);
       g_object_add_weak_pointer (G_OBJECT (separator), (gpointer) &separator);
     }
   else
     {
-      /* set and extra reference */
+      /* Take a reference */
       g_object_ref (G_OBJECT (separator));
     }
 

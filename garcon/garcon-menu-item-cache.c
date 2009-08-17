@@ -108,13 +108,13 @@ garcon_menu_item_cache_get_default (void)
 
   if (G_UNLIKELY (cache == NULL))
     {
-      /* create a new cache */
+      /* Create a new cache */
       cache = g_object_new (GARCON_TYPE_MENU_ITEM_CACHE, NULL);
       g_object_add_weak_pointer (G_OBJECT (cache), (gpointer) &cache);
     }
   else
     {
-      /* set and extra reference */
+      /* Take a reference */
       g_object_ref (G_OBJECT (cache));
     }
 
