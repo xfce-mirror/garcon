@@ -58,3 +58,6 @@ test_menu_spec_LDADD =							\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(GLIB_LIBS)							\
 	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
+
+EXTRA_DIST =								\
+	test-display-menu.c
