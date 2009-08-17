@@ -346,7 +346,7 @@ garcon_menu_directory_new (GFile *file)
   comment = g_key_file_get_locale_string (rc, "Desktop Entry", "Comment", NULL, NULL);
   icon = g_key_file_get_locale_string (rc, "Desktop Entry", "Icon", NULL, NULL);
   no_display = g_key_file_get_boolean (rc, "Desktop Entry", "NoDisplay", NULL);
-  
+
   /* Allocate a new directory instance */
   directory = g_object_new (GARCON_TYPE_MENU_DIRECTORY,
                             "file", file,
