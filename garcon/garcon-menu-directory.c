@@ -327,8 +327,7 @@ garcon_menu_directory_new (GFile *file)
   gboolean             no_display;
   gboolean             succeed;
 
-  g_return_val_if_fail (GARCON_IS_MENU_DIRECTORY (directory), NULL);
-  g_return_val_if_fail (G_IS_FILE (directory->priv->file), NULL);
+  g_return_val_if_fail (G_IS_FILE (file), NULL);
 
   /* Load the contents of the file */
   if (!g_file_load_contents (file, NULL, &contents, &length, NULL, NULL))
