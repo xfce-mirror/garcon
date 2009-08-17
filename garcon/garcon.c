@@ -57,10 +57,6 @@ garcon_init (const gchar *env)
 {
   if (g_atomic_int_exchange_and_add (&garcon_ref_count, 1) == 0)
     {
-      /* Initialize the GThread system */
-      if (!g_thread_supported ())
-        g_thread_init (NULL);
-
       /* Initialize the GObject type system */
       g_type_init ();
 
