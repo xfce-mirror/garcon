@@ -69,9 +69,6 @@ garcon_init (const gchar *env)
       /* Set desktop environment */
       garcon_set_environment (env);
 
-      /* Initialize the menu item cache */
-      _garcon_menu_item_cache_init ();
-
       /* Creates the menu separator */
       _garcon_menu_separator_init ();
    }
@@ -94,9 +91,6 @@ garcon_shutdown (void)
 
       /* Destroys the menu separator */
       _garcon_menu_separator_shutdown ();
-
-      /* Shutdown the menu item cache */
-      _garcon_menu_item_cache_shutdown ();
     }
 }
 

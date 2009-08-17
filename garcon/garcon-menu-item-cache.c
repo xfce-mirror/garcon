@@ -51,39 +51,6 @@ static void garcon_menu_item_cache_finalize   (GObject                  *object)
 
 
 
-
-static GarconMenuItemCache *_garcon_menu_item_cache = NULL;
-
-
-
-void
-_garcon_menu_item_cache_init (void)
-{
-  if (G_LIKELY (_garcon_menu_item_cache == NULL))
-    {
-      _garcon_menu_item_cache = g_object_new (GARCON_TYPE_MENU_ITEM_CACHE, NULL);
-      g_object_add_weak_pointer (G_OBJECT (_garcon_menu_item_cache),
-                                 (gpointer) &_garcon_menu_item_cache);
-    }
-}
-
-
-
-void
-_garcon_menu_item_cache_shutdown (void)
-{
-  if (G_LIKELY (_garcon_menu_item_cache != NULL))
-    g_object_unref (G_OBJECT (_garcon_menu_item_cache));
-
-}
-
-
-
-struct _GarconMenuItemCacheClass
-{
-  GObjectClass __parent__;
-};
-
 struct _GarconMenuItemCachePrivate
 {
   /* Hash table for mapping absolute filenames to GarconMenuItem's */
@@ -91,14 +58,6 @@ struct _GarconMenuItemCachePrivate
 
   /* Mutex lock */
   GMutex     *lock;
-};
-
-struct _GarconMenuItemCache
-{
-  GObject                     __parent__;
-
-  /* Private data */
-  GarconMenuItemCachePrivate *priv;
 };
 
 
@@ -149,7 +108,21 @@ garcon_menu_item_cache_init (GarconMenuItemCache *cache)
 GarconMenuItemCache*
 garcon_menu_item_cache_get_default (void)
 {
-  return g_object_ref (G_OBJECT (_garcon_menu_item_cache));
+  static GarconMenuItemCache *cache = NULL;
+
+  if (G_UNLIKELY (cache == NULL))
+    {
+      /* create a new cache */
+      cache = g_object_new (GARCON_TYPE_MENU_ITEM_CACHE, NULL);
+      g_object_add_weak_pointer (G_OBJECT (cache), (gpointer) &cache);
+    }
+  else
+    {
+      /* set and extra reference */
+      g_object_ref (G_OBJECT (cache));
+    }
+
+  return cache;
 }
 
 

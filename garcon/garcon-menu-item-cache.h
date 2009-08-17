@@ -41,6 +41,21 @@ typedef struct _GarconMenuItemCache        GarconMenuItemCache;
 #define GARCON_IS_MENU_ITEM_CACHE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_ITEM_CACHE))
 #define GARCON_MENU_ITEM_CACHE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_ITEM_CACHE, GarconMenuItemCacheClass))
 
+struct _GarconMenuItemCacheClass
+{
+  GObjectClass __parent__;
+};
+
+struct _GarconMenuItemCache
+{
+  GObject                     __parent__;
+
+  /* Private data */
+  GarconMenuItemCachePrivate *priv;
+};
+
+
+
 GType                garcon_menu_item_cache_get_type    (void) G_GNUC_CONST;
 
 GarconMenuItemCache *garcon_menu_item_cache_get_default (void);
@@ -52,11 +67,6 @@ void                 garcon_menu_item_cache_foreach     (GarconMenuItemCache *ca
                                                          GHFunc               func,
                                                          gpointer             user_data);
 void                 garcon_menu_item_cache_invalidate  (GarconMenuItemCache *cache);
-
-#if defined(GARCON_COMPILATION)
-void                 _garcon_menu_item_cache_init       (void) G_GNUC_INTERNAL;
-void                 _garcon_menu_item_cache_shutdown   (void) G_GNUC_INTERNAL;
-#endif
 
 G_END_DECLS
 
