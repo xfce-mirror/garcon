@@ -551,7 +551,7 @@ garcon_menu_item_new (GFile *file)
 
   /* Load the contents of the file */
   if (!g_file_load_contents (file, NULL, &contents, &length, NULL, NULL))
-    goto error;
+    return NULL;
 
   /* Open the keyfile */
   rc = g_key_file_new ();
@@ -629,10 +629,6 @@ garcon_menu_item_new (GFile *file)
   g_free (path);
 
 error:
-
-  /* Release gfile */
-  g_object_unref (G_OBJECT (file));
-
   /* Close file handle */
   if (G_LIKELY (rc != NULL))
     g_key_file_free (rc);
