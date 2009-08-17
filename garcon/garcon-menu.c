@@ -1295,7 +1295,7 @@ garcon_menu_get_elements (GarconMenu *menu)
           if (G_LIKELY (item != NULL))
             items = g_list_append (items, item);
         }
-      if (type == GARCON_MENU_NODE_TYPE_MENUNAME)
+      else if (type == GARCON_MENU_NODE_TYPE_MENUNAME)
         {
           /* Search submenu with this name */
           submenu = garcon_menu_get_menu_with_name (menu,
