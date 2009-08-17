@@ -49,9 +49,6 @@ garcon_menu_separator_class_init (GarconMenuSeparatorClass *klass)
 {
   GObjectClass *gobject_class;
 
-  /* Determine parent type class */
-  garcon_menu_separator_parent_class = g_type_class_peek_parent (klass);
-
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = garcon_menu_separator_finalize;
 }

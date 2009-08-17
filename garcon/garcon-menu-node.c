@@ -135,9 +135,6 @@ garcon_menu_node_class_init (GarconMenuNodeClass *klass)
 {
   GObjectClass *gobject_class;
 
-  /* Determine the parent type class */
-  garcon_menu_node_parent_class = g_type_class_peek_parent (klass);
-
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = garcon_menu_node_finalize;
   gobject_class->get_property = garcon_menu_node_get_property;

@@ -119,9 +119,6 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
 
   g_type_class_add_private (klass, sizeof(GarconMenuDirectoryPrivate));
 
-  /* Determine the parent type class */
-  garcon_menu_directory_parent_class = g_type_class_peek_parent (klass);
-
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->constructed = garcon_menu_directory_constructed;
   gobject_class->finalize = garcon_menu_directory_finalize;

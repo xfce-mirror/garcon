@@ -152,9 +152,6 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
 
   g_type_class_add_private (klass, sizeof (GarconMenuItemPrivate));
 
-  /* Determine the parent type class */
-  garcon_menu_item_parent_class = g_type_class_peek_parent (klass);
-
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = garcon_menu_item_finalize;
   gobject_class->get_property = garcon_menu_item_get_property;

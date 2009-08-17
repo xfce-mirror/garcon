@@ -141,9 +141,6 @@ garcon_menu_parser_class_init (GarconMenuParserClass *klass)
 
   g_type_class_add_private (klass, sizeof (GarconMenuParserPrivate));
 
-  /* Determine the parent type class */
-  garcon_menu_parser_parent_class = g_type_class_peek_parent (klass);
-
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = garcon_menu_parser_finalize;
   gobject_class->get_property = garcon_menu_parser_get_property;

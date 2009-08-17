@@ -73,9 +73,6 @@ garcon_menu_item_cache_class_init (GarconMenuItemCacheClass *klass)
 
   g_type_class_add_private (klass, sizeof (GarconMenuItemCachePrivate));
 
-  /* Determine the parent type class */
-  garcon_menu_item_cache_parent_class = g_type_class_peek_parent (klass);
-
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = garcon_menu_item_cache_finalize;
 }

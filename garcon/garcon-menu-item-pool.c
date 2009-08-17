@@ -70,9 +70,6 @@ garcon_menu_item_pool_class_init (GarconMenuItemPoolClass *klass)
 
   g_type_class_add_private (klass, sizeof (GarconMenuItemPoolPrivate));
 
-  /* Determine the parent type class */
-  garcon_menu_item_pool_parent_class = g_type_class_peek_parent (klass);
-
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = garcon_menu_item_pool_finalize;
 }
