@@ -1106,6 +1106,7 @@ garcon_menu_item_get_show_in_environment (GarconMenuItem *item)
 {
   const gchar *env;
   guint        i;
+  gboolean     show = TRUE;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
 
@@ -1121,26 +1122,19 @@ garcon_menu_item_get_show_in_environment (GarconMenuItem *item)
   if (G_UNLIKELY (item->priv->only_show_in != NULL))
     {
       /* Check if your environemnt is in OnlyShowIn list */
-      for (i = 0; item->priv->only_show_in[i] != NULL; i++)
+      for (i = 0, show = FALSE; !show && item->priv->only_show_in[i] != NULL; i++)
         if (g_utf8_collate (item->priv->only_show_in[i], env) == 0)
-          return TRUE;
-
-      /* Not in the list, hide it */
-      return FALSE;
+          show = TRUE;
     }
   else if (G_UNLIKELY (item->priv->not_show_in != NULL))
     {
       /* Check if your environemnt is in NotShowIn list */
-      for (i = 0; item->priv->not_show_in[i] != NULL; i++)
+      for (i = 0, show = TRUE; show && item->priv->not_show_in[i] != NULL; i++)
         if (g_utf8_collate (item->priv->not_show_in[i], env) == 0)
-          return FALSE;
-
-      /* Not in the list, show it */
-      return TRUE;
+          show = FALSE;
     }
 
-  /* No list, show it */
-  return TRUE;
+  return show;
 }
 
 
@@ -1150,6 +1144,7 @@ garcon_menu_item_only_show_in_environment (GarconMenuItem *item)
 {
   const gchar *env;
   guint        i;
+  gboolean     show = FALSE;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
 
@@ -1164,13 +1159,12 @@ garcon_menu_item_only_show_in_environment (GarconMenuItem *item)
   if (G_UNLIKELY (item->priv->only_show_in != NULL))
     {
       /* Check if your environemnt is in OnlyShowIn list */
-      for (i = 0; item->priv->only_show_in[i] != NULL; i++)
+      for (i = 0, show = FALSE; !show && item->priv->only_show_in[i] != NULL; i++)
         if (g_utf8_collate (item->priv->only_show_in[i], env) == 0)
-          return TRUE;
+          show = TRUE;
     }
 
-  /* Not in the list or not list, hide it */
-  return FALSE;
+  return show;
 }
 
 

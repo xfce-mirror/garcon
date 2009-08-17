@@ -519,6 +519,7 @@ garcon_menu_directory_get_show_in_environment (GarconMenuDirectory *directory)
 {
   const gchar *env;
   guint        i;
+  gboolean     show = TRUE;
 
   g_return_val_if_fail (GARCON_IS_MENU_DIRECTORY (directory), FALSE);
 
@@ -534,26 +535,19 @@ garcon_menu_directory_get_show_in_environment (GarconMenuDirectory *directory)
   if (G_UNLIKELY (directory->priv->only_show_in != NULL))
     {
       /* Check if your environemnt is in OnlyShowIn list */
-      for (i = 0; directory->priv->only_show_in[i] != NULL; i++)
+      for (i = 0, show = FALSE; !show && directory->priv->only_show_in[i] != NULL; i++)
         if (g_utf8_collate (directory->priv->only_show_in[i], env) == 0)
-          return TRUE;
-
-      /* Not in the list, hide it */
-      return FALSE;
+          show = TRUE;
     }
   else if (G_UNLIKELY (directory->priv->not_show_in != NULL))
     {
       /* Check if your environemnt is in NotShowIn list */
-      for (i = 0; directory->priv->not_show_in[i] != NULL; i++)
+      for (i = 0, show = TRUE; show && directory->priv->not_show_in[i] != NULL; i++)
         if (g_utf8_collate (directory->priv->not_show_in[i], env) == 0)
-          return FALSE;
-
-      /* Not in the list, show it */
-      return TRUE;
+          show = FALSE;
     }
 
-  /* No list, show it */
-  return TRUE;
+  return show;
 }
 
 
