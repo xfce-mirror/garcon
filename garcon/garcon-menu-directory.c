@@ -30,20 +30,6 @@
 
 
 
-void
-_garcon_menu_directory_init (void)
-{
-}
-
-
-
-void
-_garcon_menu_directory_shutdown (void)
-{
-}
-
-
-
 #define GARCON_MENU_DIRECTORY_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GARCON_TYPE_MENU_DIRECTORY, GarconMenuDirectoryPrivate))
 
 
@@ -89,7 +75,6 @@ static void garcon_menu_directory_set_property (GObject                  *object
                                                 guint                     prop_id,
                                                 const GValue             *value,
                                                 GParamSpec               *pspec);
-static void garcon_menu_directory_free_private (GarconMenuDirectory      *directory);
 static void garcon_menu_directory_load         (GarconMenuDirectory      *directory);
 
 
@@ -119,19 +104,6 @@ struct _GarconMenuDirectoryPrivate
 
   /* Whether the menu should be hidden */
   guint   no_display : 1;
-};
-
-struct _GarconMenuDirectoryClass
-{
-  GObjectClass __parent__;
-};
-
-struct _GarconMenuDirectory
-{
-  GObject                        __parent__;
-
-  /* < private > */
-  GarconMenuDirectoryPrivate *priv;
 };
 
 
@@ -260,8 +232,18 @@ garcon_menu_directory_finalize (GObject *object)
 {
   GarconMenuDirectory *directory = GARCON_MENU_DIRECTORY (object);
 
-  /* Free private data */
-  garcon_menu_directory_free_private (directory);
+  /* Free name */
+  g_free (directory->priv->name);
+
+  /* Free comment */
+  g_free (directory->priv->comment);
+
+  /* Free icon */
+  g_free (directory->priv->icon);
+
+  /* Free environment lists */
+  g_strfreev (directory->priv->only_show_in);
+  g_strfreev (directory->priv->not_show_in);
 
   /* Free file */
   g_object_unref (directory->priv->file);
@@ -343,6 +325,53 @@ garcon_menu_directory_set_property (GObject      *object,
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
     }
+}
+
+
+
+static void
+garcon_menu_directory_load (GarconMenuDirectory *directory)
+{
+  GKeyFile    *entry;
+  GError      *error = NULL;
+  const gchar *name;
+  const gchar *comment;
+  const gchar *icon;
+  gchar       *filename;
+
+  g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
+
+  /* TODO: Use get_uri() here, together with g_file_read() and
+   * g_key_file_load_from_data() */
+
+  filename = g_file_get_path (directory->priv->file);
+  entry = g_key_file_new ();
+  g_key_file_load_from_file (entry, filename, G_KEY_FILE_NONE, &error);
+  g_free (filename);
+
+  if (G_UNLIKELY (error != NULL))
+    {
+      g_error_free (error);
+      return;
+    }
+
+  /* Read directory information */
+  name = g_key_file_get_locale_string (entry, "Desktop Entry", "Name", NULL, NULL);
+  comment = g_key_file_get_locale_string (entry, "Desktop Entry", "Comment", NULL, NULL);
+  icon = g_key_file_get_locale_string (entry, "Desktop Entry", "Icon", NULL, NULL);
+
+  /* Pass data to the directory */
+  garcon_menu_directory_set_name (directory, name);
+  garcon_menu_directory_set_comment (directory, comment);
+  garcon_menu_directory_set_icon (directory, icon);
+  garcon_menu_directory_set_no_display (directory, g_key_file_get_boolean (entry, "Desktop Entry", "NoDisplay", NULL));
+
+  /* Set rest of the private data directly */
+  directory->priv->only_show_in = g_key_file_get_string_list (entry, "Desktop Entry", "OnlyShowIn", NULL, NULL);
+  directory->priv->not_show_in = g_key_file_get_string_list (entry, "Desktop Entry", "NotShowIn", NULL, NULL);
+  directory->priv->hidden = g_key_file_get_boolean (entry, "Desktop Entry", "Hidden", NULL);
+
+  g_key_file_free (entry);
 }
 
 
@@ -472,74 +501,6 @@ garcon_menu_directory_set_no_display (GarconMenuDirectory *directory,
 
   /* Notify listeners */
   g_object_notify (G_OBJECT (directory), "no-display");
-}
-
-
-
-static void
-garcon_menu_directory_free_private (GarconMenuDirectory *directory)
-{
-  g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
-
-  /* Free name */
-  g_free (directory->priv->name);
-
-  /* Free comment */
-  g_free (directory->priv->comment);
-
-  /* Free icon */
-  g_free (directory->priv->icon);
-
-  /* Free environment lists */
-  g_strfreev (directory->priv->only_show_in);
-  g_strfreev (directory->priv->not_show_in);
-}
-
-
-
-static void
-garcon_menu_directory_load (GarconMenuDirectory *directory)
-{
-  GKeyFile    *entry;
-  GError      *error = NULL;
-  const gchar *name;
-  const gchar *comment;
-  const gchar *icon;
-  gchar       *filename;
-
-  g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
-
-  /* TODO: Use get_uri() here, together with g_file_read() and
-   * g_key_file_load_from_data() */
-
-  filename = g_file_get_path (directory->priv->file);
-  entry = g_key_file_new ();
-  g_key_file_load_from_file (entry, filename, G_KEY_FILE_NONE, &error);
-  g_free (filename);
-
-  if (G_UNLIKELY (error != NULL))
-    {
-      g_error_free (error);
-      return;
-    }
-
-  /* Read directory information */
-  name = g_key_file_get_locale_string (entry, "Desktop Entry", "Name", NULL, NULL);
-  comment = g_key_file_get_locale_string (entry, "Desktop Entry", "Comment", NULL, NULL);
-  icon = g_key_file_get_locale_string (entry, "Desktop Entry", "Icon", NULL, NULL);
-
-  /* Pass data to the directory */
-  garcon_menu_directory_set_name (directory, name);
-  garcon_menu_directory_set_comment (directory, comment);
-  garcon_menu_directory_set_icon (directory, icon);
-  garcon_menu_directory_set_no_display (directory, g_key_file_get_boolean (entry, "Desktop Entry", "NoDisplay", NULL));
-
-  /* Set rest of the private data directly */
-  directory->priv->only_show_in = g_key_file_get_string_list (entry, "Desktop Entry", "OnlyShowIn", NULL, NULL);
-  directory->priv->not_show_in = g_key_file_get_string_list (entry, "Desktop Entry", "NotShowIn", NULL, NULL);
-  directory->priv->hidden = g_key_file_get_boolean (entry, "Desktop Entry", "Hidden", NULL);
-
-  g_key_file_free (entry);
 }
 
 

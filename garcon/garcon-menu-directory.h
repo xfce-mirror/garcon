@@ -40,6 +40,21 @@ typedef struct _GarconMenuDirectoryPrivate GarconMenuDirectoryPrivate;
 typedef struct _GarconMenuDirectoryClass   GarconMenuDirectoryClass;
 typedef struct _GarconMenuDirectory        GarconMenuDirectory;
 
+struct _GarconMenuDirectoryClass
+{
+  GObjectClass __parent__;
+};
+
+struct _GarconMenuDirectory
+{
+  GObject __parent__;
+
+  /* < private > */
+  GarconMenuDirectoryPrivate *priv;
+};
+
+
+
 GType        garcon_menu_directory_get_type                (void) G_GNUC_CONST;
 
 GFile       *garcon_menu_directory_get_file                (GarconMenuDirectory *directory);
@@ -60,11 +75,6 @@ gboolean     garcon_menu_directory_get_show_in_environment (GarconMenuDirectory 
 gboolean     garcon_menu_directory_get_visible             (GarconMenuDirectory *directory);
 gboolean     garcon_menu_directory_equal                   (GarconMenuDirectory *directory,
                                                             GarconMenuDirectory *other);
-
-#if defined(GARCON_COMPILATION)
-void _garcon_menu_directory_init     (void) G_GNUC_INTERNAL;
-void _garcon_menu_directory_shutdown (void) G_GNUC_INTERNAL;
-#endif
 
 G_END_DECLS
 

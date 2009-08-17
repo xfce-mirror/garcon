@@ -27,7 +27,6 @@
 #include <garcon/garcon.h>
 #include <garcon/garcon-environment.h>
 #include <garcon/garcon-menu-item-cache.h>
-#include <garcon/garcon-menu-directory.h>
 #include <garcon/garcon-menu-separator.h>
 
 
@@ -73,9 +72,6 @@ garcon_init (const gchar *env)
       /* Initialize the menu item cache */
       _garcon_menu_item_cache_init ();
 
-      /* Initialize the directory module */
-      _garcon_menu_directory_init ();
-
       /* Creates the menu separator */
       _garcon_menu_separator_init ();
    }
@@ -98,9 +94,6 @@ garcon_shutdown (void)
 
       /* Destroys the menu separator */
       _garcon_menu_separator_shutdown ();
-
-      /* Shutdown the directory module */
-      _garcon_menu_directory_shutdown ();
 
       /* Shutdown the menu item cache */
       _garcon_menu_item_cache_shutdown ();
