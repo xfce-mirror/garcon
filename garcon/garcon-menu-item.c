@@ -701,6 +701,14 @@ garcon_menu_item_get_file (GarconMenuItem *item)
 }
 
 
+gchar *
+garcon_menu_item_get_uri (GarconMenuItem *item)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
+  return g_file_get_uri (item->priv->file);
+}
+
+
 
 const gchar *
 garcon_menu_item_get_desktop_id (GarconMenuItem *item)

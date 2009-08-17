@@ -51,6 +51,8 @@ GarconMenuItem *garcon_menu_item_new_for_uri                       (const gchar 
 
 GFile          *garcon_menu_item_get_file                          (GarconMenuItem *item);
 
+gchar          *garcon_menu_item_get_uri                           (GarconMenuItem *item) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+
 const gchar    *garcon_menu_item_get_desktop_id                    (GarconMenuItem *item);
 void            garcon_menu_item_set_desktop_id                    (GarconMenuItem *item,
                                                                     const gchar    *desktop_id);
