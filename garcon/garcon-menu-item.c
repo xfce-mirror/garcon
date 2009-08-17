@@ -559,30 +559,41 @@ garcon_menu_item_new (GFile *file)
   g_free (contents);
 
   /* Abort if loading failed or the file has been marked as "deleted"/hidden */
-  if (!succeed || g_key_file_get_boolean (rc, "Desktop Entry", "Hidden", NULL))
+  if (!succeed
+      || g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                 G_KEY_FILE_DESKTOP_KEY_HIDDEN, NULL))
     {
       /* Cleanup and leave */
       g_key_file_free (rc);
       return NULL;
     }
 
-  /* Parse name, exec command and icon name */
-  name = g_key_file_get_locale_string (rc, "Desktop Entry", "Name", NULL, NULL);
-  generic_name = g_key_file_get_locale_string (rc, "Desktop Entry", "GenericName", NULL, NULL);
-  comment = g_key_file_get_locale_string (rc, "Desktop Entry", "Comment", NULL, NULL);
-  exec = g_key_file_get_string (rc, "Desktop Entry", "Exec", NULL);
-  try_exec = g_key_file_get_string (rc, "Desktop Entry", "TryExec", NULL);
-  icon = g_key_file_get_string (rc, "Desktop Entry", "Icon", NULL);
-  path = g_key_file_get_string (rc, "Desktop Entry", "Path", NULL);
+  /* Parse name and exec command */
+  name = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                       G_KEY_FILE_DESKTOP_KEY_NAME, NULL, NULL);
+  exec = g_key_file_get_string (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
 
   /* Validate Name and Exec fields */
   if (G_LIKELY (exec != NULL && name != NULL && g_utf8_validate (name, -1, NULL)))
     {
       /* Determine other application properties */
-      terminal = g_key_file_get_boolean (rc, "Desktop Entry", "Terminal", NULL);
-      no_display = g_key_file_get_boolean (rc, "Desktop Entry", "NoDisplay", NULL);
-      startup_notify = g_key_file_get_boolean (rc, "Desktop Entry", "StartupNotify", NULL) ||
-                       g_key_file_get_boolean (rc, "Desktop Entry", "X-KDE-StartupNotify", NULL);
+      generic_name = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                                   G_KEY_FILE_DESKTOP_KEY_GENERIC_NAME, NULL, NULL);
+      comment = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                              G_KEY_FILE_DESKTOP_KEY_COMMENT, NULL, NULL);
+      try_exec = g_key_file_get_string (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                        G_KEY_FILE_DESKTOP_KEY_TRY_EXEC, NULL);
+      icon = g_key_file_get_string (rc, G_KEY_FILE_DESKTOP_GROUP, G_KEY_FILE_DESKTOP_KEY_ICON, NULL);
+      path = g_key_file_get_string (rc, G_KEY_FILE_DESKTOP_GROUP, G_KEY_FILE_DESKTOP_KEY_PATH, NULL);
+      terminal = g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                         G_KEY_FILE_DESKTOP_KEY_TERMINAL, NULL);
+      no_display = g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                           G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY, NULL);
+      startup_notify = g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                               G_KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY, NULL) ||
+                       g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                               "X-KDE-StartupNotify", NULL);
 
       /* Allocate a new menu item instance */
       item = g_object_new (GARCON_TYPE_MENU_ITEM,
@@ -599,8 +610,15 @@ garcon_menu_item_new (GFile *file)
                            "path", path,
                            NULL);
 
+      /* Free strings */
+      g_free (generic_name);
+      g_free (comment);
+      g_free (try_exec);
+      g_free (icon);
+      g_free (path);
+
       /* Determine the categories this application should be shown in */
-      str_list = g_key_file_get_string_list (rc, "Desktop Entry", "Categories", NULL, NULL);
+      str_list = g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP, G_KEY_FILE_DESKTOP_KEY_CATEGORIES, NULL, NULL);
       if (G_LIKELY (str_list != NULL))
         {
           for (mt = str_list; *mt != NULL; ++mt)
@@ -617,18 +635,13 @@ garcon_menu_item_new (GFile *file)
         }
 
       /* Set the rest of the private data directly */
-      item->priv->only_show_in = g_key_file_get_string_list (rc, "Desktop Entry", "OnlyShowIn", NULL, NULL);
-      item->priv->not_show_in = g_key_file_get_string_list (rc, "Desktop Entry", "NotShowIn", NULL, NULL);
+      item->priv->only_show_in = g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP, G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN, NULL, NULL);
+      item->priv->not_show_in = g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP, G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, NULL, NULL);
     }
 
   /* Free strings */
   g_free (name);
-  g_free (generic_name);
-  g_free (comment);
   g_free (exec);
-  g_free (try_exec);
-  g_free (icon);
-  g_free (path);
 
   /* Cleanup */
   g_key_file_free (rc);

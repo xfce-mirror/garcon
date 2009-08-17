@@ -345,10 +345,14 @@ garcon_menu_directory_new (GFile *file)
     }
 
   /* Parse name, exec command and icon name */
-  name = g_key_file_get_locale_string (rc, "Desktop Entry", "Name", NULL, NULL);
-  comment = g_key_file_get_locale_string (rc, "Desktop Entry", "Comment", NULL, NULL);
-  icon = g_key_file_get_locale_string (rc, "Desktop Entry", "Icon", NULL, NULL);
-  no_display = g_key_file_get_boolean (rc, "Desktop Entry", "NoDisplay", NULL);
+  name = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                       G_KEY_FILE_DESKTOP_KEY_NAME, NULL, NULL);
+  comment = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                          G_KEY_FILE_DESKTOP_KEY_COMMENT, NULL, NULL);
+  icon = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                       G_KEY_FILE_DESKTOP_KEY_ICON, NULL, NULL);
+  no_display = g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                       G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY, NULL);
 
   /* Allocate a new directory instance */
   directory = g_object_new (GARCON_TYPE_MENU_DIRECTORY,
@@ -365,9 +369,12 @@ garcon_menu_directory_new (GFile *file)
   g_free (icon);
 
   /* Set rest of the private data directly */
-  directory->priv->only_show_in = g_key_file_get_string_list (rc, "Desktop Entry", "OnlyShowIn", NULL, NULL);
-  directory->priv->not_show_in = g_key_file_get_string_list (rc, "Desktop Entry", "NotShowIn", NULL, NULL);
-  directory->priv->hidden = g_key_file_get_boolean (rc, "Desktop Entry", "Hidden", NULL);
+  directory->priv->only_show_in = g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                                              G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN, NULL, NULL);
+  directory->priv->not_show_in = g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                                            G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, NULL, NULL);
+  directory->priv->hidden = g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                                    G_KEY_FILE_DESKTOP_KEY_HIDDEN, NULL);
 
   /* Cleanup */
   g_key_file_free (rc);
