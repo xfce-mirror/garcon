@@ -51,13 +51,15 @@ static void garcon_menu_item_cache_finalize   (GObject                  *object)
 
 
 
+/* Mutex lock */
+static GStaticMutex lock = G_STATIC_MUTEX_INIT;
+
+
+
 struct _GarconMenuItemCachePrivate
 {
   /* Hash table for mapping absolute filenames to GarconMenuItem's */
   GHashTable *items;
-
-  /* Mutex lock */
-  GMutex     *lock;
 };
 
 
@@ -83,9 +85,6 @@ static void
 garcon_menu_item_cache_init (GarconMenuItemCache *cache)
 {
   cache->priv = GARCON_MENU_ITEM_CACHE_GET_PRIVATE (cache);
-
-  /* Initialize the mutex lock */
-  cache->priv->lock = g_mutex_new ();
 
   /* Create empty hash table */
   cache->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
@@ -132,9 +131,6 @@ garcon_menu_item_cache_finalize (GObject *object)
   /* Free hash table */
   g_hash_table_unref (cache->priv->items);
 
-  /* Destroy the mutex */
-  g_mutex_free (cache->priv->lock);
-
   (*G_OBJECT_CLASS (garcon_menu_item_cache_parent_class)->finalize) (object);
 }
 
@@ -154,7 +150,7 @@ garcon_menu_item_cache_lookup (GarconMenuItemCache *cache,
   /* Acquire lock on the item cache as it's likely that we need to load
    * items from the hard drive and store it in the hash table of the
    * item cache */
-  g_mutex_lock (cache->priv->lock);
+  g_static_mutex_lock (&lock);
 
   /* Search uri in the hash table */
   item = g_hash_table_lookup (cache->priv->items, uri);
@@ -166,7 +162,7 @@ garcon_menu_item_cache_lookup (GarconMenuItemCache *cache,
       garcon_menu_item_set_desktop_id (item, desktop_id);
 
       /* Release item cache lock */
-      g_mutex_unlock (cache->priv->lock);
+      g_static_mutex_unlock (&lock);
 
       return item;
     }
@@ -184,7 +180,7 @@ garcon_menu_item_cache_lookup (GarconMenuItemCache *cache,
     }
 
   /* Release item cache lock */
-  g_mutex_unlock (cache->priv->lock);
+  g_static_mutex_unlock (&lock);
 
   return item;
 }
@@ -199,12 +195,12 @@ garcon_menu_item_cache_foreach (GarconMenuItemCache *cache,
   g_return_if_fail (GARCON_IS_MENU_ITEM_CACHE (cache));
 
   /* Acquire lock on the item cache */
-  g_mutex_lock (cache->priv->lock);
+  g_static_mutex_lock (&lock);
 
   g_hash_table_foreach (cache->priv->items, func, user_data);
 
   /* Release item cache lock */
-  g_mutex_unlock (cache->priv->lock);
+  g_static_mutex_unlock (&lock);
 }
 
 
@@ -214,6 +210,12 @@ garcon_menu_item_cache_invalidate (GarconMenuItemCache *cache)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM_CACHE (cache));
 
+  /* Acquire lock on the item cache */
+  g_static_mutex_lock (&lock);
+
   /* Remove all items from the hash table */
   g_hash_table_remove_all (cache->priv->items);
+
+  /* Release item cache lock */
+  g_static_mutex_unlock (&lock);
 }
