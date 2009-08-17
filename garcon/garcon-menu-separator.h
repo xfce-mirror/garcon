@@ -40,14 +40,21 @@ G_BEGIN_DECLS
 typedef struct _GarconMenuSeparatorClass GarconMenuSeparatorClass;
 typedef struct _GarconMenuSeparator      GarconMenuSeparator;
 
+struct _GarconMenuSeparatorClass
+{
+  GObjectClass __parent__;
+};
+
+struct _GarconMenuSeparator
+{
+  GObject __parent__;
+};
+
+
+
 GType                garcon_menu_separator_get_type    (void) G_GNUC_CONST;
 
 GarconMenuSeparator *garcon_menu_separator_get_default (void);
-
-#if defined(GARCON_COMPILATION)
-void                 _garcon_menu_separator_init       (void) G_GNUC_INTERNAL;
-void                 _garcon_menu_separator_shutdown   (void) G_GNUC_INTERNAL;
-#endif
 
 G_END_DECLS
 

@@ -38,45 +38,6 @@ static gboolean     garcon_menu_separator_get_element_show_in_environment (Garco
 static gboolean     garcon_menu_separator_get_element_no_display          (GarconMenuElement        *element);
 
 
-static GarconMenuSeparator *_garcon_menu_separator = NULL;
-
-
-
-void
-_garcon_menu_separator_init (void)
-{
-  if (G_LIKELY (_garcon_menu_separator == NULL))
-    {
-      _garcon_menu_separator = g_object_new (GARCON_TYPE_MENU_SEPARATOR, NULL);
-      g_object_add_weak_pointer (G_OBJECT (_garcon_menu_separator),
-                                 (gpointer) &_garcon_menu_separator);
-    }
-}
-
-
-
-void
-_garcon_menu_separator_shutdown (void)
-{
-  if (G_LIKELY (_garcon_menu_separator != NULL))
-    g_object_unref (G_OBJECT (_garcon_menu_separator));
-}
-
-
-
-struct _GarconMenuSeparatorClass
-{
-  GObjectClass __parent__;
-};
-
-struct _GarconMenuSeparator
-{
-  GObject __parent__;
-
-
-};
-
-
 
 G_DEFINE_TYPE_WITH_CODE (GarconMenuSeparator, garcon_menu_separator, G_TYPE_OBJECT,
     G_IMPLEMENT_INTERFACE (GARCON_TYPE_MENU_ELEMENT, garcon_menu_separator_element_init))
@@ -125,10 +86,32 @@ garcon_menu_separator_finalize (GObject *object)
 
 
 
+/**
+ * garcon_menu_separator_get_default:
+ *
+ * Returns the default #GarconMenuSeparator.
+ *
+ * Return value: the default #GarconMenuSeparator. The returned object
+ * should be unreffed with g_object_unref() when no longer needed.
+ */
 GarconMenuSeparator*
 garcon_menu_separator_get_default (void)
 {
-  return _garcon_menu_separator;
+  static GarconMenuSeparator *separator = NULL;
+
+  if (G_UNLIKELY (separator == NULL))
+    {
+      /* create a new cache */
+      separator = g_object_new (GARCON_TYPE_MENU_SEPARATOR, NULL);
+      g_object_add_weak_pointer (G_OBJECT (separator), (gpointer) &separator);
+    }
+  else
+    {
+      /* set and extra reference */
+      g_object_ref (G_OBJECT (separator));
+    }
+
+  return separator;
 }
 
 
@@ -178,4 +161,3 @@ garcon_menu_separator_get_element_no_display (GarconMenuElement *element)
 {
   return FALSE;
 }
-

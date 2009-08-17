@@ -26,8 +26,6 @@
 
 #include <garcon/garcon.h>
 #include <garcon/garcon-environment.h>
-#include <garcon/garcon-menu-item-cache.h>
-#include <garcon/garcon-menu-separator.h>
 
 
 
@@ -68,9 +66,6 @@ garcon_init (const gchar *env)
 
       /* Set desktop environment */
       garcon_set_environment (env);
-
-      /* Creates the menu separator */
-      _garcon_menu_separator_init ();
    }
 }
 
@@ -88,9 +83,6 @@ garcon_shutdown (void)
     {
       /* Unset desktop environment */
       garcon_set_environment (NULL);
-
-      /* Destroys the menu separator */
-      _garcon_menu_separator_shutdown ();
     }
 }
 
