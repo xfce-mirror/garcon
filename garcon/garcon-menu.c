@@ -813,8 +813,22 @@ garcon_menu_get_app_dirs (GarconMenu *menu)
                                                     GARCON_MENU_NODE_TYPE_APP_DIR,
                                                     TRUE);
 
+#if 0
+  /* A submenu always inherits the application directories of its parent,
+   * that is the reason the call below was added.
+   * It only turned out we were looking in that same directories for
+   * .desktop files multiple times.
+   *
+   * This was caused by the combination of the parent call below and
+   * traversing the children in garcon_menu_collect_files(). For each
+   * submenu the appdirs of the root were added and traversed again.
+   *
+   * This is not needed because we always start at the root and traverse
+   * in "pre-order", so all the desktop files are added in the hash-table.
+   */
   if (menu->priv->parent != NULL)
     dirs = g_list_concat (dirs, garcon_menu_get_app_dirs (menu->priv->parent));
+#endif
 
   return dirs;
 }
