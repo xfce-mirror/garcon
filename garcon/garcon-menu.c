@@ -871,8 +871,7 @@ garcon_menu_collect_files_from_path (GarconMenu  *menu,
     return;
 
   /* Skip directory if it's not a directory */
-  if (G_UNLIKELY (g_file_query_file_type (dir,
-                                          G_FILE_QUERY_INFO_NONE,
+  if (G_UNLIKELY (g_file_query_file_type (dir, G_FILE_QUERY_INFO_NONE,
                                           NULL) != G_FILE_TYPE_DIRECTORY))
     {
       return;
@@ -912,23 +911,19 @@ garcon_menu_collect_files_from_path (GarconMenu  *menu,
           /* Free id prefix */
           g_free (new_id_prefix);
         }
-      else
+      else if (G_LIKELY (g_str_has_suffix (base_name, ".desktop")))
         {
-          /* Skip all filenames which do not end with .desktop */
-          if (G_LIKELY (g_str_has_suffix (base_name, ".desktop")))
-            {
-              /* Create desktop-file id */
-              if (G_LIKELY (id_prefix == NULL))
-                desktop_id = g_strdup (base_name);
-              else
-                desktop_id = g_strjoin ("-", id_prefix, base_name, NULL);
+          /* Create desktop-file id */
+          if (G_LIKELY (id_prefix == NULL))
+            desktop_id = g_strdup (base_name);
+          else
+            desktop_id = g_strjoin ("-", id_prefix, base_name, NULL);
 
-              /* Insert into the files hash table if the desktop-file id does not exist there yet */
-              if (G_LIKELY (g_hash_table_lookup (desktop_id_table, desktop_id) == NULL))
-                g_hash_table_insert (desktop_id_table, desktop_id, g_file_get_uri (file));
-              else
-                g_free (desktop_id);
-            }
+          /* Insert into the files hash table if the desktop-file id does not exist there yet */
+          if (G_LIKELY (g_hash_table_lookup (desktop_id_table, desktop_id) == NULL))
+            g_hash_table_insert (desktop_id_table, desktop_id, g_file_get_uri (file));
+          else
+            g_free (desktop_id);
         }
 
       /* Free absolute path */
