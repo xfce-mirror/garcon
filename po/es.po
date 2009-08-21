@@ -20,12 +20,12 @@ msgstr ""
 #: .././garcon/garcon-menu-parser.c:308
 #, fuzzy, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Fallo al cargar la caché del elemento libxfce4menu en %s: %s."
+msgstr "No se pudo cargar el menú de archivo de datos de %s: %s"
 
 #: .././garcon/garcon-menu-parser.c:313
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
+msgstr "No se pudo cargar el menú de archivo de datos de %s"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: prueba de visualización de menú"
