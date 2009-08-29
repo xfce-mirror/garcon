@@ -49,6 +49,13 @@ GarconMenuItem *garcon_menu_item_new                               (GFile       
 GarconMenuItem *garcon_menu_item_new_for_path                      (const gchar    *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 GarconMenuItem *garcon_menu_item_new_for_uri                       (const gchar    *uri) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 
+gboolean        garcon_menu_item_reload                            (GarconMenuItem *item,
+                                                                    GError        **error);
+
+gboolean        garcon_menu_item_reload_from_file                  (GarconMenuItem *item,
+                                                                    GFile          *file,
+                                                                    GError        **error);
+
 GFile          *garcon_menu_item_get_file                          (GarconMenuItem *item);
 
 gchar          *garcon_menu_item_get_uri                           (GarconMenuItem *item) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;

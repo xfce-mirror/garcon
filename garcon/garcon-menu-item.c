@@ -32,6 +32,8 @@
 
 
 #define GARCON_MENU_ITEM_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GARCON_TYPE_MENU_ITEM, GarconMenuItemPrivate))
+#define GET_LOCALE_KEY(type, key) g_key_file_get_locale_##type (rc, G_KEY_FILE_DESKTOP_GROUP, key, NULL, NULL)
+#define GET_KEY(type, key) g_key_file_get_##type (rc, G_KEY_FILE_DESKTOP_GROUP, key, NULL)
 
 
 
@@ -683,6 +685,104 @@ garcon_menu_item_new_for_uri (const gchar *uri)
   g_object_unref (G_OBJECT (file));
 
   return item;
+}
+
+
+
+gboolean
+garcon_menu_item_reload (GarconMenuItem  *item,
+                         GError         **error)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
+  g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+
+  return garcon_menu_item_reload_from_file (item, item->priv->file, error);
+}
+
+
+
+gboolean
+garcon_menu_item_reload_from_file (GarconMenuItem  *item,
+                                   GFile           *file,
+                                   GError         **error)
+{
+  GKeyFile       *rc;
+  gchar          *contents;
+  gsize           length = 0;
+  gboolean        succeed;
+  gchar          *string;
+  gboolean        boolean;
+
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
+  g_return_val_if_fail (G_IS_FILE (file), FALSE);
+  g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+
+  /* Load the contents of the file */
+  if (!g_file_load_contents (file, NULL, &contents, &length, NULL, error))
+    return FALSE;
+
+  /* Leave when the file is empty */
+  if (G_UNLIKELY (length == 0))
+    {
+      g_set_error_literal (error, 0, 0, "The desktop file if empty.");
+      return FALSE;
+    }
+
+  /* Open the keyfile */
+  rc = g_key_file_new ();
+  succeed = g_key_file_load_from_data (rc, contents, length, G_KEY_FILE_NONE, error);
+  g_free (contents);
+  if (G_UNLIKELY (!succeed))
+    return FALSE;
+
+  /* Queue property notifications */
+  g_object_freeze_notify (G_OBJECT (item));
+
+  /* Update properties */
+  string = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_NAME);
+  garcon_menu_item_set_name (item, string);
+  g_free (string);
+
+  string = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_EXEC);
+  garcon_menu_item_set_command (item, string);
+  g_free (string);
+
+  string = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_GENERIC_NAME);
+  garcon_menu_item_set_generic_name (item, string);
+  g_free (string);
+
+  string = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_COMMENT);
+  garcon_menu_item_set_comment (item, string);
+  g_free (string);
+
+  string = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_TRY_EXEC);
+  garcon_menu_item_set_try_exec (item, string);
+  g_free (string);
+
+  string = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_ICON);
+  garcon_menu_item_set_icon_name (item, string);
+  g_free (string);
+
+  string = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_PATH);
+  garcon_menu_item_set_path (item, string);
+  g_free (string);
+
+  boolean = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_TERMINAL);
+  garcon_menu_item_set_requires_terminal (item, boolean);
+
+  boolean = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY);
+  garcon_menu_item_set_no_display (item, boolean);
+
+  boolean = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY)
+            || GET_KEY (boolean, "X-KDE-StartupNotify");
+  garcon_menu_item_set_supports_startup_notification (item, boolean);
+
+  /* Flush property notifications */
+  g_object_thaw_notify (G_OBJECT (item));
+
+  g_key_file_free (rc);
+
+  return TRUE;
 }
 
 
