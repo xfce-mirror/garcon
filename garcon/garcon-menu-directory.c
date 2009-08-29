@@ -544,14 +544,14 @@ garcon_menu_directory_get_show_in_environment (GarconMenuDirectory *directory)
     {
       /* Check if your environemnt is in OnlyShowIn list */
       for (i = 0, show = FALSE; !show && directory->priv->only_show_in[i] != NULL; i++)
-        if (g_utf8_collate (directory->priv->only_show_in[i], env) == 0)
+        if (g_strcmp0 (directory->priv->only_show_in[i], env) == 0)
           show = TRUE;
     }
   else if (G_UNLIKELY (directory->priv->not_show_in != NULL))
     {
       /* Check if your environemnt is in NotShowIn list */
       for (i = 0, show = TRUE; show && directory->priv->not_show_in[i] != NULL; i++)
-        if (g_utf8_collate (directory->priv->not_show_in[i], env) == 0)
+        if (g_strcmp0 (directory->priv->not_show_in[i], env) == 0)
           show = FALSE;
     }
 

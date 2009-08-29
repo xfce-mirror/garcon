@@ -641,7 +641,7 @@ garcon_menu_get_menu_with_name (GarconMenu  *menu,
   for (iter = menu->priv->submenus; result == NULL && iter != NULL; iter = g_list_next (iter))
     {
       /* End loop when a matching submenu is found */
-      if (G_UNLIKELY (g_utf8_collate (garcon_menu_get_name (iter->data), name) == 0))
+      if (G_UNLIKELY (g_strcmp0 (garcon_menu_get_name (iter->data), name) == 0))
         result = iter->data;
     }
 
@@ -1367,8 +1367,8 @@ static gint
 garcon_menu_compare_items (gconstpointer *a,
                            gconstpointer *b)
 {
-  return g_utf8_collate (garcon_menu_element_get_name (GARCON_MENU_ELEMENT (a)),
-                         garcon_menu_element_get_name (GARCON_MENU_ELEMENT (b)));
+  return g_strcmp0 (garcon_menu_element_get_name (GARCON_MENU_ELEMENT (a)),
+                    garcon_menu_element_get_name (GARCON_MENU_ELEMENT (b)));
 }
 
 

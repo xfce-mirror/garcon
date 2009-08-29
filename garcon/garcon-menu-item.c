@@ -967,7 +967,7 @@ garcon_menu_item_set_desktop_id (GarconMenuItem *item,
   g_return_if_fail (desktop_id != NULL);
 
   /* Abort if old and new desktop_id are equal */
-  if (_garcon_str_is_equal (item->priv->desktop_id, desktop_id))
+  if (g_strcmp0 (item->priv->desktop_id, desktop_id) == 0)
     return;
 
   /* Assign the new desktop_id */
@@ -1026,7 +1026,7 @@ garcon_menu_item_set_command (GarconMenuItem *item,
   g_return_if_fail (command != NULL);
 
   /* Abort if old and new command are equal */
-  if (_garcon_str_is_equal (item->priv->command, command))
+  if (g_strcmp0 (item->priv->command, command) == 0)
     return;
 
   /* Assign new command */
@@ -1055,7 +1055,7 @@ garcon_menu_item_set_try_exec (GarconMenuItem *item,
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
   /* Abort if old and new try_exec are equal */
-  if (_garcon_str_is_equal (item->priv->try_exec, try_exec))
+  if (g_strcmp0 (item->priv->try_exec, try_exec) == 0)
     return;
 
   /* Assign new try_exec */
@@ -1085,7 +1085,7 @@ garcon_menu_item_set_name (GarconMenuItem *item,
   g_return_if_fail (g_utf8_validate (name, -1, NULL));
 
   /* Abort if old and new name are equal */
-  if (_garcon_str_is_equal (item->priv->name, name))
+  if (g_strcmp0 (item->priv->name, name) == 0)
     return;
 
   /* Assign new name */
@@ -1115,7 +1115,7 @@ garcon_menu_item_set_generic_name (GarconMenuItem *item,
   g_return_if_fail (generic_name == NULL || g_utf8_validate (generic_name, -1, NULL));
 
   /* Abort if old and new generic name are equal */
-  if (_garcon_str_is_equal (item->priv->generic_name, generic_name))
+  if (g_strcmp0 (item->priv->generic_name, generic_name) == 0)
     return;
 
   /* Assign new generic_name */
@@ -1145,7 +1145,7 @@ garcon_menu_item_set_comment (GarconMenuItem *item,
   g_return_if_fail (comment == NULL || g_utf8_validate (comment, -1, NULL));
 
   /* Abort if old and new comment are equal */
-  if (_garcon_str_is_equal (item->priv->comment, comment))
+  if (g_strcmp0 (item->priv->comment, comment) == 0)
     return;
 
   /* Assign new comment */
@@ -1174,7 +1174,7 @@ garcon_menu_item_set_icon_name (GarconMenuItem *item,
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
   /* Abort if old and new icon name are equal */
-  if (_garcon_str_is_equal (item->priv->icon_name, icon_name))
+  if (g_strcmp0 (item->priv->icon_name, icon_name) == 0)
     return;
 
   /* Assign new icon name */
@@ -1203,7 +1203,7 @@ garcon_menu_item_set_path (GarconMenuItem *item,
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
   /* Abort if old and new path are equal */
-  if (_garcon_str_is_equal (item->priv->path, path))
+  if (g_strcmp0 (item->priv->path, path) == 0)
     return;
 
   /* Assign new path */
@@ -1338,12 +1338,9 @@ garcon_menu_item_has_category (GarconMenuItem *item,
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (category != NULL, FALSE);
 
-  for (iter = item->priv->categories; iter != NULL; iter = g_list_next (iter))
-    if (G_UNLIKELY (g_utf8_collate (iter->data, category) == 0))
-      {
-        found = TRUE;
-        break;
-      }
+  for (iter = item->priv->categories; !found && iter != NULL; iter = g_list_next (iter))
+    if (g_strcmp0 (iter->data, category) == 0)
+      found = TRUE;
 
   return found;
 }
@@ -1372,14 +1369,14 @@ garcon_menu_item_get_show_in_environment (GarconMenuItem *item)
     {
       /* Check if your environemnt is in OnlyShowIn list */
       for (i = 0, show = FALSE; !show && item->priv->only_show_in[i] != NULL; i++)
-        if (g_utf8_collate (item->priv->only_show_in[i], env) == 0)
+        if (g_strcmp0 (item->priv->only_show_in[i], env) == 0)
           show = TRUE;
     }
   else if (G_UNLIKELY (item->priv->not_show_in != NULL))
     {
       /* Check if your environemnt is in NotShowIn list */
       for (i = 0, show = TRUE; show && item->priv->not_show_in[i] != NULL; i++)
-        if (g_utf8_collate (item->priv->not_show_in[i], env) == 0)
+        if (g_strcmp0 (item->priv->not_show_in[i], env) == 0)
           show = FALSE;
     }
 
@@ -1409,7 +1406,7 @@ garcon_menu_item_only_show_in_environment (GarconMenuItem *item)
     {
       /* Check if your environemnt is in OnlyShowIn list */
       for (i = 0, show = FALSE; !show && item->priv->only_show_in[i] != NULL; i++)
-        if (g_utf8_collate (item->priv->only_show_in[i], env) == 0)
+        if (g_strcmp0 (item->priv->only_show_in[i], env) == 0)
           show = TRUE;
     }
 

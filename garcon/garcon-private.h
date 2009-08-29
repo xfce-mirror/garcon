@@ -37,9 +37,6 @@ GFile    *_garcon_file_new_relative_to_file     (const gchar *path,
 gchar    *_garcon_file_get_uri_relative_to_file (const gchar *path,
                                                  GFile       *file);
 
-gboolean  _garcon_str_is_equal                  (const gchar *a,
-                                                 const gchar *b);
-
 G_END_DECLS
 
 #endif /* !__GARCON_PRIVATE_H__ */

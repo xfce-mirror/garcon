@@ -106,14 +106,3 @@ _garcon_file_get_uri_relative_to_file (const gchar *path,
 
   return uri;
 }
-
-
-gboolean
-_garcon_str_is_equal (const gchar *a,
-                      const gchar *b)
-{
-  if (a == NULL || b == NULL)
-    return (a == b);
-
-  return (g_utf8_collate (a, b) == 0);
-}

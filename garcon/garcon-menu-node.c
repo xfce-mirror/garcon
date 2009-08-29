@@ -769,12 +769,12 @@ garcon_menu_node_tree_compare (GNode *tree,
     case GARCON_MENU_NODE_TYPE_NEW:
     case GARCON_MENU_NODE_TYPE_MENUNAME:
     case GARCON_MENU_NODE_TYPE_MERGE_DIR:
-      return g_utf8_collate (node->data.string, other_node->data.string);
+      return g_strcmp0 (node->data.string, other_node->data.string);
       break;
 
     case GARCON_MENU_NODE_TYPE_MERGE_FILE:
-      return g_utf8_collate (node->data.merge_file.filename,
-                             other_node->data.merge_file.filename);
+      return g_strcmp0 (node->data.merge_file.filename,
+                        other_node->data.merge_file.filename);
       break;
 
     default:
