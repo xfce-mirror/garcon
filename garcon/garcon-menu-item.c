@@ -808,6 +808,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   gboolean  succeed;
   gchar    *string;
   gboolean  boolean;
+  gchar    *name, *exec;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (G_IS_FILE (file), FALSE);
@@ -831,6 +832,20 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   if (G_UNLIKELY (!succeed))
     return FALSE;
 
+  /* Check if there is a name and exec key */
+  name = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_NAME);
+  exec = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_EXEC);
+  if (G_UNLIKELY (name == NULL || exec == NULL))
+    {
+      g_set_error_literal (error, 0, 0, "Either the name or exec key was not defined.");
+
+      g_free (name);
+      g_free (exec);
+      g_key_file_free (rc);
+
+      return FALSE;
+    }
+
   /* Queue property notifications */
   g_object_freeze_notify (G_OBJECT (item));
 
@@ -845,13 +860,11 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
     }
 
   /* Update properties */
-  string = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_NAME);
-  garcon_menu_item_set_name (item, string);
-  g_free (string);
+  garcon_menu_item_set_name (item, name);
+  g_free (name);
 
-  string = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_EXEC);
-  garcon_menu_item_set_command (item, string);
-  g_free (string);
+  garcon_menu_item_set_command (item, exec);
+  g_free (exec);
 
   string = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_GENERIC_NAME);
   garcon_menu_item_set_generic_name (item, string);
@@ -994,6 +1007,7 @@ garcon_menu_item_set_command (GarconMenuItem *item,
                               const gchar    *command)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
+  g_return_if_fail (command != NULL);
 
   /* Abort if old and new command are equal */
   if (_garcon_str_is_equal (item->priv->command, command))
@@ -1052,7 +1066,7 @@ garcon_menu_item_set_name (GarconMenuItem *item,
                            const gchar    *name)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
-  g_return_if_fail (name == NULL || g_utf8_validate (name, -1, NULL));
+  g_return_if_fail (g_utf8_validate (name, -1, NULL));
 
   /* Abort if old and new name are equal */
   if (_garcon_str_is_equal (item->priv->name, name))
