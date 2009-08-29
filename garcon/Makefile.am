@@ -58,7 +58,9 @@ libgarcon_sources =							\
 	garcon-menu-node.c						\
 	garcon-menu-tree-provider.c					\
 	garcon-menu-merger.c						\
-	garcon-menu-parser.c
+	garcon-menu-parser.c						\
+	garcon-private.c						\
+	garcom-private.h
 
 libgarconincludedir = $(includedir)/garcon-1/garcon
 
@@ -79,6 +81,7 @@ libgarcon_1_la_LDFLAGS =						\
 	-no-undefined							\
 	-export-dynamic							\
 	-version-info $(GARCON_VERINFO)					\
+	-export-symbols-regex "^[^_].*"					\
 	$(PLATFORM_LDFLAGS)
 	
 libgarcon_1_la_LIBADD = 						\
