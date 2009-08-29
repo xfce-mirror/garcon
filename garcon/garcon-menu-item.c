@@ -816,6 +816,16 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   /* Queue property notifications */
   g_object_freeze_notify (G_OBJECT (item));
 
+  /* Set the new file if needed */
+  if (!g_file_equal (file, item->priv->file))
+    {
+      if (G_LIKELY (item->priv->file != NULL))
+        g_object_unref (G_OBJECT (item->priv->file));
+      item->priv->file = g_object_ref (G_OBJECT (file));
+
+      g_object_notify (G_OBJECT (item), "file");
+    }
+
   /* Update properties */
   string = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_NAME);
   garcon_menu_item_set_name (item, string);
