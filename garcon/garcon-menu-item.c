@@ -354,19 +354,6 @@ static void
 garcon_menu_item_init (GarconMenuItem *item)
 {
   item->priv = GARCON_MENU_ITEM_GET_PRIVATE (item);
-  item->priv->file = NULL;
-  item->priv->desktop_id = NULL;
-  item->priv->name = NULL;
-  item->priv->generic_name = NULL;
-  item->priv->comment = NULL;
-  item->priv->command = NULL;
-  item->priv->try_exec = NULL;
-  item->priv->categories = NULL;
-  item->priv->icon_name = NULL;
-  item->priv->only_show_in = NULL;
-  item->priv->not_show_in = NULL;
-  item->priv->path = NULL;
-  item->priv->num_allocated = 0;
 }
 
 
@@ -383,11 +370,10 @@ garcon_menu_item_finalize (GObject *object)
   g_free (item->priv->command);
   g_free (item->priv->try_exec);
   g_free (item->priv->icon_name);
+  g_free (item->priv->path);
 
   g_strfreev (item->priv->only_show_in);
   g_strfreev (item->priv->not_show_in);
-
-  g_free (item->priv->path);
 
   g_list_foreach (item->priv->categories, (GFunc) g_free, NULL);
   g_list_free (item->priv->categories);
@@ -784,12 +770,12 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
                                    GFile           *file,
                                    GError         **error)
 {
-  GKeyFile       *rc;
-  gchar          *contents;
-  gsize           length = 0;
-  gboolean        succeed;
-  gchar          *string;
-  gboolean        boolean;
+  GKeyFile *rc;
+  gchar    *contents;
+  gsize     length = 0;
+  gboolean  succeed;
+  gchar    *string;
+  gboolean  boolean;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (G_IS_FILE (file), FALSE);
