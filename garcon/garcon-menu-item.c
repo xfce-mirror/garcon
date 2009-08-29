@@ -32,8 +32,12 @@
 
 
 #define GARCON_MENU_ITEM_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GARCON_TYPE_MENU_ITEM, GarconMenuItemPrivate))
+
+
+
 #define GET_LOCALE_KEY(type, key) g_key_file_get_locale_##type (rc, G_KEY_FILE_DESKTOP_GROUP, key, NULL, NULL)
-#define GET_KEY(type, key) g_key_file_get_##type (rc, G_KEY_FILE_DESKTOP_GROUP, key, NULL)
+#define GET_KEY(type, key)        g_key_file_get_##type (rc, G_KEY_FILE_DESKTOP_GROUP, key, NULL)
+#define GET_STRING_LIST(key)      g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP, key, NULL, NULL)
 
 
 
@@ -563,9 +567,7 @@ garcon_menu_item_new (GFile *file)
   g_free (contents);
 
   /* Abort if loading failed or the file has been marked as "deleted"/hidden */
-  if (!succeed
-      || g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                 G_KEY_FILE_DESKTOP_KEY_HIDDEN, NULL))
+  if (!succeed || GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_HIDDEN))
     {
       /* Cleanup and leave */
       g_key_file_free (rc);
@@ -573,31 +575,22 @@ garcon_menu_item_new (GFile *file)
     }
 
   /* Parse name and exec command */
-  name = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                       G_KEY_FILE_DESKTOP_KEY_NAME, NULL, NULL);
-  exec = g_key_file_get_string (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
+  name = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_NAME);
+  exec = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_EXEC);
 
   /* Validate Name and Exec fields */
   if (G_LIKELY (exec != NULL && name != NULL && g_utf8_validate (name, -1, NULL)))
     {
       /* Determine other application properties */
-      generic_name = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                                   G_KEY_FILE_DESKTOP_KEY_GENERIC_NAME, NULL, NULL);
-      comment = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                              G_KEY_FILE_DESKTOP_KEY_COMMENT, NULL, NULL);
-      try_exec = g_key_file_get_string (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                        G_KEY_FILE_DESKTOP_KEY_TRY_EXEC, NULL);
-      icon = g_key_file_get_string (rc, G_KEY_FILE_DESKTOP_GROUP, G_KEY_FILE_DESKTOP_KEY_ICON, NULL);
-      path = g_key_file_get_string (rc, G_KEY_FILE_DESKTOP_GROUP, G_KEY_FILE_DESKTOP_KEY_PATH, NULL);
-      terminal = g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                         G_KEY_FILE_DESKTOP_KEY_TERMINAL, NULL);
-      no_display = g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                           G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY, NULL);
-      startup_notify = g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                               G_KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY, NULL) ||
-                       g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                               "X-KDE-StartupNotify", NULL);
+      generic_name = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_GENERIC_NAME);
+      comment = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_COMMENT);
+      try_exec = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_TRY_EXEC);
+      icon = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_ICON);
+      path = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_PATH);
+      terminal = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_TERMINAL);
+      no_display = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY);
+      startup_notify = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY)
+                       || GET_KEY (boolean, "X-KDE-StartupNotify");
 
       /* Allocate a new menu item instance */
       item = g_object_new (GARCON_TYPE_MENU_ITEM,
@@ -622,7 +615,7 @@ garcon_menu_item_new (GFile *file)
       g_free (path);
 
       /* Determine the categories this application should be shown in */
-      str_list = g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP, G_KEY_FILE_DESKTOP_KEY_CATEGORIES, NULL, NULL);
+      str_list = GET_STRING_LIST (G_KEY_FILE_DESKTOP_KEY_CATEGORIES);
       if (G_LIKELY (str_list != NULL))
         {
           for (mt = str_list; *mt != NULL; ++mt)
@@ -639,8 +632,8 @@ garcon_menu_item_new (GFile *file)
         }
 
       /* Set the rest of the private data directly */
-      item->priv->only_show_in = g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP, G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN, NULL, NULL);
-      item->priv->not_show_in = g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP, G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, NULL, NULL);
+      item->priv->only_show_in = GET_STRING_LIST (G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN);
+      item->priv->not_show_in = GET_STRING_LIST (G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN);
     }
 
   /* Free strings */
