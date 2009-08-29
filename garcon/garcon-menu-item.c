@@ -1017,6 +1017,7 @@ garcon_menu_item_set_name (GarconMenuItem *item,
                            const gchar    *name)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
+  g_return_if_fail (name == NULL || g_utf8_validate (name, -1, NULL));
 
   /* Abort if old and new name are equal */
   if (_garcon_str_is_equal (item->priv->name, name))
@@ -1046,6 +1047,7 @@ garcon_menu_item_set_generic_name (GarconMenuItem *item,
                                    const gchar    *generic_name)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
+  g_return_if_fail (generic_name == NULL || g_utf8_validate (generic_name, -1, NULL));
 
   /* Abort if old and new generic name are equal */
   if (_garcon_str_is_equal (item->priv->generic_name, generic_name))
@@ -1075,6 +1077,7 @@ garcon_menu_item_set_comment (GarconMenuItem *item,
                               const gchar    *comment)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
+  g_return_if_fail (comment == NULL || g_utf8_validate (comment, -1, NULL));
 
   /* Abort if old and new comment are equal */
   if (_garcon_str_is_equal (item->priv->comment, comment))
