@@ -544,6 +544,7 @@ garcon_menu_load (GarconMenu   *menu,
   gboolean          success = TRUE;
 
   g_return_val_if_fail (GARCON_IS_MENU (menu), FALSE);
+  g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
   parser = garcon_menu_parser_new (menu->priv->file);
 
