@@ -551,7 +551,8 @@ garcon_menu_item_new (GFile *file)
   g_return_val_if_fail (G_IS_FILE (file), NULL);
 
   /* Load the contents of the file */
-  if (!g_file_load_contents (file, NULL, &contents, &length, NULL, NULL))
+  if (!g_file_load_contents (file, NULL, &contents, &length, NULL, NULL)
+      || length == 0)
     return NULL;
 
   /* Open the keyfile */
