@@ -29,7 +29,7 @@
 #include <garcon/garcon-menu-tree-provider.h>
 #include <garcon/garcon-menu-parser.h>
 #include <garcon/garcon-menu-merger.h>
-#include <garcon/garcon-gio.h>
+#include <garcon/garcon-private.h>
 
 
 
@@ -525,7 +525,7 @@ garcon_menu_merger_resolve_relative_paths (GNode                   *node,
       garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_MERGE_DIR)
     {
       relative_path = (gchar *)garcon_menu_node_tree_get_string (node);
-      absolute_path = g_file_get_uri_relative_to_file (relative_path, source_file);
+      absolute_path = _garcon_file_get_uri_relative_to_file (relative_path, source_file);
       garcon_menu_node_tree_set_string (node, absolute_path);
       g_free (absolute_path);
     }
@@ -534,7 +534,7 @@ garcon_menu_merger_resolve_relative_paths (GNode                   *node,
       if (garcon_menu_node_tree_get_merge_file_type (node) == GARCON_MENU_MERGE_FILE_PATH)
         {
           relative_path = (gchar *)garcon_menu_node_tree_get_merge_file_filename (node);
-          absolute_path = g_file_get_uri_relative_to_file (relative_path, source_file);
+          absolute_path = _garcon_file_get_uri_relative_to_file (relative_path, source_file);
           garcon_menu_node_tree_set_merge_file_filename (node, absolute_path);
           g_free (absolute_path);
         }
@@ -553,7 +553,7 @@ garcon_menu_merger_resolve_relative_paths (GNode                   *node,
           /* Find the parent XDG_CONFIG_DIRS entry for the current menu file */
           for (i = 0; relative_path == NULL && config_dirs[i] != NULL; ++i)
             {
-              GFile *config_dir = g_file_new_for_unknown_input (config_dirs[i], NULL);
+              GFile *config_dir = _garcon_file_new_for_unknown_input (config_dirs[i], NULL);
               relative_path = g_file_get_relative_path (config_dir, source_file);
               g_object_unref (config_dir);
             }
@@ -562,7 +562,7 @@ garcon_menu_merger_resolve_relative_paths (GNode                   *node,
            * of the current menu file */
           for (; relative_path != NULL && config_dirs[i] != NULL; ++i)
             {
-              GFile *config_dir = g_file_new_for_unknown_input (config_dirs[i], NULL);
+              GFile *config_dir = _garcon_file_new_for_unknown_input (config_dirs[i], NULL);
               GFile *absolute = g_file_resolve_relative_path (config_dir, relative_path);
 
               if (G_LIKELY (absolute != NULL))
@@ -748,7 +748,7 @@ garcon_menu_merger_resolve_merge_dirs (GNode                   *node,
   if (garcon_menu_node_tree_get_node_type (node) != GARCON_MENU_NODE_TYPE_MERGE_DIR)
     return FALSE;
 
-  dir = g_file_new_for_unknown_input (garcon_menu_node_tree_get_string (node), NULL);
+  dir = _garcon_file_new_for_unknown_input (garcon_menu_node_tree_get_string (node), NULL);
 
   enumerator = g_file_enumerate_children (dir, G_FILE_ATTRIBUTE_STANDARD_NAME,
                                           G_FILE_QUERY_INFO_NONE, NULL, NULL);

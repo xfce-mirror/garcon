@@ -28,8 +28,17 @@
 
 G_BEGIN_DECLS
 
-gboolean _garcon_str_is_equal (const gchar *a,
-                               const gchar *b);
+GFile    *_garcon_file_new_for_unknown_input    (const gchar *path,
+                                                 GFile       *parent);
+
+GFile    *_garcon_file_new_relative_to_file     (const gchar *path,
+                                                 GFile       *file);
+
+gchar    *_garcon_file_get_uri_relative_to_file (const gchar *path,
+                                                 GFile       *file);
+
+gboolean  _garcon_str_is_equal                  (const gchar *a,
+                                                 const gchar *b);
 
 G_END_DECLS
 

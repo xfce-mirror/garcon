@@ -30,7 +30,6 @@ lib_LTLIBRARIES = 							\
 libgarcon_headers =							\
 	garcon.h							\
 	garcon-config.h							\
-	garcon-gio.h							\
 	garcon-menu-element.h						\
 	garcon-menu-separator.h						\
 	garcon-menu-directory.h						\
@@ -46,7 +45,6 @@ libgarcon_headers =							\
 
 libgarcon_sources =							\
 	garcon-config.c							\
-	garcon-gio.c							\
 	garcon-menu-element.c						\
 	garcon-menu-separator.c						\
 	garcon-menu-directory.c						\

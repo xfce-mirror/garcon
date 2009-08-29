@@ -25,12 +25,95 @@
 
 #include <garcon/garcon-private.h>
 
+
+
+static gboolean
+garcon_looks_like_an_uri (const gchar *string)
+{
+  const gchar *s = string;
+
+  /* <scheme> starts with an alpha character */
+  if (g_ascii_isalpha (*s))
+    {
+      /* <scheme> continues with (alpha | digit | "+" | "-" | ".")* */
+      for (++s; g_ascii_isalnum (*s) || *s == '+' || *s == '-' || *s == '.'; ++s);
+
+      /* <scheme> must be followed by ":" */
+      return (*s == ':');
+    }
+
+  return FALSE;
+}
+
+
+
+GFile *
+_garcon_file_new_for_unknown_input (const gchar *path,
+                                    GFile       *parent)
+{
+  g_return_val_if_fail (path != NULL, NULL);
+
+  if (g_path_is_absolute (path))
+    return g_file_new_for_path (path);
+
+  if (garcon_looks_like_an_uri (path))
+    return g_file_new_for_uri (path);
+
+  if (G_LIKELY (parent != NULL))
+    return g_file_resolve_relative_path (parent, path);
+  else
+    return g_file_new_for_path (path);
+}
+
+
+
+GFile *
+_garcon_file_new_relative_to_file (const gchar *path,
+                                   GFile       *file)
+{
+  GFileType type;
+  GFile    *result;
+  GFile    *dir;
+
+  g_return_val_if_fail (path != NULL, NULL);
+  g_return_val_if_fail (G_IS_FILE (file), NULL);
+
+  type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
+
+  if (G_UNLIKELY (type == G_FILE_TYPE_DIRECTORY))
+    dir = g_object_ref (file);
+  else
+    dir = g_file_get_parent (file);
+
+  result = _garcon_file_new_for_unknown_input (path, dir);
+  g_object_unref (dir);
+
+  return result;
+}
+
+
+
+gchar *
+_garcon_file_get_uri_relative_to_file (const gchar *path,
+                                       GFile       *file)
+{
+  GFile *absolute_file;
+  gchar *uri;
+
+  absolute_file = _garcon_file_new_relative_to_file (path, file);
+  uri = g_file_get_uri (absolute_file);
+  g_object_unref (absolute_file);
+
+  return uri;
+}
+
+
 gboolean
 _garcon_str_is_equal (const gchar *a,
                       const gchar *b)
 {
   if (a == NULL || b == NULL)
     return (a == b);
-  
+
   return (g_utf8_collate (a, b) == 0);
 }

@@ -37,7 +37,7 @@
 #include <garcon/garcon-menu-node.h>
 #include <garcon/garcon-menu-parser.h>
 #include <garcon/garcon-menu-merger.h>
-#include <garcon/garcon-gio.h>
+#include <garcon/garcon-private.h>
 #include <garcon/garcon.h>
 
 
@@ -383,7 +383,7 @@ garcon_menu_new_for_path (const gchar *filename)
   g_return_val_if_fail (filename != NULL, NULL);
 
   /* Create new menu */
-  file = g_file_new_for_unknown_input (filename, NULL);
+  file = _garcon_file_new_for_unknown_input (filename, NULL);
   menu = g_object_new (GARCON_TYPE_MENU, "file", file, NULL);
   g_object_unref (file);
 
@@ -419,7 +419,7 @@ garcon_menu_new_applications (void)
       /* Create menu if the file exists */
       if (G_UNLIKELY (filename != NULL))
         {
-          file = g_file_new_for_unknown_input (filename, NULL);
+          file = _garcon_file_new_for_unknown_input (filename, NULL);
           menu = garcon_menu_new (file);
           g_object_unref (file);
         }
@@ -778,8 +778,8 @@ garcon_menu_lookup_directory (GarconMenu  *menu,
   /* Iterate through all directories */
   for (iter = dirs; !found && iter != NULL; iter = g_list_next (iter))
     {
-      dir = g_file_new_relative_to_file (iter->data, menu->priv->file);
-      file = g_file_new_relative_to_file (filename, dir);
+      dir = _garcon_file_new_relative_to_file (iter->data, menu->priv->file);
+      file = _garcon_file_new_relative_to_file (filename, dir);
 
       /* Check if the file exists and is readable */
       if (G_LIKELY (g_file_query_exists (file, NULL)))
