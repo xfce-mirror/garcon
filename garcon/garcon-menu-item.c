@@ -60,6 +60,13 @@ enum
   PROP_PATH,
 };
 
+/* Signal identifiers */
+enum
+{
+  CHANGED,
+  LAST_SIGNAL,
+};
+
 
 
 static void         garcon_menu_item_element_init                    (GarconMenuElementIface *iface);
@@ -80,10 +87,10 @@ static gboolean     garcon_menu_item_get_element_show_in_environment (GarconMenu
 static gboolean     garcon_menu_item_get_element_no_display          (GarconMenuElement      *element);
 
 
-struct _GarconMenuItemClass
-{
-  GObjectClass __parent__;
-};
+
+static guint item_signals[LAST_SIGNAL];
+
+
 
 struct _GarconMenuItemPrivate
 {
@@ -139,14 +146,6 @@ struct _GarconMenuItemPrivate
    * like a reference counter and should be increased / decreased by GarconMenu
    * items whenever the item is added to or removed from the menu. */
   guint     num_allocated;
-};
-
-struct _GarconMenuItem
-{
-  GObject                  __parent__;
-
-  /* < private > */
-  GarconMenuItemPrivate *priv;
 };
 
 
@@ -357,6 +356,21 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         NULL,
                                                         G_PARAM_READWRITE |
                                                         G_PARAM_STATIC_STRINGS));
+
+  /**
+   * GarconMenuItem::changed:
+   * @item : a #GarconMenuItem.
+   *
+   * Emitted when #GarconMenuItem has been reloaded.
+   **/
+  item_signals[CHANGED] =
+    g_signal_new (g_intern_static_string ("changed"),
+                  G_TYPE_FROM_CLASS (klass),
+                  G_SIGNAL_RUN_FIRST,
+                  G_STRUCT_OFFSET (GarconMenuItemClass, changed),
+                  NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
 }
 
 
@@ -901,6 +915,9 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
 
   /* Flush property notifications */
   g_object_thaw_notify (G_OBJECT (item));
+
+  /* Emit signal to everybody knows we reloaded the file */
+  g_signal_emit (G_OBJECT (item), item_signals[CHANGED], 0);
 
   g_key_file_free (rc);
 

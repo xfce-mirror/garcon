@@ -32,6 +32,10 @@
 
 G_BEGIN_DECLS
 
+typedef struct _GarconMenuItemPrivate GarconMenuItemPrivate;
+typedef struct _GarconMenuItemClass   GarconMenuItemClass;
+typedef struct _GarconMenuItem        GarconMenuItem;
+
 #define GARCON_TYPE_MENU_ITEM            (garcon_menu_item_get_type())
 #define GARCON_MENU_ITEM(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_ITEM, GarconMenuItem))
 #define GARCON_MENU_ITEM_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_ITEM, GarconMenuItemClass))
@@ -39,9 +43,23 @@ G_BEGIN_DECLS
 #define GARCON_IS_MENU_ITEM_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_ITEM))
 #define GARCON_MENU_ITEM_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_ITEM, GarconMenuItemClass))
 
-typedef struct _GarconMenuItemPrivate GarconMenuItemPrivate;
-typedef struct _GarconMenuItemClass   GarconMenuItemClass;
-typedef struct _GarconMenuItem        GarconMenuItem;
+struct _GarconMenuItemClass
+{
+  GObjectClass __parent__;
+
+  /* signals */
+  void (*changed) (GarconMenuItem *item);
+};
+
+struct _GarconMenuItem
+{
+  GObject                  __parent__;
+
+  /* < private > */
+  GarconMenuItemPrivate *priv;
+};
+
+
 
 GType           garcon_menu_item_get_type                          (void) G_GNUC_CONST;
 
