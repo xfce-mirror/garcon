@@ -27,6 +27,7 @@
 #include <garcon/garcon-environment.h>
 #include <garcon/garcon-menu-element.h>
 #include <garcon/garcon-menu-item.h>
+#include <garcon/garcon-private.h>
 
 
 
@@ -531,7 +532,7 @@ garcon_menu_item_new (GFile *file)
   GarconMenuItem *item = NULL;
   GKeyFile       *rc;
   gchar          *contents;
-  gsize           length;
+  gsize           length = 0;
   gboolean        succeed;
   GList          *categories = NULL;
   gboolean        terminal;
@@ -726,18 +727,12 @@ garcon_menu_item_set_desktop_id (GarconMenuItem *item,
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
   g_return_if_fail (desktop_id != NULL);
 
-  /* Free old desktop_id */
-  if (G_UNLIKELY (item->priv->desktop_id != NULL))
-    {
-      /* Abort if old and new desktop_id are equal */
-      if (G_UNLIKELY (g_utf8_collate (item->priv->desktop_id, desktop_id) == 0))
-        return;
-
-      /* Otherwise free the old desktop_id */
-      g_free (item->priv->desktop_id);
-    }
+  /* Abort if old and new desktop_id are equal */
+  if (_garcon_str_is_equal (item->priv->desktop_id, desktop_id))
+    return;
 
   /* Assign the new desktop_id */
+  g_free (item->priv->desktop_id);
   item->priv->desktop_id = g_strdup (desktop_id);
 
   /* Notify listeners */
@@ -761,16 +756,13 @@ garcon_menu_item_set_categories (GarconMenuItem *item,
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
-  if (G_UNLIKELY (item->priv->categories != NULL))
-    {
-      /* Abort if lists are equal */
-      if (G_UNLIKELY (item->priv->categories == categories))
-        return;
+  /* Abort if lists are equal */
+  if (G_UNLIKELY (item->priv->categories != categories))
+    return;
 
-      /* Free old list */
-      g_list_foreach (item->priv->categories, (GFunc) g_free, NULL);
-      g_list_free (item->priv->categories);
-    }
+  /* Free old list */
+  g_list_foreach (item->priv->categories, (GFunc) g_free, NULL);
+  g_list_free (item->priv->categories);
 
   /* Assign new list */
   item->priv->categories = categories;
@@ -793,17 +785,12 @@ garcon_menu_item_set_command (GarconMenuItem *item,
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
-  if (G_UNLIKELY (item->priv->command != NULL))
-    {
-      /* Abort if old and new command are equal */
-      if (G_UNLIKELY (command != NULL && g_utf8_collate (item->priv->command, command) == 0))
-        return;
-
-      /* Otherwise free old command */
-      g_free (item->priv->command);
-    }
+  /* Abort if old and new command are equal */
+  if (_garcon_str_is_equal (item->priv->command, command))
+    return;
 
   /* Assign new command */
+  g_free (item->priv->command);
   item->priv->command = g_strdup (command);
 
   /* Notify listeners */
@@ -827,17 +814,12 @@ garcon_menu_item_set_try_exec (GarconMenuItem *item,
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
-  if (G_UNLIKELY (item->priv->try_exec != NULL))
-    {
-      /* Abort if old and new try_exec are equal */
-      if (G_UNLIKELY (try_exec != NULL && g_utf8_collate (item->priv->try_exec, try_exec) == 0))
-        return;
-
-      /* Otherwise free old try_exec */
-      g_free (item->priv->try_exec);
-    }
+  /* Abort if old and new try_exec are equal */
+  if (_garcon_str_is_equal (item->priv->try_exec, try_exec))
+    return;
 
   /* Assign new try_exec */
+  g_free (item->priv->try_exec);
   item->priv->try_exec = g_strdup (try_exec);
 
   /* Notify listeners */
@@ -861,17 +843,12 @@ garcon_menu_item_set_name (GarconMenuItem *item,
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
-  if (G_UNLIKELY (item->priv->name != NULL))
-    {
-      /* Abort if old and new name are equal */
-      if (G_UNLIKELY (g_utf8_collate (item->priv->name, name) == 0))
-        return;
-
-      /* Otherwise free old name */
-      g_free (item->priv->name);
-    }
+  /* Abort if old and new name are equal */
+  if (_garcon_str_is_equal (item->priv->name, name))
+    return;
 
   /* Assign new name */
+  g_free (item->priv->name);
   item->priv->name = g_strdup (name);
 
   /* Notify listeners */
@@ -895,17 +872,12 @@ garcon_menu_item_set_generic_name (GarconMenuItem *item,
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
-  if (G_UNLIKELY (item->priv->generic_name != NULL))
-    {
-      /* Abort if old and new generic name are equal */
-      if (G_UNLIKELY (g_utf8_collate (item->priv->generic_name, generic_name) == 0))
-        return;
-
-      /* Otherwise free old generic name */
-      g_free (item->priv->generic_name);
-    }
+  /* Abort if old and new generic name are equal */
+  if (_garcon_str_is_equal (item->priv->generic_name, generic_name))
+    return;
 
   /* Assign new generic_name */
+  g_free (item->priv->generic_name);
   item->priv->generic_name = g_strdup (generic_name);
 
   /* Notify listeners */
@@ -929,17 +901,12 @@ garcon_menu_item_set_comment (GarconMenuItem *item,
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
-  if (G_UNLIKELY (item->priv->comment != NULL))
-    {
-      /* Abort if old and new comment are equal */
-      if (G_UNLIKELY (g_utf8_collate (item->priv->comment, comment) == 0))
-        return;
-
-      /* Otherwise free old comment */
-      g_free (item->priv->comment);
-    }
+  /* Abort if old and new comment are equal */
+  if (_garcon_str_is_equal (item->priv->comment, comment))
+    return;
 
   /* Assign new comment */
+  g_free (item->priv->comment);
   item->priv->comment = g_strdup (comment);
 
   /* Notify listeners */
@@ -963,17 +930,12 @@ garcon_menu_item_set_icon_name (GarconMenuItem *item,
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
-  if (G_UNLIKELY (item->priv->icon_name != NULL))
-    {
-      /* Abort if old and new icon name are equal */
-      if (G_UNLIKELY (g_utf8_collate (item->priv->icon_name, icon_name) == 0))
-        return;
-
-      /* Otherwise free old icon name */
-      g_free (item->priv->icon_name);
-    }
+  /* Abort if old and new icon name are equal */
+  if (_garcon_str_is_equal (item->priv->icon_name, icon_name))
+    return;
 
   /* Assign new icon name */
+  g_free (item->priv->icon_name);
   item->priv->icon_name = g_strdup (icon_name);
 
   /* Notify listeners */
@@ -997,17 +959,12 @@ garcon_menu_item_set_path (GarconMenuItem *item,
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
-  if (G_UNLIKELY (item->priv->path != NULL))
-    {
-      /* Abort if old and new path are equal */
-      if (G_UNLIKELY (g_utf8_collate (item->priv->path, path) == 0))
-        return;
-
-      /* Otherwise free old path */
-      g_free (item->priv->path);
-    }
+  /* Abort if old and new path are equal */
+  if (_garcon_str_is_equal (item->priv->path, path))
+    return;
 
   /* Assign new path */
+  g_free (item->priv->path);
   item->priv->path = g_strdup (path);
 
   /* Notify listeners */
