@@ -85,6 +85,9 @@ void            garcon_menu_item_set_icon_name                     (GarconMenuIt
 const gchar    *garcon_menu_item_get_path                          (GarconMenuItem  *item);
 void            garcon_menu_item_set_path                          (GarconMenuItem  *item,
                                                                     const gchar     *path);
+gboolean        garcon_menu_item_get_hidden                        (GarconMenuItem  *item);
+void            garcon_menu_item_set_hidden                        (GarconMenuItem  *item,
+                                                                    gboolean         hidden);
 gboolean        garcon_menu_item_requires_terminal                 (GarconMenuItem  *item);
 void            garcon_menu_item_set_requires_terminal             (GarconMenuItem  *item,
                                                                     gboolean         requires_terminal);

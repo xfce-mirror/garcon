@@ -56,6 +56,7 @@ enum
   PROP_ICON_NAME,
   PROP_COMMAND,
   PROP_TRY_EXEC,
+  PROP_HIDDEN,
   PROP_PATH,
 };
 
@@ -130,6 +131,9 @@ struct _GarconMenuItemPrivate
 
   /* Working directory */
   gchar    *path;
+
+  /* Hidden value */
+  guint     hidden : 1;
 
   /* Counter keeping the number of menus which use this item. This works
    * like a reference counter and should be increased / decreased by GarconMenu
@@ -295,13 +299,17 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
   /**
    * GarconMenuItem:try-exec:
    *
-   * TryExec value of the item's desktop entry.
+   * Path to an executable file on disk used to determine if the program
+   * is actually installed. If the path is not an absolute path, the file
+   * is looked up in the $PATH environment variable. If the file is not
+   * present or if it is not executable, the entry may be ignored (not be
+   * used in menus, for example).
    **/
   g_object_class_install_property (gobject_class,
                                    PROP_TRY_EXEC,
                                    g_param_spec_string ("try-exec",
                                                         "TryExec",
-                                                        "TryExec",
+                                                        "Command to check if application is installed",
                                                         NULL,
                                                         G_PARAM_READWRITE |
                                                         G_PARAM_STATIC_STRINGS));
@@ -320,7 +328,23 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         G_PARAM_READWRITE |
                                                         G_PARAM_STATIC_STRINGS));
 
-  /**
+ /**
+   * GarconMenuItem:hidden:
+   *
+   * It means the user deleted (at his level) something that was present
+   * (at an upper level, e.g. in the system dirs). It's strictly equivalent
+   * to the .desktop file not existing at all, as far as that user is concerned.
+   **/
+  g_object_class_install_property (gobject_class,
+                                   PROP_HIDDEN,
+                                   g_param_spec_boolean ("hidden",
+                                                         "Hidden",
+                                                         "Whether the application has been deleted",
+                                                          FALSE,
+                                                          G_PARAM_READWRITE |
+                                                          G_PARAM_STATIC_STRINGS));
+
+ /**
    * GarconMenuItem:path:
    *
    * Working directory the application should be started in.
@@ -440,6 +464,10 @@ garcon_menu_item_get_property (GObject    *object,
       g_value_set_string (value, garcon_menu_item_get_try_exec (item));
       break;
 
+    case PROP_HIDDEN:
+      g_value_set_boolean (value, garcon_menu_item_get_hidden (item));
+      break;
+
     case PROP_PATH:
       g_value_set_string (value, garcon_menu_item_get_path (item));
       break;
@@ -506,6 +534,10 @@ garcon_menu_item_set_property (GObject      *object,
       garcon_menu_item_set_icon_name (item, g_value_get_string (value));
       break;
 
+    case PROP_HIDDEN:
+      garcon_menu_item_set_hidden (item, g_value_get_boolean (value));
+      break;
+
     case PROP_PATH:
       garcon_menu_item_set_path (item, g_value_get_string (value));
       break;
@@ -531,9 +563,9 @@ garcon_menu_item_get_element_visible (GarconMenuElement *element)
 
   item = GARCON_MENU_ITEM (element);
 
-  if (!garcon_menu_item_get_show_in_environment (item))
-    return FALSE;
-  else if (garcon_menu_item_get_no_display (item))
+  if (garcon_menu_item_get_hidden (item)
+      || garcon_menu_item_get_no_display (item)
+      || !garcon_menu_item_get_show_in_environment (item))
     return FALSE;
 
   /* Check the TryExec field */
@@ -615,6 +647,7 @@ garcon_menu_item_new (GFile *file)
   gboolean        terminal;
   gboolean        no_display;
   gboolean        startup_notify;
+  gboolean        hidden;
   gchar          *path;
   gchar          *name;
   gchar          *generic_name;
@@ -636,11 +669,8 @@ garcon_menu_item_new (GFile *file)
   rc = g_key_file_new ();
   succeed = g_key_file_load_from_data (rc, contents, length, G_KEY_FILE_NONE, NULL);
   g_free (contents);
-
-  /* Abort if loading failed or the file has been marked as "deleted"/hidden */
-  if (!succeed || GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_HIDDEN))
+  if (G_UNLIKELY (!succeed))
     {
-      /* Cleanup and leave */
       g_key_file_free (rc);
       return NULL;
     }
@@ -662,6 +692,7 @@ garcon_menu_item_new (GFile *file)
       no_display = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY);
       startup_notify = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY)
                        || GET_KEY (boolean, "X-KDE-StartupNotify");
+      hidden = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_HIDDEN);
 
       /* Allocate a new menu item instance */
       item = g_object_new (GARCON_TYPE_MENU_ITEM,
@@ -676,6 +707,7 @@ garcon_menu_item_new (GFile *file)
                            "no-display", no_display,
                            "supports-startup-notification", startup_notify,
                            "path", path,
+                           "hidden", hidden,
                            NULL);
 
       /* Free strings */
@@ -850,6 +882,9 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   boolean = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY)
             || GET_KEY (boolean, "X-KDE-StartupNotify");
   garcon_menu_item_set_supports_startup_notification (item, boolean);
+
+  boolean = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_HIDDEN);
+  garcon_menu_item_set_hidden (item, boolean);
 
   /* Flush property notifications */
   g_object_thaw_notify (G_OBJECT (item));
@@ -1152,6 +1187,34 @@ garcon_menu_item_set_path (GarconMenuItem *item,
 
 
 gboolean
+garcon_menu_item_get_hidden (GarconMenuItem *item)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), TRUE);
+  return item->priv->hidden;
+}
+
+
+
+void
+garcon_menu_item_set_hidden (GarconMenuItem *item,
+                             gboolean        hidden)
+{
+  g_return_if_fail (GARCON_IS_MENU_ITEM (item));
+
+  /* Abort if old and new value are equal */
+  if (item->priv->hidden == hidden)
+    return;
+
+  /* Assign new value */
+  item->priv->hidden = !!hidden;
+
+  /* Notify listeners */
+  g_object_notify (G_OBJECT (item), "hidden");
+}
+
+
+
+gboolean
 garcon_menu_item_requires_terminal (GarconMenuItem *item)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
@@ -1171,7 +1234,7 @@ garcon_menu_item_set_requires_terminal (GarconMenuItem *item,
     return;
 
   /* Assign new value */
-  item->priv->requires_terminal = requires_terminal;
+  item->priv->requires_terminal = !!requires_terminal;
 
   /* Notify listeners */
   g_object_notify (G_OBJECT (item), "requires-terminal");
@@ -1199,7 +1262,7 @@ garcon_menu_item_set_no_display (GarconMenuItem *item,
     return;
 
   /* Assign new value */
-  item->priv->no_display = no_display;
+  item->priv->no_display = !!no_display;
 
   /* Notify listeners */
   g_object_notify (G_OBJECT (item), "no-display");
@@ -1227,7 +1290,7 @@ garcon_menu_item_set_supports_startup_notification (GarconMenuItem *item,
     return;
 
   /* Assign new value */
-  item->priv->supports_startup_notification = supports_startup_notification;
+  item->priv->supports_startup_notification = !!supports_startup_notification;
 
   /* Notify listeners */
   g_object_notify (G_OBJECT (item), "supports-startup-notification");
