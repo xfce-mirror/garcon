@@ -35,9 +35,9 @@
 
 
 
-#define GET_LOCALE_KEY(type, key) g_key_file_get_locale_##type (rc, G_KEY_FILE_DESKTOP_GROUP, key, NULL, NULL)
-#define GET_KEY(type, key)        g_key_file_get_##type (rc, G_KEY_FILE_DESKTOP_GROUP, key, NULL)
-#define GET_STRING_LIST(key)      g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP, key, NULL, NULL)
+#define GET_LOCALE_KEY(type, key) (g_key_file_get_locale_##type (rc, G_KEY_FILE_DESKTOP_GROUP, key, NULL, NULL))
+#define GET_KEY(type, key)        (g_key_file_get_##type (rc, G_KEY_FILE_DESKTOP_GROUP, key, NULL))
+#define GET_STRING_LIST(key)      (g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP, key, NULL, NULL))
 
 
 
@@ -675,8 +675,7 @@ garcon_menu_item_new (GFile *file)
   g_return_val_if_fail (G_IS_FILE (file), NULL);
 
   /* Load the contents of the file */
-  if (!g_file_load_contents (file, NULL, &contents, &length, NULL, NULL)
-      || length == 0)
+  if (!g_file_load_contents (file, NULL, &contents, &length, NULL, NULL) || length == 0)
     return NULL;
 
   /* Open the keyfile */
