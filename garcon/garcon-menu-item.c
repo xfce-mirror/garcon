@@ -532,6 +532,91 @@ garcon_menu_item_set_property (GObject      *object,
 
 
 
+static gboolean
+garcon_menu_item_get_element_visible (GarconMenuElement *element)
+{
+  GarconMenuItem  *item;
+  const gchar     *try_exec;
+  gchar          **mt;
+  gboolean         result = TRUE;
+  gchar           *command;
+
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), FALSE);
+
+  item = GARCON_MENU_ITEM (element);
+
+  if (!garcon_menu_item_get_show_in_environment (item))
+    return FALSE;
+  else if (garcon_menu_item_get_no_display (item))
+    return FALSE;
+
+  /* Check the TryExec field */
+  try_exec = garcon_menu_item_get_try_exec (item);
+  if (try_exec != NULL && g_shell_parse_argv (try_exec, NULL, &mt, NULL))
+    {
+      /* Check if we have an absolute path to an existing file */
+      result = g_file_test (mt[0], G_FILE_TEST_EXISTS);
+
+      /* Else, we may have a program in $PATH */
+      if (!result)
+        {
+          command = g_find_program_in_path (mt[0]);
+          result = (command != NULL);
+          g_free (command);
+        }
+
+      /* Cleanup */
+      g_strfreev (mt);
+    }
+
+  return result;
+}
+
+
+
+static gboolean
+garcon_menu_item_get_element_show_in_environment (GarconMenuElement *element)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), FALSE);
+  return garcon_menu_item_get_show_in_environment (GARCON_MENU_ITEM (element));
+}
+
+
+
+static gboolean
+garcon_menu_item_get_element_no_display (GarconMenuElement *element)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), FALSE);
+  return garcon_menu_item_get_no_display (GARCON_MENU_ITEM (element));
+}
+
+static const gchar*
+garcon_menu_item_get_element_name (GarconMenuElement *element)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), NULL);
+  return GARCON_MENU_ITEM (element)->priv->name;
+}
+
+
+
+static const gchar*
+garcon_menu_item_get_element_comment (GarconMenuElement *element)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), NULL);
+  return GARCON_MENU_ITEM (element)->priv->comment;
+}
+
+
+
+static const gchar*
+garcon_menu_item_get_element_icon_name (GarconMenuElement *element)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), NULL);
+  return GARCON_MENU_ITEM (element)->priv->icon_name;
+}
+
+
+
 GarconMenuItem *
 garcon_menu_item_new (GFile *file)
 {
@@ -717,7 +802,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   /* Leave when the file is empty */
   if (G_UNLIKELY (length == 0))
     {
-      g_set_error_literal (error, 0, 0, "The desktop file if empty.");
+      g_set_error_literal (error, 0, 0, "The desktop file is empty.");
       return FALSE;
     }
 
@@ -1295,91 +1380,3 @@ garcon_menu_item_decrement_allocated (GarconMenuItem *item)
   if (item->priv->num_allocated > 0)
     item->priv->num_allocated--;
 }
-
-
-
-static const gchar*
-garcon_menu_item_get_element_name (GarconMenuElement *element)
-{
-  g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), NULL);
-  return GARCON_MENU_ITEM (element)->priv->name;
-}
-
-
-
-static const gchar*
-garcon_menu_item_get_element_comment (GarconMenuElement *element)
-{
-  g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), NULL);
-  return GARCON_MENU_ITEM (element)->priv->comment;
-}
-
-
-
-static const gchar*
-garcon_menu_item_get_element_icon_name (GarconMenuElement *element)
-{
-  g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), NULL);
-  return GARCON_MENU_ITEM (element)->priv->icon_name;
-}
-
-
-
-gboolean
-garcon_menu_item_get_element_visible (GarconMenuElement *element)
-{
-  GarconMenuItem  *item;
-  const gchar     *try_exec;
-  gchar          **mt;
-  gboolean         result = TRUE;
-  gchar           *command;
-
-  g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), FALSE);
-
-  item = GARCON_MENU_ITEM (element);
-
-  if (!garcon_menu_item_get_show_in_environment (item))
-    return FALSE;
-  else if (garcon_menu_item_get_no_display (item))
-    return FALSE;
-
-  /* Check the TryExec field */
-  try_exec = garcon_menu_item_get_try_exec (item);
-  if (try_exec != NULL && g_shell_parse_argv (try_exec, NULL, &mt, NULL))
-    {
-      /* Check if we have an absolute path to an existing file */
-      result = g_file_test (mt[0], G_FILE_TEST_EXISTS);
-
-      /* Else, we may have a program in $PATH */
-      if (!result)
-        {
-          command = g_find_program_in_path (mt[0]);
-          result = (command != NULL);
-          g_free (command);
-        }
-
-      /* Cleanup */
-      g_strfreev (mt);
-    }
-
-  return result;
-}
-
-
-
-gboolean
-garcon_menu_item_get_element_show_in_environment (GarconMenuElement *element)
-{
-  g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), FALSE);
-  return garcon_menu_item_get_show_in_environment (GARCON_MENU_ITEM (element));
-}
-
-
-
-gboolean
-garcon_menu_item_get_element_no_display (GarconMenuElement *element)
-{
-  g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), FALSE);
-  return garcon_menu_item_get_no_display (GARCON_MENU_ITEM (element));
-}
-
