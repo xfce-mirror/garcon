@@ -996,7 +996,7 @@ garcon_menu_item_set_categories (GarconMenuItem *item,
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
   /* Abort if lists are equal */
-  if (G_UNLIKELY (item->priv->categories != categories))
+  if (G_UNLIKELY (item->priv->categories == categories))
     return;
 
   /* Free old list */
