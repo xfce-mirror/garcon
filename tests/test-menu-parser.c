@@ -228,10 +228,12 @@ main (int    argc,
   gint              result = EXIT_SUCCESS;
   gint              n;
 
+  g_type_init ();
+
   if (!g_thread_supported ())
     g_thread_init (NULL);
 
-  garcon_init ("XFCE");
+  garcon_set_environment ("XFCE");
 
   if (argc > 1)
     file = g_file_new_for_path (argv[1]);
@@ -299,8 +301,6 @@ main (int    argc,
     }
 
   g_object_unref (parser);
-
-  garcon_shutdown ();
 
   return result;
 }

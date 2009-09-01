@@ -84,7 +84,7 @@ print_menu (GarconMenu  *menu,
           && garcon_menu_element_get_visible (iter->data))
         {
           g_printf ("%s\t%s\t%s\n", name, garcon_menu_item_get_desktop_id (iter->data),
-                    garcon_menu_item_get_filename (iter->data));
+                    garcon_menu_item_get_path (iter->data));
         }
     }
 
@@ -111,8 +111,8 @@ main (int    argc,
 
   g_set_prgname ("test-menu-spec");
 
-  /* Initialize menu library */
-  garcon_init (NULL);
+  /* Initialize the type system */
+  g_type_init ();
 
   /* Try to get the root menu */
   menu = garcon_menu_new_applications ();
@@ -137,9 +137,6 @@ main (int    argc,
       exit_code = -1;
 #endif
     }
-
-  /* Shut down the menu library */
-  garcon_shutdown ();
 
   return exit_code;
 }
