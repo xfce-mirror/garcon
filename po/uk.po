@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-15 03:27+0200\n"
+"POT-Creation-Date: 2009-09-01 22:49+0200\n"
 "PO-Revision-Date: 2009-01-26 11:01+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: .././garcon/garcon-menu-parser.c:308
+#: .././garcon/garcon-menu-parser.c:278
 #, fuzzy, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Не вдалось завантажити елемент кешу libxfce4menu з %s: %s."
 
-#: .././garcon/garcon-menu-parser.c:313
+#: .././garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr ""

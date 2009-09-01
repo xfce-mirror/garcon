@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-15 03:27+0200\n"
+"POT-Creation-Date: 2009-09-01 22:49+0200\n"
 "PO-Revision-Date: 2009-01-11 11:59+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
@@ -16,12 +16,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .././garcon/garcon-menu-parser.c:308
+#: .././garcon/garcon-menu-parser.c:278
 #, fuzzy, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "No s'ha pogut obrir l'element cau de «libxfce4menu» de «%s»: %s."
 
-#: .././garcon/garcon-menu-parser.c:313
+#: .././garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr ""

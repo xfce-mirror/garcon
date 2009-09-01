@@ -1,7 +1,5 @@
-./garcon/garcon.c
 ./garcon/garcon-config.c
 ./garcon/garcon-environment.c
-./garcon/garcon-gio.c
 ./garcon/garcon-menu.c
 ./garcon/garcon-menu-directory.c
 ./garcon/garcon-menu-element.c
@@ -9,10 +7,10 @@
 ./garcon/garcon-menu-item-cache.c
 ./garcon/garcon-menu-item-pool.c
 ./garcon/garcon-menu-merger.c
-./garcon/garcon-menu-monitor.c
 ./garcon/garcon-menu-node.c
 ./garcon/garcon-menu-parser.c
 ./garcon/garcon-menu-separator.c
 ./garcon/garcon-menu-tree-provider.c
+./garcon/garcon-private.c
 ./tests/test-menu-parser.c
 ./tests/test-menu-spec.c

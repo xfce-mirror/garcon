@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-15 03:27+0200\n"
+"POT-Creation-Date: 2009-09-01 22:49+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
 "Language-Team: Turkish <turkce@pardus.org.tr>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "X-Poedit-Language: Turkish\n"
 "X-Poedit-Country: TURKEY\n"
 
-#: .././garcon/garcon-menu-parser.c:308
+#: .././garcon/garcon-menu-parser.c:278
 #, fuzzy, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "libxfce4menu öğesi önbelleği, %s bölümünden çağrılamadı: %s."
 
-#: .././garcon/garcon-menu-parser.c:313
+#: .././garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr ""

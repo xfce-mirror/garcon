@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-15 03:27+0200\n"
+"POT-Creation-Date: 2009-09-01 22:49+0200\n"
 "PO-Revision-Date: 2008-03-25 00:19+0200\n"
 "Last-Translator: Evaggelos Balaskas <ebalaskas@ebalaskas.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: .././garcon/garcon-menu-parser.c:308
+#: .././garcon/garcon-menu-parser.c:278
 #, fuzzy, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr ""
 "Αποτυχία στο άνοιγμα προσωρινής μνήμης αντικειμένου libxfce4menu στο %s: %s."
 
-#: .././garcon/garcon-menu-parser.c:313
+#: .././garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr ""

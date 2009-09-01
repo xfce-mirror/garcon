@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-15 03:27+0200\n"
+"POT-Creation-Date: 2009-09-01 22:49+0200\n"
 "PO-Revision-Date: 2008-06-28 12:35+0100\n"
 "Last-Translator: Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
@@ -20,12 +20,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: .././garcon/garcon-menu-parser.c:308
+#: .././garcon/garcon-menu-parser.c:278
 #, fuzzy, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Fallo ó abrir a caché de elementos de libxfce4menu en %s: %s."
 
-#: .././garcon/garcon-menu-parser.c:313
+#: .././garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr ""
