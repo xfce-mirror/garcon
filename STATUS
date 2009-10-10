@@ -153,8 +153,6 @@ II. Test suite results
 III. Filesystem monitoring
 ==========================
 
-  Filesystem monitoring is done by moving the actual work into the 
-  client application. Using GarconMenuMonitorVTable applications 
-  can register functions to be called when monitoring of a file or
-  directory is needed. They then have to care about monitoring 
-  themselves (see garconmenumonitor.{c,h} for details.
+  Filesystem monitoring is currently not supported but will be part of
+  future releases. Fine-grained change notifications via per-menu and
+  per-item signals are planned.

@@ -2,14 +2,23 @@ What is it?
 ===========
 
 This is garcon, a freedesktop.org compliant menu implementation based
-on GLib and GIO.
+on GLib and GIO. It was started as a complete rewrite of the former 
+Xfce menu library called libxfce4menu, which, in contrast to garcon, 
+was lacking menu merging features essential for loading menus modified 
+with menu editors.
 
 
 Current state
 =============
 
-garcon already covers the most important parts of the menu specification. 
-It is however still in development and thus, neither stable nor complete.
+Garcon covers almost every part of the menu specification except for
+legacy menus and a few XML attributes. In contrast to 
+libxfce4menu, it can also load menus modified with menu editors such
+as Alacarte as menu merging is now supported. The only crucial 
+feature still missing is monitoring menus and menu items for changes.
+This is something that will be worked on for the next release.
+
+The garcon API will most likely not be frozen until its 1.0.0 release!
 
 
 Installation
@@ -41,7 +50,7 @@ How to report bugs?
 ===================
 
 Bugs should be reported to the Xfce bug tracking system 
-(http://bugzilla.xfce.org, product garcon). You will need to create an 
+(http://bugzilla.xfce.org, product Garcon). You will need to create an 
 account for yourself.
 
 Please read the HACKING file for information on where to send changes or 

@@ -1,0 +1,37 @@
+=========================
+OLD NEWS FOR libxfce4menu
+=========================
+
+4.5.99.2
+========
+- Add hint about no invariant sections to COPYING.
+- Fix crash when reading invalid menu files (bug #4879).
+
+4.5.99.1
+========
+- Add GNU Free Documentation License 1.1 to COPYING.
+- Update translations: da, eu, fr, ja, nb_NO, pt_BR, sv, zh_CN.
+
+4.5.93
+======
+- Add weak pointers to the XfceMenuItemCache and XfceMenuSeparator objects
+  so you can run xfce_menu_init() and xfce_menu_shutdown() multiple times.
+- Always using xfce_menu_get_element() when comparing two menu elements
+  instead of comparing menus and items in different ways. 
+- Review strings.
+- Updated translations: cs, es, eu, fi, hu, ja, pt_BR, sq, sv.
+
+4.5.92
+======
+- Translations: ca, da, ku, nb_NO, sq, tr.
+
+4.5.91
+======
+- Translations: cs, da, de, el, en_GB, es, fi, fr, gl, id, ja, lv, 
+  pl, pt_BR, pt_PT, sq, uk, ur.
+
+4.5.90
+======
+- Initial release as part of Xfce.
+- Translations: cs, da, de, el, en_GB, fi, fr, gl, id, ja, lv, pl, 
+  pt_BR, pt_PT, sq, uk, ur.
