@@ -92,3 +92,6 @@ EXTRA_DIST =								\
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = garcon-1.pc
+
+# Required for gtk-doc and make distcheck
+dist-hook: all
