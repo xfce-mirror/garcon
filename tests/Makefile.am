@@ -21,11 +21,7 @@ INCLUDES =								\
 	-I$(top_srcdir)							\
 	-DG_LOG_DOMAIN=\"garcon-tests\"
 
-TESTS =									\
-	test-menu-parser						\
-	test-menu-spec
-
-check_PROGRAMS =							\
+noinst_PROGRAMS =							\
 	test-menu-parser						\
 	test-menu-spec
 
