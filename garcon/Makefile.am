@@ -58,7 +58,7 @@ libgarcon_sources =							\
 	garcon-menu-merger.c						\
 	garcon-menu-parser.c						\
 	garcon-private.c						\
-	garcom-private.h
+	garcon-private.h
 
 libgarconincludedir = $(includedir)/garcon-1/garcon
 

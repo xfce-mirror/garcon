@@ -17,7 +17,8 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: .././garcon/garcon-menu-parser.c:278, c-format
+#: .././garcon/garcon-menu-parser.c:278
+#, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Ezin da %s-etik menuaren fitxategi datuak kargatu: %s."
 

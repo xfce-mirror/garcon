@@ -36,7 +36,7 @@ GARCON_MENU_PARSER_GET_CLASS
 <SECTION>
 <FILE>garcon-menu-item-cache</FILE>
 GarconMenuItemCachePrivate
-GarconMenuItemCacheClass
+<TITLE>GarconMenuItemCache</TITLE>
 GarconMenuItemCache
 garcon_menu_item_cache_get_default
 garcon_menu_item_cache_lookup
@@ -71,7 +71,7 @@ GARCON_MENU_MERGER_GET_CLASS
 
 <SECTION>
 <FILE>garcon-menu-separator</FILE>
-GarconMenuSeparatorClass
+<TITLE>GarconMenuSeparator</TITLE>
 GarconMenuSeparator
 garcon_menu_separator_get_default
 <SUBSECTION Standard>
@@ -91,6 +91,7 @@ GarconMenuLayoutMergeType
 GarconMenuMergeFileType
 GarconMenuNodeClass
 GarconMenuNode
+garcon_menu_node_get_type
 garcon_menu_node_new
 garcon_menu_node_get_node_type
 garcon_menu_node_create
@@ -122,7 +123,7 @@ garcon_menu_node_tree_free_data
 GARCON_MENU_NODE
 GARCON_IS_MENU_NODE
 GARCON_TYPE_MENU_NODE
-garcon_menu_node_get_type
+garcon_menu_node_type_get_type
 GARCON_MENU_NODE_CLASS
 GARCON_IS_MENU_NODE_CLASS
 GARCON_MENU_NODE_GET_CLASS
@@ -131,13 +132,17 @@ GARCON_MENU_NODE_GET_CLASS
 <SECTION>
 <FILE>garcon-menu-item</FILE>
 GarconMenuItemPrivate
-GarconMenuItemClass
+<TITLE>GarconMenuItem</TITLE>
 GarconMenuItem
 garcon_menu_item_new
+garcon_menu_item_new_for_path
+garcon_menu_item_new_for_uri
+garcon_menu_item_reload
+garcon_menu_item_reload_from_file
+garcon_menu_item_get_file
+garcon_menu_item_get_uri
 garcon_menu_item_get_desktop_id
 garcon_menu_item_set_desktop_id
-garcon_menu_item_get_filename
-garcon_menu_item_set_filename
 garcon_menu_item_get_command
 garcon_menu_item_set_command
 garcon_menu_item_get_try_exec
@@ -152,6 +157,8 @@ garcon_menu_item_get_icon_name
 garcon_menu_item_set_icon_name
 garcon_menu_item_get_path
 garcon_menu_item_set_path
+garcon_menu_item_get_hidden
+garcon_menu_item_set_hidden
 garcon_menu_item_requires_terminal
 garcon_menu_item_set_requires_terminal
 garcon_menu_item_get_no_display
@@ -182,14 +189,17 @@ GARCON_MENU_ITEM_GET_CLASS
 <FILE>garcon-menu</FILE>
 GarconMenuPrivate
 garcon_menu_new
-garcon_menu_new_for_file
+garcon_menu_new_for_path
 garcon_menu_new_applications
 garcon_menu_load
 garcon_menu_get_file
 garcon_menu_get_directory
 garcon_menu_get_menus
+garcon_menu_add_menu
 garcon_menu_get_menu_with_name
 garcon_menu_get_parent
+garcon_menu_get_item_pool
+garcon_menu_get_items
 garcon_menu_get_elements
 <TITLE>GarconMenu</TITLE>
 GarconMenu
@@ -206,8 +216,9 @@ GARCON_MENU_GET_CLASS
 <SECTION>
 <FILE>garcon-menu-directory</FILE>
 GarconMenuDirectoryPrivate
-GarconMenuDirectoryClass
+<TITLE>GarconMenuDirectory</TITLE>
 GarconMenuDirectory
+garcon_menu_directory_new
 garcon_menu_directory_get_file
 garcon_menu_directory_get_name
 garcon_menu_directory_set_name
@@ -276,37 +287,16 @@ garcon_major_version
 garcon_minor_version
 garcon_micro_version
 garcon_check_version
+garcon_config_lookup
 </SECTION>
 
 <SECTION>
-<FILE>garcon-gio</FILE>
-g_file_new_for_unknown_input
-g_file_new_relative_to_file
-g_file_get_uri_relative_to_file
+<FILE>garcon-private</FILE>
 </SECTION>
 
 <SECTION>
 <FILE>garcon</FILE>
 GARCON_INSIDE_GARCON_H
-garcon_init
-garcon_shutdown
-garcon_config_lookup
-</SECTION>
-
-<SECTION>
-<FILE>garcon-menu-monitor</FILE>
-GarconMenuMonitorFlags
-GarconMenuMonitorVTable
-garcon_menu_monitor_set_vtable
-garcon_menu_monitor_add_item
-garcon_menu_monitor_remove_item
-garcon_menu_monitor_add_directory
-garcon_menu_monitor_remove_directory
-garcon_menu_monitor_add_file
-garcon_menu_monitor_remove_file
-garcon_menu_monitor_set_flags
-garcon_menu_monitor_get_flags
-garcon_menu_monitor_has_flags
 </SECTION>
 
 <SECTION>

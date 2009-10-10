@@ -19,7 +19,8 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
-#: .././garcon/garcon-menu-parser.c:278, c-format
+#: .././garcon/garcon-menu-parser.c:278
+#, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Nevarēja ielādēt izvēlnes faila datus no %s: %s"
 
