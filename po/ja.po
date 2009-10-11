@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4menu 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-01 22:49+0200\n"
-"PO-Revision-Date: 2009-01-06 19:29+0900\n"
+"POT-Creation-Date: 2009-10-11 16:38+0900\n"
+"PO-Revision-Date: 2009-10-11 16:38+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -16,16 +16,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .././garcon/garcon-menu-parser.c:278
-#, fuzzy, c-format
+#: ../garcon/garcon-menu-parser.c:278
+#, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr ""
-"%s からの libxfce4menu アイテムのキャッシュの読み込みに失敗しました: %s"
+msgstr "%s からのメニューファイルデータを読み込めませんでした: %s"
 
-#: .././garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
+msgstr "%s からメニューファイルデータを読み込めませんでした"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: メニュー表示テスト"
