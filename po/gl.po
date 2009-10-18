@@ -1,19 +1,19 @@
-# Galician translation of libxfce4menu
-# Copyright (C) 2008 Leandro Regueiro
+# Galician translation of garcon
+# Copyright (C) 2008, 2009 Leandro Regueiro
 # This file is distributed under the same license as the xfce package.
 #
-# Leandro Regueiro <leandro.regueiro@gmail.com>, 2008.
+# Leandro Regueiro <leandro.regueiro@gmail.com>, 2008, 2009.
 #
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en <http://trasno.net>
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Transifex master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-01 22:49+0200\n"
-"PO-Revision-Date: 2008-06-28 12:35+0100\n"
-"Last-Translator: Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>\n"
+"PO-Revision-Date: 2009-10-18 15:46+0100\n"
+"Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,18 +21,18 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: .././garcon/garcon-menu-parser.c:278
-#, fuzzy, c-format
+#, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Fallo ó abrir a caché de elementos de libxfce4menu en %s: %s."
+msgstr "Non se puideron cargar os datos do ficheiro de menú %s: %s"
 
 #: .././garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
+msgstr "Non se puideron cargar os datos do ficheiro de menú dende %s"
 
 #, fuzzy
 #~ msgid "Failed to locate the system menu"
 #~ msgstr "Fallo ó localizar o menú raíz de aplicacións"
-
 #~ msgid "Failed to create the libxfce4menu item cache in %s."
 #~ msgstr "Fallo ó crear a caché de elementos de libxfce4menu en %s."
+
