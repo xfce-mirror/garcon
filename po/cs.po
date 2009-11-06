@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-01 22:49+0200\n"
-"PO-Revision-Date: 2009-01-06 12:34+0100\n"
+"PO-Revision-Date: 2009-11-06 14:04+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,23 +19,21 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: .././garcon/garcon-menu-parser.c:278
-#, fuzzy, c-format
+#, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Nepodařilo se načtení dočasného záznamu položky libxfce4menu z %s: %s."
+msgstr "Nelze načíst data souboru nabídky z %s: %s"
 
 #: .././garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
+msgstr "Nelze načíst data souboru nabídky z %s"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: Zkouška zobrazení nabídky"
-
 #~ msgid "_Show menu"
 #~ msgstr "_Zobrazit nabídku"
-
 #~ msgid "Failed to locate the system menu"
 #~ msgstr "Nepodařilo se nalézt hlavní nabídku aplikací"
-
 #~ msgid "Failed to create the libxfce4menu item cache in %s."
 #~ msgstr "Vytvoření dočasného záznamu položky libxfce4menu v %s se nezdařilo."
+
