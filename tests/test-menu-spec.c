@@ -34,7 +34,7 @@
 
 
 
-void
+static void
 print_menu (GarconMenu  *menu,
             const gchar *path)
 {

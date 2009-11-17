@@ -41,7 +41,7 @@ static gboolean print_node (GNode *node,
 
 
 
-const gchar *
+static const gchar *
 node_name (GNode *node)
 {
   switch (garcon_menu_node_tree_get_node_type (node))
@@ -192,7 +192,7 @@ print_node (GNode *node,
 
 
 
-void
+static void
 print_tree (GarconMenuTreeProvider *provider)
 {
   GNode *tree;
