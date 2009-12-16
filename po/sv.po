@@ -1,14 +1,14 @@
-# Swedish translation for libxfce4menu.
+# Swedish translation for garcon.
 # Copyright (C) 2008-2009 Free Software Foundation, Inc.
-# This file is distributed under the same license as the libxfce4menu package.
-# Daniel Nylander <po@danielnylander.se>, 2008, 2009.
+# This file is distributed under the same license as the garcon package.
+# Daniel Nylander <po@danielnylander.se>, 2009.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: libxfce4menu\n"
+"Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-09-01 22:49+0200\n"
-"PO-Revision-Date: 2009-01-18 12:29+0100\n"
+"PO-Revision-Date: 2009-12-16 14:16+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -17,25 +17,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: .././garcon/garcon-menu-parser.c:278
-#, fuzzy, c-format
+#, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr ""
-"Misslyckades med att läsa in mellanlagring för libxfce4menu-objekt i %s: %s."
+msgstr "Kunde inte läsa in menyfildata från %s: %s"
 
 #: .././garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
+msgstr "Kunde inte läsa in menyfildata från %s"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: Visa menytest"
-
 #~ msgid "_Show menu"
 #~ msgstr "_Visa meny"
-
 #~ msgid "Failed to locate the system menu"
 #~ msgstr "Misslyckades med att hitta systemmenyn"
-
 #~ msgid "Failed to create the libxfce4menu item cache in %s."
 #~ msgstr ""
 #~ "Misslyckades med att skapa mellanlagring för libxfce4menu-objekt i %s."
+
