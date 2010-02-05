@@ -1,8 +1,9 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-01 22:49+0200\n"
+"POT-Creation-Date: 2010-02-05 00:01+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
 "Language-Team: Hungarian <debian-l10n-hungarian@lists.d.o>\n"
@@ -13,15 +14,15 @@ msgstr ""
 "X-Poedit-Language: Hungarian\n"
 "X-Poedit-Country: HUNGARY\n"
 
-#: .././garcon/garcon-menu-parser.c:278
-#, fuzzy, c-format
+#: ../garcon/garcon-menu-parser.c:278
+#, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Nem tudtam betölteni a libxfce4menu elem gyorstárat innen: %s: %s."
+msgstr "Nem tölthetők be a menüfájl adatai innen: %s: %s"
 
-#: .././garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
+msgstr "Nem tölthetők be a menüfájl adatai innen: %s"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: Kijelző Menü Teszt"
