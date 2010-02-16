@@ -66,8 +66,8 @@ void                 garcon_menu_directory_set_name                (GarconMenuDi
 const gchar         *garcon_menu_directory_get_comment             (GarconMenuDirectory *directory);
 void                 garcon_menu_directory_set_comment             (GarconMenuDirectory *directory,
                                                                     const gchar         *comment);
-const gchar         *garcon_menu_directory_get_icon                (GarconMenuDirectory *directory);
-void                 garcon_menu_directory_set_icon                (GarconMenuDirectory *directory,
+const gchar         *garcon_menu_directory_get_icon_name           (GarconMenuDirectory *directory);
+void                 garcon_menu_directory_set_icon_name           (GarconMenuDirectory *directory,
                                                                     const gchar         *icon);
 gboolean             garcon_menu_directory_get_no_display          (GarconMenuDirectory *directory);
 void                 garcon_menu_directory_set_no_display          (GarconMenuDirectory *directory,

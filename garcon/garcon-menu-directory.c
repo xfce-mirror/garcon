@@ -60,7 +60,7 @@ enum
   PROP_NAME,
   PROP_COMMENT,
   PROP_NO_DISPLAY,
-  PROP_ICON,
+  PROP_ICON_NAME,
 };
 
 
@@ -89,7 +89,7 @@ struct _GarconMenuDirectoryPrivate
   gchar  *comment;
 
   /* Icon */
-  gchar  *icon;
+  gchar  *icon_name;
 
   /* Environments in which the menu should be displayed only */
   gchar **only_show_in;
@@ -166,13 +166,13 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
                                                         G_PARAM_STATIC_STRINGS));
 
   /**
-   * GarconMenuDirectory:icon:
+   * GarconMenuDirectory:icon-name:
    *
    * Icon associated with this directory.
    **/
   g_object_class_install_property (gobject_class,
-                                   PROP_ICON,
-                                   g_param_spec_string ("icon",
+                                   PROP_ICON_NAME,
+                                   g_param_spec_string ("icon-name",
                                                         "Icon",
                                                         "Directory icon",
                                                         NULL,
@@ -203,7 +203,7 @@ garcon_menu_directory_init (GarconMenuDirectory *directory)
   directory->priv = GARCON_MENU_DIRECTORY_GET_PRIVATE (directory);
   directory->priv->file = NULL;
   directory->priv->name = NULL;
-  directory->priv->icon = NULL;
+  directory->priv->icon_name = NULL;
   directory->priv->only_show_in = NULL;
   directory->priv->not_show_in = NULL;
   directory->priv->hidden = FALSE;
@@ -223,8 +223,8 @@ garcon_menu_directory_finalize (GObject *object)
   /* Free comment */
   g_free (directory->priv->comment);
 
-  /* Free icon */
-  g_free (directory->priv->icon);
+  /* Free icon_name */
+  g_free (directory->priv->icon_name);
 
   /* Free environment lists */
   g_strfreev (directory->priv->only_show_in);
@@ -260,8 +260,8 @@ garcon_menu_directory_get_property (GObject    *object,
       g_value_set_string (value, garcon_menu_directory_get_comment (directory));
       break;
 
-    case PROP_ICON:
-      g_value_set_string (value, garcon_menu_directory_get_icon (directory));
+    case PROP_ICON_NAME:
+      g_value_set_string (value, garcon_menu_directory_get_icon_name (directory));
       break;
 
     case PROP_NO_DISPLAY:
@@ -298,8 +298,8 @@ garcon_menu_directory_set_property (GObject      *object,
       garcon_menu_directory_set_comment (directory, g_value_get_string (value));
       break;
 
-    case PROP_ICON:
-      garcon_menu_directory_set_icon (directory, g_value_get_string (value));
+    case PROP_ICON_NAME:
+      garcon_menu_directory_set_icon_name (directory, g_value_get_string (value));
       break;
 
     case PROP_NO_DISPLAY:
@@ -323,7 +323,7 @@ garcon_menu_directory_new (GFile *file)
   GKeyFile            *rc;
   gchar               *name;
   gchar               *comment;
-  gchar               *icon;
+  gchar               *icon_name;
   gboolean             no_display;
   gboolean             succeed;
 
@@ -349,8 +349,8 @@ garcon_menu_directory_new (GFile *file)
                                        G_KEY_FILE_DESKTOP_KEY_NAME, NULL, NULL);
   comment = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,
                                           G_KEY_FILE_DESKTOP_KEY_COMMENT, NULL, NULL);
-  icon = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                       G_KEY_FILE_DESKTOP_KEY_ICON, NULL, NULL);
+  icon_name = g_key_file_get_string (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                     G_KEY_FILE_DESKTOP_KEY_ICON, NULL);
   no_display = g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
                                        G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY, NULL);
 
@@ -359,20 +359,20 @@ garcon_menu_directory_new (GFile *file)
                             "file", file,
                             "name", name,
                             "comment", comment,
-                            "icon", icon,
+                            "icon-name", icon_name,
                             "no-display", no_display,
                             NULL);
 
   /* Free strings */
   g_free (name);
   g_free (comment);
-  g_free (icon);
+  g_free (icon_name);
 
   /* Set rest of the private data directly */
   directory->priv->only_show_in = g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP,
                                                               G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN, NULL, NULL);
   directory->priv->not_show_in = g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                                            G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, NULL, NULL);
+                                                             G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, NULL, NULL);
   directory->priv->hidden = g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
                                                     G_KEY_FILE_DESKTOP_KEY_HIDDEN, NULL);
 
@@ -458,29 +458,29 @@ garcon_menu_directory_set_comment (GarconMenuDirectory *directory,
 
 
 const gchar*
-garcon_menu_directory_get_icon (GarconMenuDirectory *directory)
+garcon_menu_directory_get_icon_name (GarconMenuDirectory *directory)
 {
   g_return_val_if_fail (GARCON_IS_MENU_DIRECTORY (directory), NULL);
-  return directory->priv->icon;
+  return directory->priv->icon_name;
 }
 
 
 
 void
-garcon_menu_directory_set_icon (GarconMenuDirectory *directory,
-                                const gchar         *icon)
+garcon_menu_directory_set_icon_name (GarconMenuDirectory *directory,
+                                     const gchar         *icon_name)
 {
   g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
 
   /* Free old name */
-  if (G_UNLIKELY (directory->priv->icon != NULL))
-    g_free (directory->priv->icon);
+  if (G_UNLIKELY (directory->priv->icon_name != NULL))
+    g_free (directory->priv->icon_name);
 
   /* Set the new filename */
-  directory->priv->icon = g_strdup (icon);
+  directory->priv->icon_name = g_strdup (icon_name);
 
   /* Notify listeners */
-  g_object_notify (G_OBJECT (directory), "icon");
+  g_object_notify (G_OBJECT (directory), "icon-name");
 }
 
 

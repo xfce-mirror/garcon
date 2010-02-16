@@ -1425,7 +1425,7 @@ garcon_menu_get_element_icon_name (GarconMenuElement *element)
   if (menu->priv->directory == NULL)
     return NULL;
   else
-    return garcon_menu_directory_get_icon (menu->priv->directory);
+    return garcon_menu_directory_get_icon_name (menu->priv->directory);
 }
 
 
