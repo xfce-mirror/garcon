@@ -795,13 +795,22 @@ garcon_menu_node_tree_copy (GNode *tree)
 
 
 
+static gboolean
+free_children (GNode *tree)
+{
+  garcon_menu_node_tree_free_data (tree);
+  return FALSE;
+}
+
+
+
 void
 garcon_menu_node_tree_free (GNode *tree)
 {
   if (tree != NULL)
     {
       g_node_traverse (tree, G_IN_ORDER, G_TRAVERSE_ALL, -1,
-                       (GNodeTraverseFunc) garcon_menu_node_tree_free_data, NULL);
+                       (GNodeTraverseFunc) free_children, NULL);
 
       g_node_destroy (tree);
     }
