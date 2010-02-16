@@ -76,7 +76,7 @@ gboolean             garcon_menu_directory_get_hidden              (GarconMenuDi
 gboolean             garcon_menu_directory_get_show_in_environment (GarconMenuDirectory *directory);
 gboolean             garcon_menu_directory_get_visible             (GarconMenuDirectory *directory);
 gboolean             garcon_menu_directory_equal                   (GarconMenuDirectory *directory,
-                                                            GarconMenuDirectory *other);
+                                                                    GarconMenuDirectory *other);
 
 G_END_DECLS
 
