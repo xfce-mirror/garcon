@@ -946,6 +946,9 @@ garcon_menu_collect_files_from_path (GarconMenu  *menu,
 
       /* Destroy file */
       g_object_unref (file);
+
+      /* Destroy info */
+      g_object_unref (file_info);
     }
 
   g_object_unref (enumerator);
