@@ -505,7 +505,7 @@ garcon_menu_item_set_property (GObject      *object,
   switch (prop_id)
     {
     case PROP_FILE:
-      item->priv->file = g_object_ref (g_value_get_object (value));
+      item->priv->file = g_value_dup_object (value);
       break;
 
     case PROP_DESKTOP_ID:

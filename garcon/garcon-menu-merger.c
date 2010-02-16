@@ -208,7 +208,7 @@ garcon_menu_merger_set_property (GObject      *object,
   switch (prop_id)
     {
     case PROP_TREE_PROVIDER:
-      merger->priv->tree_provider = g_object_ref (g_value_get_object (value));
+      merger->priv->tree_provider = g_value_dup_object (value);
       break;
 
     default:

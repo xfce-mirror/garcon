@@ -225,7 +225,7 @@ garcon_menu_parser_set_property (GObject      *object,
   switch (prop_id)
     {
     case PROP_FILE:
-      parser->priv->file = g_object_ref (g_value_get_object (value));
+      parser->priv->file = g_value_dup_object (value);
       break;
 
     default:

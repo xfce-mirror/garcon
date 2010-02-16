@@ -287,7 +287,7 @@ garcon_menu_directory_set_property (GObject      *object,
   switch (prop_id)
     {
     case PROP_FILE:
-      directory->priv->file = g_object_ref (g_value_get_object (value));
+      directory->priv->file = g_value_dup_object (value);
       break;
 
     case PROP_NAME:
