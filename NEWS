@@ -1,3 +1,18 @@
+0.1.1
+=====
+- Don't check for GTK+ in configure.in.in. We don't depend on it.
+- Make tests noinst_PROGRAMS as they are not suited for automatic testing.
+- Fix some compiler warnings in the tests.
+- Drop pot file and switch to xdt 4.7.2.
+- Rename icon to icon_name in GarconMenuDirectory.
+- Use g_value_dub_object where possible.
+- Plug various memory leaks.
+- Silent build.
+- Build ChangeLog in make dist.
+- API documentation improvements.
+- Translation updates (fr, ja, gl, zh_CN, cs, sv, pt_PT, pt, el, hu).
+
+
 0.1.0
 =====
 - This is a complete rewrite of the former Xfce menu library called 
