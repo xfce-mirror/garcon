@@ -26,12 +26,14 @@
 #include <garcon/garcon-environment.h>
 
 
-
 /**
- * SECTION:garcon-menu-environment
+ * SECTION: garcon-environment
  * @title: Desktop Environment Configuration
+ * @short_description: Desktop Environment Configuration
+ * @include: garcon/garcon.h
  *
- * Desktop Environment Configuration
+ * Set the desktop environment used by the OnlyShowIn and NotShowIn
+ * desktop files keys.
  **/
 
 
@@ -63,8 +65,10 @@ garcon_set_environment (const gchar *env)
 /**
  * garcon_get_environment:
  *
- * Return value: Name of the desktop environment (e.g. XFCE, KDE, GNOME)
- * which is used or %NULL.
+ * Get the environment set with garcon_set_environment().
+ *
+ * Returns: Name of the desktop environment (e.g. XFCE, KDE, GNOME)
+ *          which is used or %NULL.
  */
 const gchar *
 garcon_get_environment (void)

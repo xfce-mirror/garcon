@@ -30,6 +30,19 @@
 
 
 
+/**
+ * SECTION: garcon-menu-directory
+ * @title: GarconMenuDirectory
+ * @short_description: Garcon element for .directory files.
+ * @include: garcon/garcon.h
+ *
+ * Element that represents a .directory file in the menu configurations.
+ * Each menu (except for the root menu) has a #GarconMenuDirectory,
+ * see garcon_menu_get_directory().
+ **/
+
+
+
 #define GARCON_MENU_DIRECTORY_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GARCON_TYPE_MENU_DIRECTORY, GarconMenuDirectoryPrivate))
 
 
@@ -106,6 +119,7 @@ struct _GarconMenuDirectoryPrivate
 
 
 
+/* TODO, maybe implement the GarconMenuElement interface */
 G_DEFINE_TYPE (GarconMenuDirectory, garcon_menu_directory, G_TYPE_OBJECT)
 
 
@@ -314,6 +328,15 @@ garcon_menu_directory_set_property (GObject      *object,
 
 
 
+/**
+ * garcon_menu_directory_new:
+ * @file : a #GFile
+ *
+ * Create a new #GarconMenuDirectory for @file. You most likely never
+ * use this, but retrieve the info from garcon_menu_get_directory().
+ *
+ * Returns: a #GarconMenuDirectory.
+ **/
 GarconMenuDirectory *
 garcon_menu_directory_new (GFile *file)
 {
@@ -386,10 +409,11 @@ garcon_menu_directory_new (GFile *file)
 
 /**
  * garcon_menu_directory_get_file:
+ * @directory : a #GarconMenuDirectory
  *
  * Get the file for @directory.
  *
- * Return value: a #GFile. The returned object
+ * Returns: a #GFile. The returned object
  * should be unreffed with g_object_unref() when no longer needed.
  */
 GFile *
@@ -401,6 +425,14 @@ garcon_menu_directory_get_file (GarconMenuDirectory *directory)
 
 
 
+/**
+ * garcon_menu_directory_get_name:
+ * @directory : a #GarconMenuDirectory
+ *
+ * Get the name of @directory.
+ *
+ * Returns: a the name for @directory.
+ */
 const gchar*
 garcon_menu_directory_get_name (GarconMenuDirectory *directory)
 {
@@ -410,6 +442,13 @@ garcon_menu_directory_get_name (GarconMenuDirectory *directory)
 
 
 
+/**
+ * garcon_menu_directory_set_name:
+ * @directory : a #GarconMenuDirectory
+ * @name : the new name for @directory.
+ *
+ * Set the name of @directory.
+ */
 void
 garcon_menu_directory_set_name (GarconMenuDirectory *directory,
                                 const gchar         *name)
@@ -430,6 +469,14 @@ garcon_menu_directory_set_name (GarconMenuDirectory *directory,
 
 
 
+/**
+ * garcon_menu_directory_get_comment:
+ * @directory : a #GarconMenuDirectory
+ *
+ * Get the comment of @directory.
+ *
+ * Returns: a the description for @directory.
+ */
 const gchar*
 garcon_menu_directory_get_comment (GarconMenuDirectory *directory)
 {
@@ -439,6 +486,13 @@ garcon_menu_directory_get_comment (GarconMenuDirectory *directory)
 
 
 
+/**
+ * garcon_menu_directory_set_comment:
+ * @directory : a #GarconMenuDirectory
+ * @comment : the new description for @directory.
+ *
+ * Set the comment of @directory.
+ */
 void
 garcon_menu_directory_set_comment (GarconMenuDirectory *directory,
                                    const gchar         *comment)
@@ -457,6 +511,15 @@ garcon_menu_directory_set_comment (GarconMenuDirectory *directory,
 }
 
 
+
+/**
+ * garcon_menu_directory_get_icon_name:
+ * @directory : a #GarconMenuDirectory
+ *
+ * Get the icon name of @directory.
+ *
+ * Returns: a the icon-name key for @directory.
+ */
 const gchar*
 garcon_menu_directory_get_icon_name (GarconMenuDirectory *directory)
 {
@@ -466,6 +529,13 @@ garcon_menu_directory_get_icon_name (GarconMenuDirectory *directory)
 
 
 
+/**
+ * garcon_menu_directory_set_icon_name:
+ * @directory : a #GarconMenuDirectory
+ * @icon_name : the new icon name for @directory.
+ *
+ * Set the icon name of @directory.
+ */
 void
 garcon_menu_directory_set_icon_name (GarconMenuDirectory *directory,
                                      const gchar         *icon_name)
@@ -485,6 +555,15 @@ garcon_menu_directory_set_icon_name (GarconMenuDirectory *directory,
 
 
 
+/**
+ * garcon_menu_directory_get_no_display:
+ * @directory : a #GarconMenuDirectory
+ *
+ * Whether @directory should be displayed.
+ * For applications you want to call garcon_menu_directory_get_visible().
+ *
+ * Returns: a the no-display key for @directory.
+ */
 gboolean
 garcon_menu_directory_get_no_display (GarconMenuDirectory *directory)
 {
@@ -494,6 +573,13 @@ garcon_menu_directory_get_no_display (GarconMenuDirectory *directory)
 
 
 
+/**
+ * garcon_menu_directory_set_no_display:
+ * @directory : a #GarconMenuDirectory
+ * @no_display : whether @directory should be displayed.
+ *
+ * Set the NoDisplay key of @directory.
+ */
 void
 garcon_menu_directory_set_no_display (GarconMenuDirectory *directory,
                                       gboolean             no_display)
@@ -513,6 +599,15 @@ garcon_menu_directory_set_no_display (GarconMenuDirectory *directory,
 
 
 
+/**
+ * garcon_menu_directory_get_hidden:
+ * @directory : a #GarconMenuDirectory
+ *
+ * Whether @directory should be hidden.
+ * For applications you want to call garcon_menu_directory_get_visible().
+ *
+ * Returns: a the hidden key for @directory.
+ */
 gboolean
 garcon_menu_directory_get_hidden (GarconMenuDirectory *directory)
 {
@@ -522,6 +617,16 @@ garcon_menu_directory_get_hidden (GarconMenuDirectory *directory)
 
 
 
+/**
+ * garcon_menu_directory_get_show_in_environment:
+ * @directory : a #GarconMenuDirectory
+ *
+ * Whether @directory is visible in the current environment
+ * which has been set by garcon_set_environment().
+ * For applications you want to call garcon_menu_directory_get_visible().
+ *
+ * Returns: %TRUE is visible in environment, else %FALSE.
+ */
 gboolean
 garcon_menu_directory_get_show_in_environment (GarconMenuDirectory *directory)
 {
@@ -560,6 +665,17 @@ garcon_menu_directory_get_show_in_environment (GarconMenuDirectory *directory)
 
 
 
+/**
+ * garcon_menu_directory_get_visible:
+ * @directory : a #GarconMenuDirectory
+ *
+ * Check which runs the following checks:
+ * garcon_menu_directory_get_show_in_environment(),
+ * garcon_menu_directory_get_hidden() and
+ * garcon_menu_directory_get_no_display().
+ *
+ * Returns: if visible %TRUE, else %FALSE.
+ **/
 gboolean
 garcon_menu_directory_get_visible (GarconMenuDirectory *directory)
 {
@@ -576,7 +692,15 @@ garcon_menu_directory_get_visible (GarconMenuDirectory *directory)
 }
 
 
-
+/**
+ * garcon_menu_directory_equal:
+ * @directory : a #GarconMenuDirectory
+ * @other : a #GarconMenuDirectory
+ *
+ * Checks if both directories point to the same file.
+ *
+ * Returns: if files are equal %TRUE, else %FALSE.
+ **/
 gboolean
 garcon_menu_directory_equal (GarconMenuDirectory *directory,
                              GarconMenuDirectory *other)

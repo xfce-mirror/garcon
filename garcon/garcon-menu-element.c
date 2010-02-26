@@ -26,6 +26,18 @@
 
 
 
+/**
+ * SECTION: garcon-menu-element
+ * @title: GarconMenuElement
+ * @short_description: Central interface.
+ * @include: garcon/garcon.h
+ *
+ * Interface implemented by the Garcon types #GarconMenuItem, #GarconMenuSeparator
+ * and #GarconMenu.
+ **/
+
+
+
 GType
 garcon_menu_element_get_type (void)
 {
