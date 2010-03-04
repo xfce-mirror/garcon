@@ -2,12 +2,12 @@
 # Copyright (C) 2007 THE libxfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the libxfce package.
 # Og Maciel <ogmaciel@gnome.org>, 2007.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-01 22:49+0200\n"
+"POT-Creation-Date: 2010-03-04 18:01+0100\n"
 "PO-Revision-Date: 2009-01-15 08:53-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "X-Poedit-Language: Portuguese\n"
 "X-Poedit-Country: BRAZIL\n"
 
-#: .././garcon/garcon-menu-parser.c:278
-#, fuzzy, c-format
+#: ../garcon/garcon-menu-parser.c:278
+#, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Falha ao carregar o cache do item libxfce4menu de %s: %s."
+msgstr "Não foi possível carregar dados do arquivo de menu %s: %s"
 
-#: .././garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
+msgstr "Não foi possível carregar dados do arquivo de menu de %s"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: Mostrar o menu de teste"
