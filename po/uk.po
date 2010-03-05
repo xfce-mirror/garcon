@@ -1,13 +1,13 @@
 # Ukrainian translation of libxfce4menu.
 # Copyright (C) 2008 Dmitry Nikitin
 # This file is distributed under the same license as the libxfce4menu package.
-#
+# 
 # Dmitry Nikitin <luckas_fb@mail.ru>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-01 22:49+0200\n"
+"POT-Creation-Date: 2010-03-05 06:01+0100\n"
 "PO-Revision-Date: 2009-01-26 11:01+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: .././garcon/garcon-menu-parser.c:278
-#, fuzzy, c-format
+#: ../garcon/garcon-menu-parser.c:278
+#, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Не вдалось завантажити елемент кешу libxfce4menu з %s: %s."
+msgstr "Не вдалось завантажити файл даних меню з %s: %s"
 
-#: .././garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
+msgstr "Не вдалось завантажити файл даних меню з %s"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: Показати тест меню"
