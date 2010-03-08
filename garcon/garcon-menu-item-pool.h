@@ -55,6 +55,7 @@ void                garcon_menu_item_pool_foreach            (GarconMenuItemPool
 void                garcon_menu_item_pool_apply_exclude_rule (GarconMenuItemPool *pool,
                                                               GNode              *node);
 gboolean            garcon_menu_item_pool_get_empty          (GarconMenuItemPool *pool);
+void                garcon_menu_item_pool_clear              (GarconMenuItemPool *pool);
 
 G_END_DECLS
 

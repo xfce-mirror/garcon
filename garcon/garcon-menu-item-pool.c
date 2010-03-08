@@ -178,3 +178,12 @@ garcon_menu_item_pool_get_empty (GarconMenuItemPool *pool)
   g_return_val_if_fail (GARCON_IS_MENU_ITEM_POOL (pool), TRUE);
   return (g_hash_table_size (pool->priv->items) == 0);
 }
+
+
+
+void
+garcon_menu_item_pool_clear (GarconMenuItemPool *pool)
+{
+  g_return_if_fail (GARCON_IS_MENU_ITEM_POOL (pool));
+  g_hash_table_remove_all (pool->priv->items);
+}
