@@ -328,7 +328,7 @@ reload_menu (GError **error)
 
 
 static void
-rebuild_required (GarconMenu *menu)
+reload_required (GarconMenu *menu)
 {
   GError *error = NULL;
 
@@ -369,7 +369,7 @@ main (gint    argc,
       create_main_window ();
 
       /* be notified when a menu rebuild is required */
-      g_signal_connect (root, "rebuild-required", G_CALLBACK (rebuild_required), NULL);
+      g_signal_connect (root, "reload-required", G_CALLBACK (reload_required), NULL);
 
       /* Enter main loop */
       gtk_main ();

@@ -1668,8 +1668,6 @@ garcon_menu_start_monitoring (GarconMenu *menu)
       monitor = g_file_monitor (menu->priv->file, G_FILE_MONITOR_NONE, NULL, NULL);
       if (monitor != NULL)
         {
-          g_debug ("monitoring menu file %s", g_file_get_path (menu->priv->file));
-
           menu->priv->monitors = g_list_prepend (menu->priv->monitors, monitor);
           g_signal_connect_swapped (monitor, "changed", 
                                     G_CALLBACK (garcon_menu_file_changed), menu);
@@ -1680,8 +1678,6 @@ garcon_menu_start_monitoring (GarconMenu *menu)
           monitor = g_file_monitor (lp->data, G_FILE_MONITOR_NONE, NULL, NULL);
           if (monitor != NULL)
             {
-              g_debug ("monitoring merged file %s", g_file_get_path (lp->data));
-
               menu->priv->monitors = g_list_prepend (menu->priv->monitors, monitor);
               g_signal_connect_swapped (monitor, "changed", 
                                         G_CALLBACK (garcon_menu_merge_file_changed), menu);
@@ -1693,8 +1689,6 @@ garcon_menu_start_monitoring (GarconMenu *menu)
           monitor = g_file_monitor (lp->data, G_FILE_MONITOR_NONE, NULL, NULL);
           if (monitor != NULL)
             {
-              g_debug ("monitoring merged dir %s", g_file_get_path (lp->data));
-
               menu->priv->monitors = g_list_prepend (menu->priv->monitors, monitor);
               g_signal_connect_swapped (monitor, "changed",
                                         G_CALLBACK (garcon_menu_merge_dir_changed), menu);
@@ -1706,7 +1700,9 @@ garcon_menu_start_monitoring (GarconMenu *menu)
 
   /* TODO monitor desktop directories */
 
-  /* TODO recurse into child menus */
+  /* Recurse into child menus */
+  for (lp = menu->priv->submenus; lp != NULL; lp = lp->next)
+    garcon_menu_start_monitoring (lp->data);
 }
 
 
@@ -1759,5 +1755,23 @@ garcon_menu_merge_dir_changed (GarconMenu       *menu,
 static void
 garcon_menu_stop_monitoring (GarconMenu *menu)
 {
+  GList *lp;
+
   g_return_if_fail (GARCON_IS_MENU (menu));
+
+  /* Recurse into submenus */
+  for (lp = menu->priv->submenus; lp != NULL; lp = lp->next)
+    garcon_menu_stop_monitoring (lp->data);
+
+  /* Disconnect and destroy all monitors */
+  for (lp = menu->priv->monitors; lp != NULL; lp = lp->next)
+    {
+      g_signal_handlers_disconnect_matched (lp->data, G_SIGNAL_MATCH_DATA,
+                                            0, 0, NULL, NULL, menu);
+      g_object_unref (lp->data);
+    }
+
+  /* Free the monitor list */
+  g_list_free (menu->priv->monitors);
+  menu->priv->monitors = NULL;
 }
