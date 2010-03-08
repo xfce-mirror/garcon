@@ -45,6 +45,8 @@ GType             garcon_menu_merger_get_type (void) G_GNUC_CONST;
 
 GarconMenuMerger *garcon_menu_merger_new      (GarconMenuTreeProvider *provider) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 gboolean          garcon_menu_merger_run      (GarconMenuMerger       *merger,
+                                               GList                 **merge_files,
+                                               GList                 **merge_dirs,
                                                GCancellable           *cancellable,
                                                GError                **error);
 

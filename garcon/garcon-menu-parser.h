@@ -42,7 +42,7 @@ typedef struct _GarconMenuParser        GarconMenuParser;
 
 GType             garcon_menu_parser_get_type (void) G_GNUC_CONST;
 
-GarconMenuParser *garcon_menu_parser_new      (GFile              *file) G_GNUC_MALLOC;
+GarconMenuParser *garcon_menu_parser_new      (GFile            *file) G_GNUC_MALLOC;
 gboolean          garcon_menu_parser_run      (GarconMenuParser *parser,
                                                GCancellable     *cancellable,
                                                GError          **error);

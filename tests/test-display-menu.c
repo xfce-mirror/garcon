@@ -38,6 +38,7 @@
 
 /* Root menu */
 static GarconMenu *root = NULL;
+static GtkWidget  *gtk_root = NULL;
 
 
 
@@ -172,7 +173,7 @@ create_item_widgets (GarconMenuItem *item,
 
 
 static void
-create_menu_widgets (GtkWidget *gtk_menu,
+create_menu_widgets (GtkWidget   *gtk_menu,
                      GarconMenu  *menu)
 {
   GarconMenuDirectory *directory;
@@ -255,9 +256,20 @@ create_menu_widgets (GtkWidget *gtk_menu,
 
 
 static void
+remove_child (GtkWidget *child,
+              GtkMenu   *menu)
+{
+  gtk_container_remove (GTK_CONTAINER (menu), child);
+}
+
+
+
+static void
 show_menu (GtkButton *button,
            GtkWidget *menu)
 {
+  gtk_container_foreach (GTK_CONTAINER (menu), (GtkCallback) remove_child, menu);
+
   /* Create menu widgets if not already done */
   if (g_list_length (gtk_container_get_children (GTK_CONTAINER (menu))) == 0)
     create_menu_widgets (menu, root);
@@ -281,7 +293,6 @@ create_main_window (void)
 {
   GtkWidget *window;
   GtkWidget *button;
-  GtkWidget *menu;
 
   /* Create main window */
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -299,10 +310,35 @@ create_main_window (void)
   gtk_widget_show (button);
 
   /* Create GTK+ root menu */
-  menu = gtk_menu_new ();
+  gtk_root = gtk_menu_new ();
 
   /* Display root menu when the button is clicked */
-  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (show_menu), menu);
+  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (show_menu), gtk_root);
+}
+
+
+
+static gboolean
+reload_menu (GError **error)
+{
+  g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+  return garcon_menu_load (root, NULL, error);
+}
+
+
+
+static void
+rebuild_required (GarconMenu *menu)
+{
+  GError *error = NULL;
+
+  g_return_if_fail (GARCON_IS_MENU (menu));
+
+  if (!reload_menu (&error)) 
+    {
+      g_error ("Failed to reload the menu: %s", error != NULL ? error->message : "No error");
+      g_error_free (error);
+    }
 }
 
 
@@ -327,25 +363,26 @@ main (gint    argc,
     root = garcon_menu_new_applications ();
 
   /* Check if the menu was loaded */
-  if (root != NULL
-      && garcon_menu_load (root, NULL, &error))
+  if (reload_menu (&error))
     {
-      /* Create main window */
+      /* create the main window */
       create_main_window ();
+
+      /* be notified when a menu rebuild is required */
+      g_signal_connect (root, "rebuild-required", G_CALLBACK (rebuild_required), NULL);
 
       /* Enter main loop */
       gtk_main ();
-
-      /* Destroy the root menu */
-      g_object_unref (root);
     }
   else
     {
       g_error ("Failed to load the menu: %s", error != NULL ? error->message : "No error");
-      if (error != NULL)
-        g_error_free (error);
+      g_error_free (error);
       exit_code = EXIT_FAILURE;
     }
+
+  /* Destroy the root menu */
+  g_object_unref (root);
 
   return exit_code;
 }

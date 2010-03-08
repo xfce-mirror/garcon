@@ -35,16 +35,6 @@
 
 typedef struct _GarconMenuMergerContext GarconMenuMergerContext;
 
-struct _GarconMenuMergerContext
-{
-  GarconMenuNodeType node_type;
-  GarconMenuMerger  *merger;
-  GCancellable      *cancellable;
-  GError           **error;
-  gboolean           success;
-  GList             *file_stack;
-};
-
 
 
 #define GARCON_MENU_MERGER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GARCON_TYPE_MENU_MERGER, GarconMenuMergerPrivate))
@@ -96,6 +86,18 @@ struct _GarconMenuMergerPrivate
   GarconMenuTreeProvider *tree_provider;
   GNode                  *menu;
   GList                  *file_stack;
+};
+
+struct _GarconMenuMergerContext
+{
+  GarconMenuNodeType node_type;
+  GarconMenuMerger  *merger;
+  GCancellable      *cancellable;
+  GError           **error;
+  gboolean           success;
+  GList             *file_stack;
+  GList            **merge_files;
+  GList            **merge_dirs;
 };
 
 
@@ -266,6 +268,8 @@ garcon_menu_merger_prepare_merging (GarconMenuMerger        *merger,
 
 gboolean
 garcon_menu_merger_run (GarconMenuMerger *merger,
+                        GList           **merge_files,
+                        GList           **merge_dirs,
                         GCancellable     *cancellable,
                         GError          **error)
 {
@@ -280,6 +284,8 @@ garcon_menu_merger_run (GarconMenuMerger *merger,
   context.error = error;
   context.success = TRUE;
   context.file_stack = NULL;
+  context.merge_files = merge_files;
+  context.merge_dirs = merge_dirs;
 
   file = garcon_menu_tree_provider_get_file (GARCON_MENU_TREE_PROVIDER (merger));
   context.file_stack = g_list_concat (context.file_stack, merger->priv->file_stack);
@@ -315,7 +321,7 @@ garcon_menu_merger_run (GarconMenuMerger *merger,
                    (GNodeTraverseFunc) garcon_menu_merger_resolve_relative_paths,
                    &context);
 
-  garcon_menu_merger_remove_duplicate_paths (merger->priv->menu,GARCON_MENU_NODE_TYPE_DIRECTORY_DIR);
+  garcon_menu_merger_remove_duplicate_paths (merger->priv->menu, GARCON_MENU_NODE_TYPE_DIRECTORY_DIR);
   garcon_menu_merger_remove_duplicate_paths (merger->priv->menu, GARCON_MENU_NODE_TYPE_DIRECTORY);
 
   garcon_menu_merger_resolve_moves (merger->priv->menu);
@@ -436,6 +442,16 @@ garcon_menu_merger_insert_default_dirs (GNode *parent,
     }
   g_free (path);
 }
+
+
+
+static gint
+compare_files (GFile *file,
+               GFile *other_file)
+{
+  return g_file_equal (file, other_file) ? 0 : 1;
+}
+
 
 
 
@@ -750,11 +766,21 @@ garcon_menu_merger_resolve_merge_dirs (GNode                   *node,
 
   dir = _garcon_file_new_for_unknown_input (garcon_menu_node_tree_get_string (node), NULL);
 
+  if (dir == NULL)
+    return FALSE;
+
   enumerator = g_file_enumerate_children (dir, G_FILE_ATTRIBUTE_STANDARD_NAME,
                                           G_FILE_QUERY_INFO_NONE, NULL, NULL);
 
   if (G_UNLIKELY (enumerator != NULL))
     {
+      /* Add merge dir to the list */
+      if (context->merge_dirs != NULL 
+          && !g_list_find_custom (*context->merge_dirs, dir, (GCompareFunc) compare_files))
+        {
+          *context->merge_dirs = g_list_prepend (*context->merge_dirs, g_object_ref (dir));
+        }
+
       while (TRUE)
         {
           file_info = g_file_enumerator_next_file (enumerator, NULL, NULL);
@@ -813,16 +839,6 @@ garcon_menu_parser_insert_elements (GNode *node,
 
 
 
-static gint
-compare_files (GFile *file,
-               GFile *other_file)
-{
-  return g_file_equal (file, other_file) ? 0 : 1;
-}
-
-
-
-
 static gboolean
 garcon_menu_merger_process_merge_files (GNode                   *node,
                                         GarconMenuMergerContext *context)
@@ -850,7 +866,6 @@ garcon_menu_merger_process_merge_files (GNode                   *node,
     }
 
   parser = garcon_menu_parser_new (file);
-  g_object_unref (file);
 
   if (G_LIKELY (garcon_menu_parser_run (parser, NULL, NULL)))
     {
@@ -860,7 +875,10 @@ garcon_menu_merger_process_merge_files (GNode                   *node,
       merger->priv->file_stack = g_list_copy (context->file_stack);
       g_list_foreach (merger->priv->file_stack, (GFunc) g_object_ref, NULL);
 
-      if (G_LIKELY (garcon_menu_merger_run (merger, NULL, NULL)))
+      if (G_LIKELY (garcon_menu_merger_run (merger, 
+                                            context->merge_files, 
+                                            context->merge_dirs, 
+                                            context->cancellable, NULL)))
         {
           tree = garcon_menu_tree_provider_get_tree (GARCON_MENU_TREE_PROVIDER (merger));
           g_object_unref (merger);
@@ -869,10 +887,19 @@ garcon_menu_merger_process_merge_files (GNode                   *node,
           g_node_traverse (tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
                            (GNodeTraverseFunc) garcon_menu_parser_insert_elements, tree);
           g_node_destroy (tree);
+
+          /* Add merged file to the list */
+          if (context->merge_files != NULL
+              && !g_list_find_custom (*context->merge_files, file, (GCompareFunc) compare_files))
+            {
+              *context->merge_files = g_list_prepend (*context->merge_files, g_object_ref (file));
+            }
         }
     }
 
   garcon_menu_node_tree_free (node);
+
+  g_object_unref (file);
 
   return FALSE;
 }
