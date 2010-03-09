@@ -29,6 +29,7 @@
 #include <glib/gi18n.h>
 
 #include <garcon/garcon-environment.h>
+#include <garcon/garcon-marshal.h>
 #include <garcon/garcon-menu-element.h>
 #include <garcon/garcon-menu-item.h>
 #include <garcon/garcon-menu-directory.h>
@@ -101,6 +102,7 @@ enum
 enum
 {
   RELOAD_REQUIRED,
+  DIRECTORY_CHANGED,
   LAST_SIGNAL,
 };
 
@@ -159,6 +161,11 @@ static void                 garcon_menu_merge_file_changed              (GarconM
                                                                          GFileMonitorEvent        event_type,
                                                                          GFileMonitor            *monitor);
 static void                 garcon_menu_merge_dir_changed               (GarconMenu              *menu,
+                                                                         GFile                   *file,
+                                                                         GFile                   *other_file,
+                                                                         GFileMonitorEvent        event_type,
+                                                                         GFileMonitor            *monitor);
+static void                 garcon_menu_directory_file_changed          (GarconMenu              *menu,
                                                                          GFile                   *file,
                                                                          GFile                   *other_file,
                                                                          GFileMonitorEvent        event_type,
@@ -259,6 +266,19 @@ garcon_menu_class_init (GarconMenuClass *klass)
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE,
                   0);
+
+  menu_signals[DIRECTORY_CHANGED] =
+    g_signal_new ("directory-changed",
+                  GARCON_TYPE_MENU,
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_NO_HOOKS,
+                  0,
+                  NULL,
+                  NULL,
+                  garcon_marshal_VOID__OBJECT_OBJECT,
+                  G_TYPE_NONE,
+                  2,
+                  GARCON_TYPE_MENU_DIRECTORY,
+                  GARCON_TYPE_MENU_DIRECTORY);
 }
 
 
@@ -1658,6 +1678,7 @@ static void
 garcon_menu_start_monitoring (GarconMenu *menu)
 {
   GFileMonitor *monitor;
+  GFile        *file;
   GList        *lp;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
@@ -1696,7 +1717,21 @@ garcon_menu_start_monitoring (GarconMenu *menu)
         }
     }
 
-  /* TODO monitor the .directory file */
+  /* Monitor the .directory file */
+  if (menu->priv->directory != NULL)
+    {
+      file = garcon_menu_directory_get_file (menu->priv->directory);
+
+      monitor = g_file_monitor (file, G_FILE_MONITOR_NONE, NULL, NULL);
+      if (monitor != NULL)
+        {
+          menu->priv->monitors = g_list_prepend (menu->priv->monitors, monitor);
+          g_signal_connect_swapped (monitor, "changed",
+                                    G_CALLBACK (garcon_menu_directory_file_changed), menu);
+        }
+
+      g_object_unref (file);
+    }
 
   /* TODO monitor desktop directories */
 
@@ -1748,6 +1783,42 @@ garcon_menu_merge_dir_changed (GarconMenu       *menu,
   g_return_if_fail (menu->priv->parent == NULL);
 
   g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+}
+
+
+
+static void
+garcon_menu_directory_file_changed (GarconMenu       *menu,
+                                    GFile            *file,
+                                    GFile            *other_file,
+                                    GFileMonitorEvent event_type,
+                                    GFileMonitor     *monitor)
+{
+  g_return_if_fail (GARCON_IS_MENU (menu));
+  g_return_if_fail (menu->priv->parent == NULL);
+
+  g_debug ("directory file %s changed", g_file_get_path (file));
+
+  if (event_type == G_FILE_MONITOR_EVENT_CHANGED)
+    {
+      /* TODO reload the menu directory (we need a new method
+       * garcon_menu_directory_load() for this) and emit a 
+       * GarconMenu::directory-changed signal */
+    }
+  else if (event_type == G_FILE_MONITOR_EVENT_DELETED)
+    {
+      /* TODO destroy the menu directory and emit a 
+       * GarconMenu::directory-changed signal with the
+       * GarconMenuDirectory set to NULL */
+
+      /* TODO check if there is another MenuDirectory
+       * element that we can use and load instead. If this is
+       * the case, change the file of the current menu directory,
+       * reload it and emit a directory-changed signal.
+       * otherwise destroy the menu directory and emit
+       * a directory-changed signal with the GarconMenuDirectory
+       * parameter set to NULL */
+    }
 }
 
 

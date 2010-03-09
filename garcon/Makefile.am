@@ -27,36 +27,45 @@ INCLUDES = 								\
 lib_LTLIBRARIES = 							\
 	libgarcon-1.la
 
+libgarcon_built_public_sources =					\
+	garcon-marshal.h
+
+libgarcon_built_sources =						\
+	$(libgarcon_built_public_sources)				\
+	garcon-marshal.c
+
 libgarcon_headers =							\
 	garcon.h							\
 	garcon-config.h							\
-	garcon-menu-element.h						\
-	garcon-menu-separator.h						\
+	garcon-environment.h						\
+	garcon-marshal.h						\
 	garcon-menu-directory.h						\
+	garcon-menu-element.h						\
 	garcon-menu-item-pool.h						\
 	garcon-menu-item-cache.h					\
-	garcon-environment.h						\
-	garcon-menu.h							\
 	garcon-menu-item.h						\
-	garcon-menu-node.h						\
-	garcon-menu-tree-provider.h					\
 	garcon-menu-merger.h						\
-	garcon-menu-parser.h
+	garcon-menu-node.h						\
+	garcon-menu-parser.h						\
+	garcon-menu-separator.h						\
+	garcon-menu-tree-provider.h					\
+	garcon-menu.h
 
 libgarcon_sources =							\
 	garcon-config.c							\
-	garcon-menu-element.c						\
-	garcon-menu-separator.c						\
+	garcon-environment.c						\
+	garcon-marshal.c						\
 	garcon-menu-directory.c						\
+	garcon-menu-element.c						\
 	garcon-menu-item-pool.c						\
 	garcon-menu-item-cache.c					\
-	garcon-environment.c						\
-	garcon-menu.c							\
 	garcon-menu-item.c						\
-	garcon-menu-node.c						\
-	garcon-menu-tree-provider.c					\
 	garcon-menu-merger.c						\
+	garcon-menu-node.c						\
 	garcon-menu-parser.c						\
+	garcon-menu-separator.c						\
+	garcon-menu-tree-provider.c					\
+	garcon-menu.c							\
 	garcon-private.c						\
 	garcon-private.h
 
@@ -88,10 +97,48 @@ libgarcon_1_la_LIBADD = 						\
 	$(GIO_LIBS)
 
 EXTRA_DIST =								\
-	garcon-config.h.in
+	garcon-config.h.in						\
+	garcon-marshal.list
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = garcon-1.pc
+
+DISTCLEANFILES =							\
+	stamp-garcon-marshal.h						\
+	garcon-config.h							\
+	$(libgarcon_built_sources)
+
+BUILT_SOURCES =								\
+	$(libgarcon_built_sources)
+
+garcon-marshal.h: stamp-garcon-marshal.h
+	@true
+
+stamp-garcon-marshal.h: garcon-marshal.list Makefile
+	$(AM_V_GEN) ( \
+	  cd $(top_builddir)/garcon \
+	  && echo "#ifndef __GARCON_MARSHAL_H__" > xgen-emh \
+	  && echo "#define __GARCON_MARSHAL_H__" >> xgen-emh \
+	  && ( glib-genmarshal \
+	  	--prefix=garcon_marshal \
+	  	--header $(srcdir)/garcon-marshal.list ) >> xgen-emh \
+	  && echo "#endif /* !__GARCON_MARSHAL_H__ */" >> xgen-emh \
+	  && ( cmp -s xgen-emh garcon-marshal.h \
+	  	|| cp xgen-emh garcon-marshal.h ) \
+	  && rm -f xgen-emh \
+	  && echo timestamp > $(@F) \
+	)
+
+garcon-marshal.c: garcon-marshal.list Makefile
+	$(AM_V_GEN) ( \
+	  cd $(top_builddir)/garcon \
+	  && echo "#include <garcon/garcon-marshal.h>" > xgen-emc \
+	  && ( glib-genmarshal \
+	  	--prefix=garcon_marshal \
+	  	--body $(srcdir)/garcon-marshal.list ) >> xgen-emc \
+	  && cp xgen-emc garcon-marshal.c \
+	  && rm -f xgen-emc \
+	)
 
 # Required for gtk-doc and make distcheck
 dist-hook: all
