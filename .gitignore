@@ -1,3 +1,7 @@
+garcon-marshal.c
+garcon-marshal.h
+stamp-*
+test-display-menu
 *.gmo
 stamp-it
 .deps
