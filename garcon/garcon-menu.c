@@ -1678,7 +1678,11 @@ static void
 garcon_menu_start_monitoring (GarconMenu *menu)
 {
   GFileMonitor *monitor;
+  GFile        *dir;
   GFile        *file;
+  GList        *directory_files;
+  GList        *directory_dirs;
+  GList        *dp;
   GList        *lp;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
@@ -1686,6 +1690,7 @@ garcon_menu_start_monitoring (GarconMenu *menu)
   /* Let only the root menu monitor .menu files and merge directories */
   if (menu->priv->parent == NULL)
     {
+      /* Monitor the root .menu file */
       monitor = g_file_monitor (menu->priv->file, G_FILE_MONITOR_NONE, NULL, NULL);
       if (monitor != NULL)
         {
@@ -1694,6 +1699,7 @@ garcon_menu_start_monitoring (GarconMenu *menu)
                                     G_CALLBACK (garcon_menu_file_changed), menu);
         }
 
+      /* Monitor all .menu files that were merged into the root menu */
       for (lp = menu->priv->merge_files; lp != NULL; lp = lp->next)
         {
           monitor = g_file_monitor (lp->data, G_FILE_MONITOR_NONE, NULL, NULL);
@@ -1705,6 +1711,8 @@ garcon_menu_start_monitoring (GarconMenu *menu)
             }
         }
 
+      /* Monitor all merge directories from which .menu files were merged into
+       * the root menu */
       for (lp = menu->priv->merge_dirs; lp != NULL; lp = lp->next)
         {
           monitor = g_file_monitor (lp->data, G_FILE_MONITOR_NONE, NULL, NULL);
@@ -1717,23 +1725,34 @@ garcon_menu_start_monitoring (GarconMenu *menu)
         }
     }
 
-  /* Monitor the .directory file */
-  if (menu->priv->directory != NULL)
-    {
-      file = garcon_menu_directory_get_file (menu->priv->directory);
+  /* Determine all .directory files we are interested in for this menu */
+  directory_files = garcon_menu_get_directories (menu);
 
-      monitor = g_file_monitor (file, G_FILE_MONITOR_NONE, NULL, NULL);
-      if (monitor != NULL)
-        {
-          menu->priv->monitors = g_list_prepend (menu->priv->monitors, monitor);
-          g_signal_connect_swapped (monitor, "changed",
-                                    G_CALLBACK (garcon_menu_directory_file_changed), menu);
-        }
+  /* Determine all .directory lookup dirs for this menu */
+  directory_dirs = garcon_menu_get_directory_dirs (menu);
 
-      g_object_unref (file);
-    }
+  /* Monitor potential .directory files */
+  for (lp = directory_files; lp != NULL; lp = lp->next)
+    for (dp = directory_dirs; dp != NULL; dp = dp->next)
+      {
+        dir = _garcon_file_new_relative_to_file (dp->data, menu->priv->file);
+        file = _garcon_file_new_relative_to_file (lp->data, dir);
 
-  /* TODO monitor desktop directories */
+        monitor = g_file_monitor (file, G_FILE_MONITOR_NONE, NULL, NULL);
+        if (monitor != NULL)
+          {
+            menu->priv->monitors = g_list_prepend (menu->priv->monitors, monitor);
+            g_signal_connect_swapped (monitor, "changed",
+                                      G_CALLBACK (garcon_menu_directory_file_changed), menu);
+          }
+
+        g_object_unref (file);
+        g_object_unref (dir);
+      }
+
+  /* Free lists */
+  g_list_free (directory_dirs);
+  g_list_free (directory_files);
 
   /* Recurse into child menus */
   for (lp = menu->priv->submenus; lp != NULL; lp = lp->next)
@@ -1794,30 +1813,76 @@ garcon_menu_directory_file_changed (GarconMenu       *menu,
                                     GFileMonitorEvent event_type,
                                     GFileMonitor     *monitor)
 {
+  GFile *directory_file;
+
   g_return_if_fail (GARCON_IS_MENU (menu));
-  g_return_if_fail (menu->priv->parent == NULL);
 
-  g_debug ("directory file %s changed", g_file_get_path (file));
-
-  if (event_type == G_FILE_MONITOR_EVENT_CHANGED)
+  if (event_type == G_FILE_MONITOR_EVENT_CHANGED 
+      || event_type == G_FILE_MONITOR_EVENT_ATTRIBUTE_CHANGED)
     {
-      /* TODO reload the menu directory (we need a new method
-       * garcon_menu_directory_load() for this) and emit a 
-       * GarconMenu::directory-changed signal */
+      g_debug ("directory file %s changed", g_file_get_path (file));
+
+      if (menu->priv->directory != NULL)
+        {
+          directory_file = garcon_menu_directory_get_file (menu->priv->directory);
+
+          if (g_file_equal (directory_file, file))
+            {
+              g_debug ("  reload the directory file");
+
+#if 0
+              if (garcon_menu_directory_load (menu->priv->directory, NULL, &error))
+                {
+                  /* TODO reload the menu directory (we need a new method
+                   * garcon_menu_directory_load() for this) and emit a 
+                   * GarconMenu::directory-changed signal */
+                }
+              else
+                {
+                  g_signal_emit (menu, menu_signals[DIRECTORY_CHANGED], 0, 
+                                 menu->priv->directory, NULL);
+
+                  g_object_unref (menu->priv->directory);
+                  menu->priv->directory = NULL;
+                }
+#endif
+            }
+
+          g_object_unref (directory_file);
+        }
     }
   else if (event_type == G_FILE_MONITOR_EVENT_DELETED)
     {
-      /* TODO destroy the menu directory and emit a 
-       * GarconMenu::directory-changed signal with the
-       * GarconMenuDirectory set to NULL */
+      g_debug ("directory file %s deleted", g_file_get_path (file));
 
-      /* TODO check if there is another MenuDirectory
-       * element that we can use and load instead. If this is
-       * the case, change the file of the current menu directory,
-       * reload it and emit a directory-changed signal.
-       * otherwise destroy the menu directory and emit
-       * a directory-changed signal with the GarconMenuDirectory
-       * parameter set to NULL */
+      if (menu->priv->directory != NULL)
+        {
+          directory_file = garcon_menu_directory_get_file (menu->priv->directory);
+
+          if (g_file_equal (directory_file, file))
+            {
+              g_debug ("  current .directory file deleted");
+
+              /* TODO check if there is another MenuDirectory
+               * element that we can use and load instead. If this is
+               * the case, change the file of the current menu directory,
+               * reload it and emit a directory-changed signal.
+               * otherwise destroy the menu directory and emit
+               * a directory-changed signal with the GarconMenuDirectory
+               * parameter set to NULL */
+            }
+
+          g_object_unref (directory_file);
+        }
+    }
+  else if (event_type == G_FILE_MONITOR_EVENT_CREATED)
+    {
+      g_debug ("directory file %s created", g_file_get_path (file));
+
+      /* TODO check if the file corresponds a MenuDirectory element that comes
+       * after the one currently used by the Menu. If this is the case,
+       * change the file of the GarconMenuElement, reload it
+       * and emit a 'directory-changed' signal */
     }
 }
 
