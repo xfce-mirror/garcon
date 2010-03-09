@@ -49,6 +49,8 @@ void                garcon_menu_item_pool_insert             (GarconMenuItemPool
                                                               GarconMenuItem     *item);
 GarconMenuItem     *garcon_menu_item_pool_lookup             (GarconMenuItemPool *pool,
                                                               const gchar        *desktop_id);
+GarconMenuItem     *garcon_menu_item_pool_lookup_file        (GarconMenuItemPool *pool,
+                                                              GFile              *file);
 void                garcon_menu_item_pool_foreach            (GarconMenuItemPool *pool,
                                                               GHFunc              func,
                                                               gpointer            user_data);

@@ -134,6 +134,34 @@ garcon_menu_item_pool_lookup (GarconMenuItemPool *pool,
 
 
 
+GarconMenuItem *
+garcon_menu_item_pool_lookup_file (GarconMenuItemPool *pool,
+                                   GFile              *file)
+{
+  GarconMenuItem *result = NULL;
+  GHashTableIter  iter;
+  gpointer        item;
+  GFile          *item_file;
+
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM_POOL (pool), NULL);
+  g_return_val_if_fail (G_IS_FILE (file), NULL);
+
+  g_hash_table_iter_init (&iter, pool->priv->items);
+  while (result == NULL && g_hash_table_iter_next (&iter, NULL, &item))
+    {
+      item_file = garcon_menu_item_get_file (item);
+
+      if (g_file_equal (item_file, file))
+        result = item;
+
+      g_object_unref (item_file);
+    }
+
+  return result;
+}
+
+
+
 void
 garcon_menu_item_pool_foreach (GarconMenuItemPool *pool,
                                GHFunc              func,
