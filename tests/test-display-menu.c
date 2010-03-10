@@ -173,6 +173,32 @@ create_item_widgets (GarconMenuItem *item,
 
 
 static void
+directory_changed (GarconMenu          *menu,
+                   GarconMenuDirectory *old_directory,
+                   GarconMenuDirectory *new_directory,
+                   GtkWidget           *item)
+{
+  const gchar *display_name;
+  const gchar *icon_name;
+  GtkWidget   *image;
+
+  g_debug ("directory changed from %s to %s", 
+           old_directory != NULL ? garcon_menu_directory_get_name (old_directory) : NULL,
+           new_directory != NULL ? garcon_menu_directory_get_name (new_directory) : NULL);
+
+  display_name = garcon_menu_element_get_name (GARCON_MENU_ELEMENT (menu));
+  gtk_menu_item_set_label (GTK_MENU_ITEM (item), display_name);
+  
+  icon_name = garcon_menu_element_get_icon_name (GARCON_MENU_ELEMENT (menu));
+  if (icon_name == NULL)
+    icon_name = "applications-other";
+  image = gtk_image_menu_item_get_image (GTK_IMAGE_MENU_ITEM (item));
+  gtk_image_set_from_icon_name (GTK_IMAGE (image), icon_name, ICON_SIZE);
+}
+
+
+
+static void
 create_menu_widgets (GtkWidget   *gtk_menu,
                      GarconMenu  *menu)
 {
@@ -240,6 +266,9 @@ create_menu_widgets (GtkWidget   *gtk_menu,
           gtk_submenu = gtk_menu_new ();
           gtk_menu_item_set_submenu (GTK_MENU_ITEM (gtk_item), gtk_submenu);
 
+          /* Update the menu item when the menu directory changes */
+          g_signal_connect (submenu, "directory-changed", G_CALLBACK (directory_changed), gtk_item);
+
           /* Create widgets for submenu */
           create_menu_widgets (gtk_submenu, submenu);
 
@@ -268,8 +297,6 @@ static void
 show_menu (GtkButton *button,
            GtkWidget *menu)
 {
-  gtk_container_foreach (GTK_CONTAINER (menu), (GtkCallback) remove_child, menu);
-
   /* Create menu widgets if not already done */
   if (g_list_length (gtk_container_get_children (GTK_CONTAINER (menu))) == 0)
     create_menu_widgets (menu, root);
@@ -334,11 +361,15 @@ reload_required (GarconMenu *menu)
 
   g_return_if_fail (GARCON_IS_MENU (menu));
 
+  g_debug ("reload required");
+
   if (!reload_menu (&error)) 
     {
       g_error ("Failed to reload the menu: %s", error != NULL ? error->message : "No error");
       g_error_free (error);
     }
+  
+  gtk_container_foreach (GTK_CONTAINER (gtk_root), (GtkCallback) remove_child, gtk_root);
 }
 
 

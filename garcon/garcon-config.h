@@ -30,10 +30,47 @@
 
 G_BEGIN_DECLS
 
+/**
+ * GARCON_MAJOR_VERSION:
+ *
+ * The major version number of the garcon library.
+ * Like garcon_major_version, but from the headers used at
+ * application compile time, rather than from the library
+ * linked against at application run time.
+ **/
 #define GARCON_MAJOR_VERSION 0
-#define GARCON_MINOR_VERSION 1
-#define GARCON_MICRO_VERSION 0
 
+/**
+ * GARCON_MINOR_VERSION:
+ *
+ * The minor version number of the garcon library.
+ * Like garcon_minor_version, but from the headers used at
+ * application compile time, rather than from the library
+ * linked against at application run time.
+ **/
+#define GARCON_MINOR_VERSION 1
+
+/**
+ * GARCON_MICRO_VERSION:
+ *
+ * The micro version number of the garcon library.
+ * Like garcon_micro_version, but from the headers used at
+ * application compile time, rather than from the library
+ * linked against at application run time.
+ **/
+#define GARCON_MICRO_VERSION 1
+
+/**
+ * GARCON_CHECK_VERSION:
+ * @major : the major version number.
+ * @minor : the minor version number.
+ * @micro : the micro version number.
+ *
+ * Checks the version of the garcon library.
+ *
+ * Returns: %TRUE if the version of the garcon header files is
+ *          the same as or newer than the passed-in version.
+ **/
 #define GARCON_CHECK_VERSION(major,minor,micro) \
   (GARCON_MAJOR_VERSION > (major) \
    || (GARCON_MAJOR_VERSION == (major) \

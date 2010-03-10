@@ -1,6 +1,6 @@
 /* vi:set et ai sw=2 sts=2 ts=2: */
 /*-
- * Copyright (c) 2006-2009 Jannis Pohlmann <jannis@xfce.org>
+ * Copyright (c) 2006-2010 Jannis Pohlmann <jannis@xfce.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -340,69 +340,86 @@ garcon_menu_directory_set_property (GObject      *object,
 GarconMenuDirectory *
 garcon_menu_directory_new (GFile *file)
 {
-  GarconMenuDirectory *directory = NULL;
-  gchar               *contents;
-  gsize                length;
-  GKeyFile            *rc;
-  gchar               *name;
-  gchar               *comment;
-  gchar               *icon_name;
-  gboolean             no_display;
-  gboolean             succeed;
+  g_return_val_if_fail (G_IS_FILE (file), FALSE);
+  return g_object_new (GARCON_TYPE_MENU_DIRECTORY, "file", file, NULL);
+}
 
-  g_return_val_if_fail (G_IS_FILE (file), NULL);
+
+gboolean
+garcon_menu_directory_load (GarconMenuDirectory *directory,
+                            GCancellable        *cancellable,
+                            GError             **error)
+{
+  GKeyFile *rc;
+  gboolean  no_display;
+  gboolean  file_parsed = FALSE;
+  gchar    *contents;
+  gsize     length;
+  gchar    *name;
+  gchar    *comment;
+  gchar    *icon_name;
+
+  g_return_val_if_fail (GARCON_IS_MENU_DIRECTORY (directory), FALSE);
+  g_return_val_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable), FALSE);
+  g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
   /* Load the contents of the file */
-  if (!g_file_load_contents (file, NULL, &contents, &length, NULL, NULL))
-    return NULL;
+  if (!g_file_load_contents (directory->priv->file, cancellable, &contents, &length, 
+                             NULL, error))
+    {
+      return FALSE;
+    }
 
-  /* Open the keyfile */
+  /* Open and parse the keyfile */
   rc = g_key_file_new ();
-  succeed = g_key_file_load_from_data (rc, contents, length, G_KEY_FILE_NONE, NULL);
+  file_parsed = g_key_file_load_from_data (rc, contents, length, G_KEY_FILE_NONE, error);
   g_free (contents);
-  if (G_UNLIKELY (!succeed))
+
+  if (G_UNLIKELY (!file_parsed))
     {
       /* Cleanup and leave */
       g_key_file_free (rc);
-      return NULL;
+      return FALSE;
     }
 
-  /* Parse name, exec command and icon name */
   name = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,
                                        G_KEY_FILE_DESKTOP_KEY_NAME, NULL, NULL);
+  garcon_menu_directory_set_name (directory, name);
+  g_free (name);
+
   comment = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,
                                           G_KEY_FILE_DESKTOP_KEY_COMMENT, NULL, NULL);
+  garcon_menu_directory_set_comment (directory, comment);
+  g_free (comment);
+
   icon_name = g_key_file_get_string (rc, G_KEY_FILE_DESKTOP_GROUP,
                                      G_KEY_FILE_DESKTOP_KEY_ICON, NULL);
-  no_display = g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                       G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY, NULL);
-
-  /* Allocate a new directory instance */
-  directory = g_object_new (GARCON_TYPE_MENU_DIRECTORY,
-                            "file", file,
-                            "name", name,
-                            "comment", comment,
-                            "icon-name", icon_name,
-                            "no-display", no_display,
-                            NULL);
-
-  /* Free strings */
-  g_free (name);
-  g_free (comment);
+  garcon_menu_directory_set_icon_name (directory, icon_name);
   g_free (icon_name);
 
+  no_display = g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                       G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY, NULL);
+  garcon_menu_directory_set_no_display (directory, no_display);
+
   /* Set rest of the private data directly */
-  directory->priv->only_show_in = g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                                              G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN, NULL, NULL);
-  directory->priv->not_show_in = g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                                             G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, NULL, NULL);
-  directory->priv->hidden = g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                                    G_KEY_FILE_DESKTOP_KEY_HIDDEN, NULL);
+  g_strfreev (directory->priv->only_show_in);
+  directory->priv->only_show_in = 
+    g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP, 
+                                G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN, NULL, NULL);
+
+  g_strfreev (directory->priv->not_show_in);
+  directory->priv->not_show_in = 
+    g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP,
+                                G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, NULL, NULL);
+
+  directory->priv->hidden = 
+    g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP, 
+                            G_KEY_FILE_DESKTOP_KEY_HIDDEN, NULL);
 
   /* Cleanup */
   g_key_file_free (rc);
 
-  return directory;
+  return TRUE;
 }
 
 

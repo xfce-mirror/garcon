@@ -1,6 +1,6 @@
 /* vi:set et ai sw=2 sts=2 ts=2: */
 /*-
- * Copyright (c) 2007-2009 Jannis Pohlmann <jannis@xfce.org>
+ * Copyright (c) 2007-2010 Jannis Pohlmann <jannis@xfce.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -58,6 +58,10 @@ struct _GarconMenuDirectory
 GType                garcon_menu_directory_get_type                (void) G_GNUC_CONST;
 
 GarconMenuDirectory *garcon_menu_directory_new                     (GFile               *file) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+
+gboolean             garcon_menu_directory_load                    (GarconMenuDirectory *directory,
+                                                                    GCancellable        *cancellable,
+                                                                    GError             **error);
 
 GFile               *garcon_menu_directory_get_file                (GarconMenuDirectory *directory);
 const gchar         *garcon_menu_directory_get_name                (GarconMenuDirectory *directory);
