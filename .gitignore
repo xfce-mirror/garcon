@@ -57,5 +57,4 @@ configure
 configure.in
 depcomp
 garcon-1.pc
-garcon-config.h
 POTFILES
