@@ -122,6 +122,29 @@ garcon_check_version (guint required_major,
 
 
 
+gchar **
+garcon_config_build_paths (const gchar *filename)
+{
+  const gchar * const *dirs;
+  gchar              **paths;
+  guint                n;
+
+  g_return_val_if_fail (filename != NULL && *filename != '\0', NULL);
+
+  dirs = g_get_system_config_dirs ();
+
+  paths = g_new0 (gchar *, 1 + g_strv_length ((gchar **)dirs) + 1);
+  
+  paths[0] = g_build_filename (g_get_user_config_dir (), filename, NULL);
+  for (n = 1; dirs[n-1] != NULL; ++n)
+    paths[n] = g_build_filename (dirs[n-1], filename, NULL);
+  paths[n] = NULL;
+
+  return paths;
+}
+
+
+
 /**
  * garcon_config_lookup:
  * @filename : relative filename of the config resource.
