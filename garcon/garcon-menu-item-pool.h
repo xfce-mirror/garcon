@@ -47,6 +47,8 @@ GarconMenuItemPool *garcon_menu_item_pool_new                (void) G_GNUC_MALLO
 
 void                garcon_menu_item_pool_insert             (GarconMenuItemPool *pool,
                                                               GarconMenuItem     *item);
+void                garcon_menu_item_pool_remove             (GarconMenuItemPool *pool,
+                                                              GarconMenuItem     *item);
 GarconMenuItem     *garcon_menu_item_pool_lookup             (GarconMenuItemPool *pool,
                                                               const gchar        *desktop_id);
 GarconMenuItem     *garcon_menu_item_pool_lookup_file        (GarconMenuItemPool *pool,

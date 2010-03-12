@@ -103,6 +103,9 @@ enum
 {
   RELOAD_REQUIRED,
   DIRECTORY_CHANGED,
+  ITEM_ADDED,
+  ITEM_CHANGED,
+  ITEM_REMOVED,
   LAST_SIGNAL,
 };
 
@@ -151,6 +154,11 @@ static const gchar         *garcon_menu_get_element_icon_name           (GarconM
 static gboolean             garcon_menu_get_element_visible             (GarconMenuElement       *element);
 static gboolean             garcon_menu_get_element_show_in_environment (GarconMenuElement       *element);
 static gboolean             garcon_menu_get_element_no_display          (GarconMenuElement       *element);
+static gboolean             garcon_menu_get_element_equal               (GarconMenuElement       *element,
+                                                                         GarconMenuElement       *other);
+static GarconMenuItem      *garcon_menu_find_file_item                  (GarconMenu              *menu,
+                                                                         GFile                   *file,
+                                                                         GList                  **menus);
 static void                 garcon_menu_start_monitoring                (GarconMenu              *menu);
 static void                 garcon_menu_stop_monitoring                 (GarconMenu              *menu);
 static void                 garcon_menu_monitor_menu_files              (GarconMenu              *menu);
@@ -300,6 +308,43 @@ garcon_menu_class_init (GarconMenuClass *klass)
                   GARCON_TYPE_MENU_DIRECTORY,
                   GARCON_TYPE_MENU_DIRECTORY);
 
+  menu_signals[ITEM_ADDED] = 
+    g_signal_new ("item-added",
+                  GARCON_TYPE_MENU,
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_NO_HOOKS,
+                  0,
+                  NULL,
+                  NULL,
+                  garcon_marshal_VOID__OBJECT_UINT,
+                  G_TYPE_NONE,
+                  1,
+                  GARCON_TYPE_MENU_ITEM,
+                  G_TYPE_UINT);
+
+  menu_signals[ITEM_CHANGED] =
+    g_signal_new ("item-changed",
+                  GARCON_TYPE_MENU,
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_NO_HOOKS,
+                  0,
+                  NULL,
+                  NULL,
+                  g_cclosure_marshal_VOID__OBJECT,
+                  G_TYPE_NONE,
+                  1,
+                  GARCON_TYPE_MENU_ITEM);
+
+  menu_signals[ITEM_REMOVED] =
+    g_signal_new ("item-removed",
+                  GARCON_TYPE_MENU,
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_NO_HOOKS,
+                  0,
+                  NULL,
+                  NULL,
+                  g_cclosure_marshal_VOID__OBJECT,
+                  G_TYPE_NONE,
+                  1,
+                  GARCON_TYPE_MENU_ITEM);
+
   garcon_menu_file_quark = g_quark_from_string ("garcon-menu-file-quark");
 }
 
@@ -314,6 +359,7 @@ garcon_menu_element_init (GarconMenuElementIface *iface)
   iface->get_visible = garcon_menu_get_element_visible;
   iface->get_show_in_environment = garcon_menu_get_element_show_in_environment;
   iface->get_no_display = garcon_menu_get_element_no_display;
+  iface->equal = garcon_menu_get_element_equal;
 }
 
 
@@ -379,8 +425,12 @@ garcon_menu_clear (GarconMenu *menu)
   /* Clear the item pool */
   garcon_menu_item_pool_clear (menu->priv->pool);
 
+  /* Jannis: I don't think this is needed. If we don't invalidate all
+   * the time, consequtive reloads will be much faster */
+#if 0 
   /* Clear the item cache */
   garcon_menu_item_cache_invalidate (menu->priv->cache);
+#endif
 }
 
 
@@ -1049,7 +1099,7 @@ garcon_menu_get_app_dirs (GarconMenu *menu,
           submenu_app_dirs = garcon_menu_get_app_dirs (lp->data, recursive);
 
           for (sp = g_list_last (submenu_app_dirs); sp != NULL; sp = sp->prev) 
-            if (!g_list_find_custom (dirs, sp->data, (GCompareFunc) g_strcmp0))
+            if (g_list_find_custom (dirs, sp->data, (GCompareFunc) g_strcmp0) == NULL)
               dirs = g_list_prepend (dirs, sp->data);
         }
     }
@@ -1740,6 +1790,53 @@ garcon_menu_get_element_no_display (GarconMenuElement *element)
 
 
 
+static gboolean
+garcon_menu_get_element_equal (GarconMenuElement *element,
+                               GarconMenuElement *other)
+{
+  g_return_val_if_fail (GARCON_IS_MENU (element), FALSE);
+  g_return_val_if_fail (GARCON_IS_MENU (other), FALSE);
+
+  return GARCON_MENU (element) == GARCON_MENU (other);
+}
+
+
+
+static GarconMenuItem *
+garcon_menu_find_file_item (GarconMenu *menu,
+                            GFile      *file,
+                            GList     **menus)
+{
+  GarconMenuItem *item;
+  GList          *lp;
+
+  g_return_val_if_fail (GARCON_IS_MENU (menu), NULL);
+  g_return_val_if_fail (G_IS_FILE (file), NULL);
+
+  item = garcon_menu_item_pool_lookup_file (menu->priv->pool, file);
+
+  if (menus != NULL)
+    {
+      if (item != NULL)
+        *menus = g_list_prepend (*menus, menu);
+
+      for (lp = menu->priv->submenus; lp != NULL; lp = lp->next)
+        item = garcon_menu_find_file_item (lp->data, file, menus);
+    }
+  else
+    {
+      if (item == NULL)
+        {
+          for (lp = menu->priv->submenus; item == NULL && lp != NULL; lp = lp->next)
+            item = garcon_menu_find_file_item (lp->data, file, menus);
+        }
+    }
+
+  return item;
+}
+
+
+
 static void
 garcon_menu_start_monitoring (GarconMenu *menu)
 {
@@ -1753,10 +1850,11 @@ garcon_menu_start_monitoring (GarconMenu *menu)
       garcon_menu_monitor_menu_files (menu);
       garcon_menu_monitor_merge_files (menu);
       garcon_menu_monitor_merge_dirs (menu);
+
+      garcon_menu_monitor_app_dirs (menu);
     }
 
   garcon_menu_monitor_directory_dirs (menu);
-  garcon_menu_monitor_app_dirs (menu);
 
   /* Recurse into child menus */
   for (lp = menu->priv->submenus; lp != NULL; lp = lp->next)
@@ -1922,6 +2020,9 @@ garcon_menu_monitor_app_dirs (GarconMenu *menu)
   for (lp = app_dirs; lp != NULL; lp = lp->next)
     {
       dir = _garcon_file_new_relative_to_file (lp->data, menu->priv->file);
+  
+      g_debug ("%20s: monitor %s", garcon_menu_get_name (menu), g_file_get_path (dir));
+
       garcon_menu_monitor_app_dir (menu, dir);
       g_object_unref (dir);
     }
@@ -1960,7 +2061,7 @@ garcon_menu_monitor_app_dir (GarconMenu *menu,
   g_return_if_fail (GARCON_IS_MENU (menu));
   g_return_if_fail (G_IS_FILE (dir));
 
-  if (g_list_find_custom (menu->priv->monitors, dir, (GCompareFunc) find_monitor))
+  if (g_list_find_custom (menu->priv->monitors, dir, (GCompareFunc) find_monitor) != NULL)
     return;
 
   monitor = g_file_monitor (dir, G_FILE_MONITOR_NONE, NULL, NULL);
@@ -2133,6 +2234,8 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
   GFileInfo      *info;
   GFileType       file_type;
   gboolean        can_read;
+  GList          *menus = NULL;
+  GList          *lp;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
 
@@ -2143,8 +2246,10 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
                garcon_menu_element_get_name (GARCON_MENU_ELEMENT (menu)),
                g_file_get_path (file), event_type);
 
+      /* query the type of the changed file */
       file_type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
 
+      /* check if one of the app dirs was changed */
       if (file_type == G_FILE_TYPE_DIRECTORY)
         {
           info = g_file_query_info (file, G_FILE_ATTRIBUTE_ACCESS_CAN_READ,
@@ -2153,6 +2258,8 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
           can_read = g_file_info_get_attribute_boolean (info, 
                                                         G_FILE_ATTRIBUTE_ACCESS_CAN_READ);
 
+          /* if the app dir is no longer readable, we need to remove all items
+           * residing somewhere inside the directory from all menus */
           if (!can_read)
             {
               /* TODO emit 'item-removed' with all items that are included in the
@@ -2161,15 +2268,53 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
         }
       else
         {
-          item = garcon_menu_item_pool_lookup_file (menu->priv->pool, file);
+          /* a regular file changed, try to find the corresponding menu item 
+           * and all menus this item is part of */
+          item = garcon_menu_find_file_item (menu, file, &menus);
 
-          /* TODO 
-           * - find the menu(s) this item belongs to
-           * - reload the item
-           * - find the menu(s) the item belongs to after the reload
-           *   (make sure to emit 'item-changed' or 'item-removed' and 
-           *   'item-added' signals were appropriate)
-           */
+          /* if the item is already known, we need to reload it and check
+           * if it has to be moved around in the menu hierarchy */
+          if (item != NULL)
+            {
+              /* try to reload the item */
+              if (garcon_menu_item_reload (item, NULL))
+                {
+                  /* find out where to move the item (if it has to be moved at all)
+                   * and move it, taking care of emitting item-changed/item-removed/item-added 
+                   * signals */
+
+                  g_debug ("  successfully reloaded");
+                }
+              else
+                {
+                  /* reloading failed, remove the item from all menus and destroy it */
+                  for (lp = menus; lp != NULL; lp = lp->next)
+                    {
+                      /* emit an 'item-removed' signal for each menu the item was part of */
+                      g_signal_emit (GARCON_MENU (lp->data), menu_signals[ITEM_REMOVED], 0, item);
+
+                      /* remove the item from each menu item pool */
+                      garcon_menu_item_pool_remove (GARCON_MENU (lp->data)->priv->pool, item);
+                    }
+
+                  /* remove the item from the item cache, so we are forced to reload it from
+                   * disk the next time it becomes available */
+                  garcon_menu_item_cache_remove_file (menu->priv->cache, file);
+                }
+            }
+          else
+            {
+              /* TODO 
+               * the menu item is unknown, so we need to load it and find to which
+               * menus it belongs. this involves:
+               * 1. finding out its desktop-file ID
+               * 2. loading it via the GarconMenuItemCache
+               * 3. resolving the item similar to how we do it with all items
+               *    during the menu load process */
+            }
+
+          /* free the menu list */
+          g_list_free (menus);
         }
     }
   else if (event_type == G_FILE_MONITOR_EVENT_CREATED)
@@ -2197,13 +2342,46 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
                garcon_menu_element_get_name (GARCON_MENU_ELEMENT (menu)),
                g_file_get_path (file), event_type);
 
-      /* TODO 
-       * 1) the deleted file is a directory
-       *    - remove all menu items coming from the removed directory
-       *      from item pools (make sure to emit 'item-removed' signals)
-       * 2) the deleted file is a regular file
-       *
-       */
+      /* query the type of the changed file */
+      file_type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
+
+      /* check if one of the app dirs was changed */
+      if (file_type == G_FILE_TYPE_DIRECTORY)
+        {
+          /* TODO 
+           * the deleted file is a directory, so remove all menu items 
+           * residing inside the directory from all menus */
+        }
+      else
+        {
+          /* a regular file was deleted, try to find the corresponding
+           * menu item and the menus the item was part of */
+          item = garcon_menu_find_file_item (menu, file, &menus);
+          if (item != NULL)
+            {
+              /* reloading failed, remove the item from all menus and destroy it */
+              for (lp = menus; lp != NULL; lp = lp->next)
+                {
+                  /* emit an 'item-removed' signal for each menu the item was part of */
+                  g_signal_emit (GARCON_MENU (lp->data), menu_signals[ITEM_REMOVED], 0, item);
+
+                  /* remove the item from each menu item pool */
+                  garcon_menu_item_pool_remove (GARCON_MENU (lp->data)->priv->pool, item);
+                }
+
+              /* remove the item from the item cache, so we are forced to reload it from
+               * disk the next time it becomes available */
+              garcon_menu_item_cache_remove_file (menu->priv->cache, file);
+            }
+
+          /* TODO
+           * check if a file with the same desktop-file ID still exists
+           * and load that file instead. then resolve the file into the
+           * correct menus */
+
+          /* free the menu list */
+          g_list_free (menus);
+        }
     }
 }
 

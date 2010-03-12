@@ -36,6 +36,8 @@ static const gchar *garcon_menu_separator_get_element_icon_name           (Garco
 static gboolean     garcon_menu_separator_get_element_visible             (GarconMenuElement        *element);
 static gboolean     garcon_menu_separator_get_element_show_in_environment (GarconMenuElement        *element);
 static gboolean     garcon_menu_separator_get_element_no_display          (GarconMenuElement        *element);
+static gboolean     garcon_menu_separator_get_element_equal               (GarconMenuElement        *element,
+                                                                           GarconMenuElement        *other);
 
 
 
@@ -64,6 +66,7 @@ garcon_menu_separator_element_init (GarconMenuElementIface *iface)
   iface->get_visible = garcon_menu_separator_get_element_visible;
   iface->get_show_in_environment = garcon_menu_separator_get_element_show_in_environment;
   iface->get_no_display = garcon_menu_separator_get_element_no_display;
+  iface->equal = garcon_menu_separator_get_element_equal;
 }
 
 
@@ -156,5 +159,15 @@ garcon_menu_separator_get_element_show_in_environment (GarconMenuElement *elemen
 static gboolean
 garcon_menu_separator_get_element_no_display (GarconMenuElement *element)
 {
+  return FALSE;
+}
+
+
+
+static gboolean
+garcon_menu_separator_get_element_equal (GarconMenuElement *element,
+                                         GarconMenuElement *other)
+{
+  /* FIXME this is inherently broken as the separator is a singleton class */
   return FALSE;
 }

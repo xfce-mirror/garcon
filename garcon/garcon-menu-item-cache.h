@@ -66,6 +66,8 @@ GarconMenuItem      *garcon_menu_item_cache_lookup      (GarconMenuItemCache *ca
 void                 garcon_menu_item_cache_foreach     (GarconMenuItemCache *cache,
                                                          GHFunc               func,
                                                          gpointer             user_data);
+void                 garcon_menu_item_cache_remove_file (GarconMenuItemCache *cache,
+                                                         GFile               *file);
 void                 garcon_menu_item_cache_invalidate  (GarconMenuItemCache *cache);
 
 G_END_DECLS

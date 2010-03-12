@@ -122,6 +122,22 @@ garcon_menu_item_pool_insert (GarconMenuItemPool *pool,
 
 
 
+void
+garcon_menu_item_pool_remove (GarconMenuItemPool *pool,
+                              GarconMenuItem     *item)
+{
+  g_return_if_fail (GARCON_IS_MENU_ITEM_POOL (pool));
+  g_return_if_fail (GARCON_IS_MENU_ITEM (item));
+
+  /* Remove the item from the hash table */
+  g_hash_table_remove (pool->priv->items, garcon_menu_item_get_desktop_id (item));
+
+  /* Release the reference on the item */
+  garcon_menu_item_unref (item);
+}
+
+
+
 GarconMenuItem*
 garcon_menu_item_pool_lookup (GarconMenuItemPool *pool,
                               const gchar        *desktop_id)

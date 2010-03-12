@@ -87,8 +87,7 @@ garcon_menu_item_cache_init (GarconMenuItemCache *cache)
   cache->priv = GARCON_MENU_ITEM_CACHE_GET_PRIVATE (cache);
 
   /* Create empty hash table */
-  cache->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
-                                              (GDestroyNotify) garcon_menu_item_unref);
+  cache->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
 }
 
 
@@ -198,6 +197,29 @@ garcon_menu_item_cache_foreach (GarconMenuItemCache *cache,
   g_static_mutex_lock (&lock);
 
   g_hash_table_foreach (cache->priv->items, func, user_data);
+
+  /* Release item cache lock */
+  g_static_mutex_unlock (&lock);
+}
+
+
+
+void
+garcon_menu_item_cache_remove_file (GarconMenuItemCache *cache,
+                                    GFile               *file)
+{
+  gchar *uri;
+
+  g_return_if_fail (GARCON_IS_MENU_ITEM_CACHE (cache));
+  g_return_if_fail (G_IS_FILE (file));
+
+  /* Acquire lock on the item cache */
+  g_static_mutex_lock (&lock);
+
+  /* Remove the item with the same URI from the item cache */
+  uri = g_file_get_uri (file);
+  g_hash_table_remove (cache->priv->items, uri);
+  g_free (uri);
 
   /* Release item cache lock */
   g_static_mutex_unlock (&lock);

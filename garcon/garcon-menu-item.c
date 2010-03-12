@@ -85,6 +85,8 @@ static const gchar *garcon_menu_item_get_element_icon_name           (GarconMenu
 static gboolean     garcon_menu_item_get_element_visible             (GarconMenuElement      *element);
 static gboolean     garcon_menu_item_get_element_show_in_environment (GarconMenuElement      *element);
 static gboolean     garcon_menu_item_get_element_no_display          (GarconMenuElement      *element);
+static gboolean     garcon_menu_item_get_element_equal               (GarconMenuElement      *element,
+                                                                      GarconMenuElement      *other);
 
 
 
@@ -384,6 +386,7 @@ garcon_menu_item_element_init (GarconMenuElementIface *iface)
   iface->get_visible = garcon_menu_item_get_element_visible;
   iface->get_show_in_environment = garcon_menu_item_get_element_show_in_environment;
   iface->get_no_display = garcon_menu_item_get_element_no_display;
+  iface->equal = garcon_menu_item_get_element_equal;
 }
 
 
@@ -621,6 +624,21 @@ garcon_menu_item_get_element_no_display (GarconMenuElement *element)
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), FALSE);
   return garcon_menu_item_get_no_display (GARCON_MENU_ITEM (element));
 }
+
+
+
+static gboolean
+garcon_menu_item_get_element_equal (GarconMenuElement *element,
+                                    GarconMenuElement *other)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), FALSE);
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (other), FALSE);
+
+  return g_file_equal (GARCON_MENU_ITEM (element)->priv->file, 
+                       GARCON_MENU_ITEM (other)->priv->file);
+}
+
+
 
 static const gchar*
 garcon_menu_item_get_element_name (GarconMenuElement *element)

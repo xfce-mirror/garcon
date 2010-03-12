@@ -166,6 +166,8 @@ create_item_widgets (GarconMenuItem *item,
   gtk_menu_shell_append (GTK_MENU_SHELL (parent_menu), gtk_item);
   gtk_widget_show (gtk_item);
 
+  g_object_set_data_full (G_OBJECT (gtk_item), "garcon-menu-item", g_object_ref (item), g_object_unref);
+
   /* Execute command if item is clicked */
   g_signal_connect (gtk_item, "activate", G_CALLBACK (execute_item_command), item);
 }
@@ -194,6 +196,33 @@ directory_changed (GarconMenu          *menu,
     icon_name = "applications-other";
   image = gtk_image_menu_item_get_image (GTK_IMAGE_MENU_ITEM (item));
   gtk_image_set_from_icon_name (GTK_IMAGE (image), icon_name, ICON_SIZE);
+}
+
+
+
+static void
+item_removed (GarconMenu     *menu,
+              GarconMenuItem *item,
+              GtkWidget      *gtk_menu)
+{
+  GarconMenuItem *corresponding_item;
+  GList          *children;
+  GList          *lp;
+
+  children = gtk_container_get_children (GTK_CONTAINER (gtk_menu));
+
+  for (lp = children; lp != NULL; lp = lp->next)
+    {
+      corresponding_item = g_object_get_data (G_OBJECT (lp->data), "garcon-menu-item");
+      if (corresponding_item != NULL)
+        {
+          if (garcon_menu_element_equal (GARCON_MENU_ELEMENT (item),
+                                         GARCON_MENU_ELEMENT (corresponding_item)))
+            {
+              gtk_container_remove (GTK_CONTAINER (gtk_menu), lp->data);
+            }
+        }
+    }
 }
 
 
@@ -268,6 +297,12 @@ create_menu_widgets (GtkWidget   *gtk_menu,
 
           /* Update the menu item when the menu directory changes */
           g_signal_connect (submenu, "directory-changed", G_CALLBACK (directory_changed), gtk_item);
+
+          /* Remvoe the menu item and submenu if there are no menu items left in it */
+          /* g_signal_connect (submenu, "destroy", G_CALLBACK (menu_destroyed), gtk_item); */
+
+          /* Remove menu items if they are removed on disk */
+          g_signal_connect (submenu, "item-removed", G_CALLBACK (item_removed), gtk_submenu);
 
           /* Create widgets for submenu */
           create_menu_widgets (gtk_submenu, submenu);
