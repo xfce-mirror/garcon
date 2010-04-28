@@ -199,6 +199,8 @@ esac
 
 AC_OUTPUT([
 Makefile
+data/Makefile
+data/xfce/Makefile
 docs/Makefile
 docs/reference/Makefile
 docs/reference/version.xml

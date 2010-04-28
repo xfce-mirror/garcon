@@ -1,3 +1,16 @@
+data/xfce/xfce-accessories.directory.in
+data/xfce/xfce-development.directory.in
+data/xfce/xfce-education.directory.in
+data/xfce/xfce-games.directory.in
+data/xfce/xfce-graphics.directory.in
+data/xfce/xfce-multimedia.directory.in
+data/xfce/xfce-network.directory.in
+data/xfce/xfce-office.directory.in
+data/xfce/xfce-other.directory.in
+data/xfce/xfce-science.directory.in
+data/xfce/xfce-screensavers.directory.in
+data/xfce/xfce-settings.directory.in
+data/xfce/xfce-system.directory.in
 garcon/garcon-config.c
 garcon/garcon-environment.c
 garcon/garcon-menu.c

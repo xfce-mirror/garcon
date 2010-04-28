@@ -18,8 +18,9 @@
 # Boston, MA 02110-1301, USA.
 
 SUBDIRS =								\
-	garcon							\
+	garcon								\
 	docs								\
+	data								\
 	tests								\
 	po
 
