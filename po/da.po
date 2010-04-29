@@ -2,126 +2,126 @@
 # Copyright (c) 2007 The Xfce development team.
 # This file is distributed under the same license as the libxfce4menu package.
 # Per Kongstad <p_kongstad@op.pl>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu 4.5.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-28 23:51+0200\n"
+"POT-Creation-Date: 2010-04-29 04:01+0000\n"
 "PO-Revision-Date: 2009-08-15 19:29+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Country: DENMARK\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Danish\n"
-"X-Poedit-Country: DENMARK\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr ""
+msgstr "Tilbehør"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr ""
+msgstr "Standard skrivebordsværktøjer og programmer"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
-msgstr ""
+msgstr "Udvikling"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr ""
+msgstr "Udviklingsværktøjer til programmer"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
-msgstr ""
+msgstr "Uddannelse"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr ""
+msgstr "Peogrammer til uddannelse"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
-msgstr ""
+msgstr "Spil"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr ""
+msgstr "Spil, puslespil og andre sjove programmer"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr ""
+msgstr "Grafik"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr ""
+msgstr "Grafisk skabelses- og manipuleringsprogrammer"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "Lyd-, videoafpillere samt -editorer"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
-msgstr ""
+msgstr "Multimedie"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Network"
-msgstr ""
+msgstr "Netværk"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Network applications and utilities"
-msgstr ""
+msgstr "Netværksprogrammer og værktøjer"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
-msgstr ""
+msgstr "Kontor"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr ""
+msgstr "Kontor- og produktivitetsprogrammer"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr ""
+msgstr "Programmer som ikke falder indenfor andre kategorier"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
-msgstr ""
+msgstr "Andre"
 
 #: ../data/xfce/xfce-science.directory.in.h:1
 msgid "Science"
-msgstr ""
+msgstr "Videnskab"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr ""
+msgstr "Videnskabelige programmer"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Pauseskærmsprogrammer"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
-msgstr ""
+msgstr "Pauseskærme"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr ""
+msgstr "Skrivebords- og systemindstillingsprogrammer"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
-msgstr ""
+msgstr "Indstillinger"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Systemværktøjer"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
