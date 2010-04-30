@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-28 23:51+0200\n"
-"PO-Revision-Date: 2010-03-05 13:01+0200\n"
+"POT-Creation-Date: 2010-04-30 04:01+0000\n"
+"PO-Revision-Date: 2010-04-30 10:09+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,114 +18,114 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr ""
+msgstr "Apuohjelmat"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr ""
+msgstr "Yleiset työpöydän työkalut ja sovellukset"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
-msgstr ""
+msgstr "Ohjelmistokehitys"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr ""
+msgstr "Ohjelmointi- ja kehitystyökalut"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
-msgstr ""
+msgstr "Opetus"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr ""
+msgstr "Opiskeluun tarkoitetut ohjelmistot"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
-msgstr ""
+msgstr "Pelit"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr ""
+msgstr "Pelit ja muut hupiohjelmat"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr ""
+msgstr "Grafiikka"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr ""
+msgstr "Grafiikan käsittely- ja katseluohjelmat"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "Äänen ja videon soittimet sekä editorit"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
-msgstr ""
+msgstr "Ääni ja video"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Network"
-msgstr ""
+msgstr "Verkko"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Network applications and utilities"
-msgstr ""
+msgstr "Verkkotyökalut ja -sovellukset"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
-msgstr ""
+msgstr "Toimisto"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr ""
+msgstr "Toimisto- ja tuottavuusohjelmistot"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr ""
+msgstr "Sovellukset, jotka eivät sovi muihin kategorioihin"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
-msgstr ""
+msgstr "Muut"
 
 #: ../data/xfce/xfce-science.directory.in.h:1
 msgid "Science"
-msgstr ""
+msgstr "Tiede"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr ""
+msgstr "Tieteelliset ohjelmistot"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Näytönsäästäjäsovelmat"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
-msgstr ""
+msgstr "Näytönsäästäjät"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr ""
+msgstr "Työpöydän ja järjestelmän asetusohjelmat"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
-msgstr ""
+msgstr "Asetukset"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
-msgstr ""
+msgstr "Järjestelmä"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Järjestelmän työkalut ja hyötyohjelmat"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Valikkotiedoston %s lukeminen epäonnistui: %s"
+msgstr "Valikkotiedoston %s lataaminen epäonnistui: %s"
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Valikkotiedoston %s lukeminen epäonnistui"
+msgstr "Valikkotiedoston %s lataaminen epäonnistui"
