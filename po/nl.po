@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-28 23:51+0200\n"
-"PO-Revision-Date: 2009-08-15 15:04-0800\n"
-"Last-Translator: Auke Kok <auke-jan.h.kok@intel.com>\n"
+"POT-Creation-Date: 2010-04-30 10:01+0000\n"
+"PO-Revision-Date: 2010-04-30 16:15+0100\n"
+"Last-Translator: Vincent Tunru <projects@vinnl.nl>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -18,114 +18,115 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr ""
+msgstr "Accessoires"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr ""
+msgstr "Algemene hulpmiddelen en toepassingen"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
-msgstr ""
+msgstr "Ontwikkeling"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr ""
+msgstr "Software-ontwikkeling"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
-msgstr ""
+msgstr "Educatief"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr ""
+msgstr "Educatieve software"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
-msgstr ""
+msgstr "Amusement"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr ""
+msgstr "Games, puzzels en ander tijdverdrijf"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr ""
+msgstr "Afbeeldingen"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr ""
+msgstr "Toepassingen voor het maken en bewerken van afbeeldingen"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "Audio- en videospelers en -bewerkers"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
-msgstr ""
+msgstr "Multimedia"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Network"
-msgstr ""
+msgstr "Netwerk"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Network applications and utilities"
-msgstr ""
+msgstr "Netwerktoepassingen en -hulpmiddelen"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
-msgstr ""
+msgstr "Kantoor"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr ""
+msgstr "Kantoor- en productiviteitstoepassingen"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr ""
+msgstr "Toepassingen die niet in andere categorieën thuishoren"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
-msgstr ""
+msgstr "Overige"
 
 #: ../data/xfce/xfce-science.directory.in.h:1
 msgid "Science"
-msgstr ""
+msgstr "Wetenschap"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr ""
+msgstr "Wetenschappelijke software"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Schermbeveiligingsapplets"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
-msgstr ""
+msgstr "Schermbeveiligingen"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr ""
+msgstr "Bureablad- en systeeminstellingen"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
-msgstr ""
+msgstr "Instellingen"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
-msgstr ""
+msgstr "Systeem"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Systeemgereedschap en hulpmiddelen"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Kan menu data niet laden uit bestand %s: %s"
+msgstr "Kan gegevens van menubestand niet laden uit %s: %s"
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Kan menu data niet laden uit bestand %s"
+msgstr "Kan gegevens van menubestand niet laden uit %s"
+
