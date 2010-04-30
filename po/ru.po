@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-28 22:01+0000\n"
+"POT-Creation-Date: 2010-04-30 16:01+0000\n"
 "PO-Revision-Date: 2010-03-03 13:18+0300\n"
 "Last-Translator: Alexander Matveyev <a.s.matveyev@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -22,7 +22,7 @@ msgstr "Инструменты"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr ""
+msgstr "Стандартные утилиты и приложения "
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -34,11 +34,11 @@ msgstr "Средства разработки ПО"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
-msgstr ""
+msgstr "Образование"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr ""
+msgstr "Образовательное ПО"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
@@ -58,7 +58,7 @@ msgstr "Создание и обработка графики"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "Аудио/видео проигрыватели и редакторы"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
@@ -74,11 +74,11 @@ msgstr "Сетевые приложения и утилиты"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
-msgstr ""
+msgstr "Офис"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr ""
+msgstr "Офисные приложения"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
@@ -90,15 +90,15 @@ msgstr "Прочие"
 
 #: ../data/xfce/xfce-science.directory.in.h:1
 msgid "Science"
-msgstr ""
+msgstr "Наука"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr ""
+msgstr "Научные приложения"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Модули хранителя экрана"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
@@ -106,7 +106,7 @@ msgstr "Заставки"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr ""
+msgstr "Приложения для настройки рабочего стола и системы"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
