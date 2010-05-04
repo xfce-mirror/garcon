@@ -2,14 +2,16 @@
 # Copyright (C) 2007-2009 Jannis Pohlmann <jannis@xfce.org>
 # This file is distributed under the same license as the libxfce4menu package.
 # Chris K. Zhang <plutino@gmail.com>, 2009.
-# Hunt Xu <mhuntxu@gmail.com>, 2009.
+# Hunt Xu <mhuntxu@gmail.com>, 2009, 2010.
+# 微尘 <squeeze@189.cn>, 2010.
+
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-05-03 22:01+0000\n"
-"PO-Revision-Date: 2010-05-04 11:54+0800\n"
-"Last-Translator: 微尘 <squeeze@189.cn>\n"
+"PO-Revision-Date: 2010-05-04 12:09+0800\n"
+"Last-Translator: Hunt Xu <huntxu@live.cn>\n"
 "Language-Team: Simplified Chinese <i18n-xfce@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -53,11 +55,11 @@ msgstr "图像"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "图形创作和处理"
+msgstr "图形创作和处理程序"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr "音影播放和编辑"
+msgstr "影音播放器及编辑器"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
@@ -69,7 +71,7 @@ msgstr "网络"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Network applications and utilities"
-msgstr "网络应用和实用工具"
+msgstr "网络应用程序和工具"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -77,11 +79,11 @@ msgstr "办公"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "办公与生产应用"
+msgstr "办公与生产应用程序"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr ""
+msgstr "未归入分类的其它应用程序"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
@@ -97,15 +99,15 @@ msgstr "科学软件"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
-msgstr "屏幕保护程序小程序"
+msgstr "屏幕保护小程序"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
-msgstr "屏幕保护"
+msgstr "屏幕保护程序"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr "桌面与系统设置程序"
+msgstr "桌面与系统设置应用程序"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
@@ -122,12 +124,12 @@ msgstr "系统工具和实用程序"
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "无法从 %s 读取菜单文件数据: %s"
+msgstr "无法从 %s 中读取菜单文件数据: %s"
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "无法从 %s 读取菜单文件数据"
+msgstr "无法从 %s 中读取菜单文件数据"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "Xfce 菜单：测试目录显示"
