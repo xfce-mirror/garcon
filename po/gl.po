@@ -82,11 +82,11 @@ msgstr "Oficina"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr ""
+msgstr "Aplicacións de oficina e produtividade"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr ""
+msgstr "Aplicacións que non entran en outras categorías"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
