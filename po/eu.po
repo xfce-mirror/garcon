@@ -119,7 +119,7 @@ msgstr "Sistema"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Sistema tresna eta lanabesakb"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
