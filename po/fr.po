@@ -96,9 +96,8 @@ msgid "Scientific software"
 msgstr "Applications scientifiques"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-#, fuzzy
 msgid "Screensaver applets"
-msgstr "applets Screensaver"
+msgstr "Greffons d'économiseur d'écran"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
