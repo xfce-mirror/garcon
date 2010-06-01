@@ -2,12 +2,12 @@
 # Copyright (C) 2007 Jannis Pohlmann.
 # This file is distributed under the same license as the xfce4menu package.
 # Andhika Padmawan <andhika.padmawan@gmail.com>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-28 23:51+0200\n"
+"POT-Creation-Date: 2010-05-31 22:02+0000\n"
 "PO-Revision-Date: 2009-01-27 22:29+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <id@li.org>\n"
@@ -17,83 +17,83 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr ""
+msgstr "Aksesoris"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr ""
+msgstr "Peralatan dan aplikasi desktop umum"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
-msgstr ""
+msgstr "Pengembangan"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr ""
+msgstr "Peralatan pengembangan perangkat lunak"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
-msgstr ""
+msgstr "Edukasi"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr ""
+msgstr "Perangkat lunak edukasi"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
-msgstr ""
+msgstr "Permainan"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr ""
+msgstr "Permainan, teka-teki, dan perangkat lunak hiburan lain"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr ""
+msgstr "Grafis"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr ""
+msgstr "Aplikasi kreasi dan sunting grafis"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "Aplikasi pemutar dan editor audio-video"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
-msgstr ""
+msgstr "Multimedia"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Network"
-msgstr ""
+msgstr "Jaringan"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Network applications and utilities"
-msgstr ""
+msgstr "Peralatan sistem dan jaringan"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
-msgstr ""
+msgstr "Perkantoran"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr ""
+msgstr "Aplikasi kantor dan produktivitas"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr ""
+msgstr "Aplikasi lainnya"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
-msgstr ""
+msgstr "Lainnya"
 
 #: ../data/xfce/xfce-science.directory.in.h:1
 msgid "Science"
-msgstr ""
+msgstr "Pengetahuan"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr ""
+msgstr "Perangkat lunak ilmiah"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
