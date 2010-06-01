@@ -1,20 +1,22 @@
-# Croatian translations for PACKAGE package.
-# Copyright (C) 2010 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-#  Ivcica Kolić<ikoli@yahoo.com>, 2010.
-#  Ivica Kolić<ikoli@yahoo.com> <>, 2010.
+# Croatian translations for garcon package.
+# Copyright (C) 2010 Jannis Pohlmann <jannis@xfce.org>
+# Copyright (C)2010 Nick Schermer <nick@xfce.org>
+# This file is distributed under the same license as the garcon package.
+# Ivica Kolić<ikoli@yahoo.com>, 2010.
+# Petar Koretić<petar.koretic@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-27 10:02+0000\n"
+"POT-Creation-Date: 2010-06-01 22:02+0000\n"
 "PO-Revision-Date: 2010-05-26 00:10+0200\n"
 "Last-Translator: Ivica Kolić<ikoli@yahoo.com> <>\n"
 "Language-Team: Croatian <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
