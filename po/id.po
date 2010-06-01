@@ -1,16 +1,16 @@
 # Indonesian translations for xfce4menu package.
 # Copyright (C) 2007 Jannis Pohlmann.
 # This file is distributed under the same license as the xfce4menu package.
-# Andhika Padmawan <andhika.padmawan@gmail.com>, 2008.
+# Andhika Padmawan <andhika.padmawan@gmail.com>, 2010.
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-05-31 22:02+0000\n"
-"PO-Revision-Date: 2009-01-27 22:29+0700\n"
+"PO-Revision-Date: 2010-06-01 22:35+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
-"Language-Team: Indonesian <id@li.org>\n"
+"Language-Team: Indonesian <translation-team-id@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -97,37 +97,37 @@ msgstr "Perangkat lunak ilmiah"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Aplet penyimpan layar"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
-msgstr ""
+msgstr "Penyimpan Layar"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr ""
+msgstr "Aplikasi penyetel sistem dan desktop"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
-msgstr ""
+msgstr "Konfigurasi"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
-msgstr ""
+msgstr "Sistem"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Utilitas sistem"
 
 #: ../garcon/garcon-menu-parser.c:278
-#, fuzzy, c-format
+#, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Gagal memuat tembolok item libxfce4menu dari %s: %s."
+msgstr "Gagal memuat data berkas menu dari %s: %s"
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
+msgstr "Gagal memuat data berkas menu dari %s"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: Tampilkan Tes Menu"
