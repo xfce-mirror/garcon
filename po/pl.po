@@ -1,134 +1,132 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Piotr Sokół <piotr.sokol@10g.pl>, 2009.
-#
+# Piotr Sokół <psokol@jabster.pl>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: libxfce4menu\n"
+"Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-28 23:51+0200\n"
-"PO-Revision-Date: 2009-01-29 13:18+0100\n"
-"Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
-"Language-Team: Polish\n"
+"POT-Creation-Date: 2010-05-31 16:02+0000\n"
+"PO-Revision-Date: 2010-06-04 14:32+0200\n"
+"Last-Translator: Piotr Sokół <psokol@jabster.pl>\n"
+"Language-Team: Polish <>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=\n"
+"Content-Transfer-Encoding: \n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr ""
+msgstr "Akcesoria"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr ""
+msgstr "Obejmuje narzędzia i programy użytkowe "
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
-msgstr ""
+msgstr "Programowanie"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr ""
+msgstr "Zawiera narzędzia programistyczne"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
-msgstr ""
+msgstr "Edukacja"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr ""
+msgstr "Przechowuje oprogramowanie edukacyjne"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
-msgstr ""
+msgstr "Gry"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr ""
+msgstr "Gromadzi gry i inne oprogramowanie rozrywkowe"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr ""
+msgstr "Grafika"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr ""
+msgstr "Przechowuje programy służące do tworzenia i modyfikowania grafiki"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "Obejmuje odtwarzacze oraz edytory dźwięku i wideo"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
-msgstr ""
+msgstr "Multimedia"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Network"
-msgstr ""
+msgstr "Sieć"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Network applications and utilities"
-msgstr ""
+msgstr "Gromadzi programy i narzędzia sieciowe"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
-msgstr ""
+msgstr "Biuro"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr ""
+msgstr "Programy biurowe"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr ""
+msgstr "Zawiera programy nie pasujące do innych kategorii"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
-msgstr ""
+msgstr "Inne"
 
 #: ../data/xfce/xfce-science.directory.in.h:1
 msgid "Science"
-msgstr ""
+msgstr "Nauka"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr ""
+msgstr "Zawiera oprogramowanie naukowe"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Gromadzi aplety wygaszacza ekranu"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
-msgstr ""
+msgstr "Wygaszacze ekranu"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr ""
+msgstr "Obejmuje programy do zarządzania ustawieniami systemu i pulpitu"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
-msgstr ""
+msgstr "Ustawienia"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Przechowuje narzędzia do zarządzania systemem"
 
 #: ../garcon/garcon-menu-parser.c:278
-#, fuzzy, c-format
+#, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr ""
-"Nie udało się wczytać pamięci podręcznej elementu libxfce4menu z %s: %s."
+msgstr "Nie udało się wczytać pliku menu %s: %s"
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
+msgstr "Nie udało się wczytać pliku menu %s"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: test wyświetlania menu"
@@ -140,5 +138,4 @@ msgstr ""
 #~ msgstr "Nie udało się zlokalizować menu systemowego"
 
 #~ msgid "Failed to create the libxfce4menu item cache in %s."
-#~ msgstr ""
-#~ "Nie udało się utworzyć pamięci podręcznej elementu libxfce4menu w %s."
+#~ msgstr "Nie udało się utworzyć pamięci podręcznej elementu libxfce4menu w %s."
