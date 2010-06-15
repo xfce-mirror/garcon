@@ -1,13 +1,13 @@
 # translation of el.po to Greek
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Evaggelos Balaskas <ebalaskas@ebalaskas.gr>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-28 23:51+0200\n"
+"POT-Creation-Date: 2010-06-15 16:02+0000\n"
 "PO-Revision-Date: 2008-03-25 00:19+0200\n"
 "Last-Translator: Evaggelos Balaskas <ebalaskas@ebalaskas.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -17,84 +17,90 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
+#, fuzzy
 msgid "Accessories"
-msgstr ""
+msgstr "Αξεσουάρ"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
+#, fuzzy
 msgid "Common desktop tools and applications"
-msgstr ""
+msgstr "Κοινών εργαλείων και εφαρμογών υπολογιστών γραφείου"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
-msgstr ""
+msgstr "Ανάπτυξη"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr ""
+msgstr "Εργαλεία ανάπτυξης λογισμικού"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
-msgstr ""
+msgstr "Εκπαίδευση"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr ""
+msgstr "Εκπαιδευτικό λογισμικό"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
-msgstr ""
+msgstr "Παιχνίδια"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr ""
+msgstr "Παιχνίδια, παζλ, και άλλο λογισμικό διασκέδασης"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr ""
+msgstr "Γραφικά"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
+#, fuzzy
 msgid "Graphics creation and manipulation applications"
-msgstr ""
+msgstr "Δημιουργία γραφικών εφαρμογών και τις πράξεις χειραγώγησης"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
+#, fuzzy
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "Ήχου και video και συντάκτες"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
-msgstr ""
+msgstr "Πολυμέσα"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Network"
-msgstr ""
+msgstr "Δίκτυο"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
+#, fuzzy
 msgid "Network applications and utilities"
-msgstr ""
+msgstr "Οι εφαρμογές των δικτύων και των υπηρεσιών κοινής ωφέλειας"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
+#, fuzzy
 msgid "Office"
-msgstr ""
+msgstr "Γραφείο"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr ""
+msgstr "Εφαρμογές γραφείου και παραγωγικότητας"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr ""
+msgstr "Εφαρμογές που δεν εντάσσονται σε άλλες κατηγορίες"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
-msgstr ""
+msgstr "Άλλα"
 
 #: ../data/xfce/xfce-science.directory.in.h:1
 msgid "Science"
-msgstr ""
+msgstr "Επιστήμη"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr ""
+msgstr "Επιστημονικό λογισμικό"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -105,20 +111,22 @@ msgid "Screensavers"
 msgstr ""
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
+#, fuzzy
 msgid "Desktop and system settings applications"
-msgstr ""
+msgstr "Επιφάνεια εργασίας και τις ρυθμίσεις των εφαρμογών του συστήματος"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
-msgstr ""
+msgstr "Ρυθμίσεις"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
-msgstr ""
+msgstr "Σύστημα"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
+#, fuzzy
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Σύστημα εργαλείων και υπηρεσιών κοινής ωφελείας"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
@@ -134,5 +142,4 @@ msgstr "Δεν μπορούν να φορτωθούν τα δεδομένα απ
 #~ msgstr "Αποτυχία στον εντοπισμό της ρίζας του μενού εφαρμογών"
 
 #~ msgid "Failed to create the libxfce4menu item cache in %s."
-#~ msgstr ""
-#~ "Αποτυχία στη δημιουργία προσωρινής μνήμης αντικειμένου libxfce4menu στο %s"
+#~ msgstr "Αποτυχία στη δημιουργία προσωρινής μνήμης αντικειμένου libxfce4menu στο %s"
