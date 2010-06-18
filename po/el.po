@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-15 16:02+0000\n"
+"POT-Creation-Date: 2010-06-18 10:02+0000\n"
 "PO-Revision-Date: 2008-03-25 00:19+0200\n"
 "Last-Translator: Evaggelos Balaskas <ebalaskas@ebalaskas.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -22,9 +22,8 @@ msgid "Accessories"
 msgstr "Αξεσουάρ"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
-#, fuzzy
 msgid "Common desktop tools and applications"
-msgstr "Κοινών εργαλείων και εφαρμογών υπολογιστών γραφείου"
+msgstr "Εφαρμογές και εργαλεία διαμοιραζόμενου υπολογιστή"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -55,14 +54,12 @@ msgid "Graphics"
 msgstr "Γραφικά"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
-#, fuzzy
 msgid "Graphics creation and manipulation applications"
-msgstr "Δημιουργία γραφικών εφαρμογών και τις πράξεις χειραγώγησης"
+msgstr "Εφαρμογές δημιουργίας και επεξεργασίας γραφικών"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-#, fuzzy
 msgid "Audio and video players and editors"
-msgstr "Ήχου και video και συντάκτες"
+msgstr "Εφαρμογές αναπαραγωγής και επεξεργασίας ήχου και βίντεο"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
@@ -73,12 +70,10 @@ msgid "Network"
 msgstr "Δίκτυο"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-#, fuzzy
 msgid "Network applications and utilities"
-msgstr "Οι εφαρμογές των δικτύων και των υπηρεσιών κοινής ωφέλειας"
+msgstr "Δικτυακές εφαρμογές και εργαλεία"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
-#, fuzzy
 msgid "Office"
 msgstr "Γραφείο"
 
@@ -104,16 +99,15 @@ msgstr "Επιστημονικό λογισμικό"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Μικροεφαρμογές προστασίας οθόνης"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
-msgstr ""
+msgstr "Εφαρμογές προστασίας οθόνης"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
-#, fuzzy
 msgid "Desktop and system settings applications"
-msgstr "Επιφάνεια εργασίας και τις ρυθμίσεις των εφαρμογών του συστήματος"
+msgstr "Εφαρμογές ρύθμισης συστήματος και Επιφάνειας εργασίας"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
