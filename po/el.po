@@ -17,9 +17,8 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
-#, fuzzy
 msgid "Accessories"
-msgstr "Αξεσουάρ"
+msgstr "Βοηθήματα"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
@@ -118,9 +117,8 @@ msgid "System"
 msgstr "Σύστημα"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
-#, fuzzy
 msgid "System tools and utilities"
-msgstr "Σύστημα εργαλείων και υπηρεσιών κοινής ωφελείας"
+msgstr "Εργαλεία και βοηθητικά προγράμματα συστήματος"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
