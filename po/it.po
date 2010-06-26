@@ -1,4 +1,4 @@
-# Italian transaltion of garcon.
+# Italian translation of garcon.
 # Copyright (C) YEAR THE garcon'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the garcon
 # Cristian Marchi <cri.penta@gmail.com>, 2010.
@@ -7,124 +7,129 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-28 23:51+0200\n"
-"PO-Revision-Date: 2010-03-03 20:34+0100\n"
+"POT-Creation-Date: 2010-05-04 16:02+0000\n"
+"PO-Revision-Date: 2010-05-24 16:32+0100\n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+# GLOSSARIO
+# application = applicazione
+# software = programma
+# utility = utilità
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr ""
+msgstr "Accessori"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr ""
+msgstr "Applicazioni e strumenti comuni per la scrivania"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
-msgstr ""
+msgstr "Sviluppo"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr ""
+msgstr "Strumenti per lo sviluppo di programmi"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
-msgstr ""
+msgstr "Istruzione"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr ""
+msgstr "Programmi educativi"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
-msgstr ""
+msgstr "Giochi"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr ""
+msgstr "Giochi, puzzle e altri programmi per lo svago"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr ""
+msgstr "Grafica"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr ""
+msgstr "Applicazioni per la creazione e la manipolazione di immagini"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "Editor e riproduttori audio e video"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
-msgstr ""
+msgstr "Multimedia"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Network"
-msgstr ""
+msgstr "Rete"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Network applications and utilities"
-msgstr ""
+msgstr "Applicazioni e utilità di rete"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
-msgstr ""
+msgstr "Ufficio"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr ""
+msgstr "Applicazioni per l'ufficio e la produttività"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr ""
+msgstr "Applicazioni che non rientrano nelle altre categorie"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
-msgstr ""
+msgstr "Altro"
 
 #: ../data/xfce/xfce-science.directory.in.h:1
 msgid "Science"
-msgstr ""
+msgstr "Scienza"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr ""
+msgstr "Programmi scientifici"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Applet salvaschermo"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
-msgstr ""
+msgstr "Salvaschermi"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr ""
+msgstr "Applicazioni per le impostazioni del sistema e della scrivania"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
-msgstr ""
+msgstr "Impostazioni"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
-msgstr ""
+msgstr "Sistema"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Strumenti e utilità di sistema"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Impossibile caricare i dati dal file del menu %s: %s"
+msgstr "Impossibile caricare i dati del file di menu «%s»: %s"
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Impossibile caricare i dati dal file del menu %s"
+msgstr "Impossibile caricare i dati del file di menu «%s»"
+
