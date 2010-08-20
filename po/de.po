@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-03 16:01+0000\n"
+"POT-Creation-Date: 2010-08-20 04:02+0000\n"
 "PO-Revision-Date: 2009-08-15 03:30+0100\n"
 "Last-Translator: Jannis Pohlmann <jannis@xfce.org>\n"
 "Language-Team: German <xfce-i18n-de@xfce.org>\n"
@@ -22,8 +22,9 @@ msgid "Accessories"
 msgstr "Zubehör"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
+#, fuzzy
 msgid "Common desktop tools and applications"
-msgstr ""
+msgstr "Desktopwerkzeuge und -anwendungen"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -38,16 +39,18 @@ msgid "Education"
 msgstr "Education"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
+#, fuzzy
 msgid "Educational software"
-msgstr ""
+msgstr "Lernprogramme"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
 msgstr "Spiel"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
+#, fuzzy
 msgid "Games, puzzles, and other fun software"
-msgstr ""
+msgstr "Spiele, Rätsel "
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
@@ -98,24 +101,27 @@ msgid "Scientific software"
 msgstr "wissenschaftliche Software"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
+#, fuzzy
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Bildschirmschonerapplet"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
 msgstr "Bildschirmschoner"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
+#, fuzzy
 msgid "Desktop and system settings applications"
-msgstr ""
+msgstr "Desktop- und Systemeinstellungsanwendungen "
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
 msgstr "Einstellungen"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
+#, fuzzy
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
