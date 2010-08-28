@@ -28,6 +28,7 @@
 
 #include <glib/gi18n.h>
 
+#include <garcon/garcon-config.h>
 #include <garcon/garcon-environment.h>
 #include <garcon/garcon-marshal.h>
 #include <garcon/garcon-menu-element.h>
@@ -145,6 +146,16 @@ static void                 garcon_menu_resolve_items_by_rule           (GarconM
 static void                 garcon_menu_resolve_item_by_rule            (const gchar             *desktop_id,
                                                                          const gchar             *uri,
                                                                          GarconMenuPair          *data);
+static gchar               *garcon_menu_collect_file_from_path          (GarconMenu              *menu,
+                                                                         GFile                   *file,
+                                                                         GFile                   *dir,
+                                                                         const gchar             *id_prefix);
+#if 0
+static gboolean             garcon_menu_resolve_item_file               (GarconMenu              *menu,
+                                                                         GFile                   *file,
+                                                                         GarconMenuItem         **item,
+                                                                         gchar                  **desktop_id);
+#endif
 static void                 garcon_menu_remove_deleted_menus            (GarconMenu              *menu);
 static gint                 garcon_menu_compare_items                   (gconstpointer           *a,
                                                                          gconstpointer           *b);
@@ -193,6 +204,12 @@ static void                 garcon_menu_app_dir_changed                 (GarconM
                                                                          GFile                   *other_file,
                                                                          GFileMonitorEvent        event_type,
                                                                          GFileMonitor            *monitor);
+#if 0
+static gboolean             garcon_menu_find_items_by_directory         (GarconMenu              *menu,
+                                                                         GFile                   *directory,
+                                                                         GList                  **items,
+                                                                         GList                  **menus);
+#endif
 
 
 
@@ -1354,6 +1371,175 @@ garcon_menu_resolve_item_by_rule (const gchar    *desktop_id,
 
 
 
+static gchar *
+garcon_menu_collect_file (GarconMenu  *menu,
+                          GFile       *file)
+{
+  GList *app_dirs = NULL;
+  GList *iter;
+  GFile *dir;
+  gchar *desktop_id = NULL;
+
+  g_return_val_if_fail (GARCON_IS_MENU (menu), NULL);
+  g_return_val_if_fail (G_IS_FILE (file), NULL);
+
+  g_debug ("collect file: menu = %s, file = %s", 
+           garcon_menu_element_get_name (GARCON_MENU_ELEMENT (menu)),
+           g_file_get_path (file));
+
+  app_dirs = garcon_menu_get_app_dirs (menu, FALSE);
+
+  /* Collect desktop entry filenames */
+  for (iter = app_dirs; desktop_id == NULL && iter != NULL; iter = g_list_next (iter))
+    {
+      dir = g_file_new_for_uri (iter->data);
+      desktop_id = garcon_menu_collect_file_from_path (menu, file, dir, NULL);
+      g_object_unref (dir);
+    }
+
+  /* Free directory list */
+  g_list_free (app_dirs);
+
+  if (desktop_id == NULL)
+    {
+      /* Collect filenames for submenus */
+      for (iter = menu->priv->submenus; 
+           desktop_id == NULL && iter != NULL; 
+           iter = g_list_next (iter))
+        {
+          desktop_id = garcon_menu_collect_file (iter->data, file);
+        }
+    }
+
+  return desktop_id;
+}
+
+
+
+static gchar *
+garcon_menu_collect_file_from_path (GarconMenu  *menu,
+                                    GFile       *file,
+                                    GFile       *dir,
+                                    const gchar *id_prefix)
+{
+  GFileEnumerator *enumerator;
+  GFileInfo       *file_info;
+  GFile           *child_file;
+  gchar           *base_name;
+  gchar           *new_id_prefix;
+  gchar           *desktop_id = NULL;
+
+  g_return_val_if_fail (GARCON_IS_MENU (menu), NULL);
+  g_return_val_if_fail (G_IS_FILE (file), NULL);
+  g_return_val_if_fail (G_IS_FILE (dir), NULL);
+
+  g_debug ("collect file from path: menu = %s, file = %s, dir = %s", 
+           garcon_menu_element_get_name (GARCON_MENU_ELEMENT (menu)),
+           g_file_get_path (file),
+           g_file_get_path (dir));
+
+  /* Skip directory if it doesn't exist */
+  if (G_UNLIKELY (!g_file_query_exists (dir, NULL)))
+    return NULL;
+
+  /* Skip directory if it's not a directory */
+  if (G_UNLIKELY (g_file_query_file_type (dir, G_FILE_QUERY_INFO_NONE,
+                                          NULL) != G_FILE_TYPE_DIRECTORY))
+    {
+      return NULL;
+    }
+
+  /* Open directory for reading */
+  enumerator = g_file_enumerate_children (dir, "standard::name,standard::type",
+                                          G_FILE_QUERY_INFO_NONE, NULL, NULL);
+
+  /* Abort if directory cannot be opened */
+  if (G_UNLIKELY (enumerator == NULL))
+    return NULL;
+
+  /* Read file by file */
+  while (TRUE && desktop_id == NULL)
+    {
+      file_info = g_file_enumerator_next_file (enumerator, NULL, NULL);
+
+      if (G_UNLIKELY (file_info == NULL))
+        break;
+
+      child_file = g_file_resolve_relative_path (dir, g_file_info_get_name (file_info));
+      base_name = g_file_get_basename (child_file);
+
+      /* Treat files and directories differently */
+      if (g_file_info_get_file_type (file_info) == G_FILE_TYPE_DIRECTORY)
+        {
+          /* Create new desktop-file id prefix */
+          if (G_LIKELY (id_prefix == NULL))
+            new_id_prefix = g_strdup (base_name);
+          else
+            new_id_prefix = g_strjoin ("-", id_prefix, base_name, NULL);
+
+          /* Collect files in the directory */
+          desktop_id = garcon_menu_collect_file_from_path (menu, file, child_file, 
+                                                           new_id_prefix);
+
+          /* Free id prefix */
+          g_free (new_id_prefix);
+        }
+      else if (G_LIKELY (g_str_has_suffix (base_name, ".desktop")))
+        {
+          /* Check if we have found the correct file */
+          if (g_file_equal (child_file, file))
+            {
+              /* Create desktop-file id */
+              if (G_LIKELY (id_prefix == NULL))
+                desktop_id = g_strdup (base_name);
+              else
+                desktop_id = g_strjoin ("-", id_prefix, base_name, NULL);
+            }
+        }
+
+      /* Free absolute path */
+      g_free (base_name);
+
+      /* Destroy file */
+      g_object_unref (child_file);
+
+      /* Destroy info */
+      g_object_unref (file_info);
+    }
+
+  g_object_unref (enumerator);
+
+  return desktop_id;
+}
+
+
+
+#if 0
+static gboolean
+garcon_menu_resolve_item_file (GarconMenu      *menu,
+                               GFile           *file,
+                               GarconMenuItem **item,
+                               gchar          **desktop_id)
+{
+  g_return_val_if_fail (GARCON_IS_MENU (menu), FALSE);
+  g_return_val_if_fail (G_IS_FILE (file), FALSE);
+  g_return_val_if_fail (item != NULL && *item == NULL, FALSE);
+  g_return_val_if_fail (desktop_id != NULL && *desktop_id == NULL, FALSE);
+
+  /* TODO 
+   * the menu item is unknown, so we need to load it and find to which
+   * menus it belongs. this involves:
+   * 1. finding out its desktop-file ID
+   * 2. loading it via the GarconMenuItemCache
+   * 3. resolving the item similar to how we do it with all items
+   *    during the menu load process */
+
+  return FALSE;
+}
+#endif
+
+
+
 static void
 garcon_menu_remove_deleted_menus (GarconMenu *menu)
 {
@@ -2231,11 +2417,10 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
                              GFileMonitor     *monitor)
 {
   GarconMenuItem *item;
-  GFileInfo      *info;
   GFileType       file_type;
-  gboolean        can_read;
   GList          *menus = NULL;
   GList          *lp;
+  gchar          *desktop_id;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
 
@@ -2249,24 +2434,7 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
       /* query the type of the changed file */
       file_type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
 
-      /* check if one of the app dirs was changed */
-      if (file_type == G_FILE_TYPE_DIRECTORY)
-        {
-          info = g_file_query_info (file, G_FILE_ATTRIBUTE_ACCESS_CAN_READ,
-                                    G_FILE_QUERY_INFO_NONE, NULL, NULL);
-
-          can_read = g_file_info_get_attribute_boolean (info, 
-                                                        G_FILE_ATTRIBUTE_ACCESS_CAN_READ);
-
-          /* if the app dir is no longer readable, we need to remove all items
-           * residing somewhere inside the directory from all menus */
-          if (!can_read)
-            {
-              /* TODO emit 'item-removed' with all items that are included in the
-               * item pool and reside inside the unreadable directory */
-            }
-        }
-      else
+      if (file_type == G_FILE_TYPE_REGULAR)
         {
           /* a regular file changed, try to find the corresponding menu item 
            * and all menus this item is part of */
@@ -2282,7 +2450,6 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
                   /* find out where to move the item (if it has to be moved at all)
                    * and move it, taking care of emitting item-changed/item-removed/item-added 
                    * signals */
-
                   g_debug ("  successfully reloaded");
                 }
               else
@@ -2304,13 +2471,22 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
             }
           else
             {
-              /* TODO 
-               * the menu item is unknown, so we need to load it and find to which
-               * menus it belongs. this involves:
-               * 1. finding out its desktop-file ID
-               * 2. loading it via the GarconMenuItemCache
-               * 3. resolving the item similar to how we do it with all items
-               *    during the menu load process */
+              desktop_id = garcon_menu_collect_file (menu, file);
+
+              g_debug ("  resolve item file => %s", desktop_id);
+
+#if 0
+              if (garcon_menu_resolve_item_file (menu, file, &item, &desktop_id))
+                {
+                  /* TODO 
+                   * the menu item is unknown, so we need to load it and find to which
+                   * menus it belongs. this involves:
+                   * 1. finding out its desktop-file ID
+                   * 2. loading it via the GarconMenuItemCache
+                   * 3. resolving the item similar to how we do it with all items
+                   *    during the menu load process */
+                }
+#endif
             }
 
           /* free the menu list */
@@ -2410,3 +2586,44 @@ garcon_menu_stop_monitoring (GarconMenu *menu)
   g_list_free (menu->priv->monitors);
   menu->priv->monitors = NULL;
 }
+
+
+
+#if 0
+static gboolean
+garcon_menu_find_items_by_directory (GarconMenu *menu,
+                                     GFile      *directory,
+                                     GList     **items,
+                                     GList     **menus)
+{
+  gboolean success = FALSE;
+  GList   *pool_items = NULL;
+  GList   *lp;
+
+  g_return_val_if_fail (GARCON_IS_MENU (menu), FALSE);
+  g_return_val_if_fail (G_IS_FILE (directory), FALSE);
+
+  if (items == NULL && menus == NULL)
+    return FALSE;
+
+  pool_items = garcon_menu_item_pool_lookup_directory (menu->priv->pool, directory);
+
+  for (lp = pool_items; lp != NULL; lp = lp->next)
+    {
+      success = TRUE;
+
+      if (items != NULL)
+        *items = g_list_prepend (*items, lp->data);
+
+      if (menus != NULL)
+        *menus = g_list_prepend (*menus, menu);
+    }
+
+  g_list_free (pool_items);
+
+  for (lp = menu->priv->submenus; lp != NULL; lp = lp->next)
+    success = success || garcon_menu_find_items_by_directory (lp->data, directory, items, menus);
+
+  return success;
+}
+#endif

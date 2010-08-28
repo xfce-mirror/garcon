@@ -22,6 +22,8 @@
 #include <config.h>
 #endif
 
+#include <gio/gio.h>
+
 #include <garcon/garcon-menu-node.h>
 #include <garcon/garcon-menu-item-pool.h>
 
@@ -174,6 +176,36 @@ garcon_menu_item_pool_lookup_file (GarconMenuItemPool *pool,
     }
 
   return result;
+}
+
+
+
+GList *
+garcon_menu_item_pool_lookup_directory (GarconMenuItemPool *pool,
+                                        GFile              *directory)
+{
+  GarconMenuItem *item;
+  GHashTableIter  iter;
+  GFile          *file;
+  GList          *items = NULL;
+
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM_POOL (pool), NULL);
+  g_return_val_if_fail (G_IS_FILE (directory), NULL);
+
+  g_hash_table_iter_init (&iter, pool->priv->items);
+
+  while (g_hash_table_iter_next (&iter, NULL, (gpointer) &item))
+    {
+      file = garcon_menu_item_get_file (item);
+      if (file != NULL)
+        {
+          if (g_file_has_prefix (file, directory))
+            items = g_list_prepend (items, item);
+          g_object_unref (file);
+        }
+    }
+
+  return items;
 }
 
 

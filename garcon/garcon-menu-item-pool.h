@@ -53,6 +53,8 @@ GarconMenuItem     *garcon_menu_item_pool_lookup             (GarconMenuItemPool
                                                               const gchar        *desktop_id);
 GarconMenuItem     *garcon_menu_item_pool_lookup_file        (GarconMenuItemPool *pool,
                                                               GFile              *file);
+GList              *garcon_menu_item_pool_lookup_directory   (GarconMenuItemPool *pool,
+                                                              GFile              *directory) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 void                garcon_menu_item_pool_foreach            (GarconMenuItemPool *pool,
                                                               GHFunc              func,
                                                               gpointer            user_data);
