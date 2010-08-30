@@ -2150,6 +2150,43 @@ garcon_menu_find_file_item (GarconMenu *menu,
 
 
 static void
+garcon_menu_update_item_file (GarconMenu  *menu,
+                              const gchar *desktop_id,
+                              GFile       *file)
+{
+  GarconMenuItem *item;
+  gboolean        included_somewhere = FALSE;
+  gchar           *uri;
+
+  g_return_if_fail (GARCON_IS_MENU (menu));
+  g_return_if_fail (desktop_id != NULL && *desktop_id != '\0');
+  g_return_if_fail (G_IS_FILE (file));
+
+  uri = g_file_get_uri (file);
+
+  /* try to load the desktop file from the item cache */
+  item = garcon_menu_item_cache_lookup (menu->priv->cache, uri, desktop_id);
+  if (item != NULL)
+    {
+      /* insert the item into the appropriate menus, if there are any */
+      included_somewhere = garcon_menu_update_item (menu, item, FALSE);
+      included_somewhere = garcon_menu_update_item (menu, item, TRUE) || included_somewhere;
+
+      /* unload the item if it isn't included in any menus */
+      if (!included_somewhere)
+        {
+          /* remove the item from the item cache, so we are forced to reload 
+           * it from disk the next time it becomes available */
+          garcon_menu_item_cache_remove_file (menu->priv->cache, file);
+        }
+    }
+
+  g_free (uri);
+}
+
+
+
+static void
 garcon_menu_start_monitoring (GarconMenu *menu)
 {
   GList *lp;
@@ -2610,26 +2647,7 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
               /* determine the desktop ID for this file */
               if (garcon_menu_collect_file (menu, file, NULL, NULL, &desktop_id))
                 {
-                  uri = g_file_get_uri (file);
-
-                  /* try to load the desktop file from the item cache */
-                  item = garcon_menu_item_cache_lookup (menu->priv->cache, uri, desktop_id);
-                  if (item != NULL)
-                    {
-                      /* insert the item into the appropriate menus, if there are any */
-                      included_somewhere = garcon_menu_update_item (menu, item, FALSE);
-                      included_somewhere = garcon_menu_update_item (menu, item, TRUE) || included_somewhere;
-
-                      /* unload the item if it isn't included in any menus */
-                      if (!included_somewhere)
-                        {
-                          /* remove the item from the item cache, so we are forced to reload 
-                           * it from disk the next time it becomes available */
-                          garcon_menu_item_cache_remove_file (menu->priv->cache, file);
-                        }
-                    }
-
-                  g_free (uri);
+                  garcon_menu_update_file_item (menu, desktop_id, file);
                   g_free (desktop_id);
                 }
             }
@@ -2718,25 +2736,7 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
               /* determine the next-priority desktop file with the same desktop ID */
               if (garcon_menu_collect_file (menu, NULL, desktop_id, &replacement_file, NULL))
                 {
-                  uri = g_file_get_uri (replacement_file);
-
-                  item = garcon_menu_item_cache_lookup (menu->priv->cache, uri, desktop_id);
-                  if (item != NULL)
-                    {
-                      /* insert the item into the appropriate menus, if there are any */
-                      included_somewhere = garcon_menu_update_item (menu, item, FALSE);
-                      included_somewhere = garcon_menu_update_item (menu, item, TRUE) || included_somewhere;
-
-                      /* unload the item if it isn't included in any menus */
-                      if (!included_somewhere)
-                        {
-                          /* remove the item from the item cache, so we are forced to reload 
-                           * it from disk the next time it becomes available */
-                          garcon_menu_item_cache_remove_file (menu->priv->cache, file);
-                        }
-                    }
-
-                  g_free (uri);
+                  garcon_menu_update_item_file (menu, desktop_id, file);
                   g_object_unref (replacement_file);
                 }
 
