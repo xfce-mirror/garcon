@@ -2150,7 +2150,7 @@ garcon_menu_find_file_item (GarconMenu *menu,
 
 
 static void
-garcon_menu_update_item_file (GarconMenu  *menu,
+garcon_menu_update_file_item (GarconMenu  *menu,
                               const gchar *desktop_id,
                               GFile       *file)
 {
@@ -2586,7 +2586,6 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
   GList          *menus = NULL;
   GList          *lp;
   gchar          *desktop_id;
-  gchar          *uri;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
 
@@ -2647,7 +2646,18 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
               /* determine the desktop ID for this file */
               if (garcon_menu_collect_file (menu, file, NULL, NULL, &desktop_id))
                 {
-                  garcon_menu_update_file_item (menu, desktop_id, file);
+                  if (garcon_menu_collect_file (menu, NULL, desktop_id, &replacement_file, NULL))
+                    {
+                      if (g_file_equal (file, replacement_file))
+                        {
+                          /* TODO we need to handle the app dir priority here */
+                          garcon_menu_update_file_item (menu, desktop_id, file);
+                        }
+                      else
+                        {
+                          g_debug ("ignoring the changed file as it is overriden");
+                        }
+                    }
                   g_free (desktop_id);
                 }
             }
@@ -2662,19 +2672,29 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
                garcon_menu_element_get_name (GARCON_MENU_ELEMENT (menu)),
                g_file_get_path (file), event_type);
 
-      /* TODO
-       * 1) the new file is a directory
-       *    - collect files from the newly created directory
-       *    - add files to the correct menus (make sure to emit
-       *      'item-added' signals)
-       *    - monitor the newly created directory
-       * 2) the new file is a regular file
-       *    - remove items with the same desktop id
-       *    - load it into a GarconMenuItem
-       *    - find the correct menu(s) for it
-       *    - add it to those menus (make sure to emit 'item-added'
-       *      signals)
-       */
+      /* query the type of the changed file */
+      file_type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
+
+      if (file_type == G_FILE_TYPE_DIRECTORY)
+        {
+          /* TODO
+           * the new file is a directory
+           *   - collect files from the newly created directory
+           *   - add files to the correct menus (make sure to emit
+           *    'item-added' signals)
+           *   - monitor the newly created directory */
+        }
+      else 
+        {
+          /* TODO
+           * the new file is a regular file
+           *   - remove items with the same desktop id and lower app dir priority
+           *   - load it into a GarconMenuItem
+           *   - find the correct menu(s) for it
+           *   - add it to those menus (make sure to emit 'item-added'
+           *     signals)
+           */
+        }
     }
   else if (event_type == G_FILE_MONITOR_EVENT_DELETED)
     {
@@ -2736,7 +2756,7 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
               /* determine the next-priority desktop file with the same desktop ID */
               if (garcon_menu_collect_file (menu, NULL, desktop_id, &replacement_file, NULL))
                 {
-                  garcon_menu_update_item_file (menu, desktop_id, file);
+                  garcon_menu_update_file_item (menu, desktop_id, file);
                   g_object_unref (replacement_file);
                 }
 
