@@ -834,12 +834,16 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
                                    GError         **error)
 {
   GKeyFile *rc;
-  gchar    *contents;
-  gsize     length = 0;
-  gboolean  succeed;
-  gchar    *string;
   gboolean  boolean;
-  gchar    *name, *exec;
+  gboolean  succeed;
+  GList    *categories = NULL;
+  gchar   **mt;
+  gchar   **str_list;
+  gchar    *contents;
+  gchar    *string;
+  gchar    *name;
+  gchar    *exec;
+  gsize     length = 0;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (G_IS_FILE (file), FALSE);
@@ -929,6 +933,32 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
 
   boolean = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_HIDDEN);
   garcon_menu_item_set_hidden (item, boolean);
+
+  /* Determine the categories this application should be shown in */
+  str_list = GET_STRING_LIST (G_KEY_FILE_DESKTOP_KEY_CATEGORIES);
+  if (G_LIKELY (str_list != NULL))
+    {
+      for (mt = str_list; *mt != NULL; ++mt)
+        {
+          if (**mt != '\0')
+            categories = g_list_prepend (categories, g_strdup (*mt));
+        }
+
+      /* Free list */
+      g_strfreev (str_list);
+
+      /* Assign categories list to the menu item */
+      garcon_menu_item_set_categories (item, categories);
+    }
+  else
+    {
+      /* Assign empty categories list to the menu item */
+      garcon_menu_item_set_categories (item, NULL);
+    }
+
+  /* Set the rest of the private data directly */
+  item->priv->only_show_in = GET_STRING_LIST (G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN);
+  item->priv->not_show_in = GET_STRING_LIST (G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN);
 
   /* Flush property notifications */
   g_object_thaw_notify (G_OBJECT (item));

@@ -146,6 +146,27 @@ create_item_icon (GarconMenuItem *item)
 
 
 static void
+item_changed (GarconMenuItem *item,
+              GtkWidget      *gtk_item)
+{
+  GdkPixbuf *icon;
+  GtkWidget *image;
+
+  /* Try reloading the icon */
+  icon = create_item_icon (item);
+
+  if (icon != NULL)
+    image = gtk_image_new_from_pixbuf (icon);
+  else
+    image = gtk_image_new_from_icon_name ("applications-other", ICON_SIZE);
+
+  gtk_menu_item_set_label (GTK_MENU_ITEM (gtk_item), garcon_menu_element_get_name (GARCON_MENU_ELEMENT (item)));
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (gtk_item), image);
+}
+
+
+
+static void
 create_item_widgets (GarconMenuItem *item,
                      GtkWidget      *parent_menu)
 {
@@ -167,6 +188,9 @@ create_item_widgets (GarconMenuItem *item,
   gtk_widget_show (gtk_item);
 
   g_object_set_data_full (G_OBJECT (gtk_item), "garcon-menu-item", g_object_ref (item), g_object_unref);
+
+  /* React to changes made to the item on disk */
+  g_signal_connect (item, "changed", G_CALLBACK (item_changed), gtk_item);
 
   /* Execute command if item is clicked */
   g_signal_connect (gtk_item, "activate", G_CALLBACK (execute_item_command), item);
@@ -196,6 +220,18 @@ directory_changed (GarconMenu          *menu,
     icon_name = "applications-other";
   image = gtk_image_menu_item_get_image (GTK_IMAGE_MENU_ITEM (item));
   gtk_image_set_from_icon_name (GTK_IMAGE (image), icon_name, ICON_SIZE);
+}
+
+
+
+static void
+item_added (GarconMenu     *menu,
+            GarconMenuItem *item,
+            guint           position,
+            GtkWidget      *gtk_menu)
+{
+  /* Add menu item to the menu */
+  create_item_widgets (item, gtk_menu);
 }
 
 
@@ -302,14 +338,22 @@ create_menu_widgets (GtkWidget   *gtk_menu,
           /* g_signal_connect (submenu, "destroy", G_CALLBACK (menu_destroyed), gtk_item); */
 
           /* Remove menu items if they are removed on disk */
+          g_signal_connect (submenu, "item-added", G_CALLBACK (item_added), gtk_submenu);
           g_signal_connect (submenu, "item-removed", G_CALLBACK (item_removed), gtk_submenu);
 
           /* Create widgets for submenu */
           create_menu_widgets (gtk_submenu, submenu);
 
           /* Destroy submenu if it is empty */
+          /* FIXME destroying menus will not work with monitoring. if a menu is destroyed and
+           * an item is added to it at runtime, where should we add it...? instead, we should
+           * just hide the empty menu */
+#if 0
           if (G_UNLIKELY (gtk_container_get_children (GTK_CONTAINER (gtk_submenu)) == NULL))
             gtk_widget_destroy (gtk_item);
+#endif
+          if (G_UNLIKELY (gtk_container_get_children (GTK_CONTAINER (gtk_submenu)) == NULL))
+            gtk_widget_hide (gtk_item);
         }
     }
 

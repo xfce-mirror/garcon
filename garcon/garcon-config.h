@@ -1,7 +1,7 @@
 /* $Id$ */
 /* vi:set expandtab sw=2 sts=2: */
 /*-
- * Copyright (c) 2008 Jannis Pohlmann <jannis@xfce.org>
+ * Copyright (c) 2008-2010 Jannis Pohlmann <jannis@xfce.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -83,12 +83,12 @@ extern const guint garcon_major_version;
 extern const guint garcon_minor_version;
 extern const guint garcon_micro_version;
 
-const gchar *garcon_check_version      (guint        required_major,
-                                        guint        required_minor,
-                                        guint        required_micro);
+const gchar *garcon_check_version      (guint required_major,
+                                        guint required_minor,
+                                        guint required_micro);
 
-gchar      **garcon_config_build_paths (const gchar *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 gchar       *garcon_config_lookup      (const gchar *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+gchar      **garcon_config_build_paths (const gchar *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 
 G_END_DECLS
 

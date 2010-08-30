@@ -133,9 +133,6 @@ garcon_menu_item_pool_remove (GarconMenuItemPool *pool,
 
   /* Remove the item from the hash table */
   g_hash_table_remove (pool->priv->items, garcon_menu_item_get_desktop_id (item));
-
-  /* Release the reference on the item */
-  garcon_menu_item_unref (item);
 }
 
 
