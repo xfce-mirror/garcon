@@ -1555,7 +1555,7 @@ garcon_menu_update_item (GarconMenu     *menu,
   const gchar    *desktop_id;
   gboolean        menu_only_unallocated = FALSE;
   gboolean        to_be_included = FALSE;
-  gboolean        included_somewhere = FALSE;
+  gboolean        included_anywhere = FALSE;
   GList          *rules = NULL;
   GList          *iter;
 
@@ -1632,7 +1632,7 @@ garcon_menu_update_item (GarconMenu     *menu,
               g_debug ("    already included");
             }
 
-          included_somewhere = TRUE;
+          included_anywhere = TRUE;
         }
       else
         {
@@ -1648,7 +1648,7 @@ garcon_menu_update_item (GarconMenu     *menu,
               g_debug ("    not included anyway");
             }
 
-          included_somewhere = FALSE;
+          included_anywhere = FALSE;
         }
 
       g_list_free (rules);
@@ -1658,10 +1658,10 @@ garcon_menu_update_item (GarconMenu     *menu,
   for (iter = menu->priv->submenus; iter != NULL; iter = g_list_next (iter))
     {
       /* Resolve items of the submenu */
-      included_somewhere = garcon_menu_update_item (GARCON_MENU (iter->data), item, only_unallocated) || included_somewhere;
+      included_anywhere = garcon_menu_update_item (GARCON_MENU (iter->data), item, only_unallocated) || included_anywhere;
     }
 
-  return included_somewhere;
+  return included_anywhere;
 }
 
 
@@ -2155,7 +2155,7 @@ garcon_menu_update_file_item (GarconMenu  *menu,
                               GFile       *file)
 {
   GarconMenuItem *item;
-  gboolean        included_somewhere = FALSE;
+  gboolean        included_anywhere = FALSE;
   gchar           *uri;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
@@ -2169,11 +2169,11 @@ garcon_menu_update_file_item (GarconMenu  *menu,
   if (item != NULL)
     {
       /* insert the item into the appropriate menus, if there are any */
-      included_somewhere = garcon_menu_update_item (menu, item, FALSE);
-      included_somewhere = garcon_menu_update_item (menu, item, TRUE) || included_somewhere;
+      included_anywhere = garcon_menu_update_item (menu, item, FALSE);
+      included_anywhere = garcon_menu_update_item (menu, item, TRUE) || included_anywhere;
 
       /* unload the item if it isn't included in any menus */
-      if (!included_somewhere)
+      if (!included_anywhere)
         {
           /* remove the item from the item cache, so we are forced to reload 
            * it from disk the next time it becomes available */
@@ -2581,7 +2581,7 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
 {
   GarconMenuItem *item;
   GFileType       file_type;
-  gboolean        included_somewhere = FALSE;
+  gboolean        included_anywhere = FALSE;
   GFile          *replacement_file;
   GList          *menus = NULL;
   GList          *lp;
@@ -2613,11 +2613,11 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
               if (garcon_menu_item_reload (item, NULL))
                 {
                   /* insert the item into the appropriate menus, if there are any */
-                  included_somewhere = garcon_menu_update_item (menu, item, FALSE);
-                  included_somewhere = garcon_menu_update_item (menu, item, TRUE) || included_somewhere;
+                  included_anywhere = garcon_menu_update_item (menu, item, FALSE);
+                  included_anywhere = garcon_menu_update_item (menu, item, TRUE) || included_anywhere;
 
                   /* unload the item if it isn't included in any menus */
-                  if (!included_somewhere)
+                  if (!included_anywhere)
                     {
                       /* remove the item from the item cache, so we are forced to reload 
                        * it from disk the next time it becomes available */
@@ -2646,17 +2646,15 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
               /* determine the desktop ID for this file */
               if (garcon_menu_collect_file (menu, file, NULL, NULL, &desktop_id))
                 {
+                  /* determine the prioritized desktop file for the desktop ID */
                   if (garcon_menu_collect_file (menu, NULL, desktop_id, &replacement_file, NULL))
                     {
+                      /* only update the corresponding menu item if the changed file is
+                       * the one with top priority of all files with this desktop ID */
                       if (g_file_equal (file, replacement_file))
-                        {
-                          /* TODO we need to handle the app dir priority here */
-                          garcon_menu_update_file_item (menu, desktop_id, file);
-                        }
-                      else
-                        {
-                          g_debug ("ignoring the changed file as it is overriden");
-                        }
+                        garcon_menu_update_file_item (menu, desktop_id, file);
+
+                      g_object_unref (replacement_file);
                     }
                   g_free (desktop_id);
                 }
@@ -2694,6 +2692,20 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
            *   - add it to those menus (make sure to emit 'item-added'
            *     signals)
            */
+          if (garcon_menu_collect_file (menu, file, NULL, NULL, &desktop_id))
+            {
+              if (garcon_menu_collect_file (menu, NULL, desktop_id, &replacement_file, NULL))
+                {
+                  if (g_file_equal (replacement_file, file))
+                    {
+                      /* TODO */
+                    }
+
+                  g_object_unref (replacement_file);
+                }
+              
+              g_free (desktop_id);
+            }
         }
     }
   else if (event_type == G_FILE_MONITOR_EVENT_DELETED)
@@ -2753,6 +2765,11 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
                * the path segments and then replacing all dir separators with a "-".
                * We can do that later... */
 
+              /* TODO actually, I think we need to do the above to avoid broken
+               * desktop files (e.g. manually created by the user) to override 
+               * valid desktop files with lower priority even after the broken
+               * files have been removed... */
+
               /* determine the next-priority desktop file with the same desktop ID */
               if (garcon_menu_collect_file (menu, NULL, desktop_id, &replacement_file, NULL))
                 {
@@ -2761,7 +2778,6 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
                 }
 
               g_free (desktop_id);
-              
             }
         }
     }
