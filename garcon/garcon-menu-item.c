@@ -88,6 +88,8 @@ static gboolean     garcon_menu_item_get_element_show_in_environment (GarconMenu
 static gboolean     garcon_menu_item_get_element_no_display          (GarconMenuElement      *element);
 static gboolean     garcon_menu_item_get_element_equal               (GarconMenuElement      *element,
                                                                       GarconMenuElement      *other);
+static gboolean     garcon_menu_item_category_lists_equal            (GList                  *categories1,
+                                                                      GList                  *categories2);
 
 
 
@@ -668,6 +670,33 @@ garcon_menu_item_get_element_icon_name (GarconMenuElement *element)
 
 
 
+static gboolean
+garcon_menu_item_category_lists_equal (GList *categories1,
+                                       GList *categories2)
+{
+  gboolean element_missing = FALSE;
+  GList   *lp;
+
+  guint size1;
+  guint size2;
+
+  size1 = g_list_length (categories1);
+  size2 = g_list_length (categories2);
+
+  if (size1 != size2)
+    return FALSE;
+
+  for (lp = categories1; !element_missing && lp != NULL; lp = lp->next)
+    {
+      if (g_list_find_custom (categories2, lp->data, (GCompareFunc) g_strcmp0) == NULL)
+        element_missing = TRUE;
+    }
+
+  return !element_missing;
+}
+
+
+
 GarconMenuItem *
 garcon_menu_item_new (GFile *file)
 {
@@ -819,12 +848,13 @@ garcon_menu_item_new_for_uri (const gchar *uri)
 
 gboolean
 garcon_menu_item_reload (GarconMenuItem  *item,
+                         gboolean        *affects_the_outside,
                          GError         **error)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
-  return garcon_menu_item_reload_from_file (item, item->priv->file, error);
+  return garcon_menu_item_reload_from_file (item, item->priv->file, affects_the_outside, error);
 }
 
 
@@ -832,12 +862,15 @@ garcon_menu_item_reload (GarconMenuItem  *item,
 gboolean
 garcon_menu_item_reload_from_file (GarconMenuItem  *item,
                                    GFile           *file,
+                                   gboolean        *affects_the_outside,
                                    GError         **error)
 {
   GKeyFile *rc;
   gboolean  boolean;
   gboolean  succeed;
   GList    *categories = NULL;
+  GList    *lp;
+  GList    *old_categories = NULL;
   gchar   **mt;
   gchar   **str_list;
   gchar    *contents;
@@ -935,6 +968,14 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   boolean = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_HIDDEN);
   garcon_menu_item_set_hidden (item, boolean);
 
+  if (affects_the_outside != NULL)
+    {
+      /* create a deep copy the old categories list */
+      old_categories = g_list_copy (item->priv->categories);
+      for (lp = old_categories; lp != NULL; lp = lp->next)
+        lp->data = g_strdup (lp->data);
+    }
+
   /* Determine the categories this application should be shown in */
   str_list = GET_STRING_LIST (G_KEY_FILE_DESKTOP_KEY_CATEGORIES);
   if (G_LIKELY (str_list != NULL))
@@ -956,6 +997,16 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
       /* Assign empty categories list to the menu item */
       garcon_menu_item_set_categories (item, NULL);
     }
+
+  if (affects_the_outside != NULL)
+    {
+      if (!garcon_menu_item_category_lists_equal (old_categories, categories))
+        *affects_the_outside = TRUE;
+
+      g_list_foreach (old_categories, (GFunc) g_free, NULL);
+      g_list_free (old_categories);
+    }
+    
 
   /* Set the rest of the private data directly */
   item->priv->only_show_in = GET_STRING_LIST (G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN);

@@ -1,6 +1,6 @@
 /* vi:set et ai sw=2 sts=2 ts=2: */
 /*-
- * Copyright (c) 2006-2009 Jannis Pohlmann <jannis@xfce.org>
+ * Copyright (c) 2006-2010 Jannis Pohlmann <jannis@xfce.org>
  * Copyright (c) 2009      Nick Schermer <nick@xfce.org>
  *
  * This library is free software; you can redistribute it and/or
@@ -67,10 +67,12 @@ GarconMenuItem *garcon_menu_item_new_for_path                      (const gchar 
 GarconMenuItem *garcon_menu_item_new_for_uri                       (const gchar     *uri) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 
 gboolean        garcon_menu_item_reload                            (GarconMenuItem  *item,
+                                                                    gboolean        *affects_the_outside,
                                                                     GError         **error);
 
 gboolean        garcon_menu_item_reload_from_file                  (GarconMenuItem  *item,
                                                                     GFile           *file,
+                                                                    gboolean        *affects_the_outside,
                                                                     GError         **error);
 
 GFile          *garcon_menu_item_get_file                          (GarconMenuItem  *item);
