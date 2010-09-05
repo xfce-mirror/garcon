@@ -2115,71 +2115,19 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
   g_return_if_fail (GARCON_IS_MENU (menu));
   g_return_if_fail (menu->priv->parent == NULL);
 
-  if (event_type == G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT
-      || event_type == G_FILE_MONITOR_EVENT_ATTRIBUTE_CHANGED)
+  if (event_type == G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT)
     {
       /* query the type of the changed file */
       file_type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
 
       if (file_type == G_FILE_TYPE_DIRECTORY)
         {
-          /* in this situation, an app dir could have become unreadable for the
-           * current user. like most other situations, this is not very easy
-           * to deal with, so we simply enforce a menu reload */
-          g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
-        }
-      else
-        {
-          /* a regular file changed, try to find the corresponding menu item */
-          item = garcon_menu_find_file_item (menu, file);
-          if (item != NULL)
-            {
-              /* try to reload the item */
-              if (garcon_menu_item_reload (item, &affects_the_outside, NULL))
-                {
-                  if (affects_the_outside)
-                    {
-                      /* if the categories changed, the item might have to be
-                       * moved around between different menus. this is slightly
-                       * more complicated than one would first think, so just
-                       * enforce a complete menu reload for now */
-                      g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
-                    }
-                  else
-                    {
-                      /* nothing to do here. the item should emit a 'changed'
-                       * signal to which users of this library can react */
-                    }
-                }
-              else
-                {
-                  /* failed to reload the menu item. this can have many reasons,
-                   * one of them being that the file permissions might have changed.
-                   * handling this situation can be tricky, so, again, we just
-                   * enfore a menu reload until we have something better */
-                  g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
-                }
-            }
-          else
-            {
-              /* there could be a lot of stuff happening here. seriously, this
-               * stuff is complicated. for now, simply enforce a complete reload 
-               * of the menu structure */
-              g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
-            }
-        }
-    }
-  else if (event_type == G_FILE_MONITOR_EVENT_CREATED)
-    {
-      /* query the type of the changed file */
-      file_type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
-
-      if (file_type == G_FILE_TYPE_DIRECTORY)
-        {
-          /* either a previously non-existent app dir or a new subdirectory 
-           * has been created. we need to load all the .desktop files that
-           * are now available in addition to the old ones. so enforce a
-           * menu reload and they will be picked up */
+          /* in this situation, an app dir could have 
+           * - become unreadable for the current user
+           * - been deleted
+           * - created (possibly inside an existing one)
+           * this is not trivial to handle, so we simply enforce a
+           * menu reload to deal with the changes */
           g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
         }
       else
@@ -2187,45 +2135,54 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
           path = g_file_get_path (file);
           if (path != NULL && g_str_has_suffix (path, ".desktop"))
             {
-              /* a new .desktop file has been created. does it override another
-               * .desktop file that is currently in use? is it overriden itself
-               * and thus, can be ignored? it's not trivial to determine all this,
-               * so what we do is... force a menu reload */
-              g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+              /* a regular file changed, try to find the corresponding menu item */
+              item = garcon_menu_find_file_item (menu, file);
+              if (item != NULL)
+                {
+                  /* try to reload the item */
+                  if (garcon_menu_item_reload (item, &affects_the_outside, NULL))
+                    {
+                      if (affects_the_outside)
+                        {
+                          /* if the categories changed, the item might have to be
+                           * moved around between different menus. this is slightly
+                           * more complicated than one would first think, so just
+                           * enforce a complete menu reload for now */
+                          g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+                        }
+                      else
+                        {
+                          /* remove the item from the desktop item cache so we are forced
+                           * to reload it from disk the next time */
+                          garcon_menu_item_cache_invalidate_file (menu->priv->cache, file);
+
+                          /* nothing else to do here. the item should emit a 'changed'
+                           * signal to which users of this library can react */
+                        }
+                    }
+                  else
+                    {
+                      /* remove the item from the desktop item cache so we are forced
+                       * to reload it from disk the next time */
+                      garcon_menu_item_cache_invalidate_file (menu->priv->cache, file);
+
+                      /* failed to reload the menu item. this can have many reasons,
+                       * one of them being that the file permissions might have changed
+                       * or that the file was deleted. handling most situations can be very
+                       * tricky, so, again, we just enfore a menu reload until we have 
+                       * something better */
+                      g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+                    }
+                }
+              else
+                {
+                  /* there could be a lot of stuff happening here. seriously, this
+                   * stuff is complicated. for now, simply enforce a complete reload 
+                   * of the menu structure */
+                  g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+                }
             }
           g_free (path);
-        }
-    }
-  else if (event_type == G_FILE_MONITOR_EVENT_DELETED)
-    {
-      /* query the type of the changed file */
-      file_type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
-
-      if (file_type == G_FILE_TYPE_DIRECTORY)
-        {
-          /* an existing app dir (or a subdirectory) has been deleted. we
-           * could remove all the items that are in use and reside inside
-           * this root directory. but for now... enforce a menu reload! */
-          g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
-        }
-      else 
-        {
-          /* a regular file was deleted, try to find the corresponding menu item */
-          item = garcon_menu_find_file_item (menu, file);
-          if (item != NULL)
-            {
-              /* ok, so a .desktop file was removed. of course we don't know
-               * yet whether there is a replacement in another app dir
-               * with lower priority. we could try to find out but for now
-               * it's easier to simply enforce a menu reload */
-              g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
-            }
-          else
-            {
-              /* the deleted file hasn't been in use anyway, so removing it
-               * doesn't change anything. so we have nothing to do for a
-               * change, no f****ing menu reload! */
-            }
         }
     }
 }

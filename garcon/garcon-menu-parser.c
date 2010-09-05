@@ -275,12 +275,14 @@ garcon_menu_parser_run (GarconMenuParser *parser,
 
       if (error != NULL)
         {
-          g_warning (_("Could not load menu file data from %s: %s"),
+          g_message (_("Could not load menu file data from %s: %s"),
                      uri, (*error)->message);
           g_error_free (*error);
         }
       else
-        g_warning (_("Could not load menu file data from %s"), uri);
+        {
+          g_message (_("Could not load menu file data from %s"), uri);
+        }
 
       g_free (uri);
       return FALSE;

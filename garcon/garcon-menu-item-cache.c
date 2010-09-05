@@ -219,3 +219,28 @@ garcon_menu_item_cache_invalidate (GarconMenuItemCache *cache)
   /* Release item cache lock */
   g_static_mutex_unlock (&lock);
 }
+
+
+
+void
+garcon_menu_item_cache_invalidate_file (GarconMenuItemCache *cache,
+                                        GFile               *file)
+{
+  gchar *uri;
+
+  g_return_if_fail (GARCON_IS_MENU_ITEM_CACHE (cache));
+  g_return_if_fail (G_IS_FILE (file));
+
+  uri = g_file_get_uri (file);
+
+  /* Acquire a lock on the item cache */
+  g_static_mutex_lock (&lock);
+
+  /* Remove possible items with this URI from the cache */
+  g_hash_table_remove (cache->priv->items, uri);
+
+  /* Release the item cache lock */
+  g_static_mutex_unlock (&lock);
+
+  g_free (uri);
+}

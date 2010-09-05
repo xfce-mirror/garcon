@@ -56,17 +56,19 @@ struct _GarconMenuItemCache
 
 
 
-GType                garcon_menu_item_cache_get_type    (void) G_GNUC_CONST;
+GType                garcon_menu_item_cache_get_type        (void) G_GNUC_CONST;
 
-GarconMenuItemCache *garcon_menu_item_cache_get_default (void);
+GarconMenuItemCache *garcon_menu_item_cache_get_default     (void);
 
-GarconMenuItem      *garcon_menu_item_cache_lookup      (GarconMenuItemCache *cache,
-                                                         const gchar         *uri,
-                                                         const gchar         *desktop_id);
-void                 garcon_menu_item_cache_foreach     (GarconMenuItemCache *cache,
-                                                         GHFunc               func,
-                                                         gpointer             user_data);
-void                 garcon_menu_item_cache_invalidate  (GarconMenuItemCache *cache);
+GarconMenuItem      *garcon_menu_item_cache_lookup          (GarconMenuItemCache *cache,
+                                                             const gchar         *uri,
+                                                             const gchar         *desktop_id);
+void                 garcon_menu_item_cache_foreach         (GarconMenuItemCache *cache,
+                                                             GHFunc               func,
+                                                             gpointer             user_data);
+void                 garcon_menu_item_cache_invalidate      (GarconMenuItemCache *cache);
+void                 garcon_menu_item_cache_invalidate_file (GarconMenuItemCache *cache,
+                                                             GFile               *file);
 
 G_END_DECLS
 
