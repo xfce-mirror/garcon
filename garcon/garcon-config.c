@@ -167,23 +167,25 @@ garcon_config_lookup (const gchar *filename)
 
   /* Look for the file in the user's config directory */
   path = g_build_filename (g_get_user_config_dir (), filename, NULL);
-  if (g_path_is_absolute (path)
-      && g_file_test (path, G_FILE_TEST_IS_REGULAR))
+  if (g_path_is_absolute (path) && g_file_test (path, G_FILE_TEST_IS_REGULAR))
     return path;
+    
   g_free (path);
+  path = NULL;
 
   /* Look for the file in the system config directories */
   dirs = g_get_system_config_dirs ();
-  for (i = 0; dirs[i] != NULL; ++i)
+  for (i = 0; path == NULL && dirs[i] != NULL; ++i)
     {
       /* Build the filename, if the file exists return the path */
       path = g_build_filename (dirs[i], filename, NULL);
-      if (g_path_is_absolute (path)
-          && g_file_test (path, G_FILE_TEST_IS_REGULAR))
-        return path;
-      g_free (path);
+      if (!g_path_is_absolute (path) || !g_file_test (path, G_FILE_TEST_IS_REGULAR))
+        {
+          g_free (path);
+          path = NULL;
+        }
     }
 
-  /* Nothing found */
-  return NULL;
+  /* Return the path or NULL if the file could not be found */
+  return path;
 }

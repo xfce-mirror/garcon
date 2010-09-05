@@ -142,6 +142,12 @@ static gboolean             garcon_menu_get_element_equal               (GarconM
                                                                          GarconMenuElement       *other);
 static void                 garcon_menu_start_monitoring                (GarconMenu              *menu);
 static void                 garcon_menu_stop_monitoring                 (GarconMenu              *menu);
+static void                 garcon_menu_monitor_menu_files              (GarconMenu              *menu);
+static void                 garcon_menu_file_changed                    (GarconMenu              *menu,
+                                                                         GFile                   *file,
+                                                                         GFile                   *other_file,
+                                                                         GFileMonitorEvent        event_type,
+                                                                         GFileMonitor            *monitor);
 
 
 
@@ -152,6 +158,9 @@ struct _GarconMenuPrivate
 
   /* DOM tree */
   GNode               *tree;
+
+  /* File and directory monitors */
+  GList               *monitors;
 
   /* Directory */
   GarconMenuDirectory *directory;
@@ -243,6 +252,7 @@ garcon_menu_init (GarconMenu *menu)
   menu->priv = GARCON_MENU_GET_PRIVATE (menu);
   menu->priv->file = NULL;
   menu->priv->tree = NULL;
+  menu->priv->monitors = NULL;
   menu->priv->directory = NULL;
   menu->priv->submenus = NULL;
   menu->priv->parent = NULL;
@@ -1639,6 +1649,20 @@ garcon_menu_get_element_equal (GarconMenuElement *element,
 static void
 garcon_menu_start_monitoring (GarconMenu *menu)
 {
+  GList *lp;
+
+  g_return_if_fail (GARCON_IS_MENU (menu));
+
+  /* Let only the root menu monitor menu files, merge fileS/directories and app dirs */
+  if (menu->priv->parent == NULL)
+    {
+      garcon_menu_monitor_menu_files (menu);
+    }
+
+  /* Recurse into submenus */
+  for (lp = menu->priv->submenus; lp != NULL; lp = lp->next)
+    garcon_menu_start_monitoring (lp->data);
+
 }
 
 
@@ -1646,4 +1670,91 @@ garcon_menu_start_monitoring (GarconMenu *menu)
 static void
 garcon_menu_stop_monitoring (GarconMenu *menu)
 {
+  GList *lp;
+
+  g_return_if_fail (GARCON_IS_MENU (menu));
+
+  /* Recurse into submenus */
+  for (lp = menu->priv->submenus; lp != NULL; lp = lp->next)
+    garcon_menu_stop_monitoring (lp->data);
+
+  /* Disconnect and destroy all monitors */
+  for (lp = menu->priv->monitors; lp != NULL; lp = lp->next)
+    {
+      g_signal_handlers_disconnect_matched (lp->data, G_SIGNAL_MATCH_DATA,
+                                            0, 0, NULL, NULL, menu);
+      g_object_unref (lp->data);
+    }
+
+  /* Free the monitor list */
+  g_list_free (menu->priv->monitors);
+  menu->priv->monitors = NULL;
+}
+
+
+
+static void
+garcon_menu_monitor_menu_files (GarconMenu *menu)
+{
+  GFileMonitor *monitor;
+  GFile        *file;
+  gchar       **paths;
+  guint         n;
+  guint         i;
+
+  g_return_if_fail (GARCON_IS_MENU (menu));
+
+  if (menu->priv->uses_custom_path)
+    {
+      g_debug ("monitor menu file: %s", g_file_get_path (menu->priv->file));
+
+      /* Monitor the root .menu file */
+      monitor = g_file_monitor (menu->priv->file, G_FILE_MONITOR_NONE, NULL, NULL);
+      if (monitor != NULL)
+        {
+          menu->priv->monitors = g_list_prepend (menu->priv->monitors, monitor);
+          g_signal_connect_swapped (monitor, "changed", 
+                                    G_CALLBACK (garcon_menu_file_changed), menu);
+        }
+    }
+  else
+    {
+      /* Monitor all application menu candidates */
+      for (n = 0; n < G_N_ELEMENTS (GARCON_MENU_ROOT_SPECS); ++n)
+        {
+          paths = garcon_config_build_paths (GARCON_MENU_ROOT_SPECS[n]);
+
+          for (i = 0; paths != NULL && paths[i] != NULL; ++i)
+            {
+              file = g_file_new_for_path (paths[i]);
+              
+              g_debug ("monitor menu file: %s", g_file_get_path (file));
+
+              monitor = g_file_monitor (file, G_FILE_MONITOR_NONE, NULL, NULL);
+              if (monitor != NULL)
+                {
+                  menu->priv->monitors = g_list_prepend (menu->priv->monitors, monitor);
+                  g_signal_connect_swapped (monitor, "changed",
+                                            G_CALLBACK (garcon_menu_file_changed), menu);
+                }
+
+              g_object_unref (file);
+            }
+
+          g_strfreev (paths);
+        }
+    }
+}
+
+
+
+static void
+garcon_menu_file_changed (GarconMenu       *menu,
+                          GFile            *file,
+                          GFile            *other_file,
+                          GFileMonitorEvent event_type,
+                          GFileMonitor     *monitor)
+{
+  g_return_if_fail (GARCON_IS_MENU (menu));
+  g_return_if_fail (menu->priv->parent == NULL);
 }
