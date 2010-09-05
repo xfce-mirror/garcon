@@ -338,6 +338,10 @@ garcon_menu_node_free_data (GarconMenuNode *node)
       g_free (node->data.string);
       break;
 
+    case GARCON_MENU_NODE_TYPE_MERGE_FILE:
+      g_free (node->data.merge_file.filename);
+      break;
+
     default:
       break;
     }
