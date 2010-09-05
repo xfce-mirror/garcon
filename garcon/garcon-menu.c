@@ -155,6 +155,7 @@ static void                 garcon_menu_monitor_menu_files              (GarconM
 static void                 garcon_menu_monitor_files                   (GarconMenu              *menu,
                                                                          GList                   *files,
                                                                          gpointer                 callback);
+static void                 garcon_menu_monitor_app_dirs                (GarconMenu              *menu);
 static void                 garcon_menu_file_changed                    (GarconMenu              *menu,
                                                                          GFile                   *file,
                                                                          GFile                   *other_file,
@@ -170,8 +171,11 @@ static void                 garcon_menu_merge_dir_changed               (GarconM
                                                                          GFile                   *other_file,
                                                                          GFileMonitorEvent        event_type,
                                                                          GFileMonitor            *monitor);
-
-
+static void                 garcon_menu_app_dir_changed                 (GarconMenu              *menu,
+                                                                         GFile                   *file,
+                                                                         GFile                   *other_file,
+                                                                         GFileMonitorEvent        event_type,
+                                                                         GFileMonitor            *monitor);
 
 
 
@@ -981,31 +985,30 @@ garcon_menu_lookup_directory (GarconMenu  *menu,
 
 
 static GList *
-garcon_menu_get_app_dirs (GarconMenu *menu)
+garcon_menu_get_app_dirs (GarconMenu *menu,
+                          gboolean    recursive)
 {
   GList *dirs = NULL;
+  GList *lp;
+  GList *sp;
+  GList *submenu_app_dirs;
 
   /* Fetch all application directories */
   dirs = garcon_menu_node_tree_get_string_children (menu->priv->tree,
                                                     GARCON_MENU_NODE_TYPE_APP_DIR,
                                                     TRUE);
 
-#if 0
-  /* A submenu always inherits the application directories of its parent,
-   * that is the reason the call below was added.
-   * It only turned out we were looking in that same directories for
-   * .desktop files multiple times.
-   *
-   * This was caused by the combination of the parent call below and
-   * traversing the children in garcon_menu_collect_files(). For each
-   * submenu the appdirs of the root were added and traversed again.
-   *
-   * This is not needed because we always start at the root and traverse
-   * in "pre-order", so all the desktop files are added in the hash-table.
-   */
-  if (menu->priv->parent != NULL)
-    dirs = g_list_concat (dirs, garcon_menu_get_app_dirs (menu->priv->parent));
-#endif
+  if (recursive)
+    {
+      for (lp = menu->priv->submenus; lp != NULL; lp = lp->next)
+        {
+          submenu_app_dirs = garcon_menu_get_app_dirs (lp->data, recursive);
+
+          for (sp = g_list_last (submenu_app_dirs); sp != NULL; sp = sp->prev) 
+            if (g_list_find_custom (dirs, sp->data, (GCompareFunc) g_strcmp0) == NULL)
+              dirs = g_list_prepend (dirs, sp->data);
+        }
+    }
 
   return dirs;
 }
@@ -1022,7 +1025,7 @@ garcon_menu_collect_files (GarconMenu *menu,
 
   g_return_if_fail (GARCON_IS_MENU (menu));
 
-  app_dirs = garcon_menu_get_app_dirs (menu);
+  app_dirs = garcon_menu_get_app_dirs (menu, FALSE);
 
   /* Collect desktop entry filenames */
   for (iter = app_dirs; iter != NULL; iter = g_list_next (iter))
@@ -1722,6 +1725,8 @@ garcon_menu_start_monitoring (GarconMenu *menu)
       
       garcon_menu_monitor_files (menu, menu->priv->merge_dirs,
                                  garcon_menu_merge_dir_changed);
+
+      garcon_menu_monitor_app_dirs (menu);
     }
 
   /* Recurse into submenus */
@@ -1864,6 +1869,43 @@ garcon_menu_monitor_files (GarconMenu *menu,
 
 
 static void
+garcon_menu_monitor_app_dirs (GarconMenu *menu)
+{
+  GFile *dir;
+  GList *app_dirs;
+  GList *dirs = NULL;
+  GList *lp;
+  
+  g_return_if_fail (GARCON_IS_MENU (menu));
+  g_return_if_fail (menu->priv->parent == NULL);
+
+  g_return_if_fail (GARCON_IS_MENU (menu));
+
+  /* Determine all application directories we are interested in for this menu */
+  app_dirs = garcon_menu_get_app_dirs (menu, TRUE);
+  
+  /* Transform app dir filenames into GFile objects, resolving filenames 
+   * relative to the menu file itself */
+  for (lp = app_dirs; lp != NULL; lp = lp->next)
+    {
+      dir = _garcon_file_new_relative_to_file (lp->data, menu->priv->file);
+      dirs = g_list_prepend (dirs, dir);
+    }
+
+  /* Monitor the app dirs */
+  garcon_menu_monitor_files (menu, dirs, garcon_menu_app_dir_changed);
+
+  /* Release the allocated GFiles and free the list */
+  g_list_foreach (dirs, (GFunc) g_object_unref, NULL);
+  g_list_free (dirs);
+
+  /* Free app dir list */
+  g_list_free (app_dirs);
+}
+
+
+
+static void
 garcon_menu_file_changed (GarconMenu       *menu,
                           GFile            *file,
                           GFile            *other_file,
@@ -1949,4 +1991,19 @@ garcon_menu_merge_dir_changed (GarconMenu       *menu,
   g_return_if_fail (menu->priv->parent == NULL);
 
   g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+}
+
+
+
+static void
+garcon_menu_app_dir_changed (GarconMenu       *menu,
+                             GFile            *file,
+                             GFile            *other_file,
+                             GFileMonitorEvent event_type,
+                             GFileMonitor     *monitor)
+{
+  g_return_if_fail (GARCON_IS_MENU (menu));
+  g_return_if_fail (menu->priv->parent == NULL);
+
+
 }
