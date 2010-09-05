@@ -48,6 +48,8 @@ struct _GarconMenuElementIface
   gboolean     (*get_visible)             (GarconMenuElement *element);
   gboolean     (*get_show_in_environment) (GarconMenuElement *element);
   gboolean     (*get_no_display)          (GarconMenuElement *element);
+  gboolean     (*equal)                   (GarconMenuElement *element,
+                                           GarconMenuElement *other);
 };
 
 GType        garcon_menu_element_get_type                (void) G_GNUC_CONST;
@@ -58,6 +60,8 @@ const gchar *garcon_menu_element_get_icon_name           (GarconMenuElement *ele
 gboolean     garcon_menu_element_get_visible             (GarconMenuElement *element);
 gboolean     garcon_menu_element_get_show_in_environment (GarconMenuElement *element);
 gboolean     garcon_menu_element_get_no_display          (GarconMenuElement *element);
+gboolean     garcon_menu_element_equal                   (GarconMenuElement *a,
+                                                          GarconMenuElement *b);
 
 G_END_DECLS
 

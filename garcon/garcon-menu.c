@@ -1,6 +1,6 @@
 /* vi:set et ai sw=2 sts=2 ts=2: */
 /*-
- * Copyright (c) 2007-2009 Jannis Pohlmann <jannis@xfce.org>
+ * Copyright (c) 2007-2010 Jannis Pohlmann <jannis@xfce.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -137,6 +137,8 @@ static const gchar         *garcon_menu_get_element_icon_name           (GarconM
 static gboolean             garcon_menu_get_element_visible             (GarconMenuElement       *element);
 static gboolean             garcon_menu_get_element_show_in_environment (GarconMenuElement       *element);
 static gboolean             garcon_menu_get_element_no_display          (GarconMenuElement       *element);
+static gboolean             garcon_menu_get_element_equal               (GarconMenuElement       *element,
+                                                                         GarconMenuElement       *other);
 
 
 
@@ -224,6 +226,7 @@ garcon_menu_element_init (GarconMenuElementIface *iface)
   iface->get_visible = garcon_menu_get_element_visible;
   iface->get_show_in_environment = garcon_menu_get_element_show_in_environment;
   iface->get_no_display = garcon_menu_get_element_no_display;
+  iface->equal = garcon_menu_get_element_equal;
 }
 
 
@@ -1551,4 +1554,16 @@ garcon_menu_get_element_no_display (GarconMenuElement *element)
     return FALSE;
   else
     return garcon_menu_directory_get_no_display (menu->priv->directory);
+}
+
+
+
+static gboolean
+garcon_menu_get_element_equal (GarconMenuElement *element,
+                               GarconMenuElement *other)
+{
+  g_return_val_if_fail (GARCON_IS_MENU (element), FALSE);
+  g_return_val_if_fail (GARCON_IS_MENU (other), FALSE);
+
+  return GARCON_MENU (element) == GARCON_MENU (other);
 }

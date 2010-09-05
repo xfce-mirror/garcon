@@ -116,3 +116,18 @@ garcon_menu_element_get_no_display (GarconMenuElement *element)
   return (*GARCON_MENU_ELEMENT_GET_IFACE (element)->get_no_display) (element);
 }
 
+
+
+gboolean
+garcon_menu_element_equal (GarconMenuElement *a,
+                           GarconMenuElement *b)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ELEMENT (a), FALSE);
+  g_return_val_if_fail (GARCON_IS_MENU_ELEMENT (b), FALSE);
+
+  if (G_TYPE_FROM_INSTANCE (a) != G_TYPE_FROM_INSTANCE (b))
+    return FALSE;
+
+  return (*GARCON_MENU_ELEMENT_GET_IFACE (a)->equal) (a, b);
+}
+
