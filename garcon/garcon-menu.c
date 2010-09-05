@@ -2118,10 +2118,6 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
   if (event_type == G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT
       || event_type == G_FILE_MONITOR_EVENT_ATTRIBUTE_CHANGED)
     {
-      g_debug ("app dir/file changed: %s: %s: %d", 
-               garcon_menu_element_get_name (GARCON_MENU_ELEMENT (menu)),
-               g_file_get_path (file), event_type);
-
       /* query the type of the changed file */
       file_type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
 
@@ -2175,10 +2171,6 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
     }
   else if (event_type == G_FILE_MONITOR_EVENT_CREATED)
     {
-      g_debug ("app dir/file created: %s: %s: %d", 
-               garcon_menu_element_get_name (GARCON_MENU_ELEMENT (menu)),
-               g_file_get_path (file), event_type);
-
       /* query the type of the changed file */
       file_type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
 
@@ -2206,10 +2198,6 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
     }
   else if (event_type == G_FILE_MONITOR_EVENT_DELETED)
     {
-      g_debug ("app dir/file deleted: %s: %s: %d", 
-               garcon_menu_element_get_name (GARCON_MENU_ELEMENT (menu)),
-               g_file_get_path (file), event_type);
-
       /* query the type of the changed file */
       file_type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
 
