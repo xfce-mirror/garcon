@@ -1,6 +1,6 @@
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
 # 
-# Copyright (c) 2007-2009 Jannis Pohlmann <jannis@xfce.org>
+# Copyright (c) 2007-2010 Jannis Pohlmann <jannis@xfce.org>
 # 
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Library General Public
@@ -27,9 +27,17 @@ INCLUDES = 								\
 lib_LTLIBRARIES = 							\
 	libgarcon-1.la
 
+libgarcon_built_public_sources =					\
+	garcon-marshal.h
+
+libgarcon_built_sources =						\
+	$(libgarcon_built_public_sources)				\
+	garcon-marshal.c
+
 libgarcon_headers =							\
 	garcon.h							\
 	garcon-config.h							\
+	garcon-marshal.h						\
 	garcon-menu-element.h						\
 	garcon-menu-separator.h						\
 	garcon-menu-directory.h						\
@@ -45,6 +53,7 @@ libgarcon_headers =							\
 
 libgarcon_sources =							\
 	garcon-config.c							\
+	garcon-marshal.c						\
 	garcon-menu-element.c						\
 	garcon-menu-separator.c						\
 	garcon-menu-directory.c						\
@@ -88,10 +97,48 @@ libgarcon_1_la_LIBADD = 						\
 	$(GIO_LIBS)
 
 EXTRA_DIST =								\
-	garcon-config.h.in
+	garcon-config.h.in						\
+	garcon-marshal.list
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = garcon-1.pc
+
+DISTCLEANFILES =							\
+	stamp-garcon-marshal.h						\
+	garcon-config.h							\
+	$(libgarcon_built_sources)
+
+BUILT_SOURCES =								\
+	$(libgarcon_built_sources)
+
+garcon-marshal.h: stamp-garcon-marshal.h
+	@true
+
+stamp-garcon-marshal.h: garcon-marshal.list Makefile
+	$(AM_V_GEN) ( \
+	  cd $(top_builddir)/garcon \
+	  && echo "#ifndef __GARCON_MARSHAL_H__" > xgen-emh \
+	  && echo "#define __GARCON_MARSHAL_H__" >> xgen-emh \
+	  && ( glib-genmarshal \
+	  	--prefix=garcon_marshal \
+	  	--header $(srcdir)/garcon-marshal.list ) >> xgen-emh \
+	  && echo "#endif /* !__GARCON_MARSHAL_H__ */" >> xgen-emh \
+	  && ( cmp -s xgen-emh garcon-marshal.h \
+	  	|| cp xgen-emh garcon-marshal.h ) \
+	  && rm -f xgen-emh \
+	  && echo timestamp > $(@F) \
+	)
+
+garcon-marshal.c: garcon-marshal.list Makefile
+	$(AM_V_GEN) ( \
+	  cd $(top_builddir)/garcon \
+	  && echo "#include <garcon/garcon-marshal.h>" > xgen-emc \
+	  && ( glib-genmarshal \
+	  	--prefix=garcon_marshal \
+	  	--body $(srcdir)/garcon-marshal.list ) >> xgen-emc \
+	  && cp xgen-emc garcon-marshal.c \
+	  && rm -f xgen-emc \
+	)
 
 # Required for gtk-doc and make distcheck
 dist-hook: all

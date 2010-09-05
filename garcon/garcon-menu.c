@@ -28,7 +28,9 @@
 
 #include <glib/gi18n.h>
 
+#include <garcon/garcon-config.h>
 #include <garcon/garcon-environment.h>
+#include <garcon/garcon-marshal.h>
 #include <garcon/garcon-menu-element.h>
 #include <garcon/garcon-menu-item.h>
 #include <garcon/garcon-menu-directory.h>
@@ -38,7 +40,6 @@
 #include <garcon/garcon-menu-parser.h>
 #include <garcon/garcon-menu-merger.h>
 #include <garcon/garcon-private.h>
-#include <garcon/garcon.h>
 
 
 
@@ -101,6 +102,7 @@ enum
 enum
 {
   RELOAD_REQUIRED,
+  DIRECTORY_CHANGED,
   LAST_SIGNAL
 };
 
@@ -120,7 +122,9 @@ static void                 garcon_menu_set_property                    (GObject
 static void                 garcon_menu_set_directory                   (GarconMenu              *menu,
                                                                          GarconMenuDirectory     *directory);
 static void                 garcon_menu_resolve_menus                   (GarconMenu              *menu);
-static void                 garcon_menu_resolve_directory               (GarconMenu              *menu);
+static void                 garcon_menu_resolve_directory               (GarconMenu              *menu,
+                                                                         GCancellable            *cancellable,
+                                                                         gboolean                 recursive);
 static GarconMenuDirectory *garcon_menu_lookup_directory                (GarconMenu              *menu,
                                                                          const gchar             *filename);
 static void                 garcon_menu_collect_files                   (GarconMenu              *menu,
@@ -156,6 +160,7 @@ static void                 garcon_menu_monitor_files                   (GarconM
                                                                          GList                   *files,
                                                                          gpointer                 callback);
 static void                 garcon_menu_monitor_app_dirs                (GarconMenu              *menu);
+static void                 garcon_menu_monitor_directory_dirs          (GarconMenu              *menu);
 static void                 garcon_menu_file_changed                    (GarconMenu              *menu,
                                                                          GFile                   *file,
                                                                          GFile                   *other_file,
@@ -172,6 +177,11 @@ static void                 garcon_menu_merge_dir_changed               (GarconM
                                                                          GFileMonitorEvent        event_type,
                                                                          GFileMonitor            *monitor);
 static void                 garcon_menu_app_dir_changed                 (GarconMenu              *menu,
+                                                                         GFile                   *file,
+                                                                         GFile                   *other_file,
+                                                                         GFileMonitorEvent        event_type,
+                                                                         GFileMonitor            *monitor);
+static void                 garcon_menu_directory_file_changed          (GarconMenu              *menu,
                                                                          GFile                   *file,
                                                                          GFile                   *other_file,
                                                                          GFileMonitorEvent        event_type,
@@ -277,6 +287,19 @@ garcon_menu_class_init (GarconMenuClass *klass)
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE,
                   0);
+
+  menu_signals[DIRECTORY_CHANGED] =
+    g_signal_new ("directory-changed",
+                  GARCON_TYPE_MENU,
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_NO_HOOKS,
+                  0,
+                  NULL,
+                  NULL,
+                  garcon_marshal_VOID__OBJECT_OBJECT,
+                  G_TYPE_NONE,
+                  2,
+                  GARCON_TYPE_MENU_DIRECTORY,
+                  GARCON_TYPE_MENU_DIRECTORY);
 
   garcon_menu_file_quark = g_quark_from_string ("garcon-menu-file-quark");
 }
@@ -715,7 +738,11 @@ garcon_menu_load (GarconMenu   *menu,
   garcon_menu_resolve_menus (menu);
 
   /* Resolve the menu directory */
-  garcon_menu_resolve_directory (menu);
+  garcon_menu_resolve_directory (menu, cancellable, TRUE);
+
+  /* Abort if the cancellable was cancelled */
+  if (g_cancellable_set_error_if_cancelled (cancellable, error))
+    return FALSE;
 
   desktop_id_table = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 
@@ -887,13 +914,23 @@ garcon_menu_get_directories (GarconMenu *menu)
 
 
 static void
-garcon_menu_resolve_directory (GarconMenu *menu)
+garcon_menu_resolve_directory (GarconMenu   *menu,
+                               GCancellable *cancellable,
+                               gboolean      recursive)
 {
   GarconMenuDirectory *directory = NULL;
   GList               *directories = NULL;
   GList               *iter;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
+  g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
+
+  /* release the old directory if there is one */
+  if (menu->priv->directory != NULL) 
+    {
+      g_object_unref (menu->priv->directory);
+      menu->priv->directory = NULL;
+    }
 
   /* Determine all directories for this menu */
   directories = garcon_menu_get_directories (menu);
@@ -914,9 +951,12 @@ garcon_menu_resolve_directory (GarconMenu *menu)
   /* Free reverse list copy */
   g_list_free (directories);
 
-  /* Resolve directories of submenus recursively */
-  for (iter = menu->priv->submenus; iter != NULL; iter = g_list_next (iter))
-    garcon_menu_resolve_directory (iter->data);
+  if (recursive)
+    {
+      /* Resolve directories of submenus recursively */
+      for (iter = menu->priv->submenus; iter != NULL; iter = g_list_next (iter))
+        garcon_menu_resolve_directory (iter->data, cancellable, recursive);
+    }
 }
 
 
@@ -1729,6 +1769,8 @@ garcon_menu_start_monitoring (GarconMenu *menu)
       garcon_menu_monitor_app_dirs (menu);
     }
 
+  garcon_menu_monitor_directory_dirs (menu);
+
   /* Recurse into submenus */
   for (lp = menu->priv->submenus; lp != NULL; lp = lp->next)
     garcon_menu_start_monitoring (lp->data);
@@ -1906,6 +1948,67 @@ garcon_menu_monitor_app_dirs (GarconMenu *menu)
 
 
 static void
+garcon_menu_monitor_directory_dirs (GarconMenu *menu)
+{
+  GFileMonitor *monitor;
+  GFile        *file;
+  GFile        *dir;
+  GList        *directory_files;
+  GList        *directory_dirs;
+  GList        *dp;
+  GList        *lp;
+
+  g_return_if_fail (GARCON_IS_MENU (menu));
+
+  /* Determine all .directory files we are interested in for this menu */
+  directory_files = garcon_menu_get_directories (menu);
+
+  /* Determine all .directory lookup dirs for this menu */
+  directory_dirs = garcon_menu_get_directory_dirs (menu);
+
+  /* Monitor potential .directory files */
+  for (lp = directory_files; lp != NULL; lp = lp->next)
+    {
+      for (dp = directory_dirs; dp != NULL; dp = dp->next)
+        {
+          dir = _garcon_file_new_relative_to_file (dp->data, menu->priv->file);
+          file = _garcon_file_new_relative_to_file (lp->data, dir);
+
+          /* Only try to monitor the .directory file if we don't do that already */
+          if (g_list_find_custom (menu->priv->monitors, file, 
+                                  (GCompareFunc) find_file_monitor) == NULL)
+            {
+              /* Try to monitor the file */
+              monitor = g_file_monitor (file, G_FILE_MONITOR_NONE, NULL, NULL);
+              if (monitor != NULL)
+                {
+                  /* Associate the monitor with the monitored file */
+                  g_object_set_qdata_full (G_OBJECT (monitor), garcon_menu_file_quark,
+                                           g_object_ref (file), g_object_unref);
+
+                  /* Add the monitor to the list of monitors belonging to the menu */
+                  menu->priv->monitors = g_list_prepend (menu->priv->monitors, monitor);
+
+                  /* Make sure we are notified when the file changes */
+                  g_signal_connect_swapped (monitor, "changed",
+                                            G_CALLBACK (garcon_menu_directory_file_changed),
+                                            menu);
+                }
+            }
+
+          g_object_unref (file);
+          g_object_unref (dir);
+        }
+    }
+
+  /* Free lists */
+  g_list_free (directory_dirs);
+  g_list_free (directory_files);
+}
+
+
+
+static void
 garcon_menu_file_changed (GarconMenu       *menu,
                           GFile            *file,
                           GFile            *other_file,
@@ -2005,5 +2108,40 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
   g_return_if_fail (GARCON_IS_MENU (menu));
   g_return_if_fail (menu->priv->parent == NULL);
 
+  /* TODO */
+}
 
+
+
+static void
+garcon_menu_directory_file_changed (GarconMenu       *menu,
+                                    GFile            *file,
+                                    GFile            *other_file,
+                                    GFileMonitorEvent event_type,
+                                    GFileMonitor     *monitor)
+{
+  GarconMenuDirectory *old_directory;
+
+  g_return_if_fail (GARCON_IS_MENU (menu));
+
+  if (event_type == G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT
+      || event_type == G_FILE_MONITOR_EVENT_ATTRIBUTE_CHANGED
+      || event_type == G_FILE_MONITOR_EVENT_DELETED 
+      || event_type == G_FILE_MONITOR_EVENT_CREATED)
+    {
+      /* take a reference on the current menu directory */
+      if (menu->priv->directory != NULL)
+        old_directory = g_object_ref (menu->priv->directory);
+                  
+      /* reset the menu directory of the menu and load a new one */
+      garcon_menu_resolve_directory (menu, NULL, FALSE);
+
+      /* notify listeners about the old and new menu directories */
+      g_signal_emit (menu, menu_signals[DIRECTORY_CHANGED], 0, 
+                     old_directory, menu->priv->directory);
+
+      /* release the old menu directory we no longer need */
+      if (old_directory != NULL)
+        g_object_unref (old_directory);
+    }
 }
