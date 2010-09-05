@@ -1,6 +1,6 @@
 /* vi:set et ai sw=2 sts=2 ts=2: */
 /*-
- * Copyright (c) 2009 Jannis Pohlmann <jannis@xfce.org>
+ * Copyright (c) 2009-2010 Jannis Pohlmann <jannis@xfce.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -9,11 +9,11 @@
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
  * GNU Library General Public License for more details.
  *
- * You should have received a copy of the GNU Library General
- * Public License along with this library; if not, write to the
+ * You should have received a copy of the GNU Library General 
+ * Public License along with this library; if not, write to the 
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301, USA.
  */
@@ -118,6 +118,29 @@ garcon_check_version (guint required_major,
                       guint required_micro)
 {
   return NULL;
+}
+
+
+
+gchar **
+garcon_config_build_paths (const gchar *filename)
+{
+  const gchar * const *dirs;
+  gchar              **paths;
+  guint                n;
+
+  g_return_val_if_fail (filename != NULL && *filename != '\0', NULL);
+
+  dirs = g_get_system_config_dirs ();
+
+  paths = g_new0 (gchar *, 1 + g_strv_length ((gchar **)dirs) + 1);
+  
+  paths[0] = g_build_filename (g_get_user_config_dir (), filename, NULL);
+  for (n = 1; dirs[n-1] != NULL; ++n)
+    paths[n] = g_build_filename (dirs[n-1], filename, NULL);
+  paths[n] = NULL;
+
+  return paths;
 }
 
 
