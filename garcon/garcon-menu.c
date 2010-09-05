@@ -152,11 +152,26 @@ static gboolean             garcon_menu_get_element_equal               (GarconM
 static void                 garcon_menu_start_monitoring                (GarconMenu              *menu);
 static void                 garcon_menu_stop_monitoring                 (GarconMenu              *menu);
 static void                 garcon_menu_monitor_menu_files              (GarconMenu              *menu);
+static void                 garcon_menu_monitor_files                   (GarconMenu              *menu,
+                                                                         GList                   *files,
+                                                                         gpointer                 callback);
 static void                 garcon_menu_file_changed                    (GarconMenu              *menu,
                                                                          GFile                   *file,
                                                                          GFile                   *other_file,
                                                                          GFileMonitorEvent        event_type,
                                                                          GFileMonitor            *monitor);
+static void                 garcon_menu_merge_file_changed              (GarconMenu              *menu,
+                                                                         GFile                   *file,
+                                                                         GFile                   *other_file,
+                                                                         GFileMonitorEvent        event_type,
+                                                                         GFileMonitor            *monitor);
+static void                 garcon_menu_merge_dir_changed               (GarconMenu              *menu,
+                                                                         GFile                   *file,
+                                                                         GFile                   *other_file,
+                                                                         GFileMonitorEvent        event_type,
+                                                                         GFileMonitor            *monitor);
+
+
 
 
 
@@ -167,6 +182,10 @@ struct _GarconMenuPrivate
 
   /* DOM tree */
   GNode               *tree;
+
+  /* Merged menu files and merge directories */
+  GList               *merge_files;
+  GList               *merge_dirs;
 
   /* File and directory monitors */
   GList               *monitors;
@@ -199,6 +218,7 @@ G_DEFINE_TYPE_WITH_CODE (GarconMenu, garcon_menu, G_TYPE_OBJECT,
 
 
 static guint menu_signals[LAST_SIGNAL];
+static GQuark garcon_menu_file_quark;
 
 
 
@@ -253,6 +273,8 @@ garcon_menu_class_init (GarconMenuClass *klass)
                   g_cclosure_marshal_VOID__VOID,
                   G_TYPE_NONE,
                   0);
+
+  garcon_menu_file_quark = g_quark_from_string ("garcon-menu-file-quark");
 }
 
 
@@ -277,6 +299,8 @@ garcon_menu_init (GarconMenu *menu)
   menu->priv = GARCON_MENU_GET_PRIVATE (menu);
   menu->priv->file = NULL;
   menu->priv->tree = NULL;
+  menu->priv->merge_files = NULL;
+  menu->priv->merge_dirs = NULL;
   menu->priv->monitors = NULL;
   menu->priv->directory = NULL;
   menu->priv->submenus = NULL;
@@ -304,6 +328,16 @@ garcon_menu_clear (GarconMenu *menu)
       /* Destroy the menu tree */
       garcon_menu_node_tree_free (menu->priv->tree);
       menu->priv->tree = NULL;
+
+      /* Release the merge files */
+      g_list_foreach (menu->priv->merge_files, (GFunc) g_object_unref, NULL);
+      g_list_free (menu->priv->merge_files);
+      menu->priv->merge_files = NULL;
+
+      /* Release the merge dirs */
+      g_list_foreach (menu->priv->merge_dirs, (GFunc) g_object_unref, NULL);
+      g_list_free (menu->priv->merge_dirs);
+      menu->priv->merge_dirs = NULL;
     }
 
   /* Free submenus */
@@ -651,8 +685,8 @@ garcon_menu_load (GarconMenu   *menu,
       merger = garcon_menu_merger_new (GARCON_MENU_TREE_PROVIDER (parser));
 
       if (garcon_menu_merger_run (merger, 
-                                  /* &menu->priv->merge_files,
-                                  &menu->priv->merge_dirs, */
+                                  &menu->priv->merge_files,
+                                  &menu->priv->merge_dirs,
                                   cancellable, error))
         {
           menu->priv->tree = 
@@ -1682,6 +1716,12 @@ garcon_menu_start_monitoring (GarconMenu *menu)
   if (menu->priv->parent == NULL)
     {
       garcon_menu_monitor_menu_files (menu);
+
+      garcon_menu_monitor_files (menu, menu->priv->merge_files, 
+                                 garcon_menu_merge_file_changed);
+      
+      garcon_menu_monitor_files (menu, menu->priv->merge_dirs,
+                                 garcon_menu_merge_dir_changed);
     }
 
   /* Recurse into submenus */
@@ -1769,6 +1809,60 @@ garcon_menu_monitor_menu_files (GarconMenu *menu)
 
 
 
+static gint
+find_file_monitor (GFileMonitor *monitor,
+                   GFile        *file)
+{
+  GFile *monitored_file;
+
+  monitored_file = g_object_get_qdata (G_OBJECT (monitor), garcon_menu_file_quark);
+
+  if (monitored_file != NULL && g_file_equal (monitored_file, file))
+    return 0;
+  else
+    return -1;
+}
+
+
+
+static void
+garcon_menu_monitor_files (GarconMenu *menu,
+                           GList      *files,
+                           gpointer    callback)
+{
+  GFileMonitor *monitor;
+  GList        *lp;
+
+  g_return_if_fail (GARCON_IS_MENU (menu));
+  g_return_if_fail (menu->priv->parent == NULL);
+
+  /* Monitor all files from the list */
+  for (lp = files; lp != NULL; lp = lp->next)
+    {
+      /* Monitor files only if they are not being monitored already */
+      if (g_list_find_custom (menu->priv->monitors, lp->data, 
+                              (GCompareFunc) find_file_monitor) == NULL)
+        {
+          /* Try to monitor the file */
+          monitor = g_file_monitor (lp->data, G_FILE_MONITOR_NONE, NULL, NULL);
+          if (monitor != NULL)
+            {
+              /* Associate the monitor with the monitored file */
+              g_object_set_qdata_full (G_OBJECT (monitor), garcon_menu_file_quark,
+                                       g_object_ref (lp->data), g_object_unref);
+
+              /* Add the monitor to the list of monitors belonging to the menu */
+              menu->priv->monitors = g_list_prepend (menu->priv->monitors, monitor);
+
+              /* Make sure we are notified when the file changes */
+              g_signal_connect_swapped (monitor, "changed", G_CALLBACK (callback), menu);
+            }
+        }
+    }
+}
+
+
+
 static void
 garcon_menu_file_changed (GarconMenu       *menu,
                           GFile            *file,
@@ -1825,4 +1919,34 @@ garcon_menu_file_changed (GarconMenu       *menu,
   /* If the event file has higher priority, a menu reload is needed */
   if (!lower_priority && higher_priority)
     g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+}
+
+
+
+static void
+garcon_menu_merge_file_changed (GarconMenu       *menu,
+                                GFile            *file,
+                                GFile            *other_file,
+                                GFileMonitorEvent event_type,
+                                GFileMonitor     *monitor)
+{
+  g_return_if_fail (GARCON_IS_MENU (menu));
+  g_return_if_fail (menu->priv->parent == NULL);
+
+  g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+}
+
+
+
+static void
+garcon_menu_merge_dir_changed (GarconMenu       *menu,
+                               GFile            *file,
+                               GFile            *other_file,
+                               GFileMonitorEvent event_type,
+                               GFileMonitor     *monitor)
+{
+  g_return_if_fail (GARCON_IS_MENU (menu));
+  g_return_if_fail (menu->priv->parent == NULL);
+
+  g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
 }
