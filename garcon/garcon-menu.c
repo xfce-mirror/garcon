@@ -2185,6 +2185,42 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
           g_free (path);
         }
     }
+  else if (event_type == G_FILE_MONITOR_EVENT_DELETED)
+    {
+      /* query the type of the changed file */
+      file_type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
+
+      if (file_type == G_FILE_TYPE_DIRECTORY)
+        {
+          /* an existing app dir (or a subdirectory) has been deleted. we
+           * could remove all the items that are in use and reside inside
+           * this root directory. but for now... enforce a menu reload! */
+          g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+        }
+      else 
+        {
+          /* a regular file was deleted, try to find the corresponding menu item */
+          item = garcon_menu_find_file_item (menu, file);
+          if (item != NULL)
+            {
+              /* remove the item from the desktop item cache so we are forced
+               * to reload it from disk the next time */
+              garcon_menu_item_cache_invalidate_file (menu->priv->cache, file);
+
+              /* ok, so a .desktop file was removed. of course we don't know
+               * yet whether there is a replacement in another app dir
+               * with lower priority. we could try to find out but for now
+               * it's easier to simply enforce a menu reload */
+              g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+            }
+          else
+            {
+              /* the deleted file hasn't been in use anyway, so removing it
+               * doesn't change anything. so we have nothing to do for a
+               * change, no f****ing menu reload! */
+            }
+        }
+    }
 }
 
 
