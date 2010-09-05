@@ -97,6 +97,15 @@ enum
 
 
 
+/* Signal identifiers */
+enum
+{
+  RELOAD_REQUIRED,
+  LAST_SIGNAL
+};
+
+
+
 static void                 garcon_menu_element_init                    (GarconMenuElementIface  *iface);
 static void                 garcon_menu_clear                           (GarconMenu              *menu);
 static void                 garcon_menu_finalize                        (GObject                 *object);
@@ -184,7 +193,12 @@ struct _GarconMenuPrivate
 
 
 G_DEFINE_TYPE_WITH_CODE (GarconMenu, garcon_menu, G_TYPE_OBJECT,
-    G_IMPLEMENT_INTERFACE (GARCON_TYPE_MENU_ELEMENT, garcon_menu_element_init))
+                         G_IMPLEMENT_INTERFACE (GARCON_TYPE_MENU_ELEMENT, 
+                                                garcon_menu_element_init))
+
+
+
+static guint menu_signals[LAST_SIGNAL];
 
 
 
@@ -228,6 +242,17 @@ garcon_menu_class_init (GarconMenuClass *klass)
                                                         GARCON_TYPE_MENU_DIRECTORY,
                                                         G_PARAM_READWRITE |
                                                         G_PARAM_STATIC_STRINGS));
+
+  menu_signals[RELOAD_REQUIRED] = 
+    g_signal_new ("reload-required",
+                  GARCON_TYPE_MENU,
+                  G_SIGNAL_RUN_LAST | G_SIGNAL_NO_HOOKS,
+                  0, 
+                  NULL,
+                  NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE,
+                  0);
 }
 
 
@@ -1653,7 +1678,7 @@ garcon_menu_start_monitoring (GarconMenu *menu)
 
   g_return_if_fail (GARCON_IS_MENU (menu));
 
-  /* Let only the root menu monitor menu files, merge fileS/directories and app dirs */
+  /* Let only the root menu monitor menu files, merge files/directories and app dirs */
   if (menu->priv->parent == NULL)
     {
       garcon_menu_monitor_menu_files (menu);
@@ -1700,14 +1725,12 @@ garcon_menu_monitor_menu_files (GarconMenu *menu)
   GFile        *file;
   gchar       **paths;
   guint         n;
-  guint         i;
+  gint          i;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
 
   if (menu->priv->uses_custom_path)
     {
-      g_debug ("monitor menu file: %s", g_file_get_path (menu->priv->file));
-
       /* Monitor the root .menu file */
       monitor = g_file_monitor (menu->priv->file, G_FILE_MONITOR_NONE, NULL, NULL);
       if (monitor != NULL)
@@ -1724,12 +1747,10 @@ garcon_menu_monitor_menu_files (GarconMenu *menu)
         {
           paths = garcon_config_build_paths (GARCON_MENU_ROOT_SPECS[n]);
 
-          for (i = 0; paths != NULL && paths[i] != NULL; ++i)
+          for (i = g_strv_length (paths)-1; paths != NULL && i >= 0; --i)
             {
               file = g_file_new_for_path (paths[i]);
               
-              g_debug ("monitor menu file: %s", g_file_get_path (file));
-
               monitor = g_file_monitor (file, G_FILE_MONITOR_NONE, NULL, NULL);
               if (monitor != NULL)
                 {
@@ -1755,6 +1776,53 @@ garcon_menu_file_changed (GarconMenu       *menu,
                           GFileMonitorEvent event_type,
                           GFileMonitor     *monitor)
 {
+  gboolean higher_priority = FALSE;
+  gboolean lower_priority = FALSE;
+  GFile   *menu_file;
+  gchar  **paths;
+  guint    n;
+  guint    i;
+
   g_return_if_fail (GARCON_IS_MENU (menu));
   g_return_if_fail (menu->priv->parent == NULL);
+
+  /* Quick check: reloading is needed if the menu file being used has changed */
+  if (g_file_equal (menu->priv->file, file))
+    {
+      g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+      return;
+    }
+
+  /* Check if the event file has higher priority than the file currently being used */
+  for (n = 0; !lower_priority && !higher_priority && n < G_N_ELEMENTS (GARCON_MENU_ROOT_SPECS); ++n)
+    {
+      /* Get XDG config paths for the root spec (e.g. menus/xfce-applications.menu) */
+      paths = garcon_config_build_paths (GARCON_MENU_ROOT_SPECS[n]);
+
+      for (i = 0; !higher_priority && paths != NULL && paths[i] != NULL; ++i) 
+        {
+          menu_file = g_file_new_for_path (paths[i]);
+
+          if (g_file_equal (menu_file, menu->priv->file))
+            {
+              /* the menu's file comes before the changed file in the load
+               * priority order, so the changed file has a lower priority */
+              lower_priority = TRUE;
+            }
+          else if (g_file_equal (menu_file, file))
+            {
+              /* the changed file comes before the menu's file in the load
+               * priority order, so the changed file has a higher priority */
+              higher_priority = TRUE;
+            }
+
+          g_object_unref (menu_file);
+        }
+
+      g_strfreev (paths);
+    }
+
+  /* If the event file has higher priority, a menu reload is needed */
+  if (!lower_priority && higher_priority)
+    g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
 }

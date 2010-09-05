@@ -38,6 +38,7 @@
 
 /* Root menu */
 static GarconMenu *root = NULL;
+static GtkWidget  *gtk_root = NULL;
 
 
 
@@ -145,6 +146,27 @@ create_item_icon (GarconMenuItem *item)
 
 
 static void
+item_changed (GarconMenuItem *item,
+              GtkWidget      *gtk_item)
+{
+  GdkPixbuf *icon;
+  GtkWidget *image;
+
+  /* Try reloading the icon */
+  icon = create_item_icon (item);
+
+  if (icon != NULL)
+    image = gtk_image_new_from_pixbuf (icon);
+  else
+    image = gtk_image_new_from_icon_name ("applications-other", ICON_SIZE);
+
+  gtk_menu_item_set_label (GTK_MENU_ITEM (gtk_item), garcon_menu_element_get_name (GARCON_MENU_ELEMENT (item)));
+  gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (gtk_item), image);
+}
+
+
+
+static void
 create_item_widgets (GarconMenuItem *item,
                      GtkWidget      *parent_menu)
 {
@@ -165,6 +187,11 @@ create_item_widgets (GarconMenuItem *item,
   gtk_menu_shell_append (GTK_MENU_SHELL (parent_menu), gtk_item);
   gtk_widget_show (gtk_item);
 
+  g_object_set_data_full (G_OBJECT (gtk_item), "garcon-menu-item", g_object_ref (item), g_object_unref);
+
+  /* React to changes made to the item on disk */
+  g_signal_connect (item, "changed", G_CALLBACK (item_changed), gtk_item);
+
   /* Execute command if item is clicked */
   g_signal_connect (gtk_item, "activate", G_CALLBACK (execute_item_command), item);
 }
@@ -172,7 +199,72 @@ create_item_widgets (GarconMenuItem *item,
 
 
 static void
-create_menu_widgets (GtkWidget *gtk_menu,
+directory_changed (GarconMenu          *menu,
+                   GarconMenuDirectory *old_directory,
+                   GarconMenuDirectory *new_directory,
+                   GtkWidget           *item)
+{
+  const gchar *display_name;
+  const gchar *icon_name;
+  GtkWidget   *image;
+
+  g_debug ("directory changed from %s to %s", 
+           old_directory != NULL ? garcon_menu_directory_get_name (old_directory) : NULL,
+           new_directory != NULL ? garcon_menu_directory_get_name (new_directory) : NULL);
+
+  display_name = garcon_menu_element_get_name (GARCON_MENU_ELEMENT (menu));
+  gtk_menu_item_set_label (GTK_MENU_ITEM (item), display_name);
+  
+  icon_name = garcon_menu_element_get_icon_name (GARCON_MENU_ELEMENT (menu));
+  if (icon_name == NULL)
+    icon_name = "applications-other";
+  image = gtk_image_menu_item_get_image (GTK_IMAGE_MENU_ITEM (item));
+  gtk_image_set_from_icon_name (GTK_IMAGE (image), icon_name, ICON_SIZE);
+}
+
+
+
+static void
+item_added (GarconMenu     *menu,
+            GarconMenuItem *item,
+            guint           position,
+            GtkWidget      *gtk_menu)
+{
+  /* Add menu item to the menu */
+  create_item_widgets (item, gtk_menu);
+}
+
+
+
+static void
+item_removed (GarconMenu     *menu,
+              GarconMenuItem *item,
+              GtkWidget      *gtk_menu)
+{
+  GarconMenuItem *corresponding_item;
+  GList          *children;
+  GList          *lp;
+
+  children = gtk_container_get_children (GTK_CONTAINER (gtk_menu));
+
+  for (lp = children; lp != NULL; lp = lp->next)
+    {
+      corresponding_item = g_object_get_data (G_OBJECT (lp->data), "garcon-menu-item");
+      if (corresponding_item != NULL)
+        {
+          if (garcon_menu_element_equal (GARCON_MENU_ELEMENT (item),
+                                         GARCON_MENU_ELEMENT (corresponding_item)))
+            {
+              gtk_container_remove (GTK_CONTAINER (gtk_menu), lp->data);
+            }
+        }
+    }
+}
+
+
+
+static void
+create_menu_widgets (GtkWidget   *gtk_menu,
                      GarconMenu  *menu)
 {
   GarconMenuDirectory *directory;
@@ -239,17 +331,47 @@ create_menu_widgets (GtkWidget *gtk_menu,
           gtk_submenu = gtk_menu_new ();
           gtk_menu_item_set_submenu (GTK_MENU_ITEM (gtk_item), gtk_submenu);
 
+#if 0
+          /* Update the menu item when the menu directory changes */
+          g_signal_connect (submenu, "directory-changed", G_CALLBACK (directory_changed), gtk_item);
+#endif
+
+          /* Remvoe the menu item and submenu if there are no menu items left in it */
+          /* g_signal_connect (submenu, "destroy", G_CALLBACK (menu_destroyed), gtk_item); */
+
+#if 0
+          /* Remove menu items if they are removed on disk */
+          g_signal_connect (submenu, "item-added", G_CALLBACK (item_added), gtk_submenu);
+          g_signal_connect (submenu, "item-removed", G_CALLBACK (item_removed), gtk_submenu);
+#endif
+
           /* Create widgets for submenu */
           create_menu_widgets (gtk_submenu, submenu);
 
           /* Destroy submenu if it is empty */
+          /* FIXME destroying menus will not work with monitoring. if a menu is destroyed and
+           * an item is added to it at runtime, where should we add it...? instead, we should
+           * just hide the empty menu */
+#if 0
           if (G_UNLIKELY (gtk_container_get_children (GTK_CONTAINER (gtk_submenu)) == NULL))
             gtk_widget_destroy (gtk_item);
+#endif
+          if (G_UNLIKELY (gtk_container_get_children (GTK_CONTAINER (gtk_submenu)) == NULL))
+            gtk_widget_hide (gtk_item);
         }
     }
 
   /* Free menu item list */
   g_list_free (items);
+}
+
+
+
+static void
+remove_child (GtkWidget *child,
+              GtkMenu   *menu)
+{
+  gtk_container_remove (GTK_CONTAINER (menu), child);
 }
 
 
@@ -281,7 +403,6 @@ create_main_window (void)
 {
   GtkWidget *window;
   GtkWidget *button;
-  GtkWidget *menu;
 
   /* Create main window */
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -299,10 +420,39 @@ create_main_window (void)
   gtk_widget_show (button);
 
   /* Create GTK+ root menu */
-  menu = gtk_menu_new ();
+  gtk_root = gtk_menu_new ();
 
   /* Display root menu when the button is clicked */
-  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (show_menu), menu);
+  g_signal_connect (G_OBJECT (button), "clicked", G_CALLBACK (show_menu), gtk_root);
+}
+
+
+
+static gboolean
+reload_menu (GError **error)
+{
+  g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+  return garcon_menu_load (root, NULL, error);
+}
+
+
+
+static void
+reload_required (GarconMenu *menu)
+{
+  GError *error = NULL;
+
+  g_return_if_fail (GARCON_IS_MENU (menu));
+
+  g_debug ("reload required");
+
+  if (!reload_menu (&error)) 
+    {
+      g_warning ("Failed to reload the menu: %s", error != NULL ? error->message : "No error");
+      g_error_free (error);
+    }
+  
+  gtk_container_foreach (GTK_CONTAINER (gtk_root), (GtkCallback) remove_child, gtk_root);
 }
 
 
@@ -327,25 +477,26 @@ main (gint    argc,
     root = garcon_menu_new_applications ();
 
   /* Check if the menu was loaded */
-  if (root != NULL
-      && garcon_menu_load (root, NULL, &error))
+  if (reload_menu (&error))
     {
-      /* Create main window */
+      /* create the main window */
       create_main_window ();
+
+      /* be notified when a menu rebuild is required */
+      g_signal_connect (root, "reload-required", G_CALLBACK (reload_required), NULL);
 
       /* Enter main loop */
       gtk_main ();
-
-      /* Destroy the root menu */
-      g_object_unref (root);
     }
   else
     {
       g_error ("Failed to load the menu: %s", error != NULL ? error->message : "No error");
-      if (error != NULL)
-        g_error_free (error);
+      g_error_free (error);
       exit_code = EXIT_FAILURE;
     }
+
+  /* Destroy the root menu */
+  g_object_unref (root);
 
   return exit_code;
 }
