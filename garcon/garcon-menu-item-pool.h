@@ -1,6 +1,6 @@
 /* vi:set et ai sw=2 sts=2 ts=2: */
 /*-
- * Copyright (c) 2006-2009 Jannis Pohlmann <jannis@xfce.org>
+ * Copyright (c) 2006-2010 Jannis Pohlmann <jannis@xfce.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -55,6 +55,7 @@ void                garcon_menu_item_pool_foreach            (GarconMenuItemPool
 void                garcon_menu_item_pool_apply_exclude_rule (GarconMenuItemPool *pool,
                                                               GNode              *node);
 gboolean            garcon_menu_item_pool_get_empty          (GarconMenuItemPool *pool);
+void                garcon_menu_item_pool_clear              (GarconMenuItemPool *pool);
 
 G_END_DECLS
 

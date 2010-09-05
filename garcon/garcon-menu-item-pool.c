@@ -1,6 +1,6 @@
 /* vi:set et ai sw=2 sts=2 ts=2: */
 /*-
- * Copyright (c) 2006-2009 Jannis Pohlmann <jannis@xfce.org>
+ * Copyright (c) 2006-2010 Jannis Pohlmann <jannis@xfce.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -177,4 +177,13 @@ garcon_menu_item_pool_get_empty (GarconMenuItemPool *pool)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM_POOL (pool), TRUE);
   return (g_hash_table_size (pool->priv->items) == 0);
+}
+
+
+
+void
+garcon_menu_item_pool_clear (GarconMenuItemPool *pool)
+{
+  g_return_if_fail (GARCON_IS_MENU_ITEM_POOL (pool));
+  g_hash_table_remove_all (pool->priv->items);
 }
