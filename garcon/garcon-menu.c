@@ -98,6 +98,7 @@ enum
 
 
 static void                 garcon_menu_element_init                    (GarconMenuElementIface  *iface);
+static void                 garcon_menu_clear                           (GarconMenu              *menu);
 static void                 garcon_menu_finalize                        (GObject                 *object);
 static void                 garcon_menu_get_property                    (GObject                 *object,
                                                                          guint                    prop_id,
@@ -139,6 +140,8 @@ static gboolean             garcon_menu_get_element_show_in_environment (GarconM
 static gboolean             garcon_menu_get_element_no_display          (GarconMenuElement       *element);
 static gboolean             garcon_menu_get_element_equal               (GarconMenuElement       *element,
                                                                          GarconMenuElement       *other);
+static void                 garcon_menu_start_monitoring                (GarconMenu              *menu);
+static void                 garcon_menu_stop_monitoring                 (GarconMenu              *menu);
 
 
 
@@ -164,6 +167,9 @@ struct _GarconMenuPrivate
 
   /* Shared menu item cache */
   GarconMenuItemCache *cache;
+
+  /* Flag for marking custom path menus */
+  guint                uses_custom_path : 1;
 };
 
 
@@ -241,9 +247,44 @@ garcon_menu_init (GarconMenu *menu)
   menu->priv->submenus = NULL;
   menu->priv->parent = NULL;
   menu->priv->pool = garcon_menu_item_pool_new ();
+  menu->priv->uses_custom_path = TRUE;
 
   /* Take reference on the menu item cache */
   menu->priv->cache = garcon_menu_item_cache_get_default ();
+}
+
+
+
+static void
+garcon_menu_clear (GarconMenu *menu)
+{
+  g_return_if_fail (GARCON_IS_MENU (menu));
+
+  /* Check if the menu is the root menu */
+  if (menu->priv->parent == NULL)
+    {
+      /* Stop monitoring recursively */
+      garcon_menu_stop_monitoring (menu);
+
+      /* Destroy the menu tree */
+      garcon_menu_node_tree_free (menu->priv->tree);
+      menu->priv->tree = NULL;
+    }
+
+  /* Free submenus */
+  g_list_foreach (menu->priv->submenus, (GFunc) g_object_unref, NULL);
+  g_list_free (menu->priv->submenus);
+  menu->priv->submenus = NULL;
+
+  /* Free directory */
+  if (G_LIKELY (menu->priv->directory != NULL))
+    {
+      g_object_unref (menu->priv->directory);
+      menu->priv->directory = NULL;
+    }
+
+  /* Clear the item pool */
+  garcon_menu_item_pool_clear (menu->priv->pool);
 }
 
 
@@ -253,20 +294,11 @@ garcon_menu_finalize (GObject *object)
 {
   GarconMenu *menu = GARCON_MENU (object);
 
-  /* Destroy the menu tree */
-  if (menu->priv->parent == NULL)
-    garcon_menu_node_tree_free (menu->priv->tree);
+  /* Clear resources allocated in the load process */
+  garcon_menu_clear (menu);
 
   /* Free file */
   g_object_unref (menu->priv->file);
-
-  /* Free directory */
-  if (G_LIKELY (menu->priv->directory != NULL))
-    g_object_unref (menu->priv->directory);
-
-  /* Free submenus */
-  g_list_foreach (menu->priv->submenus, (GFunc) g_object_unref, NULL);
-  g_list_free (menu->priv->submenus);
 
   /* Free item pool */
   g_object_unref (menu->priv->pool);
@@ -413,26 +445,9 @@ GarconMenu *
 garcon_menu_new_applications (void)
 {
   GarconMenu *menu = NULL;
-  GFile      *file;
-  gchar      *filename;
-  guint       n;
 
-  /* Search for a usable applications menu file */
-  for (n = 0; menu == NULL && n < G_N_ELEMENTS (GARCON_MENU_ROOT_SPECS); ++n)
-    {
-      /* Search for the applications menu file */
-      filename = garcon_config_lookup (GARCON_MENU_ROOT_SPECS[n]);
-
-      /* Create menu if the file exists */
-      if (G_UNLIKELY (filename != NULL))
-        {
-          file = _garcon_file_new_for_unknown_input (filename, NULL);
-          menu = garcon_menu_new (file);
-          g_object_unref (file);
-        }
-
-      g_free (filename);
-    }
+  menu = g_object_new (GARCON_TYPE_MENU, NULL);
+  menu->priv->uses_custom_path = FALSE;
 
   return menu;
 }
@@ -550,20 +565,68 @@ garcon_menu_load (GarconMenu   *menu,
   GarconMenuMerger *merger;
   GHashTable       *desktop_id_table;
   gboolean          success = TRUE;
+  gchar            *filename;
+  guint             n;
 
   g_return_val_if_fail (GARCON_IS_MENU (menu), FALSE);
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
+  /* Make sure to reset the menu to a loadable state */
+  garcon_menu_clear (menu);
+
+  /* Check if we need to locate the applications menu file */
+  if (!menu->priv->uses_custom_path)
+    {
+      /* Release the old file if there is one */
+      if (menu->priv->file != NULL)
+        {
+          g_object_unref (menu->priv->file);
+          menu->priv->file = NULL;
+        }
+
+      /* Search for a usable applications menu file */
+      for (n = 0; 
+           menu->priv->file == NULL && n < G_N_ELEMENTS (GARCON_MENU_ROOT_SPECS);
+           ++n)
+        {
+          /* Search for the applications menu file */
+          filename = garcon_config_lookup (GARCON_MENU_ROOT_SPECS[n]);
+    
+          /* Use the file if it exists */
+          if (filename != NULL)
+            menu->priv->file = _garcon_file_new_for_unknown_input (filename, NULL);
+    
+          /* Free the filename string */
+          g_free (filename);
+        }
+
+      /* Abort with an error if no suitable applications menu file was found */
+      if (menu->priv->file == NULL)
+        {
+          g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_NOENT,
+                       _("No suitable application menu file found"));
+          return FALSE;
+        }
+    }
+
   parser = garcon_menu_parser_new (menu->priv->file);
 
-  if (G_LIKELY (garcon_menu_parser_run (parser, cancellable, error)))
+  if (garcon_menu_parser_run (parser, cancellable, error))
     {
       merger = garcon_menu_merger_new (GARCON_MENU_TREE_PROVIDER (parser));
 
-      if (garcon_menu_merger_run (merger, cancellable, error))
-        menu->priv->tree = garcon_menu_tree_provider_get_tree (GARCON_MENU_TREE_PROVIDER (merger));
+      if (garcon_menu_merger_run (merger, 
+                                  /* &menu->priv->merge_files,
+                                  &menu->priv->merge_dirs, */
+                                  cancellable, error))
+        {
+          menu->priv->tree = 
+            garcon_menu_tree_provider_get_tree (GARCON_MENU_TREE_PROVIDER (merger));
+        }
       else
-        success = FALSE;
+        {
+          success = FALSE;
+        }
 
       g_object_unref (merger);
     }
@@ -572,7 +635,7 @@ garcon_menu_load (GarconMenu   *menu,
 
   g_object_unref (parser);
 
-  if (G_LIKELY (!success))
+  if (!success)
     return FALSE;
 
   /* Generate submenus */
@@ -592,6 +655,9 @@ garcon_menu_load (GarconMenu   *menu,
   garcon_menu_remove_deleted_menus (menu);
 
   g_hash_table_unref (desktop_id_table);
+
+  /* Initiate file system monitoring */
+  garcon_menu_start_monitoring (menu);
 
   return TRUE;
 }
@@ -1566,4 +1632,18 @@ garcon_menu_get_element_equal (GarconMenuElement *element,
   g_return_val_if_fail (GARCON_IS_MENU (other), FALSE);
 
   return GARCON_MENU (element) == GARCON_MENU (other);
+}
+
+
+
+static void
+garcon_menu_start_monitoring (GarconMenu *menu)
+{
+}
+
+
+
+static void
+garcon_menu_stop_monitoring (GarconMenu *menu)
+{
 }
