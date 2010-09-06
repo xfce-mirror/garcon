@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4menu 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-28 23:51+0200\n"
+"POT-Creation-Date: 2010-09-06 04:02+0000\n"
 "PO-Revision-Date: 2009-10-11 16:38+0900\n"
 "Last-Translator: Gheyret T.Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr "Accessories"
+msgstr "قوشۇمچە دېتاللار"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
@@ -90,11 +90,11 @@ msgstr "باشقىلار"
 
 #: ../data/xfce/xfce-science.directory.in.h:1
 msgid "Science"
-msgstr ""
+msgstr "ئىلىم"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr ""
+msgstr "ئىلىم يۇمشاق دېتاللىرى"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -120,12 +120,17 @@ msgstr "سىستېما"
 msgid "System tools and utilities"
 msgstr "سىستېما قوراللىرى"
 
+#: ../garcon/garcon-menu.c:705
+#, c-format
+msgid "No suitable application menu file found"
+msgstr "مۇۋاپىق پروگرامما تىزىملىك ھۆججىتى تېپىلمىدى"
+
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr ""
+msgstr "%s دىن تىزىملىك ھۆججەت سانلىق-ئاساسلىرىنى ئوقۇغىلى بولمىدى: %s"
 
-#: ../garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
+msgstr "%s دىن تىزىملىك ھۆججەت سانلىق-ئاساسلىرىنى ئوقۇغىلى بولمىدى"
