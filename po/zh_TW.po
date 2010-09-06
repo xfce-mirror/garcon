@@ -2,12 +2,12 @@
 # Copyright (C) 2007-2009 Jannis Pohlmann <jannis@xfce.org>
 # This file is distributed under the same license as the libxfce4menu package.
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: garcon master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-08 04:01+0000\n"
+"POT-Creation-Date: 2010-09-06 10:02+0000\n"
 "PO-Revision-Date: 2010-05-08 15:52+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: chinese-l10n <chinese-l10n@googlegroups.com>\n"
@@ -119,13 +119,17 @@ msgstr "系統"
 msgid "System tools and utilities"
 msgstr "系統工具與公用程式"
 
+#: ../garcon/garcon-menu.c:705
+#, c-format
+msgid "No suitable application menu file found"
+msgstr "找不到合適的應用程式檔案"
+
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "無法從 %s 載入選單檔資料：%s"
 
-#: ../garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "無法從 %s 載入選單檔資料"
-
