@@ -268,7 +268,7 @@ main (int    argc,
 
       merger = garcon_menu_merger_new (GARCON_MENU_TREE_PROVIDER (parser));
 
-      if (G_LIKELY (garcon_menu_merger_run (merger, NULL, &error)))
+      if (G_LIKELY (garcon_menu_merger_run (merger, NULL, NULL, NULL, &error)))
         {
           g_print ("\n\n");
           print_tree (GARCON_MENU_TREE_PROVIDER (merger));

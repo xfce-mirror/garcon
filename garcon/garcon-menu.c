@@ -2232,7 +2232,7 @@ garcon_menu_directory_file_changed (GarconMenu       *menu,
                                     GFileMonitorEvent event_type,
                                     GFileMonitor     *monitor)
 {
-  GarconMenuDirectory *old_directory;
+  GarconMenuDirectory *old_directory = NULL;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
 
