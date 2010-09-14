@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-30 16:01+0000\n"
+"POT-Creation-Date: 2010-09-14 04:03+0000\n"
 "PO-Revision-Date: 2010-03-03 13:18+0300\n"
 "Last-Translator: Alexander Matveyev <a.s.matveyev@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -120,12 +120,17 @@ msgstr "Системные"
 msgid "System tools and utilities"
 msgstr "Средства администрирования системы"
 
+#: ../garcon/garcon-menu.c:705
+#, c-format
+msgid "No suitable application menu file found"
+msgstr "Не найден подходящий файл меню"
+
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Не удалось загрузить данные файла меню из %s: %s"
 
-#: ../garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Не удалось загрузить данные файла меню из %s"
