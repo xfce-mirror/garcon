@@ -1,14 +1,14 @@
 # Swedish translation for garcon.
-# Copyright (C) 2008-2009 Free Software Foundation, Inc.
+# Copyright (C) 2008-2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the garcon package.
-# Daniel Nylander <po@danielnylander.se>, 2009.
+# Daniel Nylander <po@danielnylander.se>, 2009, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-28 23:51+0200\n"
-"PO-Revision-Date: 2009-12-16 14:16+0100\n"
+"POT-Creation-Date: 2010-10-16 10:03+0000\n"
+"PO-Revision-Date: 2010-10-17 17:21+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -18,127 +18,130 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr ""
+msgstr "Tillbehör"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr ""
+msgstr "Vanliga skrivbordsverktyg och -program"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
-msgstr ""
+msgstr "Utveckling"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr ""
+msgstr "Verktyg för programutveckling"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
-msgstr ""
+msgstr "Utbildning"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr ""
+msgstr "Pedagogiska program"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
-msgstr ""
+msgstr "Spel"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr ""
+msgstr "Spel, pussel och andra roliga program"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr ""
+msgstr "Grafik"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr ""
+msgstr "Program för att skapa och ändra grafik och bilder"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "Ljud- och videospelare samt redigerare"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
-msgstr ""
+msgstr "Multimedia"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Network"
-msgstr ""
+msgstr "Nätverk"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Network applications and utilities"
-msgstr ""
+msgstr "Nätverksprogram och verktyg"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
-msgstr ""
+msgstr "Kontorsprogram"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr ""
+msgstr "Kontor- och produktivitetsprogram"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr ""
+msgstr "Program som inte passar in i andra kategorier"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
-msgstr ""
+msgstr "Övrigt"
 
 #: ../data/xfce/xfce-science.directory.in.h:1
 msgid "Science"
-msgstr ""
+msgstr "Vetenskap"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr ""
+msgstr "Vetenskapliga program"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Skärmsläckarprogram"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
-msgstr ""
+msgstr "Skärmsläckare"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr ""
+msgstr "Program för skrivbord- och systeminställningar"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
-msgstr ""
+msgstr "Inställningar"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Systemverktyg och tillbehör"
+
+#: ../garcon/garcon-menu.c:705
+#, c-format
+msgid "No suitable application menu file found"
+msgstr "Ingen lämplig programmenyfil hittades"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Kunde inte läsa in menyfildata från %s: %s"
 
-#: ../garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Kunde inte läsa in menyfildata från %s"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: Visa menytest"
-
 #~ msgid "_Show menu"
 #~ msgstr "_Visa meny"
-
 #~ msgid "Failed to locate the system menu"
 #~ msgstr "Misslyckades med att hitta systemmenyn"
-
 #~ msgid "Failed to create the libxfce4menu item cache in %s."
 #~ msgstr ""
 #~ "Misslyckades med att skapa mellanlagring för libxfce4menu-objekt i %s."
+
