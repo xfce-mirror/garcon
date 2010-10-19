@@ -1,18 +1,18 @@
 # Galician translation of garcon
 # Copyright (C) 2008, 2009 Leandro Regueiro
 # This file is distributed under the same license as the xfce package.
-# 
+#
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2008, 2009.
-# 
+#
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en <http://trasno.net>
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Transifex master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-09-09 10:02+0000\n"
-"PO-Revision-Date: 2009-10-18 15:46+0100\n"
+"PO-Revision-Date: 2010-10-19 18:01+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "Accesorios"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "Aplicacións e ferramentas de escritorio comúns"
+msgstr "Aplicativos e ferramentas de escritorio comúns"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -58,7 +58,7 @@ msgstr "Imaxe"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "Aplicacións para a creación e manipulación de imaxes"
+msgstr "Aplicativos para a creación e manipulación de imaxes"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
@@ -74,7 +74,7 @@ msgstr "Rede"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Network applications and utilities"
-msgstr "Utilidades e aplicacións para as redes"
+msgstr "Utilidades e aplicativos para as redes"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -82,11 +82,11 @@ msgstr "Oficina"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "Aplicacións de oficina e produtividade"
+msgstr "Aplicativos de oficina e produtividade"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr "Aplicacións que non entran en outras categorías"
+msgstr "Aplicativos que non entran en outras categorías"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
@@ -110,7 +110,7 @@ msgstr "Protectores de pantalla"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr "Aplicacións para a configuración do sistema e do escritorio"
+msgstr "Aplicativos para a configuración do sistema e do escritorio"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
@@ -132,15 +132,15 @@ msgstr "Non se atopou ningún ficheiro de menú de aplicativo axeitado"
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Non se puideron cargar os datos do ficheiro de menú %s: %s"
+msgstr "Non foi posible cargar os datos do ficheiro de menú %s: %s"
 
 #: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Non se puideron cargar os datos do ficheiro de menú dende %s"
+msgstr "Non foi posible cargar os datos do ficheiro de menú dende %s"
 
 #~ msgid "Failed to locate the system menu"
 #~ msgstr "Fallo ó localizar o menú raíz de aplicacións"
-
 #~ msgid "Failed to create the libxfce4menu item cache in %s."
 #~ msgstr "Fallo ó crear a caché de elementos de libxfce4menu en %s."
+
