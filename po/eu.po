@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu-0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-06 04:01+0000\n"
+"POT-Creation-Date: 2010-11-03 05:03+0000\n"
 "PO-Revision-Date: 2009-09-22 23:10+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Basque <debian-l10n-eu@debian.lists.org>\n"
@@ -121,12 +121,17 @@ msgstr "Sistema"
 msgid "System tools and utilities"
 msgstr "Sistema tresna eta lanabesakb"
 
+#: ../garcon/garcon-menu.c:705
+#, c-format
+msgid "No suitable application menu file found"
+msgstr "Ez da menu fitxategi erabilgarririk aurkitu"
+
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Ezin da %s-etik menuaren fitxategi datuak kargatu: %s."
 
-#: ../garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Ezin da %s-etik menuaren fitxategi datuak kargatu"
