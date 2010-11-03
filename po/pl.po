@@ -6,10 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-31 16:02+0000\n"
+"POT-Creation-Date: 2010-11-03 19:14+0100\n"
 "PO-Revision-Date: 2010-06-04 14:32+0200\n"
 "Last-Translator: Piotr Sokół <psokol@jabster.pl>\n"
 "Language-Team: Polish <>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=\n"
 "Content-Transfer-Encoding: \n"
@@ -118,12 +119,17 @@ msgstr "System"
 msgid "System tools and utilities"
 msgstr "Przechowuje narzędzia do zarządzania systemem"
 
+#: ../garcon/garcon-menu.c:705
+#, c-format
+msgid "No suitable application menu file found"
+msgstr ""
+
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Nie udało się wczytać pliku menu %s: %s"
 
-#: ../garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Nie udało się wczytać pliku menu %s"
@@ -138,4 +144,5 @@ msgstr "Nie udało się wczytać pliku menu %s"
 #~ msgstr "Nie udało się zlokalizować menu systemowego"
 
 #~ msgid "Failed to create the libxfce4menu item cache in %s."
-#~ msgstr "Nie udało się utworzyć pamięci podręcznej elementu libxfce4menu w %s."
+#~ msgstr ""
+#~ "Nie udało się utworzyć pamięci podręcznej elementu libxfce4menu w %s."

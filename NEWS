@@ -1,3 +1,26 @@
+0.1.2
+=====
+- Fix license headers (bug #6226).
+- Implement file system monitoring, adding the signals
+  GarconMenu::reload-required, GarconMenu::directory-changed and 
+  GarconMenuItem::changed for applications to react on file system
+  changes.
+- Improve the code quality of garcon_config_lookup().
+- Lookup relative filenames with garcon_config_build_paths().
+- Rework menu loading a bit.
+- Reload the Categories/OnlyShowIn/NotShowIn fields when reloading
+  a GarconMenuItem.
+- Add new methods (this list may be incomplete):
+  - garcon_menu_element_equal()
+  - garcon_menu_item_pool_clear()
+  - garcon_menu_item_pool_lookup_file().
+- Add Xfce menu data files from xfdesktop (bug #6272).
+- Remove deprecated encoding key from desktop files.
+- Fix a memory leak in merge file nodes with a filename.
+- Translation updates (bm, ca, da, de, el, es, eu, fi, fr, gl, hu, hr,
+  id, it, kk, nl, pj, pl, pt, pt_BR, ru, sv, tr, ug, uk, zh_TW).
+
+
 0.1.1
 =====
 - Don't check for GTK+ in configure.in.in. We don't depend on it.

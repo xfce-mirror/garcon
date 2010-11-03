@@ -2,15 +2,16 @@
 # Copyright (C) 2007 Jannis Pohlmann.
 # This file is distributed under the same license as the xfce4menu package.
 # Andhika Padmawan <andhika.padmawan@gmail.com>, 2010.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-31 22:02+0000\n"
+"POT-Creation-Date: 2010-11-03 19:14+0100\n"
 "PO-Revision-Date: 2010-06-01 22:35+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <translation-team-id@lists.sourceforge.net>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -119,12 +120,17 @@ msgstr "Sistem"
 msgid "System tools and utilities"
 msgstr "Utilitas sistem"
 
+#: ../garcon/garcon-menu.c:705
+#, c-format
+msgid "No suitable application menu file found"
+msgstr ""
+
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Gagal memuat data berkas menu dari %s: %s"
 
-#: ../garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Gagal memuat data berkas menu dari %s"

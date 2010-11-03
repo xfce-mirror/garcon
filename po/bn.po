@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-28 23:51+0200\n"
+"POT-Creation-Date: 2010-11-03 19:14+0100\n"
 "PO-Revision-Date: 2010-03-03 17:54+0600\n"
 "Last-Translator: Jamil Ahmed <jamil@ankur.org.bd>\n"
 "Language-Team: Bengali <ankur-bd-l10n@googlegroups.com>\n"
+"Language: bn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -119,12 +120,17 @@ msgstr ""
 msgid "System tools and utilities"
 msgstr ""
 
+#: ../garcon/garcon-menu.c:705
+#, c-format
+msgid "No suitable application menu file found"
+msgstr ""
+
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "%2$s: %1$s থেকে মেনু ফাইলের তথ্য পড়া যাচ্ছে না"
 
-#: ../garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "%s থেকে মেনু ফাইলের তথ্য পড়া যাচ্ছে না"

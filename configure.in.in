@@ -1,6 +1,6 @@
 dnl vi:set et ai sw=2 sts=2 ts=2: */
 dnl 
-dnl Copyright (c) 2007-2009 Jannis Pohlmann <jannis@xfce.org>
+dnl Copyright (c) 2007-2010 Jannis Pohlmann <jannis@xfce.org>
 dnl 
 dnl This library is free software; you can redistribute it and/or
 dnl modify it under the terms of the GNU Library General Public
@@ -24,9 +24,9 @@ m4_define([garcon_verinfo], [0:0:0])
 m4_define([garcon_version_api_major], [1])
 m4_define([garcon_version_major], [0])
 m4_define([garcon_version_minor], [1])
-m4_define([garcon_version_micro], [1])
+m4_define([garcon_version_micro], [2])
 m4_define([garcon_version_build], [@REVISION@])
-m4_define([garcon_version_tag], [git])
+m4_define([garcon_version_tag], [])
 m4_define([garcon_version], [garcon_version_major().garcon_version_minor().garcon_version_micro()ifelse(garcon_version_tag(), [git], [garcon_version_tag()-garcon_version_build()], [garcon_version_tag()])])
 
 dnl ********************************************

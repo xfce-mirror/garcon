@@ -2,15 +2,16 @@
 # Copyright (C) 2007-2009 Jannis Pohlmann <jannis@xfce.org>
 # This file is distributed under the same license as the libxfce4menu package.
 # Maximilian Schleiss <maximilian@xfce.org>, 2009.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-21 10:01+0000\n"
+"POT-Creation-Date: 2010-11-03 19:14+0100\n"
 "PO-Revision-Date: 2009-10-10 14:26+0100\n"
 "Last-Translator: Steve Dodier <sidnioulz@gmail.com>\n"
 "Language-Team: French <i18n-xfce@xfce.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -119,12 +120,17 @@ msgstr "Système"
 msgid "System tools and utilities"
 msgstr "Outils et utilitaires système"
 
+#: ../garcon/garcon-menu.c:705
+#, c-format
+msgid "No suitable application menu file found"
+msgstr ""
+
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Impossible de charger les données du fichier de menu depuis %s : %s"
 
-#: ../garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Impossible de charger les données du fichier de menu depuis %s"
