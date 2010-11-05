@@ -221,6 +221,10 @@ struct _GarconMenuPrivate
   /* Shared menu item cache */
   GarconMenuItemCache *cache;
 
+  /* List to merge consecutive file changes into a a single event */
+  GList               *changed_files;
+  guint                file_changed_idle;
+
   /* Flag for marking custom path menus */
   guint                uses_custom_path : 1;
 };
@@ -336,6 +340,7 @@ garcon_menu_init (GarconMenu *menu)
   menu->priv->parent = NULL;
   menu->priv->pool = garcon_menu_item_pool_new ();
   menu->priv->uses_custom_path = TRUE;
+  menu->priv->changed_files = NULL;
 
   /* Take reference on the menu item cache */
   menu->priv->cache = garcon_menu_item_cache_get_default ();
@@ -1760,6 +1765,12 @@ garcon_menu_start_monitoring (GarconMenu *menu)
   /* Let only the root menu monitor menu files, merge files/directories and app dirs */
   if (menu->priv->parent == NULL)
     {
+      /* Create the list for merging consecutive file change events */
+      menu->priv->changed_files = NULL;
+
+      /* Reset the idle source for handling file changes */
+      menu->priv->file_changed_idle = 0;
+
       garcon_menu_monitor_menu_files (menu);
 
       garcon_menu_monitor_files (menu, menu->priv->merge_files, 
@@ -1803,6 +1814,15 @@ garcon_menu_stop_monitoring (GarconMenu *menu)
   /* Free the monitor list */
   g_list_free (menu->priv->monitors);
   menu->priv->monitors = NULL;
+
+  /* Stop the idle source for handling file changes from being invoked */
+  if (menu->priv->file_changed_idle != 0)
+    g_source_remove (menu->priv->file_changed_idle);
+
+  /* Free the hash table for merging consecutive file change events */
+  g_list_foreach (menu->priv->changed_files, (GFunc) g_object_unref, NULL);
+  g_list_free (menu->priv->changed_files);
+  menu->priv->changed_files = NULL;
 }
 
 
@@ -2100,23 +2120,24 @@ garcon_menu_merge_dir_changed (GarconMenu       *menu,
 
 
 
-static void
-garcon_menu_app_dir_changed (GarconMenu       *menu,
-                             GFile            *file,
-                             GFile            *other_file,
-                             GFileMonitorEvent event_type,
-                             GFileMonitor     *monitor)
+static gboolean
+garcon_menu_process_file_changes (GarconMenu *menu)
 {
   GarconMenuItem *item;
   GFileType       file_type;
   gboolean        affects_the_outside = FALSE;
+  gboolean        stop_processing = FALSE;
+  GFile          *file;
+  GList          *lp;
   gchar          *path;
 
-  g_return_if_fail (GARCON_IS_MENU (menu));
-  g_return_if_fail (menu->priv->parent == NULL);
+  g_return_val_if_fail (GARCON_IS_MENU (menu), FALSE);
+  g_return_val_if_fail (menu->priv->parent == NULL, FALSE);
 
-  if (event_type == G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT)
+  for (lp = menu->priv->changed_files; !stop_processing && lp != NULL; lp = lp->next)
     {
+      file = G_FILE (lp->data);
+
       /* query the type of the changed file */
       file_type = g_file_query_file_type (file, G_FILE_QUERY_INFO_NONE, NULL);
 
@@ -2129,6 +2150,7 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
            * this is not trivial to handle, so we simply enforce a
            * menu reload to deal with the changes */
           g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+          stop_processing = TRUE;
         }
       else
         {
@@ -2149,6 +2171,7 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
                            * more complicated than one would first think, so just
                            * enforce a complete menu reload for now */
                           g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+                          stop_processing = TRUE;
                         }
                       else
                         {
@@ -2172,6 +2195,7 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
                        * tricky, so, again, we just enfore a menu reload until we have 
                        * something better */
                       g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+                      stop_processing = TRUE;
                     }
                 }
               else
@@ -2180,9 +2204,66 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
                    * stuff is complicated. for now, simply enforce a complete reload 
                    * of the menu structure */
                   g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+                  stop_processing = TRUE;
                 }
             }
           g_free (path);
+        }
+    }
+
+  /* reset the changed files list, all events processed */
+  g_list_foreach (menu->priv->changed_files, (GFunc) g_object_unref, NULL);
+  g_list_free (menu->priv->changed_files);
+  menu->priv->changed_files = NULL;
+
+  /* reset the idle source ID */
+  menu->priv->file_changed_idle = 0;
+
+  /* remove the idle source */
+  return FALSE;
+}
+
+
+
+static gint
+compare_files (gconstpointer a,
+               gconstpointer b)
+{
+  return g_file_equal (G_FILE (a), G_FILE (b)) ? 0 : 1;
+}
+
+
+
+static void
+garcon_menu_app_dir_changed (GarconMenu       *menu,
+                             GFile            *file,
+                             GFile            *other_file,
+                             GFileMonitorEvent event_type,
+                             GFileMonitor     *monitor)
+{
+  GarconMenuItem *item;
+  GFileType       file_type;
+
+  g_return_if_fail (GARCON_IS_MENU (menu));
+  g_return_if_fail (menu->priv->parent == NULL);
+
+  if (event_type == G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT
+      || event_type == G_FILE_MONITOR_EVENT_CREATED 
+      || event_type == G_FILE_MONITOR_EVENT_ATTRIBUTE_CHANGED)
+    {
+      /* add the file to the changed files queue if we have no change event for
+       * it queued yet */
+      if (g_list_find_custom (menu->priv->changed_files, file, compare_files) == NULL)
+        {
+          menu->priv->changed_files = g_list_append (menu->priv->changed_files, 
+                                                     g_object_ref (file));
+
+          /* register the idle handler if it is not active yet */
+          if (menu->priv->file_changed_idle == 0)
+            {
+              menu->priv->file_changed_idle = 
+                g_idle_add ((GSourceFunc) garcon_menu_process_file_changes, menu);
+            }
         }
     }
   else if (event_type == G_FILE_MONITOR_EVENT_DELETED)
