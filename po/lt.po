@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE garcon'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the garcon package.
 # Ričardas Vasiulis <ricardas.v@inbox.lt>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2\n"
 "Language: lt\n"
+"Plural-Forms: n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -31,7 +31,7 @@ msgstr "Programavimas"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr ""
+msgstr "Programinės įrangos kūrimo įrankiai"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
@@ -39,7 +39,7 @@ msgstr "Švietimas"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr ""
+msgstr "Mokomosios programos"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
@@ -47,7 +47,7 @@ msgstr "Žaidimai"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr ""
+msgstr "Žaidimai, galvosūkiai ir kitos programos laisvalaikiui"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
@@ -55,11 +55,11 @@ msgstr "Grafika"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr ""
+msgstr "Grafikos kūrimo ir manipuliavimo programos"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "Garso ir vaizdo grotuvai ir redaktoriai"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
@@ -71,7 +71,7 @@ msgstr "Tinklas"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Network applications and utilities"
-msgstr ""
+msgstr "Tinklo programos ir priemonės"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -83,7 +83,7 @@ msgstr ""
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr ""
+msgstr "Programos, kurios nepatenka į kitas temas"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
@@ -94,12 +94,13 @@ msgid "Science"
 msgstr "Mokslas"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
+#, fuzzy
 msgid "Scientific software"
-msgstr ""
+msgstr "Mokslo programinė įranga"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Ekrano užsklandos įskiepiai"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
@@ -107,7 +108,7 @@ msgstr "Ekrano užsklanda"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr ""
+msgstr "Darbalaukio ir sistemos parametrų programos"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
@@ -119,20 +120,19 @@ msgstr "Sistema"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Sistemos įrankiai ir priemonės"
 
 #: ../garcon/garcon-menu.c:710
 #, c-format
 msgid "No suitable application menu file found"
-msgstr ""
+msgstr "Rastas netinkamas programos meniu failas"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr ""
+msgstr "Nepavyko įkelti meniu failo duomenys iš %s:%s"
 
 #: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
-
+msgstr "Nepavyko įkelti meniu failo duomenys iš %s"
