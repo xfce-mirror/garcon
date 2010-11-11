@@ -22,8 +22,9 @@ msgid "Accessories"
 msgstr "Reikmenys"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
+#, fuzzy
 msgid "Common desktop tools and applications"
-msgstr ""
+msgstr "Paprasti darbastalio įrankiai ir programos"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -78,8 +79,9 @@ msgid "Office"
 msgstr "Raštinė"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
+#, fuzzy
 msgid "Office and productivity applications"
-msgstr ""
+msgstr "Raštinės ir produktyvumo programos"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
@@ -94,7 +96,6 @@ msgid "Science"
 msgstr "Mokslas"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
-#, fuzzy
 msgid "Scientific software"
 msgstr "Mokslo programinė įranga"
 
