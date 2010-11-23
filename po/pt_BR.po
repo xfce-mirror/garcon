@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-03 19:14+0100\n"
-"PO-Revision-Date: 2009-01-15 08:53-0500\n"
-"Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
+"POT-Creation-Date: 2010-11-23 11:03+0000\n"
+"PO-Revision-Date: 2010-11-23 15:04-0300\n"
+"Last-Translator: Tomas A. Schertel <tschertel@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
 "X-Poedit-Country: BRAZIL\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-Language: Portuguese\n"
@@ -123,10 +123,10 @@ msgstr "Sistema"
 msgid "System tools and utilities"
 msgstr "Ferramentas do sistema e utilidades"
 
-#: ../garcon/garcon-menu.c:705
+#: ../garcon/garcon-menu.c:710
 #, c-format
 msgid "No suitable application menu file found"
-msgstr ""
+msgstr "Nenhum arquivo de menu de aplicativos encontrado"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
