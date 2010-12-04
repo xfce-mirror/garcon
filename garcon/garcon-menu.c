@@ -63,17 +63,6 @@
 
 
 
-/* Potential root menu files */
-static const gchar GARCON_MENU_ROOT_SPECS[][30] =
-{
-  "menus/applications.menu",
-  "menus/xfce-applications.menu",
-  "menus/gnome-applications.menu",
-  "menus/kde-applications.menu",
-};
-
-
-
 #define GARCON_MENU_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GARCON_TYPE_MENU, GarconMenuPrivate))
 
 
@@ -401,7 +390,8 @@ garcon_menu_finalize (GObject *object)
   garcon_menu_clear (menu);
 
   /* Free file */
-  g_object_unref (menu->priv->file);
+  if (menu->priv->file != NULL)
+    g_object_unref (menu->priv->file);
 
   /* Free item pool */
   g_object_unref (menu->priv->pool);
@@ -667,9 +657,10 @@ garcon_menu_load (GarconMenu   *menu,
   GarconMenuParser *parser;
   GarconMenuMerger *merger;
   GHashTable       *desktop_id_table;
+  const gchar      *prefix;
   gboolean          success = TRUE;
   gchar            *filename;
-  guint             n;
+  gchar            *relative_filename;
 
   g_return_val_if_fail (GARCON_IS_MENU (menu), FALSE);
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
@@ -687,29 +678,32 @@ garcon_menu_load (GarconMenu   *menu,
           menu->priv->file = NULL;
         }
 
-      /* Search for a usable applications menu file */
-      for (n = 0; 
-           menu->priv->file == NULL && n < G_N_ELEMENTS (GARCON_MENU_ROOT_SPECS);
-           ++n)
-        {
-          /* Search for the applications menu file */
-          filename = garcon_config_lookup (GARCON_MENU_ROOT_SPECS[n]);
-    
-          /* Use the file if it exists */
-          if (filename != NULL)
-            menu->priv->file = _garcon_file_new_for_unknown_input (filename, NULL);
-    
-          /* Free the filename string */
-          g_free (filename);
-        }
+      /* Build the ${XDG_MENU_PREFIX}applications.menu filename */
+      prefix = g_getenv ("XDG_MENU_PREFIX");
+      relative_filename = g_strconcat ("menus", G_DIR_SEPARATOR_S, 
+                                       prefix != NULL ? prefix : "", "applications.menu",
+                                       NULL);
+
+      /* Search for the menu file in user and system config dirs */
+      filename = garcon_config_lookup (relative_filename);
+
+      /* Use the file if it exists */
+      if (filename != NULL)
+        menu->priv->file = _garcon_file_new_for_unknown_input (filename, NULL);
 
       /* Abort with an error if no suitable applications menu file was found */
       if (menu->priv->file == NULL)
         {
           g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_NOENT,
-                       _("No suitable application menu file found"));
+                       _("File \"%s\" not found"), relative_filename);
+          g_free (relative_filename);
           return FALSE;
         }
+
+      /* Free the filename strings */
+      g_free (relative_filename);
+      g_free (filename);
+
     }
 
   parser = garcon_menu_parser_new (menu->priv->file);
@@ -1831,10 +1825,11 @@ static void
 garcon_menu_monitor_menu_files (GarconMenu *menu)
 {
   GFileMonitor *monitor;
+  const gchar  *prefix;
   GFile        *file;
+  gchar        *relative_filename;
   gchar       **paths;
-  guint         n;
-  gint          i;
+  gint          n;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
 
@@ -1851,28 +1846,33 @@ garcon_menu_monitor_menu_files (GarconMenu *menu)
     }
   else
     {
+      /* Build ${XDG_MENU_PREFIX}applications.menu filename */
+      prefix = g_getenv ("XDG_MENU_PREFIX");
+      relative_filename = g_strconcat ("menus", G_DIR_SEPARATOR_S, 
+                                       prefix != NULL ? prefix : "", "applications.menu",
+                                       NULL);
+
       /* Monitor all application menu candidates */
-      for (n = 0; n < G_N_ELEMENTS (GARCON_MENU_ROOT_SPECS); ++n)
+      paths = garcon_config_build_paths (relative_filename);
+
+      for (n = g_strv_length (paths)-1; paths != NULL && n >= 0; --n)
         {
-          paths = garcon_config_build_paths (GARCON_MENU_ROOT_SPECS[n]);
-
-          for (i = g_strv_length (paths)-1; paths != NULL && i >= 0; --i)
+          file = g_file_new_for_path (paths[n]);
+          
+          monitor = g_file_monitor (file, G_FILE_MONITOR_NONE, NULL, NULL);
+          if (monitor != NULL)
             {
-              file = g_file_new_for_path (paths[i]);
-              
-              monitor = g_file_monitor (file, G_FILE_MONITOR_NONE, NULL, NULL);
-              if (monitor != NULL)
-                {
-                  menu->priv->monitors = g_list_prepend (menu->priv->monitors, monitor);
-                  g_signal_connect_swapped (monitor, "changed",
-                                            G_CALLBACK (garcon_menu_file_changed), menu);
-                }
-
-              g_object_unref (file);
+              menu->priv->monitors = g_list_prepend (menu->priv->monitors, monitor);
+              g_signal_connect_swapped (monitor, "changed",
+                                        G_CALLBACK (garcon_menu_file_changed), menu);
             }
 
-          g_strfreev (paths);
+          g_object_unref (file);
         }
+
+      /* clean up strings */
+      g_strfreev (paths);
+      g_free (relative_filename);
     }
 }
 
@@ -2037,12 +2037,13 @@ garcon_menu_file_changed (GarconMenu       *menu,
                           GFileMonitorEvent event_type,
                           GFileMonitor     *monitor)
 {
-  gboolean higher_priority = FALSE;
-  gboolean lower_priority = FALSE;
-  GFile   *menu_file;
-  gchar  **paths;
-  guint    n;
-  guint    i;
+  const gchar *prefix;
+  gboolean     higher_priority = FALSE;
+  gboolean     lower_priority = FALSE;
+  GFile       *menu_file;
+  gchar      **paths;
+  gchar       *relative_filename;
+  guint        n;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
   g_return_if_fail (menu->priv->parent == NULL);
@@ -2054,34 +2055,38 @@ garcon_menu_file_changed (GarconMenu       *menu,
       return;
     }
 
+  /* Build the ${XDG_MENU_PREFIX}applications.menu filename */
+  prefix = g_getenv ("XDG_MENU_PREFIX");
+  relative_filename = g_strconcat ("menus", G_DIR_SEPARATOR_S,
+                                   prefix != NULL ? prefix : "", "applications.menu",
+                                   NULL);
+
+  /* Get XDG config paths for the root spec (e.g. menus/xfce-applications.menu) */
+  paths = garcon_config_build_paths (relative_filename);
+
   /* Check if the event file has higher priority than the file currently being used */
-  for (n = 0; !lower_priority && !higher_priority && n < G_N_ELEMENTS (GARCON_MENU_ROOT_SPECS); ++n)
+  for (n = 0; !lower_priority && !higher_priority && paths != NULL && paths[n] != NULL; ++n) 
     {
-      /* Get XDG config paths for the root spec (e.g. menus/xfce-applications.menu) */
-      paths = garcon_config_build_paths (GARCON_MENU_ROOT_SPECS[n]);
+      menu_file = g_file_new_for_path (paths[n]);
 
-      for (i = 0; !higher_priority && paths != NULL && paths[i] != NULL; ++i) 
+      if (g_file_equal (menu_file, menu->priv->file))
         {
-          menu_file = g_file_new_for_path (paths[i]);
-
-          if (g_file_equal (menu_file, menu->priv->file))
-            {
-              /* the menu's file comes before the changed file in the load
-               * priority order, so the changed file has a lower priority */
-              lower_priority = TRUE;
-            }
-          else if (g_file_equal (menu_file, file))
-            {
-              /* the changed file comes before the menu's file in the load
-               * priority order, so the changed file has a higher priority */
-              higher_priority = TRUE;
-            }
-
-          g_object_unref (menu_file);
+          /* the menu's file comes before the changed file in the load
+           * priority order, so the changed file has a lower priority */
+          lower_priority = TRUE;
+        }
+      else if (g_file_equal (menu_file, file))
+        {
+          /* the changed file comes before the menu's file in the load
+           * priority order, so the changed file has a higher priority */
+          higher_priority = TRUE;
         }
 
-      g_strfreev (paths);
+      g_object_unref (menu_file);
     }
+
+  /* clean up */
+  g_free (relative_filename);
 
   /* If the event file has higher priority, a menu reload is needed */
   if (!lower_priority && higher_priority)

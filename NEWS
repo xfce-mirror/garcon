@@ -1,8 +1,15 @@
+0.1.x
+=====
+- Add support for XDG_MENU_PREFIX; use applications.menu as a fallback
+  (bug #5980).
+
+
 0.1.3
 =====
 - Merge consecutive file change events using an idle handler.
 - Fix empty charset in Polish translation file (bug #6783).
 - Translation updates (pt, ja, id).
+
 
 0.1.2
 =====
