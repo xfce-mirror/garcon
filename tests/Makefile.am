@@ -30,14 +30,18 @@ test_menu_parser_SOURCES =						\
 
 test_menu_parser_CFLAGS =						\
 	$(LIBXFCE4UTIL_CFLAGS)						\
-	$(GLIB_CFLAGS)
+	$(GIO_CFLAGS)							\
+	$(GLIB_CFLAGS)							\
+	$(GOBJECT_CFLAGS)
 
 test_menu_parser_DEPENDENCIES =						\
 	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
 
 test_menu_parser_LDADD =						\
 	$(LIBXFCE4UTIL_LIBS)						\
+	$(GIO_LIBS)							\
 	$(GLIB_LIBS)							\
+	$(GOBJECT_LIBS)							\
 	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
 
 test_menu_spec_SOURCES =						\
@@ -45,14 +49,18 @@ test_menu_spec_SOURCES =						\
 
 test_menu_spec_CFLAGS =							\
 	$(LIBXFCE4UTIL_CFLAGS)						\
-	$(GLIB_CFLAGS)
+	$(GIO_CFLAGS)							\
+	$(GLIB_CFLAGS)							\
+	$(GOBJECT_CFLAGS)
 
 test_menu_spec_DEPENDENCIES =						\
 	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
 
 test_menu_spec_LDADD =							\
 	$(LIBXFCE4UTIL_LIBS)						\
+	$(GIO_LIBS)							\
 	$(GLIB_LIBS)							\
+	$(GOBJECT_LIBS)							\
 	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
 
 EXTRA_DIST =								\

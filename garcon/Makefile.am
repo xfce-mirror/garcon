@@ -79,9 +79,10 @@ libgarcon_1_la_SOURCES =						\
 	$(libgarcon_headers)
 
 libgarcon_1_la_CFLAGS = 						\
-	$(GLIB_CFLAGS)							\
-	$(GTHREAD_CFLAGS)						\
 	$(GIO_CFLAGS)							\
+	$(GLIB_CFLAGS)							\
+	$(GOBJECT_CFLAGS)						\
+	$(GTHREAD_CFLAGS)						\
 	$(PLATFORM_CFLAGS)
 
 libgarcon_1_la_LDFLAGS =						\
@@ -92,9 +93,10 @@ libgarcon_1_la_LDFLAGS =						\
 	$(PLATFORM_LDFLAGS)
 	
 libgarcon_1_la_LIBADD = 						\
+	$(GIO_LIBS)							\
 	$(GLIB_LIBS)							\
-	$(GTHREAD_LIBS)							\
-	$(GIO_LIBS)
+	$(GOBJECT_LIBS)							\
+	$(GTHREAD_LIBS)
 
 EXTRA_DIST =								\
 	garcon-config.h.in						\

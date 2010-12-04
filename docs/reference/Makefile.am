@@ -58,13 +58,17 @@ content_files =								\
 INCLUDES =	 							\
 	-I$(top_srcdir) 						\
 	-I$(top_builddir) 						\
+	$(GIO_CFLAGS)							\
 	$(GLIB_CFLAGS)							\
+	$(GOBJECT_CFLAGS)						\
 	$(GTHREAD_CFLAGS)						\
 	$(GTK_CFLAGS)							\
 	$(LIBXFCE4UTIL_CFLAGS)
 
 GTKDOC_LIBS =								\
-	$(GLIB_CFLAGS)							\
+	$(GIO_LIBS)							\
+	$(GLIB_LIBS)							\
+	$(GOBJECT_LIBS)							\
 	$(GTHREAD_LIBS)							\
 	$(GTK_CFLAGS)							\
 	$(LIBXFCE4UTIL_LIBS)						\
