@@ -2,12 +2,12 @@
 # Copyright (C) 2007 THE libxfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the libxfce package.
 # Og Maciel <ogmaciel@gnome.org>, 2007.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-23 11:03+0000\n"
+"POT-Creation-Date: 2010-12-04 17:03+0000\n"
 "PO-Revision-Date: 2010-11-23 15:04-0300\n"
 "Last-Translator: Tomas A. Schertel <tschertel@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
@@ -15,9 +15,9 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_BR\n"
-"X-Poedit-Country: BRAZIL\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: BRAZIL\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -123,10 +123,10 @@ msgstr "Sistema"
 msgid "System tools and utilities"
 msgstr "Ferramentas do sistema e utilidades"
 
-#: ../garcon/garcon-menu.c:710
+#: ../garcon/garcon-menu.c:698
 #, c-format
-msgid "No suitable application menu file found"
-msgstr "Nenhum arquivo de menu de aplicativos encontrado"
+msgid "File \"%s\" not found"
+msgstr "Arquivo \"%s\" não encontrado"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
@@ -137,6 +137,9 @@ msgstr "Não foi possível carregar dados do arquivo de menu %s: %s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Não foi possível carregar dados do arquivo de menu de %s"
+
+#~ msgid "No suitable application menu file found"
+#~ msgstr "Nenhum arquivo de menu de aplicativos encontrado"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: Mostrar o menu de teste"
