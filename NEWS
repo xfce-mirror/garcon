@@ -3,6 +3,7 @@
 - Add support for XDG_MENU_PREFIX; use applications.menu as a fallback
   (bug #5980).
 - Explicitly link against gobject, add other missing libs (bug #6405).
+- Add workaround to fix empty <DefaultLayout> elements (bug #6882).
 
 
 0.1.3

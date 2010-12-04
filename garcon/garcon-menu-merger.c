@@ -332,6 +332,7 @@ garcon_menu_merger_run (GarconMenuMerger *merger,
   garcon_menu_merger_clean_up_elements (merger->priv->menu, GARCON_MENU_NODE_TYPE_ONLY_UNALLOCATED);
 
   garcon_menu_merger_prepend_default_layout (merger->priv->menu);
+  garcon_menu_merger_clean_up_elements (merger->priv->menu, GARCON_MENU_NODE_TYPE_DEFAULT_LAYOUT);
   garcon_menu_merger_clean_up_elements (merger->priv->menu, GARCON_MENU_NODE_TYPE_LAYOUT);
 
   g_list_foreach (context.file_stack, (GFunc) g_object_unref, NULL);
@@ -910,9 +911,10 @@ static void
 garcon_menu_merger_clean_up_elements (GNode             *node,
                                       GarconMenuNodeType type)
 {
-  GNode *child;
-  GNode *remaining_node = NULL;
-  GList *destroy_list = NULL;
+  GarconMenuNode *node_;
+  GNode          *child;
+  GNode          *remaining_node = NULL;
+  GList          *destroy_list = NULL;
 
   for (child = g_node_last_child (node); child != NULL; child = g_node_prev_sibling (child))
     {
@@ -937,7 +939,13 @@ garcon_menu_merger_clean_up_elements (GNode             *node,
         }
 
       if (type == GARCON_MENU_NODE_TYPE_LAYOUT
-          && garcon_menu_node_tree_get_node_type (child) != GARCON_MENU_NODE_TYPE_LAYOUT)
+          && garcon_menu_node_tree_get_node_type (child) != type)
+        {
+          continue;
+        }
+
+      if (type == GARCON_MENU_NODE_TYPE_DEFAULT_LAYOUT
+          && garcon_menu_node_tree_get_node_type (child) != type)
         {
           continue;
         }
@@ -951,11 +959,26 @@ garcon_menu_merger_clean_up_elements (GNode             *node,
   g_list_foreach (destroy_list, (GFunc) garcon_menu_node_tree_free, NULL);
   g_list_free (destroy_list);
 
-  if (type == GARCON_MENU_NODE_TYPE_LAYOUT
+  if (type == GARCON_MENU_NODE_TYPE_LAYOUT 
       && remaining_node != NULL
       && G_NODE_IS_LEAF (remaining_node))
     {
       garcon_menu_node_tree_free (remaining_node);
+    }
+
+  if (type == GARCON_MENU_NODE_TYPE_DEFAULT_LAYOUT
+      && remaining_node != NULL
+      && G_NODE_IS_LEAF (remaining_node))
+    {
+      /* FIXME Fix empty <DefaultLayout> elements created due to a bug in
+       * alacarte. See http://bugzilla.xfce.org/show_bug.cgi?id=6882#c2
+       * for more information */
+      node_ = garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE, 
+                                       GUINT_TO_POINTER (GARCON_MENU_LAYOUT_MERGE_MENUS));
+      g_node_append_data (remaining_node, node_);
+      node_ = garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE, 
+                                       GUINT_TO_POINTER (GARCON_MENU_LAYOUT_MERGE_FILES));
+      g_node_append_data (remaining_node, node_);
     }
 }
 

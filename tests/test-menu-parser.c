@@ -53,6 +53,7 @@ node_name (GNode *node)
       case GARCON_MENU_NODE_TYPE_AND: return "And"; break;
       case GARCON_MENU_NODE_TYPE_NOT: return "Not"; break;
       case GARCON_MENU_NODE_TYPE_MOVE: return "Move"; break;
+      case GARCON_MENU_NODE_TYPE_DEFAULT_LAYOUT: return "DefaultLayout"; break;
       case GARCON_MENU_NODE_TYPE_LAYOUT: return "Layout"; break;
       default: return NULL; break;
     }
@@ -83,14 +84,15 @@ print_node (GNode *node,
 
 #define INDENT {for (i = 0; i < depth; ++i) g_print (" ");}
 
-  if (G_UNLIKELY (garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_MENU ||
-                  garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_INCLUDE ||
-                  garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_EXCLUDE ||
-                  garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_OR ||
-                  garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_AND ||
-                  garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_NOT ||
-                  garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_MOVE ||
-                  garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_LAYOUT))
+  if (garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_MENU ||
+      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_INCLUDE ||
+      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_EXCLUDE ||
+      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_OR ||
+      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_AND ||
+      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_NOT ||
+      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_MOVE ||
+      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_DEFAULT_LAYOUT ||
+      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_LAYOUT)
     {
       INDENT; g_print ("<%s>\n", node_name (node));
       print_child_nodes (node, depth);
@@ -206,27 +208,18 @@ print_tree (GarconMenuTreeProvider *provider)
 
 
 
-static const gchar ROOT_SPECS[][30] =
-{
-  "menus/applications.menu",
-  "menus/xfce-applications.menu",
-  "menus/gnome-applications.menu",
-  "menus/kde-applications.menu",
-};
-
-
-
 int
 main (int    argc,
       char **argv)
 {
   GarconMenuParser *parser;
   GarconMenuMerger *merger;
+  const gchar      *prefix;
   GError           *error = NULL;
   GFile            *file = NULL;
   gchar            *filename;
+  gchar            *relative_filename;
   gint              result = EXIT_SUCCESS;
-  gint              n;
 
   g_type_init ();
 
@@ -239,14 +232,15 @@ main (int    argc,
     file = g_file_new_for_path (argv[1]);
   else
     {
-      /* Search for a usable root menu file */
-      for (n = 0; n < G_N_ELEMENTS (ROOT_SPECS) && file == NULL; ++n)
-        {
-          /* Search for the root menu file */
-          filename = garcon_config_lookup (ROOT_SPECS[n]);
-          if (G_UNLIKELY (filename == NULL))
-            continue;
+      prefix = g_getenv ("XDG_MENU_PREFIX");
+      relative_filename = g_strconcat ("menus", G_DIR_SEPARATOR_S,
+                                       prefix != NULL ? prefix : "", "applications.menu",
+                                       NULL);
 
+      /* Search for the menu file */
+      filename = garcon_config_lookup (relative_filename);
+      if (G_UNLIKELY (filename != NULL))
+        {
           /* Try to load the root menu from this file */
           file = g_file_new_for_path (filename);
           g_free (filename);
@@ -257,6 +251,8 @@ main (int    argc,
               file = NULL;
             }
         }
+
+      g_free (relative_filename);
     }
 
   parser = garcon_menu_parser_new (file);
