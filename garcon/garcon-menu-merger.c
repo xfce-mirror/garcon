@@ -457,8 +457,9 @@ compare_files (GFile *file,
 
 
 static void
-garcon_menu_merger_insert_default_merge_dirs (GNode *parent,
-                                              GNode *defaults_node)
+garcon_menu_merger_insert_default_merge_dirs (GNode       *parent,
+                                              GNode       *defaults_node,
+                                              const gchar *merge_dir_basename)
 {
   GNode               *node;
   GNode               *prev_node;
@@ -468,6 +469,7 @@ garcon_menu_merger_insert_default_merge_dirs (GNode *parent,
 
   g_return_if_fail (parent != NULL);
   g_return_if_fail (defaults_node != NULL);
+  g_return_if_fail (merge_dir_basename != NULL && *merge_dir_basename != '\0');
 
   prev_node = defaults_node;
 
@@ -475,7 +477,8 @@ garcon_menu_merger_insert_default_merge_dirs (GNode *parent,
   dirs = g_get_system_config_dirs ();
   for (i = 0; dirs[i] != NULL; i++)
     {
-      path = g_build_path (G_DIR_SEPARATOR_S, dirs[i], "menus", "applications-merged", NULL);
+      path = g_build_path (G_DIR_SEPARATOR_S, dirs[i], "menus", 
+                           merge_dir_basename, NULL);
       if (G_LIKELY (g_file_test (path, G_FILE_TEST_IS_DIR)))
         {
           node = g_node_new (garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE_DIR, path));
@@ -486,7 +489,7 @@ garcon_menu_merger_insert_default_merge_dirs (GNode *parent,
 
   /* Append user config dir */
   path = g_build_path (G_DIR_SEPARATOR_S, g_get_user_config_dir (), "menus",
-                       "applications-merged", NULL);
+                       merge_dir_basename, NULL);
   if (G_LIKELY (g_file_test (path, G_FILE_TEST_IS_DIR)))
     {
       node = g_node_new (garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE_DIR, path));
@@ -501,6 +504,15 @@ static gboolean
 garcon_menu_merger_resolve_default_dirs (GNode                   *node,
                                          GarconMenuMergerContext *context)
 {
+  const gchar *prefix;
+  gboolean     is_application_menu = FALSE;
+  GFile       *file;
+  gchar       *applications_filename;
+  gchar       *extension;
+  gchar       *filename;
+  gchar       *menu_name;
+  gchar       *merge_dir_basename = NULL;
+
   g_return_val_if_fail (context != NULL, FALSE);
 
   if (garcon_menu_node_tree_get_node_type (node) == context->node_type)
@@ -510,7 +522,46 @@ garcon_menu_merger_resolve_default_dirs (GNode                   *node,
     }
   else if (garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_DEFAULT_MERGE_DIRS)
     {
-      garcon_menu_merger_insert_default_merge_dirs (node->parent, node);
+      /* determine the .menu file basename */
+      file = g_list_first (context->file_stack)->data;
+      filename = g_file_get_basename (file);
+
+      /* check if we have an application menu file */
+      prefix = g_getenv ("XDG_MENU_PREFIX");
+      applications_filename = g_strconcat (prefix != NULL ? prefix : "", 
+                                           "applications.menu", NULL);
+      if (g_strcmp0 (filename, applications_filename) == 0)
+        is_application_menu = TRUE;
+      g_free (applications_filename);
+
+      /* derive the basename of default merge dirs from the menu filename */
+      if (!is_application_menu)
+        {
+          /* find the extension */
+          extension = g_strstr_len (filename, -1, ".");
+
+          /* derive the merge dir name by stripping the extension */
+          if (extension != NULL && extension > filename)
+            {
+              menu_name = g_strndup (filename, extension - filename);
+              merge_dir_basename = g_strconcat (menu_name, "-merged", NULL);
+              g_free (menu_name);
+            }
+        }
+
+      /* free the filename */
+      g_free (filename);
+
+      /* use "applications-merged" as the fallback dir */
+      if (merge_dir_basename == NULL)
+        merge_dir_basename = g_strdup ("applications-merged");
+
+      garcon_menu_merger_insert_default_merge_dirs (node->parent, node, 
+                                                    merge_dir_basename);
+
+      /* free the merge dir name */
+      g_free (merge_dir_basename);
+
       garcon_menu_node_tree_free (node);
     }
 
