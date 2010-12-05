@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-03 19:14+0100\n"
+"POT-Creation-Date: 2010-12-05 15:29+0100\n"
 "PO-Revision-Date: 2010-06-04 14:32+0200\n"
 "Last-Translator: Piotr Sokół <psokol@jabster.pl>\n"
 "Language-Team: Polish <>\n"
@@ -119,9 +119,9 @@ msgstr "System"
 msgid "System tools and utilities"
 msgstr "Przechowuje narzędzia do zarządzania systemem"
 
-#: ../garcon/garcon-menu.c:705
+#: ../garcon/garcon-menu.c:698
 #, c-format
-msgid "No suitable application menu file found"
+msgid "File \"%s\" not found"
 msgstr ""
 
 #: ../garcon/garcon-menu-parser.c:278

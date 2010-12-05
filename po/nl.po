@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-03 19:14+0100\n"
+"POT-Creation-Date: 2010-12-05 15:29+0100\n"
 "PO-Revision-Date: 2010-04-30 16:15+0100\n"
 "Last-Translator: Vincent Tunru <projects@vinnl.nl>\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -121,9 +121,9 @@ msgstr "Systeem"
 msgid "System tools and utilities"
 msgstr "Systeemgereedschap en hulpmiddelen"
 
-#: ../garcon/garcon-menu.c:705
+#: ../garcon/garcon-menu.c:698
 #, c-format
-msgid "No suitable application menu file found"
+msgid "File \"%s\" not found"
 msgstr ""
 
 #: ../garcon/garcon-menu-parser.c:278

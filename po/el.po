@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-03 19:14+0100\n"
+"POT-Creation-Date: 2010-12-05 15:29+0100\n"
 "PO-Revision-Date: 2008-03-25 00:19+0200\n"
 "Last-Translator: Evaggelos Balaskas <ebalaskas@ebalaskas.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -121,10 +121,10 @@ msgstr "Σύστημα"
 msgid "System tools and utilities"
 msgstr "Εργαλεία και βοηθητικά προγράμματα συστήματος"
 
-#: ../garcon/garcon-menu.c:705
+#: ../garcon/garcon-menu.c:698
 #, c-format
-msgid "No suitable application menu file found"
-msgstr "Δεν βρέθηκε αρχείο μενού για την εφαρμογή"
+msgid "File \"%s\" not found"
+msgstr ""
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
@@ -135,6 +135,9 @@ msgstr "Δεν μπορούν να φορτωθούν τα δεδομένα απ
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Δεν μπορούν να φορτωθούν τα δεδομένα από το αρχείο μενού %s"
+
+#~ msgid "No suitable application menu file found"
+#~ msgstr "Δεν βρέθηκε αρχείο μενού για την εφαρμογή"
 
 #~ msgid "Failed to locate the system menu"
 #~ msgstr "Αποτυχία στον εντοπισμό της ρίζας του μενού εφαρμογών"

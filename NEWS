@@ -1,4 +1,4 @@
-0.1.x
+0.1.4
 =====
 - Add support for XDG_MENU_PREFIX; use applications.menu as a fallback
   (bug #5980).
@@ -7,6 +7,7 @@
 - Derive the directory name of <DefaultMergeDirs> from the name of the
   .menu file (e.g. preferences.menu becomes preferences-merged) (bug
   #6491).
+- Translation updates (pt_BR, zh_CN, eu, lt)
 
 
 0.1.3

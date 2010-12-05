@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Transifex master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-03 19:14+0100\n"
+"POT-Creation-Date: 2010-12-05 15:29+0100\n"
 "PO-Revision-Date: 2010-10-19 18:01+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
@@ -125,10 +125,10 @@ msgstr "Sistema"
 msgid "System tools and utilities"
 msgstr "Utilidades e ferramentas do sistema"
 
-#: ../garcon/garcon-menu.c:705
+#: ../garcon/garcon-menu.c:698
 #, c-format
-msgid "No suitable application menu file found"
-msgstr "Non se atopou ningún ficheiro de menú de aplicativo axeitado"
+msgid "File \"%s\" not found"
+msgstr ""
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
@@ -139,6 +139,9 @@ msgstr "Non foi posible cargar os datos do ficheiro de menú %s: %s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Non foi posible cargar os datos do ficheiro de menú dende %s"
+
+#~ msgid "No suitable application menu file found"
+#~ msgstr "Non se atopou ningún ficheiro de menú de aplicativo axeitado"
 
 #~ msgid "Failed to locate the system menu"
 #~ msgstr "Fallo ó localizar o menú raíz de aplicacións"

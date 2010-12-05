@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-03 19:14+0100\n"
+"POT-Creation-Date: 2010-12-05 15:29+0100\n"
 "PO-Revision-Date: 2009-01-26 11:01+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -121,10 +121,10 @@ msgstr "Система"
 msgid "System tools and utilities"
 msgstr "Інструменти та утиліти для системи"
 
-#: ../garcon/garcon-menu.c:705
+#: ../garcon/garcon-menu.c:698
 #, c-format
-msgid "No suitable application menu file found"
-msgstr "Не знайдено відповідного програмного меню"
+msgid "File \"%s\" not found"
+msgstr ""
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
@@ -135,6 +135,9 @@ msgstr "Не вдалось завантажити файл даних меню 
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Не вдалось завантажити файл даних меню з %s"
+
+#~ msgid "No suitable application menu file found"
+#~ msgstr "Не знайдено відповідного програмного меню"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: Показати тест меню"

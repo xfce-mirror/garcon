@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu-0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-03 19:14+0100\n"
+"POT-Creation-Date: 2010-12-05 15:29+0100\n"
 "PO-Revision-Date: 2010-11-20 23:50+0100\n"
 "Last-Translator: \n"
 "Language-Team: Basque <kde-i18n-doc@kde.org>\n"
@@ -122,10 +122,10 @@ msgstr "Sistema"
 msgid "System tools and utilities"
 msgstr "Sistema tresna eta lanabesak"
 
-#: ../garcon/garcon-menu.c:705
+#: ../garcon/garcon-menu.c:698
 #, c-format
-msgid "No suitable application menu file found"
-msgstr "Ez da menu fitxategi erabilgarririk aurkitu"
+msgid "File \"%s\" not found"
+msgstr ""
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
@@ -136,6 +136,9 @@ msgstr "Ezin da %s-etik menuaren fitxategi datuak kargatu: %s."
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Ezin da %s-etik menuaren fitxategi datuak kargatu"
+
+#~ msgid "No suitable application menu file found"
+#~ msgstr "Ez da menu fitxategi erabilgarririk aurkitu"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: Pantaila menu proba"

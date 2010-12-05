@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4menu 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-03 19:14+0100\n"
+"POT-Creation-Date: 2010-12-05 15:29+0100\n"
 "PO-Revision-Date: 2009-10-11 16:38+0900\n"
 "Last-Translator: Gheyret T.Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -121,10 +121,10 @@ msgstr "سىستېما"
 msgid "System tools and utilities"
 msgstr "سىستېما قوراللىرى"
 
-#: ../garcon/garcon-menu.c:705
+#: ../garcon/garcon-menu.c:698
 #, c-format
-msgid "No suitable application menu file found"
-msgstr "مۇۋاپىق پروگرامما تىزىملىك ھۆججىتى تېپىلمىدى"
+msgid "File \"%s\" not found"
+msgstr ""
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
@@ -135,3 +135,6 @@ msgstr "%s دىن تىزىملىك ھۆججەت سانلىق-ئاساسلىرى�
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "%s دىن تىزىملىك ھۆججەت سانلىق-ئاساسلىرىنى ئوقۇغىلى بولمىدى"
+
+#~ msgid "No suitable application menu file found"
+#~ msgstr "مۇۋاپىق پروگرامما تىزىملىك ھۆججىتى تېپىلمىدى"

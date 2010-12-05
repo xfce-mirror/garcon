@@ -2,19 +2,19 @@
 # Copyright (C) 2007 Jannis Pohlmann.
 # This file is distributed under the same license as the xfce4menu package.
 # Andhika Padmawan <andhika.padmawan@gmail.com>, 2010.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-07 05:03+0000\n"
+"POT-Creation-Date: 2010-12-05 15:29+0100\n"
 "PO-Revision-Date: 2010-06-01 22:35+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <translation-team-id@lists.sourceforge.net>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: id\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -120,10 +120,10 @@ msgstr "Sistem"
 msgid "System tools and utilities"
 msgstr "Utilitas sistem"
 
-#: ../garcon/garcon-menu.c:710
+#: ../garcon/garcon-menu.c:698
 #, c-format
-msgid "No suitable application menu file found"
-msgstr "Tak ada berkas menu aplikasi yang cocok ditemukan"
+msgid "File \"%s\" not found"
+msgstr ""
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
@@ -134,6 +134,9 @@ msgstr "Gagal memuat data berkas menu dari %s: %s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Gagal memuat data berkas menu dari %s"
+
+#~ msgid "No suitable application menu file found"
+#~ msgstr "Tak ada berkas menu aplikasi yang cocok ditemukan"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: Tampilkan Tes Menu"

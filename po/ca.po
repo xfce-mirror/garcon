@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-03 19:14+0100\n"
+"POT-Creation-Date: 2010-12-05 15:29+0100\n"
 "PO-Revision-Date: 2009-09-05 16:20+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
@@ -123,10 +123,10 @@ msgstr "Sistema"
 msgid "System tools and utilities"
 msgstr "Eines i utilitats del sistema"
 
-#: ../garcon/garcon-menu.c:705
+#: ../garcon/garcon-menu.c:698
 #, c-format
-msgid "No suitable application menu file found"
-msgstr "No s'ha trobat un fitxer de menú adequat"
+msgid "File \"%s\" not found"
+msgstr ""
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
@@ -137,6 +137,9 @@ msgstr "No s'ha pogut carregar les dades del fitxer de menú de «%s»: %s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "No s'ha pogut carregar les dades del fitxer de menú de «%s»"
+
+#~ msgid "No suitable application menu file found"
+#~ msgstr "No s'ha trobat un fitxer de menú adequat"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: Mostra el menú de prova"

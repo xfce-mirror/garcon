@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-03 19:14+0100\n"
+"POT-Creation-Date: 2010-12-05 15:29+0100\n"
 "PO-Revision-Date: 2010-03-11 12:39+0600\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
@@ -121,10 +121,10 @@ msgstr "Жүйелік"
 msgid "System tools and utilities"
 msgstr "Жүйелік құралдар"
 
-#: ../garcon/garcon-menu.c:705
+#: ../garcon/garcon-menu.c:698
 #, c-format
-msgid "No suitable application menu file found"
-msgstr "Сәйкес келетін қолданба мәзір файлы табылмады"
+msgid "File \"%s\" not found"
+msgstr ""
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
@@ -135,3 +135,6 @@ msgstr "%s ішінен мәзір ақпаратын жүктеп алу мүм
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "%s ішінен мәзір ақпаратын жүктеп алу мүмкін емес"
+
+#~ msgid "No suitable application menu file found"
+#~ msgstr "Сәйкес келетін қолданба мәзір файлы табылмады"

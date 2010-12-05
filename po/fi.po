@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-03 19:14+0100\n"
+"POT-Creation-Date: 2010-12-05 15:29+0100\n"
 "PO-Revision-Date: 2010-10-06 06:11+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <fi@li.org>\n"
@@ -121,10 +121,10 @@ msgstr "Järjestelmä"
 msgid "System tools and utilities"
 msgstr "Järjestelmän työkalut ja hyötyohjelmat"
 
-#: ../garcon/garcon-menu.c:705
+#: ../garcon/garcon-menu.c:698
 #, c-format
-msgid "No suitable application menu file found"
-msgstr "Käyttökelpoista sovellusvalikkotiedostoa ei löydy"
+msgid "File \"%s\" not found"
+msgstr ""
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
@@ -135,3 +135,6 @@ msgstr "Valikkotiedoston %s lataaminen epäonnistui: %s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Valikkotiedoston %s lataaminen epäonnistui"
+
+#~ msgid "No suitable application menu file found"
+#~ msgstr "Käyttökelpoista sovellusvalikkotiedostoa ei löydy"

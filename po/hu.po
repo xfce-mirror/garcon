@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-03 19:14+0100\n"
+"POT-Creation-Date: 2010-12-05 15:29+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
 "Language-Team: Hungarian <debian-l10n-hungarian@lists.d.o>\n"
@@ -119,10 +119,10 @@ msgstr "Rendszer"
 msgid "System tools and utilities"
 msgstr "Rendszereszközök és segédprogramok"
 
-#: ../garcon/garcon-menu.c:705
+#: ../garcon/garcon-menu.c:698
 #, c-format
-msgid "No suitable application menu file found"
-msgstr "Nem található megfelelő alkalmazásmenü-fájl"
+msgid "File \"%s\" not found"
+msgstr ""
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
@@ -133,6 +133,9 @@ msgstr "Nem tölthetők be a menüfájl adatai innen: %s: %s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Nem tölthetők be a menüfájl adatai innen: %s"
+
+#~ msgid "No suitable application menu file found"
+#~ msgstr "Nem található megfelelő alkalmazásmenü-fájl"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: Kijelző Menü Teszt"

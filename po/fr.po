@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-03 19:14+0100\n"
+"POT-Creation-Date: 2010-12-05 15:29+0100\n"
 "PO-Revision-Date: 2009-10-10 14:26+0100\n"
 "Last-Translator: Steve Dodier <sidnioulz@gmail.com>\n"
 "Language-Team: French <i18n-xfce@xfce.org>\n"
@@ -120,9 +120,9 @@ msgstr "Système"
 msgid "System tools and utilities"
 msgstr "Outils et utilitaires système"
 
-#: ../garcon/garcon-menu.c:705
+#: ../garcon/garcon-menu.c:698
 #, c-format
-msgid "No suitable application menu file found"
+msgid "File \"%s\" not found"
 msgstr ""
 
 #: ../garcon/garcon-menu-parser.c:278
