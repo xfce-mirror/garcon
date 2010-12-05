@@ -1,3 +1,7 @@
+0.1.x
+=====
+
+
 0.1.4
 =====
 - Add support for XDG_MENU_PREFIX; use applications.menu as a fallback
