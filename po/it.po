@@ -127,7 +127,7 @@ msgstr "Strumenti e utilità di sistema"
 #: ../garcon/garcon-menu.c:698
 #, c-format
 msgid "File \"%s\" not found"
-msgstr ""
+msgstr "File «%s» non trovato"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
