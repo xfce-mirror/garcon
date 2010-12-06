@@ -2,19 +2,20 @@
 # Copyright (C) 2007 THE libxfce'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the libxfce package.
 # Og Maciel <ogmaciel@gnome.org>, 2007.
+# Henrique P. Machado <hpmachado@gnome.org>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-05 15:29+0100\n"
-"PO-Revision-Date: 2010-11-23 15:04-0300\n"
-"Last-Translator: Tomas A. Schertel <tschertel@gmail.com>\n"
+"POT-Creation-Date: 2010-12-04 17:03+0000\n"
+"PO-Revision-Date: 2010-12-06 00:44-0200\n"
+"Last-Translator: Henrique P. Machado <hpmachado@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-Language: Portuguese\n"
 "X-Poedit-Country: BRAZIL\n"
@@ -33,7 +34,7 @@ msgstr "Desenvolvimento"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr "Software de desenvolvimento de ferramentas"
+msgstr "Ferramentas de desenvolvimento de software"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
@@ -49,7 +50,7 @@ msgstr "Jogos"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr "Jogos, puzzles, e outros softwares de diversão"
+msgstr "Jogos, quebra-cabeças e outros softwares divertidos"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
@@ -57,11 +58,11 @@ msgstr "Gráficos"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "Gráficos de criação e aplicativos de manipulação"
+msgstr "Aplicativos de criação e manipulação de gráficos"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr "Tocadores de áudio e vídeo e editores"
+msgstr "Reprodutores e editores de áudio e vídeo"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
@@ -73,7 +74,7 @@ msgstr "Rede"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Network applications and utilities"
-msgstr "Aplicativos de rede e utidades"
+msgstr "Aplicativos de rede e utilitários"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -81,11 +82,11 @@ msgstr "Escritório"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "Escritório e aplicativos de produtividade"
+msgstr "Aplicativos de escritório e produtividade"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr "Aplicativos que não ser encontram nas outras categorias"
+msgstr "Aplicativos que não se encaixam nas outras categorias"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
@@ -101,7 +102,7 @@ msgstr "Software científico"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
-msgstr "Aplicativos protetores de tela"
+msgstr "Miniaplicativos protetores de tela"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
@@ -109,7 +110,7 @@ msgstr "Protetores de tela"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr "Área de trabalho e aplicativos de configuração do sistema"
+msgstr "Aplicativos de Área de trabalho e de configuração do sistema"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
@@ -121,7 +122,7 @@ msgstr "Sistema"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr "Ferramentas do sistema e utilidades"
+msgstr "Ferramentas do sistema e utilitários"
 
 #: ../garcon/garcon-menu.c:698
 #, c-format
