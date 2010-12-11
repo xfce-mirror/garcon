@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4menu 0.1.0svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-05 15:29+0100\n"
-"PO-Revision-Date: 2010-11-05 23:22+0900\n"
+"POT-Creation-Date: 2010-12-11 22:35+0900\n"
+"PO-Revision-Date: 2010-12-11 22:35+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -124,7 +124,7 @@ msgstr "システムツールおよびユーティリティです"
 #: ../garcon/garcon-menu.c:698
 #, c-format
 msgid "File \"%s\" not found"
-msgstr ""
+msgstr "ファイル \"%s\" が見つかりませんでした"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
