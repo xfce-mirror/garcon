@@ -1,0 +1,138 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Garcon\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-27 17:04+0000\n"
+"PO-Revision-Date: 2010-12-27 20:15-0000\n"
+"Last-Translator: كريم أولاد الشلحة <herr.linux88@gmail.com>\n"
+"Language-Team: Arabic <herr.linux88@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Arabic\n"
+"X-Poedit-Country: MOROCCO\n"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:1
+msgid "Accessories"
+msgstr "ملحقات"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:2
+msgid "Common desktop tools and applications"
+msgstr "تطبيقات وأدوات سطح المكتب الشائعة"
+
+#: ../data/xfce/xfce-development.directory.in.h:1
+msgid "Development"
+msgstr "تطوير"
+
+#: ../data/xfce/xfce-development.directory.in.h:2
+msgid "Software development tools"
+msgstr "أدوات تطوير البرامج"
+
+#: ../data/xfce/xfce-education.directory.in.h:1
+msgid "Education"
+msgstr "تعليم"
+
+#: ../data/xfce/xfce-education.directory.in.h:2
+msgid "Educational software"
+msgstr "برامج تعليمية"
+
+#: ../data/xfce/xfce-games.directory.in.h:1
+msgid "Games"
+msgstr "ألعاب"
+
+#: ../data/xfce/xfce-games.directory.in.h:2
+msgid "Games, puzzles, and other fun software"
+msgstr "ألعاب، وألغاز، وبرامج مرح أخرى"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:1
+msgid "Graphics"
+msgstr "رسوميات"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:2
+msgid "Graphics creation and manipulation applications"
+msgstr "تطبيقات إنشاء ومعالجة الرسوميات"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:1
+msgid "Audio and video players and editors"
+msgstr "مشغلات ومحررات الصوت والفيديو"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Multimedia"
+msgstr "وسائط المتعددة"
+
+#: ../data/xfce/xfce-network.directory.in.h:1
+msgid "Network"
+msgstr "شبكة"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Network applications and utilities"
+msgstr "تطبيقات وأدوات الشبكة"
+
+#: ../data/xfce/xfce-office.directory.in.h:1
+msgid "Office"
+msgstr "مكتب"
+
+#: ../data/xfce/xfce-office.directory.in.h:2
+msgid "Office and productivity applications"
+msgstr "تطبيقات المكتب والإنتاج"
+
+#: ../data/xfce/xfce-other.directory.in.h:1
+msgid "Applications that don't fit into other categories"
+msgstr "التطبيقات التي لا تنتمي إلى أي فئة أخرى"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Other"
+msgstr "أخرى"
+
+#: ../data/xfce/xfce-science.directory.in.h:1
+msgid "Science"
+msgstr "علوم"
+
+#: ../data/xfce/xfce-science.directory.in.h:2
+msgid "Scientific software"
+msgstr "برامج علمية"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:1
+msgid "Screensaver applets"
+msgstr "بريمجات حافظة الشاشة"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensavers"
+msgstr "حافظات الشاشة"
+
+#: ../data/xfce/xfce-settings.directory.in.h:1
+msgid "Desktop and system settings applications"
+msgstr "تطبيقات إعدادات سطح المكتب والنظام"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Settings"
+msgstr "الإعدادات"
+
+#: ../data/xfce/xfce-system.directory.in.h:1
+msgid "System"
+msgstr "النّظام"
+
+#: ../data/xfce/xfce-system.directory.in.h:2
+msgid "System tools and utilities"
+msgstr "أدوات النظام"
+
+#: ../garcon/garcon-menu.c:698
+#, c-format
+msgid "File \"%s\" not found"
+msgstr "لم بتم العثور على الملف \"%s\""
+
+#: ../garcon/garcon-menu-parser.c:278
+#, c-format
+msgid "Could not load menu file data from %s: %s"
+msgstr "لا يمكن تحميل ملف قائمة البيانات من %s: %s"
+
+#: ../garcon/garcon-menu-parser.c:284
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr "لا يمكن تحميل ملف قائمة البيانات من %s"
+
