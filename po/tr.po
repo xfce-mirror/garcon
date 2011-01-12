@@ -1,7 +1,7 @@
 # Turkish translations for libxfce4menu.
 # Copyright (C) 2007 Jannis Pohlmann <jannis@xfce.org>
 # This file is distributed under the same license as the libxfce4menu package.
-#
+# 
 # Nimet Senem Özkızıklı <nimetsenem@gmail.com>, 2008.
 # Gökmen Görgen <gkmngrgn@gmail.com>, 2008.
 # Ayhan YALÇINSOY <ayhanyalcinsoy@gmail.com>, 2010.
@@ -9,18 +9,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-05 15:29+0100\n"
+"POT-Creation-Date: 2011-01-12 17:04+0000\n"
 "PO-Revision-Date: 2010-05-13 11:33+0300\n"
 "Last-Translator: Ayhan YALÇINSOY <ayhanyalcinsoy@gmail.com>\n"
 "Language-Team: Turkish <kde-i18n-doc@kde.org>\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-Language: Turkish\n"
 "X-Poedit-Country: TURKEY\n"
 "X-Generator: Lokalize 1.0\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -129,7 +129,7 @@ msgstr "Sistem araçları ve uygulamaları"
 #: ../garcon/garcon-menu.c:698
 #, c-format
 msgid "File \"%s\" not found"
-msgstr ""
+msgstr "\"%s\" dosyası bulunamadı"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
