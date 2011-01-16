@@ -6,10 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-05 23:04+0000\n"
+"POT-Creation-Date: 2011-01-16 14:36+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Hezy Amiel <open@hezyamiel.com>\n"
 "Language-Team: Hebrew <xfce-i18n@xfce.org>\n"
+"Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -133,4 +134,3 @@ msgstr "לא ניתן לטעון את קובץ המידע של התפריט מ־
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "לא ניתן לטעון את קובץ המידע של התפריט מ־%s"
-

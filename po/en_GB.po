@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-13 05:03+0000\n"
+"POT-Creation-Date: 2011-01-16 14:36+0100\n"
 "PO-Revision-Date: 2010-12-13 18:21+1100\n"
 "Last-Translator: Jeff Bailes <thepizzaking@gmail.com>\n"
 "Language-Team: English/GB\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -135,4 +135,3 @@ msgstr "Could not load menu file data from %s: %s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Could not load menu file data from %s"
-

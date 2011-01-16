@@ -1,5 +1,12 @@
-0.1.x
+0.1.5
 =====
+- Add exclude rules for toplevel desktop files to sub menus so that
+  these toplevel items don't appear multiple times.
+- Translation updates: Arabic, Catalan (Valencian), Chinese, Chinese 
+  (Taiwan), Croatian, Czech, Danish, English (United Kingdom), Finnish,
+  French, Galician, German, Greek, Hebrew, Hungarian, Indonesian, 
+  Italian, Japanese, Kazakh, Norwegian Bokmaal, Portuguese (Brazilian),
+  Romanian, Swedish, Turkish, Ukrainian.
 
 
 0.1.4
