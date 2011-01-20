@@ -22,6 +22,7 @@ INCLUDES = 								\
 	-DGARCON_COMPILATION						\
 	-DGARCON_VERSION_API=\"$(GARCON_VERSION_API)\"			\
 	-DG_LOG_DOMAIN=\"garcon\"					\
+	-DSYSCONFIGDIR=\"$(sysconfdir)/xdg\"				\
 	$(PLATFORM_CFLAGS)
 
 lib_LTLIBRARIES = 							\
