@@ -2,21 +2,21 @@
 # Copyright (C) 2008 THE libxfce4menu'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the libxfce4menu package.
 # Abel Martín <abel.martin.ruiz@gmail.com>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 14:36+0100\n"
+"POT-Creation-Date: 2011-03-09 11:05+0000\n"
 "PO-Revision-Date: 2009-01-11 13:45+0100\n"
 "Last-Translator: Abel Martín <abel.martin.ruiz@gmail.com>\n"
 "Language-Team: Spanish/ES <xfce-i18n@xfce.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Country: UNITED KINGDOM\n"
+"Language: \n"
 "X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED KINGDOM\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -125,7 +125,7 @@ msgstr "Herramientas y utilidades de sistema"
 #: ../garcon/garcon-menu.c:698
 #, c-format
 msgid "File \"%s\" not found"
-msgstr ""
+msgstr "Archivo \"%s\" no encontrado"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
