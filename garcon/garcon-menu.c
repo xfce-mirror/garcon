@@ -680,9 +680,9 @@ garcon_menu_load (GarconMenu   *menu,
 
       /* Build the ${XDG_MENU_PREFIX}applications.menu filename */
       prefix = g_getenv ("XDG_MENU_PREFIX");
-      relative_filename = g_strconcat ("menus", G_DIR_SEPARATOR_S, 
-                                       prefix != NULL ? prefix : "", "applications.menu",
-                                       NULL);
+      relative_filename = g_strconcat ("menus", G_DIR_SEPARATOR_S,
+                                       prefix != NULL ? prefix : GARCON_DEFAULT_MENU_PREFIX,
+                                       "applications.menu", NULL);
 
       /* Search for the menu file in user and system config dirs */
       filename = garcon_config_lookup (relative_filename);
@@ -1849,8 +1849,8 @@ garcon_menu_monitor_menu_files (GarconMenu *menu)
       /* Build ${XDG_MENU_PREFIX}applications.menu filename */
       prefix = g_getenv ("XDG_MENU_PREFIX");
       relative_filename = g_strconcat ("menus", G_DIR_SEPARATOR_S, 
-                                       prefix != NULL ? prefix : "", "applications.menu",
-                                       NULL);
+                                       prefix != NULL ? prefix : GARCON_DEFAULT_MENU_PREFIX,
+                                       "applications.menu", NULL);
 
       /* Monitor all application menu candidates */
       paths = garcon_config_build_paths (relative_filename);
@@ -2058,8 +2058,8 @@ garcon_menu_file_changed (GarconMenu       *menu,
   /* Build the ${XDG_MENU_PREFIX}applications.menu filename */
   prefix = g_getenv ("XDG_MENU_PREFIX");
   relative_filename = g_strconcat ("menus", G_DIR_SEPARATOR_S,
-                                   prefix != NULL ? prefix : "", "applications.menu",
-                                   NULL);
+                                   prefix != NULL ? prefix : GARCON_DEFAULT_MENU_PREFIX,
+                                   "applications.menu", NULL);
 
   /* Get XDG config paths for the root spec (e.g. menus/xfce-applications.menu) */
   paths = garcon_config_build_paths (relative_filename);
