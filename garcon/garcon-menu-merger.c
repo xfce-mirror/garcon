@@ -408,12 +408,9 @@ garcon_menu_merger_insert_default_dirs (GNode *parent,
       /* Build KDE data dir */
       kde_data_dir = g_build_filename (kde_dir, "share", base_name, NULL);
 
-      /* Add it as a directory dir if it exists */
-      if (G_LIKELY (g_file_test (kde_data_dir, G_FILE_TEST_IS_DIR)))
-        {
-          node = g_node_new (garcon_menu_node_create (type, kde_data_dir));
-          prev_node = g_node_insert_after (parent, prev_node, node);
-        }
+      /* Add it as a directory dir */
+      node = g_node_new (garcon_menu_node_create (type, kde_data_dir));
+      prev_node = g_node_insert_after (parent, prev_node, node);
 
       /* Free the KDE data dir */
       g_free (kde_data_dir);
@@ -426,21 +423,15 @@ garcon_menu_merger_insert_default_dirs (GNode *parent,
   for (i = 0; dirs[i] != NULL; i++)
     {
       path = g_build_path (G_DIR_SEPARATOR_S, dirs[i], base_name, NULL);
-      if (G_LIKELY (g_file_test (path, G_FILE_TEST_IS_DIR)))
-        {
-          node = g_node_new (garcon_menu_node_create (type, path));
-          g_node_insert_after (parent, prev_node, node);
-        }
+      node = g_node_new (garcon_menu_node_create (type, path));
+      g_node_insert_after (parent, prev_node, node);
       g_free (path);
     }
 
   /* Append user data dir */
   path = g_build_path (G_DIR_SEPARATOR_S, g_get_user_data_dir (), base_name, NULL);
-  if (G_LIKELY (g_file_test (path, G_FILE_TEST_IS_DIR)))
-    {
-      node = g_node_new (garcon_menu_node_create (type, path));
-      prev_node = g_node_append (parent, node);
-    }
+  node = g_node_new (garcon_menu_node_create (type, path));
+  prev_node = g_node_append (parent, node);
   g_free (path);
 }
 
@@ -479,22 +470,16 @@ garcon_menu_merger_insert_default_merge_dirs (GNode       *parent,
     {
       path = g_build_path (G_DIR_SEPARATOR_S, dirs[i], "menus", 
                            merge_dir_basename, NULL);
-      if (G_LIKELY (g_file_test (path, G_FILE_TEST_IS_DIR)))
-        {
-          node = g_node_new (garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE_DIR, path));
-          g_node_insert_after (parent, prev_node, node);
-        }
+      node = g_node_new (garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE_DIR, path));
+      g_node_insert_after (parent, prev_node, node);
       g_free (path);
     }
 
   /* Append user config dir */
   path = g_build_path (G_DIR_SEPARATOR_S, g_get_user_config_dir (), "menus",
                        merge_dir_basename, NULL);
-  if (G_LIKELY (g_file_test (path, G_FILE_TEST_IS_DIR)))
-    {
-      node = g_node_new (garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE_DIR, path));
-      prev_node = g_node_append (parent, node);
-    }
+  node = g_node_new (garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE_DIR, path));
+  prev_node = g_node_append (parent, node);
   g_free (path);
 }
 
