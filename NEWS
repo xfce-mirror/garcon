@@ -1,6 +1,13 @@
-0.1.x
+0.1.6
 =====
 - Add <DefaultMergeDirs/> to xfce-applications.menu.
+- Also try the garcon install sysconfigdir for config lookups.
+- Use Xdt macros for debugging and linker optimizations.
+- Default menu prefix to "xfce-".
+- Fix search order of xdg data directories (bug #7187).
+- Fix ordering of menu items for non-english locales (bug #7414).
+- Monitor non-existing data and config directories (bug #7423).
+- Translation updates: Basque, Spanish (Castilian).
 
 
 0.1.5

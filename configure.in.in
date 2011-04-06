@@ -24,13 +24,13 @@ m4_define([garcon_verinfo], [0:0:0])
 m4_define([garcon_version_api_major], [1])
 m4_define([garcon_version_major], [0])
 m4_define([garcon_version_minor], [1])
-m4_define([garcon_version_micro], [5])
+m4_define([garcon_version_micro], [6])
 m4_define([garcon_version_build], [@REVISION@])
-m4_define([garcon_version_tag], [git])
+m4_define([garcon_version_tag], [])
 m4_define([garcon_version], [garcon_version_major().garcon_version_minor().garcon_version_micro()ifelse(garcon_version_tag(), [git], [garcon_version_tag()-garcon_version_build()], [garcon_version_tag()])])
 
 dnl ********************************************
-dnl *** Full debug support for SVN snapshots ***
+dnl *** Full debug support for GIT snapshots ***
 dnl ********************************************
 m4_define([garcon_debug_default], [ifelse(garcon_version_tag(), [git], [full], [minimum])])
 
