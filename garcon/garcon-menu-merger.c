@@ -421,7 +421,7 @@ garcon_menu_merger_insert_default_dirs (GNode *parent,
 
   /* The $KDEDIR workaround ends here */
 
-  /* Append system-wide data dirs */
+  /* Append system-wide data dirs, respecting the priority */
   dirs = g_get_system_data_dirs ();
   for (i = 0; dirs[i] != NULL; i++)
     {
@@ -429,7 +429,7 @@ garcon_menu_merger_insert_default_dirs (GNode *parent,
       if (G_LIKELY (g_file_test (path, G_FILE_TEST_IS_DIR)))
         {
           node = g_node_new (garcon_menu_node_create (type, path));
-          prev_node = g_node_insert_after (parent, prev_node, node);
+          g_node_insert_after (parent, prev_node, node);
         }
       g_free (path);
     }
@@ -439,7 +439,7 @@ garcon_menu_merger_insert_default_dirs (GNode *parent,
   if (G_LIKELY (g_file_test (path, G_FILE_TEST_IS_DIR)))
     {
       node = g_node_new (garcon_menu_node_create (type, path));
-      prev_node = g_node_insert_after (parent, prev_node, node);
+      prev_node = g_node_append (parent, node);
     }
   g_free (path);
 }
@@ -473,7 +473,7 @@ garcon_menu_merger_insert_default_merge_dirs (GNode       *parent,
 
   prev_node = defaults_node;
 
-  /* Append system-wide config dirs */
+  /* Append system-wide config dirs, respecting the priority */
   dirs = g_get_system_config_dirs ();
   for (i = 0; dirs[i] != NULL; i++)
     {
@@ -482,7 +482,7 @@ garcon_menu_merger_insert_default_merge_dirs (GNode       *parent,
       if (G_LIKELY (g_file_test (path, G_FILE_TEST_IS_DIR)))
         {
           node = g_node_new (garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE_DIR, path));
-          prev_node = g_node_insert_after (parent, prev_node, node);
+          g_node_insert_after (parent, prev_node, node);
         }
       g_free (path);
     }
@@ -493,7 +493,7 @@ garcon_menu_merger_insert_default_merge_dirs (GNode       *parent,
   if (G_LIKELY (g_file_test (path, G_FILE_TEST_IS_DIR)))
     {
       node = g_node_new (garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE_DIR, path));
-      prev_node = g_node_insert_after (parent, prev_node, node);
+      prev_node = g_node_append (parent, node);
     }
   g_free (path);
 }
