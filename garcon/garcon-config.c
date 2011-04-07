@@ -179,11 +179,11 @@ garcon_config_lookup (const gchar *filename)
     {
       /* Build the filename, if the file exists return the path */
       path = g_build_filename (dirs[i], filename, NULL);
-      if (!g_path_is_absolute (path) || !g_file_test (path, G_FILE_TEST_IS_REGULAR))
-        {
-          g_free (path);
-          path = NULL;
-        }
+      if (g_path_is_absolute (path) && g_file_test (path, G_FILE_TEST_IS_REGULAR))
+        return path;
+
+      g_free (path);
+      path = NULL;
     }
 
   /* Also try the install prefix of garcon in case XDG_CONFIG_DIRS is not
