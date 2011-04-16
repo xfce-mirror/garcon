@@ -1,3 +1,9 @@
+0.1.7
+=====
+- Respect XDG priorities when returning the menu file (Bug #7470).
+- Translation updates: Slovak.
+
+
 0.1.6
 =====
 - Add <DefaultMergeDirs/> to xfce-applications.menu.
