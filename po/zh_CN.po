@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 14:36+0100\n"
+"POT-Creation-Date: 2011-04-28 04:05+0000\n"
 "PO-Revision-Date: 2010-11-23 22:57+0800\n"
 "Last-Translator: Hunt Xu <huntxu@live.cn>\n"
 "Language-Team: Simplified Chinese <i18n-xfce@xfce.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -23,7 +23,7 @@ msgstr "附件"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "常见的桌面工具和应用程序"
+msgstr "常见桌面工具和应用程序"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -47,7 +47,7 @@ msgstr "游戏"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr "游戏，拼图，和其他有趣的软件"
+msgstr "游戏、拼图和其他有趣的软件"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
@@ -71,7 +71,7 @@ msgstr "网络"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Network applications and utilities"
-msgstr "网络应用程序和工具"
+msgstr "网络程序和工具"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -79,11 +79,11 @@ msgstr "办公"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "办公与生产应用程序"
+msgstr "办公与生产力程序"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr "未归入分类的其它应用程序"
+msgstr "未归类的其它程序"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
@@ -107,7 +107,7 @@ msgstr "屏幕保护程序"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr "桌面与系统设置应用程序"
+msgstr "桌面与系统设置程序"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
@@ -124,20 +124,20 @@ msgstr "系统工具和实用程序"
 #: ../garcon/garcon-menu.c:698
 #, c-format
 msgid "File \"%s\" not found"
-msgstr "文件 \"%s\" 未找到"
+msgstr "未找到 \"%s\" 文件"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "无法从 %s 中读取菜单文件数据: %s"
+msgstr "无法从 %s 中加载菜单文件数据: %s"
 
 #: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "无法从 %s 中读取菜单文件数据"
+msgstr "无法从 %s 中加载菜单文件数据"
 
 #~ msgid "No suitable application menu file found"
-#~ msgstr "没有找到对应的菜单文件"
+#~ msgstr "没有找到对应的程序菜单文件"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "Xfce 菜单：测试目录显示"
@@ -146,7 +146,7 @@ msgstr "无法从 %s 中读取菜单文件数据"
 #~ msgstr "显示菜单(_S)"
 
 #~ msgid "Failed to locate the system menu"
-#~ msgstr "找不到系统菜单"
+#~ msgstr "载人系统菜单失败"
 
 #~ msgid "Failed to create the libxfce4menu item cache in %s."
-#~ msgstr "无法在 %s 建立 libxfce4menu 缓存区."
+#~ msgstr "无法在 %s 创建 libxfce4menu 对象缓存区."
