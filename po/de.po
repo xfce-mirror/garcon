@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-27 10:05+0000\n"
+"POT-Creation-Date: 2011-05-06 10:05+0000\n"
 "PO-Revision-Date: 2009-08-15 03:30+0100\n"
 "Last-Translator: Jannis Pohlmann <jannis@xfce.org>\n"
 "Language-Team: German <xfce-i18n-de@xfce.org>\n"
@@ -44,7 +44,7 @@ msgstr "Lernprogramme"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
-msgstr "Spiel"
+msgstr "Spiele"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
@@ -60,7 +60,7 @@ msgstr "Bildbearbeitungsanwendungen"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr "Audio- und Videowidergabeprogramme bzw. Bearbeitungswerkzeuge"
+msgstr "Audio- und Videowiedergabeprogramme und Bearbeitungswerkzeuge"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
@@ -96,7 +96,7 @@ msgstr "Wissenschaft"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr "wissenschaftliche Software"
+msgstr "Wissenschaftliche Software"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -125,17 +125,17 @@ msgstr "Systemwerkzeuge"
 #: ../garcon/garcon-menu.c:698
 #, c-format
 msgid "File \"%s\" not found"
-msgstr "Datei »%s« nicht gefunden"
+msgstr "Datei »%s« wurde nicht gefunden"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Menüinformationen konnten nicht aus der Datei %s geladen werden: %s"
+msgstr "Menüinformationen konnten nicht aus der Datei »%s« geladen werden: %s"
 
 #: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Menüinformationen konnten nicht aus der Datei %s geladen werden"
+msgstr "Menüinformationen konnten nicht aus der Datei »%s« geladen werden"
 
 #~ msgid "No suitable application menu file found"
 #~ msgstr "Keine passende Datei für das Anwendungsmenü gefunden"
