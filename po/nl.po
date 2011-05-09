@@ -2,19 +2,19 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 14:36+0100\n"
+"POT-Creation-Date: 2011-05-09 04:05+0000\n"
 "PO-Revision-Date: 2010-04-30 16:15+0100\n"
 "Last-Translator: Vincent Tunru <projects@vinnl.nl>\n"
 "Language-Team: Dutch <nl@li.org>\n"
-"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
 "X-Poedit-Language: Dutch\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
@@ -124,7 +124,7 @@ msgstr "Systeemgereedschap en hulpmiddelen"
 #: ../garcon/garcon-menu.c:698
 #, c-format
 msgid "File \"%s\" not found"
-msgstr ""
+msgstr "Bestand \"%s\" niet gevonden"
 
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
