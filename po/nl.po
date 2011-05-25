@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-09 10:05+0000\n"
+"POT-Creation-Date: 2011-05-25 04:05+0000\n"
 "PO-Revision-Date: 2010-04-30 16:15+0100\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr "Accessoires"
+msgstr "Hulpmiddelen"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "Algemene hulpmiddelen en toepassingen"
+msgstr "Algemene gereedschappen en toepassingen"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -35,7 +35,7 @@ msgstr "Gereedschap voor programma-ontwikkeling"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
-msgstr "Educatief"
+msgstr "Onderwijs"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
@@ -43,11 +43,11 @@ msgstr "Educatieve programma's"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
-msgstr "Amusement"
+msgstr "Spelletjes"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr "Games, puzzels en ander tijdverdrijf"
+msgstr "Spelletjes, puzzels en ander tijdverdrijf"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
