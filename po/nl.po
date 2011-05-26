@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-25 04:05+0000\n"
+"POT-Creation-Date: 2011-05-26 10:05+0000\n"
 "PO-Revision-Date: 2010-04-30 16:15+0100\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch <nl@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr "Extra's"
+msgstr "Hulpmiddelen"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
@@ -99,7 +99,7 @@ msgstr "Wetenschappelijke programma's"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
-msgstr "Schermbeveiligingsapplets"
+msgstr "Schermbeveiligingstoepassingen"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
