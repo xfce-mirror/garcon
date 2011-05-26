@@ -1,8 +1,9 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+# Dutch translation of the garcon package.
+# Copyright (C) The Xfce development team.
+# This file is distributed under the same license as the 
+# garcon package.
+# Pjotr, 2011.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
@@ -31,7 +32,7 @@ msgstr "Ontwikkeling"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr "Gereedschap voor programma-ontwikkeling"
+msgstr "Gereedschappen voor ontwikkelaars"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
@@ -59,7 +60,7 @@ msgstr "Toepassingen voor het maken en bewerken van afbeeldingen"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr "Audio- en videospelers en -bewerkers"
+msgstr "Geluid- en videospelers en -bewerkers"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
@@ -83,7 +84,7 @@ msgstr "Kantoor- en productiviteitstoepassingen"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr "Toepassingen die niet in andere categorieën thuishoren"
+msgstr "Toepassingen die niet in andere categorieën passen"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
@@ -107,7 +108,8 @@ msgstr "Schermbeveiligingen"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr "Toepassingen voor bureaublad- en systeeminstellingen"
+msgstr "Toepassingen voor bureaubladgebruik en\n"
+"voor systeeminstellingen"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
@@ -129,9 +131,9 @@ msgstr "Bestand \"%s\" niet gevonden"
 #: ../garcon/garcon-menu-parser.c:278
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Kon gegevens van menubestand niet laden uit %s: %s"
+msgstr "Kon gegevens van menubestand niet laden vanuit %s: %s"
 
 #: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Kon gegevens van menubestand niet laden uit %s"
+msgstr "Kon gegevens van menubestand niet laden vanuit %s"
