@@ -245,7 +245,8 @@ garcon_menu_directory_finalize (GObject *object)
   g_strfreev (directory->priv->not_show_in);
 
   /* Free file */
-  g_object_unref (directory->priv->file);
+  if (directory->priv->file != NULL)
+    g_object_unref (directory->priv->file);
 
   (*G_OBJECT_CLASS (garcon_menu_directory_parent_class)->finalize) (object);
 }
