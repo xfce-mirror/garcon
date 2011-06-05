@@ -702,9 +702,6 @@ garcon_menu_item_new (GFile *file)
 {
   GarconMenuItem *item = NULL;
   GKeyFile       *rc;
-  gchar          *contents;
-  gsize           length = 0;
-  gboolean        succeed;
   GList          *categories = NULL;
   gboolean        terminal;
   gboolean        no_display;
@@ -722,19 +719,10 @@ garcon_menu_item_new (GFile *file)
 
   g_return_val_if_fail (G_IS_FILE (file), NULL);
 
-  /* Load the contents of the file */
-  if (!g_file_load_contents (file, NULL, &contents, &length, NULL, NULL) || length == 0)
-    return NULL;
-
   /* Open the keyfile */
-  rc = g_key_file_new ();
-  succeed = g_key_file_load_from_data (rc, contents, length, G_KEY_FILE_NONE, NULL);
-  g_free (contents);
-  if (G_UNLIKELY (!succeed))
-    {
-      g_key_file_free (rc);
-      return NULL;
-    }
+  rc = _garcon_keyfile_load (file, NULL);
+  if (G_UNLIKELY (rc == NULL))
+    return NULL;
 
   /* Parse name and exec command */
   name = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_NAME);
@@ -867,38 +855,22 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
 {
   GKeyFile *rc;
   gboolean  boolean;
-  gboolean  succeed;
   GList    *categories = NULL;
   GList    *lp;
   GList    *old_categories = NULL;
   gchar   **mt;
   gchar   **str_list;
-  gchar    *contents;
   gchar    *string;
   gchar    *name;
   gchar    *exec;
-  gsize     length = 0;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (G_IS_FILE (file), FALSE);
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
-  /* Load the contents of the file */
-  if (!g_file_load_contents (file, NULL, &contents, &length, NULL, error))
-    return FALSE;
-
-  /* Leave when the file is empty */
-  if (G_UNLIKELY (length == 0))
-    {
-      g_set_error_literal (error, 0, 0, "The desktop file is empty.");
-      return FALSE;
-    }
-
   /* Open the keyfile */
-  rc = g_key_file_new ();
-  succeed = g_key_file_load_from_data (rc, contents, length, G_KEY_FILE_NONE, error);
-  g_free (contents);
-  if (G_UNLIKELY (!succeed))
+  rc = _garcon_keyfile_load (file, error);
+  if (G_UNLIKELY (rc == NULL))
     return FALSE;
 
   /* Check if there is a name and exec key */

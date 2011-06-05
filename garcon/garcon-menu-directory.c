@@ -27,6 +27,7 @@
 
 #include <garcon/garcon-environment.h>
 #include <garcon/garcon-menu-directory.h>
+#include <garcon/garcon-private.h>
 
 
 
@@ -342,31 +343,18 @@ GarconMenuDirectory *
 garcon_menu_directory_new (GFile *file)
 {
   GarconMenuDirectory *directory = NULL;
-  gchar               *contents;
-  gsize                length;
   GKeyFile            *rc;
   gchar               *name;
   gchar               *comment;
   gchar               *icon_name;
   gboolean             no_display;
-  gboolean             succeed;
 
   g_return_val_if_fail (G_IS_FILE (file), NULL);
 
-  /* Load the contents of the file */
-  if (!g_file_load_contents (file, NULL, &contents, &length, NULL, NULL))
-    return NULL;
-
   /* Open the keyfile */
-  rc = g_key_file_new ();
-  succeed = g_key_file_load_from_data (rc, contents, length, G_KEY_FILE_NONE, NULL);
-  g_free (contents);
-  if (G_UNLIKELY (!succeed))
-    {
-      /* Cleanup and leave */
-      g_key_file_free (rc);
-      return NULL;
-    }
+  rc = _garcon_keyfile_load (file, NULL);
+  if (G_UNLIKELY (rc == NULL))
+    return NULL;
 
   /* Parse name, exec command and icon name */
   name = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,

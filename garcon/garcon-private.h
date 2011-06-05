@@ -41,6 +41,9 @@ GFile    *_garcon_file_new_relative_to_file     (const gchar *path,
 gchar    *_garcon_file_get_uri_relative_to_file (const gchar *path,
                                                  GFile       *file);
 
+GKeyFile *_garcon_keyfile_load                   (GFile      *file,
+                                                  GError    **error);
+
 G_END_DECLS
 
 #endif /* !__GARCON_PRIVATE_H__ */

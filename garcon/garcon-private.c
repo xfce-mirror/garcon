@@ -107,3 +107,49 @@ _garcon_file_get_uri_relative_to_file (const gchar *path,
 
   return uri;
 }
+
+
+
+
+GKeyFile *
+_garcon_keyfile_load (GFile   *file,
+                      GError **error)
+{
+  GKeyFile *rc;
+  gchar    *path;
+  gchar    *contents;
+  gsize     length = 0;
+  gboolean  result = FALSE;
+
+  /* Open the keyfile */
+  rc = g_key_file_new ();
+
+  /* Load the contents of the file */
+  if (G_LIKELY (g_file_is_native (file)))
+    {
+      path = g_file_get_path (file);
+      result = g_key_file_load_from_file (rc, path, G_KEY_FILE_NONE, error);
+      g_free (path);
+    }
+  else if (g_file_load_contents (file, NULL, &contents, &length, NULL, error))
+    {
+      /* Leave when the file is empty */
+      if (G_UNLIKELY (length == 0))
+        {
+          g_set_error_literal (error, 0, 0, "The desktop file is empty.");
+          g_key_file_free (rc);
+          return NULL;
+        }
+
+      result = g_key_file_load_from_data (rc, contents, length, G_KEY_FILE_NONE, error);
+      g_free (contents);
+    }
+
+  if (!result)
+    {
+      g_key_file_free (rc);
+      return NULL;
+    }
+
+  return rc;
+}
