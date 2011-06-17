@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-26 10:05+0000\n"
-"PO-Revision-Date: 2010-04-30 16:15+0100\n"
+"POT-Creation-Date: 2011-06-17 10:06+0000\n"
+"PO-Revision-Date: 2011-06-15 16:15+0200\n"
 "Last-Translator: Pjotr\n"
-"Language-Team: Dutch <nl@li.org>\n"
+"Language-Team: Dutch (Flemish)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
-"X-Poedit-Language: Dutch\n"
+"Language: nl (Dutch)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -48,7 +48,7 @@ msgstr "Spelletjes"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr "Spelletjes, puzzels en ander tijdverdrijf"
+msgstr "Spelletjes, puzzels en ander prettig tijdverdrijf"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
@@ -80,7 +80,7 @@ msgstr "Kantoor"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "Kantoor- en productiviteitstoepassingen"
+msgstr "Kantoor- en productiviteittoepassingen"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
@@ -100,7 +100,7 @@ msgstr "Wetenschappelijke programma's"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
-msgstr "Schermbeveiligingstoepassingen"
+msgstr "Schermbeveiligingtoepassingen"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
@@ -108,7 +108,8 @@ msgstr "Schermbeveiligingen"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr "Toepassingen voor bureaubladgebruik en\n"
+msgstr ""
+"Toepassingen voor bureaubladgebruik en\n"
 "voor systeeminstellingen"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
