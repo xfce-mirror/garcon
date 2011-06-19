@@ -631,9 +631,9 @@ garcon_menu_merger_resolve_relative_paths (GNode                   *node,
                       node->data = garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE_FILE,
                                                             GUINT_TO_POINTER (GARCON_MENU_MERGE_FILE_PATH));
                       garcon_menu_node_tree_set_merge_file_filename (node, absolute_path);
+                      break;
                     }
                   g_object_unref (absolute);
-                  break;
                 }
               g_object_unref (config_dir);
             }
