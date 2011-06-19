@@ -2,5 +2,5 @@
 Version=1.0
 Type=Directory
 Icon=applications-internet
-_Name=Network
-_Comment=Network applications and utilities
+_Name=Internet
+_Comment=Applications for Internet access
