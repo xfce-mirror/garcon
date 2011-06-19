@@ -1,3 +1,13 @@
+0.1.8
+=====
+- Remove the science toplevel category (bug #1038).
+- Fix merging parent menu file (bug #7169).
+- Handle local desktop file loading directly.
+- Don't unref NULL file in GarconMenuDirectory.
+- Translation updates: Telugu, Portuguese (Brazilian), Lithuanian,
+  Dutch (Flemish), Chinese (China), German (de).
+
+
 0.1.7
 =====
 - Respect XDG priorities when returning the menu file (Bug #7470).
