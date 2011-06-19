@@ -1,14 +1,14 @@
 # Dutch translation of the garcon package.
 # Copyright (C) The Xfce development team.
-# This file is distributed under the same license as the 
+# This file is distributed under the same license as the
 # garcon package.
 # Pjotr, 2011.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-17 10:06+0000\n"
+"POT-Creation-Date: 2011-06-19 16:05+0000\n"
 "PO-Revision-Date: 2011-06-15 16:15+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
@@ -67,12 +67,12 @@ msgid "Multimedia"
 msgstr "Multimedia"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Network"
-msgstr "Netwerk"
+msgid "Applications for Internet access"
+msgstr "Toepassingen voor Internettoegang"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-msgid "Network applications and utilities"
-msgstr "Netwerktoepassingen en -hulpmiddelen"
+msgid "Internet"
+msgstr "Internet"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -89,14 +89,6 @@ msgstr "Toepassingen die niet in andere categorieën passen"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Overige"
-
-#: ../data/xfce/xfce-science.directory.in.h:1
-msgid "Science"
-msgstr "Wetenschap"
-
-#: ../data/xfce/xfce-science.directory.in.h:2
-msgid "Scientific software"
-msgstr "Wetenschappelijke programma's"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -138,3 +130,15 @@ msgstr "Kon gegevens van menubestand niet laden vanuit %s: %s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Kon gegevens van menubestand niet laden vanuit %s"
+
+#~ msgid "Network"
+#~ msgstr "Netwerk"
+
+#~ msgid "Network applications and utilities"
+#~ msgstr "Netwerktoepassingen en -hulpmiddelen"
+
+#~ msgid "Science"
+#~ msgstr "Wetenschap"
+
+#~ msgid "Scientific software"
+#~ msgstr "Wetenschappelijke programma's"
