@@ -67,7 +67,6 @@ msgid "Multimedia"
 msgstr "Multimedia"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
-#, fuzzy
 msgid "Applications for Internet access"
 msgstr "Anwendungen für den Zugriff auf das Internet"
 
