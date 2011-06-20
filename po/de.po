@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-06 10:05+0000\n"
+"POT-Creation-Date: 2011-06-20 16:06+0000\n"
 "PO-Revision-Date: 2009-08-15 03:30+0100\n"
 "Last-Translator: Jannis Pohlmann <jannis@xfce.org>\n"
 "Language-Team: German <xfce-i18n-de@xfce.org>\n"
@@ -67,12 +67,13 @@ msgid "Multimedia"
 msgstr "Multimedia"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Network"
-msgstr "Netzwerk"
+#, fuzzy
+msgid "Applications for Internet access"
+msgstr "Anwendungen für den Zugriff auf das Internet"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-msgid "Network applications and utilities"
-msgstr "Netzwerkanwendungen und Hilfsmittel"
+msgid "Internet"
+msgstr "Internet"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -89,14 +90,6 @@ msgstr "Anwendungen, die in keine andere Kategorie passen"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Sonstiges"
-
-#: ../data/xfce/xfce-science.directory.in.h:1
-msgid "Science"
-msgstr "Wissenschaft"
-
-#: ../data/xfce/xfce-science.directory.in.h:2
-msgid "Scientific software"
-msgstr "Wissenschaftliche Software"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -136,6 +129,18 @@ msgstr "Menüinformationen konnten nicht aus der Datei »%s« geladen werden: %s
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Menüinformationen konnten nicht aus der Datei »%s« geladen werden"
+
+#~ msgid "Network"
+#~ msgstr "Netzwerk"
+
+#~ msgid "Network applications and utilities"
+#~ msgstr "Netzwerkanwendungen und Hilfsmittel"
+
+#~ msgid "Science"
+#~ msgstr "Wissenschaft"
+
+#~ msgid "Scientific software"
+#~ msgstr "Wissenschaftliche Software"
 
 #~ msgid "No suitable application menu file found"
 #~ msgstr "Keine passende Datei für das Anwendungsmenü gefunden"
