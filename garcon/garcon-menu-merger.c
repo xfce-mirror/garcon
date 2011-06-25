@@ -1189,6 +1189,8 @@ garcon_menu_merger_resolve_moves (GNode *node)
   g_node_traverse (node, G_IN_ORDER, G_TRAVERSE_ALL, 2,
                    (GNodeTraverseFunc) remove_moves, &moves);
 
+  g_list_free (moves);
+
   for (iter = pairs; iter != NULL; iter = g_list_next (iter))
     {
       if (g_list_length (iter) < 2)
