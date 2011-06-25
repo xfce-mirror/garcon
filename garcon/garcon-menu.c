@@ -216,6 +216,9 @@ struct _GarconMenuPrivate
 
   /* Flag for marking custom path menus */
   guint                uses_custom_path : 1;
+
+  /* idle reload-required to group events */
+  guint                idle_reload_required_id;
 };
 
 
@@ -330,6 +333,7 @@ garcon_menu_init (GarconMenu *menu)
   menu->priv->pool = garcon_menu_item_pool_new ();
   menu->priv->uses_custom_path = TRUE;
   menu->priv->changed_files = NULL;
+  menu->priv->idle_reload_required_id = 0;
 
   /* Take reference on the menu item cache */
   menu->priv->cache = garcon_menu_item_cache_get_default ();
@@ -377,6 +381,13 @@ garcon_menu_clear (GarconMenu *menu)
 
   /* Clear the item pool */
   garcon_menu_item_pool_clear (menu->priv->pool);
+
+  /* Stop reload-required emit */
+  if (menu->priv->idle_reload_required_id != 0)
+    {
+      g_source_remove (menu->priv->idle_reload_required_id);
+      menu->priv->idle_reload_required_id = 0;
+    }
 }
 
 
@@ -2030,6 +2041,22 @@ garcon_menu_monitor_directory_dirs (GarconMenu *menu)
 
 
 
+static gboolean
+garcon_menu_file_emit_reload_required (gpointer data)
+{
+  GarconMenu *menu = GARCON_MENU (data);
+
+  g_return_val_if_fail (GARCON_IS_MENU (menu), FALSE);
+
+  menu->priv->idle_reload_required_id = 0;
+
+  g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+
+  return FALSE;
+}
+
+
+
 static void
 garcon_menu_file_changed (GarconMenu       *menu,
                           GFile            *file,
@@ -2051,7 +2078,8 @@ garcon_menu_file_changed (GarconMenu       *menu,
   /* Quick check: reloading is needed if the menu file being used has changed */
   if (g_file_equal (menu->priv->file, file))
     {
-      g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+      if (menu->priv->idle_reload_required_id == 0)
+        menu->priv->idle_reload_required_id = g_idle_add (garcon_menu_file_emit_reload_required, menu);
       return;
     }
 
@@ -2089,8 +2117,10 @@ garcon_menu_file_changed (GarconMenu       *menu,
   g_free (relative_filename);
 
   /* If the event file has higher priority, a menu reload is needed */
-  if (!lower_priority && higher_priority)
-    g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+  if (!lower_priority
+      && higher_priority
+      && menu->priv->idle_reload_required_id == 0)
+    menu->priv->idle_reload_required_id = g_idle_add (garcon_menu_file_emit_reload_required, menu);
 }
 
 
