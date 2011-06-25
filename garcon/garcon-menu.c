@@ -211,7 +211,7 @@ struct _GarconMenuPrivate
   GarconMenuItemCache *cache;
 
   /* List to merge consecutive file changes into a a single event */
-  GList               *changed_files;
+  GSList              *changed_files;
   guint                file_changed_idle;
 
   /* Flag for marking custom path menus */
@@ -1838,8 +1838,8 @@ garcon_menu_stop_monitoring (GarconMenu *menu)
     g_source_remove (menu->priv->file_changed_idle);
 
   /* Free the hash table for merging consecutive file change events */
-  g_list_foreach (menu->priv->changed_files, (GFunc) g_object_unref, NULL);
-  g_list_free (menu->priv->changed_files);
+  g_slist_foreach (menu->priv->changed_files, (GFunc) g_object_unref, NULL);
+  g_slist_free (menu->priv->changed_files);
   menu->priv->changed_files = NULL;
 }
 
@@ -2176,7 +2176,7 @@ garcon_menu_process_file_changes (GarconMenu *menu)
   gboolean        affects_the_outside = FALSE;
   gboolean        stop_processing = FALSE;
   GFile          *file;
-  GList          *lp;
+  GSList         *lp;
   gchar          *path;
 
   g_return_val_if_fail (GARCON_IS_MENU (menu), FALSE);
@@ -2260,8 +2260,8 @@ garcon_menu_process_file_changes (GarconMenu *menu)
     }
 
   /* reset the changed files list, all events processed */
-  g_list_foreach (menu->priv->changed_files, (GFunc) g_object_unref, NULL);
-  g_list_free (menu->priv->changed_files);
+  g_slist_foreach (menu->priv->changed_files, (GFunc) g_object_unref, NULL);
+  g_slist_free (menu->priv->changed_files);
   menu->priv->changed_files = NULL;
 
   /* reset the idle source ID */
@@ -2301,10 +2301,10 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
     {
       /* add the file to the changed files queue if we have no change event for
        * it queued yet */
-      if (g_list_find_custom (menu->priv->changed_files, file, compare_files) == NULL)
+      if (g_slist_find_custom (menu->priv->changed_files, file, compare_files) == NULL)
         {
-          menu->priv->changed_files = g_list_append (menu->priv->changed_files, 
-                                                     g_object_ref (file));
+          menu->priv->changed_files = g_slist_prepend (menu->priv->changed_files, 
+                                                       g_object_ref (file));
 
           /* register the idle handler if it is not active yet */
           if (menu->priv->file_changed_idle == 0)
