@@ -1188,8 +1188,8 @@ garcon_menu_collect_files_from_path (GarconMenu  *menu,
 
 
 static gboolean
-collect_rules (GNode  *node,
-               GList **list)
+collect_rules (GNode   *node,
+               GSList **list)
 {
   GarconMenuNodeType type;
 
@@ -1198,7 +1198,7 @@ collect_rules (GNode  *node,
   if (type == GARCON_MENU_NODE_TYPE_INCLUDE ||
       type == GARCON_MENU_NODE_TYPE_EXCLUDE)
     {
-      *list = g_list_append (*list, node);
+      *list = g_slist_append (*list, node);
     }
 
   return FALSE;
@@ -1211,8 +1211,9 @@ garcon_menu_resolve_items (GarconMenu *menu,
                            GHashTable *desktop_id_table,
                            gboolean    only_unallocated)
 {
-  GList  *rules = NULL;
-  GList  *iter;
+  GSList  *rules = NULL;
+  GSList  *iter;
+  GList   *submenu;
   gboolean menu_only_unallocated = FALSE;
 
   g_return_if_fail (menu != NULL && GARCON_IS_MENU (menu));
@@ -1230,7 +1231,7 @@ garcon_menu_resolve_items (GarconMenu *menu,
                        (GNodeTraverseFunc) collect_rules, &rules);
 
       /* Iterate over all rules */
-      for (iter = rules; iter != NULL; iter = g_list_next (iter))
+      for (iter = rules; iter != NULL; iter = g_slist_next (iter))
         {
           if (G_LIKELY (garcon_menu_node_tree_get_node_type (iter->data) == GARCON_MENU_NODE_TYPE_INCLUDE))
             {
@@ -1243,13 +1244,16 @@ garcon_menu_resolve_items (GarconMenu *menu,
               garcon_menu_item_pool_apply_exclude_rule (menu->priv->pool, iter->data);
             }
         }
+
+      /* Cleanup */
+      g_slist_free (rules);
     }
 
   /* Iterate over all submenus */
-  for (iter = menu->priv->submenus; iter != NULL; iter = g_list_next (iter))
+  for (submenu = menu->priv->submenus; submenu != NULL; submenu = g_list_next (submenu))
     {
       /* Resolve items of the submenu */
-      garcon_menu_resolve_items (GARCON_MENU (iter->data), desktop_id_table, only_unallocated);
+      garcon_menu_resolve_items (GARCON_MENU (submenu->data), desktop_id_table, only_unallocated);
     }
 }
 
