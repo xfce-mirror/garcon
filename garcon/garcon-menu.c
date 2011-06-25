@@ -1499,12 +1499,12 @@ layout_elements_collect (GList **dest_list,
       if (GARCON_IS_MENU (iter->data))
         {
           if (G_LIKELY (!layout_has_menuname (layout, garcon_menu_get_name (iter->data))))
-            *dest_list = g_list_append (*dest_list, iter->data);
+            *dest_list = g_list_prepend (*dest_list, iter->data);
         }
       else if (GARCON_IS_MENU_ITEM (iter->data))
         {
           if (G_LIKELY (!layout_has_filename (layout, garcon_menu_item_get_desktop_id (iter->data))))
-            *dest_list = g_list_append (*dest_list, iter->data);
+            *dest_list = g_list_prepend (*dest_list, iter->data);
         }
     }
 }
@@ -1555,7 +1555,7 @@ garcon_menu_get_elements (GarconMenu *menu)
 
           /* If the item with this desktop ID is included in the menu, append it to the list */
           if (G_LIKELY (item != NULL))
-            items = g_list_append (items, item);
+            items = g_list_prepend (items, item);
         }
       else if (type == GARCON_MENU_NODE_TYPE_MENUNAME)
         {
@@ -1565,12 +1565,12 @@ garcon_menu_get_elements (GarconMenu *menu)
 
           /* If there is such a menu, append it to the list */
           if (G_LIKELY (submenu != NULL))
-            items = g_list_append (items, submenu);
+            items = g_list_prepend (items, submenu);
         }
       else if (type == GARCON_MENU_NODE_TYPE_SEPARATOR)
         {
           /* Append separator to the list */
-          items = g_list_append (items, garcon_menu_separator_get_default ());
+          items = g_list_prepend (items, garcon_menu_separator_get_default ());
         }
       else if (type == GARCON_MENU_NODE_TYPE_MERGE)
         {
@@ -1588,29 +1588,38 @@ garcon_menu_get_elements (GarconMenu *menu)
               /* Sort menu items */
               menu_items = g_list_sort (menu_items, (GCompareFunc) garcon_menu_compare_items);
 
-              /* Append menu items to the returned item list */
+              /* Prepend menu items to the returned item list */
               layout_elements_collect (&items, menu_items, layout);
+
+              /* Cleanup */
+              g_list_free (menu_items);
             }
           else if (merge_type == GARCON_MENU_LAYOUT_MERGE_FILES)
             {
               /* Get all menu items of this menu */
               menu_items = garcon_menu_get_items (menu);
 
-              /* Append menu items to the returned item list */
+              /* Prepend menu items to the returned item list */
               layout_elements_collect (&items, menu_items, layout);
+
+              /* Cleanup */
+              g_list_free (menu_items);
             }
           else if (merge_type == GARCON_MENU_LAYOUT_MERGE_MENUS)
             {
               /* Get all submenus */
               menu_items = garcon_menu_get_menus (menu);
 
-              /* Append submenus to the returned item list */
+              /* Prepend submenus to the returned item list */
               layout_elements_collect (&items, menu_items, layout);
+
+              /* Cleanup */
+              g_list_free (menu_items);
             }
         }
     }
 
-  return items;
+  return g_list_reverse (items);
 }
 
 
