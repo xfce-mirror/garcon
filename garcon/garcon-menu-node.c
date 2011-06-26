@@ -616,11 +616,20 @@ garcon_menu_node_tree_rule_matches (GNode          *node,
 
   switch (garcon_menu_node_tree_get_node_type (node))
     {
+    case GARCON_MENU_NODE_TYPE_CATEGORY:
+      matches = garcon_menu_item_has_category (item, garcon_menu_node_tree_get_string (node));
+      break;
+
     case GARCON_MENU_NODE_TYPE_INCLUDE:
     case GARCON_MENU_NODE_TYPE_EXCLUDE:
     case GARCON_MENU_NODE_TYPE_OR:
       for (child = g_node_first_child (node); child != NULL; child = g_node_next_sibling (child))
         matches = matches || garcon_menu_node_tree_rule_matches (child, item);
+      break;
+
+    case GARCON_MENU_NODE_TYPE_FILENAME:
+      matches = g_str_equal (garcon_menu_node_tree_get_string (node),
+                             garcon_menu_item_get_desktop_id (item));
       break;
 
     case GARCON_MENU_NODE_TYPE_AND:
@@ -633,15 +642,6 @@ garcon_menu_node_tree_rule_matches (GNode          *node,
       for (child = g_node_first_child (node); child != NULL; child = g_node_next_sibling (child))
         child_matches = child_matches || garcon_menu_node_tree_rule_matches (child, item);
       matches = !child_matches;
-      break;
-
-    case GARCON_MENU_NODE_TYPE_FILENAME:
-      matches = g_str_equal (garcon_menu_node_tree_get_string (node),
-                             garcon_menu_item_get_desktop_id (item));
-      break;
-
-    case GARCON_MENU_NODE_TYPE_CATEGORY:
-      matches = garcon_menu_item_has_category (item, garcon_menu_node_tree_get_string (node));
       break;
 
     case GARCON_MENU_NODE_TYPE_ALL:
