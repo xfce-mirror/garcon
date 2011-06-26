@@ -2055,7 +2055,7 @@ garcon_menu_monitor_directory_dirs (GarconMenu *menu)
 
 
 static gboolean
-garcon_menu_file_emit_reload_required (gpointer data)
+garcon_menu_file_emit_reload_required_idle (gpointer data)
 {
   GarconMenu *menu = GARCON_MENU (data);
 
@@ -2066,6 +2066,15 @@ garcon_menu_file_emit_reload_required (gpointer data)
   g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
 
   return FALSE;
+}
+
+
+
+static void
+garcon_menu_file_emit_reload_required (GarconMenu *menu)
+{
+  if (menu->priv->idle_reload_required_id == 0)
+    menu->priv->idle_reload_required_id = g_idle_add (garcon_menu_file_emit_reload_required_idle, menu);
 }
 
 
@@ -2091,8 +2100,7 @@ garcon_menu_file_changed (GarconMenu       *menu,
   /* Quick check: reloading is needed if the menu file being used has changed */
   if (g_file_equal (menu->priv->file, file))
     {
-      if (menu->priv->idle_reload_required_id == 0)
-        menu->priv->idle_reload_required_id = g_idle_add (garcon_menu_file_emit_reload_required, menu);
+      garcon_menu_file_emit_reload_required (menu);
       return;
     }
 
@@ -2131,9 +2139,8 @@ garcon_menu_file_changed (GarconMenu       *menu,
 
   /* If the event file has higher priority, a menu reload is needed */
   if (!lower_priority
-      && higher_priority
-      && menu->priv->idle_reload_required_id == 0)
-    menu->priv->idle_reload_required_id = g_idle_add (garcon_menu_file_emit_reload_required, menu);
+      && higher_priority)
+    garcon_menu_file_emit_reload_required (menu);
 }
 
 
@@ -2148,7 +2155,7 @@ garcon_menu_merge_file_changed (GarconMenu       *menu,
   g_return_if_fail (GARCON_IS_MENU (menu));
   g_return_if_fail (menu->priv->parent == NULL);
 
-  g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+  garcon_menu_file_emit_reload_required (menu);
 }
 
 
@@ -2163,7 +2170,7 @@ garcon_menu_merge_dir_changed (GarconMenu       *menu,
   g_return_if_fail (GARCON_IS_MENU (menu));
   g_return_if_fail (menu->priv->parent == NULL);
 
-  g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+  garcon_menu_file_emit_reload_required (menu);
 }
 
 
@@ -2197,7 +2204,7 @@ garcon_menu_process_file_changes (GarconMenu *menu)
            * - created (possibly inside an existing one)
            * this is not trivial to handle, so we simply enforce a
            * menu reload to deal with the changes */
-          g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+          garcon_menu_file_emit_reload_required (menu);
           stop_processing = TRUE;
         }
       else
@@ -2218,7 +2225,7 @@ garcon_menu_process_file_changes (GarconMenu *menu)
                            * moved around between different menus. this is slightly
                            * more complicated than one would first think, so just
                            * enforce a complete menu reload for now */
-                          g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+                          garcon_menu_file_emit_reload_required (menu);
                           stop_processing = TRUE;
                         }
                       else
@@ -2242,7 +2249,7 @@ garcon_menu_process_file_changes (GarconMenu *menu)
                        * or that the file was deleted. handling most situations can be very
                        * tricky, so, again, we just enfore a menu reload until we have 
                        * something better */
-                      g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+                      garcon_menu_file_emit_reload_required (menu);
                       stop_processing = TRUE;
                     }
                 }
@@ -2251,7 +2258,7 @@ garcon_menu_process_file_changes (GarconMenu *menu)
                   /* there could be a lot of stuff happening here. seriously, this
                    * stuff is complicated. for now, simply enforce a complete reload 
                    * of the menu structure */
-                  g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+                  garcon_menu_file_emit_reload_required (menu);
                   stop_processing = TRUE;
                 }
             }
@@ -2324,7 +2331,7 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
           /* an existing app dir (or a subdirectory) has been deleted. we
            * could remove all the items that are in use and reside inside
            * this root directory. but for now... enforce a menu reload! */
-          g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+          garcon_menu_file_emit_reload_required (menu);
         }
       else 
         {
@@ -2340,7 +2347,7 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
                * yet whether there is a replacement in another app dir
                * with lower priority. we could try to find out but for now
                * it's easier to simply enforce a menu reload */
-              g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
+              garcon_menu_file_emit_reload_required (menu);
             }
           else
             {
