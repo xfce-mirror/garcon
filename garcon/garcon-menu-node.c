@@ -420,7 +420,6 @@ typedef struct
 {
   GarconMenuNodeType type;
   GNode             *self;
-  gboolean           reverse;
   gpointer           value;
 } Pair;
 
@@ -434,12 +433,7 @@ collect_children (GNode *node,
     return FALSE;
 
   if (garcon_menu_node_tree_get_node_type (node) == pair->type)
-    {
-      if (pair->reverse)
-        pair->value = g_list_prepend (pair->value, node);
-      else
-        pair->value = g_list_append (pair->value, node);
-    }
+    pair->value = g_list_prepend (pair->value, node);
 
   return FALSE;
 }
@@ -451,18 +445,22 @@ garcon_menu_node_tree_get_child_node (GNode             *tree,
                                       GarconMenuNodeType type,
                                       gboolean           reverse)
 {
-  GNode *node = NULL;
   GNode *child;
 
-  for (child = reverse ? g_node_last_child (tree) : g_node_first_child (tree);
-       node == NULL && child != NULL;
-       child = reverse ? g_node_prev_sibling (child) : g_node_next_sibling (child))
+  if (reverse)
     {
-      if (garcon_menu_node_tree_get_node_type (child) == type)
-        node = child;
+      for (child = g_node_last_child (tree); child != NULL; child = g_node_prev_sibling (child))
+        if (garcon_menu_node_tree_get_node_type (child) == type)
+          return child;
+    }
+  else
+    {
+      for (child = g_node_first_child (tree); child != NULL; child = g_node_next_sibling (child))
+        if (garcon_menu_node_tree_get_node_type (child) == type)
+          return child;
     }
 
-  return node;
+  return NULL;
 }
 
 
@@ -475,12 +473,15 @@ garcon_menu_node_tree_get_child_nodes (GNode             *tree,
   Pair pair;
 
   pair.type = type;
-  pair.reverse = reverse;
   pair.value = NULL;
   pair.self = tree;
 
   g_node_traverse (tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
                    (GNodeTraverseFunc) collect_children, &pair);
+
+  /* Return the list as if we appended */
+  if (!reverse && pair.value != NULL)
+    pair.value = g_list_reverse (pair.value);
 
   return pair.value;
 }
@@ -499,11 +500,7 @@ collect_strings (GNode *node,
   if (garcon_menu_node_tree_get_node_type (node) == pair->type)
     {
       string = (gpointer) garcon_menu_node_tree_get_string (node);
-
-      if (pair->reverse)
-        pair->value = g_list_prepend (pair->value, string);
-      else
-        pair->value = g_list_append (pair->value, string);
+      pair->value = g_list_prepend (pair->value, string);
     }
 
   return FALSE;
@@ -519,12 +516,15 @@ garcon_menu_node_tree_get_string_children (GNode             *tree,
   Pair pair;
 
   pair.type = type;
-  pair.reverse = reverse;
   pair.value = NULL;
   pair.self = tree;
 
   g_node_traverse (tree, G_IN_ORDER, G_TRAVERSE_ALL, 2,
                    (GNodeTraverseFunc) collect_strings, &pair);
+
+  /* Return the list as if we appended */
+  if (!reverse && pair.value != NULL)
+    pair.value = g_list_reverse (pair.value);
 
   return pair.value;
 }
