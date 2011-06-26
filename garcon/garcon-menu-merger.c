@@ -660,9 +660,9 @@ static void
 garcon_menu_merger_remove_duplicate_paths (GNode             *node,
                                            GarconMenuNodeType type)
 {
-  GList *destroy_nodes = NULL;
-  GList *remaining_nodes = NULL;
-  GNode *child;
+  GSList *destroy_nodes = NULL;
+  GSList *remaining_nodes = NULL;
+  GNode  *child;
 
   g_return_if_fail (node != NULL);
 
@@ -680,18 +680,18 @@ garcon_menu_merger_remove_duplicate_paths (GNode             *node,
       if (garcon_menu_node_tree_get_node_type (child) != type)
         continue;
 
-      if (G_LIKELY (g_list_find_custom (remaining_nodes, child,
-                                        (GCompareFunc) garcon_menu_node_tree_compare) == NULL))
+      if (G_LIKELY (g_slist_find_custom (remaining_nodes, child,
+                                         (GCompareFunc) garcon_menu_node_tree_compare) == NULL))
         {
-          remaining_nodes = g_list_prepend (remaining_nodes, child);
+          remaining_nodes = g_slist_prepend (remaining_nodes, child);
         }
       else
-        destroy_nodes = g_list_prepend (destroy_nodes, child);
+        destroy_nodes = g_slist_prepend (destroy_nodes, child);
     }
 
-  g_list_foreach (destroy_nodes, (GFunc) garcon_menu_node_tree_free, NULL);
-  g_list_free (destroy_nodes);
-  g_list_free (remaining_nodes);
+  g_slist_foreach (destroy_nodes, (GFunc) garcon_menu_node_tree_free, NULL);
+  g_slist_free (destroy_nodes);
+  g_slist_free (remaining_nodes);
 }
 
 
