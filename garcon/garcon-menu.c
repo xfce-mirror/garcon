@@ -1218,8 +1218,9 @@ garcon_menu_resolve_items (GarconMenu *menu,
 
   g_return_if_fail (menu != NULL && GARCON_IS_MENU (menu));
 
-  menu_only_unallocated = garcon_menu_node_tree_get_boolean_child (menu->priv->tree,
-                                                                   GARCON_MENU_NODE_TYPE_ONLY_UNALLOCATED);
+  menu_only_unallocated = 
+    garcon_menu_node_tree_get_boolean_child (menu->priv->tree,
+                                             GARCON_MENU_NODE_TYPE_ONLY_UNALLOCATED);
 
   /* Resolve items in this menu (if it matches the only_unallocated argument.
    * This means that in the first pass, all items of menus without
@@ -1253,7 +1254,8 @@ garcon_menu_resolve_items (GarconMenu *menu,
   for (submenu = menu->priv->submenus; submenu != NULL; submenu = g_list_next (submenu))
     {
       /* Resolve items of the submenu */
-      garcon_menu_resolve_items (GARCON_MENU (submenu->data), desktop_id_table, only_unallocated);
+      garcon_menu_resolve_items (GARCON_MENU (submenu->data), desktop_id_table,
+                                 only_unallocated);
     }
 }
 
@@ -2074,7 +2076,10 @@ static void
 garcon_menu_file_emit_reload_required (GarconMenu *menu)
 {
   if (menu->priv->idle_reload_required_id == 0)
-    menu->priv->idle_reload_required_id = g_idle_add (garcon_menu_file_emit_reload_required_idle, menu);
+    {
+      menu->priv->idle_reload_required_id = 
+        g_idle_add (garcon_menu_file_emit_reload_required_idle, menu);
+    }
 }
 
 
@@ -2114,7 +2119,9 @@ garcon_menu_file_changed (GarconMenu       *menu,
   paths = garcon_config_build_paths (relative_filename);
 
   /* Check if the event file has higher priority than the file currently being used */
-  for (n = 0; !lower_priority && !higher_priority && paths != NULL && paths[n] != NULL; ++n) 
+  for (n = 0; 
+       !lower_priority && !higher_priority && paths != NULL && paths[n] != NULL;
+       ++n) 
     {
       menu_file = g_file_new_for_path (paths[n]);
 

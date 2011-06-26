@@ -449,15 +449,23 @@ garcon_menu_node_tree_get_child_node (GNode             *tree,
 
   if (reverse)
     {
-      for (child = g_node_last_child (tree); child != NULL; child = g_node_prev_sibling (child))
-        if (garcon_menu_node_tree_get_node_type (child) == type)
-          return child;
+      for (child = g_node_last_child (tree); 
+           child != NULL;
+           child = g_node_prev_sibling (child))
+        {
+          if (garcon_menu_node_tree_get_node_type (child) == type)
+            return child;
+        }
     }
   else
     {
-      for (child = g_node_first_child (tree); child != NULL; child = g_node_next_sibling (child))
-        if (garcon_menu_node_tree_get_node_type (child) == type)
-          return child;
+      for (child = g_node_first_child (tree);
+           child != NULL;
+           child = g_node_next_sibling (child))
+        {
+          if (garcon_menu_node_tree_get_node_type (child) == type)
+            return child;
+        }
     }
 
   return NULL;

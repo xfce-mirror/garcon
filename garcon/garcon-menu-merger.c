@@ -686,7 +686,9 @@ garcon_menu_merger_remove_duplicate_paths (GNode             *node,
           remaining_nodes = g_slist_prepend (remaining_nodes, child);
         }
       else
-        destroy_nodes = g_slist_prepend (destroy_nodes, child);
+        {
+          destroy_nodes = g_slist_prepend (destroy_nodes, child);
+        }
     }
 
   g_slist_foreach (destroy_nodes, (GFunc) garcon_menu_node_tree_free, NULL);
