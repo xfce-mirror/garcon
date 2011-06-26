@@ -1506,9 +1506,6 @@ garcon_menu_item_unref (GarconMenuItem *item)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
-  /* Decrement the allocation counter */
-  garcon_menu_item_decrement_allocated (item);
-
   /* Decrement the reference counter */
   g_object_unref (G_OBJECT (item));
 }
