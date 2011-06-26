@@ -24,6 +24,7 @@
 #endif
 
 #include <gio/gio.h>
+#include <libxfce4util/libxfce4util.h>
 
 #include <garcon/garcon-environment.h>
 #include <garcon/garcon-menu-element.h>
@@ -33,12 +34,6 @@
 
 
 #define GARCON_MENU_ITEM_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GARCON_TYPE_MENU_ITEM, GarconMenuItemPrivate))
-
-
-
-#define GET_LOCALE_KEY(type, key) (g_key_file_get_locale_##type (rc, G_KEY_FILE_DESKTOP_GROUP, key, NULL, NULL))
-#define GET_KEY(type, key)        (g_key_file_get_##type (rc, G_KEY_FILE_DESKTOP_GROUP, key, NULL))
-#define GET_STRING_LIST(key)      (g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP, key, NULL, NULL))
 
 
 
@@ -700,47 +695,53 @@ GarconMenuItem *
 garcon_menu_item_new (GFile *file)
 {
   GarconMenuItem *item = NULL;
-  GKeyFile       *rc;
+  XfceRc         *rc;
   GList          *categories = NULL;
+  gchar          *filename;
   gboolean        terminal;
   gboolean        no_display;
   gboolean        startup_notify;
   gboolean        hidden;
-  gchar          *path;
-  gchar          *name;
-  gchar          *generic_name;
-  gchar          *comment;
-  gchar          *exec;
-  gchar          *try_exec;
-  gchar          *icon;
+  const gchar    *path;
+  const gchar    *name;
+  const gchar    *generic_name;
+  const gchar    *comment;
+  const gchar    *exec;
+  const gchar    *try_exec;
+  const gchar    *icon;
   gchar         **mt;
   gchar         **str_list;
 
   g_return_val_if_fail (G_IS_FILE (file), NULL);
+  g_return_val_if_fail (g_file_is_native (file), NULL);
 
-  /* Open the keyfile */
-  rc = _garcon_keyfile_load (file, NULL);
+  /* Open the rc file */
+  filename = g_file_get_path (file);
+  rc = xfce_rc_simple_open (filename, TRUE);
+  g_free (filename);
   if (G_UNLIKELY (rc == NULL))
     return NULL;
 
+  xfce_rc_set_group (rc, G_KEY_FILE_DESKTOP_GROUP);
+
   /* Parse name and exec command */
-  name = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_NAME);
-  exec = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_EXEC);
+  name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
+  exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
 
   /* Validate Name and Exec fields */
   if (G_LIKELY (exec != NULL && name != NULL && g_utf8_validate (name, -1, NULL)))
     {
       /* Determine other application properties */
-      generic_name = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_GENERIC_NAME);
-      comment = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_COMMENT);
-      try_exec = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_TRY_EXEC);
-      icon = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_ICON);
-      path = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_PATH);
-      terminal = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_TERMINAL);
-      no_display = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY);
-      startup_notify = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY)
-                       || GET_KEY (boolean, "X-KDE-StartupNotify");
-      hidden = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_HIDDEN);
+      generic_name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_GENERIC_NAME, NULL);
+      comment = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_COMMENT, NULL);
+      try_exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_TRY_EXEC, NULL);
+      icon = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_ICON, NULL);
+      path = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_PATH, NULL);
+      terminal = xfce_rc_read_bool_entry (rc, G_KEY_FILE_DESKTOP_KEY_TERMINAL, FALSE);
+      no_display = xfce_rc_read_bool_entry (rc, G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY, FALSE);
+      startup_notify = xfce_rc_read_bool_entry (rc, G_KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY, FALSE)
+                       || xfce_rc_read_bool_entry (rc, "X-KDE-StartupNotify", FALSE);
+      hidden = xfce_rc_read_bool_entry (rc, G_KEY_FILE_DESKTOP_KEY_HIDDEN, FALSE);
 
       /* Allocate a new menu item instance */
       item = g_object_new (GARCON_TYPE_MENU_ITEM,
@@ -758,41 +759,33 @@ garcon_menu_item_new (GFile *file)
                            "hidden", hidden,
                            NULL);
 
-      /* Free strings */
-      g_free (generic_name);
-      g_free (comment);
-      g_free (try_exec);
-      g_free (icon);
-      g_free (path);
-
       /* Determine the categories this application should be shown in */
-      str_list = GET_STRING_LIST (G_KEY_FILE_DESKTOP_KEY_CATEGORIES);
+      str_list = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_CATEGORIES, ";");
       if (G_LIKELY (str_list != NULL))
         {
           for (mt = str_list; *mt != NULL; ++mt)
             {
+              /* Try to steal the values */
               if (**mt != '\0')
-                categories = g_list_prepend (categories, g_strdup (*mt));
+                categories = g_list_prepend (categories, *mt);
+              else
+                g_free (*mt);
             }
 
-          /* Free list */
-          g_strfreev (str_list);
+          /* Cleanup */
+          g_free (str_list);
 
           /* Assign categories list to the menu item */
           garcon_menu_item_set_categories (item, categories);
         }
 
       /* Set the rest of the private data directly */
-      item->priv->only_show_in = GET_STRING_LIST (G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN);
-      item->priv->not_show_in = GET_STRING_LIST (G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN);
+      item->priv->only_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN, ";");
+      item->priv->not_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, ";");
     }
 
-  /* Free strings */
-  g_free (name);
-  g_free (exec);
-
   /* Cleanup */
-  g_key_file_free (rc);
+  xfce_rc_close (rc);
 
   return item;
 }
@@ -852,36 +845,39 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
                                    gboolean        *affects_the_outside,
                                    GError         **error)
 {
-  GKeyFile *rc;
-  gboolean  boolean;
-  GList    *categories = NULL;
-  GList    *lp;
-  GList    *old_categories = NULL;
-  gchar   **mt;
-  gchar   **str_list;
-  gchar    *string;
-  gchar    *name;
-  gchar    *exec;
+  XfceRc       *rc;
+  gboolean      boolean;
+  GList        *categories = NULL;
+  GList        *lp;
+  GList        *old_categories = NULL;
+  gchar       **mt;
+  gchar       **str_list;
+  const gchar  *string;
+  const gchar  *name;
+  const gchar  *exec;
+  gchar        *filename;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (G_IS_FILE (file), FALSE);
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+  g_return_val_if_fail (g_file_is_native (file), FALSE);
 
-  /* Open the keyfile */
-  rc = _garcon_keyfile_load (file, error);
+  /* Open the rc file */
+  filename = g_file_get_path (file);
+  rc = xfce_rc_simple_open (filename, TRUE);
+  g_free (filename);
   if (G_UNLIKELY (rc == NULL))
     return FALSE;
 
+  xfce_rc_set_group (rc, G_KEY_FILE_DESKTOP_GROUP);
+
   /* Check if there is a name and exec key */
-  name = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_NAME);
-  exec = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_EXEC);
-  if (G_UNLIKELY (name == NULL || exec == NULL))
+  name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
+  exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
+  if (G_UNLIKELY (name == NULL || exec == NULL || !g_utf8_validate (name, -1, NULL)))
     {
       g_set_error_literal (error, 0, 0, "Either the name or exec key was not defined.");
-
-      g_free (name);
-      g_free (exec);
-      g_key_file_free (rc);
+      xfce_rc_close (rc);
 
       return FALSE;
     }
@@ -901,42 +897,35 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
 
   /* Update properties */
   garcon_menu_item_set_name (item, name);
-  g_free (name);
 
   garcon_menu_item_set_command (item, exec);
-  g_free (exec);
 
-  string = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_GENERIC_NAME);
+  string = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_GENERIC_NAME, NULL);
   garcon_menu_item_set_generic_name (item, string);
-  g_free (string);
 
-  string = GET_LOCALE_KEY (string, G_KEY_FILE_DESKTOP_KEY_COMMENT);
+  string = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_COMMENT, NULL);
   garcon_menu_item_set_comment (item, string);
-  g_free (string);
 
-  string = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_TRY_EXEC);
+  string = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_TRY_EXEC, NULL);
   garcon_menu_item_set_try_exec (item, string);
-  g_free (string);
 
-  string = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_ICON);
+  string = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_ICON, NULL);
   garcon_menu_item_set_icon_name (item, string);
-  g_free (string);
 
-  string = GET_KEY (string, G_KEY_FILE_DESKTOP_KEY_PATH);
+  string = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_PATH, NULL);
   garcon_menu_item_set_path (item, string);
-  g_free (string);
 
-  boolean = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_TERMINAL);
+  boolean = xfce_rc_read_bool_entry (rc, G_KEY_FILE_DESKTOP_KEY_TERMINAL, FALSE);
   garcon_menu_item_set_requires_terminal (item, boolean);
 
-  boolean = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY);
+  boolean = xfce_rc_read_bool_entry (rc, G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY, FALSE);
   garcon_menu_item_set_no_display (item, boolean);
 
-  boolean = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY)
-            || GET_KEY (boolean, "X-KDE-StartupNotify");
+  boolean = xfce_rc_read_bool_entry (rc, G_KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY, FALSE)
+            || xfce_rc_read_bool_entry (rc, "X-KDE-StartupNotify", FALSE);
   garcon_menu_item_set_supports_startup_notification (item, boolean);
 
-  boolean = GET_KEY (boolean, G_KEY_FILE_DESKTOP_KEY_HIDDEN);
+  boolean = xfce_rc_read_bool_entry (rc, G_KEY_FILE_DESKTOP_KEY_HIDDEN, FALSE);
   garcon_menu_item_set_hidden (item, boolean);
 
   if (affects_the_outside != NULL)
@@ -948,17 +937,20 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
     }
 
   /* Determine the categories this application should be shown in */
-  str_list = GET_STRING_LIST (G_KEY_FILE_DESKTOP_KEY_CATEGORIES);
+  str_list = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_CATEGORIES, ";");
   if (G_LIKELY (str_list != NULL))
     {
       for (mt = str_list; *mt != NULL; ++mt)
         {
+          /* Try to steal the values */
           if (**mt != '\0')
-            categories = g_list_prepend (categories, g_strdup (*mt));
+            categories = g_list_prepend (categories, *mt);
+          else
+            g_free (*mt);
         }
 
-      /* Free list */
-      g_strfreev (str_list);
+      /* Cleanup */
+      g_free (str_list);
 
       /* Assign categories list to the menu item */
       garcon_menu_item_set_categories (item, categories);
@@ -979,8 +971,8 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
     
 
   /* Set the rest of the private data directly */
-  item->priv->only_show_in = GET_STRING_LIST (G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN);
-  item->priv->not_show_in = GET_STRING_LIST (G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN);
+  item->priv->only_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN, ";");
+  item->priv->not_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, ";");
 
   /* Flush property notifications */
   g_object_thaw_notify (G_OBJECT (item));
@@ -988,7 +980,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   /* Emit signal to everybody knows we reloaded the file */
   g_signal_emit (G_OBJECT (item), item_signals[CHANGED], 0);
 
-  g_key_file_free (rc);
+  xfce_rc_close (rc);
 
   return TRUE;
 }
