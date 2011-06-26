@@ -82,6 +82,7 @@ libgarcon_1_la_SOURCES =						\
 libgarcon_1_la_CFLAGS = 						\
 	$(GIO_CFLAGS)							\
 	$(GLIB_CFLAGS)							\
+	$(LIBXFCE4UTIL_CFLAGS)						\
 	$(GOBJECT_CFLAGS)						\
 	$(GTHREAD_CFLAGS)						\
 	$(PLATFORM_CFLAGS)
@@ -96,6 +97,7 @@ libgarcon_1_la_LDFLAGS =						\
 libgarcon_1_la_LIBADD = 						\
 	$(GIO_LIBS)							\
 	$(GLIB_LIBS)							\
+	$(LIBXFCE4UTIL_LIBS)						\
 	$(GOBJECT_LIBS)							\
 	$(GTHREAD_LIBS)
 
