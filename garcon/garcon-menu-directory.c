@@ -24,6 +24,7 @@
 
 #include <locale.h>
 #include <glib.h>
+#include <libxfce4util/libxfce4util.h>
 
 #include <garcon/garcon-environment.h>
 #include <garcon/garcon-menu-directory.h>
@@ -343,28 +344,30 @@ GarconMenuDirectory *
 garcon_menu_directory_new (GFile *file)
 {
   GarconMenuDirectory *directory = NULL;
-  GKeyFile            *rc;
-  gchar               *name;
-  gchar               *comment;
-  gchar               *icon_name;
+  XfceRc              *rc;
+  const gchar         *name;
+  const gchar         *comment;
+  const gchar         *icon_name;
   gboolean             no_display;
+  gchar               *filename;
 
   g_return_val_if_fail (G_IS_FILE (file), NULL);
+  g_return_val_if_fail (g_file_is_native (file), NULL);
 
-  /* Open the keyfile */
-  rc = _garcon_keyfile_load (file, NULL);
+ /* Open the rc file */
+  filename = g_file_get_path (file);
+  rc = xfce_rc_simple_open (filename, TRUE);
+  g_free (filename);
   if (G_UNLIKELY (rc == NULL))
     return NULL;
 
+  xfce_rc_set_group (rc, G_KEY_FILE_DESKTOP_GROUP);
+
   /* Parse name, exec command and icon name */
-  name = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                       G_KEY_FILE_DESKTOP_KEY_NAME, NULL, NULL);
-  comment = g_key_file_get_locale_string (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                          G_KEY_FILE_DESKTOP_KEY_COMMENT, NULL, NULL);
-  icon_name = g_key_file_get_string (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                     G_KEY_FILE_DESKTOP_KEY_ICON, NULL);
-  no_display = g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                       G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY, NULL);
+  name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
+  comment = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_COMMENT, NULL);
+  icon_name = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_ICON, NULL);
+  no_display = xfce_rc_read_bool_entry (rc, G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY, FALSE);
 
   /* Allocate a new directory instance */
   directory = g_object_new (GARCON_TYPE_MENU_DIRECTORY,
@@ -375,21 +378,13 @@ garcon_menu_directory_new (GFile *file)
                             "no-display", no_display,
                             NULL);
 
-  /* Free strings */
-  g_free (name);
-  g_free (comment);
-  g_free (icon_name);
-
   /* Set rest of the private data directly */
-  directory->priv->only_show_in = g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                                              G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN, NULL, NULL);
-  directory->priv->not_show_in = g_key_file_get_string_list (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                                             G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, NULL, NULL);
-  directory->priv->hidden = g_key_file_get_boolean (rc, G_KEY_FILE_DESKTOP_GROUP,
-                                                    G_KEY_FILE_DESKTOP_KEY_HIDDEN, NULL);
+  directory->priv->only_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN, ";");
+  directory->priv->not_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, ";");
+  directory->priv->hidden = xfce_rc_read_bool_entry (rc, G_KEY_FILE_DESKTOP_KEY_HIDDEN, FALSE);
 
   /* Cleanup */
-  g_key_file_free (rc);
+  xfce_rc_close (rc);
 
   return directory;
 }
@@ -445,9 +440,11 @@ garcon_menu_directory_set_name (GarconMenuDirectory *directory,
   g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
   g_return_if_fail (name != NULL);
 
+  if (g_strcmp0 (directory->priv->name, name) == 0)
+    return;
+
   /* Free old name */
-  if (G_UNLIKELY (directory->priv->name != NULL))
-    g_free (directory->priv->name);
+  g_free (directory->priv->name);
 
   /* Set the new filename */
   directory->priv->name = g_strdup (name);
@@ -488,9 +485,11 @@ garcon_menu_directory_set_comment (GarconMenuDirectory *directory,
 {
   g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
 
+  if (g_strcmp0 (directory->priv->comment, comment) == 0)
+    return;
+
   /* Free old name */
-  if (G_UNLIKELY (directory->priv->comment != NULL))
-    g_free (directory->priv->comment);
+  g_free (directory->priv->comment);
 
   /* Set the new filename */
   directory->priv->comment = g_strdup (comment);
@@ -531,9 +530,11 @@ garcon_menu_directory_set_icon_name (GarconMenuDirectory *directory,
 {
   g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
 
+  if (g_strcmp0 (directory->priv->icon_name, icon_name) == 0)
+    return;
+
   /* Free old name */
-  if (G_UNLIKELY (directory->priv->icon_name != NULL))
-    g_free (directory->priv->icon_name);
+  g_free (directory->priv->icon_name);
 
   /* Set the new filename */
   directory->priv->icon_name = g_strdup (icon_name);
