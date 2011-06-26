@@ -255,18 +255,24 @@ main (int    argc,
       g_free (relative_filename);
     }
 
+  filename = g_file_get_path (file);
+  g_print ("\nread menu from \"%s\"\n", filename);
+  g_free (filename);
+
   parser = garcon_menu_parser_new (file);
   g_object_unref (file);
 
   if (G_LIKELY (garcon_menu_parser_run (parser, NULL, &error)))
     {
+      g_print("\n\nafter parsing:\n\n");
+
       print_tree (GARCON_MENU_TREE_PROVIDER (parser));
 
       merger = garcon_menu_merger_new (GARCON_MENU_TREE_PROVIDER (parser));
 
       if (G_LIKELY (garcon_menu_merger_run (merger, NULL, NULL, NULL, &error)))
         {
-          g_print ("\n\n");
+          g_print ("\n\nafter merging:\n\n");
           print_tree (GARCON_MENU_TREE_PROVIDER (merger));
         }
       else
