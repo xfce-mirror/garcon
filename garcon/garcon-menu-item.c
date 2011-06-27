@@ -668,16 +668,10 @@ static gboolean
 garcon_menu_item_category_lists_equal (GList *categories1,
                                        GList *categories2)
 {
-  gboolean element_missing = FALSE;
-  GList   *lp;
+  gboolean  element_missing = FALSE;
+  GList    *lp;
 
-  guint size1;
-  guint size2;
-
-  size1 = g_list_length (categories1);
-  size2 = g_list_length (categories2);
-
-  if (size1 != size2)
+  if (g_list_length (categories1) != g_list_length (categories2))
     return FALSE;
 
   for (lp = categories1; !element_missing && lp != NULL; lp = lp->next)
