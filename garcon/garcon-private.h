@@ -28,6 +28,21 @@
 
 G_BEGIN_DECLS
 
+/* Macro for new g_?list_free_full function */
+#if GLIB_CHECK_VERSION (2, 28, 0)
+#define _garcon_g_slist_free_full(list,free_func) \
+  g_slist_free_full (list, (GDestroyNotify) free_func)
+#define _garcon_g_list_free_full(list,free_func) \
+  g_list_free_full (list, (GDestroyNotify) free_func)
+#else
+#define _garcon_g_slist_free_full(list,free_func) G_STMT_START { \
+  g_slist_foreach (list, (GFunc) free_func, NULL); \
+  g_slist_free (list); } G_STMT_END
+#define _garcon_g_list_free_full(list,free_func) G_STMT_START { \
+  g_list_foreach (list, (GFunc) free_func, NULL); \
+  g_list_free (list); } G_STMT_END
+#endif
+
 /* if XDG_MENU_PREFIX is not set, default to "xfce-" so garcon doesn't
  * break when xfce is not started with startxfce4 */
 #define GARCON_DEFAULT_MENU_PREFIX "xfce-"

@@ -357,19 +357,16 @@ garcon_menu_clear (GarconMenu *menu)
       menu->priv->tree = NULL;
 
       /* Release the merge files */
-      g_list_foreach (menu->priv->merge_files, (GFunc) g_object_unref, NULL);
-      g_list_free (menu->priv->merge_files);
+      _garcon_g_list_free_full (menu->priv->merge_files, g_object_unref);
       menu->priv->merge_files = NULL;
 
       /* Release the merge dirs */
-      g_list_foreach (menu->priv->merge_dirs, (GFunc) g_object_unref, NULL);
-      g_list_free (menu->priv->merge_dirs);
+      _garcon_g_list_free_full (menu->priv->merge_dirs, g_object_unref);
       menu->priv->merge_dirs = NULL;
     }
 
   /* Free submenus */
-  g_list_foreach (menu->priv->submenus, (GFunc) g_object_unref, NULL);
-  g_list_free (menu->priv->submenus);
+  _garcon_g_list_free_full (menu->priv->submenus, g_object_unref);
   menu->priv->submenus = NULL;
 
   /* Free directory */
@@ -1840,8 +1837,7 @@ garcon_menu_stop_monitoring (GarconMenu *menu)
     g_source_remove (menu->priv->file_changed_idle);
 
   /* Free the hash table for merging consecutive file change events */
-  g_slist_foreach (menu->priv->changed_files, (GFunc) g_object_unref, NULL);
-  g_slist_free (menu->priv->changed_files);
+  _garcon_g_slist_free_full (menu->priv->changed_files, g_object_unref);
   menu->priv->changed_files = NULL;
 }
 
@@ -1986,8 +1982,7 @@ garcon_menu_monitor_app_dirs (GarconMenu *menu)
   garcon_menu_monitor_files (menu, dirs, garcon_menu_app_dir_changed);
 
   /* Release the allocated GFiles and free the list */
-  g_list_foreach (dirs, (GFunc) g_object_unref, NULL);
-  g_list_free (dirs);
+  _garcon_g_list_free_full (dirs, g_object_unref);
 
   /* Free app dir list */
   g_list_free (app_dirs);
@@ -2274,8 +2269,7 @@ garcon_menu_process_file_changes (GarconMenu *menu)
     }
 
   /* reset the changed files list, all events processed */
-  g_slist_foreach (menu->priv->changed_files, (GFunc) g_object_unref, NULL);
-  g_slist_free (menu->priv->changed_files);
+  _garcon_g_slist_free_full (menu->priv->changed_files, g_object_unref);
   menu->priv->changed_files = NULL;
 
   /* reset the idle source ID */

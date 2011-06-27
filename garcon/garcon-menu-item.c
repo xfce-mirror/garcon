@@ -419,8 +419,7 @@ garcon_menu_item_finalize (GObject *object)
   g_strfreev (item->priv->only_show_in);
   g_strfreev (item->priv->not_show_in);
 
-  g_list_foreach (item->priv->categories, (GFunc) g_free, NULL);
-  g_list_free (item->priv->categories);
+  _garcon_g_list_free_full (item->priv->categories, g_free);
 
   if (item->priv->file != NULL)
     g_object_unref (G_OBJECT (item->priv->file));
@@ -975,8 +974,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
       if (!garcon_menu_item_category_lists_equal (old_categories, categories))
         *affects_the_outside = TRUE;
 
-      g_list_foreach (old_categories, (GFunc) g_free, NULL);
-      g_list_free (old_categories);
+      _garcon_g_list_free_full (old_categories, g_free);
     }
     
 
@@ -1072,8 +1070,7 @@ garcon_menu_item_set_categories (GarconMenuItem *item,
     return;
 
   /* Free old list */
-  g_list_foreach (item->priv->categories, (GFunc) g_free, NULL);
-  g_list_free (item->priv->categories);
+  _garcon_g_list_free_full (item->priv->categories, g_free);
 
   /* Assign new list */
   item->priv->categories = categories;

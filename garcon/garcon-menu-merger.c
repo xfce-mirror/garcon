@@ -335,8 +335,7 @@ garcon_menu_merger_run (GarconMenuMerger *merger,
   garcon_menu_merger_clean_up_elements (merger->priv->menu, GARCON_MENU_NODE_TYPE_DEFAULT_LAYOUT);
   garcon_menu_merger_clean_up_elements (merger->priv->menu, GARCON_MENU_NODE_TYPE_LAYOUT);
 
-  g_list_foreach (context.file_stack, (GFunc) g_object_unref, NULL);
-  g_list_free (context.file_stack);
+  _garcon_g_list_free_full (context.file_stack, g_object_unref);
 
   return context.success;
 }
@@ -691,8 +690,7 @@ garcon_menu_merger_remove_duplicate_paths (GNode             *node,
         }
     }
 
-  g_slist_foreach (destroy_nodes, (GFunc) garcon_menu_node_tree_free, NULL);
-  g_slist_free (destroy_nodes);
+  _garcon_g_slist_free_full (destroy_nodes, garcon_menu_node_tree_free);
   g_slist_free (remaining_nodes);
 }
 
@@ -994,8 +992,7 @@ garcon_menu_merger_clean_up_elements (GNode             *node,
         remaining_node = child;
     }
 
-  g_list_foreach (destroy_list, (GFunc) garcon_menu_node_tree_free, NULL);
-  g_list_free (destroy_list);
+  _garcon_g_list_free_full (destroy_list, garcon_menu_node_tree_free);
 
   if (type == GARCON_MENU_NODE_TYPE_LAYOUT 
       && remaining_node != NULL
@@ -1227,8 +1224,7 @@ garcon_menu_merger_resolve_moves (GNode *node)
       g_strfreev (new_path);
     }
 
-  g_list_foreach (pairs, (GFunc) g_free, NULL);
-  g_list_free (pairs);
+  _garcon_g_list_free_full (pairs, g_free);
 }
 
 
