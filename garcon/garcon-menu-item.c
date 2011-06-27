@@ -729,7 +729,7 @@ garcon_menu_item_new (GFile *file)
   exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
 
   /* Validate Name and Exec fields */
-  if (G_LIKELY (exec != NULL && name != NULL && g_utf8_validate (name, -1, NULL)))
+  if (G_LIKELY (exec != NULL && name != NULL))
     {
       /* Determine other application properties */
       generic_name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_GENERIC_NAME, NULL);
@@ -874,7 +874,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   /* Check if there is a name and exec key */
   name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
   exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
-  if (G_UNLIKELY (name == NULL || exec == NULL || !g_utf8_validate (name, -1, NULL)))
+  if (G_UNLIKELY (name == NULL || exec == NULL))
     {
       g_set_error_literal (error, 0, 0, "Either the name or exec key was not defined.");
       xfce_rc_close (rc);

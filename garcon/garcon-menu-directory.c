@@ -438,7 +438,7 @@ garcon_menu_directory_set_name (GarconMenuDirectory *directory,
                                 const gchar         *name)
 {
   g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
-  g_return_if_fail (name != NULL);
+  g_return_if_fail (g_utf8_validate (name, -1, NULL));
 
   if (g_strcmp0 (directory->priv->name, name) == 0)
     return;
@@ -484,6 +484,7 @@ garcon_menu_directory_set_comment (GarconMenuDirectory *directory,
                                    const gchar         *comment)
 {
   g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
+  g_return_if_fail (comment == NULL || g_utf8_validate (comment, -1, NULL));
 
   if (g_strcmp0 (directory->priv->comment, comment) == 0)
     return;
