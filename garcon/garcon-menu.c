@@ -1583,10 +1583,11 @@ garcon_menu_get_elements (GarconMenu *menu)
           if (merge_type == GARCON_MENU_LAYOUT_MERGE_ALL)
             {
               /* Get all menu items of this menu */
-              menu_items = garcon_menu_get_items (menu);
+              menu_items = NULL;
+              garcon_menu_item_pool_foreach (menu->priv->pool, (GHFunc) items_collect, &menu_items);
 
               /* Append submenus */
-              menu_items = g_list_concat (menu_items, garcon_menu_get_menus (menu));
+              menu_items = g_list_concat (menu_items, g_list_copy (menu->priv->submenus));
 
               /* Sort menu items */
               menu_items = g_list_sort (menu_items, (GCompareFunc) garcon_menu_compare_items);
