@@ -1213,7 +1213,7 @@ garcon_menu_resolve_items (GarconMenu *menu,
   GList   *submenu;
   gboolean menu_only_unallocated = FALSE;
 
-  g_return_if_fail (menu != NULL && GARCON_IS_MENU (menu));
+  g_return_if_fail (GARCON_IS_MENU (menu));
 
   menu_only_unallocated = 
     garcon_menu_node_tree_get_boolean_child (menu->priv->tree,
