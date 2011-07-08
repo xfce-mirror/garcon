@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-19 22:05+0000\n"
+"POT-Creation-Date: 2011-07-05 22:06+0000\n"
 "PO-Revision-Date: 2010-11-23 22:57+0800\n"
 "Last-Translator: Hunt Xu <huntxu@live.cn>\n"
 "Language-Team: Simplified Chinese <i18n-xfce@xfce.org>\n"
@@ -59,7 +59,7 @@ msgstr "图形创作和处理应用程序"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr "影音播放器及编辑器"
+msgstr "影音播放器和编辑器"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
@@ -99,7 +99,7 @@ msgstr "屏幕保护程序"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr "桌面与系统设置应用程序"
+msgstr "桌面和系统设置应用程序"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
@@ -113,7 +113,7 @@ msgstr "系统"
 msgid "System tools and utilities"
 msgstr "系统工具和实用程序"
 
-#: ../garcon/garcon-menu.c:698
+#: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "未找到文件 “%s”"
