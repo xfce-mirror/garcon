@@ -71,7 +71,6 @@ msgid "Applications for Internet access"
 msgstr "Aplicaciones para el acceso a internet"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-#, fuzzy
 msgid "Internet"
 msgstr "Internet"
 
