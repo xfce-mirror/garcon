@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-09 11:05+0000\n"
+"POT-Creation-Date: 2011-07-19 16:06+0000\n"
 "PO-Revision-Date: 2009-01-11 13:45+0100\n"
 "Last-Translator: Abel Martín <abel.martin.ruiz@gmail.com>\n"
 "Language-Team: Spanish/ES <xfce-i18n@xfce.org>\n"
@@ -67,12 +67,13 @@ msgid "Multimedia"
 msgstr "Multimedia"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Network"
-msgstr "Red"
+msgid "Applications for Internet access"
+msgstr "Aplicaciones para el acceso a internet"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-msgid "Network applications and utilities"
-msgstr "Aplicaciones y utilidades de red"
+#, fuzzy
+msgid "Internet"
+msgstr "Internet"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -89,14 +90,6 @@ msgstr "Aplicaciones que no encajan en otras categorías"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Otras"
-
-#: ../data/xfce/xfce-science.directory.in.h:1
-msgid "Science"
-msgstr "Ciencia"
-
-#: ../data/xfce/xfce-science.directory.in.h:2
-msgid "Scientific software"
-msgstr "Software científico"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -122,7 +115,7 @@ msgstr "Sistema"
 msgid "System tools and utilities"
 msgstr "Herramientas y utilidades de sistema"
 
-#: ../garcon/garcon-menu.c:698
+#: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Archivo \"%s\" no encontrado"
@@ -136,6 +129,18 @@ msgstr "No se pudieron cargar los datos del archivo de menú de %s: %s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "No se pudo cargar el menú de archivo de datos de %s"
+
+#~ msgid "Network"
+#~ msgstr "Red"
+
+#~ msgid "Network applications and utilities"
+#~ msgstr "Aplicaciones y utilidades de red"
+
+#~ msgid "Science"
+#~ msgstr "Ciencia"
+
+#~ msgid "Scientific software"
+#~ msgstr "Software científico"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: prueba de visualización de menú"
