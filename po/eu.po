@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu-0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-25 17:04+0000\n"
+"POT-Creation-Date: 2011-07-25 10:06+0000\n"
 "PO-Revision-Date: 2010-11-20 23:50+0100\n"
 "Last-Translator: \n"
 "Language-Team: Basque <kde-i18n-doc@kde.org>\n"
@@ -67,12 +67,12 @@ msgid "Multimedia"
 msgstr "Multimedia"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Network"
-msgstr "Sarea"
+msgid "Applications for Internet access"
+msgstr "Internet atzitzeko aplikazioa"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-msgid "Network applications and utilities"
-msgstr "Sare aplikazio eta lanabesak"
+msgid "Internet"
+msgstr "Internet"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -89,14 +89,6 @@ msgstr "Beste kategorietan sartzen ez diren aplikazioak"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Besteak"
-
-#: ../data/xfce/xfce-science.directory.in.h:1
-msgid "Science"
-msgstr "Zientzia"
-
-#: ../data/xfce/xfce-science.directory.in.h:2
-msgid "Scientific software"
-msgstr "Software zientifikoa"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -122,7 +114,7 @@ msgstr "Sistema"
 msgid "System tools and utilities"
 msgstr "Sistema tresna eta lanabesak"
 
-#: ../garcon/garcon-menu.c:698
+#: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "\"%s\" fitxategia ez da aurkitu"
@@ -136,6 +128,18 @@ msgstr "Ezin da %s-etik menuaren fitxategi datuak kargatu: %s."
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Ezin da %s-etik menuaren fitxategi datuak kargatu"
+
+#~ msgid "Network"
+#~ msgstr "Sarea"
+
+#~ msgid "Network applications and utilities"
+#~ msgstr "Sare aplikazio eta lanabesak"
+
+#~ msgid "Science"
+#~ msgstr "Zientzia"
+
+#~ msgid "Scientific software"
+#~ msgstr "Software zientifikoa"
 
 #~ msgid "No suitable application menu file found"
 #~ msgstr "Ez da menu fitxategi erabilgarririk aurkitu"
