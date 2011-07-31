@@ -6,16 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 14:36+0100\n"
+"POT-Creation-Date: 2011-07-31 04:06+0000\n"
 "PO-Revision-Date: 2011-01-05 21:52+0300\n"
 "Last-Translator: Mișu Moldovan <dumol@xfce.org>\n"
 "Language-Team: Romanian <debian-l10n-romanian@lists.debian.org>\n"
-"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
-"20)) ? 1 : 2);;\n"
+"Language: ro\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);;\n"
 "X-Generator: Virtaal 0.6.1\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
@@ -67,12 +66,12 @@ msgid "Multimedia"
 msgstr "Multimedia"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Network"
-msgstr "Rețea"
+msgid "Applications for Internet access"
+msgstr "Programe pentru accesul la net"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-msgid "Network applications and utilities"
-msgstr "Aplicații și utilitare de rețea"
+msgid "Internet"
+msgstr "Internet"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -89,14 +88,6 @@ msgstr "Aplicații ce nu se potrivesc în alte categorii"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Altele"
-
-#: ../data/xfce/xfce-science.directory.in.h:1
-msgid "Science"
-msgstr "Știință"
-
-#: ../data/xfce/xfce-science.directory.in.h:2
-msgid "Scientific software"
-msgstr "Software științific"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -122,7 +113,7 @@ msgstr "Sistem"
 msgid "System tools and utilities"
 msgstr "Utilitare de sistem"
 
-#: ../garcon/garcon-menu.c:698
+#: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Fișierul „%s” nu a fost găsit"
@@ -136,3 +127,15 @@ msgstr "Nu s-au putut încărca datele fișierului meniu din %s: %s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Nu s-au putut încărca datele fișierului meniu din %s"
+
+#~ msgid "Network"
+#~ msgstr "Rețea"
+
+#~ msgid "Network applications and utilities"
+#~ msgstr "Aplicații și utilitare de rețea"
+
+#~ msgid "Science"
+#~ msgstr "Știință"
+
+#~ msgid "Scientific software"
+#~ msgstr "Software științific"
