@@ -1,0 +1,128 @@
+# Malay translations for garcon package.
+# Copyright (C) 2007 Jannis Pohlmann.
+# This file is distributed under the same license as the garcon package.
+# Puretech <terjemah.puretech@gmail.com>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libxfce4menu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-26 16:06+0000\n"
+"PO-Revision-Date: 2011-08-27 04:03+0800\n"
+"Last-Translator: Puretech <terjemah.puretech@gmail.com>\n"
+"Language-Team: Malay <>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:1
+msgid "Accessories"
+msgstr "Aksesori"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:2
+msgid "Common desktop tools and applications"
+msgstr "Peralatan biasa desktop dan aplikasi"
+
+#: ../data/xfce/xfce-development.directory.in.h:1
+msgid "Development"
+msgstr "Pembangunan"
+
+#: ../data/xfce/xfce-development.directory.in.h:2
+msgid "Software development tools"
+msgstr "Peralatan pembangunan perisian"
+
+#: ../data/xfce/xfce-education.directory.in.h:1
+msgid "Education"
+msgstr "Pendidikan"
+
+#: ../data/xfce/xfce-education.directory.in.h:2
+msgid "Educational software"
+msgstr "Perisian pendidikan"
+
+#: ../data/xfce/xfce-games.directory.in.h:1
+msgid "Games"
+msgstr "Permainan"
+
+#: ../data/xfce/xfce-games.directory.in.h:2
+msgid "Games, puzzles, and other fun software"
+msgstr "Permainan, teka-teki dan lain-lain perisian yang menyeronokkan"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:1
+msgid "Graphics"
+msgstr "Grafik"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:2
+msgid "Graphics creation and manipulation applications"
+msgstr "Perisian penciptaan dan manipulasi grafik"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:1
+msgid "Audio and video players and editors"
+msgstr "Pemain dan penyunting audio dan video"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Multimedia"
+msgstr "Multimedia"
+
+#: ../data/xfce/xfce-network.directory.in.h:1
+msgid "Applications for Internet access"
+msgstr "Aplikasi untuk capaian Internet"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Internet"
+msgstr "Internet"
+
+#: ../data/xfce/xfce-office.directory.in.h:1
+msgid "Office"
+msgstr "Pejabat"
+
+#: ../data/xfce/xfce-office.directory.in.h:2
+msgid "Office and productivity applications"
+msgstr "Aplikasi pejabat dan produktiviti"
+
+#: ../data/xfce/xfce-other.directory.in.h:1
+msgid "Applications that don't fit into other categories"
+msgstr "Aplikasi yang tidak tergolong dalam kategori lain"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Other"
+msgstr "Lain-lain"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:1
+msgid "Screensaver applets"
+msgstr "Aplet penyelamat skrin"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensavers"
+msgstr "Penyelamat skrin"
+
+#: ../data/xfce/xfce-settings.directory.in.h:1
+msgid "Desktop and system settings applications"
+msgstr "Aplikasi tetapan desktop dan sistem"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Settings"
+msgstr "Tetapan"
+
+#: ../data/xfce/xfce-system.directory.in.h:1
+msgid "System"
+msgstr "Sistem"
+
+#: ../data/xfce/xfce-system.directory.in.h:2
+msgid "System tools and utilities"
+msgstr "Peralatan dan utiliti sistem"
+
+#: ../garcon/garcon-menu.c:706
+#, c-format
+msgid "File \"%s\" not found"
+msgstr "Fail \"%s\" tidak dijumpai"
+
+#: ../garcon/garcon-menu-parser.c:278
+#, c-format
+msgid "Could not load menu file data from %s: %s"
+msgstr "Tidak dapat memuatkan data fail menu dari %s: %s"
+
+#: ../garcon/garcon-menu-parser.c:284
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr "Tidak dapat memuatkan data fail menu dari %s"
