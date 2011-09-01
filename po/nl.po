@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-19 16:05+0000\n"
+"POT-Creation-Date: 2011-09-01 10:06+0000\n"
 "PO-Revision-Date: 2011-06-15 16:15+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
@@ -101,8 +101,7 @@ msgstr "Schermbeveiligingen"
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
 msgstr ""
-"Toepassingen voor bureaubladgebruik en\n"
-"voor systeeminstellingen"
+"Toepassingen voor werkomgeving- en systeeminstellingen"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
@@ -116,7 +115,7 @@ msgstr "Systeem"
 msgid "System tools and utilities"
 msgstr "Systeemgereedschap en hulpmiddelen"
 
-#: ../garcon/garcon-menu.c:698
+#: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Bestand \"%s\" niet gevonden"
