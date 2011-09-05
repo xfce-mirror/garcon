@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 14:36+0100\n"
-"PO-Revision-Date: 2010-05-08 15:52+0800\n"
+"POT-Creation-Date: 2011-09-04 22:06+0000\n"
+"PO-Revision-Date: 2011-09-05 11:50+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: chinese-l10n <chinese-l10n@googlegroups.com>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -65,12 +65,12 @@ msgid "Multimedia"
 msgstr "多媒體"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Network"
-msgstr "網路"
+msgid "Applications for Internet access"
+msgstr "存取網際網路的應用程式"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-msgid "Network applications and utilities"
-msgstr "網路應用程式與公用程式"
+msgid "Internet"
+msgstr "網際網路"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -87,14 +87,6 @@ msgstr "不適合放在此類別外的應用程式"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "其它"
-
-#: ../data/xfce/xfce-science.directory.in.h:1
-msgid "Science"
-msgstr "科學"
-
-#: ../data/xfce/xfce-science.directory.in.h:2
-msgid "Scientific software"
-msgstr "科學軟體"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -120,7 +112,7 @@ msgstr "系統"
 msgid "System tools and utilities"
 msgstr "系統工具與公用程式"
 
-#: ../garcon/garcon-menu.c:698
+#: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "找不到「%s」檔案"
@@ -134,6 +126,18 @@ msgstr "無法從 %s 載入選單檔資料：%s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "無法從 %s 載入選單檔資料"
+
+#~ msgid "Network"
+#~ msgstr "網路"
+
+#~ msgid "Network applications and utilities"
+#~ msgstr "網路應用程式與公用程式"
+
+#~ msgid "Science"
+#~ msgstr "科學"
+
+#~ msgid "Scientific software"
+#~ msgstr "科學軟體"
 
 #~ msgid "No suitable application menu file found"
 #~ msgstr "找不到合適的應用程式檔案"
