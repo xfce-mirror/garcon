@@ -261,7 +261,8 @@ garcon_menu_parser_run (GarconMenuParser *parser,
   gboolean                  result = TRUE;
   gchar                    *data;
   gsize                     data_length;
-  gchar                    *uri;
+  gchar                    *name;
+  GError                   *err = NULL;
 
   g_return_val_if_fail (GARCON_IS_MENU_PARSER (parser), FALSE);
   g_return_val_if_fail (G_IS_FILE (parser->priv->file), FALSE);
@@ -269,22 +270,25 @@ garcon_menu_parser_run (GarconMenuParser *parser,
 
   /* Try to open and read the file */
   if (G_UNLIKELY (!g_file_load_contents (parser->priv->file, cancellable,
-                                         &data, &data_length, NULL, error)))
+                                         &data, &data_length, NULL, &err)))
     {
-      uri = g_file_get_uri (parser->priv->file);
+      name = g_file_get_parse_name (parser->priv->file);
 
-      if (error != NULL)
+      if (err != NULL)
         {
-          g_message (_("Could not load menu file data from %s: %s"),
-                     uri, (*error)->message);
-          g_error_free (*error);
+          g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_EXIST,
+                       _("Could not load menu file data from %s: %s"),
+                       name, err->message);
+          g_error_free (err);
         }
       else
         {
-          g_message (_("Could not load menu file data from %s"), uri);
+          g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_EXIST,
+                       _("Could not load menu file data from %s"),
+                       name);
         }
 
-      g_free (uri);
+      g_free (name);
       return FALSE;
     }
 
