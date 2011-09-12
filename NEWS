@@ -1,3 +1,22 @@
+0.1.9
+=====
+- Rename Network category to Internet (bug #3459).
+- Queue multiple reload-required signals.
+- A number of small memory leaks have been fixed.
+- Speedup a number of critical code-paths.
+- Use GSList instead of GList where possible.
+- Use XfceRc instead of GKeyFile, this makes garcon depend on
+  libxfce4util, but is faster and more memory efficient.
+- Return an error string instead of freeing it, causing a sefgault in
+  xfce4-panel.
+- Do not decrement the internal refcount of items, this should fixed
+  the usage of <OnlyUnallocated/>.
+- Translations updates: Chinese (Taiwan), rabic, Romanian, Basque,
+  Russian, Spanish (Castilian), Slovak, Portuguese (Brazilian),
+  Turkish, Telugu, Kazakh, Ukrainian, Japanese, German, Portuguese,
+  German, Chinese, Dutch, Italian.
+
+
 0.1.8
 =====
 - Remove the science toplevel category (bug #1038).
@@ -30,9 +49,9 @@
 =====
 - Add exclude rules for toplevel desktop files to sub menus so that
   these toplevel items don't appear multiple times.
-- Translation updates: Arabic, Catalan (Valencian), Chinese, Chinese 
+- Translation updates: Arabic, Catalan (Valencian), Chinese, Chinese
   (Taiwan), Croatian, Czech, Danish, English (United Kingdom), Finnish,
-  French, Galician, German, Greek, Hebrew, Hungarian, Indonesian, 
+  French, Galician, German, Greek, Hebrew, Hungarian, Indonesian,
   Italian, Japanese, Kazakh, Norwegian Bokmaal, Portuguese (Brazilian),
   Romanian, Swedish, Turkish, Ukrainian.
 
@@ -60,7 +79,7 @@
 =====
 - Fix license headers (bug #6226).
 - Implement file system monitoring, adding the signals
-  GarconMenu::reload-required, GarconMenu::directory-changed and 
+  GarconMenu::reload-required, GarconMenu::directory-changed and
   GarconMenuItem::changed for applications to react on file system
   changes.
 - Improve the code quality of garcon_config_lookup().
@@ -96,10 +115,10 @@
 
 0.1.0
 =====
-- This is a complete rewrite of the former Xfce menu library called 
+- This is a complete rewrite of the former Xfce menu library called
   libxfce4menu. It covers almost every part of the menu specification
-  except for legacy menus and a few XML attributes. In contrast to 
+  except for legacy menus and a few XML attributes. In contrast to
   libxfce4menu, it can also load menus modified with menu editors such
-  as Alacarte as menu merging is now supported. The only crucial 
+  as Alacarte as menu merging is now supported. The only crucial
   feature still missing is monitoring menus and menu items for changes.
   This is something that will be worked on for the next release.
