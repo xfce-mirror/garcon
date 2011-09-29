@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-08 10:06+0000\n"
+"POT-Creation-Date: 2011-09-29 10:06+0000\n"
 "PO-Revision-Date: 2010-05-13 11:33+0300\n"
 "Last-Translator: Ayhan YALÇINSOY <ayhanyalcinsoy@gmail.com>\n"
 "Language-Team: Turkish <kde-i18n-doc@kde.org>\n"
@@ -48,7 +48,7 @@ msgstr "Eğitimsel yazılımlar"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
-msgstr "Oyunalar"
+msgstr "Oyunlar"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
@@ -123,12 +123,12 @@ msgstr "Sistem araçları ve uygulamaları"
 msgid "File \"%s\" not found"
 msgstr "\"%s\" dosyası bulunamadı"
 
-#: ../garcon/garcon-menu-parser.c:278
+#: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "%s den menü dosya verisi yüklenemedi: %s"
 
-#: ../garcon/garcon-menu-parser.c:284
+#: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "%s den menü dosya verisi yüklenemedi"
