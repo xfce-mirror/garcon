@@ -2,19 +2,19 @@
 # Copyright (C) 2007-2009 Jannis Pohlmann <jannis@xfce.org>
 # This file is distributed under the same license as the libxfce4menu package.
 # Maximilian Schleiss <maximilian@xfce.org>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 14:36+0100\n"
+"POT-Creation-Date: 2011-10-01 16:03+0000\n"
 "PO-Revision-Date: 2009-10-10 14:26+0100\n"
 "Last-Translator: Steve Dodier <sidnioulz@gmail.com>\n"
 "Language-Team: French <i18n-xfce@xfce.org>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -65,12 +65,12 @@ msgid "Multimedia"
 msgstr "Multimédia"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Network"
-msgstr "Réseau"
+msgid "Applications for Internet access"
+msgstr "Applications Internet"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-msgid "Network applications and utilities"
-msgstr "Outils et applications réseau"
+msgid "Internet"
+msgstr "Internet"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -87,14 +87,6 @@ msgstr "Logiciels ne rentrant dans aucune autre catégorie"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Autres"
-
-#: ../data/xfce/xfce-science.directory.in.h:1
-msgid "Science"
-msgstr "Science"
-
-#: ../data/xfce/xfce-science.directory.in.h:2
-msgid "Scientific software"
-msgstr "Applications scientifiques"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -120,20 +112,32 @@ msgstr "Système"
 msgid "System tools and utilities"
 msgstr "Outils et utilitaires système"
 
-#: ../garcon/garcon-menu.c:698
+#: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Fichier \"%s\" non trouvé"
 
-#: ../garcon/garcon-menu-parser.c:278
+#: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Impossible de charger les données du fichier de menu depuis %s : %s"
 
-#: ../garcon/garcon-menu-parser.c:284
+#: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Impossible de charger les données du fichier de menu depuis %s"
+
+#~ msgid "Network"
+#~ msgstr "Réseau"
+
+#~ msgid "Network applications and utilities"
+#~ msgstr "Outils et applications réseau"
+
+#~ msgid "Science"
+#~ msgstr "Science"
+
+#~ msgid "Scientific software"
+#~ msgstr "Applications scientifiques"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "Menu Xfce : test d'affichage du menu"
