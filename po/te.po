@@ -7,13 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-05 22:06+0000\n"
+"POT-Creation-Date: 2011-10-15 22:03+0000\n"
 "PO-Revision-Date: 2011-04-21 17:57+0530\n"
 "Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
 "Language-Team: Telugu <telugulinux@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: te\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
@@ -50,11 +51,11 @@ msgstr "ఆటలు, పజిల్స్, మరియు ఇతర సరద
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr "రేఖాచిత్రాలు"
+msgstr "గ్రాఫిక్స్"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "రేఖాచిత్రాలను సృష్టించుట మరియు అభిసంధాన అనువర్తనాలు"
+msgstr "గ్రాఫిక్సును సృష్టించుట మరియు అభిసంధాన అనువర్తనాలు"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
@@ -117,12 +118,12 @@ msgstr "వ్యవస్థ సాధనాలు మరియు విని
 msgid "File \"%s\" not found"
 msgstr "\"%s\" ఫైల్ కనపడలేదు"
 
-#: ../garcon/garcon-menu-parser.c:278
+#: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "%s నుండి మెనూ ఫైలును లోడుచేయుట వీలుకాదు: %s"
 
-#: ../garcon/garcon-menu-parser.c:284
+#: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "%s నుండి మెనూ ఫైలును లోడుచేయుట వీలుకాదు"
