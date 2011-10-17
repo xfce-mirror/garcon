@@ -4,6 +4,7 @@
 # Chris K. Zhang <plutino@gmail.com>, 2009.
 # Hunt Xu <mhuntxu@gmail.com>, 2009, 2010.
 # 微尘 <squeeze@189.cn>, 2010.
+# Chipong Luo <chipong_l@yahoo.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
