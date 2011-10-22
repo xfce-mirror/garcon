@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-15 22:03+0000\n"
+"POT-Creation-Date: 2011-10-22 16:03+0000\n"
 "PO-Revision-Date: 2011-04-21 17:57+0530\n"
 "Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
 "Language-Team: Telugu <telugulinux@gmail.com>\n"
@@ -39,7 +39,7 @@ msgstr "విద్య"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr "విద్య సాఫ్ట్‍వేర్"
+msgstr "విద్యా సాఫ్ట్‍వేర్"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
@@ -51,19 +51,19 @@ msgstr "ఆటలు, పజిల్స్, మరియు ఇతర సరద
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr "గ్రాఫిక్స్"
+msgstr "చిత్రాంశాలు"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "గ్రాఫిక్సును సృష్టించుట మరియు అభిసంధాన అనువర్తనాలు"
+msgstr "చిత్రాంశాలను సృష్టించుట మరియు అభిసంధాన అనువర్తనాలు"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr "ఆడియో మరియు వీడియా ఆటకాలు మరియు కూర్పరులు"
+msgstr "శ్రవణ మరియు దృశ్య ప్రదర్శకాలు మరియు కూర్పరులు"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
-msgstr "బహుళమాద్యమం"
+msgstr "బహుళమాధ్యమం"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Applications for Internet access"
