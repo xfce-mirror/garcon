@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-18 16:05+0000\n"
+"POT-Creation-Date: 2011-11-01 17:03+0000\n"
 "PO-Revision-Date: 2010-11-11 23:15+0300\n"
 "Last-Translator: Ričardas V. <ricardas.v@inbox.lt>\n"
 "Language-Team: Lithuanian <->\n"
@@ -66,21 +66,20 @@ msgid "Multimedia"
 msgstr "Garsas ir vaizdas"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Network"
-msgstr "Tinklas"
+msgid "Applications for Internet access"
+msgstr "Interneto prieigos programos"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-msgid "Network applications and utilities"
-msgstr "Tinklo programos ir priemonės"
+msgid "Internet"
+msgstr "Internetas"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
 msgstr "Raštinė"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
-#, fuzzy
 msgid "Office and productivity applications"
-msgstr "Raštinės ir našaus darbo programos"
+msgstr "Raštinė ir darbo programos"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
@@ -89,14 +88,6 @@ msgstr "Programos, kurios nepatenka į kitas temas"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Kita"
-
-#: ../data/xfce/xfce-science.directory.in.h:1
-msgid "Science"
-msgstr "Mokslas"
-
-#: ../data/xfce/xfce-science.directory.in.h:2
-msgid "Scientific software"
-msgstr "Mokslo programinė įranga"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -122,20 +113,32 @@ msgstr "Sistema"
 msgid "System tools and utilities"
 msgstr "Sistemos įrankiai ir priemonės"
 
-#: ../garcon/garcon-menu.c:698
+#: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Failas „%s” nerastas"
 
-#: ../garcon/garcon-menu-parser.c:278
+#: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Nepavyko įkelti menių failo duomenys iš %s:%s"
 
-#: ../garcon/garcon-menu-parser.c:284
+#: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Nepavyko įkelti menių failo duomenys iš %s"
+
+#~ msgid "Network"
+#~ msgstr "Tinklas"
+
+#~ msgid "Network applications and utilities"
+#~ msgstr "Tinklo programos ir priemonės"
+
+#~ msgid "Science"
+#~ msgstr "Mokslas"
+
+#~ msgid "Scientific software"
+#~ msgstr "Mokslo programinė įranga"
 
 #~ msgid "No suitable application menu file found"
 #~ msgstr "Nerastas tinkamas programos menių failas"
