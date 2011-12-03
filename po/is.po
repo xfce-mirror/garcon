@@ -1,0 +1,131 @@
+# translation of garcon.master.untitled.po to Icelandic
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sveinn í Felli <sveinki@nett.is>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: garcon.master.untitled\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-12-03 07:06+0000\n"
+"PO-Revision-Date: 2011-12-03 08:07+0000\n"
+"Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
+"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:1
+msgid "Accessories"
+msgstr "Aukahlutir"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:2
+msgid "Common desktop tools and applications"
+msgstr ""
+
+#: ../data/xfce/xfce-development.directory.in.h:1
+msgid "Development"
+msgstr "Forritun"
+
+#: ../data/xfce/xfce-development.directory.in.h:2
+msgid "Software development tools"
+msgstr "Þróunar og forritunartól"
+
+#: ../data/xfce/xfce-education.directory.in.h:1
+msgid "Education"
+msgstr "Menntun"
+
+#: ../data/xfce/xfce-education.directory.in.h:2
+msgid "Educational software"
+msgstr "Fræðsluhugbúnaður"
+
+#: ../data/xfce/xfce-games.directory.in.h:1
+msgid "Games"
+msgstr "Leikir"
+
+#: ../data/xfce/xfce-games.directory.in.h:2
+msgid "Games, puzzles, and other fun software"
+msgstr ""
+
+#: ../data/xfce/xfce-graphics.directory.in.h:1
+msgid "Graphics"
+msgstr "Myndvinnsla"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:2
+msgid "Graphics creation and manipulation applications"
+msgstr ""
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:1
+msgid "Audio and video players and editors"
+msgstr ""
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Multimedia"
+msgstr "Margmiðlun"
+
+#: ../data/xfce/xfce-network.directory.in.h:1
+msgid "Applications for Internet access"
+msgstr "Forrit fyrir internetaðgang"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Internet"
+msgstr "Internetið"
+
+#: ../data/xfce/xfce-office.directory.in.h:1
+msgid "Office"
+msgstr "Skrifstofuforrit"
+
+#: ../data/xfce/xfce-office.directory.in.h:2
+msgid "Office and productivity applications"
+msgstr ""
+
+#: ../data/xfce/xfce-other.directory.in.h:1
+msgid "Applications that don't fit into other categories"
+msgstr ""
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Other"
+msgstr "Annað"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:1
+msgid "Screensaver applets"
+msgstr "Smáforrit fyrir skjáhvílur"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensavers"
+msgstr "Skjáhvílur"
+
+#: ../data/xfce/xfce-settings.directory.in.h:1
+msgid "Desktop and system settings applications"
+msgstr ""
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Settings"
+msgstr "Stillingar"
+
+#: ../data/xfce/xfce-system.directory.in.h:1
+msgid "System"
+msgstr "Kerfið"
+
+#: ../data/xfce/xfce-system.directory.in.h:2
+msgid "System tools and utilities"
+msgstr "Kerfisforrit og nytjatól"
+
+#: ../garcon/garcon-menu.c:706
+#, c-format
+msgid "File \"%s\" not found"
+msgstr "Skráin \"%s\" fannst ekki"
+
+#: ../garcon/garcon-menu-parser.c:280
+#, c-format
+msgid "Could not load menu file data from %s: %s"
+msgstr ""
+
+#: ../garcon/garcon-menu-parser.c:287
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr ""
+
