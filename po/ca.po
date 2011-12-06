@@ -1,14 +1,14 @@
 # Catalan translations for garcon package.
 # Copyright (C) 2008 THE garcon'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the garcon package.
-# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2008-2009.
+# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2008-2009, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 14:36+0100\n"
-"PO-Revision-Date: 2009-09-05 16:20+0100\n"
+"POT-Creation-Date: 2011-12-06 14:48+0000\n"
+"PO-Revision-Date: 2011-12-06 21:05+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
 "Language: \n"
@@ -68,12 +68,12 @@ msgid "Multimedia"
 msgstr "Multimèdia"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Network"
-msgstr "Xarxa"
+msgid "Applications for Internet access"
+msgstr "Aplicacions per accedir a internet"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-msgid "Network applications and utilities"
-msgstr "Aplicacions i utilitats de xarxa"
+msgid "Internet"
+msgstr "Internet"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -90,14 +90,6 @@ msgstr "Les aplicacions que no encaixen en cap altra categoria"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Altres"
-
-#: ../data/xfce/xfce-science.directory.in.h:1
-msgid "Science"
-msgstr "Ciència"
-
-#: ../data/xfce/xfce-science.directory.in.h:2
-msgid "Scientific software"
-msgstr "Programari científic"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -123,20 +115,32 @@ msgstr "Sistema"
 msgid "System tools and utilities"
 msgstr "Eines i utilitats del sistema"
 
-#: ../garcon/garcon-menu.c:698
+#: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "No s'ha trobat el fitxer \"%s\""
 
-#: ../garcon/garcon-menu-parser.c:278
+#: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "No s'ha pogut carregar les dades del fitxer de menú de «%s»: %s"
 
-#: ../garcon/garcon-menu-parser.c:284
+#: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "No s'ha pogut carregar les dades del fitxer de menú de «%s»"
+
+#~ msgid "Network"
+#~ msgstr "Xarxa"
+
+#~ msgid "Network applications and utilities"
+#~ msgstr "Aplicacions i utilitats de xarxa"
+
+#~ msgid "Science"
+#~ msgstr "Ciència"
+
+#~ msgid "Scientific software"
+#~ msgstr "Programari científic"
 
 #~ msgid "No suitable application menu file found"
 #~ msgstr "No s'ha trobat un fitxer de menú adequat"
