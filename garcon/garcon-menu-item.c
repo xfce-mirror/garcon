@@ -703,8 +703,10 @@ garcon_menu_item_new (GFile *file)
   const gchar    *exec;
   const gchar    *try_exec;
   const gchar    *icon;
+  const gchar    *url;
   gchar         **mt;
   gchar         **str_list;
+  gchar          *url_exec = NULL;
 
   g_return_val_if_fail (G_IS_FILE (file), NULL);
   g_return_val_if_fail (g_file_is_native (file), NULL);
@@ -721,6 +723,17 @@ garcon_menu_item_new (GFile *file)
   /* Parse name and exec command */
   name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
   exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
+
+  if (G_UNLIKELY (exec == NULL))
+    {
+      /* Support Type=Link items */
+      url = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_URL, NULL);
+      if (url != NULL)
+        {
+          url_exec = g_strdup_printf ("exo-open --launch WebBrowser '%s'", url);
+          exec = url_exec;
+        }
+    }
 
   /* Validate Name and Exec fields */
   if (G_LIKELY (exec != NULL && name != NULL))
@@ -780,6 +793,7 @@ garcon_menu_item_new (GFile *file)
 
   /* Cleanup */
   xfce_rc_close (rc);
+  g_free (url_exec);
 
   return item;
 }
