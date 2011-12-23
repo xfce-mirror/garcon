@@ -631,7 +631,7 @@ garcon_menu_item_get_element_equal (GarconMenuElement *element,
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), FALSE);
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (other), FALSE);
 
-  return g_file_equal (GARCON_MENU_ITEM (element)->priv->file, 
+  return g_file_equal (GARCON_MENU_ITEM (element)->priv->file,
                        GARCON_MENU_ITEM (other)->priv->file);
 }
 
@@ -685,6 +685,22 @@ garcon_menu_item_category_lists_equal (GList *categories1,
 
 
 
+static gchar *
+garcon_menu_item_url_exec (XfceRc *rc)
+{
+  const gchar *url;
+  gchar       *url_exec = NULL;
+
+  /* Support Type=Link items */
+  url = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_URL, NULL);
+  if (url != NULL)
+    url_exec = g_strdup_printf ("exo-open --launch WebBrowser '%s'", url);
+
+  return url_exec;
+}
+
+
+
 GarconMenuItem *
 garcon_menu_item_new (GFile *file)
 {
@@ -703,7 +719,6 @@ garcon_menu_item_new (GFile *file)
   const gchar    *exec;
   const gchar    *try_exec;
   const gchar    *icon;
-  const gchar    *url;
   gchar         **mt;
   gchar         **str_list;
   gchar          *url_exec = NULL;
@@ -724,16 +739,9 @@ garcon_menu_item_new (GFile *file)
   name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
   exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
 
+  /* Support Type=Link items */
   if (G_UNLIKELY (exec == NULL))
-    {
-      /* Support Type=Link items */
-      url = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_URL, NULL);
-      if (url != NULL)
-        {
-          url_exec = g_strdup_printf ("exo-open --launch WebBrowser '%s'", url);
-          exec = url_exec;
-        }
-    }
+    exec = url_exec = garcon_menu_item_url_exec (rc);
 
   /* Validate Name and Exec fields */
   if (G_LIKELY (exec != NULL && name != NULL))
@@ -864,6 +872,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   const gchar  *name;
   const gchar  *exec;
   gchar        *filename;
+  gchar        *url_exec;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (G_IS_FILE (file), FALSE);
@@ -882,6 +891,11 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   /* Check if there is a name and exec key */
   name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
   exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
+
+  /* Support Type=Link items */
+  if (G_UNLIKELY (exec == NULL))
+    exec = url_exec = garcon_menu_item_url_exec (rc);
+
   if (G_UNLIKELY (name == NULL || exec == NULL))
     {
       g_set_error_literal (error, 0, 0, "Either the name or exec key was not defined.");
@@ -976,7 +990,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
 
       _garcon_g_list_free_full (old_categories, g_free);
     }
-    
+
 
   /* Set the rest of the private data directly */
   item->priv->only_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN, ";");
@@ -989,6 +1003,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   g_signal_emit (G_OBJECT (item), item_signals[CHANGED], 0);
 
   xfce_rc_close (rc);
+  g_free (url_exec);
 
   return TRUE;
 }
