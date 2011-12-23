@@ -898,7 +898,9 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
 
   if (G_UNLIKELY (name == NULL || exec == NULL))
     {
-      g_set_error_literal (error, 0, 0, "Either the name or exec key was not defined.");
+      g_set_error_literal (error, G_KEY_FILE_ERROR,
+                           G_KEY_FILE_ERROR_KEY_NOT_FOUND,
+                           "Either the name or exec key was not defined.");
       xfce_rc_close (rc);
 
       return FALSE;
