@@ -872,7 +872,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   const gchar  *name;
   const gchar  *exec;
   gchar        *filename;
-  gchar        *url_exec;
+  gchar        *url_exec = NULL;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (G_IS_FILE (file), FALSE);
