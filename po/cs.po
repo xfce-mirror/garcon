@@ -2,13 +2,13 @@
 # Copyright (C) 2008 THE libxfce4menu'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the libxfce4menu package.
 # Miro Hrončok <churchyard@gmail.com>, 2008.
-# Michal Várady <miko.vaji@gmail.com>, 2009-2010
+# Michal Várady <miko.vaji@gmail.com>, 2009-2012
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 14:36+0100\n"
-"PO-Revision-Date: 2010-12-07 02:10+0100\n"
+"POT-Creation-Date: 2012-01-01 19:06+0000\n"
+"PO-Revision-Date: 2012-01-02 02:09+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -68,12 +68,12 @@ msgid "Multimedia"
 msgstr "Multimédia"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Network"
-msgstr "Síť"
+msgid "Applications for Internet access"
+msgstr "Aplikace pro přístup k Internetu"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-msgid "Network applications and utilities"
-msgstr "Síťové aplikace a nástroje"
+msgid "Internet"
+msgstr "Internet"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -90,14 +90,6 @@ msgstr "Aplikace nepatřící do žádné kategorie"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Ostatní"
-
-#: ../data/xfce/xfce-science.directory.in.h:1
-msgid "Science"
-msgstr "Věda"
-
-#: ../data/xfce/xfce-science.directory.in.h:2
-msgid "Scientific software"
-msgstr "Vědecký software"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -123,20 +115,32 @@ msgstr "Systém"
 msgid "System tools and utilities"
 msgstr "Systémové nástroje"
 
-#: ../garcon/garcon-menu.c:698
+#: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Soubor \"%s\" nebyl nalezen"
 
-#: ../garcon/garcon-menu-parser.c:278
+#: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Nelze načíst data souboru nabídky z %s: %s"
 
-#: ../garcon/garcon-menu-parser.c:284
+#: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Nelze načíst data souboru nabídky z %s"
+
+#~ msgid "Network"
+#~ msgstr "Síť"
+
+#~ msgid "Network applications and utilities"
+#~ msgstr "Síťové aplikace a nástroje"
+
+#~ msgid "Science"
+#~ msgstr "Věda"
+
+#~ msgid "Scientific software"
+#~ msgstr "Vědecký software"
 
 #~ msgid "XfceMenu: Display Menu Test"
 #~ msgstr "XfceMenu: Zkouška zobrazení nabídky"
