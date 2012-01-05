@@ -1,0 +1,130 @@
+# Norwegian nynorsk translations for garcon.
+# Copyright (c) 2007 The Xfce development team.
+# This file is distributed under the same license as the garcon package.
+# Eivind Ødegård <gingermig@yahoo.no>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: garcon x.y.z\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-01-05 08:30+0000\n"
+"PO-Revision-Date: 2012-01-05 15:05+0100\n"
+"Last-Translator: Eivind Ødegård <meinmycell-forums@yahoo.no>\n"
+"Language-Team: Norwegian nynorsk <i18n-nn@lister.ping.uio.no>\n"
+"Language: nn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:1
+msgid "Accessories"
+msgstr "Ymse"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:2
+msgid "Common desktop tools and applications"
+msgstr "Vanlege program og verktøy for skrivebordet"
+
+#: ../data/xfce/xfce-development.directory.in.h:1
+msgid "Development"
+msgstr "Utvikling"
+
+#: ../data/xfce/xfce-development.directory.in.h:2
+msgid "Software development tools"
+msgstr "Program for å utvikla programvare"
+
+#: ../data/xfce/xfce-education.directory.in.h:1
+msgid "Education"
+msgstr "Læring"
+
+#: ../data/xfce/xfce-education.directory.in.h:2
+msgid "Educational software"
+msgstr "Program for læring og utdanning"
+
+#: ../data/xfce/xfce-games.directory.in.h:1
+msgid "Games"
+msgstr "Spel"
+
+#: ../data/xfce/xfce-games.directory.in.h:2
+msgid "Games, puzzles, and other fun software"
+msgstr "Spel, pusleri og anna moro"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:1
+msgid "Graphics"
+msgstr "Grafikk"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:2
+msgid "Graphics creation and manipulation applications"
+msgstr "Program for å laga og endra grafikk og bilete"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:1
+msgid "Audio and video players and editors"
+msgstr "Program for å spela og endra lyd og video"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Multimedia"
+msgstr "Multimedia"
+
+#: ../data/xfce/xfce-network.directory.in.h:1
+msgid "Applications for Internet access"
+msgstr "Program for internettoppgåver"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Internet"
+msgstr "Internett"
+
+#: ../data/xfce/xfce-office.directory.in.h:1
+msgid "Office"
+msgstr "Kontor"
+
+#: ../data/xfce/xfce-office.directory.in.h:2
+msgid "Office and productivity applications"
+msgstr "Program for å skriva og løysa kontoroppgåver"
+
+#: ../data/xfce/xfce-other.directory.in.h:1
+msgid "Applications that don't fit into other categories"
+msgstr "Program som ikkje høyrer innunder andre kategoriar"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Other"
+msgstr "Andre"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:1
+msgid "Screensaver applets"
+msgstr "Skjermspararprogram"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensavers"
+msgstr "Skjermspararar"
+
+#: ../data/xfce/xfce-settings.directory.in.h:1
+msgid "Desktop and system settings applications"
+msgstr "Innstillingar for skrivebordet og systemet"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Settings"
+msgstr "Innstillingar"
+
+#: ../data/xfce/xfce-system.directory.in.h:1
+msgid "System"
+msgstr "System"
+
+#: ../data/xfce/xfce-system.directory.in.h:2
+msgid "System tools and utilities"
+msgstr "Systemverktøy"
+
+#: ../garcon/garcon-menu.c:706
+#, c-format
+msgid "File \"%s\" not found"
+msgstr "Fann ikkje fila «%s»"
+
+#: ../garcon/garcon-menu-parser.c:280
+#, c-format
+msgid "Could not load menu file data from %s: %s"
+msgstr "Greidde ikkje lasta menyfildata frå %s: %s"
+
+#: ../garcon/garcon-menu-parser.c:287
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr "Greidde ikkje lasta menyfildata frå %s"
+
