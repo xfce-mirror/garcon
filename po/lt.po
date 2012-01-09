@@ -2,20 +2,22 @@
 # Copyright (C) YEAR THE garcon'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the garcon package.
 # Ričardas Vasiulis <ricardas.v@inbox.lt>, 2010.
-# 
+# Algimantas Margevičius <margevicius.algimantas@gmail.com>, 2012.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-01 17:03+0000\n"
-"PO-Revision-Date: 2010-11-11 23:15+0300\n"
-"Last-Translator: Ričardas V. <ricardas.v@inbox.lt>\n"
-"Language-Team: Lithuanian <->\n"
+"PO-Revision-Date: 2012-01-09 12:44+0200\n"
+"Last-Translator: Algimantas Margevičius <margevicius.algimantas@gmail.com>\n"
+"Language-Team: Lietuvių <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bits\n"
 "Language: lt\n"
-"Plural-Forms: n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -27,7 +29,7 @@ msgstr "Eiliniai darbastalio įrankiai ir programos"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
-msgstr "Programavimas"
+msgstr "Kūrimas"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
@@ -79,11 +81,11 @@ msgstr "Raštinė"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "Raštinė ir darbo programos"
+msgstr "Raštinės ir darbo programos"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr "Programos, kurios nepatenka į kitas temas"
+msgstr "Programos, kurios nepatenka į kitas kategorijas"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
@@ -95,7 +97,7 @@ msgstr "Ekrano užsklandos įskiepiai"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
-msgstr "Ekrano užsklanda"
+msgstr "Ekrano užsklandos"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
@@ -121,12 +123,12 @@ msgstr "Failas „%s” nerastas"
 #: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Nepavyko įkelti menių failo duomenys iš %s:%s"
+msgstr "Nepavyko įkelti meniu failo duomenų iš %s:%s"
 
 #: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Nepavyko įkelti menių failo duomenys iš %s"
+msgstr "Nepavyko įkelti meniu failo duomenų iš %s"
 
 #~ msgid "Network"
 #~ msgstr "Tinklas"
