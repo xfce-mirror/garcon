@@ -28,10 +28,12 @@ directory_in_files =							\
 	xfce-education.directory.in					\
 	xfce-games.directory.in						\
 	xfce-graphics.directory.in					\
+	xfce-hardware.directory.in					\
 	xfce-multimedia.directory.in					\
 	xfce-network.directory.in					\
 	xfce-office.directory.in					\
 	xfce-other.directory.in						\
+	xfce-personal.directory.in					\
 	xfce-screensavers.directory.in					\
 	xfce-settings.directory.in					\
 	xfce-system.directory.in
