@@ -2,12 +2,12 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-23 22:06+0000\n"
+"POT-Creation-Date: 2012-01-24 21:12+0000\n"
 "PO-Revision-Date: 2011-08-24 02:24-0000\n"
 "Last-Translator: كريم أولاد الشلحة <herr.linux88@gmail.com>\n"
 "Language-Team: Arabic Xfce Translation Team <herr.linux88@gmail.com>\n"
@@ -58,6 +58,14 @@ msgstr "رسوميات"
 msgid "Graphics creation and manipulation applications"
 msgstr "تطبيقات إنشاء ومعالجة الرسوميات"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "أجهزة"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "إعدادات لمختلف أجهزة العتاد"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "مشغلات ومحررات الصوت والفيديو"
@@ -90,6 +98,14 @@ msgstr "التطبيقات التي لا تنتمي إلى أي فئة أخرى"
 msgid "Other"
 msgstr "أخرى"
 
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "شخصي"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "إعدادات الشخصية"
+
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
 msgstr "بريمجات حافظة الشاشة"
@@ -119,12 +135,12 @@ msgstr "أدوات النظام"
 msgid "File \"%s\" not found"
 msgstr "لم بتم العثور على الملف \"%s\""
 
-#: ../garcon/garcon-menu-parser.c:278
+#: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "لا يمكن تحميل ملف قائمة البيانات من %s: %s"
 
-#: ../garcon/garcon-menu-parser.c:284
+#: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "لا يمكن تحميل ملف قائمة البيانات من %s"
