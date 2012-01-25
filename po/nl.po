@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-07 16:06+0000\n"
+"POT-Creation-Date: 2012-01-25 03:00+0000\n"
 "PO-Revision-Date: 2011-09-07 16:15+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
@@ -58,6 +58,14 @@ msgstr "Afbeeldingen"
 msgid "Graphics creation and manipulation applications"
 msgstr "Toepassingen voor het maken en bewerken van afbeeldingen"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Apparatuur"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Instellingen voor verschillende apparaten"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Geluid- en videospelers en -bewerkers"
@@ -90,6 +98,14 @@ msgstr "Toepassingen die niet in andere categorieën passen"
 msgid "Other"
 msgstr "Overige"
 
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Persoonlijk"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Persoonlijke instellingen"
+
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
 msgstr "Schermbeveiligingtoepassingen"
@@ -119,12 +135,12 @@ msgstr "Systeemgereedschap en hulpmiddelen"
 msgid "File \"%s\" not found"
 msgstr "Bestand \"%s\" niet gevonden"
 
-#: ../garcon/garcon-menu-parser.c:278
+#: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Kon gegevens van menubestand niet laden vanuit %s: %s"
 
-#: ../garcon/garcon-menu-parser.c:284
+#: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Kon gegevens van menubestand niet laden vanuit %s"
