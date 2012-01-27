@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-20 16:06+0000\n"
+"POT-Creation-Date: 2012-01-27 13:00+0000\n"
 "PO-Revision-Date: 2009-08-15 03:30+0100\n"
 "Last-Translator: Jannis Pohlmann <jannis@xfce.org>\n"
 "Language-Team: German <xfce-i18n-de@xfce.org>\n"
@@ -58,6 +58,16 @@ msgstr "Grafik"
 msgid "Graphics creation and manipulation applications"
 msgstr "Bildbearbeitungsanwendungen"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+#, fuzzy
+msgid "Hardware"
+msgstr "Geräte"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+#, fuzzy
+msgid "Settings for several hardware devices"
+msgstr "Einstellungen für verschiedene Geräte"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Audio- und Videowiedergabeprogramme und Bearbeitungswerkzeuge"
@@ -90,6 +100,16 @@ msgstr "Anwendungen, die in keine andere Kategorie passen"
 msgid "Other"
 msgstr "Sonstiges"
 
+#: ../data/xfce/xfce-personal.directory.in.h:1
+#, fuzzy
+msgid "Personal"
+msgstr "Persönlich"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+#, fuzzy
+msgid "Personal settings"
+msgstr "Persönliche Einstellungen"
+
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
 msgstr "Bildschirmschonerapplets"
@@ -114,17 +134,17 @@ msgstr "System"
 msgid "System tools and utilities"
 msgstr "Systemwerkzeuge"
 
-#: ../garcon/garcon-menu.c:698
+#: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Datei »%s« wurde nicht gefunden"
 
-#: ../garcon/garcon-menu-parser.c:278
+#: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Menüinformationen konnten nicht aus der Datei »%s« geladen werden: %s"
 
-#: ../garcon/garcon-menu-parser.c:284
+#: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Menüinformationen konnten nicht aus der Datei »%s« geladen werden"
