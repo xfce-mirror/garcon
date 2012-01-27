@@ -78,7 +78,7 @@ msgstr "多媒体"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Applications for Internet access"
-msgstr "访问互联网的应用程序"
+msgstr "互联网访问的应用程序"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Internet"
