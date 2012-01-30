@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-29 10:06+0000\n"
+"POT-Creation-Date: 2012-01-30 16:24+0000\n"
 "PO-Revision-Date: 2010-05-13 11:33+0300\n"
 "Last-Translator: Ayhan YALÇINSOY <ayhanyalcinsoy@gmail.com>\n"
 "Language-Team: Turkish <kde-i18n-doc@kde.org>\n"
@@ -62,6 +62,14 @@ msgstr "Grafik"
 msgid "Graphics creation and manipulation applications"
 msgstr "Grafik oluşturma ve değiştirme uygulamaları"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Donanım"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Çeşitli donanım aygıtları için ayarlar"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Ses ve video oynatıcı ve düzenleyiciler"
@@ -93,6 +101,14 @@ msgstr "Diğer bölümlerde bulunmayan uygulamalar"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Diğer"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Kişisel"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Kisişel ayarlar"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
