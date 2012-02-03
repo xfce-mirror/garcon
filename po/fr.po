@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-01 16:03+0000\n"
+"POT-Creation-Date: 2012-02-03 13:12+0000\n"
 "PO-Revision-Date: 2009-10-10 14:26+0100\n"
 "Last-Translator: Steve Dodier <sidnioulz@gmail.com>\n"
 "Language-Team: French <i18n-xfce@xfce.org>\n"
@@ -56,6 +56,14 @@ msgstr "Infographie"
 msgid "Graphics creation and manipulation applications"
 msgstr "Applications de dessin"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Matériel"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Paramètres pour une partie du matériel"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Lecteurs et éditeurs audio et vidéo"
@@ -87,6 +95,14 @@ msgstr "Logiciels ne rentrant dans aucune autre catégorie"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Autres"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Personnel"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Paramètres personnels"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
