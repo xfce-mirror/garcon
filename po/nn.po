@@ -2,19 +2,19 @@
 # Copyright (c) 2007 The Xfce development team.
 # This file is distributed under the same license as the garcon package.
 # Eivind Ødegård <gingermig@yahoo.no>, 2012.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: garcon x.y.z\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-05 08:30+0000\n"
+"POT-Creation-Date: 2012-02-04 12:24+0000\n"
 "PO-Revision-Date: 2012-01-05 15:05+0100\n"
 "Last-Translator: Eivind Ødegård <meinmycell-forums@yahoo.no>\n"
 "Language-Team: Norwegian nynorsk <i18n-nn@lister.ping.uio.no>\n"
-"Language: nn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nn\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
@@ -57,6 +57,14 @@ msgstr "Grafikk"
 msgid "Graphics creation and manipulation applications"
 msgstr "Program for å laga og endra grafikk og bilete"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Maskinvare"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Innstillingar for fleire maskinvareeiningar"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Program for å spela og endra lyd og video"
@@ -88,6 +96,14 @@ msgstr "Program som ikkje høyrer innunder andre kategoriar"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Andre"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Personleg"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Personlege innstillingar"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -127,4 +143,3 @@ msgstr "Greidde ikkje lasta menyfildata frå %s: %s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Greidde ikkje lasta menyfildata frå %s"
-
