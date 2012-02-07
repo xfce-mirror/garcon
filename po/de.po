@@ -4,12 +4,12 @@
 # Jannis Pohlmann <jannis@xfce.org>, 2007, 2009.
 # Enrico Tröger <enrico@xfce.org>, 2009.
 # Thomas Schütz <xfce@thschuetz.de>, 2012.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: 4.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-27 13:00+0000\n"
+"POT-Creation-Date: 2012-02-07 15:48+0000\n"
 "PO-Revision-Date: 2009-08-15 03:30+0100\n"
 "Last-Translator: Thomas Schütz <xfce@thschuetz.de>\n"
 "Language-Team: German <xfce-i18n-de@xfce.org>\n"
@@ -62,10 +62,9 @@ msgstr "Bildbearbeitungsanwendungen"
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 #, fuzzy
 msgid "Hardware"
-msgstr "Geräte"
+msgstr "Hardware"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
-#, fuzzy
 msgid "Settings for several hardware devices"
 msgstr "Einstellungen für verschiedene Geräte"
 
@@ -102,12 +101,10 @@ msgid "Other"
 msgstr "Sonstiges"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
-#, fuzzy
 msgid "Personal"
 msgstr "Persönlich"
 
 #: ../data/xfce/xfce-personal.directory.in.h:2
-#, fuzzy
 msgid "Personal settings"
 msgstr "Persönliche Einstellungen"
 
