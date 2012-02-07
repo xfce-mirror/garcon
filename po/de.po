@@ -60,7 +60,6 @@ msgid "Graphics creation and manipulation applications"
 msgstr "Bildbearbeitungsanwendungen"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
-#, fuzzy
 msgid "Hardware"
 msgstr "Hardware"
 
