@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-27 07:12+0000\n"
+"POT-Creation-Date: 2012-02-06 22:24+0000\n"
 "PO-Revision-Date: 2010-11-23 22:57+0800\n"
 "Last-Translator: Chipong Luo <chipong_l@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <xfce-i18n@xfce.org>\n"
@@ -78,7 +78,7 @@ msgstr "多媒体"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Applications for Internet access"
-msgstr "互联网访问的应用程序"
+msgstr "互联网访问应用程序"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Internet"
@@ -114,7 +114,7 @@ msgstr "屏幕保护小程序"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
-msgstr "屏幕保护程序"
+msgstr "屏幕保护"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
@@ -140,9 +140,9 @@ msgstr "未找到文件 “%s”"
 #: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "未能从 %s 中载入菜单文件数据：%s"
+msgstr "未能从 %s 载入菜单文件数据：%s"
 
 #: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "未能从 %s 中载入菜单文件数据"
+msgstr "未能从 %s 载入菜单文件数据"
