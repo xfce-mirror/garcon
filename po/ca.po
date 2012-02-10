@@ -2,19 +2,19 @@
 # Copyright (C) 2008 THE garcon'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the garcon package.
 # Carles Muñoz Gorriz <carlesmu@internautas.org>, 2008-2009, 2011.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: libxfce 4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-06 14:48+0000\n"
+"POT-Creation-Date: 2012-02-10 07:36+0000\n"
 "PO-Revision-Date: 2011-12-06 21:05+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Catalan\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -59,6 +59,14 @@ msgstr "Gràfics"
 msgid "Graphics creation and manipulation applications"
 msgstr "Creació de gràfics i aplicacions de manipulació"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Maquinari"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Paràmetres per a diversos dispositius de maquinari"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Reproductors i editors d'àudio i vídeo"
@@ -90,6 +98,14 @@ msgstr "Les aplicacions que no encaixen en cap altra categoria"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Altres"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Personal"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Paràmetres personals"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
