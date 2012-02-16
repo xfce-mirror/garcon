@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu 4.5.92\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-26 10:06+0000\n"
+"POT-Creation-Date: 2012-02-16 02:51+0000\n"
 "PO-Revision-Date: 2009-08-15 19:29+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -60,6 +60,14 @@ msgstr "Grafik"
 msgid "Graphics creation and manipulation applications"
 msgstr "Grafisk skabelses- og manipuleringsprogrammer"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Hardware"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Indstillinger for adskillige hardware-enheder"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Lyd-, videoafpillere samt -editorer"
@@ -92,6 +100,14 @@ msgstr "Programmer som ikke falder indenfor andre kategorier"
 msgid "Other"
 msgstr "Andre"
 
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Personlige"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Personlige indstillinger"
+
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
 msgstr "Pauseskærmsprogrammer"
@@ -116,17 +132,17 @@ msgstr "System"
 msgid "System tools and utilities"
 msgstr "Systemværktøjer"
 
-#: ../garcon/garcon-menu.c:709
+#: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Filen \"%s\" blev ikke fundet"
 
-#: ../garcon/garcon-menu-parser.c:278
+#: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Kunne ikke indlæse data til menufil fra %s: %s."
 
-#: ../garcon/garcon-menu-parser.c:284
+#: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Kunne ikke indlæse data til menufil fra %s"
