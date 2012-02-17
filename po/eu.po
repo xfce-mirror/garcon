@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu-0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-25 10:06+0000\n"
+"POT-Creation-Date: 2012-02-17 08:06+0000\n"
 "PO-Revision-Date: 2010-11-20 23:50+0100\n"
 "Last-Translator: \n"
 "Language-Team: Basque <kde-i18n-doc@kde.org>\n"
@@ -58,6 +58,14 @@ msgstr "Grafikoak"
 msgid "Graphics creation and manipulation applications"
 msgstr "Sormen eta eraldaketa grafikorako aplikazioak"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Hardwarea"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Zenbait hardware gailuren ezarpenak"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Audio eta bideo editore eta erreproduzigailuak"
@@ -90,6 +98,14 @@ msgstr "Beste kategorietan sartzen ez diren aplikazioak"
 msgid "Other"
 msgstr "Besteak"
 
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Pertsonala"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Ezarpen pertsonalak"
+
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
 msgstr "Pantaila-babesle appletak"
@@ -119,12 +135,12 @@ msgstr "Sistema tresna eta lanabesak"
 msgid "File \"%s\" not found"
 msgstr "\"%s\" fitxategia ez da aurkitu"
 
-#: ../garcon/garcon-menu-parser.c:278
+#: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Ezin da %s-etik menuaren fitxategi datuak kargatu: %s."
 
-#: ../garcon/garcon-menu-parser.c:284
+#: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Ezin da %s-etik menuaren fitxategi datuak kargatu"
