@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-01 19:06+0000\n"
-"PO-Revision-Date: 2012-01-02 02:09+0100\n"
+"POT-Creation-Date: 2012-02-24 09:45+0000\n"
+"PO-Revision-Date: 2012-02-24 14:09+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -59,6 +59,14 @@ msgstr "Grafika"
 msgid "Graphics creation and manipulation applications"
 msgstr "Aplikace pro vytváření a manipulaci s grafikou"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Hardware"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Nastavení mnoha hardwarových zařízení"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Přehrávače a editory zvuku a videa"
@@ -90,6 +98,14 @@ msgstr "Aplikace nepatřící do žádné kategorie"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Ostatní"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Osobní"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Osobní nastavení"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
