@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-28 11:24+0000\n"
+"POT-Creation-Date: 2012-02-29 12:36+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Hezy Amiel <open@hezyamiel.com>\n"
 "Language-Team: Hebrew <xfce-i18n@xfce.org>\n"
@@ -56,6 +56,14 @@ msgstr "גרפיקה"
 msgid "Graphics creation and manipulation applications"
 msgstr "יישומי יצירה ועריכת גרפיקה"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "חומרה"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "הגדרות הנוגעות למספר התקני חומרה"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "נגנים ועורכי אודיו ווידאו."
@@ -87,6 +95,14 @@ msgstr "יישומים שאינם מתאימים לקטגוריות אחרות"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "אחר"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "אישי"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "הגדרות אישיות"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
