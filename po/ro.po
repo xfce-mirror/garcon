@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-31 04:06+0000\n"
+"POT-Creation-Date: 2012-03-07 13:39+0000\n"
 "PO-Revision-Date: 2011-01-05 21:52+0300\n"
 "Last-Translator: Mișu Moldovan <dumol@xfce.org>\n"
 "Language-Team: Romanian <debian-l10n-romanian@lists.debian.org>\n"
@@ -57,6 +57,14 @@ msgstr "Grafică"
 msgid "Graphics creation and manipulation applications"
 msgstr "Aplicații de creație și editare grafică"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Hardware"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Configurații ale dispozitivelor hardware"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Playere și editoare audio și video"
@@ -89,6 +97,14 @@ msgstr "Aplicații ce nu se potrivesc în alte categorii"
 msgid "Other"
 msgstr "Altele"
 
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Personale"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Preferințe personale"
+
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
 msgstr "Miniaplicații protectoare de ecran"
@@ -118,12 +134,12 @@ msgstr "Utilitare de sistem"
 msgid "File \"%s\" not found"
 msgstr "Fișierul „%s” nu a fost găsit"
 
-#: ../garcon/garcon-menu-parser.c:278
+#: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Nu s-au putut încărca datele fișierului meniu din %s: %s"
 
-#: ../garcon/garcon-menu-parser.c:284
+#: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Nu s-au putut încărca datele fișierului meniu din %s"
