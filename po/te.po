@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-22 16:03+0000\n"
+"POT-Creation-Date: 2012-03-11 16:15+0000\n"
 "PO-Revision-Date: 2011-04-21 17:57+0530\n"
 "Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
 "Language-Team: Telugu <telugulinux@gmail.com>\n"
@@ -57,6 +57,14 @@ msgstr "చిత్రాంశాలు"
 msgid "Graphics creation and manipulation applications"
 msgstr "చిత్రాంశాలను సృష్టించుట మరియు అభిసంధాన అనువర్తనాలు"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "హార్డ్‍వేర్"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "వివిధ హార్డ్‍వేర్ పరికరాల కొరకు అమరికలు"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "శ్రవణ మరియు దృశ్య ప్రదర్శకాలు మరియు కూర్పరులు"
@@ -88,6 +96,14 @@ msgstr "ఇతర విభాగాలలో సరిపోని అనువ
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "ఇతర"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "వ్యక్తిగతం"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "వ్యక్తిగత అమరికలు"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
