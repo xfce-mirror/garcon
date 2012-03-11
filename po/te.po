@@ -51,7 +51,7 @@ msgstr "ఆటలు, పజిల్స్, మరియు ఇతర సరద
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr "చిత్రాంశాలు"
+msgstr "చిత్రరూపాలు"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
@@ -67,7 +67,7 @@ msgstr "వివిధ హార్డ్‍వేర్ పరికరాల 
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr "శ్రవణ మరియు దృశ్య ప్రదర్శకాలు మరియు కూర్పరులు"
+msgstr "శ్రవణ మరియు దృశ్య ప్రదర్శకాలు మరియు కూర్పకాలు"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
