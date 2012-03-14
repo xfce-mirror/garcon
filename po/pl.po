@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-23 10:58+0000\n"
+"POT-Creation-Date: 2012-03-14 13:51+0000\n"
 "PO-Revision-Date: 2010-06-04 14:32+0200\n"
 "Last-Translator: Piotr Sokół <psokol@jabster.pl>\n"
 "Language-Team: Polish <>\n"
@@ -55,6 +55,14 @@ msgstr "Grafika"
 msgid "Graphics creation and manipulation applications"
 msgstr "Przechowuje programy służące do tworzenia i modyfikowania grafiki"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Sprzęt"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Ustawienia do kilku urządzeń sprzętowych"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Obejmuje odtwarzacze oraz edytory dźwięku i wideo"
@@ -86,6 +94,14 @@ msgstr "Zawiera programy nie pasujące do innych kategorii"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Inne"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Osobiste"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Ustawienia osobiste"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
