@@ -70,7 +70,7 @@ msgstr "다양한 하드웨어 장치를 위한 설정"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr "오디오와 비디오 재생기, 에디터"
+msgstr "음악과 동영상 재생기 및 편집기"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
