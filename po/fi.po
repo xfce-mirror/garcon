@@ -2,14 +2,14 @@
 # Copyright (C) 2007-2010 Jannis Pohlmann <jannis@xfce.org>
 # Copyright (C) 2009-2010 Nick Schermer <nick@xfce.org>
 # This file is distributed under the same license as the garcon package.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2010.
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2010-2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: garcon 0.1.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 14:36+0100\n"
-"PO-Revision-Date: 2010-12-07 15:34+0200\n"
+"POT-Creation-Date: 2012-03-28 08:27+0000\n"
+"PO-Revision-Date: 2012-03-28 16:12+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <xfce-i18n@xfce.org>\n"
 "Language: fi\n"
@@ -57,21 +57,29 @@ msgstr "Grafiikka"
 msgid "Graphics creation and manipulation applications"
 msgstr "Grafiikan käsittely- ja katseluohjelmat"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Laitteisto"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Eräiden laitteiden asetukset"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
-msgstr "Äänen ja videon soittimet sekä editorit"
+msgstr "Ääni- ja videosoittimet sekä editorit"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
 msgstr "Ääni ja video"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Network"
-msgstr "Verkko"
+msgid "Applications for Internet access"
+msgstr "Sovellukset Internetin käyttöön"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-msgid "Network applications and utilities"
-msgstr "Verkkotyökalut ja -sovellukset"
+msgid "Internet"
+msgstr "Internet"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -89,13 +97,13 @@ msgstr "Sovellukset, jotka eivät sovi muihin kategorioihin"
 msgid "Other"
 msgstr "Muut"
 
-#: ../data/xfce/xfce-science.directory.in.h:1
-msgid "Science"
-msgstr "Tiede"
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Henkilökohtaiset"
 
-#: ../data/xfce/xfce-science.directory.in.h:2
-msgid "Scientific software"
-msgstr "Tieteelliset ohjelmistot"
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Henkilökohtaiset asetukset"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -121,17 +129,17 @@ msgstr "Järjestelmä"
 msgid "System tools and utilities"
 msgstr "Järjestelmän työkalut ja hyötyohjelmat"
 
-#: ../garcon/garcon-menu.c:698
+#: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Tiedostoa \"%s\" ei löydy"
 
-#: ../garcon/garcon-menu-parser.c:278
+#: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Valikkotiedoston %s lataaminen epäonnistui: %s"
 
-#: ../garcon/garcon-menu-parser.c:284
+#: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Valikkotiedoston %s lataaminen epäonnistui"
