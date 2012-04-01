@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-25 03:00+0000\n"
+"POT-Creation-Date: 2012-04-01 16:51+0000\n"
 "PO-Revision-Date: 2011-09-07 16:15+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
@@ -133,7 +133,7 @@ msgstr "Systeemgereedschap en hulpmiddelen"
 #: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
-msgstr "Bestand \"%s\" niet gevonden"
+msgstr "Bestand '%s' niet gevonden"
 
 #: ../garcon/garcon-menu-parser.c:280
 #, c-format
