@@ -90,11 +90,11 @@ msgstr "사무"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "사무 및 생산성 프로그램들"
+msgstr "사무 및 생산성 프로그램"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr "다른 분류에 맞지 않은 프로그램들"
+msgstr "다른 분류에 맞지 않은 프로그램"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
@@ -130,7 +130,7 @@ msgstr "시스템"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr "시스템 도구와 유용한 것들"
+msgstr "시스템 도구와 유틸리티"
 
 #: ../garcon/garcon-menu.c:706
 #, c-format
