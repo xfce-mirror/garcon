@@ -3,19 +3,22 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Evaggelos Balaskas <ebalaskas@ebalaskas.gr>, 2008.
+# Efstathios Iosifidis <iosifidis@opensuse.org>, 2012.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 14:36+0100\n"
-"PO-Revision-Date: 2008-03-25 00:19+0200\n"
-"Last-Translator: Evaggelos Balaskas <ebalaskas@ebalaskas.gr>\n"
-"Language-Team: Greek <nls@tux.hellug.gr>\n"
+"POT-Creation-Date: 2012-04-08 16:24+0000\n"
+"PO-Revision-Date: 2012-04-08 23:18+0300\n"
+"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
+"Language-Team: Ελληνικά, Σύγχρονα <opensuse-translation-el@opensuse.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -57,6 +60,14 @@ msgstr "Γραφικά"
 msgid "Graphics creation and manipulation applications"
 msgstr "Εφαρμογές δημιουργίας και επεξεργασίας γραφικών"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Υλικό"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Ρυθμίσεις για διάφορες συσκευές"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Εφαρμογές αναπαραγωγής και επεξεργασίας ήχου και βίντεο"
@@ -66,12 +77,12 @@ msgid "Multimedia"
 msgstr "Πολυμέσα"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Network"
-msgstr "Δίκτυο"
+msgid "Applications for Internet access"
+msgstr "Εφαρμογές για πρόσβαση στο διαδίκτυο"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-msgid "Network applications and utilities"
-msgstr "Δικτυακές εφαρμογές και εργαλεία"
+msgid "Internet"
+msgstr "Διαδίκτυο"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -89,13 +100,13 @@ msgstr "Εφαρμογές που δεν εντάσσονται σε άλλες 
 msgid "Other"
 msgstr "Άλλα"
 
-#: ../data/xfce/xfce-science.directory.in.h:1
-msgid "Science"
-msgstr "Επιστήμη"
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Προσωπικά"
 
-#: ../data/xfce/xfce-science.directory.in.h:2
-msgid "Scientific software"
-msgstr "Επιστημονικό λογισμικό"
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Προσωπικές Ρυθμίσεις"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -121,20 +132,32 @@ msgstr "Σύστημα"
 msgid "System tools and utilities"
 msgstr "Εργαλεία και βοηθητικά προγράμματα συστήματος"
 
-#: ../garcon/garcon-menu.c:698
+#: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Το αρχείο \"%s\" δε βρέθηκε"
 
-#: ../garcon/garcon-menu-parser.c:278
+#: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Δεν μπορούν να φορτωθούν τα δεδομένα από το αρχείο μενού %s: %s"
 
-#: ../garcon/garcon-menu-parser.c:284
+#: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Δεν μπορούν να φορτωθούν τα δεδομένα από το αρχείο μενού %s"
+
+#~ msgid "Network"
+#~ msgstr "Δίκτυο"
+
+#~ msgid "Network applications and utilities"
+#~ msgstr "Δικτυακές εφαρμογές και εργαλεία"
+
+#~ msgid "Science"
+#~ msgstr "Επιστήμη"
+
+#~ msgid "Scientific software"
+#~ msgstr "Επιστημονικό λογισμικό"
 
 #~ msgid "No suitable application menu file found"
 #~ msgstr "Δεν βρέθηκε αρχείο μενού για την εφαρμογή"
