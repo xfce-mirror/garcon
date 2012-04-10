@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Transifex master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-20 10:03+0000\n"
+"POT-Creation-Date: 2012-04-10 08:39+0000\n"
 "PO-Revision-Date: 2010-10-19 18:01+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
@@ -61,6 +61,14 @@ msgstr "Imaxe"
 msgid "Graphics creation and manipulation applications"
 msgstr "Aplicativos para a creación e manipulación de imaxes"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Hardware"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Configuración para varios dispositivos de hardware"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Editores e reprodutores de son e vídeo"
@@ -92,6 +100,14 @@ msgstr "Aplicativos que non entran en outras categorías"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Outro"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Persoal"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Configuración persoal"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
