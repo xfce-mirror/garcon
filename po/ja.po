@@ -2,13 +2,14 @@
 # Copyright (C) 2007 Jannis Pohlmann.
 # This file is distributed under the same license as the xfce4menu package.
 # Daichi Kawahata <daichi@xfce.org>, 2007.
+# Masato Hashimoto <cabezon.hashimoto@gmail.com>, 2011-2012.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4menu 0.1.0svn\n"
+"Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-05 17:45+0900\n"
-"PO-Revision-Date: 2012-02-05 18:02+0900\n"
+"PO-Revision-Date: 2012-04-11 21:40+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -71,7 +72,7 @@ msgstr "マルチメディア"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "オーディオおよびビデオのプレイヤーおよびエディタです"
+msgstr "オーディオおよびビデオのプレイヤーおよびエディターです"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
@@ -99,19 +100,19 @@ msgstr "他のカテゴリに含まれないアプリケーションです"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
-msgstr "ユーザー向け"
+msgstr "個人設定"
 
 #: ../data/xfce/xfce-personal.directory.in.h:2
 msgid "Personal settings"
-msgstr "ユーザー向けの設定を変更します"
+msgstr "個人の設定を変更します"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr "スクリーンセーバ"
+msgstr "スクリーンセーバー"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "スクリーンセーバアプレット"
+msgstr "スクリーンセーバーアプレット"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -144,29 +145,3 @@ msgstr "%s からのメニューファイルデータを読み込めませんで
 msgid "Could not load menu file data from %s"
 msgstr "%s からメニューファイルデータを読み込めませんでした"
 
-#~ msgid "Network"
-#~ msgstr "ネットワーク"
-
-#~ msgid "Network applications and utilities"
-#~ msgstr "ネットワークアプリケーションおよびユーティリティです"
-
-#~ msgid "Science"
-#~ msgstr "科学"
-
-#~ msgid "Scientific software"
-#~ msgstr "科学ソフトウェアです"
-
-#~ msgid "No suitable application menu file found"
-#~ msgstr "適切なアプリケーションメニューファイルが見つかりません"
-
-#~ msgid "XfceMenu: Display Menu Test"
-#~ msgstr "XfceMenu: メニュー表示テスト"
-
-#~ msgid "_Show menu"
-#~ msgstr "メニューを表示(_S)"
-
-#~ msgid "Failed to locate the system menu"
-#~ msgstr "システムメニューの配置に失敗しました"
-
-#~ msgid "Failed to create the libxfce4menu item cache in %s."
-#~ msgstr "libxfce4menu アイテムのキャッシュを %s に作成できませんでした。"
