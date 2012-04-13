@@ -1,3 +1,11 @@
+0.1.12
+======
+- Add missing or fix incorrect licenses.
+- Fix segfault if null is set.
+- Translation updates: Greek, Galician, Japanese, Korean, Dutch 
+  (Flemish), Portuguese, Portuguese (Brazilian).
+
+
 0.1.11
 ======
 - Use applications-science icon for education directory.
