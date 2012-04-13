@@ -33,6 +33,9 @@ garcon_looks_like_an_uri (const gchar *string)
 {
   const gchar *s = string;
 
+  if (G_UNLIKELY (string == NULL))
+    return FALSE;
+
   /* <scheme> starts with an alpha character */
   if (g_ascii_isalpha (*s))
     {
