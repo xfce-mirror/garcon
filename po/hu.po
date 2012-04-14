@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libxfce4menu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-04 23:03+0000\n"
+"POT-Creation-Date: 2012-04-14 16:09+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
 "Language-Team: Hungarian <debian-l10n-hungarian@lists.d.o>\n"
@@ -55,6 +55,14 @@ msgstr "Grafika"
 msgid "Graphics creation and manipulation applications"
 msgstr "Grafikakészítő és -manipuláló alkalmazások"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Hardver"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Számos hardvereszköz beállításai"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Hang- és videolejátszók és -szerkesztők"
@@ -86,6 +94,14 @@ msgstr "Más kategóriákba nem illeszkedő alkalmazások"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Egyéb"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Személyes"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Személyes beállítások"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
