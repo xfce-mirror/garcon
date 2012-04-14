@@ -13,7 +13,6 @@
     </Include>
 
     <Layout>
-        <Filename>xfrun4.desktop</Filename>
         <Filename>xfce4-run.desktop</Filename>
         <Separator/>
         <Filename>exo-terminal-emulator.desktop</Filename>
@@ -68,7 +67,7 @@
                 <Filename>exo-file-manager.desktop</Filename>
                 <Filename>exo-terminal-emulator.desktop</Filename>
                 <Filename>xfce4-about.desktop</Filename>
-                <Filename>xfrun4.desktop</Filename>
+                <Filename>xfce4-run.desktop</Filename>
             </Or>
         </Exclude>
     </Menu>
