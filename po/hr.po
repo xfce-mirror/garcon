@@ -76,7 +76,7 @@ msgstr "Multimedija"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Applications for Internet access"
-msgstr "Programi za pristuo internetu"
+msgstr "Programi za pristup internetu"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Internet"
