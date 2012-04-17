@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-01 16:51+0000\n"
+"POT-Creation-Date: 2012-04-17 07:24+0000\n"
 "PO-Revision-Date: 2011-09-07 16:15+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch (Flemish)\n"
@@ -48,7 +48,7 @@ msgstr "Spelletjes"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr "Spelletjes, puzzels en ander prettig tijdverdrijf"
+msgstr "Spellen, puzzels en ander prettig tijdverdrijf"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
