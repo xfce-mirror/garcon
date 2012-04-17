@@ -2136,6 +2136,12 @@ garcon_menu_file_changed (GarconMenu       *menu,
       return;
     }
 
+  /* If we receive a delete event here, then abort, because there is no
+   * need to refresh if a menu file is removed that we're not using because
+   * it is lower in priority (else we'd be using it already) */
+  if (event_type == G_FILE_MONITOR_EVENT_DELETED)
+    return;
+
   /* Build the ${XDG_MENU_PREFIX}applications.menu filename */
   prefix = g_getenv ("XDG_MENU_PREFIX");
   relative_filename = g_strconcat ("menus", G_DIR_SEPARATOR_S,
@@ -2422,8 +2428,6 @@ garcon_menu_directory_file_changed (GarconMenu       *menu,
       || event_type == G_FILE_MONITOR_EVENT_DELETED
       || event_type == G_FILE_MONITOR_EVENT_CREATED)
     {
-      garcon_menu_debug (file, event_type, "directory changed");
-
       /* take a reference on the current menu directory */
       if (menu->priv->directory != NULL)
         old_directory = g_object_ref (menu->priv->directory);
@@ -2431,9 +2435,17 @@ garcon_menu_directory_file_changed (GarconMenu       *menu,
       /* reset the menu directory of the menu and load a new one */
       garcon_menu_resolve_directory (menu, NULL, FALSE);
 
-      /* notify listeners about the old and new menu directories */
-      g_signal_emit (menu, menu_signals[DIRECTORY_CHANGED], 0,
-                     old_directory, menu->priv->directory);
+      /* Only emit the event if something changed (see bug #8671) */
+      if (event_type != G_FILE_MONITOR_EVENT_DELETED
+          || (old_directory == NULL) != (menu->priv->directory == NULL)
+          || !g_file_equal (old_directory, menu->priv->directory))
+        {
+          garcon_menu_debug (file, event_type, "directory changed");
+
+          /* Notify listeners about the old and new menu directories */
+          g_signal_emit (menu, menu_signals[DIRECTORY_CHANGED], 0,
+                         old_directory, menu->priv->directory);
+        }
 
       /* release the old menu directory we no longer need */
       if (old_directory != NULL)
