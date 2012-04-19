@@ -2438,7 +2438,7 @@ garcon_menu_directory_file_changed (GarconMenu       *menu,
       /* Only emit the event if something changed (see bug #8671) */
       if (event_type != G_FILE_MONITOR_EVENT_DELETED
           || (old_directory == NULL) != (menu->priv->directory == NULL)
-          || !g_file_equal (old_directory, menu->priv->directory))
+          || !garcon_menu_directory_equal (old_directory, menu->priv->directory))
         {
           garcon_menu_debug (file, event_type, "directory changed");
 
