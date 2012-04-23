@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
-"Report-Msgid-Bugs-To: <xfce-i18n@xfce.org>\n"
-"POT-Creation-Date: 2012-04-20 10:09+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-23 01:24+0000\n"
 "PO-Revision-Date: 2010-11-23 22:57+0800\n"
 "Last-Translator: Chipong Luo <chipong.luo@yahoo.com>\n"
 "Language-Team: Chinese (Simplified) <xfce-i18n-cn@xfce.org>\n"
@@ -59,7 +59,7 @@ msgstr "图形"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "图形创作和处理应用程序"
+msgstr "创作和处理图形的应用程序"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
@@ -67,7 +67,7 @@ msgstr "硬件"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
-msgstr "若干硬件设备设置"
+msgstr "若干硬件设备的设置"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
@@ -79,7 +79,7 @@ msgstr "多媒体"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Applications for Internet access"
-msgstr "互联网访问应用程序"
+msgstr "访问互联网的应用程序"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Internet"
