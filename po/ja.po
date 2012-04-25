@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-05 17:45+0900\n"
-"PO-Revision-Date: 2012-04-11 21:40+0900\n"
+"PO-Revision-Date: 2012-04-25 20:44+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -72,7 +72,7 @@ msgstr "マルチメディア"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "オーディオおよびビデオのプレイヤーおよびエディターです"
+msgstr "オーディオおよびビデオのプレーヤーおよびエディターです"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
