@@ -1,15 +1,16 @@
 # Romanian translation for Garcon
 # Copyright (C) 2010-2011 Garcon'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the Garcon package.
-# Mișu Moldovan <dumol@xfce.org>, 2011.
+# Mișu Moldovan <dumol@xfce.org>, 2011-2012.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: Garcon\n"
+"Project-Id-Version: Garcon 0.1.12"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-03-07 13:39+0000\n"
-"PO-Revision-Date: 2011-01-05 21:52+0300\n"
+"PO-Revision-Date: 2012-04-27 15:06+0300\n"
 "Last-Translator: Mișu Moldovan <dumol@xfce.org>\n"
-"Language-Team: Romanian <debian-l10n-romanian@lists.debian.org>\n"
+"Language-Team: Romanian <diacritice@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,7 +24,7 @@ msgstr "Accesorii"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "Aplicații și unelte comune pentru desktop"
+msgstr "Programe și unelte comune pentru desktop"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -55,7 +56,7 @@ msgstr "Grafică"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "Aplicații de creație și editare grafică"
+msgstr "Programe de creație și editare grafică"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
@@ -87,11 +88,11 @@ msgstr "Birou"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "Aplicații de birou"
+msgstr "Programe de birou"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr "Aplicații ce nu se potrivesc în alte categorii"
+msgstr "Programe ce nu se potrivesc în alte categorii"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
@@ -107,7 +108,7 @@ msgstr "Preferințe personale"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
-msgstr "Miniaplicații protectoare de ecran"
+msgstr "Module ale protectorului de ecran"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
@@ -115,7 +116,7 @@ msgstr "Protectoare de ecran"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Desktop and system settings applications"
-msgstr "Aplicații de configurare a desktopului și a sistemului"
+msgstr "Programe de configurare a desktopului și a sistemului"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
@@ -144,14 +145,3 @@ msgstr "Nu s-au putut încărca datele fișierului meniu din %s: %s"
 msgid "Could not load menu file data from %s"
 msgstr "Nu s-au putut încărca datele fișierului meniu din %s"
 
-#~ msgid "Network"
-#~ msgstr "Rețea"
-
-#~ msgid "Network applications and utilities"
-#~ msgstr "Aplicații și utilitare de rețea"
-
-#~ msgid "Science"
-#~ msgstr "Știință"
-
-#~ msgid "Scientific software"
-#~ msgstr "Software științific"
