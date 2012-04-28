@@ -1,8 +1,18 @@
+0.2.0
+=====
+- Updates for xfce4-run.desktop.
+- Remove xfhelp4.desktop from the menu.
+- Add debugging for file monitoring and reloading.
+- Reduce signal emission on delete events (bug #8671).
+- Translation updates: English (United Kingdom), Croatian, Hungarian,
+  Japanese, Korean, Dutch (Flemish), Romanian, Chinese (China).
+
+
 0.1.12
 ======
 - Add missing or fix incorrect licenses.
 - Fix segfault if null is set.
-- Translation updates: Greek, Galician, Japanese, Korean, Dutch 
+- Translation updates: Greek, Galician, Japanese, Korean, Dutch
   (Flemish), Portuguese, Portuguese (Brazilian).
 
 
