@@ -1,22 +1,22 @@
 # translation of is.po to Icelandic
 # Copyright (C) 2011 Free Software Foundation
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Sveinn í Felli <sveinki@nett.is>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: is\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-03 07:06+0000\n"
+"POT-Creation-Date: 2012-06-29 15:57+0000\n"
 "PO-Revision-Date: 2011-12-07 07:11+0000\n"
 "Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
-"Language: Icelandic\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Language: Icelandic\n"
 "Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -58,6 +58,14 @@ msgstr "Myndvinnsla"
 msgid "Graphics creation and manipulation applications"
 msgstr "Forrit fyrir myndvinnslu og sköpun"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Vélbúnaður"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Stillingar fyrir ýmis tæki"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Spilarar og vinnslutól fyrir hljóð og myndskeið"
@@ -89,6 +97,14 @@ msgstr "Forrit sem ekki falla í aðra flokka"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Annað"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Einka"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Einkastillingar"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
@@ -128,4 +144,3 @@ msgstr "Gat ekki hlaðið inn gögnum úr valmyndaskránni %s: %s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Gat ekki hlaðið inn gögnum úr valmyndaskránni %s"
-
