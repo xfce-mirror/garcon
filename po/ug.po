@@ -90,7 +90,7 @@ msgstr "ئىشخانا ۋە خىزمەت پروگراممىلىرى"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Applications that don't fit into other categories"
-msgstr "باشقا كاتېگورىيىگە تەۋە بولمىغان پروگراممىلار"
+msgstr "باشقا كاتېگورىيەگە تەۋە بولمىغان پروگراممىلار"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
@@ -131,14 +131,14 @@ msgstr "سىستېما قوراللىرى"
 #: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
-msgstr "ھۆججەت «%s» تېپىلمىدى."
+msgstr "ھۆججەت «%s» تېپىلمىدى"
 
 #: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "%s دىن تىزىملىك ھۆججەت سانلىق-ئاساسلىرىنى ئوقۇغىلى بولمىدى: %s"
+msgstr "%s دىن تىزىملىك ھۆججەت سانلىق-مەلۇماتلىرىنى ئوقۇغىلى بولمىدى: %s"
 
 #: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "%s دىن تىزىملىك ھۆججەت سانلىق-ئاساسلىرىنى ئوقۇغىلى بولمىدى"
+msgstr "%s دىن تىزىملىك ھۆججەت سانلىق-مەلۇماتلىرىنى ئوقۇغىلى بولمىدى"
