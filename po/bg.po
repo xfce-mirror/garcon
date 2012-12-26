@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-30 00:00+0000\n"
-"PO-Revision-Date: 2011-12-30 05:45+0200\n"
-"Last-Translator: Milen Milev <fanfolet@gmail.com>\n"
+"POT-Creation-Date: 2012-12-26 18:48+0000\n"
+"PO-Revision-Date: 2012-12-26 21:57+0200\n"
+"Last-Translator: cybercop <cybercop_montana@abv.bg>\n"
 "Language-Team: BULGARIAN\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -59,6 +59,14 @@ msgstr "Графика"
 msgid "Graphics creation and manipulation applications"
 msgstr "Програми за създаване и редактиране на изображения"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Хардуер"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Настройки за няколко хардуерни устройства"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Аудио и видео плейъри и редактори"
@@ -90,6 +98,14 @@ msgstr "Програми, които не попадат в друга груп�
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Други"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "За лично ползване"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Лични настройки"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
