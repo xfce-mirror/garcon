@@ -17,7 +17,7 @@
 # Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA 02110-1301, USA.
 
-INCLUDES = 								\
+AM_CPPFLAGS = 								\
 	-I$(top_srcdir)							\
 	-DGARCON_COMPILATION						\
 	-DGARCON_VERSION_API=\"$(GARCON_VERSION_API)\"			\
