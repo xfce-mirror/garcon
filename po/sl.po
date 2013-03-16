@@ -1,0 +1,145 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-14 13:54+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:1
+msgid "Accessories"
+msgstr "Pripomočki"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:2
+msgid "Common desktop tools and applications"
+msgstr "Pogosta namizna orodja in aplikacije"
+
+#: ../data/xfce/xfce-development.directory.in.h:1
+msgid "Development"
+msgstr "Razvoj"
+
+#: ../data/xfce/xfce-development.directory.in.h:2
+msgid "Software development tools"
+msgstr "Orodja za razvoj programske opreme"
+
+#: ../data/xfce/xfce-education.directory.in.h:1
+msgid "Education"
+msgstr "Izobraževanje"
+
+#: ../data/xfce/xfce-education.directory.in.h:2
+msgid "Educational software"
+msgstr "Izobraževalno programje"
+
+#: ../data/xfce/xfce-games.directory.in.h:1
+msgid "Games"
+msgstr "Igre"
+
+#: ../data/xfce/xfce-games.directory.in.h:2
+msgid "Games, puzzles, and other fun software"
+msgstr "Igre, sestavljanke in ostalo zabavno programje"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:1
+msgid "Graphics"
+msgstr "Grafika"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:2
+msgid "Graphics creation and manipulation applications"
+msgstr "Grafično ustvarjanje in pripomočki za oblikovanje"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Strojna oprema"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Nastavitve strojne opreme"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:1
+msgid "Audio and video players and editors"
+msgstr "Glasbeni in video predvajalniki in urejevalniki"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Multimedia"
+msgstr "Večpredstavnost"
+
+#: ../data/xfce/xfce-network.directory.in.h:1
+msgid "Applications for Internet access"
+msgstr "Aplikacije za dostop do interneta"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Internet"
+msgstr "Internet"
+
+#: ../data/xfce/xfce-office.directory.in.h:1
+msgid "Office"
+msgstr "Pisarna"
+
+#: ../data/xfce/xfce-office.directory.in.h:2
+msgid "Office and productivity applications"
+msgstr "Pisarniške aplikacije"
+
+#: ../data/xfce/xfce-other.directory.in.h:1
+msgid "Applications that don't fit into other categories"
+msgstr "Aplikacije, ki ne spadajo v druge kategorije"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Other"
+msgstr "Drugo"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Osebno"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Osebne nastavitve"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:1
+msgid "Screensaver applets"
+msgstr "Vmesnik ohranjevalnika zaslona"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensavers"
+msgstr "Ohranjevalnik zaslona"
+
+#: ../data/xfce/xfce-settings.directory.in.h:1
+msgid "Desktop and system settings applications"
+msgstr "Aplikacije sistemskih nastavitev in namizja"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Settings"
+msgstr "Nastavitve"
+
+#: ../data/xfce/xfce-system.directory.in.h:1
+msgid "System"
+msgstr "Sistem"
+
+#: ../data/xfce/xfce-system.directory.in.h:2
+msgid "System tools and utilities"
+msgstr "Sistemska orodja in pripomočki"
+
+#: ../garcon/garcon-menu.c:706
+#, c-format
+msgid "File \"%s\" not found"
+msgstr "Datoteka \"%s\" ni bila najdena"
+
+#: ../garcon/garcon-menu-parser.c:280
+#, c-format
+msgid "Could not load menu file data from %s: %s"
+msgstr "Ni bilo možno naložiti podatke datoteke menija iz %s: %s"
+
+#: ../garcon/garcon-menu-parser.c:287
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr "Ni bilo možno naložiti podatke datoteke menija iz %s"
