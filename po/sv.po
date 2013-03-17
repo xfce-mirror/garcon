@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-30 11:03+0000\n"
+"POT-Creation-Date: 2013-03-17 16:51+0000\n"
 "PO-Revision-Date: 2010-10-17 17:21+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -57,6 +57,14 @@ msgstr "Grafik"
 msgid "Graphics creation and manipulation applications"
 msgstr "Program för att skapa och ändra grafik och bilder"
 
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Hårdvara"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Inställningar för flera hårdvaruenheter"
+
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Audio and video players and editors"
 msgstr "Ljud- och videospelare samt redigerare"
@@ -70,7 +78,6 @@ msgid "Applications for Internet access"
 msgstr "Program för Internet-åtkomst"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-#, fuzzy
 msgid "Internet"
 msgstr "Internet"
 
@@ -89,6 +96,14 @@ msgstr "Program som inte passar in i andra kategorier"
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Övrigt"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Personligt"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Personliga inställningar"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensaver applets"
