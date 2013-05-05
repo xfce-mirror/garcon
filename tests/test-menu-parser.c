@@ -221,7 +221,10 @@ main (int    argc,
   gchar            *relative_filename;
   gint              result = EXIT_SUCCESS;
 
+#if !GLIB_CHECK_VERSION (2, 36, 0)
+  /* Initialize the type system */
   g_type_init ();
+#endif
 
 #if !GLIB_CHECK_VERSION(2,32,0)
   if (!g_thread_supported ())

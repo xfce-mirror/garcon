@@ -119,8 +119,10 @@ main (int    argc,
 
   g_set_prgname ("test-menu-spec");
 
+#if !GLIB_CHECK_VERSION (2, 36, 0)
   /* Initialize the type system */
   g_type_init ();
+#endif
 
   /* Try to get the root menu */
   menu = garcon_menu_new_applications ();
