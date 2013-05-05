@@ -1,3 +1,15 @@
+0.2.1
+=====
+- g_thread_init is deprecated since glib 2.32.
+- Remove unmaintained translations.
+- Fix deprecating warnings in tests.
+- Use new mutex locking api if available.
+- Autotools updates.
+- Translation updates: Arabic, Bulgarian, Spanish (Castilian),
+  Icelandic, Korean, Kurdish, Malay, Dutch (Flemish), Russian,
+  Slovenian, Serbian, Uyghur.
+
+
 0.2.0
 =====
 - Updates for xfce4-run.desktop.
