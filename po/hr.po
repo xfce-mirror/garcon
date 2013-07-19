@@ -1,22 +1,23 @@
-# Croatian translations for garcon package.
-# Copyright (C) 2010 Jannis Pohlmann <jannis@xfce.org>
-# Copyright (C)2010 Nick Schermer <nick@xfce.org>
-# This file is distributed under the same license as the garcon package.
-# Ivica Kolić<ikoli@yahoo.com>, 2010.
-# Petar Koretić<petar.koretic@gmail.com>, 2010.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Ivica  Kolić <ikoli@yahoo.com>, 2010
+# Petar Koretić<petar.koretic@gmail.com>, 2010
 msgid ""
 msgstr ""
-"Project-Id-Version: libxfce4menu\n"
+"Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 15:09+0000\n"
-"PO-Revision-Date: 2010-05-26 00:10+0200\n"
-"Last-Translator: Ivica Kolić<ikoli@yahoo.com> <>\n"
-"Language-Team: Croatian <>\n"
+"POT-Creation-Date: 2013-07-02 22:32+0200\n"
+"PO-Revision-Date: 2013-07-19 15:15+0000\n"
+"Last-Translator: Ivica  Kolić <ikoli@yahoo.com>\n"
+"Language-Team: Croatian (http://www.transifex.com/projects/p/xfce/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hr\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -67,20 +68,20 @@ msgid "Settings for several hardware devices"
 msgstr "Postavke za nekoliko uređaja sklopovlja"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Audio and video players and editors"
-msgstr "Audio i video alati za puštanje i uređivanje"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
 msgstr "Multimedija"
 
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Applications for Internet access"
-msgstr "Programi za pristup internetu"
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "Audio i video alati za puštanje i uređivanje"
 
-#: ../data/xfce/xfce-network.directory.in.h:2
+#: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
 msgstr "Internet"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "Programi za pristup internetu"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -91,12 +92,12 @@ msgid "Office and productivity applications"
 msgstr "Programi ureda i produktivnosti"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Applications that don't fit into other categories"
-msgstr "Programi koji ne spadaju u druge kategorije"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Ostalo"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "Programi koji ne spadaju u druge kategorije"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -107,20 +108,20 @@ msgid "Personal settings"
 msgstr "Osobne postavke"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensaver applets"
-msgstr "Programčići čuvara zaslona"
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
 msgstr "Čuvari zaslona"
 
-#: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Desktop and system settings applications"
-msgstr "Programi postavki radne površine i sustava"
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "Programčići čuvara zaslona"
 
-#: ../data/xfce/xfce-settings.directory.in.h:2
+#: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
 msgstr "Postavke"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "Programi postavki radne površine i sustava"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -144,15 +145,3 @@ msgstr "Ne mogu učitati datoteku izbornika iz %s: %s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Ne mogu učitati datoteku izbornika iz %s"
-
-#~ msgid "Network"
-#~ msgstr "Mreža"
-
-#~ msgid "Network applications and utilities"
-#~ msgstr "Mrežni programi i pomagala"
-
-#~ msgid "Science"
-#~ msgstr "Znanost"
-
-#~ msgid "Scientific software"
-#~ msgstr "Znanstveni software"
