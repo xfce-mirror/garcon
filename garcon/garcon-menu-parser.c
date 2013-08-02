@@ -75,10 +75,6 @@ struct _GarconMenuParserContext
 
 
 
-#define GARCON_MENU_PARSER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GARCON_TYPE_MENU_PARSER, GarconMenuParserPrivate))
-
-
-
 /* Property identifiers */
 enum
 {
@@ -171,7 +167,7 @@ garcon_menu_parser_provider_init (GarconMenuTreeProviderIface *iface)
 static void
 garcon_menu_parser_init (GarconMenuParser *parser)
 {
-  parser->priv = GARCON_MENU_PARSER_GET_PRIVATE (parser);
+  parser->priv = G_TYPE_INSTANCE_GET_PRIVATE (parser, GARCON_TYPE_MENU_PARSER, GarconMenuParserPrivate);
   parser->priv->file = NULL;
   parser->priv->menu = NULL;
 }

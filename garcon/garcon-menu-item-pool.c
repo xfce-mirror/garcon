@@ -27,10 +27,6 @@
 
 
 
-#define GARCON_MENU_ITEM_POOL_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GARCON_TYPE_MENU_ITEM_POOL, GarconMenuItemPoolPrivate))
-
-
-
 static void     garcon_menu_item_pool_finalize       (GObject                 *object);
 static gboolean garcon_menu_item_pool_filter_exclude (const gchar             *desktop_id,
                                                       GarconMenuItem          *item,
@@ -79,7 +75,7 @@ garcon_menu_item_pool_class_init (GarconMenuItemPoolClass *klass)
 static void
 garcon_menu_item_pool_init (GarconMenuItemPool *pool)
 {
-  pool->priv = GARCON_MENU_ITEM_POOL_GET_PRIVATE (pool);
+  pool->priv = G_TYPE_INSTANCE_GET_PRIVATE (pool, GARCON_TYPE_MENU_ITEM_POOL, GarconMenuItemPoolPrivate);
   pool->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
                                              (GDestroyNotify) garcon_menu_item_unref);
 }

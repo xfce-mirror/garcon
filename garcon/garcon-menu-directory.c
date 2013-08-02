@@ -45,10 +45,6 @@
 
 
 
-#define GARCON_MENU_DIRECTORY_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GARCON_TYPE_MENU_DIRECTORY, GarconMenuDirectoryPrivate))
-
-
-
 /* Desktop entry keys */
 #if 0
 static const gchar *desktop_entry_keys[] =
@@ -216,7 +212,7 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
 static void
 garcon_menu_directory_init (GarconMenuDirectory *directory)
 {
-  directory->priv = GARCON_MENU_DIRECTORY_GET_PRIVATE (directory);
+  directory->priv = G_TYPE_INSTANCE_GET_PRIVATE (directory, GARCON_TYPE_MENU_DIRECTORY, GarconMenuDirectoryPrivate);
   directory->priv->file = NULL;
   directory->priv->name = NULL;
   directory->priv->icon_name = NULL;

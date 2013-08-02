@@ -63,10 +63,6 @@
 
 
 
-#define GARCON_MENU_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GARCON_TYPE_MENU, GarconMenuPrivate))
-
-
-
 typedef struct _GarconMenuPair
 {
   gpointer first;
@@ -321,7 +317,7 @@ garcon_menu_element_init (GarconMenuElementIface *iface)
 static void
 garcon_menu_init (GarconMenu *menu)
 {
-  menu->priv = GARCON_MENU_GET_PRIVATE (menu);
+  menu->priv = G_TYPE_INSTANCE_GET_PRIVATE (menu, GARCON_TYPE_MENU, GarconMenuPrivate);
   menu->priv->file = NULL;
   menu->priv->tree = NULL;
   menu->priv->merge_files = NULL;

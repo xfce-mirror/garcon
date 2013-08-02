@@ -33,10 +33,6 @@
 
 
 
-#define GARCON_MENU_ITEM_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GARCON_TYPE_MENU_ITEM, GarconMenuItemPrivate))
-
-
-
 /* Property identifiers */
 enum
 {
@@ -392,7 +388,7 @@ garcon_menu_item_element_init (GarconMenuElementIface *iface)
 static void
 garcon_menu_item_init (GarconMenuItem *item)
 {
-  item->priv = GARCON_MENU_ITEM_GET_PRIVATE (item);
+  item->priv = G_TYPE_INSTANCE_GET_PRIVATE (item, GARCON_TYPE_MENU_ITEM, GarconMenuItemPrivate);
 }
 
 

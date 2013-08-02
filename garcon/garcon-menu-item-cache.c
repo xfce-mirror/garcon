@@ -43,10 +43,6 @@
 
 
 
-#define GARCON_MENU_ITEM_CACHE_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GARCON_TYPE_MENU_ITEM_CACHE, GarconMenuItemCachePrivate))
-
-
-
 static void garcon_menu_item_cache_finalize   (GObject                  *object);
 
 
@@ -97,7 +93,7 @@ garcon_menu_item_cache_class_init (GarconMenuItemCacheClass *klass)
 static void
 garcon_menu_item_cache_init (GarconMenuItemCache *cache)
 {
-  cache->priv = GARCON_MENU_ITEM_CACHE_GET_PRIVATE (cache);
+  cache->priv = G_TYPE_INSTANCE_GET_PRIVATE (cache, GARCON_TYPE_MENU_ITEM_CACHE, GarconMenuItemCachePrivate);
 
 #if GLIB_CHECK_VERSION (2, 32, 0)
   g_mutex_init (&cache->priv->lock);

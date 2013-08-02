@@ -37,10 +37,6 @@ typedef struct _GarconMenuMergerContext GarconMenuMergerContext;
 
 
 
-#define GARCON_MENU_MERGER_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GARCON_TYPE_MENU_MERGER, GarconMenuMergerPrivate))
-
-
-
 /* Property identifiers */
 enum
 {
@@ -145,7 +141,7 @@ garcon_menu_merger_provider_init (GarconMenuTreeProviderIface *iface)
 static void
 garcon_menu_merger_init (GarconMenuMerger *merger)
 {
-  merger->priv = GARCON_MENU_MERGER_GET_PRIVATE (merger);
+  merger->priv = G_TYPE_INSTANCE_GET_PRIVATE (merger, GARCON_TYPE_MENU_MERGER, GarconMenuMergerPrivate);
   merger->priv->tree_provider = NULL;
   merger->priv->menu = NULL;
   merger->priv->file_stack = NULL;
