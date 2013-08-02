@@ -26,5 +26,6 @@ garcon/garcon-menu-parser.c
 garcon/garcon-menu-separator.c
 garcon/garcon-menu-tree-provider.c
 garcon/garcon-private.c
+garcon-gtk/garcon-gtk-menu.c
 tests/test-menu-parser.c
 tests/test-menu-spec.c

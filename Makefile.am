@@ -19,6 +19,7 @@
 
 SUBDIRS =								\
 	garcon								\
+	garcon-gtk							\
 	docs								\
 	data								\
 	tests								\
@@ -52,7 +53,6 @@ EXTRA_DIST =								\
 	intltool-update.in
 
 DISTCLEANFILES =							\
-	garcon.spec						\
 	intltool-extract						\
 	intltool-merge							\
 	intltool-update
