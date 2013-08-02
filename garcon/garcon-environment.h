@@ -25,12 +25,25 @@
 #ifndef __GARCON_MENU_ENVIRONMENT_H__
 #define __GARCON_MENU_ENVIRONMENT_H__
 
+/**
+ * GARCON_ENVIRONMENT_XFCE:
+ *
+ * Macro for garcon_set_environment or garcon_set_environment_xdg
+ * to set the Xfce Desktop Environment.
+ *
+ * Since: 0.3.0
+ **/
+#define GARCON_ENVIRONMENT_XFCE "XFCE"
+
 #include <glib.h>
 
 G_BEGIN_DECLS
 
-void         garcon_set_environment (const gchar *env);
-const gchar *garcon_get_environment (void);
+void         garcon_set_environment     (const gchar *env);
+
+const gchar *garcon_get_environment     (void);
+
+void         garcon_set_environment_xdg (const gchar *fallback_env);
 
 G_END_DECLS
 

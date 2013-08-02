@@ -75,3 +75,30 @@ garcon_get_environment (void)
 {
   return environment;
 }
+
+
+
+/**
+ * garcon_set_environment_xdg:
+ * @fallback_env: fallback value
+ *
+ * Set the desktop environment to the envvar XDG_CURRENT_DESKTOP.
+ * If this variables is not set, it falls back to @default_env.
+ *
+ * For @fallback_env you can use for example #GARCON_ENVIRONMENT_XFCE.
+ *
+ * Since: 0.3.0
+ */
+void
+garcon_set_environment_xdg (const gchar *fallback_env)
+{
+  const gchar *desktop;
+
+  desktop = g_getenv ("XDG_CURRENT_DESKTOP");
+  if (G_LIKELY (desktop == NULL))
+    desktop = fallback_env;
+  else if (*desktop == '\0')
+    desktop = NULL;
+
+  garcon_set_environment (desktop);
+}
