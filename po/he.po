@@ -1,20 +1,23 @@
-# Hebrew translation of the garcon package.
-# Copyright (C) 2010 COPYRIGHT HOLDER
-# This file is distributed under the same license as the garcon package.
-# Hezy Amiel <open@hezyamiel.com>, 2010.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Hezy Amiel <open@hezyamiel.com>, 2010
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: garcon\n"
+"Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-29 12:36+0000\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Hezy Amiel <open@hezyamiel.com>\n"
-"Language-Team: Hebrew <xfce-i18n@xfce.org>\n"
+"POT-Creation-Date: 2013-08-03 00:30+0200\n"
+"PO-Revision-Date: 2013-08-03 08:52+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: Hebrew (http://www.transifex.com/projects/p/xfce/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: he\n"
-"X-Poedit-Language: Hebrew\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -65,20 +68,20 @@ msgid "Settings for several hardware devices"
 msgstr "הגדרות הנוגעות למספר התקני חומרה"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Audio and video players and editors"
-msgstr "נגנים ועורכי אודיו ווידאו."
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
 msgstr "מולטימדיה"
 
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Applications for Internet access"
-msgstr "יישום המשמש לגישה לאינטרנט"
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "נגנים ועורכי אודיו ווידאו."
 
-#: ../data/xfce/xfce-network.directory.in.h:2
+#: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
 msgstr "אינטרנט"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "יישום המשמש לגישה לאינטרנט"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -89,12 +92,12 @@ msgid "Office and productivity applications"
 msgstr "יישומים משרדיים"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Applications that don't fit into other categories"
-msgstr "יישומים שאינם מתאימים לקטגוריות אחרות"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "אחר"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "יישומים שאינם מתאימים לקטגוריות אחרות"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -105,20 +108,20 @@ msgid "Personal settings"
 msgstr "הגדרות אישיות"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensaver applets"
-msgstr "יישומוני שמירת מסך  "
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
 msgstr "שומרי מסך"
 
-#: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Desktop and system settings applications"
-msgstr "יישומי שולחן העבודה והמערכת"
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "יישומוני שמירת מסך  "
 
-#: ../data/xfce/xfce-settings.directory.in.h:2
+#: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
 msgstr "הגדרות"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "יישומי שולחן העבודה והמערכת"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -128,29 +131,30 @@ msgstr "מערכת"
 msgid "System tools and utilities"
 msgstr "כלי מערכת"
 
-#: ../garcon/garcon-menu.c:706
+#: ../garcon/garcon-menu.c:702
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "הקובץ  \"%s\" לא נמצא"
 
-#: ../garcon/garcon-menu-parser.c:280
+#: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "לא ניתן לטעון את קובץ המידע של התפריט מ־%s: %s"
 
-#: ../garcon/garcon-menu-parser.c:287
+#: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "לא ניתן לטעון את קובץ המידע של התפריט מ־%s"
 
-#~ msgid "Network"
-#~ msgstr "רשת"
+#: ../garcon-gtk/garcon-gtk-menu.c:389
+#, c-format
+msgid "Failed to execute command \"%s\"."
+msgstr "הפעלה הפקודה „%s“ נכשלה."
 
-#~ msgid "Network applications and utilities"
-#~ msgstr "יישומי וכלי רשת"
+#: ../garcon-gtk/garcon-gtk-menu.c:652
+msgid "No applications found"
+msgstr "לא נמצאו יישומים"
 
-#~ msgid "Science"
-#~ msgstr "מדע"
-
-#~ msgid "Scientific software"
-#~ msgstr "תוכנות מדעיות"
+#: ../garcon-gtk/garcon-gtk-menu.c:664
+msgid "Failed to load the applications menu"
+msgstr "טעינת תפריט היישומים נכשלה"
