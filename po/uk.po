@@ -1,21 +1,23 @@
-# Ukrainian translation of libxfce4menu.
-# Copyright (C) 2008 Dmitry Nikitin
-# This file is distributed under the same license as the libxfce4menu package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
-# Dmitry Nikitin <luckas_fb@mail.ru>, 2008.
+# Translators:
+# Dmitry Nikitin <luckas_fb@mail.ru>, 2008
+# Yarema aka Knedlyk <yupadmin@gmail.com>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: libxfce4menu\n"
+"Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-02 19:48+0000\n"
-"PO-Revision-Date: 2009-01-26 11:01+0200\n"
-"Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
-"Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
+"POT-Creation-Date: 2013-08-03 00:30+0200\n"
+"PO-Revision-Date: 2013-09-02 00:23+0000\n"
+"Last-Translator: Yarema aka Knedlyk <yupadmin@gmail.com>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/xfce/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -66,20 +68,20 @@ msgid "Settings for several hardware devices"
 msgstr "Налаштування для декількох пристроїв"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Audio and video players and editors"
-msgstr "Звукові та відео програвачі та редактори"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
 msgstr "Мультимедіа"
 
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Applications for Internet access"
-msgstr "Програма для доступу до Інтернету"
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "Звукові та відео програвачі та редактори"
 
-#: ../data/xfce/xfce-network.directory.in.h:2
+#: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
 msgstr "Інтернет"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "Програма для доступу до Інтернету"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -90,12 +92,12 @@ msgid "Office and productivity applications"
 msgstr "Програми для офісної та продуктивної роботи"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Applications that don't fit into other categories"
-msgstr "Програми, що не увійшли до інших категорій"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Інше"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "Програми, що не увійшли до інших категорій"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -106,20 +108,20 @@ msgid "Personal settings"
 msgstr "Власні налаштування"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensaver applets"
-msgstr "Аплети для зберігачів екрану"
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
 msgstr "Зберігачі екрану"
 
-#: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Desktop and system settings applications"
-msgstr "Програми для налаштування стільниці та системи"
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "Аплети для зберігачів екрану"
 
-#: ../data/xfce/xfce-settings.directory.in.h:2
+#: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
 msgstr "Налаштування"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "Програми для налаштування стільниці та системи"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -129,44 +131,30 @@ msgstr "Система"
 msgid "System tools and utilities"
 msgstr "Інструменти та утиліти для системи"
 
-#: ../garcon/garcon-menu.c:706
+#: ../garcon/garcon-menu.c:702
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Файл \"%s\" не знайдено"
 
-#: ../garcon/garcon-menu-parser.c:280
+#: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Не вдалось завантажити файл даних меню з %s: %s"
 
-#: ../garcon/garcon-menu-parser.c:287
+#: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Не вдалось завантажити файл даних меню з %s"
 
-#~ msgid "Network"
-#~ msgstr "Мережеві"
+#: ../garcon-gtk/garcon-gtk-menu.c:389
+#, c-format
+msgid "Failed to execute command \"%s\"."
+msgstr "Не вдалося виконати команду \"%s\"."
 
-#~ msgid "Network applications and utilities"
-#~ msgstr "Програми та утиліти для мережі"
+#: ../garcon-gtk/garcon-gtk-menu.c:652
+msgid "No applications found"
+msgstr "Не знайдено програм"
 
-#~ msgid "Science"
-#~ msgstr "Наука"
-
-#~ msgid "Scientific software"
-#~ msgstr "Наукове програмне забезпечення"
-
-#~ msgid "No suitable application menu file found"
-#~ msgstr "Не знайдено відповідного програмного меню"
-
-#~ msgid "XfceMenu: Display Menu Test"
-#~ msgstr "XfceMenu: Показати тест меню"
-
-#~ msgid "_Show menu"
-#~ msgstr "_Показати меню"
-
-#~ msgid "Failed to locate the system menu"
-#~ msgstr "Помилка при пошуку системного меню"
-
-#~ msgid "Failed to create the libxfce4menu item cache in %s."
-#~ msgstr "Помилка при створенні елементу кешу libxfce4menu в %s."
+#: ../garcon-gtk/garcon-gtk-menu.c:664
+msgid "Failed to load the applications menu"
+msgstr "Не вдалося завантажити меню програм"
