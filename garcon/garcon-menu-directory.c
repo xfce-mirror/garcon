@@ -361,6 +361,11 @@ garcon_menu_directory_new (GFile *file)
 
   /* Parse name, exec command and icon name */
   name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
+
+  /* If there is no name we must bail out now or segfault later */
+  if (G_UNLIKELY (name == NULL))
+    return NULL;
+
   comment = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_COMMENT, NULL);
   icon_name = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_ICON, NULL);
   no_display = xfce_rc_read_bool_entry (rc, G_KEY_FILE_DESKTOP_KEY_NO_DISPLAY, FALSE);
