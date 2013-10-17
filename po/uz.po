@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Umidjon Almasov <u.almasov@gmail.com>, 2013
+# Umidjon Almasov <u.almasov@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-02 22:32+0200\n"
-"PO-Revision-Date: 2013-07-27 09:31+0000\n"
+"POT-Creation-Date: 2013-08-03 00:30+0200\n"
+"PO-Revision-Date: 2013-10-17 13:09+0000\n"
 "Last-Translator: Umidjon Almasov <u.almasov@gmail.com>\n"
 "Language-Team: Uzbek (http://www.transifex.com/projects/p/xfce/language/uz/)\n"
 "MIME-Version: 1.0\n"
@@ -20,11 +21,11 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr "Qo'shimcha vositalar"
+msgstr "Tizim vositalari"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "Umumiy ish stoli vositalari va dasturlari"
+msgstr "Umumiy ishchi stol vositalari va dasturlari"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -32,7 +33,7 @@ msgstr "Tuzish"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr "Dasturlar tuzish uchun vositalar"
+msgstr "Dasturlar tuzish vositalari"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
@@ -48,7 +49,7 @@ msgstr "O'yinlar"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr "O'yinlar, boshqotirmalar va boshqa ermak uchun dasturlar"
+msgstr "O'yinlar, boshqotirmalar va boshqa quvonch dasturlari"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
@@ -60,11 +61,11 @@ msgstr "Grafika yaratish va ishlash dasturlari"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr "Asbob-uskunalar"
+msgstr "Apparat ta'minoti"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
-msgstr "Ba'zi asbob-uskunalar uchun moslamalar"
+msgstr "Bir necha apparat ta'minoti uchun sozlamalar"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Multimedia"
@@ -80,7 +81,7 @@ msgstr "Internet"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
-msgstr "Internetdan foydalanish uchun dasturlar"
+msgstr "Internetga kirish uchun dasturlar"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -88,7 +89,7 @@ msgstr "Ofis"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "Ofis va ishlab chiqarish dasturlari"
+msgstr "Ofis va samaradorlik dasturlari"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Other"
@@ -130,17 +131,30 @@ msgstr "Tizim"
 msgid "System tools and utilities"
 msgstr "Tizim vositalari va utilitalar"
 
-#: ../garcon/garcon-menu.c:706
+#: ../garcon/garcon-menu.c:702
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "\"%s\" fayli topilmadi"
 
-#: ../garcon/garcon-menu-parser.c:280
+#: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Menyu faylining ma'lumotini %s dan yuklab bo'lmadi: %s"
 
-#: ../garcon/garcon-menu-parser.c:287
+#: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Menyu faylining ma'lumotini %s dan yuklab bo'lmadi"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:389
+#, c-format
+msgid "Failed to execute command \"%s\"."
+msgstr "\"%s\" buyrug'ini bajarish muvaffaqiyatsiz tugadi."
+
+#: ../garcon-gtk/garcon-gtk-menu.c:652
+msgid "No applications found"
+msgstr "Dasturlar topilmadi"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:664
+msgid "Failed to load the applications menu"
+msgstr "Dasturlar menyusini yuklash muvaffaqiyatsiz tugadi"
