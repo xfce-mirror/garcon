@@ -1,0 +1,159 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Cedric31 <cvalmary@yahoo.fr>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: Garcon\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-08-03 00:30+0200\n"
+"PO-Revision-Date: 2013-11-10 13:07+0000\n"
+"Last-Translator: Cedric31 <cvalmary@yahoo.fr>\n"
+"Language-Team: Occitan (post 1500) (http://www.transifex.com/projects/p/xfce/language/oc/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: oc\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:1
+msgid "Accessories"
+msgstr "Accessòris"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:2
+msgid "Common desktop tools and applications"
+msgstr "Aisinas e aplicacions buroticas correntas"
+
+#: ../data/xfce/xfce-development.directory.in.h:1
+msgid "Development"
+msgstr "Desvolopament"
+
+#: ../data/xfce/xfce-development.directory.in.h:2
+msgid "Software development tools"
+msgstr "Aisinas de desvolopament logicials"
+
+#: ../data/xfce/xfce-education.directory.in.h:1
+msgid "Education"
+msgstr "Educacion"
+
+#: ../data/xfce/xfce-education.directory.in.h:2
+msgid "Educational software"
+msgstr "Logicial educatius"
+
+#: ../data/xfce/xfce-games.directory.in.h:1
+msgid "Games"
+msgstr "Jòcs"
+
+#: ../data/xfce/xfce-games.directory.in.h:2
+msgid "Games, puzzles, and other fun software"
+msgstr "Jòcs, puzzles e autres logicials ludics"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:1
+msgid "Graphics"
+msgstr "Infografia"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:2
+msgid "Graphics creation and manipulation applications"
+msgstr "Aplicacions graficas per la creacion e la manipulacion"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Material"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Paramètres per mantun periferic"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:1
+msgid "Multimedia"
+msgstr "Multimèdia"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "Lectors e editors àudio e vidèo"
+
+#: ../data/xfce/xfce-network.directory.in.h:1
+msgid "Internet"
+msgstr "Internet"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "Aplicacions Internet"
+
+#: ../data/xfce/xfce-office.directory.in.h:1
+msgid "Office"
+msgstr "Burèu"
+
+#: ../data/xfce/xfce-office.directory.in.h:2
+msgid "Office and productivity applications"
+msgstr "Aplicacions buroticas e de productivitat"
+
+#: ../data/xfce/xfce-other.directory.in.h:1
+msgid "Other"
+msgstr "Autres"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "Logicials que dintran pas dins las autras categorias"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Personal"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Paramètres personals"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:1
+msgid "Screensavers"
+msgstr "Estalviadors d'ecran"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "Empeutons d'estalviador d'ecran"
+
+#: ../data/xfce/xfce-settings.directory.in.h:1
+msgid "Settings"
+msgstr "Paramètres"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "Aplicacions de parametratge del burèu e del sistèma"
+
+#: ../data/xfce/xfce-system.directory.in.h:1
+msgid "System"
+msgstr "Sistèma"
+
+#: ../data/xfce/xfce-system.directory.in.h:2
+msgid "System tools and utilities"
+msgstr "Aisinas e utilitaris sistèma"
+
+#: ../garcon/garcon-menu.c:702
+#, c-format
+msgid "File \"%s\" not found"
+msgstr "Fichièr \"%s\" pas trobat"
+
+#: ../garcon/garcon-menu-parser.c:276
+#, c-format
+msgid "Could not load menu file data from %s: %s"
+msgstr "Impossible de cargar las donadas del fichièr de menú dempuèi %s : %s"
+
+#: ../garcon/garcon-menu-parser.c:283
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr "Impossible de cargar las donadas del fichièr de menú dempuèi %s"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:389
+#, c-format
+msgid "Failed to execute command \"%s\"."
+msgstr "Impossible d'executar la comanda « %s »."
+
+#: ../garcon-gtk/garcon-gtk-menu.c:652
+msgid "No applications found"
+msgstr "Cap d'aplicacion pas trobada"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:664
+msgid "Failed to load the applications menu"
+msgstr "Impossible de cargar lo menú de las aplicacions"
