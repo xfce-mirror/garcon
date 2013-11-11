@@ -1,21 +1,22 @@
-# Finnish translations for garcon.
-# Copyright (C) 2007-2010 Jannis Pohlmann <jannis@xfce.org>
-# Copyright (C) 2009-2010 Nick Schermer <nick@xfce.org>
-# This file is distributed under the same license as the garcon package.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2010-2012.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: garcon 0.1.x\n"
+"Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-28 08:27+0000\n"
-"PO-Revision-Date: 2012-03-28 16:12+0200\n"
-"Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
-"Language-Team: Finnish <xfce-i18n@xfce.org>\n"
-"Language: fi\n"
+"POT-Creation-Date: 2013-08-03 00:30+0200\n"
+"PO-Revision-Date: 2013-11-11 20:53+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"Language-Team: Finnish (http://www.transifex.com/projects/p/xfce/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -66,20 +67,20 @@ msgid "Settings for several hardware devices"
 msgstr "Eräiden laitteiden asetukset"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Audio and video players and editors"
-msgstr "Ääni- ja videosoittimet sekä editorit"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
 msgstr "Ääni ja video"
 
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Applications for Internet access"
-msgstr "Sovellukset Internetin käyttöön"
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "Ääni- ja videosoittimet sekä editorit"
 
-#: ../data/xfce/xfce-network.directory.in.h:2
+#: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
 msgstr "Internet"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "Sovellukset Internetin käyttöön"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -90,12 +91,12 @@ msgid "Office and productivity applications"
 msgstr "Toimisto- ja tuottavuusohjelmistot"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Applications that don't fit into other categories"
-msgstr "Sovellukset, jotka eivät sovi muihin kategorioihin"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Muut"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "Sovellukset, jotka eivät sovi muihin kategorioihin"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -106,20 +107,20 @@ msgid "Personal settings"
 msgstr "Henkilökohtaiset asetukset"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensaver applets"
-msgstr "Näytönsäästäjäsovelmat"
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
 msgstr "Näytönsäästäjät"
 
-#: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Desktop and system settings applications"
-msgstr "Työpöydän ja järjestelmän asetusohjelmat"
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "Näytönsäästäjäsovelmat"
 
-#: ../data/xfce/xfce-settings.directory.in.h:2
+#: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
 msgstr "Asetukset"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "Työpöydän ja järjestelmän asetusohjelmat"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -129,17 +130,30 @@ msgstr "Järjestelmä"
 msgid "System tools and utilities"
 msgstr "Järjestelmän työkalut ja hyötyohjelmat"
 
-#: ../garcon/garcon-menu.c:706
+#: ../garcon/garcon-menu.c:702
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Tiedostoa \"%s\" ei löydy"
 
-#: ../garcon/garcon-menu-parser.c:280
+#: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Valikkotiedoston %s lataaminen epäonnistui: %s"
 
-#: ../garcon/garcon-menu-parser.c:287
+#: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Valikkotiedoston %s lataaminen epäonnistui"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:389
+#, c-format
+msgid "Failed to execute command \"%s\"."
+msgstr "Komennon \"%s\" suorittaminen epäonnistui."
+
+#: ../garcon-gtk/garcon-gtk-menu.c:652
+msgid "No applications found"
+msgstr "Sovelluksia ei löytynyt"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:664
+msgid "Failed to load the applications menu"
+msgstr "Sovellusvalikon lataaminen epäonnistui"
