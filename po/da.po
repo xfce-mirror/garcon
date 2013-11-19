@@ -1,24 +1,22 @@
-# Danish translations for libxfce4menu package.
-# Copyright (c) 2007 The Xfce development team.
-# This file is distributed under the same license as the libxfce4menu package.
-# Per Kongstad <p_kongstad@op.pl>, 2009.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# Per Kongstad <p_kongstad@op.pl>, 2009
 msgid ""
 msgstr ""
-"Project-Id-Version: libxfce4menu 4.5.92\n"
+"Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-16 02:51+0000\n"
-"PO-Revision-Date: 2009-08-15 19:29+0100\n"
-"Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
-"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"POT-Creation-Date: 2013-07-02 22:58+0200\n"
+"PO-Revision-Date: 2013-11-19 15:01+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Danish (http://www.transifex.com/projects/p/xfce/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: Danish\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-Country: DENMARK\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -69,20 +67,20 @@ msgid "Settings for several hardware devices"
 msgstr "Indstillinger for adskillige hardware-enheder"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Audio and video players and editors"
-msgstr "Lyd-, videoafpillere samt -editorer"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
 msgstr "Multimedie"
 
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Applications for Internet access"
-msgstr "Programmer til internetadgang"
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "Lyd-, videoafpillere samt -editorer"
 
-#: ../data/xfce/xfce-network.directory.in.h:2
+#: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
 msgstr "Internet"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "Programmer til internetadgang"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -93,12 +91,12 @@ msgid "Office and productivity applications"
 msgstr "Kontor- og produktivitetsprogrammer"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Applications that don't fit into other categories"
-msgstr "Programmer som ikke falder indenfor andre kategorier"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Andre"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "Programmer som ikke falder indenfor andre kategorier"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -109,20 +107,20 @@ msgid "Personal settings"
 msgstr "Personlige indstillinger"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensaver applets"
-msgstr "Pauseskærmsprogrammer"
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
 msgstr "Pauseskærme"
 
-#: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Desktop and system settings applications"
-msgstr "Skrivebords- og systemindstillingsprogrammer"
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "Pauseskærmsprogrammer"
 
-#: ../data/xfce/xfce-settings.directory.in.h:2
+#: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
 msgstr "Indstillinger"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "Skrivebords- og systemindstillingsprogrammer"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -146,30 +144,3 @@ msgstr "Kunne ikke indlæse data til menufil fra %s: %s."
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Kunne ikke indlæse data til menufil fra %s"
-
-#~ msgid "Network"
-#~ msgstr "Netværk"
-
-#~ msgid "Network applications and utilities"
-#~ msgstr "Netværksprogrammer og værktøjer"
-
-#~ msgid "Science"
-#~ msgstr "Videnskab"
-
-#~ msgid "Scientific software"
-#~ msgstr "Videnskabelige programmer"
-
-#~ msgid "No suitable application menu file found"
-#~ msgstr "Ingen passende programmenufil fundet"
-
-#~ msgid "XfceMenu: Display Menu Test"
-#~ msgstr "XfceMenu: Vis menuprøve"
-
-#~ msgid "_Show menu"
-#~ msgstr "_Vis menu"
-
-#~ msgid "Failed to locate the system menu"
-#~ msgstr "Kunne ikke finde systemmenuen"
-
-#~ msgid "Failed to create the libxfce4menu item cache in %s."
-#~ msgstr "Kunne ikke oprette elementcachen for libxfce4-menu i %s."
