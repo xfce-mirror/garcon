@@ -1,22 +1,22 @@
-# Esperanto translation.
-# I am still not an Esperanto expert, I prefers to commit a file with the risk
-# of some errors with the hope that it will be reported.
-# Copyright (C) 2012.
-# This file is distributed under the same license as the Garcon package.
-# Pierre Vittet, 2012.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# Pierre Vittet, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-26 14:24+0000\n"
-"PO-Revision-Date: 2012-02-27 09:15+0600\n"
-"Last-Translator: Urmas D. <davian818@gmail.com>\n"
-"Language-Team: Esperanto <\n"
+"POT-Creation-Date: 2013-08-03 00:30+0200\n"
+"PO-Revision-Date: 2013-11-19 13:10+0000\n"
+"Last-Translator: Xfce <transifex@xfce.org>\n"
+"Language-Team: Esperanto (http://www.transifex.com/projects/p/xfce/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
+"Language: eo\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -67,20 +67,20 @@ msgid "Settings for several hardware devices"
 msgstr "Agordoj pri diversaj aparatoj"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Audio and video players and editors"
-msgstr "Plurmedialudiloj kaj -redaktiloj"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
 msgstr "Plurmedio"
 
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Applications for Internet access"
-msgstr "Programaj pri Interretaliro"
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "Plurmedialudiloj kaj -redaktiloj"
 
-#: ../data/xfce/xfce-network.directory.in.h:2
+#: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
 msgstr "Interreto"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "Programaj pri Interretaliro"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -91,12 +91,12 @@ msgid "Office and productivity applications"
 msgstr "Officeja kaj produktiveca programaro"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Applications that don't fit into other categories"
-msgstr "Programoj kio ne estas en aliaj kategorioj"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Alio"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "Programoj kio ne estas en aliaj kategorioj"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -107,20 +107,20 @@ msgid "Personal settings"
 msgstr "Personaj agordoj"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensaver applets"
-msgstr "Ekrankurtenaj aplikaĵetoj"
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
 msgstr "Ekrankurtenoj"
 
-#: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Desktop and system settings applications"
-msgstr "Programoj pri sistemaj kaj labortablaj agordoj"
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "Ekrankurtenaj aplikaĵetoj"
 
-#: ../data/xfce/xfce-settings.directory.in.h:2
+#: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
 msgstr "Agordoj"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "Programoj pri sistemaj kaj labortablaj agordoj"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -130,17 +130,30 @@ msgstr "Sistemo"
 msgid "System tools and utilities"
 msgstr "Sistemaj iloj kaj utilaĵoj"
 
-#: ../garcon/garcon-menu.c:706
+#: ../garcon/garcon-menu.c:702
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Ne trovis la dosieron \"%s\""
 
-#: ../garcon/garcon-menu-parser.c:280
+#: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Ne povis ŝargi la datumojn de menudosiero el %s: %s"
 
-#: ../garcon/garcon-menu-parser.c:287
+#: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Ne povis ŝargi la datumojn de menudosiero el %s"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:389
+#, c-format
+msgid "Failed to execute command \"%s\"."
+msgstr ""
+
+#: ../garcon-gtk/garcon-gtk-menu.c:652
+msgid "No applications found"
+msgstr ""
+
+#: ../garcon-gtk/garcon-gtk-menu.c:664
+msgid "Failed to load the applications menu"
+msgstr ""
