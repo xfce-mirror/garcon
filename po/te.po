@@ -1,16 +1,17 @@
-# Xfce Telugu Translation.
-# Copyright (C) 2003-2011 Xfce Development Team 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Praveen Illa <mail2ipn@gmail.com>, 2011.
 # 
+# Translators:
+# ప్రవీణ్ ఇళ్ళ <mail2ipn@gmail.com>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: garcon.master\n"
+"Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-11 16:15+0000\n"
-"PO-Revision-Date: 2011-04-21 17:57+0530\n"
-"Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
-"Language-Team: Telugu <telugulinux@gmail.com>\n"
+"POT-Creation-Date: 2013-07-02 22:58+0200\n"
+"PO-Revision-Date: 2013-11-19 15:01+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Telugu (http://www.transifex.com/projects/p/xfce/language/te/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,20 +67,20 @@ msgid "Settings for several hardware devices"
 msgstr "వివిధ హార్డ్‍వేర్ పరికరాల కొరకు అమరికలు"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Audio and video players and editors"
-msgstr "శ్రవణ మరియు దృశ్య ప్రదర్శకాలు మరియు కూర్పకాలు"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
 msgstr "బహుళమాధ్యమం"
 
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Applications for Internet access"
-msgstr "అంతర్జాల సౌలభ్యత కొరకు అనువర్తనాలు"
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "శ్రవణ మరియు దృశ్య ప్రదర్శకాలు మరియు కూర్పకాలు"
 
-#: ../data/xfce/xfce-network.directory.in.h:2
+#: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
 msgstr "అంతర్జాలం"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "అంతర్జాల సౌలభ్యత కొరకు అనువర్తనాలు"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -90,12 +91,12 @@ msgid "Office and productivity applications"
 msgstr "కార్యాలయ మరియు ఉత్పాదక అనువర్తనాలు"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Applications that don't fit into other categories"
-msgstr "ఇతర విభాగాలలో సరిపోని అనువర్తనాలు"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "ఇతర"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "ఇతర విభాగాలలో సరిపోని అనువర్తనాలు"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -106,20 +107,20 @@ msgid "Personal settings"
 msgstr "వ్యక్తిగత అమరికలు"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensaver applets"
-msgstr "తెరకాపరి ఆప్లెట్స్"
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
 msgstr "తెరకాపరులు"
 
-#: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Desktop and system settings applications"
-msgstr "డెస్క్‍టాప్ మరియు వ్యవస్థ అనువర్తనాలు అమరికలు"
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "తెరకాపరి ఆప్లెట్స్"
 
-#: ../data/xfce/xfce-settings.directory.in.h:2
+#: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
 msgstr "అమరికలు"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "డెస్క్‍టాప్ మరియు వ్యవస్థ అనువర్తనాలు అమరికలు"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -143,15 +144,3 @@ msgstr "%s నుండి మెనూ ఫైలును లోడుచేయ
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "%s నుండి మెనూ ఫైలును లోడుచేయుట వీలుకాదు"
-
-#~ msgid "Network"
-#~ msgstr "నెట్‌వర్క్"
-
-#~ msgid "Network applications and utilities"
-#~ msgstr "నెట్‌వర్క్ అనువర్తనాలు మరియు వినియోగాలు"
-
-#~ msgid "Science"
-#~ msgstr "శాస్త్రము"
-
-#~ msgid "Scientific software"
-#~ msgstr "వైజ్ఞానిక సాఫ్ట్‍వేర్"
