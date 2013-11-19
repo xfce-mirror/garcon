@@ -1,23 +1,22 @@
-# Catalan translations for garcon package.
-# Copyright (C) 2008 THE garcon'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the garcon package.
-# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2008-2009, 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# carlesmu <carlesmu@internautas.org>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: libxfce 4menu\n"
+"Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-10 07:36+0000\n"
-"PO-Revision-Date: 2011-12-06 21:05+0100\n"
-"Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
-"Language-Team: Catalan\n"
+"POT-Creation-Date: 2013-08-03 00:30+0200\n"
+"PO-Revision-Date: 2013-11-19 13:10+0000\n"
+"Last-Translator: Xfce <transifex@xfce.org>\n"
+"Language-Team: Catalan (http://www.transifex.com/projects/p/xfce/language/ca/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
+"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: Catalan\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -68,20 +67,20 @@ msgid "Settings for several hardware devices"
 msgstr "Paràmetres per a diversos dispositius de maquinari"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Audio and video players and editors"
-msgstr "Reproductors i editors d'àudio i vídeo"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
 msgstr "Multimèdia"
 
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Applications for Internet access"
-msgstr "Aplicacions per accedir a internet"
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "Reproductors i editors d'àudio i vídeo"
 
-#: ../data/xfce/xfce-network.directory.in.h:2
+#: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
 msgstr "Internet"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "Aplicacions per accedir a internet"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -92,12 +91,12 @@ msgid "Office and productivity applications"
 msgstr "Aplicacions d'oficina i de productivitat"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Applications that don't fit into other categories"
-msgstr "Les aplicacions que no encaixen en cap altra categoria"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Altres"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "Les aplicacions que no encaixen en cap altra categoria"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -108,20 +107,20 @@ msgid "Personal settings"
 msgstr "Paràmetres personals"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensaver applets"
-msgstr "Miniaplicacions de salvapantalles"
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
 msgstr "Salvapantalles"
 
-#: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Desktop and system settings applications"
-msgstr "Aplicacions d'ajustaments de l'escriptori i del sistema"
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "Miniaplicacions de salvapantalles"
 
-#: ../data/xfce/xfce-settings.directory.in.h:2
+#: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
 msgstr "Ajustaments"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "Aplicacions d'ajustaments de l'escriptori i del sistema"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -131,44 +130,30 @@ msgstr "Sistema"
 msgid "System tools and utilities"
 msgstr "Eines i utilitats del sistema"
 
-#: ../garcon/garcon-menu.c:706
+#: ../garcon/garcon-menu.c:702
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "No s'ha trobat el fitxer \"%s\""
 
-#: ../garcon/garcon-menu-parser.c:280
+#: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "No s'ha pogut carregar les dades del fitxer de menú de «%s»: %s"
 
-#: ../garcon/garcon-menu-parser.c:287
+#: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "No s'ha pogut carregar les dades del fitxer de menú de «%s»"
 
-#~ msgid "Network"
-#~ msgstr "Xarxa"
+#: ../garcon-gtk/garcon-gtk-menu.c:389
+#, c-format
+msgid "Failed to execute command \"%s\"."
+msgstr ""
 
-#~ msgid "Network applications and utilities"
-#~ msgstr "Aplicacions i utilitats de xarxa"
+#: ../garcon-gtk/garcon-gtk-menu.c:652
+msgid "No applications found"
+msgstr ""
 
-#~ msgid "Science"
-#~ msgstr "Ciència"
-
-#~ msgid "Scientific software"
-#~ msgstr "Programari científic"
-
-#~ msgid "No suitable application menu file found"
-#~ msgstr "No s'ha trobat un fitxer de menú adequat"
-
-#~ msgid "XfceMenu: Display Menu Test"
-#~ msgstr "XfceMenu: Mostra el menú de prova"
-
-#~ msgid "_Show menu"
-#~ msgstr "_Mostra el menú"
-
-#~ msgid "Failed to locate the system menu"
-#~ msgstr "No s'ha pogut trobar el menú del sistema"
-
-#~ msgid "Failed to create the libxfce4menu item cache in %s."
-#~ msgstr "No s'ha pogut crear l'element cau de «libxfce4menu» a «%s»."
+#: ../garcon-gtk/garcon-gtk-menu.c:664
+msgid "Failed to load the applications menu"
+msgstr ""
