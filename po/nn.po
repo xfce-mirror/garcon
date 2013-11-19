@@ -1,16 +1,17 @@
-# Norwegian nynorsk translations for garcon.
-# Copyright (c) 2007 The Xfce development team.
-# This file is distributed under the same license as the garcon package.
-# Eivind Ødegård <gingermig@yahoo.no>, 2012.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# Eivind Ødegård <gingermig@yahoo.no>, 2012
 msgid ""
 msgstr ""
-"Project-Id-Version: garcon x.y.z\n"
+"Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-04 12:24+0000\n"
-"PO-Revision-Date: 2012-01-05 15:05+0100\n"
-"Last-Translator: Eivind Ødegård <meinmycell-forums@yahoo.no>\n"
-"Language-Team: Norwegian nynorsk <i18n-nn@lister.ping.uio.no>\n"
+"POT-Creation-Date: 2013-08-03 00:30+0200\n"
+"PO-Revision-Date: 2013-11-19 13:10+0000\n"
+"Last-Translator: Xfce <transifex@xfce.org>\n"
+"Language-Team: Norwegian Nynorsk (http://www.transifex.com/projects/p/xfce/language/nn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,20 +67,20 @@ msgid "Settings for several hardware devices"
 msgstr "Innstillingar for fleire maskinvareeiningar"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Audio and video players and editors"
-msgstr "Program for å spela og endra lyd og video"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
 msgstr "Multimedia"
 
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Applications for Internet access"
-msgstr "Program for internettoppgåver"
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "Program for å spela og endra lyd og video"
 
-#: ../data/xfce/xfce-network.directory.in.h:2
+#: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
 msgstr "Internett"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "Program for internettoppgåver"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -90,12 +91,12 @@ msgid "Office and productivity applications"
 msgstr "Program for å skriva og løysa kontoroppgåver"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Applications that don't fit into other categories"
-msgstr "Program som ikkje høyrer innunder andre kategoriar"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Andre"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "Program som ikkje høyrer innunder andre kategoriar"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -106,20 +107,20 @@ msgid "Personal settings"
 msgstr "Personlege innstillingar"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensaver applets"
-msgstr "Skjermspararprogram"
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
 msgstr "Skjermspararar"
 
-#: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Desktop and system settings applications"
-msgstr "Innstillingar for skrivebordet og systemet"
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "Skjermspararprogram"
 
-#: ../data/xfce/xfce-settings.directory.in.h:2
+#: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
 msgstr "Innstillingar"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "Innstillingar for skrivebordet og systemet"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -129,17 +130,30 @@ msgstr "System"
 msgid "System tools and utilities"
 msgstr "Systemverktøy"
 
-#: ../garcon/garcon-menu.c:706
+#: ../garcon/garcon-menu.c:702
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Fann ikkje fila «%s»"
 
-#: ../garcon/garcon-menu-parser.c:280
+#: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Greidde ikkje lasta menyfildata frå %s: %s"
 
-#: ../garcon/garcon-menu-parser.c:287
+#: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Greidde ikkje lasta menyfildata frå %s"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:389
+#, c-format
+msgid "Failed to execute command \"%s\"."
+msgstr ""
+
+#: ../garcon-gtk/garcon-gtk-menu.c:652
+msgid "No applications found"
+msgstr ""
+
+#: ../garcon-gtk/garcon-gtk-menu.c:664
+msgid "Failed to load the applications menu"
+msgstr ""
