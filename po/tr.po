@@ -1,26 +1,24 @@
-# Turkish translations for libxfce4menu.
-# Copyright (C) 2007 Jannis Pohlmann <jannis@xfce.org>
-# This file is distributed under the same license as the libxfce4menu package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
-# Nimet Senem Özkızıklı <nimetsenem@gmail.com>, 2008.
-# Gökmen Görgen <gkmngrgn@gmail.com>, 2008.
-# Ayhan YALÇINSOY <ayhanyalcinsoy@gmail.com>, 2010.
+# Translators:
+# Ayhan YALÇINSOY <ayhanyalcinsoy@gmail.com>, 2010
+# Gökmen Görgen <gkmngrgn@gmail.com>, 2008
+# Nimet Senem Özkızıklı <nimetsenem@gmail.com>, 2008
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-30 16:24+0000\n"
-"PO-Revision-Date: 2010-05-13 11:33+0300\n"
-"Last-Translator: Ayhan YALÇINSOY <ayhanyalcinsoy@gmail.com>\n"
-"Language-Team: Turkish <kde-i18n-doc@kde.org>\n"
+"POT-Creation-Date: 2013-07-02 22:58+0200\n"
+"PO-Revision-Date: 2013-11-19 15:01+0000\n"
+"Last-Translator: Nick <nick@xfce.org>\n"
+"Language-Team: Turkish (http://www.transifex.com/projects/p/xfce/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Poedit-Language: Turkish\n"
-"X-Poedit-Country: TURKEY\n"
-"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -71,20 +69,20 @@ msgid "Settings for several hardware devices"
 msgstr "Çeşitli donanım aygıtları için ayarlar"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Audio and video players and editors"
-msgstr "Ses ve video oynatıcı ve düzenleyiciler"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
 msgstr "Çokluortam"
 
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Applications for Internet access"
-msgstr "İnternet erişimi için uygulamalar"
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "Ses ve video oynatıcı ve düzenleyiciler"
 
-#: ../data/xfce/xfce-network.directory.in.h:2
+#: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
 msgstr "İnternet"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "İnternet erişimi için uygulamalar"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -95,12 +93,12 @@ msgid "Office and productivity applications"
 msgstr "Ofis ve verimlilik uygulamaları"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Applications that don't fit into other categories"
-msgstr "Diğer bölümlerde bulunmayan uygulamalar"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Diğer"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "Diğer bölümlerde bulunmayan uygulamalar"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -111,20 +109,20 @@ msgid "Personal settings"
 msgstr "Kisişel ayarlar"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensaver applets"
-msgstr "Ekran koruyucu uygulamaları"
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
 msgstr "Ekran Koruyucular"
 
-#: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Desktop and system settings applications"
-msgstr "Masaüstü ve sistem ayarları uygulamaları"
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "Ekran koruyucu uygulamaları"
 
-#: ../data/xfce/xfce-settings.directory.in.h:2
+#: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
 msgstr "Ayarlar"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "Masaüstü ve sistem ayarları uygulamaları"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -148,27 +146,3 @@ msgstr "%s den menü dosya verisi yüklenemedi: %s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "%s den menü dosya verisi yüklenemedi"
-
-#~ msgid "Network"
-#~ msgstr "Ağ"
-
-#~ msgid "Network applications and utilities"
-#~ msgstr "Ağ uygulamaları"
-
-#~ msgid "Science"
-#~ msgstr "Bilim"
-
-#~ msgid "Scientific software"
-#~ msgstr "Bilimsel yazılımlar"
-
-#~ msgid "XfceMenu: Display Menu Test"
-#~ msgstr "XfceMenu: Menü Sınamasını Görüntüle"
-
-#~ msgid "_Show menu"
-#~ msgstr "_Menüyü göster"
-
-#~ msgid "Failed to locate the system menu"
-#~ msgstr "Sistem menüsünün yeri belirlenemedi"
-
-#~ msgid "Failed to create the libxfce4menu item cache in %s."
-#~ msgstr "libxfce4menu öğesi önbelleği oluşturulamadı: %s."
