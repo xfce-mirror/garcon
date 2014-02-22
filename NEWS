@@ -1,3 +1,20 @@
+0.3.0
+=====
+- Avoid direct include of garcon-menu.h.
+- Add garcon_set_environment_xdg() function.
+- Add a garcon-gtk library for common gtk functions.
+- Bail out of creating a directory menu if it doesn't have a name.
+- Translation updates: Arabic, Bulgarian, Catalan (Valencian), Czech,
+  Danish, German, Greek, English (Australia), English (United Kingdom),
+  Esperanto, Spanish (Castilian), Estonian, Basque, Finnish, French,
+  Galician, Hebrew, Croatian, Hungarian, Indonesian, Icelandic,
+  Italian, Japanese, Kazakh, Korean, Lithuanian, Malay, Norwegian
+  Bokmal, Dutch (Flemish), Norwegian Nynorsk, Occitan (post 1500),
+  Polish, Portuguese, Portuguese (Brazilian), Romanian, Russian,
+  Slovenian, Albanian, Serbian, Swedish, Telugu, Thai, Turkish, Uyghur,
+  Ukrainian, Urdu, Chinese (China), Chinese (Hong Kong), Chinese
+  (Taiwan).
+
 0.2.1
 =====
 - g_thread_init is deprecated since glib 2.32.
