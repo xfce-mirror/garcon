@@ -492,6 +492,75 @@ garcon_gtk_menu_reload (GarconGtkMenu *menu)
 
 
 
+static GtkWidget*
+garcon_gtk_menu_load_icon (const gchar *icon_name)
+{
+  GtkWidget *image = NULL;
+  gint w, h, size;
+  gchar *p, *name = NULL;
+  GdkPixbuf *pixbuf = NULL;
+  GtkIconTheme *icon_theme = gtk_icon_theme_get_default ();
+
+  gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &w, &h);
+  size = MIN (w, h);
+
+  if (gtk_icon_theme_has_icon (icon_theme, icon_name))
+    {
+      image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
+    }
+  else
+    {
+      if (g_path_is_absolute (icon_name))
+        {
+          pixbuf = gdk_pixbuf_new_from_file_at_scale (icon_name, w, h, TRUE, NULL);
+        }
+      else
+        {
+          /* try to lookup names like application.png in the theme */
+          p = strrchr (icon_name, '.');
+          if (p)
+            {
+              name = g_strndup (icon_name, p - icon_name);
+              pixbuf = gtk_icon_theme_load_icon (icon_theme, name, size, 0, NULL);
+              g_free (name);
+              name = NULL;
+            }
+
+          /* maybe they point to a file in the pixbufs folder */
+          if (G_UNLIKELY (pixbuf == NULL))
+            {
+              gchar *filename;
+
+              filename = g_build_filename ("pixmaps", icon_name, NULL);
+              name = xfce_resource_lookup (XFCE_RESOURCE_DATA, filename);
+              g_free (filename);
+            }
+
+          if (name)
+            {
+              pixbuf = gdk_pixbuf_new_from_file_at_scale (name, w, h, TRUE, NULL);
+              g_free (name);
+            }
+        }
+
+      /* Turn the pixbuf into a gtk_image */
+      if (G_LIKELY (pixbuf))
+        {
+          /* scale the pixbuf down if it needs it */
+          GdkPixbuf *tmp = gdk_pixbuf_scale_simple (pixbuf, w, h, GDK_INTERP_BILINEAR);
+          g_object_unref (pixbuf);
+          pixbuf = tmp;
+
+          image = gtk_image_new_from_pixbuf (pixbuf);
+          g_object_unref (G_OBJECT (pixbuf));
+        }
+    }
+
+  return image;
+}
+
+
+
 static gboolean
 garcon_gtk_menu_add (GarconGtkMenu *menu,
                      GtkMenu       *gtk_menu,
@@ -570,7 +639,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
               if (STR_IS_EMPTY (icon_name))
                 icon_name = "applications-other";
 
-              image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
+              image = garcon_gtk_menu_load_icon (icon_name);
               gtk_image_menu_item_set_image (GTK_IMAGE_MENU_ITEM (mi), image);
               gtk_widget_show (image);
             }
