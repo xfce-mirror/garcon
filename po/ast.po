@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2014-04-11 13:28+0000\n"
+"PO-Revision-Date: 2014-04-11 20:45+0000\n"
 "Last-Translator: Tornes Llume <l.lumex03.tornes@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/projects/p/xfce/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Desendolcu"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr "Ferramientes de desndolcu de software"
+msgstr "Ferramientes de desendolcu de software"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
