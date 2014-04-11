@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2014-04-09 10:46+0000\n"
+"PO-Revision-Date: 2014-04-11 13:28+0000\n"
 "Last-Translator: Tornes Llume <l.lumex03.tornes@gmail.com>\n"
 "Language-Team: Asturian (http://www.transifex.com/projects/p/xfce/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr "Accesotios"
+msgstr "Accesorios"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
@@ -133,7 +133,7 @@ msgstr "Utilidaes y ferramientes del sistema"
 #: ../garcon/garcon-menu.c:702
 #, c-format
 msgid "File \"%s\" not found"
-msgstr "El ficheru \"%s\" nun s'alcontró"
+msgstr "Nun s'alcontro'l ficheru \"%s\""
 
 #: ../garcon/garcon-menu-parser.c:276
 #, c-format
@@ -143,7 +143,7 @@ msgstr "Nun pudo cargase'l menú de ficheru de datos %s: %s"
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Nun pudo cargase'l menú de ficheru de datos %s"
+msgstr "Nun pudo cargase'l menú de datos de ficheros de %s"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:389
 #, c-format
