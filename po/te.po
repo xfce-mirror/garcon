@@ -4,13 +4,14 @@
 # 
 # Translators:
 # ప్రవీణ్ ఇళ్ళ <mail2ipn@gmail.com>, 2011
+# ప్రవీణ్ ఇళ్ళ <mail2ipn@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 22:58+0200\n"
-"PO-Revision-Date: 2013-11-19 15:01+0000\n"
-"Last-Translator: Nick <nick@xfce.org>\n"
+"PO-Revision-Date: 2014-04-11 06:36+0000\n"
+"Last-Translator: ప్రవీణ్ ఇళ్ళ <mail2ipn@gmail.com>\n"
 "Language-Team: Telugu (http://www.transifex.com/projects/p/xfce/language/te/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgstr "సహాయకాలు"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "సాధారణ డెస్క్‍టాప్ సాధనాలు మరియు అనువర్తనాలు"
+msgstr "సాధారణ డెస్క్‌టాప్ సాధనాలు మరియు అనువర్తనాలు"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -32,7 +33,7 @@ msgstr "అభివృద్ధి"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr "సాఫ్ట్‍వేర్ అభివృద్ధి సాధనాలు"
+msgstr "సాఫ్ట్‌వేర్ అభివృద్ధి సాధనాలు"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
@@ -40,7 +41,7 @@ msgstr "విద్య"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr "విద్యా సాఫ్ట్‍వేర్"
+msgstr "విద్యా సాఫ్ట్‌వేర్"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
@@ -48,11 +49,11 @@ msgstr "ఆటలు"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr "ఆటలు, పజిల్స్, మరియు ఇతర సరదా సాఫ్ట్‍వేర్"
+msgstr "ఆటలు, పజిల్స్, మరియు ఇతర సరదా సాఫ్ట్‌వేర్"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr "చిత్రరూపాలు"
+msgstr "రేఖాచిత్రాలు"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
@@ -60,11 +61,11 @@ msgstr "చిత్రాంశాలను సృష్టించుట మ�
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr "హార్డ్‍వేర్"
+msgstr "హార్డ్‌వేర్"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
-msgstr "వివిధ హార్డ్‍వేర్ పరికరాల కొరకు అమరికలు"
+msgstr "వివిధ హార్డ్‌వేర్ పరికరాల కొరకు అమరికలు"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Multimedia"
@@ -80,7 +81,7 @@ msgstr "అంతర్జాలం"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
-msgstr "అంతర్జాల సౌలభ్యత కొరకు అనువర్తనాలు"
+msgstr "అంతర్జాల ప్రాప్తి కొరకు అనువర్తనాలు"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -96,7 +97,7 @@ msgstr "ఇతర"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Applications that don't fit into other categories"
-msgstr "ఇతర విభాగాలలో సరిపోని అనువర్తనాలు"
+msgstr "ఇతర వర్గాలలో ఇమడని అనువర్తనాలు"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -112,7 +113,7 @@ msgstr "తెరకాపరులు"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "తెరకాపరి ఆప్లెట్స్"
+msgstr "తెరకాపరి ఆప్లెట్లు"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -120,7 +121,7 @@ msgstr "అమరికలు"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Desktop and system settings applications"
-msgstr "డెస్క్‍టాప్ మరియు వ్యవస్థ అనువర్తనాలు అమరికలు"
+msgstr "డెస్క్‌టాప్ మరియు వ్యవస్థ అనువర్తనాలు అమరికలు"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -133,14 +134,14 @@ msgstr "వ్యవస్థ సాధనాలు మరియు విని
 #: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
-msgstr "\"%s\" ఫైల్ కనపడలేదు"
+msgstr "\"%s\" దస్త్రం కనపడలేదు"
 
 #: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "%s నుండి మెనూ ఫైలును లోడుచేయుట వీలుకాదు: %s"
+msgstr "%s నుండి మెనూ దస్త్రాన్ని లోడుచేయుట వీలుకాదు: %s"
 
 #: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "%s నుండి మెనూ ఫైలును లోడుచేయుట వీలుకాదు"
+msgstr "%s నుండి మెనూ దస్త్రాన్ని లోడుచేయుట వీలుకాదు"
