@@ -5,14 +5,15 @@
 # Translators:
 # Abel Martín <abel.martin.ruiz@gmail.com>, 2008
 # MC <correomc2000-ing@yahoo.es>, 2013
+# Pablo Lezaeta <prflr88@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2013-08-05 09:44+0000\n"
-"Last-Translator: MC <correomc2000-ing@yahoo.es>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/xfce/language/es/)\n"
+"PO-Revision-Date: 2014-05-19 04:54+0000\n"
+"Last-Translator: Pablo Lezaeta <prflr88@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/garcon/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,7 +34,7 @@ msgstr "Desarrollo"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr "Herramientas software de desarrollo"
+msgstr "Herramientas de desarollo de software"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
