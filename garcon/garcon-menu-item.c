@@ -690,7 +690,7 @@ garcon_menu_item_url_exec (XfceRc *rc)
   /* Support Type=Link items */
   url = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_URL, NULL);
   if (url != NULL)
-    url_exec = g_strdup_printf ("exo-open --launch WebBrowser '%s'", url);
+    url_exec = g_strdup_printf ("exo-open '%s'", url);
 
   return url_exec;
 }
