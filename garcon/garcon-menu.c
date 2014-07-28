@@ -1627,8 +1627,20 @@ static gint
 garcon_menu_compare_items (gconstpointer *a,
                            gconstpointer *b)
 {
-  return g_utf8_collate (garcon_menu_element_get_name (GARCON_MENU_ELEMENT (a)),
-                         garcon_menu_element_get_name (GARCON_MENU_ELEMENT (b)));
+  gchar *casefold_a, *casefold_b;
+  gint   result;
+
+  /* do case insensitive sorting, see bug #10594 */
+  /* TODO: this function is called often, maybe catch the casefolded name */
+  casefold_a = g_utf8_casefold (garcon_menu_element_get_name (GARCON_MENU_ELEMENT (a)), -1);
+  casefold_b = g_utf8_casefold (garcon_menu_element_get_name (GARCON_MENU_ELEMENT (b)), -1);
+
+  result = g_utf8_collate (casefold_a, casefold_b);
+
+  g_free (casefold_a);
+  g_free (casefold_b);
+
+  return result;
 }
 
 
