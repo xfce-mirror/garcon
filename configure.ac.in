@@ -34,6 +34,11 @@ dnl *** Full debug support for GIT snapshots ***
 dnl ********************************************
 m4_define([garcon_debug_default], [ifelse(garcon_version_tag(), [git], [full], [minimum])])
 
+dnl ****************************
+dnl *** For intltool support ***
+dnl ****************************
+m4_define([intltool_minimum_version], [0.35])
+
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
@@ -82,7 +87,7 @@ dnl ********************************
 AM_PROG_AS()
 AC_PROG_CC()
 AC_PROG_INSTALL()
-AC_PROG_INTLTOOL([0.31], [no-xml])
+IT_PROG_INTLTOOL([intltool_minimum_version], [no-xml])
 AM_PROG_CC_C_O()
 
 dnl **************************
