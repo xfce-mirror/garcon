@@ -4,15 +4,15 @@
 # 
 # Translators:
 # Abel Martín <abel.martin.ruiz@gmail.com>, 2008
-# MC <correomc2000-ing@yahoo.es>, 2013
-# Pablo Lezaeta <prflr88@gmail.com>, 2014
+# mc <correomc2000-ing@yahoo.es>, 2013
+# Pablo Roberto Francisco Lezaeta Reyes <prflr88@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2014-05-19 04:54+0000\n"
-"Last-Translator: Pablo Lezaeta <prflr88@gmail.com>\n"
+"PO-Revision-Date: 2014-12-25 18:56+0000\n"
+"Last-Translator: Pablo Roberto Francisco Lezaeta Reyes <prflr88@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/garcon/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,7 +74,7 @@ msgstr "Multimedia"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "Reproductores y editores de audio y vídeo"
+msgstr "Reproductores y editores de audio y video"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
@@ -150,7 +150,7 @@ msgstr "No se pudo cargar el menú de archivo de datos de %s"
 #: ../garcon-gtk/garcon-gtk-menu.c:389
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr "Fallo al ejecutar el comando \"%s\"."
+msgstr "No se pudo ejecutar el comando «%s»."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:652
 msgid "No applications found"
@@ -158,4 +158,4 @@ msgstr "No se han encontrado aplicaciones"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:664
 msgid "Failed to load the applications menu"
-msgstr "Fallo al cargar el menú de aplicaciones"
+msgstr "No se pudo cargar el menú de aplicaciones"
