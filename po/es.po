@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2014-12-25 18:56+0000\n"
+"PO-Revision-Date: 2014-12-26 01:05+0000\n"
 "Last-Translator: Pablo Roberto Francisco Lezaeta Reyes <prflr88@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/garcon/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -150,7 +150,7 @@ msgstr "No se pudo cargar el menú de archivo de datos de %s"
 #: ../garcon-gtk/garcon-gtk-menu.c:389
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr "No se pudo ejecutar el comando «%s»."
+msgstr "No se pudo ejecutar la orden «%s»."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:652
 msgid "No applications found"
