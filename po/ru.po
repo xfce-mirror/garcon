@@ -1,19 +1,21 @@
-# Russian translations for garcon package
-# Copyright (C) 2012 Russian Xfce translation team
-# This file is distributed under the same license as the garcon package.
-# Alexander Matveyev <a.s.matveyev@gmail.com>, 2010.
-# Aleksandr Ponomarenko <davian818@gmail.com>, 2010, 2012.
-# Denis Koryavov <dkoryavov@yandex.ru>, 2010.
-# Artem Zolochevskiy <artem.zolochevskiy@gmail.com>, 2011, 2012.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# Aleksandr P <davian818@gmail.com>, 2010,2012
+# Alexander Matveyev <a.s.matveyev@gmail.com>, 2010
+# Artem Zolochevskiy <artem.zolochevskiy@gmail.com>, 2011-2012
+# Denis Koryavov <dkoryavov@yandex.ru>, 2010
+# Lowrider <pams@imail.ru>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: garcon\n"
+"Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-02 05:21+0000\n"
-"PO-Revision-Date: 2012-05-02 11:09+0300\n"
-"Last-Translator: Artem Zolochevskiy <artem.zolochevskiy@gmail.com>\n"
-"Language-Team: Russian\n"
+"POT-Creation-Date: 2013-07-02 22:58+0200\n"
+"PO-Revision-Date: 2015-01-18 11:03+0000\n"
+"Last-Translator: Lowrider <pams@imail.ru>\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/garcon/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,7 +28,7 @@ msgstr "Инструменты"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "Стандартные утилиты и приложения"
+msgstr "Стандартные средства и приложения"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -69,20 +71,20 @@ msgid "Settings for several hardware devices"
 msgstr "Настройка некоторых видов оборудования"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Audio and video players and editors"
-msgstr "Аудио/видео проигрыватели и редакторы"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
 msgstr "Мультимедиа"
 
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Applications for Internet access"
-msgstr "Приложения для работы в интернете"
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "Мультимедийный проигрыватели и редакторы"
 
-#: ../data/xfce/xfce-network.directory.in.h:2
+#: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
 msgstr "Интернет"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "Приложения для работы в интернете"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -93,12 +95,12 @@ msgid "Office and productivity applications"
 msgstr "Офисные приложения"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Applications that don't fit into other categories"
-msgstr "Приложения, не попавшие в остальные категории"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Прочее"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "Приложения, не попавшие в остальные категории"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -109,20 +111,20 @@ msgid "Personal settings"
 msgstr "Личные настройки"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensaver applets"
-msgstr "Хранители экрана"
+msgid "Screensavers"
+msgstr "Экранные заставки"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
-msgid "Screensavers"
-msgstr "Хранители экрана"
+msgid "Screensaver applets"
+msgstr "Мини-программы экранных заставок"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Desktop and system settings applications"
-msgstr "Приложения для настройки рабочего стола и системы"
-
-#: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Settings"
 msgstr "Настройки"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "Приложения для настройки рабочего стола и системы"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
