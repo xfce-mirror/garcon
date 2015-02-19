@@ -5,13 +5,13 @@
 # Translators:
 # Abel Martín <abel.martin.ruiz@gmail.com>, 2008
 # mc <correomc2000-ing@yahoo.es>, 2013
-# Pablo Roberto Francisco Lezaeta Reyes <prflr88@gmail.com>, 2014
+# Pablo Roberto Francisco Lezaeta Reyes <prflr88@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2014-12-26 01:05+0000\n"
+"PO-Revision-Date: 2015-02-19 15:50+0000\n"
 "Last-Translator: Pablo Roberto Francisco Lezaeta Reyes <prflr88@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/garcon/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -130,7 +130,7 @@ msgstr "Sistema"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr "Herramientas y utilidades de sistema"
+msgstr "Herramientas y utilidades del sistema"
 
 #: ../garcon/garcon-menu.c:702
 #, c-format
