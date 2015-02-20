@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2015-02-19 15:50+0000\n"
+"PO-Revision-Date: 2015-02-20 22:20+0000\n"
 "Last-Translator: Pablo Roberto Francisco Lezaeta Reyes <prflr88@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/garcon/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "Desarrollo"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr "Herramientas de desarollo de software"
+msgstr "Herramientas de desarrollo de software"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
@@ -145,7 +145,7 @@ msgstr "No se pudieron cargar los datos del archivo de menú de %s: %s"
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "No se pudo cargar el menú de archivo de datos de %s"
+msgstr "No se pudieron cargar los datos del archivo de menú de %s"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:389
 #, c-format
