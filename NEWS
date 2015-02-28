@@ -1,3 +1,11 @@
+0.4.0
+=====
+- Update intltool (bug #8930)
+- Fix menu icons for misconfigured desktop files (Bug 10709)
+- Add case insensitive sorting to the menu (bug #10594)
+- Don't force URLs to be opened in a web browser (bug #10212)
+- Translation updates: ast, bg, de, el, eo, es, fr, he, nb, pl, sk, te
+
 0.3.0
 =====
 - Avoid direct include of garcon-menu.h.
