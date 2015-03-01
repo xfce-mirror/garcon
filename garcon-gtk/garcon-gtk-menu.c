@@ -759,13 +759,7 @@ garcon_gtk_menu_load (GarconGtkMenu *menu)
 
   if (garcon_menu_load (menu->priv->menu, NULL, &error))
     {
-      if (!garcon_gtk_menu_add (menu, GTK_MENU (menu), menu->priv->menu))
-        {
-          mi = gtk_menu_item_new_with_label (_("No applications found"));
-          gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-          gtk_widget_set_sensitive (mi, FALSE);
-          gtk_widget_show (mi);
-        }
+      garcon_gtk_menu_add (menu, GTK_MENU (menu), menu->priv->menu);
 
       /* watch for changes */
       g_signal_connect_swapped (G_OBJECT (menu->priv->menu), "reload-required",
