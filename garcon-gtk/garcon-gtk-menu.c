@@ -609,10 +609,12 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
           /* create item */
           mi = gtk_menu_item_new ();
           label = gtk_label_new (name);
+          gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
 #if GTK_CHECK_VERSION (3, 0, 0)
           box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 #else
           box = gtk_hbox_new (FALSE, 0);
+          gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5f);
 #endif
 
           if (menu->priv->show_menu_icons)
@@ -631,7 +633,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
 
           /* Add the image and label to the box, add the box to the menu item */
           gtk_box_pack_start (GTK_BOX (box), image, FALSE, FALSE, 0);
-          gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 0);
+          gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 6);
           gtk_widget_show_all (box);
           gtk_container_add (GTK_CONTAINER (mi), box);
 
@@ -683,6 +685,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
             continue;
 
           submenu = gtk_menu_new ();
+          gtk_menu_set_reserve_toggle_size (GTK_MENU (submenu), FALSE);
           if (garcon_gtk_menu_add (menu, GTK_MENU (submenu), li->data))
             {
               GtkWidget *box, *label;
@@ -691,10 +694,12 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
               name = garcon_menu_element_get_name (li->data);
               mi = gtk_menu_item_new ();
               label = gtk_label_new (name);
+              gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
 #if GTK_CHECK_VERSION (3, 0, 0)
               box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 #else
               box = gtk_hbox_new (FALSE, 0);
+              gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5f);
 #endif
 
               if (menu->priv->show_menu_icons)
@@ -713,7 +718,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
 
               /* Add the image and label to the box, add the box to the menu item */
               gtk_box_pack_start (GTK_BOX (box), image, FALSE, FALSE, 0);
-              gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 0);
+              gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 6);
               gtk_widget_show_all (box);
               gtk_container_add (GTK_CONTAINER (mi), box);
 
