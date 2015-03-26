@@ -125,6 +125,8 @@ XDT_CHECK_PACKAGE([GOBJECT], [gobject-2.0], [2.30.0])
 XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.30.0])
 XDT_CHECK_PACKAGE([GTK2], [gtk+-2.0], [2.24.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-1], [4.10.0])
+XDT_CHECK_PACKAGE([GTK3], [gtk+-3.0], [3.14.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UI2], [libxfce4ui-2], [4.11.1])
 
 dnl *************************
 dnl *** Check for gtk-doc ***
@@ -150,9 +152,11 @@ docs/reference/Makefile
 docs/reference/version.xml
 garcon/Makefile
 garcon/garcon-1.pc
+garcon/garcon-2.pc
 garcon/garcon-config.h
 garcon-gtk/Makefile
 garcon-gtk/garcon-gtk2-1.pc
+garcon-gtk/garcon-gtk3-1.pc
 po/Makefile.in
 tests/Makefile
 ])
