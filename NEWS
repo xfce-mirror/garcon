@@ -1,3 +1,7 @@
+0.5.0
+=====
+- Port to Gtk3
+
 0.4.0
 =====
 - Update intltool (bug #8930)
