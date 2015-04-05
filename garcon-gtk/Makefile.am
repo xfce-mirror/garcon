@@ -78,7 +78,7 @@ libgarcon_gtk2_DEPENDENCIES = \
 
 
 libgarcon_gtk3includedir = \
-	$(includedir)/garcon-gtk2-1/garcon-gtk
+	$(includedir)/garcon-gtk3-1/garcon-gtk
 
 libgarcon_gtk3include_HEADERS = \
 	$(libgarcon_gtk_headers)
