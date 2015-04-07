@@ -727,6 +727,9 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
               g_signal_connect (G_OBJECT (submenu), "selection-done",
                   G_CALLBACK (garcon_gtk_menu_deactivate), menu);
               gtk_widget_show (mi);
+
+              /* atleast 1 visible child */
+              has_children = TRUE;
             }
           else
             {
