@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2015-03-12 09:47+0000\n"
+"PO-Revision-Date: 2015-06-24 11:11+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/projects/p/garcon/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "Reikmenys"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "Eiliniai darbastalio įrankiai ir programos"
+msgstr "Eiliniai darbalaukio įrankiai ir programos"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
