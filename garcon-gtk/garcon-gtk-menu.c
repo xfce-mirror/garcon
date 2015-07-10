@@ -504,11 +504,7 @@ garcon_gtk_menu_load_icon (const gchar *icon_name)
   gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &w, &h);
   size = MIN (w, h);
 
-  if (gtk_icon_theme_has_icon (icon_theme, icon_name))
-    {
-      image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
-    }
-  else
+  if (! gtk_icon_theme_has_icon (icon_theme, icon_name))
     {
       if (g_path_is_absolute (icon_name))
         {
@@ -555,6 +551,9 @@ garcon_gtk_menu_load_icon (const gchar *icon_name)
           g_object_unref (G_OBJECT (pixbuf));
         }
     }
+
+  if (image == NULL)
+    image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
 
   return image;
 }
