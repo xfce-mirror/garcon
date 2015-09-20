@@ -11,9 +11,9 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2015-06-24 11:11+0000\n"
+"PO-Revision-Date: 2015-09-19 22:45+0000\n"
 "Last-Translator: Moo\n"
-"Language-Team: Lithuanian (http://www.transifex.com/projects/p/garcon/language/lt/)\n"
+"Language-Team: Lithuanian (http://www.transifex.com/xfce/garcon/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -122,7 +122,7 @@ msgstr "Nustatymai"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Desktop and system settings applications"
-msgstr "Darbalaukio ir sistemos parametrų programos"
+msgstr "Darbalaukio ir sistemos nustatymų programos"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
