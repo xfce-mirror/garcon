@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# enolp <enolp@softastur.org>, 2015
 # Ḷḷumex03 <tornes@opmbx.org>, 2014
 # Ḷḷumex03 <tornes@opmbx.org>, 2014
 msgid ""
@@ -10,9 +11,9 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2014-10-25 19:17+0000\n"
-"Last-Translator: Ḷḷumex03 <tornes@opmbx.org>\n"
-"Language-Team: Asturian (http://www.transifex.com/projects/p/garcon/language/ast/)\n"
+"PO-Revision-Date: 2015-11-14 23:12+0000\n"
+"Last-Translator: enolp <enolp@softastur.org>\n"
+"Language-Team: Asturian (http://www.transifex.com/xfce/garcon/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -134,7 +135,7 @@ msgstr "Ferramientes del sistema y utilidaes"
 #: ../garcon/garcon-menu.c:702
 #, c-format
 msgid "File \"%s\" not found"
-msgstr "Nun s'alcontro'l ficheru \"%s\""
+msgstr "Nun s'alcontro'l ficheru «%s»"
 
 #: ../garcon/garcon-menu-parser.c:276
 #, c-format
@@ -149,7 +150,7 @@ msgstr "Nun pudieron cargase los datos del ficheru menú de %s"
 #: ../garcon-gtk/garcon-gtk-menu.c:389
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr "Fallu al executar el comandu \"%s\"."
+msgstr "Fallu al executar el comandu «%s»."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:652
 msgid "No applications found"
