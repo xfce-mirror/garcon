@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2015-09-19 22:45+0000\n"
+"PO-Revision-Date: 2015-11-26 22:36+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/garcon/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -114,7 +114,7 @@ msgstr "Ekrano užsklandos"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "Ekrano užsklandos įskiepiai"
+msgstr "Ekrano užsklandos programėlės"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
