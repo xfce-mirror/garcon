@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2016-04-30 08:54+0000\n"
+"PO-Revision-Date: 2016-05-02 13:39+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/garcon/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,7 @@ msgstr "Maquinari"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
-msgstr "Paràmetres per a diversos dispositius de maquinari"
+msgstr "Ajusts per a diversos dispositius de maquinari"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Multimedia"
@@ -106,7 +106,7 @@ msgstr "Personal"
 
 #: ../data/xfce/xfce-personal.directory.in.h:2
 msgid "Personal settings"
-msgstr "Paràmetres personals"
+msgstr "Ajusts personals"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
@@ -118,11 +118,11 @@ msgstr "Miniaplicacions d'estalvi de pantalla"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
-msgstr "Ajustaments"
+msgstr "Ajusts"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Desktop and system settings applications"
-msgstr "Aplicacions d'ajustaments de l'escriptori i del sistema"
+msgstr "Aplicacions dels ajusts de l'escriptori i del sistema"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
