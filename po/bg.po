@@ -1,23 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
+# Любомир Василев, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: garcon\n"
+"Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-26 18:48+0000\n"
-"PO-Revision-Date: 2012-12-26 21:57+0200\n"
-"Last-Translator: cybercop <cybercop_montana@abv.bg>\n"
-"Language-Team: BULGARIAN\n"
-"Language: \n"
+"POT-Creation-Date: 2013-07-02 22:58+0200\n"
+"PO-Revision-Date: 2016-05-03 09:29+0000\n"
+"Last-Translator: Любомир Василев\n"
+"Language-Team: Bulgarian (http://www.transifex.com/xfce/garcon/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: BULGARIAN\n"
-"X-Poedit-Country: BULGARIA\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"Language: bg\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -25,7 +24,7 @@ msgstr "Помощни програми"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "Основни десктоп инструменти и програми"
+msgstr "Основни инструменти и програми за работния плот"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -68,20 +67,20 @@ msgid "Settings for several hardware devices"
 msgstr "Настройки за няколко хардуерни устройства"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Audio and video players and editors"
-msgstr "Аудио и видео плейъри и редактори"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
 msgstr "Мултимедия"
 
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Applications for Internet access"
-msgstr "Програми за Интернет достъп"
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "Аудио и видео плейъри и редактори"
 
-#: ../data/xfce/xfce-network.directory.in.h:2
+#: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
 msgstr "Интернет"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "Програми за достъп до Интернет"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -92,12 +91,12 @@ msgid "Office and productivity applications"
 msgstr "Програми за офиса и продуктивността"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Applications that don't fit into other categories"
-msgstr "Програми, които не попадат в друга група"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "Други"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "Програми, които не попадат в друга група"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -108,20 +107,20 @@ msgid "Personal settings"
 msgstr "Лични настройки"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensaver applets"
-msgstr "Аплети за предпазител на екрана"
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
 msgstr "Предпазители на екрана"
 
-#: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Desktop and system settings applications"
-msgstr "Програми за настройки на десктопа и системата"
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "Аплети за предпазител на екрана"
 
-#: ../data/xfce/xfce-settings.directory.in.h:2
+#: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
 msgstr "Настройки"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "Програми за настройки на десктопа и системата"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -145,4 +144,3 @@ msgstr "Не може да се зареди файл за меню от %s: %s"
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Не може да се зареди файл за меню от %s"
-
