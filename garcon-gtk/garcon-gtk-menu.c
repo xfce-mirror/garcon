@@ -749,7 +749,6 @@ static void
 garcon_gtk_menu_load (GarconGtkMenu *menu)
 {
   GError    *error = NULL;
-  GtkWidget *mi;
 
   g_return_if_fail (GARCON_GTK_IS_MENU (menu));
   g_return_if_fail (menu->priv->menu == NULL || GARCON_IS_MENU (menu->priv->menu));
