@@ -76,3 +76,5 @@ garcon/garcon-marshal.c
 garcon/garcon-marshal.h
 gtk-doc.m4
 tests/test-display-menu
+tests/test-display-menu-gtk2
+tests/test-display-menu-gtk3

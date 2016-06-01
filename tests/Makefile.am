@@ -23,8 +23,11 @@ AM_CPPFLAGS =								\
 
 noinst_PROGRAMS =							\
 	test-menu-parser						\
-	test-menu-spec
+	test-menu-spec							\
+	test-display-menu-gtk2					\
+	test-display-menu-gtk3
 
+# test-menu-parser
 test_menu_parser_SOURCES =						\
 	test-menu-parser.c
 
@@ -44,6 +47,7 @@ test_menu_parser_LDADD =						\
 	$(GOBJECT_LIBS)							\
 	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
 
+# test-menu-spec
 test_menu_spec_SOURCES =						\
 	test-menu-spec.c
 
@@ -63,5 +67,48 @@ test_menu_spec_LDADD =							\
 	$(GOBJECT_LIBS)							\
 	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
 
-EXTRA_DIST =								\
+# test-display-menu-gtk2
+test_display_menu_gtk2_SOURCES =				\
 	test-display-menu.c
+
+test_display_menu_gtk2_CFLAGS =					\
+	$(LIBXFCE4UTIL_CFLAGS)						\
+	$(GIO_CFLAGS)							\
+	$(GLIB_CFLAGS)							\
+	$(GOBJECT_CFLAGS)						\
+	$(GTK2_CFLAGS)
+
+test_display_menu_gtk2_DEPENDENCIES =				\
+	$(top_builddir)/garcon/libgarcon-1.la
+
+test_display_menu_gtk2_LDADD =					\
+	$(LIBXFCE4UTIL_LIBS)						\
+	$(GIO_LIBS)							\
+	$(GLIB_LIBS)							\
+	$(GOBJECT_LIBS)							\
+	$(GTK2_LIBS)							\
+	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la	\
+	$(top_builddir)/garcon-gtk/libgarcon-gtk2-1.la
+
+# test-display-menu-gtk3
+test_display_menu_gtk3_SOURCES =				\
+	test-display-menu.c
+
+test_display_menu_gtk3_CFLAGS =					\
+	$(LIBXFCE4UTIL_CFLAGS)						\
+	$(GIO_CFLAGS)							\
+	$(GLIB_CFLAGS)							\
+	$(GOBJECT_CFLAGS)						\
+	$(GTK3_CFLAGS)
+
+test_display_menu_gtk3_DEPENDENCIES =				\
+	$(top_builddir)/garcon/libgarcon-1.la
+
+test_display_menu_gtk3_LDADD =					\
+	$(LIBXFCE4UTIL_LIBS)						\
+	$(GIO_LIBS)							\
+	$(GLIB_LIBS)							\
+	$(GOBJECT_LIBS)							\
+	$(GTK3_LIBS)							\
+	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la	\
+	$(top_builddir)/garcon-gtk/libgarcon-gtk3-1.la
