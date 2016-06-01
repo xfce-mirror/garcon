@@ -146,6 +146,10 @@ garcon_menu_item_set_supports_startup_notification
 garcon_menu_item_get_categories
 garcon_menu_item_set_categories
 garcon_menu_item_has_category
+garcon_menu_item_get_actions
+garcon_menu_item_get_action
+garcon_menu_item_set_action
+garcon_menu_item_has_action
 garcon_menu_item_get_show_in_environment
 garcon_menu_item_only_show_in_environment
 garcon_menu_item_ref
@@ -164,6 +168,29 @@ GarconMenuItem
 GarconMenuItemClass
 GarconMenuItemPrivate
 garcon_menu_item_get_type
+</SECTION>
+
+<SECTION>
+<FILE>garcon-menu-item-action</FILE>
+<TITLE>GarconMenuItemAction</TITLE>
+garcon_menu_item_action_new
+garcon_menu_item_action_get_command
+garcon_menu_item_action_set_command
+garcon_menu_item_action_get_name
+garcon_menu_item_action_set_name
+garcon_menu_item_action_ref
+garcon_menu_item_action_unref
+<SUBSECTION Standard>
+GARCON_IS_MENU_ITEM_ACTION
+GARCON_IS_MENU_ITEM_ACTION_CLASS
+GARCON_MENU_ITEM_ACTION
+GARCON_MENU_ITEM_ACTION_CLASS
+GARCON_MENU_ITEM_ACTION_GET_CLASS
+GARCON_TYPE_MENU_ITEM_ACTION
+GarconMenuItemAction
+GarconMenuItemActionClass
+GarconMenuItemActionPrivate
+garcon_menu_item_action_get_type
 </SECTION>
 
 <SECTION>
