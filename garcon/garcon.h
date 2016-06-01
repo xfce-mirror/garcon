@@ -31,6 +31,7 @@
 #include <garcon/garcon-environment.h>
 #include <garcon/garcon-menu.h>
 #include <garcon/garcon-menu-item.h>
+#include <garcon/garcon-menu-item-action.h>
 #include <garcon/garcon-menu-item-cache.h>
 #include <garcon/garcon-menu-item-pool.h>
 #include <garcon/garcon-menu-node.h>

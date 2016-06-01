@@ -2,6 +2,7 @@
 /*-
  * Copyright (c) 2006-2010 Jannis Pohlmann <jannis@xfce.org>
  * Copyright (c) 2009-2010 Nick Schermer <nick@xfce.org>
+ * Copyright (c) 2015      Danila Poyarkov <dannotemail@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -29,6 +30,7 @@
 #include <garcon/garcon-environment.h>
 #include <garcon/garcon-menu-element.h>
 #include <garcon/garcon-menu-item.h>
+#include <garcon/garcon-menu-item-action.h>
 #include <garcon/garcon-private.h>
 
 
@@ -91,57 +93,60 @@ static guint item_signals[LAST_SIGNAL];
 struct _GarconMenuItemPrivate
 {
   /* Source file of the menu item */
-  GFile    *file;
+  GFile      *file;
 
   /* Desktop file id */
-  gchar    *desktop_id;
+  gchar      *desktop_id;
 
   /* List of categories */
-  GList    *categories;
+  GList      *categories;
 
   /* Whether this application requires a terminal to be started in */
-  guint     requires_terminal : 1;
+  guint       requires_terminal : 1;
 
   /* Whether this menu item should be hidden */
-  guint     no_display : 1;
+  guint       no_display : 1;
 
   /* Whether this application supports startup notification */
-  guint     supports_startup_notification : 1;
+  guint       supports_startup_notification : 1;
 
   /* Name to be displayed for the menu item */
-  gchar    *name;
+  gchar      *name;
 
   /* Generic name of the menu item */
-  gchar    *generic_name;
+  gchar      *generic_name;
 
   /* Comment/description of the item */
-  gchar    *comment;
+  gchar      *comment;
 
   /* Command to be executed when the menu item is clicked */
-  gchar    *command;
+  gchar      *command;
 
   /* TryExec value */
-  gchar    *try_exec;
+  gchar      *try_exec;
 
   /* Menu item icon name */
-  gchar    *icon_name;
+  gchar      *icon_name;
 
   /* Environments in which the menu item should be displayed only */
-  gchar   **only_show_in;
+  gchar     **only_show_in;
 
   /* Environments in which the menu item should be hidden */
-  gchar   **not_show_in;
+  gchar     **not_show_in;
 
   /* Working directory */
-  gchar    *path;
+  gchar      *path;
+
+  /* Hash table for mapping action names to GarconMenuItemAction's */
+  GHashTable *actions;
 
   /* Hidden value */
-  guint     hidden : 1;
+  guint       hidden : 1;
 
   /* Counter keeping the number of menus which use this item. This works
    * like a reference counter and should be increased / decreased by GarconMenu
    * items whenever the item is added to or removed from the menu. */
-  guint     num_allocated;
+  guint       num_allocated;
 };
 
 
@@ -389,6 +394,8 @@ static void
 garcon_menu_item_init (GarconMenuItem *item)
 {
   item->priv = G_TYPE_INSTANCE_GET_PRIVATE (item, GARCON_TYPE_MENU_ITEM, GarconMenuItemPrivate);
+  item->priv->actions = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
+                                               (GDestroyNotify) garcon_menu_item_action_unref);
 }
 
 
@@ -414,6 +421,8 @@ garcon_menu_item_finalize (GObject *object)
 
   if (item->priv->file != NULL)
     g_object_unref (G_OBJECT (item->priv->file));
+
+  g_hash_table_unref (item->priv->actions);
 
   (*G_OBJECT_CLASS (garcon_menu_item_parent_class)->finalize) (object);
 }
@@ -700,24 +709,26 @@ garcon_menu_item_url_exec (XfceRc *rc)
 GarconMenuItem *
 garcon_menu_item_new (GFile *file)
 {
-  GarconMenuItem *item = NULL;
-  XfceRc         *rc;
-  GList          *categories = NULL;
-  gchar          *filename;
-  gboolean        terminal;
-  gboolean        no_display;
-  gboolean        startup_notify;
-  gboolean        hidden;
-  const gchar    *path;
-  const gchar    *name;
-  const gchar    *generic_name;
-  const gchar    *comment;
-  const gchar    *exec;
-  const gchar    *try_exec;
-  const gchar    *icon;
-  gchar         **mt;
-  gchar         **str_list;
-  gchar          *url_exec = NULL;
+  GarconMenuItem       *item = NULL;
+  GarconMenuItemAction *action = NULL;
+  XfceRc               *rc;
+  GList                *categories = NULL;
+  gchar                *filename;
+  gboolean              terminal;
+  gboolean              no_display;
+  gboolean              startup_notify;
+  gboolean              hidden;
+  const gchar          *path;
+  const gchar          *name;
+  const gchar          *generic_name;
+  const gchar          *comment;
+  const gchar          *exec;
+  const gchar          *try_exec;
+  const gchar          *icon;
+  gchar                *action_group;
+  gchar               **mt;
+  gchar               **str_list;
+  gchar                *url_exec = NULL;
 
   g_return_val_if_fail (G_IS_FILE (file), NULL);
   g_return_val_if_fail (g_file_is_native (file), NULL);
@@ -793,6 +804,79 @@ garcon_menu_item_new (GFile *file)
       /* Set the rest of the private data directly */
       item->priv->only_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN, ";");
       item->priv->not_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, ";");
+
+      /* Determine this application actions */
+      str_list = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_ACTIONS, ";");
+      if (G_LIKELY (str_list != NULL))
+        {
+          for (mt = str_list; *mt != NULL; ++mt)
+            {
+              if (**mt != '\0')
+                {
+                  /* Set current desktop action group */
+                  action_group = g_strdup_printf ("Desktop Action %s", *mt);
+                  xfce_rc_set_group (rc, action_group);
+
+                  /* Parse name and exec command */
+                  name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
+                  exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
+
+                  /* Validate Name and Exec fields */
+                  if (G_LIKELY (exec != NULL && name != NULL))
+                    {
+                      /* Allocate a new action instance */
+                      action = g_object_new (GARCON_TYPE_MENU_ITEM_ACTION,
+                                             "name", name,
+                                             "command", exec,
+                                             NULL);
+
+                      garcon_menu_item_set_action (item, *mt, action);
+                    }
+
+                  g_free (action_group);
+                }
+              else
+                g_free (*mt);
+            }
+
+          /* Cleanup */
+          g_free (str_list);
+        }
+
+      else
+        {
+          str_list = xfce_rc_read_list_entry (rc, "X-Ayatana-Desktop-Shortcuts", ";");
+          if (G_LIKELY (str_list != NULL))
+            {
+              for (mt = str_list; *mt != NULL; ++mt)
+                {
+                  if (**mt != '\0')
+                    {
+                      action_group = g_strdup_printf ("%s Shortcut Group", *mt);
+                      xfce_rc_set_group (rc, action_group);
+
+                      name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
+                      exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
+
+                      if (G_LIKELY (exec != NULL && name != NULL))
+                        {
+                          action = g_object_new (GARCON_TYPE_MENU_ITEM_ACTION,
+                                                 "name", name,
+                                                 "command", exec,
+                                                 NULL);
+
+                          garcon_menu_item_set_action (item, *mt, action);
+                        }
+
+                      g_free (action_group);
+                    }
+                  else
+                    g_free (*mt);
+                }
+
+              g_free (str_list);
+            }
+        }
     }
 
   /* Cleanup */
@@ -857,18 +941,20 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
                                    gboolean        *affects_the_outside,
                                    GError         **error)
 {
-  XfceRc       *rc;
-  gboolean      boolean;
-  GList        *categories = NULL;
-  GList        *lp;
-  GList        *old_categories = NULL;
-  gchar       **mt;
-  gchar       **str_list;
-  const gchar  *string;
-  const gchar  *name;
-  const gchar  *exec;
-  gchar        *filename;
-  gchar        *url_exec = NULL;
+  XfceRc               *rc;
+  GarconMenuItemAction *action = NULL;
+  gboolean              boolean;
+  GList                *categories = NULL;
+  GList                *lp;
+  GList                *old_categories = NULL;
+  gchar               **mt;
+  gchar               **str_list;
+  const gchar          *string;
+  const gchar          *name;
+  const gchar          *exec;
+  gchar                *filename;
+  gchar                *action_group;
+  gchar                *url_exec = NULL;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (G_IS_FILE (file), FALSE);
@@ -993,6 +1079,79 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   /* Set the rest of the private data directly */
   item->priv->only_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN, ";");
   item->priv->not_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, ";");
+
+  /* Update application actions */
+  g_hash_table_remove_all (item->priv->actions);
+  str_list = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_ACTIONS, ";");
+  if (G_LIKELY (str_list != NULL))
+    {
+      for (mt = str_list; *mt != NULL; ++mt)
+        {
+          if (**mt != '\0')
+            {
+              /* Set current desktop action group */
+              action_group = g_strdup_printf ("Desktop Action %s", *mt);
+              xfce_rc_set_group (rc, action_group);
+
+              /* Parse name and exec command */
+              name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
+              exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
+
+              /* Validate Name and Exec fields */
+              if (G_LIKELY (exec != NULL && name != NULL))
+                {
+                  /* Allocate a new action instance */
+                  action = g_object_new (GARCON_TYPE_MENU_ITEM_ACTION,
+                                         "name", name,
+                                         "command", exec,
+                                         NULL);
+
+                  garcon_menu_item_set_action (item, *mt, action);
+                }
+              g_free (action_group);
+            }
+          else
+            g_free (*mt);
+        }
+
+      /* Cleanup */
+      g_free (str_list);
+    }
+
+  else
+    {
+      str_list = xfce_rc_read_list_entry (rc, "X-Ayatana-Desktop-Shortcuts", ";");
+      if (G_LIKELY (str_list != NULL))
+        {
+          for (mt = str_list; *mt != NULL; ++mt)
+            {
+              if (**mt != '\0')
+                {
+                  action_group = g_strdup_printf ("%s Shortcut Group", *mt);
+                  xfce_rc_set_group (rc, action_group);
+
+                  name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
+                  exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
+
+                  if (G_LIKELY (exec != NULL && name != NULL))
+                    {
+                      action = g_object_new (GARCON_TYPE_MENU_ITEM_ACTION,
+                                             "name", name,
+                                             "command", exec,
+                                             NULL);
+
+                      garcon_menu_item_set_action (item, *mt, action);
+                    }
+
+                  g_free (action_group);
+                }
+              else
+                g_free (*mt);
+            }
+
+          g_free (str_list);
+        }
+    }
 
   /* Flush property notifications */
   g_object_thaw_notify (G_OBJECT (item));
@@ -1425,6 +1584,56 @@ garcon_menu_item_has_category (GarconMenuItem *item,
       found = TRUE;
 
   return found;
+}
+
+
+
+GList *
+garcon_menu_item_get_actions (GarconMenuItem *item)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
+  
+  return g_hash_table_get_keys (item->priv->actions);
+}
+
+
+
+GarconMenuItemAction *
+garcon_menu_item_get_action (GarconMenuItem *item,
+                             const gchar    *action_name)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
+  
+  return g_hash_table_lookup (item->priv->actions, action_name);
+}
+
+
+
+
+void
+garcon_menu_item_set_action (GarconMenuItem       *item,
+                             const gchar          *action_name,
+                             GarconMenuItemAction *action)
+{
+  g_return_if_fail (GARCON_IS_MENU_ITEM (item));
+  g_return_if_fail (GARCON_IS_MENU_ITEM_ACTION (action));
+  
+  /* Insert into the hash table and remove old action (if any) */
+  g_hash_table_replace (item->priv->actions, g_strdup (action_name), action);
+
+  /* Grab a reference on the action */
+  garcon_menu_item_action_ref (action);
+}
+
+
+
+gboolean
+garcon_menu_item_has_action (GarconMenuItem  *item,
+                             const gchar     *action_name)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
+
+  return g_hash_table_contains (item->priv->actions, action_name);
 }
 
 

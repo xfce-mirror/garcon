@@ -43,6 +43,7 @@ libgarcon_headers =							\
 	garcon-menu-element.h						\
 	garcon-menu-separator.h						\
 	garcon-menu-directory.h						\
+	garcon-menu-item-action.h						\
 	garcon-menu-item-pool.h						\
 	garcon-menu-item-cache.h					\
 	garcon-environment.h						\
@@ -59,6 +60,7 @@ libgarcon_sources =							\
 	garcon-menu-element.c						\
 	garcon-menu-separator.c						\
 	garcon-menu-directory.c						\
+	garcon-menu-item-action.c						\
 	garcon-menu-item-pool.c						\
 	garcon-menu-item-cache.c					\
 	garcon-environment.c						\
