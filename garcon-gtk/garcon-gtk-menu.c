@@ -49,6 +49,7 @@ enum
   PROP_SHOW_GENERIC_NAMES,
   PROP_SHOW_MENU_ICONS,
   PROP_SHOW_TOOLTIPS,
+  PROP_SHOW_DESKTOP_ACTIONS,
   N_PROPERTIES
 };
 
@@ -81,6 +82,7 @@ struct _GarconGtkMenuPrivate
   guint show_generic_names : 1;
   guint show_menu_icons : 1;
   guint show_tooltips : 1;
+  guint show_desktop_actions : 1;
 };
 
 
@@ -167,6 +169,19 @@ garcon_gtk_menu_class_init (GarconGtkMenuClass *klass)
                           G_PARAM_READWRITE
                           | G_PARAM_STATIC_STRINGS);
 
+  /**
+   * GarconMenu:show-desktop-actions:
+   *
+   *
+   **/
+  menu_props[PROP_SHOW_DESKTOP_ACTIONS] =
+    g_param_spec_boolean ("show-desktop-actions",
+                          "show-desktop-actions",
+                          "show desktop actions in a submenu",
+                          FALSE,
+                          G_PARAM_READWRITE
+                          | G_PARAM_STATIC_STRINGS);
+
   /* install all properties */
   g_object_class_install_properties (gobject_class, N_PROPERTIES, menu_props);
 }
@@ -181,6 +196,7 @@ garcon_gtk_menu_init (GarconGtkMenu *menu)
   menu->priv->show_generic_names = FALSE;
   menu->priv->show_menu_icons = TRUE;
   menu->priv->show_tooltips = FALSE;
+  menu->priv->show_desktop_actions = FALSE;
 
   gtk_menu_set_reserve_toggle_size (GTK_MENU (menu), FALSE);
 }
@@ -231,6 +247,11 @@ garcon_gtk_menu_get_property (GObject    *object,
       g_value_set_boolean (value, menu->priv->show_tooltips);
       break;
 
+    case PROP_SHOW_DESKTOP_ACTIONS:
+      g_value_set_boolean (value, menu->priv->show_desktop_actions);
+      break;
+
+
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -263,6 +284,10 @@ garcon_gtk_menu_set_property (GObject      *object,
 
     case PROP_SHOW_TOOLTIPS:
       garcon_gtk_menu_set_show_tooltips (menu, g_value_get_boolean (value));
+      break;
+
+    case PROP_SHOW_DESKTOP_ACTIONS:
+      garcon_gtk_menu_set_show_desktop_actions (menu, g_value_get_boolean (value));
       break;
 
     default:
@@ -301,8 +326,9 @@ garcon_gtk_menu_append_quoted (GString     *string,
 
 
 static void
-garcon_gtk_menu_item_activate (GtkWidget      *mi,
-                               GarconMenuItem *item)
+garcon_gtk_menu_item_activate_real (GtkWidget            *mi,
+                                    GarconMenuItem       *item,
+                                    GarconMenuItemAction *action)
 {
   GString      *string;
   const gchar  *command;
@@ -316,7 +342,15 @@ garcon_gtk_menu_item_activate (GtkWidget      *mi,
   g_return_if_fail (GTK_IS_WIDGET (mi));
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
-  command = garcon_menu_item_get_command (item);
+  if (action != NULL)
+    {
+      command = garcon_menu_item_action_get_command (action);
+    }
+  else
+    {
+      command = garcon_menu_item_get_command (item);
+    }
+
   if (STR_IS_EMPTY (command))
     return;
 
@@ -391,6 +425,32 @@ garcon_gtk_menu_item_activate (GtkWidget      *mi,
     }
 
   g_string_free (string, TRUE);
+}
+
+
+
+static void
+garcon_gtk_menu_item_activate (GtkWidget      *mi,
+                               GarconMenuItem *item)
+{
+  garcon_gtk_menu_item_activate_real (mi, item, NULL);
+}
+
+
+
+static void
+garcon_gtk_menu_item_action_activate (GtkWidget            *mi,
+                                      GarconMenuItemAction *action)
+{
+  GarconMenuItem *item = g_object_get_data (G_OBJECT (action), "GarconMenuItem");
+
+  if (item == NULL)
+    {
+      g_critical ("garcon_gtk_menu_item_action_activate: Failed to get the GarconMenuItem\n");
+      return;
+    }
+
+  garcon_gtk_menu_item_activate_real (mi, item, action);
 }
 
 
@@ -603,6 +663,51 @@ garcon_gtk_menu_create_menu_item (GarconGtkMenu *menu,
 
 
 
+static GtkWidget*
+garcon_gtk_menu_add_actions (GarconGtkMenu  *menu,
+                             GarconMenuItem *menu_item,
+                             GList          *actions,
+                             const gchar    *parent_icon_name)
+{
+  GtkWidget *submenu, *mi;
+  GList     *iter;
+
+  submenu = gtk_menu_new ();
+  gtk_menu_set_reserve_toggle_size (GTK_MENU (submenu), FALSE);
+
+  /* Add the parent item again, this time something the user can click to execute */
+  mi = garcon_gtk_menu_create_menu_item (menu, garcon_menu_item_get_name (menu_item), parent_icon_name);
+  gtk_menu_shell_append (GTK_MENU_SHELL (submenu), mi);
+  g_signal_connect (G_OBJECT (mi), "activate",
+                    G_CALLBACK (garcon_gtk_menu_item_activate), menu_item);
+  gtk_widget_show (mi);
+
+  /* Add all the individual actions to the menu */
+  for (iter = g_list_first(actions); iter != NULL; iter = g_list_next (iter))
+    {
+      GarconMenuItemAction *action = garcon_menu_item_get_action (menu_item, iter->data);
+
+      if (action == NULL)
+        continue;
+
+      mi = garcon_gtk_menu_create_menu_item (menu,
+                                             garcon_menu_item_action_get_name (action),
+                                             parent_icon_name);
+
+      gtk_menu_shell_append (GTK_MENU_SHELL (submenu), mi);
+      g_signal_connect (G_OBJECT (mi), "activate",
+                        G_CALLBACK (garcon_gtk_menu_item_action_activate), action);
+      /* we need to store the parent associated with this item so we can
+       * activate it properly */
+      g_object_set_data (G_OBJECT (action), "GarconMenuItem", menu_item);
+      gtk_widget_show (mi);
+    }
+
+  return submenu;
+}
+
+
+
 static gboolean
 garcon_gtk_menu_add (GarconGtkMenu *menu,
                      GtkMenu       *gtk_menu,
@@ -628,6 +733,8 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
 
       if (GARCON_IS_MENU_ITEM (li->data))
         {
+          GList *actions = NULL;
+
           /* watch for changes */
           g_signal_connect_swapped (G_OBJECT (li->data), "changed",
               G_CALLBACK (garcon_gtk_menu_reload), menu);
@@ -652,10 +759,27 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
 
           /* build the menu item */
           mi = garcon_gtk_menu_create_menu_item (menu, name, icon_name);
-
           gtk_menu_shell_append (GTK_MENU_SHELL (gtk_menu), mi);
-          g_signal_connect (G_OBJECT (mi), "activate",
-              G_CALLBACK (garcon_gtk_menu_item_activate), li->data);
+
+          /* if the menu item has actions such as "Private browsing mode"
+           * show them as well */
+          if (menu->priv->show_desktop_actions)
+            {
+              actions = garcon_menu_item_get_actions (li->data);
+            }
+
+          if (actions != NULL)
+            {
+              submenu = garcon_gtk_menu_add_actions (menu, li->data, actions, icon_name);
+              gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), submenu);
+              g_list_free (actions);
+            }
+          else
+            {
+              g_signal_connect (G_OBJECT (mi), "activate",
+                                G_CALLBACK (garcon_gtk_menu_item_activate), li->data);
+            }
+
           gtk_widget_show (mi);
 
           if (menu->priv->show_tooltips)
@@ -961,4 +1085,40 @@ garcon_gtk_menu_get_show_tooltips (GarconGtkMenu *menu)
 {
   g_return_val_if_fail (GARCON_GTK_IS_MENU (menu), FALSE);
   return menu->priv->show_tooltips;
+}
+
+/**
+ * garcon_gtk_menu_set_show_desktop_actions:
+ * @menu  : A #GarconGtkMenu
+ * @show_desktop_actions : Toggle showing the desktop actions in a submenu.
+ *
+ **/
+void
+garcon_gtk_menu_set_show_desktop_actions (GarconGtkMenu *menu,
+                                          gboolean       show_desktop_actions)
+{
+  g_return_if_fail (GARCON_GTK_IS_MENU (menu));
+
+  if (menu->priv->show_desktop_actions == show_desktop_actions)
+    return;
+
+  menu->priv->show_desktop_actions = !!show_desktop_actions;
+  g_object_notify_by_pspec (G_OBJECT (menu), menu_props[PROP_SHOW_DESKTOP_ACTIONS]);
+
+  garcon_gtk_menu_reload (menu);
+}
+
+
+
+/**
+ * garcon_gtk_menu_get_show_desktop_actions:
+ * @menu  : A #GarconGtkMenu
+ *
+ * Return value: if the desktop actions in a submenu
+ **/
+gboolean
+garcon_gtk_menu_get_show_desktop_actions (GarconGtkMenu *menu)
+{
+  g_return_val_if_fail (GARCON_GTK_IS_MENU (menu), FALSE);
+  return menu->priv->show_desktop_actions;
 }

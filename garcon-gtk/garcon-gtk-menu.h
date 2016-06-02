@@ -54,26 +54,30 @@ struct _GarconGtkMenu
   GarconGtkMenuPrivate *priv;
 };
 
-GType                garcon_gtk_menu_get_type               (void) G_GNUC_CONST;
+GType                garcon_gtk_menu_get_type                 (void) G_GNUC_CONST;
 
-GtkWidget           *garcon_gtk_menu_new                    (GarconMenu    *garcon_menu) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+GtkWidget           *garcon_gtk_menu_new                      (GarconMenu    *garcon_menu) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 
-void                 garcon_gtk_menu_set_menu               (GarconGtkMenu *menu,
-                                                             GarconMenu    *garcon_menu);
+void                 garcon_gtk_menu_set_menu                 (GarconGtkMenu *menu,
+                                                               GarconMenu    *garcon_menu);
 
-GarconMenu          *garcon_gtk_menu_get_menu               (GarconGtkMenu *menu);
+GarconMenu          *garcon_gtk_menu_get_menu                 (GarconGtkMenu *menu);
 
-void                 garcon_gtk_menu_set_show_generic_names (GarconGtkMenu *menu,
-                                                             gboolean       show_generic_names);
-gboolean             garcon_gtk_menu_get_show_generic_names (GarconGtkMenu *menu);
+void                 garcon_gtk_menu_set_show_generic_names   (GarconGtkMenu *menu,
+                                                               gboolean       show_generic_names);
+gboolean             garcon_gtk_menu_get_show_generic_names   (GarconGtkMenu *menu);
 
-void                 garcon_gtk_menu_set_show_menu_icons    (GarconGtkMenu *menu,
-                                                             gboolean       show_menu_icons);
-gboolean             garcon_gtk_menu_get_show_menu_icons    (GarconGtkMenu *menu);
+void                 garcon_gtk_menu_set_show_menu_icons      (GarconGtkMenu *menu,
+                                                               gboolean       show_menu_icons);
+gboolean             garcon_gtk_menu_get_show_menu_icons      (GarconGtkMenu *menu);
 
-void                 garcon_gtk_menu_set_show_tooltips      (GarconGtkMenu *menu,
-                                                             gboolean       show_tooltips);
-gboolean             garcon_gtk_menu_get_show_tooltips      (GarconGtkMenu *menu);
+void                 garcon_gtk_menu_set_show_tooltips        (GarconGtkMenu *menu,
+                                                               gboolean       show_tooltips);
+gboolean             garcon_gtk_menu_get_show_tooltips        (GarconGtkMenu *menu);
+
+void                 garcon_gtk_menu_set_show_desktop_actions (GarconGtkMenu *menu,
+                                                               gboolean       show_desktop_actions);
+gboolean             garcon_gtk_menu_get_show_desktop_actions (GarconGtkMenu *menu);
 
 G_END_DECLS
 
