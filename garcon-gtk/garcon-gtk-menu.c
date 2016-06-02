@@ -560,13 +560,56 @@ garcon_gtk_menu_load_icon (const gchar *icon_name)
 
 
 
+static GtkWidget*
+garcon_gtk_menu_create_menu_item (GarconGtkMenu *menu,
+                                  const gchar *name,
+                                  const gchar *icon_name)
+{
+  GtkWidget *mi;
+  GtkWidget *box;
+  GtkWidget *image;
+  GtkWidget *label;
+
+  /* create item */
+  mi = gtk_menu_item_new ();
+  label = gtk_label_new (name);
+  gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
+#if GTK_CHECK_VERSION (3, 0, 0)
+  box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+  gtk_widget_set_halign (label, GTK_ALIGN_START);
+#else
+  box = gtk_hbox_new (FALSE, 0);
+  gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5f);
+#endif
+
+  if (menu->priv->show_menu_icons)
+    {
+      image = garcon_gtk_menu_load_icon (icon_name);
+      gtk_widget_show (image);
+    }
+  else
+    {
+      image = gtk_image_new ();
+    }
+
+  /* Add the image and label to the box, add the box to the menu item */
+  gtk_box_pack_start (GTK_BOX (box), image, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 6);
+  gtk_widget_show_all (box);
+  gtk_container_add (GTK_CONTAINER (mi), box);
+
+  return mi;
+}
+
+
+
 static gboolean
 garcon_gtk_menu_add (GarconGtkMenu *menu,
                      GtkMenu       *gtk_menu,
                      GarconMenu    *garcon_menu)
 {
   GList               *elements, *li;
-  GtkWidget           *mi, *image;
+  GtkWidget           *mi;
   const gchar         *name, *icon_name;
   const gchar         *comment;
   GtkWidget           *submenu;
@@ -585,8 +628,6 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
 
       if (GARCON_IS_MENU_ITEM (li->data))
         {
-          GtkWidget *box, *label;
-
           /* watch for changes */
           g_signal_connect_swapped (G_OBJECT (li->data), "changed",
               G_CALLBACK (garcon_gtk_menu_reload), menu);
@@ -605,37 +646,12 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
           if (G_UNLIKELY (name == NULL))
             continue;
 
-          /* create item */
-          mi = gtk_menu_item_new ();
-          label = gtk_label_new (name);
-          gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
-#if GTK_CHECK_VERSION (3, 0, 0)
-          box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-          gtk_widget_set_halign (label, GTK_ALIGN_START);
-#else
-          box = gtk_hbox_new (FALSE, 0);
-          gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5f);
-#endif
+          icon_name = garcon_menu_item_get_icon_name (li->data);
+          if (STR_IS_EMPTY (icon_name))
+            icon_name = "applications-other";
 
-          if (menu->priv->show_menu_icons)
-            {
-              icon_name = garcon_menu_item_get_icon_name (li->data);
-              if (STR_IS_EMPTY (icon_name))
-                icon_name = "applications-other";
-
-              image = garcon_gtk_menu_load_icon (icon_name);
-              gtk_widget_show (image);
-            }
-          else
-            {
-              image = gtk_image_new ();
-            }
-
-          /* Add the image and label to the box, add the box to the menu item */
-          gtk_box_pack_start (GTK_BOX (box), image, FALSE, FALSE, 0);
-          gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 6);
-          gtk_widget_show_all (box);
-          gtk_container_add (GTK_CONTAINER (mi), box);
+          /* build the menu item */
+          mi = garcon_gtk_menu_create_menu_item (menu, name, icon_name);
 
           gtk_menu_shell_append (GTK_MENU_SHELL (gtk_menu), mi);
           g_signal_connect (G_OBJECT (mi), "activate",
@@ -688,40 +704,15 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
           gtk_menu_set_reserve_toggle_size (GTK_MENU (submenu), FALSE);
           if (garcon_gtk_menu_add (menu, GTK_MENU (submenu), li->data))
             {
-              GtkWidget *box, *label;
-
               /* attach submenu */
               name = garcon_menu_element_get_name (li->data);
-              mi = gtk_menu_item_new ();
-              label = gtk_label_new (name);
-              gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
-#if GTK_CHECK_VERSION (3, 0, 0)
-              box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-              gtk_widget_set_halign (label, GTK_ALIGN_START);
-#else
-              box = gtk_hbox_new (FALSE, 0);
-              gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5f);
-#endif
 
-              if (menu->priv->show_menu_icons)
-                {
-                  icon_name = garcon_menu_element_get_icon_name (li->data);
-                  if (STR_IS_EMPTY (icon_name))
-                    icon_name = "applications-other";
+              icon_name = garcon_menu_element_get_icon_name (li->data);
+              if (STR_IS_EMPTY (icon_name))
+                icon_name = "applications-other";
 
-                  image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
-                  gtk_widget_show (image);
-                }
-              else
-                {
-                  image = gtk_image_new ();
-                }
-
-              /* Add the image and label to the box, add the box to the menu item */
-              gtk_box_pack_start (GTK_BOX (box), image, FALSE, FALSE, 0);
-              gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 6);
-              gtk_widget_show_all (box);
-              gtk_container_add (GTK_CONTAINER (mi), box);
+              /* build the menu item */
+              mi = garcon_gtk_menu_create_menu_item (menu, name, icon_name);
 
               gtk_menu_shell_append (GTK_MENU_SHELL (gtk_menu), mi);
               gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), submenu);
@@ -804,15 +795,10 @@ garcon_gtk_menu_new (GarconMenu *garcon_menu)
 
 
 /**
- * garcon_gtk_menu_get_menu:
+ * garcon_gtk_menu_set_menu:
  * @menu  : A #GarconGtkMenu
+ * @garcon_menu : The #GarconMenu to use
  *
- * The #GarconMenu used to create the #GtkMenu.
- *
- * The caller is responsible to releasing the returned #GarconMenu
- * using g_object_unref().
- *
- * Returns: the #GarconMenu for @menu.
  **/
 void
 garcon_gtk_menu_set_menu (GarconGtkMenu *menu,
