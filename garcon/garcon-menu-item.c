@@ -820,14 +820,16 @@ garcon_menu_item_new (GFile *file)
                   /* Parse name and exec command */
                   name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
                   exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
+                  icon = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_ICON, NULL);
 
-                  /* Validate Name and Exec fields */
+                  /* Validate Name and Exec fields, icon is optional */
                   if (G_LIKELY (exec != NULL && name != NULL))
                     {
                       /* Allocate a new action instance */
                       action = g_object_new (GARCON_TYPE_MENU_ITEM_ACTION,
                                              "name", name,
                                              "command", exec,
+                                             "icon-name", icon,
                                              NULL);
 
                       garcon_menu_item_set_action (item, *mt, action);
@@ -857,12 +859,15 @@ garcon_menu_item_new (GFile *file)
 
                       name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
                       exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
+                      icon = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_ICON, NULL);
 
+                      /* Validate Name and Exec fields, icon is optional */
                       if (G_LIKELY (exec != NULL && name != NULL))
                         {
                           action = g_object_new (GARCON_TYPE_MENU_ITEM_ACTION,
                                                  "name", name,
                                                  "command", exec,
+                                                 "icon-name", icon,
                                                  NULL);
 
                           garcon_menu_item_set_action (item, *mt, action);
@@ -952,6 +957,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   const gchar          *string;
   const gchar          *name;
   const gchar          *exec;
+  const gchar          *icon;
   gchar                *filename;
   gchar                *action_group;
   gchar                *url_exec = NULL;
@@ -1096,14 +1102,16 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
               /* Parse name and exec command */
               name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
               exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
+              icon = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_ICON, NULL);
 
-              /* Validate Name and Exec fields */
+              /* Validate Name and Exec fields, icon is optional */
               if (G_LIKELY (exec != NULL && name != NULL))
                 {
                   /* Allocate a new action instance */
                   action = g_object_new (GARCON_TYPE_MENU_ITEM_ACTION,
                                          "name", name,
                                          "command", exec,
+                                         "icon-name", icon,
                                          NULL);
 
                   garcon_menu_item_set_action (item, *mt, action);
@@ -1132,12 +1140,15 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
 
                   name = xfce_rc_read_entry (rc, G_KEY_FILE_DESKTOP_KEY_NAME, NULL);
                   exec = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_EXEC, NULL);
+                  icon = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_ICON, NULL);
 
+                  /* Validate Name and Exec fields, icon is optional */
                   if (G_LIKELY (exec != NULL && name != NULL))
                     {
                       action = g_object_new (GARCON_TYPE_MENU_ITEM_ACTION,
                                              "name", name,
                                              "command", exec,
+                                             "icon-name", icon,
                                              NULL);
 
                       garcon_menu_item_set_action (item, *mt, action);

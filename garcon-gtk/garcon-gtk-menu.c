@@ -686,13 +686,23 @@ garcon_gtk_menu_add_actions (GarconGtkMenu  *menu,
   for (iter = g_list_first(actions); iter != NULL; iter = g_list_next (iter))
     {
       GarconMenuItemAction *action = garcon_menu_item_get_action (menu_item, iter->data);
+      const gchar          *action_icon_name;
 
       if (action == NULL)
         continue;
 
+      /* If there's a custom icon associated with the action, use it.
+       * Otherwise default to the parent's icon.
+       */
+      action_icon_name = garcon_menu_item_action_get_icon_name (action);
+      if (action_icon_name == NULL)
+        {
+          action_icon_name = parent_icon_name;
+        }
+
       mi = garcon_gtk_menu_create_menu_item (menu,
                                              garcon_menu_item_action_get_name (action),
-                                             parent_icon_name);
+                                             action_icon_name);
 
       gtk_menu_shell_append (GTK_MENU_SHELL (submenu), mi);
       g_signal_connect (G_OBJECT (mi), "activate",

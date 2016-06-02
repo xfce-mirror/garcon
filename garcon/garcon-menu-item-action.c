@@ -35,6 +35,7 @@ enum
   PROP_0,
   PROP_NAME,
   PROP_COMMAND,
+  PROP_ICON_NAME,
 };
 
 static void garcon_menu_item_action_finalize     (GObject       *object);
@@ -54,6 +55,9 @@ struct _GarconMenuItemActionPrivate
 
   /* Command to be executed when the action is clicked */
   gchar *command;
+
+  /* Name of the icon associated with the action */
+  gchar *icon_name;
 };
 
 G_DEFINE_TYPE (GarconMenuItemAction, garcon_menu_item_action, G_TYPE_OBJECT)
@@ -97,6 +101,20 @@ garcon_menu_item_action_class_init (GarconMenuItemActionClass *klass)
                                                         NULL,
                                                         G_PARAM_READWRITE |
                                                         G_PARAM_STATIC_STRINGS));
+
+  /**
+   * GarconMenuItemAction:icon-name:
+   *
+   * Name of the custom icon associated with this action.
+   **/
+  g_object_class_install_property (gobject_class,
+                                   PROP_ICON_NAME,
+                                   g_param_spec_string ("icon-name",
+                                                        "icon-name",
+                                                        "Custom icon name",
+                                                        NULL,
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS));
 }
 
 static void
@@ -114,6 +132,7 @@ garcon_menu_item_action_finalize (GObject *object)
 
   g_free (action->priv->name);
   g_free (action->priv->command);
+  g_free (action->priv->icon_name);
   
   (*G_OBJECT_CLASS (garcon_menu_item_action_parent_class)->finalize) (object);
 }
@@ -136,6 +155,10 @@ garcon_menu_item_action_get_property (GObject    *object,
 
     case PROP_COMMAND:
       g_value_set_string (value, garcon_menu_item_action_get_command (action));
+      break;
+
+    case PROP_ICON_NAME:
+      g_value_set_string (value, garcon_menu_item_action_get_icon_name (action));
       break;
 
     default:
@@ -162,6 +185,10 @@ garcon_menu_item_action_set_property (GObject      *object,
 
     case PROP_COMMAND:
       garcon_menu_item_action_set_command (action, g_value_get_string (value));
+      break;
+
+    case PROP_ICON_NAME:
+      garcon_menu_item_action_set_icon_name (action, g_value_get_string (value));
       break;
 
     default:
@@ -198,6 +225,43 @@ garcon_menu_item_action_set_name (GarconMenuItemAction *action,
   /* Notify listeners */
   g_object_notify (G_OBJECT (action), "name");
 }
+
+
+
+const gchar*
+garcon_menu_item_action_get_icon_name (GarconMenuItemAction  *action)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM_ACTION (action), NULL);
+  return action->priv->icon_name;
+}
+
+
+
+void
+garcon_menu_item_action_set_icon_name (GarconMenuItemAction  *action,
+                                       const gchar           *icon_name)
+{
+  g_return_if_fail (GARCON_IS_MENU_ITEM_ACTION (action));
+
+  /* Abort if old and new name are equal */
+  if (g_strcmp0 (action->priv->icon_name, icon_name) == 0)
+    return;
+
+  /* Assign new name */
+  g_free (action->priv->icon_name);
+  if (icon_name != NULL)
+    {
+      action->priv->icon_name = g_strdup (icon_name);
+    }
+  else
+    {
+      action->priv->icon_name = NULL;
+    }
+
+  /* Notify listeners */
+  g_object_notify (G_OBJECT (action), "icon-name");
+}
+
 
 
 const gchar*

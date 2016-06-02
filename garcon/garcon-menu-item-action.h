@@ -66,6 +66,9 @@ void                  garcon_menu_item_action_set_command        (GarconMenuItem
 const gchar          *garcon_menu_item_action_get_name           (GarconMenuItemAction  *action);
 void                  garcon_menu_item_action_set_name           (GarconMenuItemAction  *action,
                                                                   const gchar           *name);
+const gchar          *garcon_menu_item_action_get_icon_name      (GarconMenuItemAction  *action);
+void                  garcon_menu_item_action_set_icon_name      (GarconMenuItemAction  *action,
+                                                                  const gchar           *icon_name);
 void                  garcon_menu_item_action_ref                (GarconMenuItemAction  *action);
 void                  garcon_menu_item_action_unref              (GarconMenuItemAction  *action);
 
