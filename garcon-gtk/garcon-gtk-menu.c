@@ -50,6 +50,7 @@ enum
   PROP_SHOW_MENU_ICONS,
   PROP_SHOW_TOOLTIPS,
   PROP_SHOW_DESKTOP_ACTIONS,
+  PROP_RIGHT_CLICK_EDITS,
   N_PROPERTIES
 };
 
@@ -83,6 +84,7 @@ struct _GarconGtkMenuPrivate
   guint show_menu_icons : 1;
   guint show_tooltips : 1;
   guint show_desktop_actions : 1;
+  guint right_click_edits : 1;
 };
 
 
@@ -182,6 +184,19 @@ garcon_gtk_menu_class_init (GarconGtkMenuClass *klass)
                           G_PARAM_READWRITE
                           | G_PARAM_STATIC_STRINGS);
 
+  /**
+   * GarconMenu:right-click-edits:
+   *
+   *
+   **/
+  menu_props[PROP_RIGHT_CLICK_EDITS] =
+    g_param_spec_boolean ("right-click-edits",
+                          "right-click-edits",
+                          "right click to edit menu items",
+                          FALSE,
+                          G_PARAM_READWRITE
+                          | G_PARAM_STATIC_STRINGS);
+
   /* install all properties */
   g_object_class_install_properties (gobject_class, N_PROPERTIES, menu_props);
 }
@@ -197,6 +212,7 @@ garcon_gtk_menu_init (GarconGtkMenu *menu)
   menu->priv->show_menu_icons = TRUE;
   menu->priv->show_tooltips = FALSE;
   menu->priv->show_desktop_actions = FALSE;
+  menu->priv->right_click_edits = FALSE;
 
   gtk_menu_set_reserve_toggle_size (GTK_MENU (menu), FALSE);
 }
@@ -251,6 +267,9 @@ garcon_gtk_menu_get_property (GObject    *object,
       g_value_set_boolean (value, menu->priv->show_desktop_actions);
       break;
 
+    case PROP_RIGHT_CLICK_EDITS:
+      g_value_set_boolean (value, menu->priv->right_click_edits);
+      break;
 
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -288,6 +307,10 @@ garcon_gtk_menu_set_property (GObject      *object,
 
     case PROP_SHOW_DESKTOP_ACTIONS:
       garcon_gtk_menu_set_show_desktop_actions (menu, g_value_get_boolean (value));
+      break;
+
+    case PROP_RIGHT_CLICK_EDITS:
+      garcon_gtk_menu_set_right_click_edits (menu, g_value_get_boolean (value));
       break;
 
     default:
@@ -430,10 +453,73 @@ garcon_gtk_menu_item_activate_real (GtkWidget            *mi,
 
 
 static void
+garcon_gtk_menu_item_edit_launcher (GarconMenuItem *item)
+{
+  GFile   *file;
+  gchar   *uri, *cmd;
+  GError  *error = NULL;
+
+  file = garcon_menu_item_get_file (item);
+
+  if (file)
+    {
+      uri = g_file_get_uri (file);
+      cmd = g_strdup_printf ("exo-desktop-item-edit \"%s\"", uri);
+
+      if (!xfce_spawn_command_line_on_screen (NULL, cmd, FALSE, FALSE, &error))
+        {
+          xfce_message_dialog (NULL,
+                               _("Launch Error"),
+                               "dialog-error",
+                              _("Unable to launch \"exo-desktop-item-edit\", which is required to create and edit menu items."),
+                              error->message,
+                              XFCE_BUTTON_TYPE_MIXED, "window-close", _("_Close"), GTK_RESPONSE_ACCEPT,
+                              NULL);
+
+          g_clear_error (&error);
+        }
+
+      g_free(uri);
+      g_free(cmd);
+      g_object_unref(file);
+    }
+}
+
+
+static void
 garcon_gtk_menu_item_activate (GtkWidget      *mi,
                                GarconMenuItem *item)
 {
-  garcon_gtk_menu_item_activate_real (mi, item, NULL);
+  GarconGtkMenu  *menu = g_object_get_data (G_OBJECT (mi), "GarconGtkMenu");
+  GdkEventButton *evt;
+  guint           button;
+  gboolean        right_click = FALSE;
+
+  evt = (GdkEventButton *)gtk_get_current_event();
+
+  /* See if we're trying to edit the launcher */
+   if(menu->priv->right_click_edits && evt && GDK_BUTTON_RELEASE == evt->type)
+    {
+      button = evt->button;
+
+      /* right click or Shift + left can optionally edit launchers */
+      if (button == 3 || (button == 1 && (evt->state & GDK_SHIFT_MASK)))
+        {
+          garcon_gtk_menu_item_edit_launcher (item);
+          right_click = TRUE;
+        }
+    }
+
+  if (!right_click)
+    {
+      /* normal action, launch the application */
+      garcon_gtk_menu_item_activate_real (mi, item, NULL);
+    }
+
+  if (evt)
+    {
+      gdk_event_free((GdkEvent*)evt);
+    }
 }
 
 
@@ -678,6 +764,9 @@ garcon_gtk_menu_add_actions (GarconGtkMenu  *menu,
   /* Add the parent item again, this time something the user can click to execute */
   mi = garcon_gtk_menu_create_menu_item (menu, garcon_menu_item_get_name (menu_item), parent_icon_name);
   gtk_menu_shell_append (GTK_MENU_SHELL (submenu), mi);
+  /* we need to store the GarconGtkMenu with this item so we can
+   * use it if the user wants to edit a menu item */
+  g_object_set_data (G_OBJECT (mi), "GarconGtkMenu", menu);
   g_signal_connect (G_OBJECT (mi), "activate",
                     G_CALLBACK (garcon_gtk_menu_item_activate), menu_item);
   gtk_widget_show (mi);
@@ -788,6 +877,9 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
             {
               g_signal_connect (G_OBJECT (mi), "activate",
                                 G_CALLBACK (garcon_gtk_menu_item_activate), li->data);
+              /* we need to store the GarconGtkMenu with this item so we can
+               * use it if the user wants to edit a menu item */
+              g_object_set_data (G_OBJECT (mi), "GarconGtkMenu", menu);
             }
 
           gtk_widget_show (mi);
@@ -1131,4 +1223,42 @@ garcon_gtk_menu_get_show_desktop_actions (GarconGtkMenu *menu)
 {
   g_return_val_if_fail (GARCON_GTK_IS_MENU (menu), FALSE);
   return menu->priv->show_desktop_actions;
+}
+
+
+/**
+ * garcon_gtk_menu_set_right_click_edits:
+ * @menu  : A #GarconGtkMenu
+ * @enable_right_click_edits : Toggle showing wether to launch an editor
+ * when the menu is clicked with the secondary mouse button.
+ *
+ **/
+void
+garcon_gtk_menu_set_right_click_edits (GarconGtkMenu *menu,
+                                       gboolean       enable_right_click_edits)
+{
+  g_return_if_fail (GARCON_GTK_IS_MENU (menu));
+
+  if (menu->priv->right_click_edits == enable_right_click_edits)
+    return;
+
+  menu->priv->right_click_edits = !!enable_right_click_edits;
+  g_object_notify_by_pspec (G_OBJECT (menu), menu_props[PROP_RIGHT_CLICK_EDITS]);
+
+  garcon_gtk_menu_reload (menu);
+}
+
+
+
+/**
+ * garcon_gtk_menu_get_right_click_edits:
+ * @menu  : A #GarconGtkMenu
+ *
+ * Return value: if an editor will be launched on secondary mouse clicks.
+ **/
+gboolean
+garcon_gtk_menu_get_right_click_edits (GarconGtkMenu *menu)
+{
+  g_return_val_if_fail (GARCON_GTK_IS_MENU (menu), FALSE);
+  return menu->priv->right_click_edits;
 }

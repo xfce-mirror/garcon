@@ -94,6 +94,13 @@ desktop_actions_toggled (GtkToggleButton *togglebutton,
                                             gtk_toggle_button_get_active (togglebutton));
 }
 
+static void
+edit_launchers_toggled (GtkToggleButton *togglebutton,
+                        gpointer         user_data)
+{
+  garcon_gtk_menu_set_right_click_edits (GARCON_GTK_MENU (gtk_root),
+                                         gtk_toggle_button_get_active (togglebutton));
+}
 
 
 
@@ -103,7 +110,9 @@ create_main_window (void)
   GtkWidget *window;
   GtkWidget *box;
   GtkWidget *button;
-  GtkWidget *chk_generic_names, *chk_menu_icons, *chk_tooltips, *chk_desktop_actions;
+  GtkWidget *chk_generic_names, *chk_menu_icons;
+  GtkWidget *chk_tooltips, *chk_desktop_actions;
+  GtkWidget *chk_edit_launchers;
 
   /* Create main window */
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -170,6 +179,13 @@ create_main_window (void)
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chk_desktop_actions), FALSE);
   g_signal_connect (G_OBJECT (chk_desktop_actions), "toggled", G_CALLBACK (desktop_actions_toggled), NULL);
 
+  /* edit launchers */
+  chk_edit_launchers = gtk_check_button_new_with_mnemonic ("Right click edit launchers");
+  gtk_container_add (GTK_CONTAINER (box), chk_edit_launchers);
+  gtk_widget_show (chk_edit_launchers);
+  /* have check button match garcon-gtk's default */
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (chk_edit_launchers), FALSE);
+  g_signal_connect (G_OBJECT (chk_edit_launchers), "toggled", G_CALLBACK (edit_launchers_toggled), NULL);
 }
 
 

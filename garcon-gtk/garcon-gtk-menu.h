@@ -79,6 +79,10 @@ void                 garcon_gtk_menu_set_show_desktop_actions (GarconGtkMenu *me
                                                                gboolean       show_desktop_actions);
 gboolean             garcon_gtk_menu_get_show_desktop_actions (GarconGtkMenu *menu);
 
+void                 garcon_gtk_menu_set_right_click_edits    (GarconGtkMenu *menu,
+                                                               gboolean       enable_right_click_edits);
+gboolean             garcon_gtk_menu_get_right_click_edits    (GarconGtkMenu *menu);
+
 G_END_DECLS
 
 #endif /* !__GARCON_GTK_MENU_H__ */
