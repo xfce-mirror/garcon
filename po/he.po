@@ -4,15 +4,15 @@
 # 
 # Translators:
 # Elishai Eliyahu <e1907@mm.st>, 2016
-# GenghisKhan <genghiskhan@gmx.ca>, 2014
+# GenghisKhan <genghiskhan@gmx.ca>, 2014,2016
 # Hezy Amiel <open@hezyamiel.com>, 2010
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2016-02-01 11:55+0000\n"
+"POT-Creation-Date: 2016-06-20 18:30+0200\n"
+"PO-Revision-Date: 2016-06-21 10:23+0000\n"
 "Last-Translator: Elishai Eliyahu <e1907@mm.st>\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/garcon/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -148,15 +148,25 @@ msgstr "לא יכול להעלות מידע קובץ תפריט מ %s: %s "
 msgid "Could not load menu file data from %s"
 msgstr "לא היתה אפשרות לטעון נתוני קובץ תפריט מתוך %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:389
+#: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "נכשל לבצע פקודה \"%s\"."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:652
-msgid "No applications found"
-msgstr "לא נמצאו יישומים"
+#: ../garcon-gtk/garcon-gtk-menu.c:472
+msgid "Launch Error"
+msgstr "שגיאת מפעיל"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:664
+#: ../garcon-gtk/garcon-gtk-menu.c:474
+msgid ""
+"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
+"edit menu items."
+msgstr "לא יכול להפעיל \"exo-desktop-item-edit\", שנדרש ליצירת ועריכת פריטי תפריט."
+
+#: ../garcon-gtk/garcon-gtk-menu.c:476
+msgid "_Close"
+msgstr "_סגור"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
 msgstr "נכשל לטעון את תפריט יישומים"
