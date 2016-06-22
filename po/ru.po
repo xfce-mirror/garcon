@@ -4,23 +4,24 @@
 # 
 # Translators:
 # Aleksandr P <davian818@gmail.com>, 2010,2012
-# AK <ak099@mail.ru>, 2013
+# Aleksey Kabanov <ak099@mail.ru>, 2013
 # Alexander Matveyev <a.s.matveyev@gmail.com>, 2010
 # Artem Zolochevskiy <artem.zolochevskiy@gmail.com>, 2011-2012
 # Denis Koryavov <dkoryavov@yandex.ru>, 2010
+# Simple88, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2013-08-07 07:30+0000\n"
-"Last-Translator: AK <ak099@mail.ru>\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/xfce/language/ru/)\n"
+"POT-Creation-Date: 2016-06-20 18:30+0200\n"
+"PO-Revision-Date: 2016-06-22 05:20+0000\n"
+"Last-Translator: Simple88\n"
+"Language-Team: Russian (http://www.transifex.com/xfce/garcon/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -149,15 +150,25 @@ msgstr "Не удалось загрузить данные файла меню 
 msgid "Could not load menu file data from %s"
 msgstr "Не удалось загрузить данные файла меню из %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:389
+#: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Не удалось выполнить команду «%s»."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:652
-msgid "No applications found"
-msgstr "Приложения не найдены"
+#: ../garcon-gtk/garcon-gtk-menu.c:472
+msgid "Launch Error"
+msgstr "Ошибка запуска"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:664
+#: ../garcon-gtk/garcon-gtk-menu.c:474
+msgid ""
+"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
+"edit menu items."
+msgstr "Невозможно запустить «exo-desktop-item-edit», которая необходима для редактирования пунктов меню."
+
+#: ../garcon-gtk/garcon-gtk-menu.c:476
+msgid "_Close"
+msgstr "_Закрыть"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
 msgstr "Не удалось загрузить меню приложений"
