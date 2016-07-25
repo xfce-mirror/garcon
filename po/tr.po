@@ -5,16 +5,17 @@
 # Translators:
 # Ayhan YALÇINSOY <ayhanyalcinsoy@gmail.com>, 2010
 # Gökmen Görgen <gkmngrgn@gmail.com>, 2008
+# Necdet Yücel <necdetyucel@gmail.com>, 2013,2016
 # Nimet Senem Özkızıklı <nimetsenem@gmail.com>, 2008
-# volkangezer <volkangezer@gmail.com>, 2013
+# Volkan Gezer <volkangezer@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2013-08-12 18:11+0000\n"
-"Last-Translator: volkangezer <volkangezer@gmail.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/xfce/language/tr/)\n"
+"POT-Creation-Date: 2016-06-20 18:30+0200\n"
+"PO-Revision-Date: 2016-07-25 08:18+0000\n"
+"Last-Translator: Necdet Yücel <necdetyucel@gmail.com>\n"
+"Language-Team: Turkish (http://www.transifex.com/xfce/garcon/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -43,7 +44,7 @@ msgstr "Eğitim"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr "Eğitimsel yazılımlar"
+msgstr "Eğitim yazılımı"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
@@ -55,7 +56,7 @@ msgstr "Oyunlar, bulmacalar ve diğer eğlenceli yazılımlar"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr "Grafik"
+msgstr "Grafikler"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
@@ -148,15 +149,25 @@ msgstr "%s den menü dosya verisi yüklenemedi: %s"
 msgid "Could not load menu file data from %s"
 msgstr "%s den menü dosya verisi yüklenemedi"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:389
+#: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "\"%s\" komutu çalıştırılamadı."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:652
-msgid "No applications found"
-msgstr "Hiçbir uygulama bulunamadı"
+#: ../garcon-gtk/garcon-gtk-menu.c:472
+msgid "Launch Error"
+msgstr "Çalıştırma Hatası"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:664
+#: ../garcon-gtk/garcon-gtk-menu.c:474
+msgid ""
+"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
+"edit menu items."
+msgstr "Menü nesnelerini oluşturmak ve düzenlemek için geçerli olan \"exo-desktop-item-edit\" başlatılamadı."
+
+#: ../garcon-gtk/garcon-gtk-menu.c:476
+msgid "_Close"
+msgstr "_Kapat"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
 msgstr "Uygulama menüsü yüklenemedi"
