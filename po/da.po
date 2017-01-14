@@ -3,16 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aputsiaĸ Niels Janussen <aj@isit.gl>, 2013
-# Per Kongstad <p_kongstad@op.pl>, 2009
+# Aputsiak Niels Janussen <aj@isit.gl>, 2013
+# Per Kongstad <p_kongstad@op.pl>, 2009,2016
+# scootergrisen, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2013-11-08 14:44+0000\n"
-"Last-Translator: Aputsiaĸ Niels Janussen <aj@isit.gl>\n"
-"Language-Team: Danish (http://www.transifex.com/projects/p/xfce/language/da/)\n"
+"POT-Creation-Date: 2016-06-20 18:30+0200\n"
+"PO-Revision-Date: 2017-01-14 09:34+0000\n"
+"Last-Translator: scootergrisen\n"
+"Language-Team: Danish (http://www.transifex.com/xfce/garcon/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -139,22 +140,32 @@ msgstr "Filen \"%s\" blev ikke fundet"
 #: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Kunne ikke indlæse data til menufil fra %s: %s."
+msgstr "Kunne ikke indlæse data til menufil fra %s: %s"
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Kunne ikke indlæse data til menufil fra %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:389
+#: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Kunne ikke køre kommandoen \"%s\"."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:652
-msgid "No applications found"
-msgstr "Ingen programmer blev fundet"
+#: ../garcon-gtk/garcon-gtk-menu.c:472
+msgid "Launch Error"
+msgstr "Starterfejl"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:664
+#: ../garcon-gtk/garcon-gtk-menu.c:474
+msgid ""
+"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
+"edit menu items."
+msgstr "Kunne ikke starte \"exo-desktop-item-edit\", som er nødvendigt for oprettelse eller redigering af menuobjekter."
+
+#: ../garcon-gtk/garcon-gtk-menu.c:476
+msgid "_Close"
+msgstr "_Luk"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
 msgstr "Kunne ikke starte programmenu"
