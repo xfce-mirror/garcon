@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2017-01-14 09:34+0000\n"
+"PO-Revision-Date: 2017-01-19 10:16+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/garcon/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr "Uddannelse"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr "Peogrammer til uddannelse"
+msgstr "Programmer til uddannelse"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
@@ -74,7 +74,7 @@ msgstr "Multimedie"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "Lyd-, videoafpillere samt -editorer"
+msgstr "Lyd-, videoafspillere samt -editorer"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
