@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# samson <sambelet@yahoo.com>, 2016
+# samson <sambelet@yahoo.com>, 2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2016-02-25 02:36+0000\n"
+"POT-Creation-Date: 2016-06-20 18:30+0200\n"
+"PO-Revision-Date: 2017-01-22 20:46+0000\n"
 "Last-Translator: samson <sambelet@yahoo.com>\n"
 "Language-Team: Amharic (http://www.transifex.com/xfce/garcon/language/am/)\n"
 "MIME-Version: 1.0\n"
@@ -145,15 +145,25 @@ msgstr "የ ዝርዝር ፋይል ዳታ መጫን አልተቻለም %s: %s"
 msgid "Could not load menu file data from %s"
 msgstr "የ ዝርዝር ፋይል ዳታ መጫን አልተቻለም ከ %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:389
+#: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "ትእዛዝ መፈጸም አልተቻለም \"%s\"."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:652
-msgid "No applications found"
-msgstr "ምንም መተግበሪያ አልተገኘም"
+#: ../garcon-gtk/garcon-gtk-menu.c:472
+msgid "Launch Error"
+msgstr "ስህተት ማስነሻ"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:664
+#: ../garcon-gtk/garcon-gtk-menu.c:474
+msgid ""
+"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
+"edit menu items."
+msgstr "\"exo-desktop-item-edit\"ን ማስነሳት አልተቻለም: ይህ አካል አስነሺዎችን ለ መፍጠር እና ለማረም እና ከ ዴስክቶፕ ጋር ለማገናኘት ያስፈልጋል"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:476
+msgid "_Close"
+msgstr "_መዝጊያ"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
 msgstr "የ መተግበሪያ ዝርዝር መጫን አልተቻለም"
