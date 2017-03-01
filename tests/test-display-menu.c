@@ -49,7 +49,11 @@ show_menu (GtkButton *button,
            GtkWidget *menu)
 {
   /* Display the menu */
+#if GTK_CHECK_VERSION (3, 22, 0)
+  gtk_menu_popup_at_widget (GTK_MENU (menu), GTK_WIDGET (button), GDK_GRAVITY_EAST, GDK_GRAVITY_SOUTH, gtk_get_current_event ());
+#else
   gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL, 0, gtk_get_current_event_time ());
+#endif
 }
 
 
