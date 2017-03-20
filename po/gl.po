@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2008-2009
-# Xosé <xosecalvo@gmail.com>, 2015
+# Xosé <xosecalvo@gmail.com>, 2015,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2015-09-18 19:55+0000\n"
+"POT-Creation-Date: 2016-06-20 18:30+0200\n"
+"PO-Revision-Date: 2017-03-20 21:34+0000\n"
 "Last-Translator: Xosé <xosecalvo@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/garcon/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -146,15 +146,25 @@ msgstr "Non foi posible cargar os datos do ficheiro de menú %s: %s"
 msgid "Could not load menu file data from %s"
 msgstr "Non foi posible cargar os datos do ficheiro de menú dende %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:389
+#: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Produciuse un erro ao executar a orde «%s»."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:652
-msgid "No applications found"
-msgstr "Non se atoparon aplicativos"
+#: ../garcon-gtk/garcon-gtk-menu.c:472
+msgid "Launch Error"
+msgstr "Erro ao iniciar"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:664
+#: ../garcon-gtk/garcon-gtk-menu.c:474
+msgid ""
+"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
+"edit menu items."
+msgstr "Non foi posíbel iniciar «exo-desktop-item-edit», que é necesario para crear e editar elementos do menú."
+
+#: ../garcon-gtk/garcon-gtk-menu.c:476
+msgid "_Close"
+msgstr "_Pechar"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
 msgstr "Produciuse un erro ao cargar o menú de aplicativos"
