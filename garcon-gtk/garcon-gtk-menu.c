@@ -722,6 +722,7 @@ garcon_gtk_menu_create_menu_item (GarconGtkMenu *menu,
   gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
 #if GTK_CHECK_VERSION (3, 0, 0)
   box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+  gtk_label_set_xalign (GTK_LABEL (label), 0.0);
   gtk_widget_set_halign (label, GTK_ALIGN_START);
 #else
   box = gtk_hbox_new (FALSE, 0);
