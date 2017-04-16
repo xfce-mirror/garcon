@@ -1,3 +1,17 @@
+0.6.0
+=====
+- Fix left-alignment of labels in menuitems
+- garcon-gtk: Add an option to edit launchers
+- Desktop actions custom icon support
+- Show desktop actions in a submenu
+- Added desktop actions support (bug #11268)
+- Don't add a placeholder menu (Bug 11626)
+- Fix assertion 'GTK_IS_WIDGET (widget)' failed.
+- Fix missing menus when all items are in submenus (bug 11801)
+- Translation updates: am, ast, bg, ca, cs, da, de, en_AU, eo, es, fi,
+  fr, gl, he, hr, id, is, it, ja, kk, ko, lt, ms, nb, nn, oc, pl, pt,
+  pt_BR, ro, ru, sr, sv, th, tr, uk, zh_CN, zh_TW
+
 0.5.0
 =====
 - Port to Gtk3
