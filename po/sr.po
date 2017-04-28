@@ -6,13 +6,13 @@
 # Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012
 # Саша Петровић <salepetronije@gmail.com>, 2013
 # Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012
-# Саша Петровић <salepetronije@gmail.com>, 2013,2016
+# Саша Петровић <salepetronije@gmail.com>, 2013,2016-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-03 12:30+0200\n"
-"PO-Revision-Date: 2016-06-05 14:00+0000\n"
+"POT-Creation-Date: 2016-06-20 18:30+0200\n"
+"PO-Revision-Date: 2017-04-28 07:17+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/xfce/garcon/language/sr/)\n"
 "MIME-Version: 1.0\n"
@@ -55,11 +55,11 @@ msgstr "Игре, слагалице, и други забавни програ�
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr "Графика"
+msgstr "Цртање"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "Програми за графичко стваралаштво и уређивање"
+msgstr "Програми за црталачко и сликарство стваралаштво и уређивање"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
@@ -148,11 +148,25 @@ msgstr "Нисам успео да учитам податке датотеке 
 msgid "Could not load menu file data from %s"
 msgstr "Нисам успео да учитам податке датотеке изборника из %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:423
+#: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Нисам успео да извршим наредбу „%s“."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:896
+#: ../garcon-gtk/garcon-gtk-menu.c:472
+msgid "Launch Error"
+msgstr "Грешка покретања"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:474
+msgid ""
+"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
+"edit menu items."
+msgstr "Нисам успео покренути „exo-desktop-item-edit“, што је неопходно за стварање и уређивање ставки изборника."
+
+#: ../garcon-gtk/garcon-gtk-menu.c:476
+msgid "_Close"
+msgstr "Затвори"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
-msgstr "Нисам успео да учитам изборник програма"
+msgstr "Нисам успео учитати изборник програма"
