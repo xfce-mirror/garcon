@@ -26,7 +26,6 @@ AM_CPPFLAGS = \
 	$(PLATFORM_CFLAGS)
 
 lib_LTLIBRARIES = \
-	libgarcon-gtk2-1.la \
 	libgarcon-gtk3-1.la
 
 libgarcon_gtk_headers = \
@@ -35,6 +34,13 @@ libgarcon_gtk_headers = \
 
 libgarcon_gtk_sources = \
 	garcon-gtk-menu.c
+
+##
+## GTK+ 2 support library
+##
+if ENABLE_GTK2_LIBRARY
+
+lib_LTLIBRARIES += libgarcon-gtk2-1.la
 
 libgarcon_gtk2includedir = \
 	$(includedir)/garcon-gtk2-1/garcon-gtk
@@ -73,8 +79,10 @@ libgarcon_gtk2_1_la_LIBADD = \
 	$(GTHREAD_LIBS) \
 	$(LIBXFCE4UI_LIBS)
 
-libgarcon_gtk2_DEPENDENCIES = \
+libgarcon_gtk2_1_la_DEPENDENCIES = \
 	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
+
+endif
 
 
 libgarcon_gtk3includedir = \
@@ -114,7 +122,7 @@ libgarcon_gtk3_1_la_LIBADD = \
 	$(GTHREAD_LIBS) \
 	$(LIBXFCE4UI2_LIBS)
 
-libgarcon_gtk3_DEPENDENCIES = \
+libgarcon_gtk3_1_la_DEPENDENCIES = \
 	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
 
 

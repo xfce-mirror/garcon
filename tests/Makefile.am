@@ -24,8 +24,11 @@ AM_CPPFLAGS =								\
 noinst_PROGRAMS =							\
 	test-menu-parser						\
 	test-menu-spec							\
-	test-display-menu-gtk2					\
 	test-display-menu-gtk3
+
+if ENABLE_GTK2_LIBRARY
+noinst_PROGRAMS += test-display-menu-gtk2
+endif
 
 # test-menu-parser
 test_menu_parser_SOURCES =						\
@@ -68,6 +71,7 @@ test_menu_spec_LDADD =							\
 	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
 
 # test-display-menu-gtk2
+if ENABLE_GTK2_LIBRARY
 test_display_menu_gtk2_SOURCES =				\
 	test-display-menu.c
 
@@ -89,6 +93,7 @@ test_display_menu_gtk2_LDADD =					\
 	$(GTK2_LIBS)							\
 	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la	\
 	$(top_builddir)/garcon-gtk/libgarcon-gtk2-1.la
+endif
 
 # test-display-menu-gtk3
 test_display_menu_gtk3_SOURCES =				\
