@@ -26,8 +26,7 @@ AM_CPPFLAGS = 								\
 	$(PLATFORM_CFLAGS)
 
 lib_LTLIBRARIES = 							\
-	libgarcon-1.la							\
-	libgarcon-2.la
+	libgarcon-1.la
 
 libgarcon_built_public_sources =					\
 	garcon-marshal.h
@@ -104,42 +103,12 @@ libgarcon_1_la_LIBADD = 						\
 	$(GOBJECT_LIBS)							\
 	$(GTHREAD_LIBS)
 
-libgarcon2_includedir = $(includedir)/garcon-2/garcon
-
-libgarcon2_include_HEADERS = $(libgarcon_headers)
-
-libgarcon_2_la_SOURCES =						\
-	$(libgarcon_sources)						\
-	$(libgarcon_headers)
-
-libgarcon_2_la_CFLAGS = 						\
-	$(GIO_CFLAGS)							\
-	$(GLIB_CFLAGS)							\
-	$(LIBXFCE4UTIL_CFLAGS)						\
-	$(GOBJECT_CFLAGS)						\
-	$(GTHREAD_CFLAGS)						\
-	$(PLATFORM_CFLAGS)
-
-libgarcon_2_la_LDFLAGS =						\
-	-no-undefined							\
-	-export-dynamic							\
-	-version-info $(GARCON_VERINFO)					\
-	-export-symbols-regex "^[^_].*"					\
-	$(PLATFORM_LDFLAGS)
-
-libgarcon_2_la_LIBADD = 						\
-	$(GIO_LIBS)							\
-	$(GLIB_LIBS)							\
-	$(LIBXFCE4UTIL_LIBS)						\
-	$(GOBJECT_LIBS)							\
-	$(GTHREAD_LIBS)
-
 EXTRA_DIST =								\
 	garcon-config.h.in						\
 	garcon-marshal.list
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = garcon-1.pc garcon-2.pc
+pkgconfig_DATA = garcon-1.pc
 
 DISTCLEANFILES =							\
 	stamp-garcon-marshal.h						\

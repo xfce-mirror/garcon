@@ -162,7 +162,6 @@ docs/reference/Makefile
 docs/reference/version.xml
 garcon/Makefile
 garcon/garcon-1.pc
-garcon/garcon-2.pc
 garcon/garcon-config.h
 garcon-gtk/Makefile
 garcon-gtk/garcon-gtk2-1.pc
