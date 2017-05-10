@@ -64,6 +64,7 @@
     <xi:include href="xml/garcon-menu-item.xml"/>
     <xi:include href="xml/garcon-menu-item-cache.xml"/>
     <xi:include href="xml/garcon-menu-item-pool.xml"/>
+    <xi:include href="xml/garcon-menu-item-action.xml"/>
     <xi:include href="xml/garcon-menu-separator.xml"/>
   </part>
 
@@ -75,16 +76,23 @@
     <xi:include href="xml/garcon-menu-tree-provider.xml"/>
   </part>
 
+  <part id="garcon-gtk-menu">
+    <title>Create a complete GtkMenu from a GarconMenu</title>
+    <xi:include href="xml/garcon-gtk-menu.xml"/>
+  </part>
+
   <part id="garcon-miscellaneous">
     <title>Miscellaneous</title>
     <xi:include href="xml/garcon-environment.xml"/>
     <xi:include href="xml/garcon.xml"/>
+    <xi:include href="xml/garcon-gtk.xml"/>
     <xi:include href="xml/garcon-config.xml"/>
   </part>
 
   <part id="object-tree">
     <title>Object Hierarchy</title>
     <xi:include href="xml/tree_index.sgml"/>
+    <xi:include href="xml/object_index.sgml"/>
   </part>
 
   <index id="api-index-full">
@@ -92,5 +100,7 @@
     <xi:include href="xml/api-index-full.xml">
       <xi:fallback />
     </xi:include>
+    <xi:include href="xml/api-index-0.3.0.xml" />
+    <xi:include href="xml/api-index-deprecated.xml" />
   </index>
 </book>
