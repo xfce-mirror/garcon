@@ -129,7 +129,6 @@ XDT_CHECK_PACKAGE([LIBXFCE4UI2], [libxfce4ui-2], [4.11.1])
 dnl ***********************************************************
 dnl *** Optional support for a GTK+2 version of the library ***
 dnl ***********************************************************
-XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-1], [4.10.0])
 XDT_CHECK_OPTIONAL_PACKAGE([LIBXFCE4UI],
                            [libxfce4ui-1], [4.10.0], [libxfce4ui],
                            [libxfce4ui support])
