@@ -35,55 +35,6 @@ libgarcon_gtk_headers = \
 libgarcon_gtk_sources = \
 	garcon-gtk-menu.c
 
-##
-## GTK+ 2 support library
-##
-if ENABLE_GTK2_LIBRARY
-
-lib_LTLIBRARIES += libgarcon-gtk2-1.la
-
-libgarcon_gtk2includedir = \
-	$(includedir)/garcon-gtk2-1/garcon-gtk
-
-libgarcon_gtk2include_HEADERS = \
-	$(libgarcon_gtk_headers)
-
-libgarcon_gtk2_1_la_SOURCES = \
-	$(libgarcon_gtk_sources) \
-	$(libgarcon_gtk_headers)
-
-libgarcon_gtk2_1_la_CFLAGS = \
-	$(GIO_CFLAGS) \
-	$(GLIB_CFLAGS) \
-	$(GTK2_CFLAGS) \
-	$(LIBXFCE4UTIL_CFLAGS) \
-	$(GOBJECT_CFLAGS) \
-	$(GTHREAD_CFLAGS) \
-	$(LIBXFCE4UI_CFLAGS) \
-	$(PLATFORM_CFLAGS)
-
-libgarcon_gtk2_1_la_LDFLAGS = \
-	-no-undefined \
-	-export-dynamic \
-	-version-info $(GARCON_VERINFO) \
-	-export-symbols-regex "^[^_].*" \
-	$(PLATFORM_LDFLAGS)
-	
-libgarcon_gtk2_1_la_LIBADD = \
-	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la \
-	$(GIO_LIBS) \
-	$(GLIB_LIBS) \
-	$(GTK2_LIBS) \
-	$(LIBXFCE4UTIL_LIBS) \
-	$(GOBJECT_LIBS) \
-	$(GTHREAD_LIBS) \
-	$(LIBXFCE4UI_LIBS)
-
-libgarcon_gtk2_1_la_DEPENDENCIES = \
-	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
-
-endif
-
 
 libgarcon_gtk3includedir = \
 	$(includedir)/garcon-gtk3-1/garcon-gtk
@@ -127,7 +78,59 @@ libgarcon_gtk3_1_la_DEPENDENCIES = \
 
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = garcon-gtk2-1.pc garcon-gtk3-1.pc
+pkgconfig_DATA = garcon-gtk3-1.pc
+
+##
+## GTK+ 2 support library
+##
+if ENABLE_GTK2_LIBRARY
+
+lib_LTLIBRARIES += libgarcon-gtk2-1.la
+
+libgarcon_gtk2includedir = \
+	$(includedir)/garcon-gtk2-1/garcon-gtk
+
+libgarcon_gtk2include_HEADERS = \
+	$(libgarcon_gtk_headers)
+
+libgarcon_gtk2_1_la_SOURCES = \
+	$(libgarcon_gtk_sources) \
+	$(libgarcon_gtk_headers)
+
+libgarcon_gtk2_1_la_CFLAGS = \
+	$(GIO_CFLAGS) \
+	$(GLIB_CFLAGS) \
+	$(GTK2_CFLAGS) \
+	$(LIBXFCE4UTIL_CFLAGS) \
+	$(GOBJECT_CFLAGS) \
+	$(GTHREAD_CFLAGS) \
+	$(LIBXFCE4UI_CFLAGS) \
+	$(PLATFORM_CFLAGS)
+
+libgarcon_gtk2_1_la_LDFLAGS = \
+	-no-undefined \
+	-export-dynamic \
+	-version-info $(GARCON_VERINFO) \
+	-export-symbols-regex "^[^_].*" \
+	$(PLATFORM_LDFLAGS)
+
+libgarcon_gtk2_1_la_LIBADD = \
+	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la \
+	$(GIO_LIBS) \
+	$(GLIB_LIBS) \
+	$(GTK2_LIBS) \
+	$(LIBXFCE4UTIL_LIBS) \
+	$(GOBJECT_LIBS) \
+	$(GTHREAD_LIBS) \
+	$(LIBXFCE4UI_LIBS)
+
+libgarcon_gtk2_1_la_DEPENDENCIES = \
+	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
+
+pkgconfig_DATA += garcon-gtk2-1.pc
+
+endif
+
 
 # Required for gtk-doc and make distcheck
 dist-hook: all
