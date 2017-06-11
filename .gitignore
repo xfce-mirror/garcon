@@ -40,7 +40,6 @@ garcon.signals
 docs/reference/html/*
 docs/reference/tmpl/*
 docs/reference/xml/*
-po/.intltool-merge-cache
 aclocal.m4
 autom4te.cache
 compile
