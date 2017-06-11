@@ -46,11 +46,13 @@ compile
 config.guess
 config.h
 config.h.in
+config.h.in~
 config.log
 config.status
 config.sub
 configure
 configure.in
+configure.ac
 ChangeLog
 depcomp
 garcon-1.pc
@@ -81,3 +83,4 @@ gtk-doc.m4
 tests/test-display-menu
 tests/test-display-menu-gtk2
 tests/test-display-menu-gtk3
+po/.intltool-merge-cache

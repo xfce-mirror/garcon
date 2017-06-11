@@ -1,3 +1,11 @@
+0.6.1
+=====
+- Remove extraneous libxfce4ui-1 check
+- Fix garcon-2 reference Bug #13543
+- Drop libgarcon-2
+- Make building garcon-gtk2 optional
+- Translation updates: el, sr, gl, sl
+
 0.6.0
 =====
 - Fix left-alignment of labels in menuitems
