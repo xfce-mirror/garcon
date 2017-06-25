@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Pjotr123 <pjotrvertaalt@gmail.com>, 2013
+# Pjotr <pjotrvertaalt@gmail.com>, 2013,2016-2017
 # Pjotr pjotrvertaalt@gmail.com , 2011,2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2013-08-03 06:09+0000\n"
-"Last-Translator: Pjotr123 <pjotrvertaalt@gmail.com>\n"
-"Language-Team: Dutch (http://www.transifex.com/projects/p/xfce/language/nl/)\n"
+"POT-Creation-Date: 2016-06-20 18:30+0200\n"
+"PO-Revision-Date: 2017-06-25 19:31+0000\n"
+"Last-Translator: Pjotr <pjotrvertaalt@gmail.com>\n"
+"Language-Team: Dutch (http://www.transifex.com/xfce/garcon/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,7 +25,7 @@ msgstr "Hulpmiddelen"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "Algemene bureaubladgereedschappen en toepassingen"
+msgstr "Algemeen gereedschap en toepassingen"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -33,7 +33,7 @@ msgstr "Ontwikkeling"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr "Gereedschappen voor programma-ontwikkeling"
+msgstr "Gereedschap voor programmatuurontwikkeling"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
@@ -113,7 +113,7 @@ msgstr "Schermbeveiligingen"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "Schermbeveiligingtoepassingen"
+msgstr "Schermbeveiligingtoepassinkjes"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -146,15 +146,25 @@ msgstr "Kon gegevens van menubestand niet laden vanuit %s: %s"
 msgid "Could not load menu file data from %s"
 msgstr "Kon gegevens van menubestand niet laden vanuit %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:389
+#: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Kon opdracht '%s' niet uitvoeren"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:652
-msgid "No applications found"
-msgstr "Geen toepassingen gevonden"
+#: ../garcon-gtk/garcon-gtk-menu.c:472
+msgid "Launch Error"
+msgstr "Opstartfout"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:664
+#: ../garcon-gtk/garcon-gtk-menu.c:474
+msgid ""
+"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
+"edit menu items."
+msgstr "Kon 'exo-desktop-item-edit' niet starten, hetgeen vereist is voor het maken en bewerken van menu-onderdelen."
+
+#: ../garcon-gtk/garcon-gtk-menu.c:476
+msgid "_Close"
+msgstr "_Sluiten"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
 msgstr "Kon het toepassingenmenu niet laden"
