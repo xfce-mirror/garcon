@@ -100,7 +100,6 @@
     <xi:include href="xml/api-index-full.xml">
       <xi:fallback />
     </xi:include>
-    <xi:include href="xml/api-index-0.3.0.xml" />
     <xi:include href="xml/api-index-deprecated.xml" />
   </index>
 </book>
