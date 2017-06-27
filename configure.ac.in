@@ -45,6 +45,7 @@ dnl ***************************
 AC_COPYRIGHT([Copyright (c) 2007-2011 Jannis Pohlmann <jannis@xfce.org>])
 AC_INIT([garcon], [garcon_version], [http://bugzilla.xfce.org/])
 AC_PREREQ([2.50])
+AC_CONFIG_MACRO_DIRS([m4])
 AC_REVISION([@REVISION@])
 AC_CANONICAL_TARGET()
 
