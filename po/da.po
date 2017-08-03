@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aputsiak Niels Janussen <aj@isit.gl>, 2013
+# Aputsiak Niels Janussen (Skjalden) <aj@isit.gl>, 2013
 # Per Kongstad <p_kongstad@op.pl>, 2009,2016
 # scootergrisen, 2017
 msgid ""
@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2017-01-19 10:16+0000\n"
+"PO-Revision-Date: 2017-08-03 17:39+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/garcon/language/da/)\n"
 "MIME-Version: 1.0\n"
