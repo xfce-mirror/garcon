@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2014-01-10 09:15+0000\n"
-"Last-Translator: Umidjon Almasov <u.almasov@gmail.com>\n"
-"Language-Team: Uzbek (Latin) (http://www.transifex.com/projects/p/xfce/language/uz@Latn/)\n"
+"POT-Creation-Date: 2016-06-20 18:30+0200\n"
+"PO-Revision-Date: 2017-08-03 17:39+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"Language-Team: Uzbek (Latin) (http://www.transifex.com/xfce/garcon/language/uz@Latn/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -145,15 +145,25 @@ msgstr "Menyu faylining ma'lumotini %s dan yuklab bo'lmadi: %s"
 msgid "Could not load menu file data from %s"
 msgstr "Menyu faylining ma'lumotini %s dan yuklab bo'lmadi"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:389
+#: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "\"%s\" buyrug'ini bajarish muvaffaqiyatsiz tugadi."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:652
-msgid "No applications found"
-msgstr "Dasturlar topilmadi"
+#: ../garcon-gtk/garcon-gtk-menu.c:472
+msgid "Launch Error"
+msgstr ""
 
-#: ../garcon-gtk/garcon-gtk-menu.c:664
+#: ../garcon-gtk/garcon-gtk-menu.c:474
+msgid ""
+"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
+"edit menu items."
+msgstr ""
+
+#: ../garcon-gtk/garcon-gtk-menu.c:476
+msgid "_Close"
+msgstr ""
+
+#: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
 msgstr "Dasturlar menyusini yuklash muvaffaqiyatsiz tugadi"
