@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-03 12:30+0200\n"
-"PO-Revision-Date: 2016-06-05 20:34+0000\n"
+"POT-Creation-Date: 2016-06-20 18:30+0200\n"
+"PO-Revision-Date: 2017-08-03 17:39+0000\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/xfce/garcon/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -147,11 +147,25 @@ msgstr "Nelze načíst data souboru nabídky z %s: %s"
 msgid "Could not load menu file data from %s"
 msgstr "Nelze načíst data souboru nabídky z %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:423
+#: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Nepodařilo se spustit příkaz \"%s\"."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:896
+#: ../garcon-gtk/garcon-gtk-menu.c:472
+msgid "Launch Error"
+msgstr "Chyba při spuštění"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:474
+msgid ""
+"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
+"edit menu items."
+msgstr "Nelze spustit \"exo-desktop-item-edit\". Tato aplikace je vyžadována pro vytváření a úpravu položek nabídky."
+
+#: ../garcon-gtk/garcon-gtk-menu.c:476
+msgid "_Close"
+msgstr "_Zavřit"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
 msgstr "Načtení nabídky aplikace se nezdařilo"
