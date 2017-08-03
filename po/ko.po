@@ -1,24 +1,22 @@
-# Korean translations for garcon package.
-# Copyright (C) 2003-2011 The Xfce development team.
-# This file is distributed under the same license as the garcon package.
-# Seong-ho, Cho <darkcircle.0426@gmail.com>, 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: garcon.master\n"
+"Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-30 18:51+0000\n"
-"PO-Revision-Date: 2012-02-26 15:09+0900\n"
-"Last-Translator: Seong-ho, Cho <darkcircle.0426@gmail.com>\n"
-"Language-Team: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2013-07-02 22:58+0200\n"
+"PO-Revision-Date: 2017-08-03 17:39+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"Language-Team: Korean (http://www.transifex.com/xfce/garcon/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Poedit-Language: Korean\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-Country: KOREA, REPUBLIC OF\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
@@ -69,20 +67,20 @@ msgid "Settings for several hardware devices"
 msgstr "다양한 하드웨어 장치를 위한 설정"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Audio and video players and editors"
-msgstr "음악과 동영상 재생기 및 편집기"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
 msgstr "멀티미디어"
 
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Applications for Internet access"
-msgstr "인터넷에 접근하기 위한 프로그램"
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "음악과 동영상 재생기 및 편집기"
 
-#: ../data/xfce/xfce-network.directory.in.h:2
+#: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
 msgstr "인터넷"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "인터넷에 접근하기 위한 프로그램"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -93,12 +91,12 @@ msgid "Office and productivity applications"
 msgstr "사무 및 생산성 프로그램"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Applications that don't fit into other categories"
-msgstr "다른 분류에 맞지 않은 프로그램"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "기타"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "다른 분류에 맞지 않은 프로그램"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -109,20 +107,20 @@ msgid "Personal settings"
 msgstr "개인 설정"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensaver applets"
-msgstr "화면 보호기 애플릿"
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
 msgstr "화면 보호기"
 
-#: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Desktop and system settings applications"
-msgstr "데스크톱과 시스템 설정 프로그램"
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "화면 보호기 애플릿"
 
-#: ../data/xfce/xfce-settings.directory.in.h:2
+#: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
 msgstr "설정"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "데스크톱과 시스템 설정 프로그램"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
