@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Karim Oulad Chalha <herr.linux88@gmail.com>, 2013
-# Karim Oulad Chalha <herr.linux88@gmail.com>, 2013
+# كريم أولاد الشلحة <herr.linux88@gmail.com>, 2013
+# كريم أولاد الشلحة <herr.linux88@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-03 00:30+0200\n"
-"PO-Revision-Date: 2013-09-08 13:20+0000\n"
-"Last-Translator: Karim Oulad Chalha <herr.linux88@gmail.com>\n"
-"Language-Team: Arabic (http://www.transifex.com/projects/p/xfce/language/ar/)\n"
+"POT-Creation-Date: 2016-06-20 18:30+0200\n"
+"PO-Revision-Date: 2017-08-03 17:39+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"Language-Team: Arabic (http://www.transifex.com/xfce/garcon/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -146,15 +146,25 @@ msgstr "لا يمكن تحميل ملف قائمة البيانات من %s: %s"
 msgid "Could not load menu file data from %s"
 msgstr "لا يمكن تحميل ملف قائمة البيانات من %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:389
+#: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "فشل تفنيد الأمر \"%s\"."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:652
-msgid "No applications found"
-msgstr "لم يتم العثور على أي تطبيقات"
+#: ../garcon-gtk/garcon-gtk-menu.c:472
+msgid "Launch Error"
+msgstr ""
 
-#: ../garcon-gtk/garcon-gtk-menu.c:664
+#: ../garcon-gtk/garcon-gtk-menu.c:474
+msgid ""
+"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
+"edit menu items."
+msgstr ""
+
+#: ../garcon-gtk/garcon-gtk-menu.c:476
+msgid "_Close"
+msgstr ""
+
+#: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
 msgstr "فشل في تحميل قائمة التطبيقات"
