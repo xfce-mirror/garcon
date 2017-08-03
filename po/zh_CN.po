@@ -1,24 +1,24 @@
-# Simplified Chinese translations for
-# the garcon package.
-# This file is distributed under the same license as
-# the garcon package.
-# Chris K. Zhang <plutino@gmail.com>, 2009.
-# Hunt Xu <mhuntxu@gmail.com>, 2009, 2010.
-# 微尘 <squeeze@189.cn>, 2010.
-# Chipong Luo <chipong.luo@yahoo.com>, 2011, 2012.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Chipong Luo <chipong.luo@yahoo.com>, 2011-2012
+# Chris K. Zhang <plutino@gmail.com>, 2009
+# Hunt Xu <mhuntxu@gmail.com>, 2009-2010
+# 玉堂 白鹤 <squeeze@189.cn>, 2010
 msgid ""
 msgstr ""
-"Project-Id-Version: garcon\n"
+"Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-23 01:24+0000\n"
-"PO-Revision-Date: 2010-11-23 22:57+0800\n"
-"Last-Translator: Chipong Luo <chipong.luo@yahoo.com>\n"
-"Language-Team: Chinese (Simplified) <xfce-i18n-cn@xfce.org>\n"
-"Language: zh_CN\n"
+"POT-Creation-Date: 2013-07-02 22:58+0200\n"
+"PO-Revision-Date: 2017-08-03 17:39+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/xfce/garcon/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
@@ -70,20 +70,20 @@ msgid "Settings for several hardware devices"
 msgstr "若干硬件设备的设置"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Audio and video players and editors"
-msgstr "影音播放器和编辑器"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Multimedia"
 msgstr "多媒体"
 
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Applications for Internet access"
-msgstr "访问互联网的应用程序"
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "影音播放器和编辑器"
 
-#: ../data/xfce/xfce-network.directory.in.h:2
+#: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
 msgstr "互联网"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "访问互联网的应用程序"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -94,12 +94,12 @@ msgid "Office and productivity applications"
 msgstr "办公和成品应用程序"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Applications that don't fit into other categories"
-msgstr "未归入其它类别的应用程序"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Other"
 msgstr "其它"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "未归入其它类别的应用程序"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -110,20 +110,20 @@ msgid "Personal settings"
 msgstr "个人设置"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensaver applets"
-msgstr "屏幕保护小程序"
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensavers"
 msgstr "屏幕保护"
 
-#: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Desktop and system settings applications"
-msgstr "桌面和系统设置应用程序"
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "屏幕保护小程序"
 
-#: ../data/xfce/xfce-settings.directory.in.h:2
+#: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
 msgstr "设置"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "桌面和系统设置应用程序"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
