@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2017-08-03 17:39+0000\n"
+"PO-Revision-Date: 2017-09-13 15:16+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/garcon/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -150,7 +150,7 @@ msgstr "Kunne ikke indlæse data til menufil fra %s"
 #: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr "Kunne ikke køre kommandoen \"%s\"."
+msgstr "Kunne ikke udføre kommandoen \"%s\"."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:472
 msgid "Launch Error"
