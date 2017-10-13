@@ -3,6 +3,7 @@
  * Copyright (c) 2006-2010 Jannis Pohlmann <jannis@xfce.org>
  * Copyright (c) 2009      Nick Schermer <nick@xfce.org>
  * Copyright (c) 2015      Danila Poyarkov <dannotemail@gmail.com>
+ * Copyright (c) 2017      Gregor Santner <gsantner@mailbox.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -43,6 +44,8 @@ typedef struct _GarconMenuItem        GarconMenuItem;
 #define GARCON_IS_MENU_ITEM(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_ITEM))
 #define GARCON_IS_MENU_ITEM_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_ITEM))
 #define GARCON_MENU_ITEM_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_ITEM, GarconMenuItemClass))
+
+#define  G_KEY_FILE_DESKTOP_KEY_KEYWORDS "Keywords"
 
 struct _GarconMenuItemClass
 {
@@ -123,6 +126,11 @@ void                  garcon_menu_item_set_categories                    (Garcon
                                                                           GList           *categories);
 gboolean              garcon_menu_item_has_category                      (GarconMenuItem  *item,
                                                                           const gchar     *category);
+GList                *garcon_menu_item_get_keywords                      (GarconMenuItem  *item);
+void                  garcon_menu_item_set_keywords                      (GarconMenuItem  *item,
+                                                                          GList           *keywords);
+gboolean              garcon_menu_item_has_keyword                       (GarconMenuItem  *item,
+                                                                          const gchar     *keyword);
 GList                *garcon_menu_item_get_actions                       (GarconMenuItem  *item);
 GarconMenuItemAction *garcon_menu_item_get_action                        (GarconMenuItem  *item,
                                                                           const gchar     *action_name);

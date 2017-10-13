@@ -3,6 +3,7 @@
  * Copyright (c) 2006-2010 Jannis Pohlmann <jannis@xfce.org>
  * Copyright (c) 2009-2010 Nick Schermer <nick@xfce.org>
  * Copyright (c) 2015      Danila Poyarkov <dannotemail@gmail.com>
+ * Copyright (c) 2017      Gregor Santner <gsantner@mailbox.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -81,8 +82,8 @@ static gboolean     garcon_menu_item_get_element_show_in_environment (GarconMenu
 static gboolean     garcon_menu_item_get_element_no_display          (GarconMenuElement      *element);
 static gboolean     garcon_menu_item_get_element_equal               (GarconMenuElement      *element,
                                                                       GarconMenuElement      *other);
-static gboolean     garcon_menu_item_category_lists_equal            (GList                  *categories1,
-                                                                      GList                  *categories2);
+static gboolean     garcon_menu_item_lists_equal                     (GList                  *list1,
+                                                                      GList                  *list2);
 
 
 
@@ -100,6 +101,9 @@ struct _GarconMenuItemPrivate
 
   /* List of categories */
   GList      *categories;
+
+  /* List of keywords */
+  GList      *keywords;
 
   /* Whether this application requires a terminal to be started in */
   guint       requires_terminal : 1;
@@ -418,6 +422,7 @@ garcon_menu_item_finalize (GObject *object)
   g_strfreev (item->priv->not_show_in);
 
   _garcon_g_list_free_full (item->priv->categories, g_free);
+  _garcon_g_list_free_full (item->priv->keywords, g_free);
 
   if (item->priv->file != NULL)
     g_object_unref (G_OBJECT (item->priv->file));
@@ -670,18 +675,18 @@ garcon_menu_item_get_element_icon_name (GarconMenuElement *element)
 
 
 static gboolean
-garcon_menu_item_category_lists_equal (GList *categories1,
-                                       GList *categories2)
+garcon_menu_item_lists_equal (GList *list1,
+                              GList *list2)
 {
   gboolean  element_missing = FALSE;
   GList    *lp;
 
-  if (g_list_length (categories1) != g_list_length (categories2))
+  if (g_list_length (list1) != g_list_length (list2))
     return FALSE;
 
-  for (lp = categories1; !element_missing && lp != NULL; lp = lp->next)
+  for (lp = list1; !element_missing && lp != NULL; lp = lp->next)
     {
-      if (g_list_find_custom (categories2, lp->data, (GCompareFunc) g_strcmp0) == NULL)
+      if (g_list_find_custom (list2, lp->data, (GCompareFunc) g_strcmp0) == NULL)
         element_missing = TRUE;
     }
 
@@ -713,6 +718,7 @@ garcon_menu_item_new (GFile *file)
   GarconMenuItemAction *action = NULL;
   XfceRc               *rc;
   GList                *categories = NULL;
+  GList                *keywords = NULL;
   gchar                *filename;
   gboolean              terminal;
   gboolean              no_display;
@@ -799,6 +805,26 @@ garcon_menu_item_new (GFile *file)
 
           /* Assign categories list to the menu item */
           garcon_menu_item_set_categories (item, categories);
+        }
+
+      /* Determine the keywords this application should be shown in */
+      str_list = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_KEYWORDS, ";");
+      if (G_LIKELY (str_list != NULL))
+        {
+          for (mt = str_list; *mt != NULL; ++mt)
+            {
+              /* Try to steal the values */
+              if (**mt != '\0')
+                keywords = g_list_prepend (keywords, *mt);
+              else
+                g_free (*mt);
+            }
+
+          /* Cleanup */
+          g_free (str_list);
+
+          /* Assign keywords list to the menu item */
+          garcon_menu_item_set_keywords (item, keywords);
         }
 
       /* Set the rest of the private data directly */
@@ -950,8 +976,10 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   GarconMenuItemAction *action = NULL;
   gboolean              boolean;
   GList                *categories = NULL;
-  GList                *lp;
   GList                *old_categories = NULL;
+  GList                *keywords = NULL;
+  GList                *old_keywords = NULL;
+  GList                *lp;
   gchar               **mt;
   gchar               **str_list;
   const gchar          *string;
@@ -1075,12 +1103,53 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
 
   if (affects_the_outside != NULL)
     {
-      if (!garcon_menu_item_category_lists_equal (old_categories, categories))
+      if (!garcon_menu_item_lists_equal (old_categories, categories))
         *affects_the_outside = TRUE;
 
       _garcon_g_list_free_full (old_categories, g_free);
     }
 
+
+  if (affects_the_outside != NULL)
+    {
+      /* create a deep copy the old keywords list */
+      old_keywords = g_list_copy (item->priv->keywords);
+      for (lp = old_keywords; lp != NULL; lp = lp->next)
+        lp->data = g_strdup (lp->data);
+    }
+
+  /* Determine the keywords this application should be shown in */
+  str_list = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_KEYWORDS, ";");
+  if (G_LIKELY (str_list != NULL))
+    {
+      for (mt = str_list; *mt != NULL; ++mt)
+        {
+          /* Try to steal the values */
+          if (**mt != '\0')
+            keywords = g_list_prepend (keywords, *mt);
+          else
+            g_free (*mt);
+        }
+
+      /* Cleanup */
+      g_free (str_list);
+
+      /* Assign keywords list to the menu item */
+      garcon_menu_item_set_keywords (item, keywords);
+    }
+  else
+    {
+      /* Assign empty keywords list to the menu item */
+      garcon_menu_item_set_keywords (item, NULL);
+    }
+
+  if (affects_the_outside != NULL)
+    {
+      if (!garcon_menu_item_lists_equal (old_keywords, keywords))
+        *affects_the_outside = TRUE;
+
+      _garcon_g_list_free_full (old_keywords, g_free);
+    }
 
   /* Set the rest of the private data directly */
   item->priv->only_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN, ";");
@@ -1257,6 +1326,34 @@ garcon_menu_item_set_categories (GarconMenuItem *item,
 
   /* Assign new list */
   item->priv->categories = categories;
+}
+
+
+
+GList*
+garcon_menu_item_get_keywords (GarconMenuItem *item)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
+  return item->priv->keywords;
+}
+
+
+
+void
+garcon_menu_item_set_keywords (GarconMenuItem *item,
+                               GList          *keywords)
+{
+  g_return_if_fail (GARCON_IS_MENU_ITEM (item));
+
+  /* Abort if lists are equal */
+  if (G_UNLIKELY (item->priv->keywords == keywords))
+    return;
+
+  /* Free old list */
+  _garcon_g_list_free_full (item->priv->keywords, g_free);
+
+  /* Assign new list */
+  item->priv->keywords = keywords;
 }
 
 
@@ -1592,6 +1689,25 @@ garcon_menu_item_has_category (GarconMenuItem *item,
 
   for (iter = item->priv->categories; !found && iter != NULL; iter = g_list_next (iter))
     if (g_strcmp0 (iter->data, category) == 0)
+      found = TRUE;
+
+  return found;
+}
+
+
+
+gboolean
+garcon_menu_item_has_keyword (GarconMenuItem *item,
+                              const gchar    *keyword)
+{
+  GList   *iter;
+  gboolean found = FALSE;
+
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
+  g_return_val_if_fail (keyword != NULL, FALSE);
+
+  for (iter = item->priv->keywords; !found && iter != NULL; iter = g_list_next (iter))
+    if (g_strcmp0 (iter->data, keyword) == 0)
       found = TRUE;
 
   return found;
