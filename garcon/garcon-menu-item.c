@@ -141,8 +141,8 @@ struct _GarconMenuItemPrivate
   /* Working directory */
   gchar      *path;
 
-  /* Hash table for mapping action names to GarconMenuItemAction's */
-  GHashTable *actions;
+  /* List of application actions of type GarconMenuItemAction */
+  GList      *actions;
 
   /* Hidden value */
   guint       hidden : 1;
@@ -398,8 +398,6 @@ static void
 garcon_menu_item_init (GarconMenuItem *item)
 {
   item->priv = G_TYPE_INSTANCE_GET_PRIVATE (item, GARCON_TYPE_MENU_ITEM, GarconMenuItemPrivate);
-  item->priv->actions = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
-                                               (GDestroyNotify) garcon_menu_item_action_unref);
 }
 
 
@@ -423,11 +421,10 @@ garcon_menu_item_finalize (GObject *object)
 
   _garcon_g_list_free_full (item->priv->categories, g_free);
   _garcon_g_list_free_full (item->priv->keywords, g_free);
+  _garcon_g_list_free_full (item->priv->actions, garcon_menu_item_action_unref);
 
   if (item->priv->file != NULL)
     g_object_unref (G_OBJECT (item->priv->file));
-
-  g_hash_table_unref (item->priv->actions);
 
   (*G_OBJECT_CLASS (garcon_menu_item_parent_class)->finalize) (object);
 }
@@ -1156,7 +1153,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
   item->priv->not_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, ";");
 
   /* Update application actions */
-  g_hash_table_remove_all (item->priv->actions);
+  _garcon_g_list_free_full (item->priv->actions, garcon_menu_item_action_unref);
   str_list = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_ACTIONS, ";");
   if (G_LIKELY (str_list != NULL))
     {
@@ -1718,9 +1715,20 @@ garcon_menu_item_has_keyword (GarconMenuItem *item,
 GList *
 garcon_menu_item_get_actions (GarconMenuItem *item)
 {
+  GList                *action_names = NULL;
+  GList                *iter;
+  GarconMenuItemAction *action;
+
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
   
-  return g_hash_table_get_keys (item->priv->actions);
+  for (iter = item->priv->actions; iter != NULL ; iter = g_list_next (iter))
+    {
+      action = GARCON_MENU_ITEM_ACTION (iter->data);
+      action_names = g_list_prepend (action_names, (gchar*)garcon_menu_item_action_get_name (action));
+    }
+  action_names = g_list_reverse (action_names);
+
+  return action_names;
 }
 
 
@@ -1729,9 +1737,20 @@ GarconMenuItemAction *
 garcon_menu_item_get_action (GarconMenuItem *item,
                              const gchar    *action_name)
 {
+  GList                *iter;
+  GarconMenuItemAction *action;
+
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
-  
-  return g_hash_table_lookup (item->priv->actions, action_name);
+  g_return_val_if_fail (action_name != NULL, NULL);
+
+  for (iter = item->priv->actions; iter != NULL; iter = g_list_next (iter))
+    {
+      action = GARCON_MENU_ITEM_ACTION (iter->data);
+      if (g_strcmp0 (garcon_menu_item_action_get_name (action), action_name) == 0)
+        return (action);
+    }
+
+  return NULL;
 }
 
 
@@ -1742,14 +1761,39 @@ garcon_menu_item_set_action (GarconMenuItem       *item,
                              const gchar          *action_name,
                              GarconMenuItemAction *action)
 {
+  GList                *iter;
+  GarconMenuItemAction *old_action;
+  gboolean             found = FALSE;
+
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
   g_return_if_fail (GARCON_IS_MENU_ITEM_ACTION (action));
   
-  /* Insert into the hash table and remove old action (if any) */
-  g_hash_table_replace (item->priv->actions, g_strdup (action_name), action);
+  /* If action name is found in list, then insert new action into the list and
+   * remove old action */
+  for (iter = item->priv->actions; !found && iter != NULL; iter = g_list_next (iter))
+    {
+      old_action = GARCON_MENU_ITEM_ACTION (iter->data);
+      if (g_strcmp0 (garcon_menu_item_action_get_name (old_action), action_name) == 0)
+        {
+           /* Release reference on action currently stored at action name */
+           garcon_menu_item_action_unref (old_action);
 
-  /* Grab a reference on the action */
-  garcon_menu_item_action_ref (action);
+           /* Replace action in list at action name and grab a reference */
+           iter->data = action;
+           garcon_menu_item_action_ref (action);
+
+           /* Set flag that action was found */
+           found = TRUE;
+        }
+    }
+
+  /* If action name was not found in list, then simply add it to list */
+  if (found == FALSE)
+    {
+      /* Add action to list and grab a reference */
+      item->priv->actions=g_list_append (item->priv->actions, action);
+      garcon_menu_item_action_ref (action);
+    }
 }
 
 
@@ -1758,9 +1802,21 @@ gboolean
 garcon_menu_item_has_action (GarconMenuItem  *item,
                              const gchar     *action_name)
 {
-  g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
+  GList                *iter;
+  GarconMenuItemAction *action;
+  gboolean             found = FALSE;
 
-  return g_hash_table_contains (item->priv->actions, action_name);
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
+  g_return_val_if_fail (action_name != NULL, FALSE);
+
+  for (iter = item->priv->actions; !found && iter != NULL; iter = g_list_next (iter))
+    {
+      action = GARCON_MENU_ITEM_ACTION (iter->data);
+      if (g_strcmp0 (garcon_menu_item_action_get_name (action), action_name) == 0)
+        found = TRUE;
+    }
+
+  return found;
 }
 
 
