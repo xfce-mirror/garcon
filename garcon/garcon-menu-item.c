@@ -1720,7 +1720,7 @@ garcon_menu_item_get_actions (GarconMenuItem *item)
   GarconMenuItemAction *action;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
-  
+
   for (iter = item->priv->actions; iter != NULL ; iter = g_list_next (iter))
     {
       action = GARCON_MENU_ITEM_ACTION (iter->data);
@@ -1767,7 +1767,7 @@ garcon_menu_item_set_action (GarconMenuItem       *item,
 
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
   g_return_if_fail (GARCON_IS_MENU_ITEM_ACTION (action));
-  
+
   /* If action name is found in list, then insert new action into the list and
    * remove old action */
   for (iter = item->priv->actions; !found && iter != NULL; iter = g_list_next (iter))
@@ -1907,6 +1907,8 @@ void
 garcon_menu_item_unref (GarconMenuItem *item)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
+
+  garcon_menu_item_decrement_allocated (item);
 
   /* Decrement the reference counter */
   g_object_unref (G_OBJECT (item));

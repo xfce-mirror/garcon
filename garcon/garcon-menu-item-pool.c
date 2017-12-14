@@ -191,7 +191,12 @@ garcon_menu_item_pool_filter_exclude (const gchar    *desktop_id,
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (node != NULL, FALSE);
 
-  return garcon_menu_node_tree_rule_matches (node, item);
+  gboolean matches = garcon_menu_node_tree_rule_matches (node, item);
+
+  if (matches)
+    garcon_menu_item_increment_allocated (item);
+
+  return matches;
 }
 
 
