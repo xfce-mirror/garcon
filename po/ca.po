@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2017-09-19 18:02+0000\n"
+"PO-Revision-Date: 2017-12-31 19:50+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/garcon/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -161,7 +161,7 @@ msgstr "Error de llançament"
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr "No s'ha pogut llançar «exo-desktop-item-edit», el qual es requereix per crear i editar els elements del menú."
+msgstr "No es pot llançar «exo-desktop-item-edit», el qual es requereix per crear i editar els elements del menú."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:476
 msgid "_Close"
@@ -169,4 +169,4 @@ msgstr "Tan_ca"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
-msgstr "No s'ha pogut carregar el menú d'aplicacions"
+msgstr "Ha fallat la càrrega del menú d'aplicacions"
