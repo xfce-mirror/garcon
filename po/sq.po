@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Besnik <besnik@programeshqip.org>, 2007
+# Besnik <besnik@programeshqip.org>, 2007
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-02 22:58+0200\n"
-"PO-Revision-Date: 2017-09-19 18:02+0000\n"
-"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"PO-Revision-Date: 2018-02-28 22:19+0000\n"
+"Last-Translator: Besnik <besnik@programeshqip.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/xfce/garcon/language/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgstr "Aksesorë"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "Mjete dhe zbatime të zakonshëm desktopi"
+msgstr "Mjete dhe aplikacione të zakonshme desktopi"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -44,11 +45,11 @@ msgstr "Programe edukimi"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
-msgstr "Lojra"
+msgstr "Lojëra"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr "Lojëra, \"puzzle\"-e dhe të tjera programe zbavitjeje"
+msgstr "Lojëra, puzzle-e dhe të tjera programe zbavitjeje"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
@@ -56,15 +57,15 @@ msgstr "Grafika"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "Zbatime për krijim dhe manipulim grafike"
+msgstr "Aplikacione për krijim dhe manipulim grafike"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr ""
+msgstr "Hardware"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
-msgstr ""
+msgstr "Rregullime për disa pajisje hardware"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Multimedia"
@@ -72,15 +73,15 @@ msgstr "Multimedia"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "Lojtësa dhe përpunuesa audioje dhe videoje"
+msgstr "Lojtësa dhe përpunues audioje dhe videoje"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
-msgstr ""
+msgstr "Aplikacione për përdorim të Internetit"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -88,7 +89,7 @@ msgstr "Zyrë"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "Zbatime zyre dhe prodhimshmërie"
+msgstr "Aplikacione zyre dhe prodhimtarie"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Other"
@@ -96,19 +97,19 @@ msgstr "Tjetër"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Applications that don't fit into other categories"
-msgstr "Zbatime që nuk hyjnë në ndonjë kategori"
+msgstr "Aplikacione që s’hyjnë në ndonjë kategori"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
-msgstr ""
+msgstr "Personale"
 
 #: ../data/xfce/xfce-personal.directory.in.h:2
 msgid "Personal settings"
-msgstr ""
+msgstr "Rregullime personale"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr "Ekrankursyesa"
+msgstr "Ekrankursyes"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
@@ -120,7 +121,7 @@ msgstr "Rregullime"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Desktop and system settings applications"
-msgstr "Zbatime për rregullime desktopi dhe sistemi"
+msgstr "Aplikacione rregullimi desktopi dhe sistemi"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -133,14 +134,14 @@ msgstr "Mjete dhe të dobishëm sistemi"
 #: ../garcon/garcon-menu.c:706
 #, c-format
 msgid "File \"%s\" not found"
-msgstr "Kartela \"%s\" nuk u gjet"
+msgstr "Kartela \"%s\" s’u gjet"
 
 #: ../garcon/garcon-menu-parser.c:280
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Nuk ngarkoi dot të dhëna menuje kartele prej %s: %s"
+msgstr "S’u ngarkuan dot të dhëna menuje kartele prej %s: %s"
 
 #: ../garcon/garcon-menu-parser.c:287
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Nuk ngarkoi dot të dhëna menuje kartele prej %s"
+msgstr "S’u ngarkuan dot të dhëna menuje kartele prej %s"
