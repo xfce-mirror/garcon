@@ -1,0 +1,169 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Сяргей Снапкоўскі <sirozass@outlook.com>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Garcon\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-20 18:30+0200\n"
+"PO-Revision-Date: 2018-03-21 17:18+0000\n"
+"Last-Translator: Сяргей Снапкоўскі <sirozass@outlook.com>\n"
+"Language-Team: Belarusian (http://www.transifex.com/xfce/garcon/language/be/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: be\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:1
+msgid "Accessories"
+msgstr "Прыстасаваньні"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:2
+msgid "Common desktop tools and applications"
+msgstr "Простыя прылады для сталу й дастасаваньні"
+
+#: ../data/xfce/xfce-development.directory.in.h:1
+msgid "Development"
+msgstr "Распрацоўка"
+
+#: ../data/xfce/xfce-development.directory.in.h:2
+msgid "Software development tools"
+msgstr "Прылады для распрацоўкі праграмаў"
+
+#: ../data/xfce/xfce-education.directory.in.h:1
+msgid "Education"
+msgstr "Адукацыя"
+
+#: ../data/xfce/xfce-education.directory.in.h:2
+msgid "Educational software"
+msgstr "Праграмы для адукацыі"
+
+#: ../data/xfce/xfce-games.directory.in.h:1
+msgid "Games"
+msgstr "Гульні"
+
+#: ../data/xfce/xfce-games.directory.in.h:2
+msgid "Games, puzzles, and other fun software"
+msgstr "Гульні, мазайкі, й йнішыя забавы"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:1
+msgid "Graphics"
+msgstr "Графіка"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:2
+msgid "Graphics creation and manipulation applications"
+msgstr "Стварэньне графікі й дастасаваньні для маніпуляцыяў"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Жалеза"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Налады для некалькіх прыладаў жалеза"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:1
+msgid "Multimedia"
+msgstr "Мультымедыа"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "Аўдыя й відэа прайгравальнікі й рэдактары"
+
+#: ../data/xfce/xfce-network.directory.in.h:1
+msgid "Internet"
+msgstr "Сеціва"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "Дастасаваньні для доступу ў Сеціва"
+
+#: ../data/xfce/xfce-office.directory.in.h:1
+msgid "Office"
+msgstr "Офіс"
+
+#: ../data/xfce/xfce-office.directory.in.h:2
+msgid "Office and productivity applications"
+msgstr "Дастасаваньні для офісу й прадукцыйнасьці"
+
+#: ../data/xfce/xfce-other.directory.in.h:1
+msgid "Other"
+msgstr "Йньшыя"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "Дастасаваньні, якія ня ўвайшлі ў йньшыя катэгорыі"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Асабістыя"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Асабістыя налады"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:1
+msgid "Screensavers"
+msgstr "Ахоўнікі экрану"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr ""
+
+#: ../data/xfce/xfce-settings.directory.in.h:1
+msgid "Settings"
+msgstr ""
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr ""
+
+#: ../data/xfce/xfce-system.directory.in.h:1
+msgid "System"
+msgstr ""
+
+#: ../data/xfce/xfce-system.directory.in.h:2
+msgid "System tools and utilities"
+msgstr ""
+
+#: ../garcon/garcon-menu.c:702
+#, c-format
+msgid "File \"%s\" not found"
+msgstr ""
+
+#: ../garcon/garcon-menu-parser.c:276
+#, c-format
+msgid "Could not load menu file data from %s: %s"
+msgstr ""
+
+#: ../garcon/garcon-menu-parser.c:283
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr ""
+
+#: ../garcon-gtk/garcon-gtk-menu.c:446
+#, c-format
+msgid "Failed to execute command \"%s\"."
+msgstr ""
+
+#: ../garcon-gtk/garcon-gtk-menu.c:472
+msgid "Launch Error"
+msgstr ""
+
+#: ../garcon-gtk/garcon-gtk-menu.c:474
+msgid ""
+"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
+"edit menu items."
+msgstr ""
+
+#: ../garcon-gtk/garcon-gtk-menu.c:476
+msgid "_Close"
+msgstr ""
+
+#: ../garcon-gtk/garcon-gtk-menu.c:988
+msgid "Failed to load the applications menu"
+msgstr ""
