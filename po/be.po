@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2018-03-21 17:18+0000\n"
+"PO-Revision-Date: 2018-03-23 07:59+0000\n"
 "Last-Translator: Сяргей Снапкоўскі <sirozass@outlook.com>\n"
 "Language-Team: Belarusian (http://www.transifex.com/xfce/garcon/language/be/)\n"
 "MIME-Version: 1.0\n"
@@ -112,58 +112,58 @@ msgstr "Ахоўнікі экрану"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Кампанэнты захавальніка экрану"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
-msgstr ""
+msgstr "Налады"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Desktop and system settings applications"
-msgstr ""
+msgstr "Дастасаваньні стала й наладаў сыстэмы"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
-msgstr ""
+msgstr "Сыстэма"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Сыстэмныя налады й утыліты"
 
 #: ../garcon/garcon-menu.c:702
 #, c-format
 msgid "File \"%s\" not found"
-msgstr ""
+msgstr "Файл \"%s\" ня знойдзены"
 
 #: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr ""
+msgstr "Немагчыма спампаваць дадзеныя файла мэню з %s: %s"
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
+msgstr "Немагчыма спампаваць дадзеныя файла мэню з %s"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr ""
+msgstr "Немагчыма выканаць загад \"%s\"."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:472
 msgid "Launch Error"
-msgstr ""
+msgstr "Памылка запуску"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:474
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr ""
+msgstr "Немагчыма запусьціць \"exo-desktop-item-edit\", які патрэбны для стварэньня й рэдагаваньня элэмэнтаў мэню."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:476
 msgid "_Close"
-msgstr ""
+msgstr "_Зачыніць"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
-msgstr ""
+msgstr "Немагчыма спампаваць мэню дастасаваньняў"
