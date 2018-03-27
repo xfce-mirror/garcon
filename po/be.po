@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2018-03-23 07:59+0000\n"
-"Last-Translator: Сяргей Снапкоўскі <sirozass@outlook.com>\n"
+"PO-Revision-Date: 2018-03-27 19:47+0000\n"
+"Last-Translator: Zmicer Turok <zmicerturok@gmail.com>\n"
 "Language-Team: Belarusian (http://www.transifex.com/xfce/garcon/language/be/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr "Прыстасаваньні"
+msgstr "Інструменты"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "Простыя прылады для сталу й дастасаваньні"
+msgstr "Стандартныя ўтыліты і праграмы"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -32,7 +32,7 @@ msgstr "Распрацоўка"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr "Прылады для распрацоўкі праграмаў"
+msgstr "Сродкі распрацоўкі праграмнага забеспячэння"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
@@ -40,7 +40,7 @@ msgstr "Адукацыя"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr "Праграмы для адукацыі"
+msgstr "Адукацыйнае праграмнае забеспячэнне"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
@@ -48,7 +48,7 @@ msgstr "Гульні"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr "Гульні, мазайкі, й йнішыя забавы"
+msgstr "Гульні, пазлы, і іншыя забавы"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
@@ -56,31 +56,31 @@ msgstr "Графіка"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "Стварэньне графікі й дастасаваньні для маніпуляцыяў"
+msgstr "Праграмы для стварэння і апрацоўкі графікі"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr "Жалеза"
+msgstr "Абсталяванне"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
-msgstr "Налады для некалькіх прыладаў жалеза"
+msgstr "Налады некаторых тыпаў абсталявання"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Multimedia"
-msgstr "Мультымедыа"
+msgstr "Мультымедыя"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "Аўдыя й відэа прайгравальнікі й рэдактары"
+msgstr "Аўдыё/відэа прайгравальнікі і рэдактары"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
-msgstr "Сеціва"
+msgstr "Інтэрнэт"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
-msgstr "Дастасаваньні для доступу ў Сеціва"
+msgstr "Праграмы для доступу ў Інтэрнэт"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -88,15 +88,15 @@ msgstr "Офіс"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "Дастасаваньні для офісу й прадукцыйнасьці"
+msgstr "Офісныя праграмы"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Other"
-msgstr "Йньшыя"
+msgstr "Іншыя праграмы"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Applications that don't fit into other categories"
-msgstr "Дастасаваньні, якія ня ўвайшлі ў йньшыя катэгорыі"
+msgstr "Праграмы, што не патрапілі ў іншыя катэгорыі"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -108,11 +108,11 @@ msgstr "Асабістыя налады"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr "Ахоўнікі экрану"
+msgstr "Ахоўнікі экрана"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "Кампанэнты захавальніка экрану"
+msgstr "Ахоўнікі экрана"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -120,35 +120,35 @@ msgstr "Налады"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Desktop and system settings applications"
-msgstr "Дастасаваньні стала й наладаў сыстэмы"
+msgstr "Праграмы для наладкі працоўнага стала і сістэмы"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
-msgstr "Сыстэма"
+msgstr "Сістэма"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr "Сыстэмныя налады й утыліты"
+msgstr "Сістэмныя прылады і ўтыліты"
 
 #: ../garcon/garcon-menu.c:702
 #, c-format
 msgid "File \"%s\" not found"
-msgstr "Файл \"%s\" ня знойдзены"
+msgstr "Файл \"%s\" не знойдзены"
 
 #: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Немагчыма спампаваць дадзеныя файла мэню з %s: %s"
+msgstr "Не атрымалася загрузіць даныя файла меню з %s: %s"
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Немагчыма спампаваць дадзеныя файла мэню з %s"
+msgstr "Не атрымалася загрузіць даныя файла меню з %s"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr "Немагчыма выканаць загад \"%s\"."
+msgstr "Не атрымалася выканаць загад \"%s\"."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:472
 msgid "Launch Error"
@@ -158,12 +158,12 @@ msgstr "Памылка запуску"
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr "Немагчыма запусьціць \"exo-desktop-item-edit\", які патрэбны для стварэньня й рэдагаваньня элэмэнтаў мэню."
+msgstr "Немагчыма запусціць \"exo-desktop-item-edit\", што патрабуецца для рэдагавання элементаў меню."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:476
 msgid "_Close"
-msgstr "_Зачыніць"
+msgstr "Закры_ць"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
-msgstr "Немагчыма спампаваць мэню дастасаваньняў"
+msgstr "Не атрымалася загрузіць меню праграм"
