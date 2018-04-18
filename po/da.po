@@ -4,16 +4,18 @@
 # 
 # Translators:
 # Aputsiak Niels Janussen (Skjalden) <aj@isit.gl>, 2013
+# Aputsiak Niels Janussen (Skjalden) <aj@isit.gl>, 2013
 # Linuxbruger <y.z@live.dk>, 2018
 # Per Kongstad <p_kongstad@op.pl>, 2009,2016
 # scootergrisen, 2017
+# scootergrisen, 2017-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2018-03-03 19:30+0000\n"
-"Last-Translator: Linuxbruger <y.z@live.dk>\n"
+"PO-Revision-Date: 2018-04-18 18:45+0000\n"
+"Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/garcon/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +29,7 @@ msgstr "Tilbehør"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "Almen skrivebords-værktøjer og applikationer"
+msgstr "Standard skrivebordsværktøjer og programmer"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -35,7 +37,7 @@ msgstr "Udvikling"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr "Udviklingsværktøjer til applikationer"
+msgstr "Udviklingsværktøjer til programmer"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
@@ -43,7 +45,7 @@ msgstr "Uddannelse"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr "Uddannelses-mæssig software"
+msgstr "Programmer til uddannelse"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
@@ -59,7 +61,7 @@ msgstr "Grafik"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "Grafisk skabelse og manipulerings-applikationer"
+msgstr "Grafisk skabelses- og manipuleringsprogrammer"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
@@ -75,7 +77,7 @@ msgstr "Multimedie"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "Lyd og video-afspillere og editorer"
+msgstr "Lyd-, videoafspillere samt -editorer"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
@@ -83,7 +85,7 @@ msgstr "Internet"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
-msgstr "Applikationer til internet-adgang"
+msgstr "Programmer til internetadgang"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -91,7 +93,7 @@ msgstr "Kontor"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "Kontor og produktivitets-applikationer"
+msgstr "Kontor- og produktivitetsprogrammer"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Other"
@@ -99,11 +101,11 @@ msgstr "Andre"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Applications that don't fit into other categories"
-msgstr "Applikationer som ikke passer i andre kategorier"
+msgstr "Programmer som ikke falder indenfor andre kategorier"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
-msgstr "Personlig"
+msgstr "Personlige"
 
 #: ../data/xfce/xfce-personal.directory.in.h:2
 msgid "Personal settings"
@@ -111,11 +113,11 @@ msgstr "Personlige indstillinger"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr "Pause-skærme"
+msgstr "Pauseskærme"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "Pauseskærms-programmer"
+msgstr "Pauseskærmsprogrammer"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -123,7 +125,7 @@ msgstr "Indstillinger"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Desktop and system settings applications"
-msgstr "Skrivebords og system-indstillings applikationer"
+msgstr "Skrivebords- og systemindstillingsprogrammer"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -131,37 +133,37 @@ msgstr "System"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr "System-værktøjer"
+msgstr "Systemværktøjer"
 
 #: ../garcon/garcon-menu.c:702
 #, c-format
 msgid "File \"%s\" not found"
-msgstr "Filen \"%s\" ikke fundet"
+msgstr "Filen \"%s\" blev ikke fundet"
 
 #: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Kunne ikke indlæse menu-fil data fra %s: %s"
+msgstr "Kunne ikke indlæse data til menufil fra %s: %s"
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Kunne ikke indlæse menu-fil data fra %s"
+msgstr "Kunne ikke indlæse data til menufil fra %s"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr "Fejl med udføre kommandoen \"%s\"."
+msgstr "Kunne ikke udføre kommandoen \"%s\"."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:472
 msgid "Launch Error"
-msgstr "Start-fejl"
+msgstr "Startfejl"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:474
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr "Kunne ikke starte \"exo-desktop-item-edit\", som er krævet for skabelse og redigering af menu-elementer."
+msgstr "Kunne ikke starte \"exo-desktop-item-edit\", som er nødvendigt for oprettelse eller redigering af menuobjekter."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:476
 msgid "_Close"
@@ -169,4 +171,4 @@ msgstr "_Luk"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
-msgstr "Fejl, med at indlæse applikations-menu"
+msgstr "Kunne ikke starte programmenu"
