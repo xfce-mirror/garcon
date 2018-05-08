@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2018-04-22 19:06+0000\n"
+"PO-Revision-Date: 2018-05-08 18:17+0000\n"
 "Last-Translator: Panwar108 <caspian7pena@gmail.com>\n"
 "Language-Team: Hindi (http://www.transifex.com/xfce/garcon/language/hi/)\n"
 "MIME-Version: 1.0\n"
@@ -100,15 +100,15 @@ msgstr ""
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
-msgstr ""
+msgstr "निजी"
 
 #: ../data/xfce/xfce-personal.directory.in.h:2
 msgid "Personal settings"
-msgstr ""
+msgstr "निजी सेटिंग्स"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr ""
+msgstr "स्क्रीनसेवर"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
