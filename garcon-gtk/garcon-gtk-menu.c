@@ -1049,7 +1049,7 @@ garcon_gtk_menu_set_menu (GarconGtkMenu *menu,
     }
 
   if (garcon_menu != NULL)
-    menu->priv->menu = g_object_ref (G_OBJECT (garcon_menu));
+    menu->priv->menu = GARCON_MENU (g_object_ref (G_OBJECT (garcon_menu)));
   else
     menu->priv->menu = NULL;
 
@@ -1076,7 +1076,7 @@ garcon_gtk_menu_get_menu (GarconGtkMenu *menu)
 {
   g_return_val_if_fail (GARCON_GTK_IS_MENU (menu), NULL);
   if (menu->priv->menu != NULL)
-    return g_object_ref (G_OBJECT (menu->priv->menu));
+    return GARCON_MENU (g_object_ref (G_OBJECT (menu->priv->menu)));
   return NULL;
 }
 

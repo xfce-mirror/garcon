@@ -276,7 +276,8 @@ garcon_menu_node_create (GarconMenuNodeType node_type,
 
 
 GarconMenuNode *
-garcon_menu_node_copy (GarconMenuNode *node)
+garcon_menu_node_copy (GarconMenuNode *node,
+                       gpointer        data)
 {
   GarconMenuNode *copy;
 
@@ -808,7 +809,8 @@ garcon_menu_node_tree_copy (GNode *tree)
 
 
 static gboolean
-free_children (GNode *tree)
+free_children (GNode   *tree,
+               gpointer data)
 {
   garcon_menu_node_tree_free_data (tree);
   return FALSE;

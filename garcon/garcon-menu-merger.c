@@ -872,6 +872,15 @@ garcon_menu_parser_insert_elements (GNode *node,
 
 
 
+static void
+garcon_menu_merger_object_ref (gpointer data,
+                               gpointer user_data)
+{
+  g_object_ref (G_OBJECT (data));
+}
+
+
+
 static gboolean
 garcon_menu_merger_process_merge_files (GNode                   *node,
                                         GarconMenuMergerContext *context)
@@ -906,7 +915,7 @@ garcon_menu_merger_process_merge_files (GNode                   *node,
       g_object_unref (parser);
 
       merger->priv->file_stack = g_list_copy (context->file_stack);
-      g_list_foreach (merger->priv->file_stack, (GFunc) g_object_ref, NULL);
+      g_list_foreach (merger->priv->file_stack, garcon_menu_merger_object_ref, NULL);
 
       if (G_LIKELY (garcon_menu_merger_run (merger, 
                                             context->merge_files, 
@@ -1028,7 +1037,8 @@ collect_moves (GNode  *node,
 
 
 static gboolean
-remove_moves (GNode *node)
+remove_moves (GNode   *node,
+              gpointer data)
 {
   if (garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_MOVE)
     garcon_menu_node_tree_free (node);

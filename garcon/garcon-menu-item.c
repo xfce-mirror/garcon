@@ -1027,7 +1027,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
     {
       if (G_LIKELY (item->priv->file != NULL))
         g_object_unref (G_OBJECT (item->priv->file));
-      item->priv->file = g_object_ref (G_OBJECT (file));
+      item->priv->file = G_FILE (g_object_ref (G_OBJECT (file)));
 
       g_object_notify (G_OBJECT (item), "file");
     }

@@ -36,8 +36,8 @@
 
 
 
-static gboolean print_node (GNode *node,
-                            gint   depth);
+static gboolean print_node (GNode   *node,
+                            gpointer depth);
 
 
 
@@ -77,10 +77,11 @@ print_child_nodes (GNode *node,
 
 
 static gboolean
-print_node (GNode *node,
-            gint   depth)
+print_node (GNode    *node,
+            gpointer  data)
 {
   gint i;
+  gint depth = GPOINTER_TO_INT (data);
 
 #define INDENT {for (i = 0; i < depth; ++i) g_print (" ");}
 

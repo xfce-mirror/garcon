@@ -101,7 +101,8 @@ GarconMenuNodeType        garcon_menu_node_get_node_type                (GarconM
 GarconMenuNode           *garcon_menu_node_create                       (GarconMenuNodeType      node_type,
                                                                          gpointer                first_value,
                                                                          ...) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
-GarconMenuNode           *garcon_menu_node_copy                         (GarconMenuNode         *node) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+GarconMenuNode           *garcon_menu_node_copy                         (GarconMenuNode         *node,
+                                                                         gpointer                data) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 const gchar              *garcon_menu_node_get_string                   (GarconMenuNode         *node);
 void                      garcon_menu_node_set_string                   (GarconMenuNode         *node,
                                                                          const gchar            *value);
