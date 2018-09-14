@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2017-09-19 18:02+0000\n"
+"PO-Revision-Date: 2018-09-14 00:23+0000\n"
 "Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Basque (http://www.transifex.com/xfce/garcon/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -148,11 +148,11 @@ msgstr "Ezin da %s-etik menuaren fitxategi datuak kargatu"
 #: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr ""
+msgstr "Ezin da \"%s\" komandoa exekutatu."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:472
 msgid "Launch Error"
-msgstr ""
+msgstr "Errorea abiaraztean"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:474
 msgid ""
@@ -162,8 +162,8 @@ msgstr ""
 
 #: ../garcon-gtk/garcon-gtk-menu.c:476
 msgid "_Close"
-msgstr ""
+msgstr "_Itxi"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
-msgstr ""
+msgstr "Huts aplikazio menua kargatzean"
