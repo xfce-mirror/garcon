@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Сяргей Снапкоўскі <sirozass@outlook.com>, 2018
+# Сяргей Снапкоўскі, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2018-03-27 19:47+0000\n"
+"PO-Revision-Date: 2018-09-14 00:23+0000\n"
 "Last-Translator: Zmicer Turok <zmicerturok@gmail.com>\n"
 "Language-Team: Belarusian (http://www.transifex.com/xfce/garcon/language/be/)\n"
 "MIME-Version: 1.0\n"
