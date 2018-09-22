@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2018-09-22 13:19+0000\n"
+"PO-Revision-Date: 2018-09-22 18:12+0000\n"
 "Last-Translator: Charles Monzat <c.monzat@laposte.net>\n"
 "Language-Team: French (http://www.transifex.com/xfce/garcon/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -58,11 +58,11 @@ msgstr "Jeux, puzzles et autres logiciels ludiques"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr "Infographie"
+msgstr "Graphisme"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "Applications graphiques pour la création et la manipulation"
+msgstr "Applications de création et de manipulation graphiques"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
@@ -70,7 +70,7 @@ msgstr "Matériel"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
-msgstr "Paramètres pour plusieurs périphériques"
+msgstr "Paramètres pour différents périphériques"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Multimedia"
@@ -118,7 +118,7 @@ msgstr "Économiseurs d’écran"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "Greffons d’économiseur d’écran"
+msgstr "Applets d’économiseur d’écran"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
