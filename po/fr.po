@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2018-09-21 10:35+0000\n"
+"PO-Revision-Date: 2018-09-22 10:28+0000\n"
 "Last-Translator: Charles Monzat <c.monzat@laposte.net>\n"
 "Language-Team: French (http://www.transifex.com/xfce/garcon/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -139,7 +139,7 @@ msgstr "Outils et utilitaires système"
 #: ../garcon/garcon-menu.c:702
 #, c-format
 msgid "File \"%s\" not found"
-msgstr "Fichier « %s » non trouvé"
+msgstr "Fichier « %s » introuvable"
 
 #: ../garcon/garcon-menu-parser.c:276
 #, c-format
