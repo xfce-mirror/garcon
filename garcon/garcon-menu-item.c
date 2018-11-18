@@ -1825,8 +1825,9 @@ gboolean
 garcon_menu_item_get_show_in_environment (GarconMenuItem *item)
 {
   const gchar *env;
-  guint        i;
+  guint        i, j;
   gboolean     show = TRUE;
+  gchar**      path = NULL;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
 
@@ -1838,20 +1839,29 @@ garcon_menu_item_get_show_in_environment (GarconMenuItem *item)
   if (G_UNLIKELY (env == NULL))
     return TRUE;
 
-  /* According to the spec there is either a OnlyShowIn or a NotShowIn list */
+  /* According to the spec there is either a OnlyShowIn or a NotShowIn list
+   * The environment can be multiple Desktop Names separated by a colons */
   if (G_UNLIKELY (item->priv->only_show_in != NULL))
     {
       /* Check if your environemnt is in OnlyShowIn list */
-      for (i = 0, show = FALSE; !show && item->priv->only_show_in[i] != NULL; i++)
-        if (g_strcmp0 (item->priv->only_show_in[i], env) == 0)
-          show = TRUE;
+      show = FALSE;
+      path = g_strsplit(env, ":", 0);
+      for (j = 0; path[j] != NULL; j++)
+        for (i = 0; !show && item->priv->only_show_in[i] != NULL; i++)
+          if (g_strcmp0 (item->priv->only_show_in[i], path[j]) == 0)
+            show = TRUE;
+      g_strfreev(path);
     }
   else if (G_UNLIKELY (item->priv->not_show_in != NULL))
     {
       /* Check if your environemnt is in NotShowIn list */
-      for (i = 0, show = TRUE; show && item->priv->not_show_in[i] != NULL; i++)
-        if (g_strcmp0 (item->priv->not_show_in[i], env) == 0)
-          show = FALSE;
+      show = TRUE;
+      path = g_strsplit(env, ":", 0);
+      for (j = 0; path[j] != NULL; j++)
+        for (i = 0; show && item->priv->not_show_in[i] != NULL; i++)
+          if (g_strcmp0 (item->priv->not_show_in[i], path[j]) == 0)
+            show = FALSE;
+      g_strfreev(path);
     }
 
   return show;
@@ -1863,8 +1873,9 @@ gboolean
 garcon_menu_item_only_show_in_environment (GarconMenuItem *item)
 {
   const gchar *env;
-  guint        i;
+  guint        i, j;
   gboolean     show = FALSE;
+  gchar**      path = NULL;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
 
@@ -1879,9 +1890,12 @@ garcon_menu_item_only_show_in_environment (GarconMenuItem *item)
   if (G_UNLIKELY (item->priv->only_show_in != NULL))
     {
       /* Check if your environemnt is in OnlyShowIn list */
-      for (i = 0, show = FALSE; !show && item->priv->only_show_in[i] != NULL; i++)
-        if (g_strcmp0 (item->priv->only_show_in[i], env) == 0)
-          show = TRUE;
+      show = FALSE;
+      path = g_strsplit(env, ":", 0);
+      for (j= 0; path[j] != NULL; j++)
+        for (i = 0; !show && item->priv->only_show_in[i] != NULL; i++)
+          if (g_strcmp0 (item->priv->only_show_in[i], path[j]) == 0)
+            show = TRUE;
     }
 
   return show;
