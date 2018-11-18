@@ -32,7 +32,7 @@ m4_define([garcon_version], [garcon_version_major().garcon_version_minor().garco
 dnl ********************************************
 dnl *** Full debug support for GIT snapshots ***
 dnl ********************************************
-m4_define([garcon_debug_default], [ifelse(garcon_version_tag(), [git], [full], [minimum])])
+m4_define([garcon_debug_default], [ifelse(garcon_version_tag(), [git], [yes], [minimum])])
 
 dnl ****************************
 dnl *** For intltool support ***
