@@ -1,4 +1,4 @@
-0.6.2 (not yet released)
+0.6.2
 =====
 
 - Fix some menu icons are too big (Bug #13785)
@@ -10,6 +10,7 @@
 - Fix documentation generation
 - Fix make distcheck build
 - Fix some autogen warnings
+- Update dependencies and copyright
 - Translation Updates: Amharic, Arabic, Asturian, Belarusian,
   Bulgarian, Catalan, Czech, Danish, German, Greek, English (Australia),
   English (United Kingdom), Esperanto, Spanish, Estonian, Basque,
