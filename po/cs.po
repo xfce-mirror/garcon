@@ -6,13 +6,13 @@
 # Alois Nešpor <info@aloisnespor.info>, 2013
 # Michal Várady <miko.vaji@gmail.com>, 2016
 # Miro Hrončok <churchyard@gmail.com>, 2008
-# Pavel Borecki <pavel.borecki@gmail.com>, 2018
+# Pavel Borecki <pavel.borecki@gmail.com>, 2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2018-09-14 00:23+0000\n"
+"PO-Revision-Date: 2019-01-11 05:57+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/xfce/garcon/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgstr "Hardware"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
-msgstr "Nastavení mnoha hardwarových zařízení"
+msgstr "Nastavení různých hardwarových zařízení"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Multimedia"
@@ -99,7 +99,7 @@ msgstr "Ostatní"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Applications that don't fit into other categories"
-msgstr "Aplikace nepatřící do žádné kategorie"
+msgstr "Aplikace nespadající do ostatních kategorií"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
