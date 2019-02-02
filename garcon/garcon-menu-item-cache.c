@@ -73,7 +73,7 @@ struct _GarconMenuItemCachePrivate
 
 
 
-G_DEFINE_TYPE (GarconMenuItemCache, garcon_menu_item_cache, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GarconMenuItemCache, garcon_menu_item_cache, G_TYPE_OBJECT)
 
 
 
@@ -81,8 +81,6 @@ static void
 garcon_menu_item_cache_class_init (GarconMenuItemCacheClass *klass)
 {
   GObjectClass *gobject_class;
-
-  g_type_class_add_private (klass, sizeof (GarconMenuItemCachePrivate));
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = garcon_menu_item_cache_finalize;
@@ -93,14 +91,15 @@ garcon_menu_item_cache_class_init (GarconMenuItemCacheClass *klass)
 static void
 garcon_menu_item_cache_init (GarconMenuItemCache *cache)
 {
-  cache->priv = G_TYPE_INSTANCE_GET_PRIVATE (cache, GARCON_TYPE_MENU_ITEM_CACHE, GarconMenuItemCachePrivate);
+  cache->priv = garcon_menu_item_cache_get_instance_private (cache);
 
 #if GLIB_CHECK_VERSION (2, 32, 0)
   g_mutex_init (&cache->priv->lock);
 #endif
 
   /* Create empty hash table */
-  cache->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
+  cache->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                              g_free,
                                               (GDestroyNotify) garcon_menu_item_unref);
 }
 

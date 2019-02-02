@@ -60,14 +60,12 @@ struct _GarconMenuItemActionPrivate
   gchar *icon_name;
 };
 
-G_DEFINE_TYPE (GarconMenuItemAction, garcon_menu_item_action, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GarconMenuItemAction, garcon_menu_item_action, G_TYPE_OBJECT)
 
 static void
 garcon_menu_item_action_class_init (GarconMenuItemActionClass *klass)
 {
   GObjectClass *gobject_class;
-
-  g_type_class_add_private (klass, sizeof (GarconMenuItemActionPrivate));
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = garcon_menu_item_action_finalize;
@@ -120,7 +118,7 @@ garcon_menu_item_action_class_init (GarconMenuItemActionClass *klass)
 static void
 garcon_menu_item_action_init (GarconMenuItemAction *action)
 {
-  action->priv = G_TYPE_INSTANCE_GET_PRIVATE (action, GARCON_TYPE_MENU_ITEM_ACTION, GarconMenuItemActionPrivate);
+  action->priv = garcon_menu_item_action_get_instance_private (action);
 }
 
 

@@ -118,7 +118,7 @@ struct _GarconMenuDirectoryPrivate
 
 
 /* TODO, maybe implement the GarconMenuElement interface */
-G_DEFINE_TYPE (GarconMenuDirectory, garcon_menu_directory, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GarconMenuDirectory, garcon_menu_directory, G_TYPE_OBJECT)
 
 
 
@@ -126,8 +126,6 @@ static void
 garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
 {
   GObjectClass *gobject_class;
-
-  g_type_class_add_private (klass, sizeof(GarconMenuDirectoryPrivate));
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = garcon_menu_directory_finalize;
@@ -212,7 +210,7 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
 static void
 garcon_menu_directory_init (GarconMenuDirectory *directory)
 {
-  directory->priv = G_TYPE_INSTANCE_GET_PRIVATE (directory, GARCON_TYPE_MENU_DIRECTORY, GarconMenuDirectoryPrivate);
+  directory->priv = garcon_menu_directory_get_instance_private (directory);
   directory->priv->file = NULL;
   directory->priv->name = NULL;
   directory->priv->icon_name = NULL;

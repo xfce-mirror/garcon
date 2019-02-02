@@ -220,6 +220,7 @@ struct _GarconMenuPrivate
 
 
 G_DEFINE_TYPE_WITH_CODE (GarconMenu, garcon_menu, G_TYPE_OBJECT,
+                         G_ADD_PRIVATE (GarconMenu)
                          G_IMPLEMENT_INTERFACE (GARCON_TYPE_MENU_ELEMENT,
                                                 garcon_menu_element_init))
 
@@ -234,8 +235,6 @@ static void
 garcon_menu_class_init (GarconMenuClass *klass)
 {
   GObjectClass *gobject_class;
-
-  g_type_class_add_private (klass, sizeof (GarconMenuPrivate));
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = garcon_menu_finalize;
@@ -317,7 +316,7 @@ garcon_menu_element_init (GarconMenuElementIface *iface)
 static void
 garcon_menu_init (GarconMenu *menu)
 {
-  menu->priv = G_TYPE_INSTANCE_GET_PRIVATE (menu, GARCON_TYPE_MENU, GarconMenuPrivate);
+  menu->priv = garcon_menu_get_instance_private (menu);
   menu->priv->file = NULL;
   menu->priv->tree = NULL;
   menu->priv->merge_files = NULL;

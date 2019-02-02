@@ -98,8 +98,11 @@ struct _GarconMenuMergerContext
 
 
 
-G_DEFINE_TYPE_WITH_CODE (GarconMenuMerger, garcon_menu_merger, G_TYPE_OBJECT,
-    G_IMPLEMENT_INTERFACE (GARCON_TYPE_MENU_TREE_PROVIDER, garcon_menu_merger_provider_init))
+G_DEFINE_TYPE_WITH_CODE (GarconMenuMerger, garcon_menu_merger,
+                         G_TYPE_OBJECT,
+                         G_ADD_PRIVATE (GarconMenuMerger)
+                         G_IMPLEMENT_INTERFACE (GARCON_TYPE_MENU_TREE_PROVIDER,
+                                                garcon_menu_merger_provider_init))
 
 
 
@@ -107,8 +110,6 @@ static void
 garcon_menu_merger_class_init (GarconMenuMergerClass *klass)
 {
   GObjectClass *gobject_class;
-
-  g_type_class_add_private (klass, sizeof (GarconMenuMergerPrivate));
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = garcon_menu_merger_finalize;
@@ -141,7 +142,7 @@ garcon_menu_merger_provider_init (GarconMenuTreeProviderIface *iface)
 static void
 garcon_menu_merger_init (GarconMenuMerger *merger)
 {
-  merger->priv = G_TYPE_INSTANCE_GET_PRIVATE (merger, GARCON_TYPE_MENU_MERGER, GarconMenuMergerPrivate);
+  merger->priv = garcon_menu_merger_get_instance_private (merger);
   merger->priv->tree_provider = NULL;
   merger->priv->menu = NULL;
   merger->priv->file_stack = NULL;

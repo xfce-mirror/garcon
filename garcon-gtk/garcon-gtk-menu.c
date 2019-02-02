@@ -99,7 +99,7 @@ static GParamSpec *menu_props[N_PROPERTIES] = { NULL, };
 
 
 
-G_DEFINE_TYPE (GarconGtkMenu, garcon_gtk_menu, GTK_TYPE_MENU)
+G_DEFINE_TYPE_WITH_PRIVATE (GarconGtkMenu, garcon_gtk_menu, GTK_TYPE_MENU)
 
 
 
@@ -108,8 +108,6 @@ garcon_gtk_menu_class_init (GarconGtkMenuClass *klass)
 {
   GObjectClass   *gobject_class;
   GtkWidgetClass *gtkwidget_class;
-
-  g_type_class_add_private (klass, sizeof (GarconGtkMenuPrivate));
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = garcon_gtk_menu_finalize;
@@ -206,7 +204,7 @@ garcon_gtk_menu_class_init (GarconGtkMenuClass *klass)
 static void
 garcon_gtk_menu_init (GarconGtkMenu *menu)
 {
-  menu->priv = G_TYPE_INSTANCE_GET_PRIVATE (menu, GARCON_GTK_TYPE_MENU, GarconGtkMenuPrivate);
+  menu->priv = garcon_gtk_menu_get_instance_private (menu);
 
   menu->priv->show_generic_names = FALSE;
   menu->priv->show_menu_icons = TRUE;

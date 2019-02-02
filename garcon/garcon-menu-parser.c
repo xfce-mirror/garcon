@@ -125,8 +125,11 @@ struct _GarconMenuParserPrivate
 
 
 
-G_DEFINE_TYPE_WITH_CODE (GarconMenuParser, garcon_menu_parser, G_TYPE_OBJECT,
-    G_IMPLEMENT_INTERFACE (GARCON_TYPE_MENU_TREE_PROVIDER, garcon_menu_parser_provider_init))
+G_DEFINE_TYPE_WITH_CODE (GarconMenuParser, garcon_menu_parser,
+                         G_TYPE_OBJECT,
+                         G_ADD_PRIVATE (GarconMenuParser)
+                         G_IMPLEMENT_INTERFACE (GARCON_TYPE_MENU_TREE_PROVIDER,
+                                                garcon_menu_parser_provider_init))
 
 
 
@@ -134,8 +137,6 @@ static void
 garcon_menu_parser_class_init (GarconMenuParserClass *klass)
 {
   GObjectClass *gobject_class;
-
-  g_type_class_add_private (klass, sizeof (GarconMenuParserPrivate));
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = garcon_menu_parser_finalize;
@@ -167,7 +168,7 @@ garcon_menu_parser_provider_init (GarconMenuTreeProviderIface *iface)
 static void
 garcon_menu_parser_init (GarconMenuParser *parser)
 {
-  parser->priv = G_TYPE_INSTANCE_GET_PRIVATE (parser, GARCON_TYPE_MENU_PARSER, GarconMenuParserPrivate);
+  parser->priv = garcon_menu_parser_get_instance_private (parser);
   parser->priv->file = NULL;
   parser->priv->menu = NULL;
 }

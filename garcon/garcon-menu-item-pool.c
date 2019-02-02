@@ -55,7 +55,7 @@ struct _GarconMenuItemPool
 
 
 
-G_DEFINE_TYPE (GarconMenuItemPool, garcon_menu_item_pool, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GarconMenuItemPool, garcon_menu_item_pool, G_TYPE_OBJECT)
 
 
 
@@ -63,8 +63,6 @@ static void
 garcon_menu_item_pool_class_init (GarconMenuItemPoolClass *klass)
 {
   GObjectClass *gobject_class;
-
-  g_type_class_add_private (klass, sizeof (GarconMenuItemPoolPrivate));
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = garcon_menu_item_pool_finalize;
@@ -75,8 +73,9 @@ garcon_menu_item_pool_class_init (GarconMenuItemPoolClass *klass)
 static void
 garcon_menu_item_pool_init (GarconMenuItemPool *pool)
 {
-  pool->priv = G_TYPE_INSTANCE_GET_PRIVATE (pool, GARCON_TYPE_MENU_ITEM_POOL, GarconMenuItemPoolPrivate);
-  pool->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal, g_free,
+  pool->priv = garcon_menu_item_pool_get_instance_private (pool);
+  pool->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                             g_free,
                                              (GDestroyNotify) garcon_menu_item_unref);
 }
 
@@ -188,10 +187,12 @@ garcon_menu_item_pool_filter_exclude (const gchar    *desktop_id,
                                       GarconMenuItem *item,
                                       GNode          *node)
 {
+  gboolean matches;
+
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (node != NULL, FALSE);
 
-  gboolean matches = garcon_menu_node_tree_rule_matches (node, item);
+  matches = garcon_menu_node_tree_rule_matches (node, item);
 
   if (matches)
     garcon_menu_item_increment_allocated (item);
