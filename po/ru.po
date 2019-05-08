@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Aleksandr P <davian818@gmail.com>, 2010,2012
+# Aleksandr P, 2010,2012
 # Aleksey Kabanov <ak099@mail.ru>, 2013
 # Alexander Matveyev <a.s.matveyev@gmail.com>, 2010
 # Artem Zolochevskiy <artem.zolochevskiy@gmail.com>, 2011-2012
