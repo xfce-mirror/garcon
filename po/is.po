@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Sveinn í Felli <sv1@fellsnet.is>, 2014,2017
+# Sveinn í Felli <sv1@fellsnet.is>, 2011,2013-2014,2017,2019
 # Sveinn í Felli <sveinki@nett.is>, 2011,2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2018-09-14 00:23+0000\n"
+"PO-Revision-Date: 2019-05-10 11:28+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic (http://www.transifex.com/xfce/garcon/language/is/)\n"
 "MIME-Version: 1.0\n"
@@ -167,4 +167,4 @@ msgstr "Lo_ka"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
-msgstr "Mistókst að hlaða forritavalmynd"
+msgstr "Mistókst að hlaða inn forritavalmyndinni"
