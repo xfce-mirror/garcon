@@ -1,3 +1,10 @@
+0.6.3
+=====
+- Fix g_type_class_add_private deprecation in recent GLib
+- Translation Updates:
+  Albanian, Basque, Bengali, Czech, Danish, Hebrew, Icelandic, Italian, 
+  Kazakh, Polish, Russian, Spanish
+
 0.6.2
 =====
 
