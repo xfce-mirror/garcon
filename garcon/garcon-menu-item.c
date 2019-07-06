@@ -1154,6 +1154,8 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
 
   /* Update application actions */
   _garcon_g_list_free_full (item->priv->actions, garcon_menu_item_action_unref);
+  item->priv->actions = NULL;
+
   str_list = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_ACTIONS, ";");
   if (G_LIKELY (str_list != NULL))
     {
