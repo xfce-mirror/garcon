@@ -1,3 +1,10 @@
+0.6.4
+======
+ - Update gitignore
+ - Fix use after free crash (Bug #15679)
+ - Translation Updates:
+   Finnish, Norwegian, Armenian 
+
 0.6.3
 =====
 - Fix g_type_class_add_private deprecation in recent GLib
