@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2019-08-16 21:10+0000\n"
+"PO-Revision-Date: 2019-08-23 10:37+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/garcon/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "Accesorios"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "Aplicativos e ferramentas de escritorio comúns"
+msgstr "Aplicacións e ferramentas de escritorio comúns"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -59,7 +59,7 @@ msgstr "Imaxes"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "Aplicativos para a creación e manipulación de imaxes"
+msgstr "Aplicacións para a creación e manipulación de imaxes"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
@@ -83,7 +83,7 @@ msgstr "Internet"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
-msgstr "Aplicativos para acceder á Internet"
+msgstr "Aplicacións para acceder á Internet"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -91,7 +91,7 @@ msgstr "Oficina"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "Aplicativos de oficina e produtividade"
+msgstr "Aplicacións de oficina e produtividade"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Other"
@@ -99,7 +99,7 @@ msgstr "Outro"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Applications that don't fit into other categories"
-msgstr "Aplicativos que non entran en outras categorías"
+msgstr "Aplicacións que non entran en outras categorías"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -115,7 +115,7 @@ msgstr "Protectores de pantalla"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "Miniaplicativos de protectores de pantalla"
+msgstr "Miniaplicacións de protectores de pantalla"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -123,7 +123,7 @@ msgstr "Configuración"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Desktop and system settings applications"
-msgstr "Aplicativos para a configuración do sistema e do escritorio"
+msgstr "Aplicacións para a configuración do sistema e do escritorio"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -151,11 +151,11 @@ msgstr "Non se puido cargar os datos do ficheiro de menú desde %s"
 #: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr "Produciuse un erro ao executar a orde «%s»."
+msgstr "Produciuse un fallo ao executar a orde «%s»."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:472
 msgid "Launch Error"
-msgstr "Erro ao iniciar"
+msgstr "Produciuse un fallo ao iniciar"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:474
 msgid ""
@@ -169,4 +169,4 @@ msgstr "_Pechar"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
-msgstr "Produciuse un erro ao cargar o menú de aplicativos"
+msgstr "Produciuse un fallo ao cargar o menú de aplicacións"
