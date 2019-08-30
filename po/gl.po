@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2019-08-23 10:37+0000\n"
+"PO-Revision-Date: 2019-08-30 09:58+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/garcon/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "Desenvolvemento"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr "Ferramentas para o desenvolvemento de software"
+msgstr "Ferramentas para o desenvolvemento de soporte lóxico"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
@@ -43,7 +43,7 @@ msgstr "Educación"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr "Software educativo"
+msgstr "Soporte lóxico educativo"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
@@ -51,7 +51,7 @@ msgstr "Xogos"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr "Xogos, crebacabezas e outro software de entretemento"
+msgstr "Xogos, crebacabezas e outro soporte lóxico de entretemento"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
@@ -63,11 +63,11 @@ msgstr "Aplicacións para a creación e manipulación de imaxes"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr "Hardware"
+msgstr "Soporte físico"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
-msgstr "Configuración para varios dispositivos de hardware"
+msgstr "Configuración para varios dispositivos de soporte físico"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Multimedia"
