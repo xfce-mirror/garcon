@@ -5,18 +5,19 @@
 # Translators:
 # Abel Martín <abel.martin.ruiz@gmail.com>, 2008
 # Adolfo Jayme-Barrientos, 2015
-# Fito JB, 2015
+# Adolfo Jayme-Barrientos, 2015
 # Fitoschido, 2015
-# Manolo Díaz <diaz.manolo@gmail.com>, 2016
+# 629cf3e396111bb8c5fb6664e2dbc91d, 2016
 # mc <correomc2000-ing@yahoo.es>, 2013
-# Pablo Lezaeta Reyes [pˈaβ̞lo lˌe̞θaˈeta rˈejɛ] <prflr88@gmail.com>, 2014-2015
+# prflr88 <prflr88@gmail.com>, 2014-2015
+# Toni Estévez <toni.estevez@gmail.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2017-09-19 18:02+0000\n"
-"Last-Translator: Manolo Díaz <diaz.manolo@gmail.com>\n"
+"PO-Revision-Date: 2019-11-16 23:28+0000\n"
+"Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/garcon/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +39,7 @@ msgstr "Desarrollo"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr "Herramientas de desarrollo de software"
+msgstr "Herramientas de desarrollo de programas"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
@@ -46,7 +47,7 @@ msgstr "Educación"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr "Software educativo"
+msgstr "Programas educativos"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
@@ -54,7 +55,7 @@ msgstr "Juegos"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr "Juegos, puzles y otro software divertido"
+msgstr "Juegos, rompecabezas y otros programas divertidos"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
@@ -126,7 +127,7 @@ msgstr "Configuración"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Desktop and system settings applications"
-msgstr "Aplicaciones de configuración de escritorio y sistema"
+msgstr "Aplicaciones de configuración del escritorio y del sistema"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -164,7 +165,7 @@ msgstr "Error de ejecución"
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr "No se puede ejecutar «exo-desktop-item-edit», imprescindible para crear y editar elementos del menú"
+msgstr "No se puede ejecutar «exo-desktop-item-edit», que es imprescindible para crear y editar elementos del menú"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:476
 msgid "_Close"
