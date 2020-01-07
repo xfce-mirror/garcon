@@ -5,13 +5,13 @@
 # Translators:
 # Besnik <besnik@programeshqip.org>, 2007
 # Besnik <besnik@programeshqip.org>, 2007
-# Besnik <besnik@programeshqip.org>, 2019
+# Besnik <besnik@programeshqip.org>, 2019-2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2019-03-15 10:58+0000\n"
+"PO-Revision-Date: 2020-01-07 18:27+0000\n"
 "Last-Translator: Besnik <besnik@programeshqip.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/xfce/garcon/language/sq/)\n"
 "MIME-Version: 1.0\n"
@@ -114,7 +114,7 @@ msgstr "Ekrankursyes"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "Zbatimthe ekrankursyesi"
+msgstr "Aplikacionthe ekrankursyesi"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -150,7 +150,7 @@ msgstr "S’u ngarkuan dot të dhëna menuje kartele prej %s"
 #: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr "Dështoi përmbushja e urdhrit \"%s\"."
+msgstr "S’u arrit të përmbushej urdhri \"%s\"."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:472
 msgid "Launch Error"
