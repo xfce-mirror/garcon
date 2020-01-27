@@ -1184,7 +1184,7 @@ garcon_gtk_menu_set_show_tooltips (GarconGtkMenu *menu,
  * garcon_gtk_menu_get_show_tooltips:
  * @menu  : A #GarconGtkMenu
  *
- * Return value: if descriptions are shown in tooltip
+ * Return value: Whether descriptions are shown in the tooltip.
  **/
 gboolean
 garcon_gtk_menu_get_show_tooltips (GarconGtkMenu *menu)
@@ -1192,6 +1192,8 @@ garcon_gtk_menu_get_show_tooltips (GarconGtkMenu *menu)
   g_return_val_if_fail (GARCON_GTK_IS_MENU (menu), FALSE);
   return menu->priv->show_tooltips;
 }
+
+
 
 /**
  * garcon_gtk_menu_set_show_desktop_actions:
@@ -1220,7 +1222,7 @@ garcon_gtk_menu_set_show_desktop_actions (GarconGtkMenu *menu,
  * garcon_gtk_menu_get_show_desktop_actions:
  * @menu  : A #GarconGtkMenu
  *
- * Return value: if the desktop actions in a submenu
+ * Return value: Whether desktop actions are shown in a submenu.
  **/
 gboolean
 garcon_gtk_menu_get_show_desktop_actions (GarconGtkMenu *menu)
@@ -1230,10 +1232,39 @@ garcon_gtk_menu_get_show_desktop_actions (GarconGtkMenu *menu)
 }
 
 
+
+/**
+ * garcon_gtk_menu_get_desktop_actions_menu:
+ * @item  : A #GarconMenuItem
+ *
+ * Return value: a #GtkMenu holding all actions described in the desktop file
+ * as menu items. Note that application icons are never shown on the
+ * action menu items.
+ **/
+GtkMenu *
+garcon_gtk_menu_get_desktop_actions_menu (GarconMenuItem *item)
+{
+  GtkWidget   *submenu = gtk_menu_new ();
+  GList       *actions = NULL;
+  const gchar *parent_icon_name;
+  gboolean     show_menu_icons = FALSE;
+
+  actions = garcon_menu_item_get_actions (item);
+  g_return_val_if_fail (actions != NULL, NULL);
+
+  parent_icon_name = garcon_menu_item_get_icon_name (item);
+
+  garcon_gtk_menu_pack_actions_menu (submenu, item, actions, parent_icon_name, show_menu_icons);
+
+  return submenu;
+}
+
+
+
 /**
  * garcon_gtk_menu_set_right_click_edits:
  * @menu  : A #GarconGtkMenu
- * @enable_right_click_edits : Toggle showing wether to launch an editor
+ * @enable_right_click_edits : Toggle showing whether to launch an editor
  * when the menu is clicked with the secondary mouse button.
  *
  **/
@@ -1258,7 +1289,7 @@ garcon_gtk_menu_set_right_click_edits (GarconGtkMenu *menu,
  * garcon_gtk_menu_get_right_click_edits:
  * @menu  : A #GarconGtkMenu
  *
- * Return value: if an editor will be launched on secondary mouse clicks.
+ * Return value: Whether an editor will be launched on secondary mouse clicks
  **/
 gboolean
 garcon_gtk_menu_get_right_click_edits (GarconGtkMenu *menu)
