@@ -46,6 +46,7 @@ garcon_gtk_menu_set_show_tooltips
 garcon_gtk_menu_get_show_tooltips
 garcon_gtk_menu_set_show_desktop_actions
 garcon_gtk_menu_get_show_desktop_actions
+garcon_gtk_menu_get_desktop_actions_menu
 garcon_gtk_menu_set_right_click_edits
 garcon_gtk_menu_get_right_click_edits
 GarconGtkMenuPrivate
@@ -390,4 +391,3 @@ garcon_menu_tree_provider_get_type
 <FILE>garcon-private</FILE>
 GARCON_DEFAULT_MENU_PREFIX
 </SECTION>
-

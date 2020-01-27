@@ -710,7 +710,7 @@ garcon_gtk_menu_load_icon (const gchar *icon_name)
 
 
 static GtkWidget*
-garcon_gtk_menu_create_menu_item (GarconGtkMenu *menu,
+garcon_gtk_menu_create_menu_item (gboolean     show_menu_icons,
                                   const gchar *name,
                                   const gchar *icon_name)
 {
@@ -732,7 +732,7 @@ garcon_gtk_menu_create_menu_item (GarconGtkMenu *menu,
   gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5f);
 #endif
 
-  if (menu->priv->show_menu_icons)
+  if (show_menu_icons)
     {
       image = garcon_gtk_menu_load_icon (icon_name);
       gtk_widget_show (image);
@@ -753,30 +753,20 @@ garcon_gtk_menu_create_menu_item (GarconGtkMenu *menu,
 
 
 
-static GtkWidget*
-garcon_gtk_menu_add_actions (GarconGtkMenu  *menu,
-                             GarconMenuItem *menu_item,
-                             GList          *actions,
-                             const gchar    *parent_icon_name)
+static void
+garcon_gtk_menu_pack_actions_menu (GtkWidget      *menu,
+                                   GarconMenuItem *menu_item,
+                                   GList          *actions,
+                                   const gchar    *parent_icon_name,
+                                   gboolean        show_menu_icons)
 {
-  GtkWidget *submenu, *mi;
   GList     *iter;
+  GtkWidget *mi;
 
-  submenu = gtk_menu_new ();
-  gtk_menu_set_reserve_toggle_size (GTK_MENU (submenu), FALSE);
-
-  /* Add the parent item again, this time something the user can click to execute */
-  mi = garcon_gtk_menu_create_menu_item (menu, garcon_menu_item_get_name (menu_item), parent_icon_name);
-  gtk_menu_shell_append (GTK_MENU_SHELL (submenu), mi);
-  /* we need to store the GarconGtkMenu with this item so we can
-   * use it if the user wants to edit a menu item */
-  g_object_set_data (G_OBJECT (mi), "GarconGtkMenu", menu);
-  g_signal_connect (G_OBJECT (mi), "activate",
-                    G_CALLBACK (garcon_gtk_menu_item_activate), menu_item);
-  gtk_widget_show (mi);
+  gtk_menu_set_reserve_toggle_size (GTK_MENU (menu), FALSE);
 
   /* Add all the individual actions to the menu */
-  for (iter = g_list_first(actions); iter != NULL; iter = g_list_next (iter))
+  for (iter = g_list_first (actions); iter != NULL; iter = g_list_next (iter))
     {
       GarconMenuItemAction *action = garcon_menu_item_get_action (menu_item, iter->data);
       const gchar          *action_icon_name;
@@ -793,11 +783,11 @@ garcon_gtk_menu_add_actions (GarconGtkMenu  *menu,
           action_icon_name = parent_icon_name;
         }
 
-      mi = garcon_gtk_menu_create_menu_item (menu,
+      mi = garcon_gtk_menu_create_menu_item (show_menu_icons,
                                              garcon_menu_item_action_get_name (action),
                                              action_icon_name);
 
-      gtk_menu_shell_append (GTK_MENU_SHELL (submenu), mi);
+      gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
       g_signal_connect (G_OBJECT (mi), "activate",
                         G_CALLBACK (garcon_gtk_menu_item_action_activate), action);
       /* we need to store the parent associated with this item so we can
@@ -805,6 +795,35 @@ garcon_gtk_menu_add_actions (GarconGtkMenu  *menu,
       g_object_set_data (G_OBJECT (action), "GarconMenuItem", menu_item);
       gtk_widget_show (mi);
     }
+}
+
+
+
+static GtkWidget*
+garcon_gtk_menu_add_actions (GarconGtkMenu  *menu,
+                             GarconMenuItem *menu_item,
+                             GList          *actions,
+                             const gchar    *parent_icon_name)
+{
+  GtkWidget *submenu, *mi;
+
+  submenu = gtk_menu_new ();
+
+  /* Add the parent item again, this time something the user can click to execute */
+  mi = garcon_gtk_menu_create_menu_item (menu->priv->show_menu_icons,
+                                         garcon_menu_item_get_name (menu_item),
+                                         parent_icon_name);
+  gtk_menu_shell_append (GTK_MENU_SHELL (submenu), mi);
+
+  /* we need to store the GarconGtkMenu with this item so we can
+   * use it if the user wants to edit a menu item */
+  g_object_set_data (G_OBJECT (mi), "GarconGtkMenu", menu);
+  g_signal_connect (G_OBJECT (mi), "activate",
+                    G_CALLBACK (garcon_gtk_menu_item_activate), menu_item);
+  gtk_widget_show (mi);
+
+  garcon_gtk_menu_pack_actions_menu (submenu, menu_item, actions,
+                                     parent_icon_name, menu->priv->show_menu_icons);
 
   return submenu;
 }
@@ -861,7 +880,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
             icon_name = "applications-other";
 
           /* build the menu item */
-          mi = garcon_gtk_menu_create_menu_item (menu, name, icon_name);
+          mi = garcon_gtk_menu_create_menu_item (menu->priv->show_menu_icons, name, icon_name);
           gtk_menu_shell_append (GTK_MENU_SHELL (gtk_menu), mi);
 
           /* if the menu item has actions such as "Private browsing mode"
@@ -942,7 +961,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
                 icon_name = "applications-other";
 
               /* build the menu item */
-              mi = garcon_gtk_menu_create_menu_item (menu, name, icon_name);
+              mi = garcon_gtk_menu_create_menu_item (menu->priv->show_menu_icons, name, icon_name);
 
               gtk_menu_shell_append (GTK_MENU_SHELL (gtk_menu), mi);
               gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), submenu);
@@ -1256,7 +1275,7 @@ garcon_gtk_menu_get_desktop_actions_menu (GarconMenuItem *item)
 
   garcon_gtk_menu_pack_actions_menu (submenu, item, actions, parent_icon_name, show_menu_icons);
 
-  return submenu;
+  return GTK_MENU (submenu);
 }
 
 
