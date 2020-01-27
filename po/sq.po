@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2020-01-07 18:27+0000\n"
+"PO-Revision-Date: 2020-01-27 22:32+0000\n"
 "Last-Translator: Besnik <besnik@programeshqip.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/xfce/garcon/language/sq/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr "Edukim"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr "Programe edukative"
+msgstr "Programe edukimi"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
@@ -58,7 +58,7 @@ msgstr "Grafika"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "Aplikacione për krijim dhe manipulim grafik"
+msgstr "Aplikacione për krijim dhe manipulim grafike"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
@@ -74,7 +74,7 @@ msgstr "Multimedia"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "Lojtësa dhe përpunues audio dhe video"
+msgstr "Lojtësa dhe përpunues audioje dhe videoje"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
@@ -114,7 +114,7 @@ msgstr "Ekrankursyes"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "Aplikacionthe ekrankursyesi"
+msgstr "Zbatimthe ekrankursyesi"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
