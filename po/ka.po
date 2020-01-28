@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2020-01-21 19:12+0000\n"
+"PO-Revision-Date: 2020-01-28 21:54+0000\n"
 "Last-Translator: zura davitashvili <zdavitashvili0@gmail.com>\n"
 "Language-Team: Georgian (http://www.transifex.com/xfce/garcon/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr ""
+msgstr "აქსესუარები"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr ""
+msgstr "გავრცელებული სამუშაო მაგიდის ხელსაწყოები და პროგრამები"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -32,7 +32,7 @@ msgstr "განვითარება"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr ""
+msgstr "პროგრამის განსავითარებელი ხელსაწყოები"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
@@ -40,7 +40,7 @@ msgstr "განათლება"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr ""
+msgstr "საგანმანათლებლო პროგრამა"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
@@ -48,7 +48,7 @@ msgstr "თამაშები"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr ""
+msgstr "თამაშები, თავსატეხები და სხვა სახალისო პროგრამები"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
@@ -56,15 +56,15 @@ msgstr "გრაფიკა"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr ""
+msgstr "გრაფიკების შექმნისა და დამუშავების პროგრამები"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr ""
+msgstr "აპარატურა"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
-msgstr ""
+msgstr "სხვადასხვა აპარატული მოწყობილობის პარამეტრები"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Multimedia"
@@ -80,7 +80,7 @@ msgstr "ინტერნეტი"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
-msgstr ""
+msgstr "პროგრამები ინტერნეტით სარგებლობისთვის"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -88,7 +88,7 @@ msgstr "ოფისი"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr ""
+msgstr "საოფისე და პროდუქტიულობის პროგრამები"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Other"
@@ -120,7 +120,7 @@ msgstr "პარამეტრები"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Desktop and system settings applications"
-msgstr ""
+msgstr "სამუშაო მაგიდის და სისტემის პარამეტრების პროგრამები"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -143,7 +143,7 @@ msgstr ""
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
+msgstr "%s-(ი)დან ვერ მოხერხდა მენიუს ფაილის მონაცემების ჩატვირთვა"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
