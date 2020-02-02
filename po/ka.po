@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2020-01-28 21:54+0000\n"
+"PO-Revision-Date: 2020-02-02 17:20+0000\n"
 "Last-Translator: zura davitashvili <zdavitashvili0@gmail.com>\n"
 "Language-Team: Georgian (http://www.transifex.com/xfce/garcon/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr "მულტიმედია"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "აუდიო და ვიდეო გამხსნელები და რედაქტორები"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
@@ -108,11 +108,11 @@ msgstr "პირადი პარამეტრები"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr ""
+msgstr "ეკრანმზოგები"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr ""
+msgstr "ეკრანმზოგის მოდულები"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -128,7 +128,7 @@ msgstr "სისტემა"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "სისტემის ხელსაწყოები"
 
 #: ../garcon/garcon-menu.c:702
 #, c-format
@@ -138,7 +138,7 @@ msgstr "ფაილი \"%s\" ვერ მოიძებნა"
 #: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr ""
+msgstr "%s: %s-(ი)დან ვერ მოხერხდა მენიუს ფაილის მონაცემების ჩატვირთვა"
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
