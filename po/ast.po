@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2020-03-16 13:09+0000\n"
+"PO-Revision-Date: 2020-03-16 19:49+0000\n"
 "Last-Translator: enolp <enolp@softastur.org>\n"
 "Language-Team: Asturian (http://www.transifex.com/xfce/garcon/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr "Gráficos"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "Creación de gráficos y manipulación d'aplicaciones"
+msgstr "Aplicaciones de creación y manipulación de ficheros gráficos"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
@@ -140,12 +140,12 @@ msgstr "Nun s'alcontro'l ficheru «%s»"
 #: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr ""
+msgstr "Nun pudieron cargase los datos del ficheru de menú de %s: %s"
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr ""
+msgstr "Nun pudieron cargase los datos del ficheru de menú de %s"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
