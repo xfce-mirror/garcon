@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# enolp <enolp@softastur.org>, 2015
+# enolp <enolp@softastur.org>, 2015,2020
 # Ḷḷumex03 <tornes@opmbx.org>, 2014
 # Ḷḷumex03 <tornes@opmbx.org>, 2014
 msgid ""
@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2018-09-14 00:23+0000\n"
+"PO-Revision-Date: 2020-03-16 01:07+0000\n"
 "Last-Translator: enolp <enolp@softastur.org>\n"
 "Language-Team: Asturian (http://www.transifex.com/xfce/garcon/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "Accesorios"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "Ferramientes comunes d'escritoriu y aplicaciones"
+msgstr "Ferramientes d'escritoriu y aplicaciones comunes"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -34,7 +34,7 @@ msgstr "Desendolcu"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr "Ferramientes de desendolcu de software"
+msgstr "Ferramientes pal desendolcu de software"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
@@ -42,7 +42,7 @@ msgstr "Educación"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr "Software educacional"
+msgstr "Software educativu"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
@@ -50,7 +50,7 @@ msgstr "Xuegos"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr "Xuegos, puzles, y otru software divertíu"
+msgstr "Xuegos, puzles, y más software divertíu"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
@@ -66,7 +66,7 @@ msgstr "Hardware"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
-msgstr "Axustes pa dellos preseos hardware"
+msgstr "Axustes pa varios preseos del hardware"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Multimedia"
@@ -82,7 +82,7 @@ msgstr "Internet"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
-msgstr "Aplicaciones pal accesu d'internet"
+msgstr "Aplicaciones pal accesu a internet"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -94,7 +94,7 @@ msgstr "Aplicaciones d'oficina y productividá"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Other"
-msgstr "Otru"
+msgstr "Miscelánea"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Applications that don't fit into other categories"
@@ -140,12 +140,12 @@ msgstr "Nun s'alcontro'l ficheru «%s»"
 #: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Nun pudieron cargase los datos del ficheru menú de %s: %s"
+msgstr ""
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Nun pudieron cargase los datos del ficheru menú de %s"
+msgstr ""
 
 #: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
