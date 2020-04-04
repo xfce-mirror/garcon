@@ -1,3 +1,12 @@
+0.7.0
+======
+- Add garcon_menu_item_[g|s]et_keywords to docs
+- Add garcon_gtk_menu_get_desktop_actions_menu
+- Improve docstrings
+- Translation Updates:
+  Albanian, Asturian, Belarusian, Chinese (Taiwan), Galician, Georgian,
+  Hindi, Spanish
+
 0.6.4
 ======
  - Update gitignore
