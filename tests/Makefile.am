@@ -26,10 +26,6 @@ noinst_PROGRAMS =							\
 	test-menu-spec							\
 	test-display-menu-gtk3
 
-if ENABLE_GTK2_LIBRARY
-noinst_PROGRAMS += test-display-menu-gtk2
-endif
-
 # test-menu-parser
 test_menu_parser_SOURCES =						\
 	test-menu-parser.c
@@ -69,31 +65,6 @@ test_menu_spec_LDADD =							\
 	$(GLIB_LIBS)							\
 	$(GOBJECT_LIBS)							\
 	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
-
-# test-display-menu-gtk2
-if ENABLE_GTK2_LIBRARY
-test_display_menu_gtk2_SOURCES =				\
-	test-display-menu.c
-
-test_display_menu_gtk2_CFLAGS =					\
-	$(LIBXFCE4UTIL_CFLAGS)						\
-	$(GIO_CFLAGS)							\
-	$(GLIB_CFLAGS)							\
-	$(GOBJECT_CFLAGS)						\
-	$(GTK2_CFLAGS)
-
-test_display_menu_gtk2_DEPENDENCIES =				\
-	$(top_builddir)/garcon/libgarcon-1.la
-
-test_display_menu_gtk2_LDADD =					\
-	$(LIBXFCE4UTIL_LIBS)						\
-	$(GIO_LIBS)							\
-	$(GLIB_LIBS)							\
-	$(GOBJECT_LIBS)							\
-	$(GTK2_LIBS)							\
-	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la	\
-	$(top_builddir)/garcon-gtk/libgarcon-gtk2-1.la
-endif
 
 # test-display-menu-gtk3
 test_display_menu_gtk3_SOURCES =				\

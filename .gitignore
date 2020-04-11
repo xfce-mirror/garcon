@@ -75,7 +75,6 @@ data/xfce/xfce-personal.directory
 data/xfce/xfce-screensavers.directory
 data/xfce/xfce-settings.directory
 data/xfce/xfce-system.directory
-garcon-gtk/garcon-gtk2-1.pc
 garcon-gtk/garcon-gtk3-1.pc
 garcon/garcon-2.pc
 garcon/garcon-marshal.c
@@ -83,6 +82,5 @@ garcon/garcon-marshal.h
 garcon/stamp-garcon-marshal.h
 gtk-doc.m4
 tests/test-display-menu
-tests/test-display-menu-gtk2
 tests/test-display-menu-gtk3
 po/.intltool-merge-cache
