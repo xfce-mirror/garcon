@@ -5,7 +5,7 @@
 # Translators:
 # Eivind Ødegård <gingermig@yahoo.no>, 2012
 # Kevin Brubeck Unhammer <unhammer+dill@mm.st>, 2015,2017
-# Øystein Steffensen-Alværvik <internett@protonmail.com>, 2017
+# Øystein Steffensen-Alværvik, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
