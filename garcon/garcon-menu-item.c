@@ -860,12 +860,10 @@ garcon_menu_item_new (GFile *file)
 
                   g_free (action_group);
                 }
-              else
-                g_free (*mt);
             }
 
           /* Cleanup */
-          g_free (str_list);
+          g_strfreev (str_list);
         }
 
       else
@@ -898,11 +896,9 @@ garcon_menu_item_new (GFile *file)
 
                       g_free (action_group);
                     }
-                  else
-                    g_free (*mt);
                 }
 
-              g_free (str_list);
+              g_strfreev (str_list);
             }
         }
     }
