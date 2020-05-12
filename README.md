@@ -30,16 +30,11 @@ garcon currently supports three different levels of debugging support,
 which can be setup using the configure flag `--enable-debug` (check the output
 of `configure --help`):
 
-  `yes`         This is the default for Git snapshot builds. It adds all kinds
-                of checks to the code, and is therefore likely to run slower.
-                Use this for development of garcon and locating bugs in
-                garcon.
-
-  `minimum`     This is the default for release builds. This is the recommended
-                behaviour.
-
-  `no`          Disables all sanity checks. Don't use this unless you know
-                exactly what you do.
+| Argument  | Description |
+| -------   | ----------- |
+|  `yes`    | This is the default for Git snapshot builds. It adds all kinds of checks to the code, and is therefore likely to run slower. Use this for development of garcon and locating bugs in garcon. |
+| `minimum` | This is the default for release builds. **This is the recommended behaviour.** |
+| `no`      | Disables all sanity checks. Don't use this unless you know exactly what you do. |
 
 ## How to report bugs?
 
