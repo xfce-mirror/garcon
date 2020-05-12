@@ -715,22 +715,7 @@ garcon_gtk_menu_create_menu_item (gboolean     show_menu_icons,
                                   const gchar *icon_name)
 {
   GtkWidget *mi;
-  GtkWidget *box;
   GtkWidget *image;
-  GtkWidget *label;
-
-  /* create item */
-  mi = gtk_menu_item_new ();
-  label = gtk_label_new (name);
-  gtk_label_set_justify (GTK_LABEL (label), GTK_JUSTIFY_LEFT);
-#if GTK_CHECK_VERSION (3, 0, 0)
-  box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-  gtk_label_set_xalign (GTK_LABEL (label), 0.0);
-  gtk_widget_set_halign (label, GTK_ALIGN_START);
-#else
-  box = gtk_hbox_new (FALSE, 0);
-  gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5f);
-#endif
 
   if (show_menu_icons)
     {
@@ -742,11 +727,7 @@ garcon_gtk_menu_create_menu_item (gboolean     show_menu_icons,
       image = gtk_image_new ();
     }
 
-  /* Add the image and label to the box, add the box to the menu item */
-  gtk_box_pack_start (GTK_BOX (box), image, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (box), label, TRUE, TRUE, 6);
-  gtk_widget_show_all (box);
-  gtk_container_add (GTK_CONTAINER (mi), box);
+  mi = xfce_gtk_image_menu_item_new (name, NULL, NULL, NULL, NULL, image, NULL);
 
   return mi;
 }
