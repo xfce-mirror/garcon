@@ -44,7 +44,6 @@ EXTRA_DIST =								\
 	COPYING								\
 	ChangeLog							\
 	HACKING								\
-	INSTALL								\
 	NEWS								\
 	README.md							\
 	THANKS								\
