@@ -6,7 +6,6 @@
 
     <DefaultAppDirs/>
     <DefaultDirectoryDirs/>
-    <DefaultMergeDirs/>
 
     <Include>
         <Category>X-Xfce-Toplevel</Category>
@@ -159,5 +158,6 @@
             <All/>
         </Include>
     </Menu>
+    <DefaultMergeDirs/>
 
 </Menu>
