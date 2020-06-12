@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2020-06-12 09:56+0000\n"
+"PO-Revision-Date: 2020-06-12 15:50+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/xfce/garcon/language/sq/)\n"
 "MIME-Version: 1.0\n"
@@ -74,7 +74,7 @@ msgstr "Multimedia"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "Lojtësa dhe përpunues audioje dhe videoje"
+msgstr "Lojtës dhe përpunues audioje dhe videoje"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
