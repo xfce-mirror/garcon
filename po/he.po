@@ -7,13 +7,14 @@
 # GenghisKhan <genghiskhan@gmx.ca>, 2014,2016
 # Hezy Amiel <open@hezyamiel.com>, 2010
 # Omer, 2020
+# Omer, 2020
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2020-05-19 10:33+0000\n"
+"PO-Revision-Date: 2020-06-14 19:00+0000\n"
 "Last-Translator: Omer\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/garcon/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +61,7 @@ msgstr "גרפיקה"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "תוכנות ליצירה וטיפול בגרפיקה"
+msgstr "תוכנות ליצירה ועיבוד של גרפיקה"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
@@ -142,7 +143,7 @@ msgstr "הקובץ  \"%s\" לא נמצא"
 #: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "לא יכול להעלות מידע קובץ תפריט מ %s: %s "
+msgstr "לא יכול לטעון מידע קובץ תפריט מתוך %s: %s "
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
@@ -162,7 +163,7 @@ msgstr "שגיאת מפעיל"
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr "לא ניתן להפעיל את \"exo-desktop-item-edit\", שנדרש ליצירה ועריכה של פריטי תפריט."
+msgstr "לא ניתן להפעיל את \"exo-desktop-item-edit\", שנדרש ליצירה ולעריכה של פריטי תפריט."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:476
 msgid "_Close"
