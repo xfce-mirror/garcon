@@ -27,8 +27,6 @@
 
 #include <garcon-gtk/garcon-gtk-menu.h>
 
-#define STR_IS_EMPTY(str) ((str) == NULL || *(str) == '\0')
-
 
 /**
  * SECTION: garcon-gtk-menu
@@ -334,27 +332,11 @@ garcon_gtk_menu_show (GtkWidget *widget)
 
 
 static void
-garcon_gtk_menu_append_quoted (GString     *string,
-                               const gchar *unquoted)
-{
-  gchar *quoted;
-
-  quoted = g_shell_quote (unquoted);
-  g_string_append (string, quoted);
-  g_free (quoted);
-}
-
-
-
-static void
 garcon_gtk_menu_item_activate_real (GtkWidget            *mi,
                                     GarconMenuItem       *item,
                                     GarconMenuItemAction *action)
 {
-  GString      *string;
-  const gchar  *command;
-  const gchar  *p;
-  const gchar  *tmp;
+  gchar        *command;
   gchar       **argv;
   gboolean      result = FALSE;
   gchar        *uri;
@@ -365,68 +347,25 @@ garcon_gtk_menu_item_activate_real (GtkWidget            *mi,
 
   if (action != NULL)
     {
-      command = garcon_menu_item_action_get_command (action);
+      command = (gchar*) garcon_menu_item_action_get_command (action);
     }
   else
     {
-      command = garcon_menu_item_get_command (item);
+      command = (gchar*) garcon_menu_item_get_command (item);
     }
 
   if (STR_IS_EMPTY (command))
     return;
 
-  string = g_string_sized_new (100);
-
-  if (garcon_menu_item_requires_terminal (item))
-    g_string_append (string, "exo-open --launch TerminalEmulator ");
-
   /* expand the field codes */
-  for (p = command; *p != '\0'; ++p)
-    {
-      if (G_UNLIKELY (p[0] == '%' && p[1] != '\0'))
-        {
-          switch (*++p)
-            {
-            case 'f': case 'F':
-            case 'u': case 'U':
-              /* TODO for dnd, not a regression, xfdesktop never had this */
-              break;
-
-            case 'i':
-              tmp = garcon_menu_item_get_icon_name (item);
-              if (!STR_IS_EMPTY (tmp))
-                {
-                  g_string_append (string, "--icon ");
-                  garcon_gtk_menu_append_quoted (string, tmp);
-                }
-              break;
-
-            case 'c':
-              tmp = garcon_menu_item_get_name (item);
-              if (!STR_IS_EMPTY (tmp))
-                garcon_gtk_menu_append_quoted (string, tmp);
-              break;
-
-            case 'k':
-              uri = garcon_menu_item_get_uri (item);
-              if (!STR_IS_EMPTY (uri))
-                garcon_gtk_menu_append_quoted (string, uri);
-              g_free (uri);
-              break;
-
-            case '%':
-              g_string_append_c (string, '%');
-              break;
-            }
-        }
-      else
-        {
-          g_string_append_c (string, *p);
-        }
-    }
+  uri = garcon_menu_item_get_uri (item);
+  command = xfce_expand_field_codes (command, garcon_menu_item_get_icon_name (item),
+                                     garcon_menu_item_get_name (item), uri,
+                                     garcon_menu_item_requires_terminal (item));
+  g_free (uri);
 
   /* parse and spawn command */
-  if (g_shell_parse_argv (string->str, NULL, &argv, &error))
+  if (g_shell_parse_argv (command, NULL, &argv, &error))
     {
       result = xfce_spawn_on_screen (gtk_widget_get_screen (mi),
                                      garcon_menu_item_get_path (item),
@@ -445,7 +384,7 @@ garcon_gtk_menu_item_activate_real (GtkWidget            *mi,
       g_error_free (error);
     }
 
-  g_string_free (string, TRUE);
+  g_free (command);
 }
 
 
