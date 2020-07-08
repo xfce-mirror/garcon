@@ -336,32 +336,30 @@ garcon_gtk_menu_item_activate_real (GtkWidget            *mi,
                                     GarconMenuItem       *item,
                                     GarconMenuItemAction *action)
 {
-  gchar        *command;
+  gchar        *command, *uri;
   gchar       **argv;
+  const gchar  *icon;
   gboolean      result = FALSE;
-  gchar        *uri;
   GError       *error = NULL;
 
   g_return_if_fail (GTK_IS_WIDGET (mi));
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
   if (action != NULL)
-    {
-      command = (gchar*) garcon_menu_item_action_get_command (action);
-    }
+    command = (gchar*) garcon_menu_item_action_get_command (action);
   else
-    {
-      command = (gchar*) garcon_menu_item_get_command (item);
-    }
+    command = (gchar*) garcon_menu_item_get_command (item);
 
-  if (STR_IS_EMPTY (command))
+  if (xfce_str_is_empty (command))
     return;
 
   /* expand the field codes */
+  icon = garcon_menu_item_get_icon_name (item);
   uri = garcon_menu_item_get_uri (item);
-  command = xfce_expand_field_codes (command, garcon_menu_item_get_icon_name (item),
-                                     garcon_menu_item_get_name (item), uri,
-                                     garcon_menu_item_requires_terminal (item));
+  command = xfce_expand_desktop_entry_field_codes (command, NULL, icon,
+                                                   garcon_menu_item_get_name (item),
+                                                   uri,
+                                                   garcon_menu_item_requires_terminal (item));
   g_free (uri);
 
   /* parse and spawn command */
@@ -372,8 +370,7 @@ garcon_gtk_menu_item_activate_real (GtkWidget            *mi,
                                      argv, NULL, G_SPAWN_SEARCH_PATH,
                                      garcon_menu_item_supports_startup_notification (item),
                                      gtk_get_current_event_time (),
-                                     garcon_menu_item_get_icon_name (item),
-                                     &error);
+                                     icon, &error);
 
       g_strfreev (argv);
     }
@@ -487,7 +484,7 @@ garcon_gtk_menu_item_drag_begin (GarconMenuItem *item,
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
   icon_name = garcon_menu_item_get_icon_name (item);
-  if (!STR_IS_EMPTY (icon_name))
+  if (!xfce_str_is_empty (icon_name))
     gtk_drag_set_icon_name (drag_context, icon_name, 0, 0);
 }
 
@@ -796,7 +793,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
             continue;
 
           icon_name = garcon_menu_item_get_icon_name (li->data);
-          if (STR_IS_EMPTY (icon_name))
+          if (xfce_str_is_empty (icon_name))
             icon_name = "applications-other";
 
           /* build the menu item */
@@ -830,7 +827,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
           if (menu->priv->show_tooltips)
             {
               comment = garcon_menu_item_get_comment (li->data);
-              if (!STR_IS_EMPTY (comment))
+              if (!xfce_str_is_empty (comment))
                 gtk_widget_set_tooltip_text (mi, comment);
             }
 
@@ -846,7 +843,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
 
           /* doesn't happen, but anyway... */
           command = garcon_menu_item_get_command (li->data);
-          if (STR_IS_EMPTY (command))
+          if (xfce_str_is_empty (command))
             gtk_widget_set_sensitive (mi, FALSE);
 
           /* atleast 1 visible child */
@@ -877,7 +874,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
               name = garcon_menu_element_get_name (li->data);
 
               icon_name = garcon_menu_element_get_icon_name (li->data);
-              if (STR_IS_EMPTY (icon_name))
+              if (xfce_str_is_empty (icon_name))
                 icon_name = "applications-other";
 
               /* build the menu item */
