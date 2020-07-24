@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2020-04-12 23:38+0000\n"
+"PO-Revision-Date: 2020-07-24 20:37+0000\n"
 "Last-Translator: Priit Jõerüüt <transifex@joeruut.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/xfce/garcon/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -134,7 +134,7 @@ msgstr "Süsteemi tööriistad ja vahendid"
 #: ../garcon/garcon-menu.c:702
 #, c-format
 msgid "File \"%s\" not found"
-msgstr "Faili \"%s\" ei leitud"
+msgstr "Faili „%s“ ei leidunud"
 
 #: ../garcon/garcon-menu-parser.c:276
 #, c-format
@@ -149,7 +149,7 @@ msgstr "Menüüfaili andmeid ei suudetud laadida failist %s"
 #: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr "Käsu \"%s\" käivitamine nurjus."
+msgstr "Käsu „%s“ käivitamine ebaõnnestus."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:472
 msgid "Launch Error"
