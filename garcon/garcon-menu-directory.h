@@ -68,7 +68,7 @@ void                 garcon_menu_directory_set_comment             (GarconMenuDi
                                                                     const gchar         *comment);
 const gchar         *garcon_menu_directory_get_icon_name           (GarconMenuDirectory *directory);
 void                 garcon_menu_directory_set_icon_name           (GarconMenuDirectory *directory,
-                                                                    const gchar         *icon);
+                                                                    const gchar         *icon_name);
 gboolean             garcon_menu_directory_get_no_display          (GarconMenuDirectory *directory);
 void                 garcon_menu_directory_set_no_display          (GarconMenuDirectory *directory,
                                                                     gboolean             no_display);

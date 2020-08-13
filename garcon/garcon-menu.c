@@ -460,8 +460,8 @@ garcon_menu_set_property (GObject      *object,
 
 
 /**
- * garcon_menu_new:
- * @file  : #GFile for the .menu file you want to load.
+ * garcon_menu_new: (constructor)
+ * @file: #GFile for the .menu file you want to load.
  *
  * Creates a new #GarconMenu for the .menu file referred to by @file.
  * This operation only fails @file is invalid. To load the menu
@@ -473,7 +473,7 @@ garcon_menu_set_property (GObject      *object,
  *
  * For more information about the usage @see garcon_menu_new().
  *
- * Returns: a new #GarconMenu for @file.
+ * Returns: (transfer full): a new #GarconMenu.
  **/
 GarconMenu *
 garcon_menu_new (GFile *file)
@@ -485,7 +485,7 @@ garcon_menu_new (GFile *file)
 
 
 /**
- * garcon_menu_new_for_path:
+ * garcon_menu_new_for_path: (constructor)
  * @filename : Path/URI of the .menu file you want to load.
  *
  * Creates a new #GarconMenu for the .menu file referred to by @filename.
@@ -507,7 +507,8 @@ garcon_menu_new (GFile *file)
  * The caller is responsible to destroy the returned #GarconMenu
  * using g_object_unref().
  *
- * Returns: a new #GarconMenu for @filename.
+ * Returns: (transfer full): a new #GarconMenu
+ * for @filename.
  **/
 GarconMenu *
 garcon_menu_new_for_path (const gchar *filename)
@@ -535,7 +536,8 @@ garcon_menu_new_for_path (const gchar *filename)
  *
  * For more information about the usage @see garcon_menu_new().
  *
- * Returns: a new #GarconMenu for applications.menu.
+ * Returns: (transfer full): a new #GarconMenu
+ * for applications.menu.
  **/
 GarconMenu *
 garcon_menu_new_applications (void)
@@ -552,13 +554,15 @@ garcon_menu_new_applications (void)
 
 /**
  * garcon_menu_get_file:
- * @menu : a #GarconMenu.
+ * @menu: a #GarconMenu.
  *
  * Get the file for @menu. It refers to the .menu file from which
  * @menu was or will be loaded.
  *
- * Returns: a #GFile. The returned object
- *          should be unreffed with g_object_unref() when no longer needed.
+ * The returned object should be unreffed with g_object_unref()
+ * when no longer needed.
+ *
+ * Returns: (transfer full): a #GFile.
  */
 GFile *
 garcon_menu_get_file (GarconMenu *menu)
@@ -582,17 +586,19 @@ garcon_menu_get_name (GarconMenu *menu)
 
 /**
  * garcon_menu_get_directory:
- * @menu : a #GarconMenu.
+ * @menu: a #GarconMenu.
  *
- * Returns the #GarconMenuDirectory of @menu or %NULL if the &lt;Menu&gt;
- * element that corresponds to @menu has no valid &lt;Directory&gt; element.
+ * Returns the #GarconMenuDirectory of @menu or %NULL if @menu has
+ * no valid directory element.
+ *
+ * The returned object should be unreffed with g_object_unref() when
+ * no longer needed.
+ *
  * The menu directory may contain a lot of useful information about
  * the menu like the display and icon name, desktop environments it
  * should show up in etc.
  *
- * Returns: #GarconMenuDirectory of @menu or %NULL if
- *          @menu has no valid directory element. The returned object
- *          should be unreffed with g_object_unref() when no longer needed.
+ * Returns: (transfer full) (nullable): a #GarconMenuDirectory
  */
 GarconMenuDirectory*
 garcon_menu_get_directory (GarconMenu *menu)
@@ -770,13 +776,14 @@ garcon_menu_load (GarconMenu   *menu,
 
 /**
  * garcon_menu_get_menus:
- * @menu : a #GarconMenu
+ * @menu: a #GarconMenu
  *
- * Returns a sorted list of #GarconMenu submenus of @menu.
+ * Returns a sorted list of #GarconMenu submenus of @menu. The list
+ * should be freed with g_list_free().
  *
- * Returns: a sorted list of #GarconMenu object. The list should
- *          be freed with g_list_free().
- **/
+ * Returns: (transfer full) (element-type GarconMenu): a sorted list
+ * of #GarconMenu.
+ */
 GList *
 garcon_menu_get_menus (GarconMenu *menu)
 {
@@ -797,8 +804,8 @@ garcon_menu_get_menus (GarconMenu *menu)
 
 /**
  * garcon_menu_add_menu:
- * @menu    : a #GarconMenu
- * @submenu : a #GarconMenu
+ * @menu:    a #GarconMenu
+ * @submenu: a #GarconMenu
  *
  * Adds @submenu as a sub menu to @menu.
  **/
@@ -823,13 +830,13 @@ garcon_menu_add_menu (GarconMenu *menu,
 
 /**
  * garcon_menu_get_menu_with_name:
- * @menu : a #GarconMenu
- * @name : a sub menu name
+ * @menu: a #GarconMenu
+ * @name: a sub menu name
  *
  * Looks in @menu for a submenu with @name as name.
  *
- * Returns: a #GarconMenu or %NULL.
- **/
+ * Returns: (transfer full) (nullable): a #GarconMenu or %NULL.
+ */
 GarconMenu *
 garcon_menu_get_menu_with_name (GarconMenu  *menu,
                                 const gchar *name)
@@ -855,12 +862,13 @@ garcon_menu_get_menu_with_name (GarconMenu  *menu,
 
 /**
  * garcon_menu_get_parent:
- * @menu : a #GarconMenu
+ * @menu: a #GarconMenu
  *
  * Returns the parent #GarconMenu or @menu.
  *
- * Returns: a #GarconMenu or %NULL if @menu is the root menu.
- **/
+ * Returns: (transfer full) (nullable): a #GarconMenu or %NULL
+ * if @menu is the root menu.
+ */
 GarconMenu *
 garcon_menu_get_parent (GarconMenu *menu)
 {
@@ -1351,13 +1359,13 @@ garcon_menu_remove_deleted_menus (GarconMenu *menu)
 
 /**
  * garcon_menu_get_item_pool:
- * @menu : a #GarconMenu.
+ * @menu: a #GarconMenu.
  *
  * Get the item pool of the menu. This pool contains all items in this
  * menu (for that of its submenus).
  *
- * Returns: a #GarconMenuItemPool.
- **/
+ * Returns: (transfer full): a #GarconMenuItemPool.
+ */
 GarconMenuItemPool*
 garcon_menu_get_item_pool (GarconMenu *menu)
 {
@@ -1380,19 +1388,17 @@ items_collect (const gchar    *desktop_id,
 
 /**
  * garcon_menu_get_items:
- * @menu : a #GarconMenu.
+ * @menu: a #GarconMenu.
  *
- * Returns all #GarconMenuItem<!---->s included in @menu. The items are
+ * Returns all #GarconMenuItem included in @menu. The items are
  * sorted by their display names in ascending order.
  *
  * The caller is responsible to free the returned list using
- * <informalexample><programlisting>
- * g_list_free (list);
- * </programlisting></informalexample>
- * when no longer needed.
+ * g_list_free() when no longer needed.
  *
- * Returns: list of #GarconMenuItem<!---->s included in @menu.
- **/
+ * Returns: (element-type GarconMenuItem) (transfer full): list
+ * of #GarconMenuItem included in @menu.
+ */
 GList *
 garcon_menu_get_items (GarconMenu *menu)
 {
@@ -1511,14 +1517,16 @@ layout_elements_collect (GList **dest_list,
 
 /**
  * garcon_menu_get_elements:
- * @menu : a #GarconMenu.
+ * @menu: a #GarconMenu.
  *
  * Get all the menu element in @menu. This contains sub menus, menu items
  * and separators.
  *
- * Returns: a list of #GarconMenuItem elements or %NULL. Free the list
- *          with g_list_free().
- **/
+ * Returns a list of #GarconMenuItem or %NULL. Free the list with
+ * g_list_free().
+ *
+ * Returns: (element-type GarconMenuItem) (nullable) (transfer full):
+ */
 GList *
 garcon_menu_get_elements (GarconMenu *menu)
 {

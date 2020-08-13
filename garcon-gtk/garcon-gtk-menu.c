@@ -1003,7 +1003,7 @@ garcon_gtk_menu_set_menu (GarconGtkMenu *menu,
  * The caller is responsible to releasing the returned #GarconMenu
  * using g_object_unref().
  *
- * Returns: the #GarconMenu for @menu.
+ * Returns: (transfer full): the #GarconMenu for @menu.
  **/
 GarconMenu *
 garcon_gtk_menu_get_menu (GarconGtkMenu *menu)

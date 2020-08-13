@@ -106,12 +106,12 @@ garcon_menu_item_cache_init (GarconMenuItemCache *cache)
 
 
 /**
- * garcon_menu_item_cache_get_default:
+ * garcon_menu_item_cache_get_default: (constructor)
  *
- * Returns the default #GarconMenuItemCache.
- *
- * Return value: the default #GarconMenuItemCache. The returned object
+ * Returns the default #GarconMenuItemCache. the returned object
  * should be unreffed with g_object_unref() when no longer needed.
+ *
+ * Returns: (transfer full): a new #GarconMenuItemCache.
  */
 GarconMenuItemCache*
 garcon_menu_item_cache_get_default (void)
@@ -152,7 +152,14 @@ garcon_menu_item_cache_finalize (GObject *object)
 }
 
 
-
+/**
+ * garcon_menu_item_cache_lookup:
+ * @cache: a #GarconMenuItemCache
+ * @uri:
+ * @desktop_id
+ *
+ * Returns: (transfer full) (nullable): a #GarconMenuItem
+ */
 GarconMenuItem*
 garcon_menu_item_cache_lookup (GarconMenuItemCache *cache,
                                const gchar         *uri,
@@ -203,7 +210,12 @@ garcon_menu_item_cache_lookup (GarconMenuItemCache *cache,
 }
 
 
-
+/**
+ * garcon_menu_item_cache_foreach:
+ * @cache: a #GarconMenuItemCache
+ * @func: (scope call):
+ * @user_data: parameter passed to @func callback
+ */
 void
 garcon_menu_item_cache_foreach (GarconMenuItemCache *cache,
                                 GHFunc               func,

@@ -262,7 +262,15 @@ garcon_menu_merger_prepare_merging (GarconMenuMerger        *merger,
 }
 
 
-
+/**
+ * garcon_menu_merger_run:
+ * @merger: a #GarconMenuMerger
+ * @merge_files: (element-type utf8): list of files to merge
+ * @merge_dirs: (element-type utf8): list of menu directories to merge
+ * @cancellable:
+ * @error:
+ *
+ */
 gboolean
 garcon_menu_merger_run (GarconMenuMerger *merger,
                         GList           **merge_files,
