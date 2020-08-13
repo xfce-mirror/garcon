@@ -51,7 +51,8 @@ EXTRA_DIST =								\
 	STATUS								\
 	intltool-extract.in						\
 	intltool-merge.in						\
-	intltool-update.in
+	intltool-update.in                                              \
+	m4/introspection.m4
 
 DISTCLEANFILES =							\
 	intltool-extract						\
@@ -59,4 +60,5 @@ DISTCLEANFILES =							\
 	intltool-update
 
 DISTCHECK_CONFIGURE_FLAGS =						\
-	--enable-gtk-doc
+	--enable-gtk-doc                                                \
+	--enable-introspection
