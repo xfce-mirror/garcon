@@ -707,7 +707,12 @@ garcon_menu_item_url_exec (XfceRc *rc)
 }
 
 
-
+/**
+ * garcon_menu_item_new: (constructor)
+ * @file: a #GFile
+ *
+ * Returns (transfer full): a new #GarconMenuItem
+ */
 GarconMenuItem *
 garcon_menu_item_new (GFile *file)
 {
@@ -911,7 +916,12 @@ garcon_menu_item_new (GFile *file)
 }
 
 
-
+/**
+ * garcon_menu_item_new_for_path: (constructor)
+ * @filename: (type filename): name of a file
+ *
+ * Returns: (transfer full): a new #GarconMenuItem
+ */
 GarconMenuItem *
 garcon_menu_item_new_for_path (const gchar *filename)
 {
@@ -928,7 +938,12 @@ garcon_menu_item_new_for_path (const gchar *filename)
 }
 
 
-
+/**
+ * garcon_menu_item_new_for_uri: (constructor)
+ * @uri: a given URI
+ *
+ * Returns: (transfer full): a new #GarconMenuItem
+ */
 GarconMenuItem *
 garcon_menu_item_new_for_uri (const gchar *uri)
 {
@@ -1244,11 +1259,12 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
 
 /**
  * garcon_menu_item_get_file:
+ * @item: A #GarconMenuItem
  *
- * Get the file for @item.
+ * Get the #GFile for @item. The returned object should be
+ * unreffed with g_object_unref() when no longer needed.
  *
- * Return value: a #GFile. The returned object
- * should be unreffed with g_object_unref() when no longer needed.
+ * Returns: (transfer full): a #GFile.
  */
 GFile *
 garcon_menu_item_get_file (GarconMenuItem *item)
@@ -1296,7 +1312,14 @@ garcon_menu_item_set_desktop_id (GarconMenuItem *item,
 }
 
 
-
+/**
+ * garcon_menu_item_get_categories:
+ * @item: a #GarconMenuItem
+ *
+ * Returns list of categories
+ *
+ * Returns: (element-type utf8) (transfer full):
+ */
 GList*
 garcon_menu_item_get_categories (GarconMenuItem *item)
 {
@@ -1305,7 +1328,11 @@ garcon_menu_item_get_categories (GarconMenuItem *item)
 }
 
 
-
+/**
+ * garcon_menu_item_set_categories:
+ * @item: a #GarconMenuItem
+ * @categories: (element-type utf8): list of categories
+ */
 void
 garcon_menu_item_set_categories (GarconMenuItem *item,
                                  GList          *categories)
@@ -1324,7 +1351,12 @@ garcon_menu_item_set_categories (GarconMenuItem *item,
 }
 
 
-
+/**
+ * garcon_menu_item_get_keywords:
+ * @item: a #GarconMenuItem
+ *
+ * Returns: (element-type utf8) (transfer full):
+ */
 GList*
 garcon_menu_item_get_keywords (GarconMenuItem *item)
 {
@@ -1333,7 +1365,11 @@ garcon_menu_item_get_keywords (GarconMenuItem *item)
 }
 
 
-
+/**
+ * garcon_menu_item_set_keywords:
+ * @item: a #GarconMenuItem
+ * @keywords: (element-type utf8): list of keywords
+ */
 void
 garcon_menu_item_set_keywords (GarconMenuItem *item,
                                GList          *keywords)
@@ -1352,14 +1388,12 @@ garcon_menu_item_set_keywords (GarconMenuItem *item,
 }
 
 
-
 const gchar*
 garcon_menu_item_get_command (GarconMenuItem *item)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
   return item->priv->command;
 }
-
 
 
 void
@@ -1709,7 +1743,12 @@ garcon_menu_item_has_keyword (GarconMenuItem *item,
 }
 
 
-
+/**
+ * garcon_menu_item_get_actions:
+ * @item: a #GarconMenuItem
+ *
+ * Returns: (element-type GarconMenuItemAction) (transfer full):
+ */
 GList *
 garcon_menu_item_get_actions (GarconMenuItem *item)
 {
@@ -1730,7 +1769,13 @@ garcon_menu_item_get_actions (GarconMenuItem *item)
 }
 
 
-
+/**
+ * garcon_menu_item_get_action:
+ * @item: a #GarconMenuItem
+ * @action_name:
+ *
+ * Returns: (nullable) (transfer full): a #GarconMenuItemAction
+ */
 GarconMenuItemAction *
 garcon_menu_item_get_action (GarconMenuItem *item,
                              const gchar    *action_name)

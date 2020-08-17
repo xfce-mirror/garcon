@@ -51,7 +51,12 @@ garcon_menu_tree_provider_get_type (void)
 }
 
 
-
+/**
+ * garcon_menu_tree_provider_get_tree: (skip)
+ * @provider: a #GarconMenuTreeProvider
+ *
+ * Returns: a #GNode
+ */
 GNode *
 garcon_menu_tree_provider_get_tree (GarconMenuTreeProvider *provider)
 {
@@ -60,7 +65,12 @@ garcon_menu_tree_provider_get_tree (GarconMenuTreeProvider *provider)
 }
 
 
-
+/**
+ * garcon_menu_tree_provider_get_file:
+ * @provider: a #GarconMenuTreeProvider
+ *
+ * Returns: (transfer full):
+ */
 GFile *
 garcon_menu_tree_provider_get_file (GarconMenuTreeProvider *provider)
 {

@@ -1,20 +1,20 @@
 dnl vi:set et ai sw=2 sts=2 ts=2: */
-dnl 
+dnl
 dnl Copyright (c) 2007-2011 Jannis Pohlmann <jannis@xfce.org>
 dnl Copyright (c) 2012-2018 The Xfce development team
-dnl 
+dnl
 dnl This library is free software; you can redistribute it and/or
 dnl modify it under the terms of the GNU Library General Public
 dnl License as published by the Free Software Foundation; either
 dnl version 2 of the License, or (at your option) any later version.
-dnl 
+dnl
 dnl This library is distributed in the hope that it will be useful,
 dnl but WITHOUT ANY WARRANTY; without even the implied warranty of
-dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
+dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 dnl GNU Library General Public License for more details.
-dnl 
-dnl You should have received a copy of the GNU Library General 
-dnl Public License along with this library; if not, write to the 
+dnl
+dnl You should have received a copy of the GNU Library General
+dnl Public License along with this library; if not, write to the
 dnl Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 dnl Boston, MA 02110-1301, USA.
 
@@ -38,7 +38,7 @@ m4_define([garcon_debug_default], [ifelse(garcon_version_tag(), [git], [yes], [m
 dnl ****************************
 dnl *** For intltool support ***
 dnl ****************************
-m4_define([intltool_minimum_version], [0.35])
+m4_define([intltool_minimum_version], [0.51])
 
 dnl ***************************
 dnl *** Initialize autoconf ***
@@ -47,7 +47,7 @@ AC_COPYRIGHT([Copyright (c) 2007-2011 Jannis Pohlmann <jannis@xfce.org>
 Copyright (c) 2012-2018 The Xfce development team
               ])
 AC_INIT([garcon], [garcon_version], [https://bugzilla.xfce.org/])
-AC_PREREQ([2.50])
+AC_PREREQ([2.69])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_REVISION([@REVISION@])
 AC_CANONICAL_TARGET()
@@ -55,7 +55,7 @@ AC_CANONICAL_TARGET()
 dnl ***************************
 dnl *** Initialize automake ***
 dnl ***************************
-AM_INIT_AUTOMAKE([1.8 dist-bzip2 tar-ustar no-dist-gzip foreign])
+AM_INIT_AUTOMAKE([1.16 dist-bzip2 tar-ustar no-dist-gzip foreign])
 AC_CONFIG_HEADERS([config.h])
 AM_MAINTAINER_MODE()
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
@@ -91,7 +91,7 @@ dnl ********************************
 AM_PROG_AS()
 AC_PROG_CC()
 AC_PROG_INSTALL()
-IT_PROG_INTLTOOL([intltool_minimum_version], [no-xml])
+IT_PROG_INTLTOOL([intltool_minimum_version])
 AM_PROG_CC_C_O()
 
 dnl **************************
@@ -135,6 +135,11 @@ dnl *** Check for gtk-doc ***
 dnl *************************
 GTK_DOC_CHECK([1.0])
 
+dnl ***************************************
+dnl *** Check for GObject Introspection ***
+dnl ***************************************
+GOBJECT_INTROSPECTION_CHECK([1.50.0])
+
 dnl ***********************************
 dnl *** Check for debugging support ***
 dnl ***********************************
@@ -168,4 +173,5 @@ echo
 echo "Build Configuration:"
 echo
 echo "* Debug Support:  $enable_debug"
+echo "* GObject Introspection support: $enable_introspection"
 echo

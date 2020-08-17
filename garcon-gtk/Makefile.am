@@ -83,3 +83,41 @@ pkgconfig_DATA = garcon-gtk3-1.pc
 
 # Required for gtk-doc and make distcheck
 dist-hook: all
+
+-include $(INTROSPECTION_MAKEFILE)
+INTROSPECTION_GIRS =
+INTROSPECTION_SCANNER_ENV = CC="$(CC)"
+INTROSPECTION_SCANNER_ARGS = \
+	--add-include-path=$(srcdir) \
+	--add-include-path=$(top_buildir)/garcon \
+	--include-uninstalled=$(top_builddir)/garcon/Garcon-1.0.gir \
+	--warn-all \
+	-DGARCON_COMPILATION \
+	--c-include=garcon-gtk/garcon-gtk.h
+INTROSPECTION_COMPILER_ARGS = \
+	--includedir=$(srcdir) \
+	--includedir=. \
+	--includedir=../garcon
+
+if HAVE_INTROSPECTION
+introspection_sources = $(libgarcon_gtk3_1_la_SOURCES)
+
+GarconGtk-1.0.gir: libgarcon-gtk3-1.la \
+	$(top_builddir)/garcon/Garcon-1.0.gir Makefile
+GarconGtk_1_0_gir_INCLUDES = GObject-2.0 GLib-2.0 Gio-2.0 \
+	Gtk-3.0 libxfce4util-1.0 libxfce4ui-2.0
+GarconGtk_1_0_gir_CFLAGS = $(AM_CPPFLAGS)
+GarconGtk_1_0_gir_LIBS = libgarcon-gtk3-1.la \
+	$(top_builddir)/garcon/libgarcon-1.la
+GarconGtk_1_0_gir_FILES = $(introspection_sources)
+GarconGtk_1_0_gir_EXPORT_PACKAGES = garcon-gtk3-1
+INTROSPECTION_GIRS += GarconGtk-1.0.gir
+
+girdir = $(datadir)/gir-1.0
+gir_DATA = $(INTROSPECTION_GIRS)
+
+typelibdir = $(libdir)/girepository-1.0
+typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
+
+DISTCLEANFILES = $(gir_DATA) $(typelib_DATA)
+endif

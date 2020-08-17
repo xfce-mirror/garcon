@@ -87,17 +87,17 @@ garcon_menu_separator_finalize (GObject *object)
 
 
 /**
- * garcon_menu_separator_get_default:
+ * garcon_menu_separator_get_default: (constructor)
  *
- * Returns the default #GarconMenuSeparator.
- *
- * Return value: the default #GarconMenuSeparator. The returned object
+ * Returns a new #GarconMenuSeparator. The returned object
  * should be unreffed with g_object_unref() when no longer needed.
+ *
+ * Returns: (transfer full): a new #GarconMenuSeparator.
  */
 GarconMenuSeparator*
 garcon_menu_separator_get_default (void)
 {
-  static GarconMenuSeparator *separator = NULL;
+  GarconMenuSeparator *separator = NULL;
 
   if (G_UNLIKELY (separator == NULL))
     {

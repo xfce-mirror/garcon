@@ -149,3 +149,37 @@ garcon-marshal.c: garcon-marshal.list Makefile
 
 # Required for gtk-doc and make distcheck
 dist-hook: all
+
+-include $(INTROSPECTION_MAKEFILE)
+INTROSPECTION_GIRS =
+INTROSPECTION_SCANNER_ENV = CC="$(CC)"
+INTROSPECTION_SCANNER_ARGS = \
+	--add-include-path=$(srcdir) \
+	--warn-all \
+	-DGARCON_COMPILATION \
+	--symbol-prefix=g_ \
+	--symbol-prefix=garcon_ \
+	--c-include=garcon/garcon.h
+INTROSPECTION_COMPILER_ARGS = \
+	--includedir=$(srcdir) \
+	--includedir=.
+
+if HAVE_INTROSPECTION
+introspection_sources = $(filter-out %private.h %private.c, $(libgarcon_1_la_SOURCES))
+
+Garcon-1.0.gir: libgarcon-1.la Makefile
+Garcon_1_0_gir_INCLUDES = GObject-2.0 GLib-2.0 Gio-2.0 libxfce4util-1.0
+Garcon_1_0_gir_CFLAGS = $(AM_CPPFLAGS)
+Garcon_1_0_gir_LIBS = libgarcon-1.la
+Garcon_1_0_gir_FILES = $(introspection_sources)
+Garcon_1_0_gir_EXPORT_PACKAGES = garcon-1
+INTROSPECTION_GIRS += Garcon-1.0.gir
+
+girdir = $(datadir)/gir-1.0
+gir_DATA = $(INTROSPECTION_GIRS)
+
+typelibdir = $(libdir)/girepository-1.0
+typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
+
+DISTCLEANFILES += $(gir_DATA) $(typelib_DATA)
+endif

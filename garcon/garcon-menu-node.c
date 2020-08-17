@@ -232,7 +232,14 @@ GarconMenuNodeType garcon_menu_node_get_node_type (GarconMenuNode *node)
 }
 
 
-
+/**
+ * garcon_menu_node_create:
+ * @node_type: a #GarconMenuNodeType
+ * @first_value:
+ * @...:
+ *
+ * Returns: (transfer full): a #GarconMenuNode
+ */
 GarconMenuNode *
 garcon_menu_node_create (GarconMenuNodeType node_type,
                          gpointer           first_value,
@@ -274,7 +281,13 @@ garcon_menu_node_create (GarconMenuNodeType node_type,
 }
 
 
-
+/**
+ * garcon_menu_node_copy:
+ * @node: a #GarconMenuNode
+ * @data:
+ *
+ * Returns: (transfer full): a #GarconMenuNode
+ */
 GarconMenuNode *
 garcon_menu_node_copy (GarconMenuNode *node,
                        gpointer        data)
@@ -440,13 +453,20 @@ collect_children (GNode *node,
 }
 
 
-
+/**
+ * garcon_menu_node_tree_get_child_node: (skip)
+ * @tree: #GNode instance
+ * @type: type for the menu nodes
+ * @reverse:
+ *
+ * Returns: a #GNode if @type is valid menu nodes type.
+ */
 GNode *
 garcon_menu_node_tree_get_child_node (GNode             *tree,
                                       GarconMenuNodeType type,
                                       gboolean           reverse)
 {
-  GNode *child;
+  GNode *child = NULL;
 
   if (reverse)
     {
@@ -469,11 +489,18 @@ garcon_menu_node_tree_get_child_node (GNode             *tree,
         }
     }
 
-  return NULL;
+  return child;
 }
 
 
-
+/**
+ * garcon_menu_node_tree_get_child_nodes:
+ * @tree: a GNode
+ * @type: type for the menu nodes
+ * @reverse:
+ *
+ * Returns: (element-type GNode) (transfer full): list of #GNode
+ */
 GList *
 garcon_menu_node_tree_get_child_nodes (GNode             *tree,
                                        GarconMenuNodeType type,
@@ -492,7 +519,7 @@ garcon_menu_node_tree_get_child_nodes (GNode             *tree,
   if (!reverse && pair.value != NULL)
     pair.value = g_list_reverse (pair.value);
 
-  return pair.value;
+  return (GList *) pair.value;
 }
 
 
@@ -516,7 +543,14 @@ collect_strings (GNode *node,
 }
 
 
-
+/**
+ * garcon_menu_node_tree_get_string_children:
+ * @tree: a #GNode instance
+ * @type: type for the menu nodes
+ * @reverse:
+ *
+ * Returns: (element-type GNode) (transfer full): list of #GNode
+ */
 GList *
 garcon_menu_node_tree_get_string_children (GNode             *tree,
                                            GarconMenuNodeType type,
@@ -535,7 +569,7 @@ garcon_menu_node_tree_get_string_children (GNode             *tree,
   if (!reverse && pair.value != NULL)
     pair.value = g_list_reverse (pair.value);
 
-  return pair.value;
+  return (GList *) pair.value;
 }
 
 
@@ -799,7 +833,12 @@ garcon_menu_node_tree_compare (GNode *tree,
 }
 
 
-
+/**
+ * garcon_menu_node_tree_copy: (skip)
+ * @tree: a #GNode
+ *
+ * Recursively copies a #GNode.
+ */
 GNode *
 garcon_menu_node_tree_copy (GNode *tree)
 {

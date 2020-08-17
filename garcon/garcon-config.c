@@ -122,6 +122,12 @@ garcon_check_version (guint required_major,
 
 
 
+/**
+ * garcon_config_build_paths:
+ * @filename: name of .desktop file
+ *
+ * Returns: (transfer full):
+ */
 gchar **
 garcon_config_build_paths (const gchar *filename)
 {

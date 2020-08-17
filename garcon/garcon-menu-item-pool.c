@@ -92,7 +92,11 @@ garcon_menu_item_pool_finalize (GObject *object)
 }
 
 
-
+/**
+ * garcon_menu_item_pool_new: (constructor)
+ *
+ * Returns: (transfer full): a #GarconMenuItemPool
+ */
 GarconMenuItemPool*
 garcon_menu_item_pool_new (void)
 {
@@ -100,7 +104,11 @@ garcon_menu_item_pool_new (void)
 }
 
 
-
+/**
+ * garcon_menu_item_pool_insert:
+ * @pool: a #GarconMenuItemPool
+ * @item: a #GarconMenuItem
+ */
 void
 garcon_menu_item_pool_insert (GarconMenuItemPool *pool,
                               GarconMenuItem     *item)
@@ -116,7 +124,13 @@ garcon_menu_item_pool_insert (GarconMenuItemPool *pool,
 }
 
 
-
+/**
+ * garcon_menu_item_pool_lookup:
+ * @pool: a #GarconMenuItemPool
+ * @desktop_id: (type filename): .desktop file
+ *
+ * Returns: (transfer full): a #GarconMenuItem object
+ */
 GarconMenuItem*
 garcon_menu_item_pool_lookup (GarconMenuItemPool *pool,
                               const gchar        *desktop_id)
@@ -128,7 +142,13 @@ garcon_menu_item_pool_lookup (GarconMenuItemPool *pool,
 }
 
 
-
+/**
+ * garcon_menu_item_pool_lookup_file:
+ * @pool: a #GarconMenuItemPool
+ * @file: a GFile instance
+ *
+ * Returns: (transfer full): a #GarconMenuItem object
+ */
 GarconMenuItem *
 garcon_menu_item_pool_lookup_file (GarconMenuItemPool *pool,
                                    GFile              *file)
@@ -156,7 +176,12 @@ garcon_menu_item_pool_lookup_file (GarconMenuItemPool *pool,
 }
 
 
-
+/**
+ * garcon_menu_item_pool_foreach:
+ * @pool: a #GarconMenuItemPool
+ * @func: (scope call):
+ * @user_data: user data passed to @func callback
+ */
 void
 garcon_menu_item_pool_foreach (GarconMenuItemPool *pool,
                                GHFunc              func,

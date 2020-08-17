@@ -326,7 +326,7 @@ garcon_menu_directory_set_property (GObject      *object,
 
 
 /**
- * garcon_menu_directory_new:
+ * garcon_menu_directory_new: (method)
  * @file : a #GFile
  *
  * Create a new #GarconMenuDirectory for @file. You most likely never
@@ -392,12 +392,12 @@ garcon_menu_directory_new (GFile *file)
 
 /**
  * garcon_menu_directory_get_file:
- * @directory : a #GarconMenuDirectory
+ * @directory: a #GarconMenuDirectory
  *
- * Get the file for @directory.
+ * Get the #GFile for @directory. The returned object should be
+ * unreffed with g_object_unref() when no longer needed.
  *
- * Returns: a #GFile. The returned object
- * should be unreffed with g_object_unref() when no longer needed.
+ * Returns: (transfer full): a #GFile
  */
 GFile *
 garcon_menu_directory_get_file (GarconMenuDirectory *directory)
@@ -520,7 +520,7 @@ garcon_menu_directory_get_icon_name (GarconMenuDirectory *directory)
 /**
  * garcon_menu_directory_set_icon_name:
  * @directory : a #GarconMenuDirectory
- * @icon_name : the new icon name for @directory.
+ * @icon_name      : the new icon name for @directory.
  *
  * Set the icon name of @directory.
  */
