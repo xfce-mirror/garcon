@@ -1173,9 +1173,10 @@ garcon_gtk_menu_get_show_desktop_actions (GarconGtkMenu *menu)
  * garcon_gtk_menu_get_desktop_actions_menu:
  * @item  : A #GarconMenuItem
  *
- * Return value: a #GtkMenu holding all actions described in the desktop file
- * as menu items. Note that application icons are never shown on the
- * action menu items.
+ * Application icons are never shown on the action menu items.
+ *
+ * Returns: (transfer full): a #GtkMenu holding all actions described
+ * in the desktop file as menu items.
  **/
 GtkMenu *
 garcon_gtk_menu_get_desktop_actions_menu (GarconMenuItem *item)
