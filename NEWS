@@ -1,3 +1,25 @@
+0.7.1
+======
+- Drop support for Gtk2
+- Drop Gtk3 ifdefs
+- Switch to xfce_gtk_image_menu_item
+- Add support for GObject Introspection (Fixes #4)
+- Improve GObject introspection annotations (Fixes #8)
+- Fix missing transfer annotation
+- Field codes expansion API update
+- Transfer some code to libxfce4util
+- Fix default merge rules in xfce-applications.menu (Bug #15504)
+- Rename exo-helpers to the new xfce4-xx ones
+- Do not add INSTALL in dist tarball
+- Fix a memory leak
+- Switch to README.md and foreign automake mode
+- README: Use table for debug arguments
+- Add basic GitLab pipeline
+- Translation Updates:
+  Albanian, Asturian, Chinese (Hong Kong), Danish, Dutch, Eastern
+  Armenian, Estonian, Greek, Hebrew, Indonesian, Interlingue, Norwegian
+  Nynorsk, Polish, Portuguese, Uzbek, Uzbek (Latin)
+
 0.7.0
 ======
 - Add garcon_menu_item_[g|s]et_keywords to docs
