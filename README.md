@@ -1,7 +1,7 @@
 [![License](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://gitlab.xfce.org/xfce/garcon/COPYING)
 
-garcon
-====================
+# garcon
+
 
 Garcon is an implementation of the [[https://specifications.freedesktop.org/menu-spec/latest/|freedesktop.org compliant menu]] specification
 replacing the former Xfce menu library libxfce4menu. It is based on
@@ -30,6 +30,7 @@ See [NEWS](https://gitlab.xfce.org/xfce/garcon/-/blob/master/NEWS) for details o
 [garcon archive](https://archive.xfce.org/src/xfce/garcon)
     or
 [garcon tags](https://gitlab.xfce.org/xfce/garcon/-/tags)
+
 ### Installation
 
 From source: 
