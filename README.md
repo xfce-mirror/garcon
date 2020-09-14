@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://gitlab.xfce.org/xfce/garcon/COPYING)
+[![License](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://gitlab.xfce.org/xfce/garcon/-/blob/master/COPYING)
 
 # garcon
 
@@ -15,7 +15,7 @@ with menu editors.
 
 ### Homepage
 
-[garcon documentation](https://docs.xfce.org/xfce/garcon/start)
+[Garcon documentation](https://docs.xfce.org/xfce/garcon/start)
 
 ### Changelog
 
@@ -23,13 +23,13 @@ See [NEWS](https://gitlab.xfce.org/xfce/garcon/-/blob/master/NEWS) for details o
 
 ### Source Code Repository
 
-[garcon source code](https://gitlab.xfce.org/xfce/garcon)
+[Garcon source code](https://gitlab.xfce.org/xfce/garcon)
 
-### Download A Release Tarball
+### Download a Release Tarball
 
-[garcon archive](https://archive.xfce.org/src/xfce/garcon)
+[Garcon archive](https://archive.xfce.org/src/xfce/garcon)
     or
-[garcon tags](https://gitlab.xfce.org/xfce/garcon/-/tags)
+[Garcon tags](https://gitlab.xfce.org/xfce/garcon/-/tags)
 
 ### Installation
 
