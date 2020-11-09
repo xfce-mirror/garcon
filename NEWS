@@ -1,3 +1,10 @@
+0.7.2
+======
+- Update README.md
+- Translation Updates:
+  Armenian, Armenian (Armenia), Hebrew, Lithuanian, Occitan (post 1500),
+  Uyghur
+
 0.7.1
 ======
 - Drop support for Gtk2
