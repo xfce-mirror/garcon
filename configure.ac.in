@@ -162,6 +162,8 @@ garcon/garcon-1.pc
 garcon/garcon-config.h
 garcon-gtk/Makefile
 garcon-gtk/garcon-gtk3-1.pc
+icons/Makefile
+icons/32x32/Makefile
 po/Makefile.in
 tests/Makefile
 ])
