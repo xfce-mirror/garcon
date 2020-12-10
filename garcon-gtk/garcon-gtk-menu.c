@@ -365,12 +365,12 @@ garcon_gtk_menu_item_activate_real (GtkWidget            *mi,
   /* parse and spawn command */
   if (g_shell_parse_argv (command, NULL, &argv, &error))
     {
-      result = xfce_spawn_on_screen (gtk_widget_get_screen (mi),
-                                     garcon_menu_item_get_path (item),
-                                     argv, NULL, G_SPAWN_SEARCH_PATH,
-                                     garcon_menu_item_supports_startup_notification (item),
-                                     gtk_get_current_event_time (),
-                                     icon, &error);
+      result = xfce_spawn (gtk_widget_get_screen (mi),
+                           garcon_menu_item_get_path (item),
+                           argv, NULL, G_SPAWN_SEARCH_PATH,
+                           garcon_menu_item_supports_startup_notification (item),
+                           gtk_get_current_event_time (),
+                           icon, FALSE, &error);
 
       g_strfreev (argv);
     }
@@ -400,7 +400,7 @@ garcon_gtk_menu_item_edit_launcher (GarconMenuItem *item)
       uri = g_file_get_uri (file);
       cmd = g_strdup_printf ("exo-desktop-item-edit \"%s\"", uri);
 
-      if (!xfce_spawn_command_line_on_screen (NULL, cmd, FALSE, FALSE, &error))
+      if (!xfce_spawn_command_line (NULL, cmd, FALSE, FALSE, TRUE, &error))
         {
           xfce_message_dialog (NULL,
                                _("Launch Error"),
