@@ -407,7 +407,7 @@ garcon_gtk_menu_item_edit_launcher (GarconMenuItem *item)
                                "dialog-error",
                               _("Unable to launch \"exo-desktop-item-edit\", which is required to create and edit menu items."),
                               error->message,
-                              XFCE_BUTTON_TYPE_MIXED, "window-close", _("_Close"), GTK_RESPONSE_ACCEPT,
+                              XFCE_BUTTON_TYPE_MIXED, "window-close-symbolic", _("_Close"), GTK_RESPONSE_ACCEPT,
                               NULL);
 
           g_clear_error (&error);
