@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Aljoša Žagar <anthon.manix@gmail.com>, 2013,2017
+# Arnold Marko <arnold.marko@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2018-09-14 00:23+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2020-12-12 17:29+0000\n"
+"Last-Translator: Arnold Marko <arnold.marko@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/xfce/garcon/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +33,7 @@ msgstr "Razvoj"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr "Orodja za razvoj programske opreme"
+msgstr "Orodja za razvoj programov"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
@@ -40,7 +41,7 @@ msgstr "Izobraževanje"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr "Izobraževalna programska oprema"
+msgstr "Izobraževalni programi"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
@@ -48,7 +49,7 @@ msgstr "Igre"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr "Igre, uganke in ostala zabavna programska oprema"
+msgstr "Igre, uganke in ostali zabavni programi"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
@@ -56,7 +57,7 @@ msgstr "Grafika"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "Aplikacije za izdelovanje in urejanje grafičnih vsebin"
+msgstr "Aplikacije za izdelovanje in urejanje grafik"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
@@ -64,7 +65,7 @@ msgstr "Strojna oprema"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
-msgstr "Nastavitve za številne naprave strojne opreme"
+msgstr "Nastavitve za številne strojne naprave"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Multimedia"
@@ -76,11 +77,11 @@ msgstr "Zvočni in video predvajalniki ter urejevalniki"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
-msgstr "Internet"
+msgstr "Splet"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
-msgstr "Programi za internetni dostop"
+msgstr "Programi za spletni dostop"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -88,7 +89,7 @@ msgstr "Pisarna"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "Pisarniški in produktivni programi"
+msgstr "Pisarniški in poslovni programi"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Other"
@@ -138,12 +139,12 @@ msgstr "Datoteka \"%s\" ni bila najdena"
 #: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Podatkov menijske datoteke ni bilo mogoče naložiti iz %s: %s"
+msgstr "Podatkov iz datoteke menija ni bilo mogoče naložiti iz %s: %s"
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Podatkov menijske datoteke ni bilo mogoče naložiti iz %s"
+msgstr "Podatkov iz datoteke menija ni bilo mogoče naložiti iz %s"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
@@ -152,7 +153,7 @@ msgstr "Izvajanje ukaza \"%s\" ni uspelo."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:472
 msgid "Launch Error"
-msgstr "Napaka zagona"
+msgstr "Napaka zagonaob zagonu"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:474
 msgid ""
