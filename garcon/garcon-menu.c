@@ -2236,8 +2236,9 @@ garcon_menu_merge_dir_changed (GarconMenu       *menu,
 
 
 static gboolean
-garcon_menu_process_file_changes (GarconMenu *menu)
+garcon_menu_process_file_changes (gpointer user_data)
 {
+  GarconMenu *menu = user_data;
   GarconMenuItem *item;
   GFileType       file_type;
   gboolean        affects_the_outside = FALSE;
@@ -2381,7 +2382,7 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
             {
               garcon_menu_debug (NULL, 0, "schedule process file changes");
               menu->priv->file_changed_idle =
-                g_idle_add ((GSourceFunc) garcon_menu_process_file_changes, menu);
+                g_idle_add (garcon_menu_process_file_changes, menu);
             }
         }
     }
