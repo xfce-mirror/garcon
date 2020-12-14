@@ -1,3 +1,14 @@
+0.7.3
+=====
+- garcon now needs libxfce4ui/4util 4.15.6+
+- Use the symbolic close icon in the error dialog
+- Don't launch apps as children
+- bump glib (and gio, gthread, etc) minimum to 2.50.0
+- relax automake requirement to 1.15
+- Add new icon needed for xfce4-about-dialog.
+- Translation Updates:
+  Slovenian
+
 0.7.2
 ======
 - Update README.md
