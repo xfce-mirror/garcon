@@ -168,7 +168,7 @@ if HAVE_INTROSPECTION
 introspection_sources = $(filter-out %private.h %private.c, $(libgarcon_1_la_SOURCES))
 
 Garcon-1.0.gir: libgarcon-1.la Makefile
-Garcon_1_0_gir_INCLUDES = GObject-2.0 GLib-2.0 Gio-2.0 libxfce4util-1.0
+Garcon_1_0_gir_INCLUDES = GObject-2.0 GLib-2.0 Gio-2.0 Libxfce4util-1.0
 Garcon_1_0_gir_CFLAGS = $(AM_CPPFLAGS)
 Garcon_1_0_gir_LIBS = libgarcon-1.la
 Garcon_1_0_gir_FILES = $(introspection_sources)

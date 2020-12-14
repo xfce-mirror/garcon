@@ -105,7 +105,7 @@ introspection_sources = $(libgarcon_gtk3_1_la_SOURCES)
 GarconGtk-1.0.gir: libgarcon-gtk3-1.la \
 	$(top_builddir)/garcon/Garcon-1.0.gir Makefile
 GarconGtk_1_0_gir_INCLUDES = GObject-2.0 GLib-2.0 Gio-2.0 \
-	Gtk-3.0 libxfce4util-1.0 libxfce4ui-2.0
+	Gtk-3.0 Libxfce4util-1.0 Libxfce4ui-2.0
 GarconGtk_1_0_gir_CFLAGS = $(AM_CPPFLAGS)
 GarconGtk_1_0_gir_LIBS = libgarcon-gtk3-1.la \
 	$(top_builddir)/garcon/libgarcon-1.la
