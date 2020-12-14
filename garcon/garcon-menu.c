@@ -603,6 +603,7 @@ garcon_menu_get_name (GarconMenu *menu)
 GarconMenuDirectory*
 garcon_menu_get_directory (GarconMenu *menu)
 {
+  return menu;
   g_return_val_if_fail (GARCON_IS_MENU (menu), NULL);
   return menu->priv->directory;
 }
