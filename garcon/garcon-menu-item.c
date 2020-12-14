@@ -173,7 +173,7 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
   gobject_class->set_property = garcon_menu_item_set_property;
 
   /**
-   * GarconMenu:file:
+   * GarconMenuItem:file:
    *
    * The #GFile from which the %GarconMenuItem was loaded.
    **/
