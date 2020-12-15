@@ -47,17 +47,9 @@ static void garcon_menu_item_cache_finalize   (GObject                  *object)
 
 
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
 /* Object Mutex Lock */
 #define _item_cache_lock(cache)    g_mutex_lock (&((cache)->priv->lock))
 #define _item_cache_unlock(cache)  g_mutex_unlock (&((cache)->priv->lock))
-#else
-/* Mutex lock */
-static GStaticMutex lock = G_STATIC_MUTEX_INIT;
-
-#define _item_cache_lock(cache)    g_static_mutex_lock (&lock))
-#define _item_cache_unlock(cache)  g_static_mutex_unlock (&lock))
-#endif
 
 
 
@@ -66,9 +58,7 @@ struct _GarconMenuItemCachePrivate
   /* Hash table for mapping absolute filenames to GarconMenuItem's */
   GHashTable *items;
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
   GMutex      lock;
-#endif
 };
 
 
@@ -93,9 +83,7 @@ garcon_menu_item_cache_init (GarconMenuItemCache *cache)
 {
   cache->priv = garcon_menu_item_cache_get_instance_private (cache);
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
   g_mutex_init (&cache->priv->lock);
-#endif
 
   /* Create empty hash table */
   cache->priv->items = g_hash_table_new_full (g_str_hash, g_str_equal,
@@ -143,10 +131,8 @@ garcon_menu_item_cache_finalize (GObject *object)
   /* Free hash table */
   g_hash_table_unref (cache->priv->items);
 
-#if GLIB_CHECK_VERSION (2, 32, 0)
   /*Release the mutex */
   g_mutex_clear (&cache->priv->lock);
-#endif
 
   (*G_OBJECT_CLASS (garcon_menu_item_cache_parent_class)->finalize) (object);
 }
