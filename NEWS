@@ -1,3 +1,10 @@
+0.7.4
+======
+- fix GarconMenuItem file documentation
+- Remove GSourceFunc casts
+- Remove GLIB_CHECK_VERSION IFDEFs which are obsolete after glib bump
+
+
 0.7.3
 =====
 - garcon now needs libxfce4ui/4util 4.15.6+
