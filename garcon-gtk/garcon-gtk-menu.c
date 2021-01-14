@@ -370,7 +370,7 @@ garcon_gtk_menu_item_activate_real (GtkWidget            *mi,
                            argv, NULL, G_SPAWN_SEARCH_PATH,
                            garcon_menu_item_supports_startup_notification (item),
                            gtk_get_current_event_time (),
-                           icon, FALSE, &error);
+                           icon, TRUE, &error);
 
       g_strfreev (argv);
     }
