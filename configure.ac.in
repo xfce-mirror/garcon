@@ -27,7 +27,7 @@ m4_define([garcon_version_major], [4])
 m4_define([garcon_version_minor], [16])
 m4_define([garcon_version_micro], [1])
 m4_define([garcon_version_build], [@REVISION@])
-m4_define([garcon_version_tag], [])
+m4_define([garcon_version_tag], [git])
 m4_define([garcon_version], [garcon_version_major().garcon_version_minor().garcon_version_micro()ifelse(garcon_version_tag(), [git], [garcon_version_tag()-garcon_version_build()], [garcon_version_tag()])])
 
 dnl ********************************************
