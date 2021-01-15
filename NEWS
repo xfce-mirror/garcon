@@ -1,3 +1,9 @@
+4.16.1
+======
+- Launch applications as children again (Fixes #18)
+- Translation Updates:
+  Kabyle, Portuguese
+
 0.8.0
 ======
 - fix GarconMenuItem file documentation
