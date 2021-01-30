@@ -1,24 +1,3 @@
-# vi:set ts=8 sw=8 noet ai nocindent syntax=automake:
-# 
-# Copyright (c) 2009 Jannis Pohlmann <jannis@xfce.org>
-# 
-# This library is free software; you can redistribute it and/or
-# modify it under the terms of the GNU Library General Public
-# License as published by the Free Software Foundation; either
-# version 2 of the License, or (at your option) any later version.
-# 
-# This library is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
-# GNU Library General Public License for more details.
-# 
-# You should have received a copy of the GNU Library General 
-# Public License along with this library; if not, write to the 
-# Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
-# Boston, MA 02110-1301, USA.
-
-AUTOMAKE_OPTIONS = 1.8
-
 # Name of the module
 DOC_MODULE=garcon
 
@@ -31,23 +10,17 @@ SCAN_OPTIONS=
 SCANGOBJ_OPTIONS=
 
 # Directory containing the source code
-DOC_SOURCE_DIR= \
-	../../garcon \
-	../../garcon-gtk
+DOC_SOURCE_DIR=$(top_srcdir)/garcon $(top_srcdir)/garcon-gtk
 
 # Extra options to supply to gtkdoc-mkdb
-MKDB_OPTIONS=--sgml-mode --output-format=xml
+MKDB_OPTIONS=--xml-mode --output-format=xml
 
 # Extra options to supply to gtkdoc-fixref
 FIXXREF_OPTIONS=
 
 # Used for dependencies
-HFILE_GLOB= \
-	$(top_srcdir)/garcon/*.h \
-	$(top_srcdir)/garcon-gtk/*.h
-CFILE_GLOB= \
-	$(top_srcdir)/garcon/*.c \
-	$(top_srcdir)/garcon-gtk/*.c
+HFILE_GLOB=
+CFILE_GLOB=
 
 # Extra files to add when scanning (relative to $srcdir)
 EXTRA_HFILES=
@@ -56,12 +29,11 @@ EXTRA_HFILES=
 HTML_IMAGES =
 
 # Extra SGML files that are included by DOC_MAIN_SGML_FILE
-content_files =								\
-	version.xml
+content_files =
 
 # CFLAGS and LDFLAGS for compiling scan program. Only needed
 # if $(DOC_MODULE).types is non-empty.
-AM_CPPFLAGS =	 							\
+GTKDOC_CFLAGS =	 							\
 	-I$(top_srcdir) 						\
 	-I$(top_builddir) 						\
 	$(GIO_CFLAGS)							\
@@ -82,10 +54,3 @@ GTKDOC_LIBS =								\
 	$(top_builddir)/garcon-gtk/libgarcon-gtk3-1.la
 
 include $(top_srcdir)/gtk-doc.make
-
-# Other files to distribute
-EXTRA_DIST +=								\
-	version.xml.in
-
-# Required for make distcheck
-dist-hook: all
