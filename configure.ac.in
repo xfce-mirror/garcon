@@ -98,7 +98,6 @@ LT_INIT([disable-static])
 dnl ***************************************
 dnl *** Check for standard header files ***
 dnl ***************************************
-AC_HEADER_STDC()
 AC_CHECK_HEADERS([fcntl.h errno.h sys/mman.h sys/stat.h sys/wait.h memory.h \
                   stdlib.h stdio.h string.h sys/types.h sys/time.h unistd.h \
                   time.h stdarg.h sys/types.h sys/uio.h sched.h ctype.h])
@@ -128,7 +127,7 @@ XDT_CHECK_PACKAGE([LIBXFCE4UI2], [libxfce4ui-2], [4.15.7])
 dnl *************************
 dnl *** Check for gtk-doc ***
 dnl *************************
-GTK_DOC_CHECK([1.0])
+GTK_DOC_CHECK([1.20])
 
 dnl ***************************************
 dnl *** Check for GObject Introspection ***
@@ -151,7 +150,6 @@ data/Makefile
 data/xfce/Makefile
 docs/Makefile
 docs/reference/Makefile
-docs/reference/version.xml
 garcon/Makefile
 garcon/garcon-1.pc
 garcon/garcon-config.h
