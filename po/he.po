@@ -6,6 +6,7 @@
 # Elishai Eliyahu <elishai@mailfence.com>, 2016
 # GenghisKhan <genghiskhan@gmx.ca>, 2014,2016
 # Hezy Amiel <open@hezyamiel.com>, 2010
+# Omer I.S. <omeritzicschwartz@gmail.com>, 2021
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2020
 # Omer I.S. <omeritzicschwartz@gmail.com>, 2020
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2013
@@ -14,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2020-06-14 19:00+0000\n"
+"PO-Revision-Date: 2021-03-02 18:16+0000\n"
 "Last-Translator: Omer I.S. <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/garcon/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +62,7 @@ msgstr "גרפיקה"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "תוכנות ליצירה ועיבוד של גרפיקה"
+msgstr "יישומים ליצירה ועיבוד של גרפיקה"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
