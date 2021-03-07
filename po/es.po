@@ -10,13 +10,13 @@
 # 629cf3e396111bb8c5fb6664e2dbc91d, 2016
 # mc <correomc2000-ing@yahoo.es>, 2013
 # prflr88 <prflr88@gmail.com>, 2014-2015
-# Toni Estévez <toni.estevez@gmail.com>, 2019
+# Toni Estévez <toni.estevez@gmail.com>, 2019,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2019-11-16 23:28+0000\n"
+"PO-Revision-Date: 2021-03-07 13:49+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/garcon/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -140,22 +140,22 @@ msgstr "Herramientas y utilidades del sistema"
 #: ../garcon/garcon-menu.c:702
 #, c-format
 msgid "File \"%s\" not found"
-msgstr "No se encontró el archivo «%s»"
+msgstr "No se ha encontrado el archivo «%s»"
 
 #: ../garcon/garcon-menu-parser.c:276
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "No se pudieron cargar los datos del archivo de menú de %s: %s"
+msgstr "No se han podido cargar los datos del archivo de menú de %s: %s"
 
 #: ../garcon/garcon-menu-parser.c:283
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "No se pudieron cargar los datos del archivo de menú de %s"
+msgstr "No se han podido cargar los datos del archivo de menú de %s"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:446
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr "No se pudo ejecutar la orden «%s»."
+msgstr "No se ha podido ejecutar la orden «%s»."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:472
 msgid "Launch Error"
@@ -173,4 +173,4 @@ msgstr "_Cerrar"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:988
 msgid "Failed to load the applications menu"
-msgstr "No se pudo cargar el menú de aplicaciones"
+msgstr "No se ha podido cargar el menú de aplicaciones"
