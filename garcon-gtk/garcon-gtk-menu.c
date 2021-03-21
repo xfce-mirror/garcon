@@ -1192,6 +1192,7 @@ garcon_gtk_menu_get_desktop_actions_menu (GarconMenuItem *item)
   parent_icon_name = garcon_menu_item_get_icon_name (item);
 
   garcon_gtk_menu_pack_actions_menu (submenu, item, actions, parent_icon_name, show_menu_icons);
+  g_list_free (actions);
 
   return GTK_MENU (submenu);
 }
