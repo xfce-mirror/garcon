@@ -9,6 +9,7 @@ data/xfce/xfce-network.directory.in
 data/xfce/xfce-office.directory.in
 data/xfce/xfce-other.directory.in
 data/xfce/xfce-personal.directory.in
+data/xfce/xfce-science.directory.in
 data/xfce/xfce-screensavers.directory.in
 data/xfce/xfce-settings.directory.in
 data/xfce/xfce-system.directory.in
