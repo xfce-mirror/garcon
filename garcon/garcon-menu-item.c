@@ -52,6 +52,7 @@ enum
   PROP_COMMAND,
   PROP_TRY_EXEC,
   PROP_HIDDEN,
+  PROP_PREFERS_NON_DEFAULT_GPU,
   PROP_PATH,
 };
 
@@ -146,6 +147,9 @@ struct _GarconMenuItemPrivate
 
   /* Hidden value */
   guint       hidden : 1;
+
+  /* Whether prefers non-default GPU */
+  guint       prefers_non_default_gpu : 1;
 
   /* Counter keeping the number of menus which use this item. This works
    * like a reference counter and should be increased / decreased by GarconMenu
@@ -349,6 +353,21 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                           G_PARAM_STATIC_STRINGS));
 
  /**
+   * GarconMenuItem:prefers-non-default-gpu:
+   *
+   * If true, the application prefers to be run on a more powerful discrete GPU
+   * if available.
+   **/
+  g_object_class_install_property (gobject_class,
+                                   PROP_PREFERS_NON_DEFAULT_GPU,
+                                   g_param_spec_boolean ("prefers-non-default-gpu",
+                                                         "Prefers non-default GPU",
+                                                         "Whether the application prefers to be run on a discrete GPU",
+                                                          FALSE,
+                                                          G_PARAM_READWRITE |
+                                                          G_PARAM_STATIC_STRINGS));
+
+ /**
    * GarconMenuItem:path:
    *
    * Working directory the application should be started in.
@@ -489,6 +508,10 @@ garcon_menu_item_get_property (GObject    *object,
       g_value_set_boolean (value, garcon_menu_item_get_hidden (item));
       break;
 
+    case PROP_PREFERS_NON_DEFAULT_GPU:
+      g_value_set_boolean (value, garcon_menu_item_get_prefers_non_default_gpu (item));
+      break;
+
     case PROP_PATH:
       g_value_set_string (value, garcon_menu_item_get_path (item));
       break;
@@ -557,6 +580,10 @@ garcon_menu_item_set_property (GObject      *object,
 
     case PROP_HIDDEN:
       garcon_menu_item_set_hidden (item, g_value_get_boolean (value));
+      break;
+
+    case PROP_PREFERS_NON_DEFAULT_GPU:
+      garcon_menu_item_set_prefers_non_default_gpu (item, g_value_get_boolean (value));
       break;
 
     case PROP_PATH:
@@ -726,6 +753,7 @@ garcon_menu_item_new (GFile *file)
   gboolean              no_display;
   gboolean              startup_notify;
   gboolean              hidden;
+  gboolean              prefers_non_default_gpu;
   const gchar          *path;
   const gchar          *name;
   const gchar          *generic_name;
@@ -772,6 +800,7 @@ garcon_menu_item_new (GFile *file)
       startup_notify = xfce_rc_read_bool_entry (rc, G_KEY_FILE_DESKTOP_KEY_STARTUP_NOTIFY, FALSE)
                        || xfce_rc_read_bool_entry (rc, "X-KDE-StartupNotify", FALSE);
       hidden = xfce_rc_read_bool_entry (rc, G_KEY_FILE_DESKTOP_KEY_HIDDEN, FALSE);
+      prefers_non_default_gpu = xfce_rc_read_bool_entry (rc, "PrefersNonDefaultGPU", FALSE);
 
       /* Allocate a new menu item instance */
       item = g_object_new (GARCON_TYPE_MENU_ITEM,
@@ -787,6 +816,7 @@ garcon_menu_item_new (GFile *file)
                            "supports-startup-notification", startup_notify,
                            "path", path,
                            "hidden", hidden,
+                           "prefers-non-default-gpu", prefers_non_default_gpu,
                            NULL);
 
       /* Determine the categories this application should be shown in */
@@ -1075,6 +1105,9 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
 
   boolean = xfce_rc_read_bool_entry (rc, G_KEY_FILE_DESKTOP_KEY_HIDDEN, FALSE);
   garcon_menu_item_set_hidden (item, boolean);
+
+  boolean = xfce_rc_read_bool_entry (rc, "PrefersNonDefaultGPU", FALSE);
+  garcon_menu_item_set_prefers_non_default_gpu (item, boolean);
 
   if (affects_the_outside != NULL)
     {
@@ -1618,6 +1651,34 @@ garcon_menu_item_set_hidden (GarconMenuItem *item,
 
   /* Notify listeners */
   g_object_notify (G_OBJECT (item), "hidden");
+}
+
+
+
+gboolean
+garcon_menu_item_get_prefers_non_default_gpu (GarconMenuItem *item)
+{
+  g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), TRUE);
+  return item->priv->prefers_non_default_gpu;
+}
+
+
+
+void
+garcon_menu_item_set_prefers_non_default_gpu (GarconMenuItem *item,
+                                              gboolean        prefers_non_default_gpu)
+{
+  g_return_if_fail (GARCON_IS_MENU_ITEM (item));
+
+  /* Abort if old and new value are equal */
+  if (item->priv->prefers_non_default_gpu == prefers_non_default_gpu)
+    return;
+
+  /* Assign new value */
+  item->priv->prefers_non_default_gpu = !!prefers_non_default_gpu;
+
+  /* Notify listeners */
+  g_object_notify (G_OBJECT (item), "prefers-non-default-gpu");
 }
 
 
