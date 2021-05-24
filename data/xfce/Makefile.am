@@ -34,6 +34,7 @@ directory_in_files =							\
 	xfce-office.directory.in					\
 	xfce-other.directory.in						\
 	xfce-personal.directory.in					\
+	xfce-science.directory.in					\
 	xfce-screensavers.directory.in					\
 	xfce-settings.directory.in					\
 	xfce-system.directory.in
