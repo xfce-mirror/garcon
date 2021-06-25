@@ -112,6 +112,9 @@ void                  garcon_menu_item_set_path                          (Garcon
 gboolean              garcon_menu_item_get_hidden                        (GarconMenuItem  *item);
 void                  garcon_menu_item_set_hidden                        (GarconMenuItem  *item,
                                                                           gboolean         hidden);
+gboolean              garcon_menu_item_get_prefers_non_default_gpu       (GarconMenuItem  *item);
+void                  garcon_menu_item_set_prefers_non_default_gpu       (GarconMenuItem  *item,
+                                                                          gboolean         prefers_non_default_gpu);
 gboolean              garcon_menu_item_requires_terminal                 (GarconMenuItem  *item);
 void                  garcon_menu_item_set_requires_terminal             (GarconMenuItem  *item,
                                                                           gboolean         requires_terminal);
