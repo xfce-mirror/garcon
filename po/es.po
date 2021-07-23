@@ -5,7 +5,7 @@
 # Translators:
 # Abel Martín <abel.martin.ruiz@gmail.com>, 2008
 # Adolfo Jayme-Barrientos, 2015
-# Adolfo Jayme-Barrientos, 2015
+# Adolfo Jayme Barrientos, 2015
 # Fitoschido, 2015
 # 629cf3e396111bb8c5fb6664e2dbc91d, 2016
 # mc <correomc2000-ing@yahoo.es>, 2013
