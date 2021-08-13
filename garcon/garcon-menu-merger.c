@@ -435,7 +435,7 @@ garcon_menu_merger_insert_default_dirs (GNode *parent,
   /* Append user data dir */
   path = g_build_path (G_DIR_SEPARATOR_S, g_get_user_data_dir (), base_name, NULL);
   node = g_node_new (garcon_menu_node_create (type, path));
-  prev_node = g_node_append (parent, node);
+  g_node_append (parent, node);
   g_free (path);
 }
 
@@ -483,7 +483,7 @@ garcon_menu_merger_insert_default_merge_dirs (GNode       *parent,
   path = g_build_path (G_DIR_SEPARATOR_S, g_get_user_config_dir (), "menus",
                        merge_dir_basename, NULL);
   node = g_node_new (garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE_DIR, path));
-  prev_node = g_node_append (parent, node);
+  g_node_append (parent, node);
   g_free (path);
 }
 
