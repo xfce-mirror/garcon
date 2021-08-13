@@ -833,7 +833,7 @@ garcon_menu_merger_resolve_merge_dirs (GNode                   *node,
           if (G_LIKELY (g_str_has_suffix (g_file_info_get_name (file_info), ".menu")))
             {
               file_node = g_node_new (garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE_FILE,
-                                                               GARCON_MENU_MERGE_FILE_PATH));
+                                                               GUINT_TO_POINTER (GARCON_MENU_MERGE_FILE_PATH)));
 
               file = g_file_resolve_relative_path (dir, g_file_info_get_name (file_info));
               uri = g_file_get_uri (file);
