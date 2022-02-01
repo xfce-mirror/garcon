@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2021-02-01 15:16+0000\n"
-"Last-Translator: ZiriSut\n"
+"POT-Creation-Date: 2022-02-01 00:45+0100\n"
+"PO-Revision-Date: 2022-01-31 23:45+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Kabyle (http://www.transifex.com/xfce/garcon/language/kab/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,6 +107,14 @@ msgstr "Udmawan"
 msgid "Personal settings"
 msgstr "Iɣewwaren udmawanen "
 
+#: ../data/xfce/xfce-science.directory.in.h:1
+msgid "Science"
+msgstr ""
+
+#: ../data/xfce/xfce-science.directory.in.h:2
+msgid "Scientific software"
+msgstr ""
+
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
 msgstr "Isedmasen n ugdil"
@@ -131,40 +139,40 @@ msgstr "Anagraw"
 msgid "System tools and utilities"
 msgstr "Ifecka n unagraw akked tanfiwin"
 
-#: ../garcon/garcon-menu.c:702
+#: ../garcon/garcon-menu.c:707
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Afaylu \"%s\" ulac-it "
 
-#: ../garcon/garcon-menu-parser.c:276
+#: ../garcon/garcon-menu-parser.c:277
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Ur izmir ara ad d-issali isefka n ufaylu n wumuɣ seg %s: %s"
 
-#: ../garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Ur izmir ara ad d-issali isefka n ufaylu n wumuɣ seg %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:446
+#: ../garcon-gtk/garcon-gtk-menu.c:380
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Aselkem n tludna yecceḍ \"%s\". "
 
-#: ../garcon-gtk/garcon-gtk-menu.c:472
+#: ../garcon-gtk/garcon-gtk-menu.c:406
 msgid "Launch Error"
 msgstr "Tuccḍa deg usenker "
 
-#: ../garcon-gtk/garcon-gtk-menu.c:474
+#: ../garcon-gtk/garcon-gtk-menu.c:408
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
 msgstr "D awezɣi ad yekker \"exo-desktop-item-edit\", i yettusran i tmerna d uẓrag n yiferdisen n wumuɣ."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:476
+#: ../garcon-gtk/garcon-gtk-menu.c:410
 msgid "_Close"
 msgstr "_Mdel"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:988
+#: ../garcon-gtk/garcon-gtk-menu.c:928
 msgid "Failed to load the applications menu"
 msgstr "Asali n wumuɣ n yisnasen yecceḍ"
