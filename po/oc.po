@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2020-09-14 14:48+0000\n"
-"Last-Translator: Quentin PAGÈS\n"
+"POT-Creation-Date: 2022-02-01 00:45+0100\n"
+"PO-Revision-Date: 2022-01-31 23:45+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Occitan (post 1500) (http://www.transifex.com/xfce/garcon/language/oc/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,6 +107,14 @@ msgstr "Personal"
 msgid "Personal settings"
 msgstr "Paramètres personals"
 
+#: ../data/xfce/xfce-science.directory.in.h:1
+msgid "Science"
+msgstr ""
+
+#: ../data/xfce/xfce-science.directory.in.h:2
+msgid "Scientific software"
+msgstr ""
+
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
 msgstr "Estalviadors d'ecran"
@@ -131,40 +139,40 @@ msgstr "Sistèma"
 msgid "System tools and utilities"
 msgstr "Aisinas e utilitaris sistèma"
 
-#: ../garcon/garcon-menu.c:702
+#: ../garcon/garcon-menu.c:707
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Fichièr \"%s\" pas trobat"
 
-#: ../garcon/garcon-menu-parser.c:276
+#: ../garcon/garcon-menu-parser.c:277
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Impossible de cargar las donadas del fichièr de menú dempuèi %s : %s"
 
-#: ../garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Impossible de cargar las donadas del fichièr de menú dempuèi %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:446
+#: ../garcon-gtk/garcon-gtk-menu.c:380
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Impossible d'executar la comanda « %s »."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:472
+#: ../garcon-gtk/garcon-gtk-menu.c:406
 msgid "Launch Error"
 msgstr "Error al moment de l'aviada"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:474
+#: ../garcon-gtk/garcon-gtk-menu.c:408
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
 msgstr "Impossible d’aviar « exo-desktop-item-edit », qu’es necessari a la creacion e l’edicion dels aviadors e dels ligams sul burèu."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:476
+#: ../garcon-gtk/garcon-gtk-menu.c:410
 msgid "_Close"
 msgstr "_Tampar"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:988
+#: ../garcon-gtk/garcon-gtk-menu.c:928
 msgid "Failed to load the applications menu"
 msgstr "Impossible de cargar lo menú de las aplicacions"
