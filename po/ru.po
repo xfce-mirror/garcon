@@ -14,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2018-09-14 00:23+0000\n"
-"Last-Translator: Lowrider <pams@imail.ru>\n"
+"POT-Creation-Date: 2022-02-01 00:45+0100\n"
+"PO-Revision-Date: 2022-01-31 23:45+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Russian (http://www.transifex.com/xfce/garcon/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,6 +112,14 @@ msgstr "Личные"
 msgid "Personal settings"
 msgstr "Личные настройки"
 
+#: ../data/xfce/xfce-science.directory.in.h:1
+msgid "Science"
+msgstr ""
+
+#: ../data/xfce/xfce-science.directory.in.h:2
+msgid "Scientific software"
+msgstr ""
+
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
 msgstr "Хранители экрана"
@@ -136,40 +144,40 @@ msgstr "Система"
 msgid "System tools and utilities"
 msgstr "Средства администрирования системы"
 
-#: ../garcon/garcon-menu.c:702
+#: ../garcon/garcon-menu.c:707
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Файл «%s» не найден"
 
-#: ../garcon/garcon-menu-parser.c:276
+#: ../garcon/garcon-menu-parser.c:277
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Не удалось загрузить данные файла меню из %s: %s"
 
-#: ../garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Не удалось загрузить данные файла меню из %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:446
+#: ../garcon-gtk/garcon-gtk-menu.c:380
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Не удалось выполнить команду «%s»."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:472
+#: ../garcon-gtk/garcon-gtk-menu.c:406
 msgid "Launch Error"
 msgstr "Ошибка запуска"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:474
+#: ../garcon-gtk/garcon-gtk-menu.c:408
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
 msgstr "Невозможно запустить «exo-desktop-item-edit», которая необходима для редактирования элементов меню."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:476
+#: ../garcon-gtk/garcon-gtk-menu.c:410
 msgid "_Close"
 msgstr "_Закрыть"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:988
+#: ../garcon-gtk/garcon-gtk-menu.c:928
 msgid "Failed to load the applications menu"
 msgstr "Не удалось загрузить меню приложений"
