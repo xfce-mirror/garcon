@@ -5,15 +5,15 @@
 # Translators:
 # Carles Muñoz Gorriz <carlesmu@internautas.org>, 2011
 # Davidmp <medipas@gmail.com>, 2015
-# Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2017
-# Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2016
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2017
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2017-12-31 19:50+0000\n"
-"Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
+"POT-Creation-Date: 2022-02-01 00:45+0100\n"
+"PO-Revision-Date: 2022-01-31 23:45+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/garcon/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,6 +109,14 @@ msgstr "Personal"
 msgid "Personal settings"
 msgstr "Ajusts personals"
 
+#: ../data/xfce/xfce-science.directory.in.h:1
+msgid "Science"
+msgstr ""
+
+#: ../data/xfce/xfce-science.directory.in.h:2
+msgid "Scientific software"
+msgstr ""
+
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
 msgstr "Estalvis de pantalla"
@@ -133,40 +141,40 @@ msgstr "Sistema"
 msgid "System tools and utilities"
 msgstr "Eines i utilitats del sistema"
 
-#: ../garcon/garcon-menu.c:702
+#: ../garcon/garcon-menu.c:707
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "No s'ha trobat el fitxer \"%s\""
 
-#: ../garcon/garcon-menu-parser.c:276
+#: ../garcon/garcon-menu-parser.c:277
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "No s'han pogut carregar les dades del fitxer de menú de «%s»: %s"
 
-#: ../garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "No s'han pogut carregar les dades del fitxer de menú de «%s»"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:446
+#: ../garcon-gtk/garcon-gtk-menu.c:380
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Ha fallat l'execució de l'ordre «%s»."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:472
+#: ../garcon-gtk/garcon-gtk-menu.c:406
 msgid "Launch Error"
 msgstr "Error de llançament"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:474
+#: ../garcon-gtk/garcon-gtk-menu.c:408
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
 msgstr "No es pot llançar «exo-desktop-item-edit», el qual es requereix per crear i editar els elements del menú."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:476
+#: ../garcon-gtk/garcon-gtk-menu.c:410
 msgid "_Close"
 msgstr "Tan_ca"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:988
+#: ../garcon-gtk/garcon-gtk-menu.c:928
 msgid "Failed to load the applications menu"
 msgstr "Ha fallat la càrrega del menú d'aplicacions"
