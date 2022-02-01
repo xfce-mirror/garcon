@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2021-03-10 04:42+0000\n"
-"Last-Translator: Gheyret Kenji <gheyret@yahoo.com>\n"
+"POT-Creation-Date: 2022-02-01 00:45+0100\n"
+"PO-Revision-Date: 2022-01-31 23:45+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Uyghur (http://www.transifex.com/xfce/garcon/language/ug/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -106,6 +106,14 @@ msgstr "شەخسىي"
 msgid "Personal settings"
 msgstr "شەخسىي تەڭشەكلەر"
 
+#: ../data/xfce/xfce-science.directory.in.h:1
+msgid "Science"
+msgstr ""
+
+#: ../data/xfce/xfce-science.directory.in.h:2
+msgid "Scientific software"
+msgstr ""
+
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
 msgstr "ئېكران قوغدىغۇچ"
@@ -130,40 +138,40 @@ msgstr "سىستېما"
 msgid "System tools and utilities"
 msgstr "سىستېما قوراللىرى"
 
-#: ../garcon/garcon-menu.c:702
+#: ../garcon/garcon-menu.c:707
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "ھۆججەت «%s» تېپىلمىدى"
 
-#: ../garcon/garcon-menu-parser.c:276
+#: ../garcon/garcon-menu-parser.c:277
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "%s دىن تىزىملىك ھۆججەت سانلىق-مەلۇماتلىرىنى ئوقۇغىلى بولمىدى: %s"
 
-#: ../garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "%s دىن تىزىملىك ھۆججەت سانلىق-مەلۇماتلىرىنى ئوقۇغىلى بولمىدى"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:446
+#: ../garcon-gtk/garcon-gtk-menu.c:380
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "بۇيرۇق «%s»نى ئىجرا قىلىش مەغلۇپ بولدى."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:472
+#: ../garcon-gtk/garcon-gtk-menu.c:406
 msgid "Launch Error"
 msgstr "ئىجرا قىلىش خاتالىقى"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:474
+#: ../garcon-gtk/garcon-gtk-menu.c:408
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
 msgstr "ئۈستەلئۈستىگە تىزىملىك ياساش ياكى تەھرىرلەشتە زۆرۈر بولغان \"exo-desktop-item-edit\" نى ئىجرا قىلالمىدى."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:476
+#: ../garcon-gtk/garcon-gtk-menu.c:410
 msgid "_Close"
 msgstr "تاقا(_C)"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:988
+#: ../garcon-gtk/garcon-gtk-menu.c:928
 msgid "Failed to load the applications menu"
 msgstr "پروگرامما تىزىملىكىنى ئوقۇش مەغلۇپ بولدى"
