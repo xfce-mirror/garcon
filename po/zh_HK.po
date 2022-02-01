@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-20 18:30+0200\n"
-"PO-Revision-Date: 2020-05-31 08:15+0000\n"
-"Last-Translator: Ivan <personal@live.hk>\n"
+"POT-Creation-Date: 2022-02-01 00:45+0100\n"
+"PO-Revision-Date: 2022-01-31 23:45+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
 "Language-Team: Chinese (Hong Kong) (http://www.transifex.com/xfce/garcon/language/zh_HK/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,6 +108,14 @@ msgstr "個人"
 msgid "Personal settings"
 msgstr "個人設定"
 
+#: ../data/xfce/xfce-science.directory.in.h:1
+msgid "Science"
+msgstr ""
+
+#: ../data/xfce/xfce-science.directory.in.h:2
+msgid "Scientific software"
+msgstr ""
+
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
 msgstr "桌面保護程式"
@@ -132,40 +140,40 @@ msgstr "系統"
 msgid "System tools and utilities"
 msgstr "系統工具與公用程式"
 
-#: ../garcon/garcon-menu.c:702
+#: ../garcon/garcon-menu.c:707
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "找不到「%s」檔案"
 
-#: ../garcon/garcon-menu-parser.c:276
+#: ../garcon/garcon-menu-parser.c:277
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "無法從 %s 載入選單檔資料：%s"
 
-#: ../garcon/garcon-menu-parser.c:283
+#: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "無法從 %s 載入選單檔資料"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:446
+#: ../garcon-gtk/garcon-gtk-menu.c:380
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "未能執行「%s」指令。"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:472
+#: ../garcon-gtk/garcon-gtk-menu.c:406
 msgid "Launch Error"
 msgstr "啟動發生錯誤"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:474
+#: ../garcon-gtk/garcon-gtk-menu.c:408
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
 msgstr "無法啟動 「exo-desktop-item-edit」, 創建和編輯選單項所必需的。"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:476
+#: ../garcon-gtk/garcon-gtk-menu.c:410
 msgid "_Close"
 msgstr "關閉(_C)"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:988
+#: ../garcon-gtk/garcon-gtk-menu.c:928
 msgid "Failed to load the applications menu"
 msgstr "未能載入應用程式選單"
