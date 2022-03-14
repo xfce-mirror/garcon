@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-01 00:45+0100\n"
-"PO-Revision-Date: 2022-02-19 23:37+0000\n"
+"PO-Revision-Date: 2022-03-13 23:52+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/garcon/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -117,7 +117,7 @@ msgstr "Videnskab"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr ""
+msgstr "Videnskabelig software"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
