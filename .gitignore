@@ -72,6 +72,7 @@ data/xfce/xfce-network.directory
 data/xfce/xfce-office.directory
 data/xfce/xfce-other.directory
 data/xfce/xfce-personal.directory
+data/xfce/xfce-science.directory
 data/xfce/xfce-screensavers.directory
 data/xfce/xfce-settings.directory
 data/xfce/xfce-system.directory
@@ -80,7 +81,12 @@ garcon/garcon-2.pc
 garcon/garcon-marshal.c
 garcon/garcon-marshal.h
 garcon/stamp-garcon-marshal.h
+garcon/Garcon-1.0.gir
+garcon/Garcon-1.0.typelib
+garcon-gtk/GarconGtk-1.0.gir
+garcon-gtk/GarconGtk-1.0.typelib
+garcon-gtk/g-ir-cpp-kf1yen2_.c
 gtk-doc.m4
 tests/test-display-menu
 tests/test-display-menu-gtk3
-po/.intltool-merge-cache
+po/.intltool-merge-cache*
