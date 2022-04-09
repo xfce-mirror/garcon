@@ -41,10 +41,10 @@
 GType
 garcon_menu_element_get_type (void)
 {
-  static volatile gsize type__volatile = 0;
-  GType                 type;
+  static gsize static_type = 0;
+  GType        type;
 
-  if (g_once_init_enter (&type__volatile))
+  if (g_once_init_enter (&static_type))
     {
       type = g_type_register_static_simple (G_TYPE_INTERFACE,
                                             g_intern_static_string ("GarconMenuElement"),
@@ -56,10 +56,10 @@ garcon_menu_element_get_type (void)
 
       g_type_interface_add_prerequisite (type, G_TYPE_OBJECT);
 
-      g_once_init_leave (&type__volatile, type);
+      g_once_init_leave (&static_type, type);
     }
 
-  return type__volatile;
+  return static_type;
 }
 
 
