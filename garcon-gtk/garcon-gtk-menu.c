@@ -937,19 +937,16 @@ garcon_gtk_menu_load (GarconGtkMenu *menu)
 
 /**
  * garcon_gtk_menu_new:
- * @garcon_menu  :
+ * @garcon_menu (nullable): The #GarconMenu to be associated with the
+ *                          #GarconGtkMenu, or %NULL.
  *
- * Creates a new #GarconMenu for the .menu file referred to by @file.
- * This operation only fails @file is invalid. To load the menu
- * tree from the file, you need to call garcon_gtk_menu_load() with the
- * returned #GarconMenu.
+ * Creates a new #GarconGtkMenu for the .menu file referred to by @garcon_menu.
+ * This operation only fails if @garcon_menu is invalid.
  *
- * The caller is responsible to destroy the returned #GarconMenu
+ * The caller is responsible to destroy the returned #GarconGtkMenu
  * using g_object_unref().
  *
- * For more information about the usage @see garcon_gtk_menu_new().
- *
- * Returns: a new #GarconMenu for @file.
+ * Returns: a new #GarconGtkMenu for @garcon_menu.
  **/
 GtkWidget *
 garcon_gtk_menu_new (GarconMenu *garcon_menu)
