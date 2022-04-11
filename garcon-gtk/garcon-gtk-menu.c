@@ -75,10 +75,12 @@ struct _GarconGtkMenuPrivate
 {
   GarconMenu *menu;
 
-  guint is_loaded : 1;
-
-  /* reload idle */
-  guint reload_id;
+  /* asynchronous load */
+  guint   is_loaded : 1;
+  guint   is_populated : 1;
+  guint   load_id;
+  GTask  *load_task;
+  GMutex  load_lock;
 
   /* settings */
   guint show_generic_names : 1;
@@ -212,6 +214,7 @@ garcon_gtk_menu_init (GarconGtkMenu *menu)
   menu->priv->show_tooltips = FALSE;
   menu->priv->show_desktop_actions = FALSE;
   menu->priv->right_click_edits = FALSE;
+  g_mutex_init (&menu->priv->load_lock);
 
   gtk_menu_set_reserve_toggle_size (GTK_MENU (menu), FALSE);
 }
@@ -223,13 +226,15 @@ garcon_gtk_menu_finalize (GObject *object)
 {
   GarconGtkMenu *menu = GARCON_GTK_MENU (object);
 
-  /* Stop pending reload */
-  if (menu->priv->reload_id != 0)
-    g_source_remove (menu->priv->reload_id);
+  /* Stop pending load */
+  if (menu->priv->load_id != 0)
+    g_source_remove (menu->priv->load_id);
 
   /* Release menu */
   if (menu->priv->menu != NULL)
     g_object_unref (menu->priv->menu);
+
+  g_mutex_clear (&menu->priv->load_lock);
 
   (*G_OBJECT_CLASS (garcon_gtk_menu_parent_class)->finalize) (object);
 }
@@ -325,9 +330,22 @@ garcon_gtk_menu_show (GtkWidget *widget)
 {
   GarconGtkMenu *menu = GARCON_GTK_MENU (widget);
 
-  /* try to load the menu if needed */
-  if (!menu->priv->is_loaded)
-    garcon_gtk_menu_load (menu);
+  if (! menu->priv->is_loaded)
+    {
+      /* if there was no problem, the menu should already be loading */
+      garcon_gtk_menu_load (menu);
+
+      /* wait until the menu is loaded asynchronously */
+      g_mutex_lock (&menu->priv->load_lock);
+      g_mutex_unlock (&menu->priv->load_lock);
+    }
+
+  /* populate the GtkMenu at level 0 the first time it's shown */
+  if (G_UNLIKELY (menu->priv->is_loaded && ! menu->priv->is_populated))
+    {
+      garcon_gtk_menu_add (menu, GTK_MENU (menu), menu->priv->menu);
+      menu->priv->is_populated = TRUE;
+    }
 
   (*GTK_WIDGET_CLASS (garcon_gtk_menu_parent_class)->show) (widget);
 }
@@ -537,8 +555,46 @@ garcon_gtk_menu_deactivate (GtkWidget     *submenu,
 
 
 
+static void
+garcon_gtk_menu_load_finish (GObject      *source_object,
+                             GAsyncResult *res,
+                             gpointer      user_data)
+{
+  GarconGtkMenu *menu = GARCON_GTK_MENU (source_object);
+  GError        *error = NULL;
+
+  if (! menu->priv->is_loaded)
+    {
+      g_task_propagate_pointer (menu->priv->load_task, &error);
+      xfce_dialog_show_error (NULL, error, _("Failed to load the applications menu"));
+      g_error_free (error);
+    }
+}
+
+
+
+static void
+garcon_gtk_menu_load_async (GTask        *task,
+                            gpointer      source_object,
+                            gpointer      task_data,
+                            GCancellable *cancellable)
+{
+  GarconGtkMenu *menu = source_object;
+  GError        *error = NULL;
+
+  g_mutex_lock (&menu->priv->load_lock);
+
+  menu->priv->is_loaded = garcon_menu_load (menu->priv->menu, NULL, &error);
+  if (! menu->priv->is_loaded)
+    g_task_return_error (task, error);
+
+  g_mutex_unlock (&menu->priv->load_lock);
+}
+
+
+
 static gboolean
-garcon_gtk_menu_reload_idle (gpointer data)
+garcon_gtk_menu_load_idle (gpointer data)
 {
   GarconGtkMenu *menu = GARCON_GTK_MENU (data);
   GList         *children;
@@ -551,11 +607,18 @@ garcon_gtk_menu_reload_idle (gpointer data)
   children = gtk_container_get_children (GTK_CONTAINER (menu));
   g_list_free_full (children, (GDestroyNotify) gtk_widget_destroy);
 
-  /* reload the menu */
-  garcon_gtk_menu_load (menu);
+  /* load the menu */
+  if (menu->priv->menu != NULL)
+    {
+      menu->priv->load_task = g_task_new (menu, NULL, garcon_gtk_menu_load_finish, NULL);
+      g_object_add_weak_pointer (G_OBJECT (menu->priv->load_task),
+                                 (gpointer *) &menu->priv->load_task);
+      g_task_run_in_thread (menu->priv->load_task, garcon_gtk_menu_load_async);
+      g_object_unref (menu->priv->load_task);
+    }
 
   /* reset */
-  menu->priv->reload_id = 0;
+  menu->priv->load_id = 0;
 
   return FALSE;
 }
@@ -563,13 +626,13 @@ garcon_gtk_menu_reload_idle (gpointer data)
 
 
 static void
-garcon_gtk_menu_reload (GarconGtkMenu *menu)
+garcon_gtk_menu_load (GarconGtkMenu *menu)
 {
-  /* schedule a menu reload */
-  if (menu->priv->reload_id == 0
-      && menu->priv->is_loaded)
+  /* (re)load the menu, waiting for it to be hidden if needed */
+  if (menu->priv->load_id == 0 && menu->priv->load_task == NULL
+      && garcon_gtk_menu_load_idle (menu))
     {
-      menu->priv->reload_id = g_timeout_add (100, garcon_gtk_menu_reload_idle, menu);
+      menu->priv->load_id = g_timeout_add (100, garcon_gtk_menu_load_idle, menu);
     }
 }
 
@@ -855,7 +918,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
 
           /* watch for changes */
           g_signal_connect_swapped (G_OBJECT (li->data), "changed",
-              G_CALLBACK (garcon_gtk_menu_reload), menu);
+              G_CALLBACK (garcon_gtk_menu_load), menu);
 
           /* skip invisible items */
           if (!garcon_menu_element_get_visible (li->data))
@@ -977,37 +1040,6 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
 
 
 
-static void
-garcon_gtk_menu_load (GarconGtkMenu *menu)
-{
-  GError    *error = NULL;
-
-  g_return_if_fail (GARCON_GTK_IS_MENU (menu));
-  g_return_if_fail (menu->priv->menu == NULL || GARCON_IS_MENU (menu->priv->menu));
-
-  if (menu->priv->menu == NULL)
-    return;
-
-  if (garcon_menu_load (menu->priv->menu, NULL, &error))
-    {
-      garcon_gtk_menu_add (menu, GTK_MENU (menu), menu->priv->menu);
-
-      /* watch for changes */
-      g_signal_connect_swapped (G_OBJECT (menu->priv->menu), "reload-required",
-        G_CALLBACK (garcon_gtk_menu_reload), menu);
-    }
-  else
-    {
-       xfce_dialog_show_error (NULL, error, _("Failed to load the applications menu"));
-       g_error_free (error);
-    }
-
-  menu->priv->reload_id = 0;
-  menu->priv->is_loaded = TRUE;
-}
-
-
-
 /**
  * garcon_gtk_menu_new:
  * @garcon_menu  :
@@ -1051,7 +1083,7 @@ garcon_gtk_menu_set_menu (GarconGtkMenu *menu,
 
   if (menu->priv->menu != NULL)
     {
-      g_signal_handlers_disconnect_by_func (G_OBJECT (menu->priv->menu), garcon_gtk_menu_reload, menu);
+      g_signal_handlers_disconnect_by_func (G_OBJECT (menu->priv->menu), garcon_gtk_menu_load, menu);
       g_object_unref (G_OBJECT (menu->priv->menu));
     }
 
@@ -1062,7 +1094,7 @@ garcon_gtk_menu_set_menu (GarconGtkMenu *menu,
 
   g_object_notify_by_pspec (G_OBJECT (menu), menu_props[PROP_MENU]);
 
-  garcon_gtk_menu_reload (menu);
+  garcon_gtk_menu_load (menu);
 }
 
 
@@ -1107,7 +1139,7 @@ garcon_gtk_menu_set_show_generic_names (GarconGtkMenu *menu,
   menu->priv->show_generic_names = !!show_generic_names;
   g_object_notify_by_pspec (G_OBJECT (menu), menu_props[PROP_SHOW_GENERIC_NAMES]);
 
-  garcon_gtk_menu_reload (menu);
+  garcon_gtk_menu_load (menu);
 }
 
 
@@ -1146,7 +1178,7 @@ garcon_gtk_menu_set_show_menu_icons (GarconGtkMenu *menu,
   menu->priv->show_menu_icons = !!show_menu_icons;
   g_object_notify_by_pspec (G_OBJECT (menu), menu_props[PROP_SHOW_MENU_ICONS]);
 
-  garcon_gtk_menu_reload (menu);
+  garcon_gtk_menu_load (menu);
 }
 
 
@@ -1184,7 +1216,7 @@ garcon_gtk_menu_set_show_tooltips (GarconGtkMenu *menu,
   menu->priv->show_tooltips = !!show_tooltips;
   g_object_notify_by_pspec (G_OBJECT (menu), menu_props[PROP_SHOW_TOOLTIPS]);
 
-  garcon_gtk_menu_reload (menu);
+  garcon_gtk_menu_load (menu);
 }
 
 
@@ -1222,7 +1254,7 @@ garcon_gtk_menu_set_show_desktop_actions (GarconGtkMenu *menu,
   menu->priv->show_desktop_actions = !!show_desktop_actions;
   g_object_notify_by_pspec (G_OBJECT (menu), menu_props[PROP_SHOW_DESKTOP_ACTIONS]);
 
-  garcon_gtk_menu_reload (menu);
+  garcon_gtk_menu_load (menu);
 }
 
 
@@ -1291,7 +1323,7 @@ garcon_gtk_menu_set_right_click_edits (GarconGtkMenu *menu,
   menu->priv->right_click_edits = !!enable_right_click_edits;
   g_object_notify_by_pspec (G_OBJECT (menu), menu_props[PROP_RIGHT_CLICK_EDITS]);
 
-  garcon_gtk_menu_reload (menu);
+  garcon_gtk_menu_load (menu);
 }
 
 
