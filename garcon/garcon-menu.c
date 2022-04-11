@@ -464,9 +464,20 @@ garcon_menu_set_property (GObject      *object,
  * @file: #GFile for the .menu file you want to load.
  *
  * Creates a new #GarconMenu for the .menu file referred to by @file.
- * This operation only fails @file is invalid. To load the menu
+ * This operation only fails if @file is invalid. To load the menu
  * tree from the file, you need to call garcon_menu_load() with the
  * returned #GarconMenu.
+ *
+ * <informalexample><programlisting>
+ * GarconMenu *menu = garcon_menu_new (filename);
+ *
+ * if (garcon_menu_load (menu, &error))
+ *   ...
+ * else
+ *   ...
+ *
+ * g_object_unref (menu);
+ * </programlisting></informalexample>
  *
  * The caller is responsible to destroy the returned #GarconMenu
  * using g_object_unref().
@@ -489,20 +500,9 @@ garcon_menu_new (GFile *file)
  * @filename : Path/URI of the .menu file you want to load.
  *
  * Creates a new #GarconMenu for the .menu file referred to by @filename.
- * This operation only fails if the filename is NULL. To load the menu
+ * This operation only fails if the filename is %NULL. To load the menu
  * tree from the file, you need to call garcon_menu_load() with the
  * returned #GarconMenu.
- *
- * <informalexample><programlisting>
- * GarconMenu *menu = garcon_menu_new (filename);
- *
- * if (garcon_menu_load (menu, &error))
- *   ...
- * else
- *   ...
- *
- * g_object_unref (menu);
- * </programlisting></informalexample>
  *
  * The caller is responsible to destroy the returned #GarconMenu
  * using g_object_unref().
