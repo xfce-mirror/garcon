@@ -861,6 +861,7 @@ garcon_menu_item_new (GFile *file)
                                              NULL);
 
                       garcon_menu_item_set_action (item, *mt, action);
+                      garcon_menu_item_action_unref (action);
                     }
 
                   g_free (action_group);
@@ -897,6 +898,7 @@ garcon_menu_item_new (GFile *file)
                                                  NULL);
 
                           garcon_menu_item_set_action (item, *mt, action);
+                          garcon_menu_item_action_unref (action);
                         }
 
                       g_free (action_group);
@@ -1160,6 +1162,8 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
     }
 
   /* Set the rest of the private data directly */
+  g_strfreev (item->priv->only_show_in);
+  g_strfreev (item->priv->not_show_in);
   item->priv->only_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_ONLY_SHOW_IN, ";");
   item->priv->not_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, ";");
 
@@ -1194,6 +1198,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
                                          NULL);
 
                   garcon_menu_item_set_action (item, *mt, action);
+                  garcon_menu_item_action_unref (action);
                 }
               g_free (action_group);
             }
@@ -1231,6 +1236,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem  *item,
                                              NULL);
 
                       garcon_menu_item_set_action (item, *mt, action);
+                      garcon_menu_item_action_unref (action);
                     }
 
                   g_free (action_group);
