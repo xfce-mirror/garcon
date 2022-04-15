@@ -64,6 +64,9 @@ static void                 garcon_gtk_menu_set_property                (GObject
                                                                          const GValue            *value,
                                                                          GParamSpec              *pspec);
 static void                 garcon_gtk_menu_show                        (GtkWidget               *widget);
+static void                 garcon_gtk_menu_add                         (GarconGtkMenu           *menu,
+                                                                         GtkMenu                 *gtk_menu,
+                                                                         GarconMenu              *garcon_menu);
 static void                 garcon_gtk_menu_load                        (GarconGtkMenu           *menu);
 
 
@@ -72,10 +75,12 @@ struct _GarconGtkMenuPrivate
 {
   GarconMenu *menu;
 
-  guint is_loaded : 1;
-
-  /* reload idle */
-  guint reload_id;
+  /* asynchronous load */
+  guint         is_loaded : 1;
+  guint         is_populated : 1;
+  GTask        *load_task;
+  GCancellable *load_cancel;
+  GMutex        load_lock;
 
   /* settings */
   guint show_generic_names : 1;
@@ -209,6 +214,7 @@ garcon_gtk_menu_init (GarconGtkMenu *menu)
   menu->priv->show_tooltips = FALSE;
   menu->priv->show_desktop_actions = FALSE;
   menu->priv->right_click_edits = FALSE;
+  g_mutex_init (&menu->priv->load_lock);
 
   gtk_menu_set_reserve_toggle_size (GTK_MENU (menu), FALSE);
 }
@@ -220,13 +226,11 @@ garcon_gtk_menu_finalize (GObject *object)
 {
   GarconGtkMenu *menu = GARCON_GTK_MENU (object);
 
-  /* Stop pending reload */
-  if (menu->priv->reload_id != 0)
-    g_source_remove (menu->priv->reload_id);
-
   /* Release menu */
   if (menu->priv->menu != NULL)
     g_object_unref (menu->priv->menu);
+
+  g_mutex_clear (&menu->priv->load_lock);
 
   (*G_OBJECT_CLASS (garcon_gtk_menu_parent_class)->finalize) (object);
 }
@@ -322,9 +326,22 @@ garcon_gtk_menu_show (GtkWidget *widget)
 {
   GarconGtkMenu *menu = GARCON_GTK_MENU (widget);
 
-  /* try to load the menu if needed */
-  if (!menu->priv->is_loaded)
-    garcon_gtk_menu_load (menu);
+  if (! menu->priv->is_loaded)
+    {
+      /* if there was no problem, the menu should already be loading */
+      garcon_gtk_menu_load (menu);
+
+      /* wait until the menu is loaded asynchronously */
+      g_mutex_lock (&menu->priv->load_lock);
+      g_mutex_unlock (&menu->priv->load_lock);
+    }
+
+  /* populate the GtkMenu at level 0 the first time it's shown */
+  if (G_UNLIKELY (menu->priv->is_loaded && ! menu->priv->is_populated))
+    {
+      garcon_gtk_menu_add (menu, GTK_MENU (menu), menu->priv->menu);
+      menu->priv->is_populated = TRUE;
+    }
 
   (*GTK_WIDGET_CLASS (garcon_gtk_menu_parent_class)->show) (widget);
 }
@@ -534,27 +551,85 @@ garcon_gtk_menu_deactivate (GtkWidget     *submenu,
 
 
 
-static gboolean
-garcon_gtk_menu_reload_idle (gpointer data)
+static void
+garcon_gtk_menu_reset_load_task (GarconGtkMenu *menu)
 {
-  GarconGtkMenu *menu = GARCON_GTK_MENU (data);
+  menu->priv->load_task = NULL;
+  menu->priv->load_cancel = NULL;
+}
+
+
+
+static void
+garcon_gtk_menu_load_finish (GObject      *source_object,
+                             GAsyncResult *res,
+                             gpointer      user_data)
+{
+  GarconGtkMenu *menu = GARCON_GTK_MENU (source_object);
+  GError        *error = NULL;
   GList         *children;
 
-  /* wait until the menu is hidden */
-  if (gtk_widget_get_visible (GTK_WIDGET (menu)))
-    return TRUE;
+  if (! menu->priv->is_loaded)
+    {
+      g_task_propagate_pointer (menu->priv->load_task, &error);
+      if (! g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+        xfce_dialog_show_error (NULL, error, _("Failed to load the applications menu"));
+
+      g_error_free (error);
+    }
 
   /* destroy all menu item */
   children = gtk_container_get_children (GTK_CONTAINER (menu));
   g_list_free_full (children, (GDestroyNotify) gtk_widget_destroy);
 
-  /* reload the menu */
-  garcon_gtk_menu_load (menu);
+  /* update menu in place if shown */
+  if (gtk_widget_get_visible (GTK_WIDGET (menu)))
+    garcon_gtk_menu_add (menu, GTK_MENU (menu), menu->priv->menu);
+  else
+    menu->priv->is_populated = FALSE;
+}
 
-  /* reset */
-  menu->priv->reload_id = 0;
 
-  return FALSE;
+
+static void
+garcon_gtk_menu_load_async (GTask        *task,
+                            gpointer      source_object,
+                            gpointer      task_data,
+                            GCancellable *cancellable)
+{
+  GarconGtkMenu *menu = source_object;
+  GError        *error = NULL;
+
+  g_mutex_lock (&menu->priv->load_lock);
+
+  menu->priv->is_loaded = garcon_menu_load (menu->priv->menu, cancellable, &error);
+  if (! menu->priv->is_loaded)
+    g_task_return_error (task, error);
+
+  g_mutex_unlock (&menu->priv->load_lock);
+}
+
+
+
+static void
+garcon_gtk_menu_load (GarconGtkMenu *menu)
+{
+  /* leave if garcon menu is not set */
+  if (menu->priv->menu == NULL)
+    return;
+
+  /* leave if async loading is in progress */
+  if (menu->priv->load_task != NULL)
+    return;
+
+  menu->priv->load_cancel = g_cancellable_new ();
+  menu->priv->load_task = g_task_new (menu, menu->priv->load_cancel,
+                                      garcon_gtk_menu_load_finish, NULL);
+  g_signal_connect_swapped (menu->priv->load_task, "notify::completed",
+                            G_CALLBACK (garcon_gtk_menu_reset_load_task), menu);
+  g_task_run_in_thread (menu->priv->load_task, garcon_gtk_menu_load_async);
+  g_object_unref (menu->priv->load_cancel);
+  g_object_unref (menu->priv->load_task);
 }
 
 
@@ -562,12 +637,15 @@ garcon_gtk_menu_reload_idle (gpointer data)
 static void
 garcon_gtk_menu_reload (GarconGtkMenu *menu)
 {
-  /* schedule a menu reload */
-  if (menu->priv->reload_id == 0
-      && menu->priv->is_loaded)
-    {
-      menu->priv->reload_id = g_timeout_add (100, garcon_gtk_menu_reload_idle, menu);
-    }
+  /* cancel any loading in progress */
+  g_cancellable_cancel (menu->priv->load_cancel);
+
+  /* reload or schedule a reload after the current one is completed */
+  if (menu->priv->load_task == NULL)
+    garcon_gtk_menu_load (menu);
+  else
+    g_signal_connect_swapped (menu->priv->load_task, "notify::completed",
+                              G_CALLBACK (garcon_gtk_menu_load), menu);
 }
 
 
@@ -747,7 +825,84 @@ garcon_gtk_menu_add_actions (GarconGtkMenu  *menu,
 
 
 
+static void
+garcon_gtk_menu_submenu_shown (GtkWidget  *gtk_menu,
+                               GarconMenu *garcon_menu)
+{
+  /* this callback is to be called only once */
+  g_signal_handlers_disconnect_by_func (gtk_menu, garcon_gtk_menu_submenu_shown, garcon_menu);
+
+  garcon_gtk_menu_add (g_object_get_data (G_OBJECT (gtk_menu), "GarconGtkMenu"),
+                       GTK_MENU (gtk_menu), garcon_menu);
+}
+
+
+
 static gboolean
+garcon_gtk_menu_submenu_has_children (GarconGtkMenu *menu,
+                                      GarconMenu    *garcon_menu)
+{
+  GList               *elements, *li;
+  const gchar         *name;
+  gboolean             has_children = FALSE;
+  GarconMenuDirectory *directory;
+
+  g_return_val_if_fail (GARCON_GTK_IS_MENU (menu), FALSE);
+  g_return_val_if_fail (GARCON_IS_MENU (garcon_menu), FALSE);
+
+  elements = garcon_menu_get_elements (garcon_menu);
+  for (li = elements; li != NULL; li = li->next)
+    {
+      g_assert (GARCON_IS_MENU_ELEMENT (li->data));
+
+      if (GARCON_IS_MENU_ITEM (li->data))
+        {
+          /* skip invisible items */
+          if (!garcon_menu_element_get_visible (li->data))
+            continue;
+
+          /* get element name */
+          name = NULL;
+          if (menu->priv->show_generic_names)
+            name = garcon_menu_item_get_generic_name (li->data);
+          if (name == NULL)
+            name = garcon_menu_item_get_name (li->data);
+
+          if (G_UNLIKELY (name == NULL))
+            continue;
+
+          /* atleast 1 visible child */
+          has_children = TRUE;
+          break;
+        }
+      else if (GARCON_IS_MENU (li->data))
+        {
+          /* the element check for menu also copies the item list to
+           * check if all the elements are visible, we do that with the
+           * return value of this function, so avoid that and only check
+           * the visibility of the menu directory */
+          directory = garcon_menu_get_directory (li->data);
+          if (directory != NULL
+              && !garcon_menu_directory_get_visible (directory))
+            continue;
+
+          if (garcon_gtk_menu_submenu_has_children (menu, li->data))
+            {
+              /* atleast 1 visible child */
+              has_children = TRUE;
+              break;
+            }
+        }
+    }
+
+  g_list_free (elements);
+
+  return has_children;
+}
+
+
+
+static void
 garcon_gtk_menu_add (GarconGtkMenu *menu,
                      GtkMenu       *gtk_menu,
                      GarconMenu    *garcon_menu)
@@ -757,13 +912,12 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
   const gchar         *name, *icon_name;
   const gchar         *comment;
   GtkWidget           *submenu;
-  gboolean             has_children = FALSE;
   const gchar         *command;
   GarconMenuDirectory *directory;
 
-  g_return_val_if_fail (GARCON_GTK_IS_MENU (menu), FALSE);
-  g_return_val_if_fail (GTK_IS_MENU (gtk_menu), FALSE);
-  g_return_val_if_fail (GARCON_IS_MENU (garcon_menu), FALSE);
+  g_return_if_fail (GARCON_GTK_IS_MENU (menu));
+  g_return_if_fail (GTK_IS_MENU (gtk_menu));
+  g_return_if_fail (GARCON_IS_MENU (garcon_menu));
 
   elements = garcon_menu_get_elements (garcon_menu);
   for (li = elements; li != NULL; li = li->next)
@@ -845,9 +999,6 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
           command = garcon_menu_item_get_command (li->data);
           if (xfce_str_is_empty (command))
             gtk_widget_set_sensitive (mi, FALSE);
-
-          /* atleast 1 visible child */
-          has_children = TRUE;
         }
       else if (GARCON_IS_MENU_SEPARATOR (li->data))
         {
@@ -866,10 +1017,21 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
               && !garcon_menu_directory_get_visible (directory))
             continue;
 
-          submenu = gtk_menu_new ();
-          gtk_menu_set_reserve_toggle_size (GTK_MENU (submenu), FALSE);
-          if (garcon_gtk_menu_add (menu, GTK_MENU (submenu), li->data))
+          if (garcon_gtk_menu_submenu_has_children (menu, li->data))
             {
+              /* create submenu */
+              submenu = gtk_menu_new ();
+              gtk_menu_set_reserve_toggle_size (GTK_MENU (submenu), FALSE);
+
+              /*
+               * Will be populated later, only if necessary, to save resources.
+               * The life cycles of the GtkMenu and the GarconMenu are independent,
+               * so use `g_signal_connect_object()` here.
+               */
+              g_object_set_data (G_OBJECT (submenu), "GarconGtkMenu", menu);
+              g_signal_connect_object (submenu, "show",
+                                       G_CALLBACK (garcon_gtk_menu_submenu_shown), li->data, 0);
+
               /* attach submenu */
               name = garcon_menu_element_get_name (li->data);
 
@@ -885,52 +1047,11 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
               g_signal_connect (G_OBJECT (submenu), "selection-done",
                   G_CALLBACK (garcon_gtk_menu_deactivate), menu);
               gtk_widget_show (mi);
-
-              /* atleast 1 visible child */
-              has_children = TRUE;
-            }
-          else
-            {
-              /* no visible element in the menu */
-              gtk_widget_destroy (submenu);
             }
         }
     }
 
   g_list_free (elements);
-
-  return has_children;
-}
-
-
-
-static void
-garcon_gtk_menu_load (GarconGtkMenu *menu)
-{
-  GError    *error = NULL;
-
-  g_return_if_fail (GARCON_GTK_IS_MENU (menu));
-  g_return_if_fail (menu->priv->menu == NULL || GARCON_IS_MENU (menu->priv->menu));
-
-  if (menu->priv->menu == NULL)
-    return;
-
-  if (garcon_menu_load (menu->priv->menu, NULL, &error))
-    {
-      garcon_gtk_menu_add (menu, GTK_MENU (menu), menu->priv->menu);
-
-      /* watch for changes */
-      g_signal_connect_swapped (G_OBJECT (menu->priv->menu), "reload-required",
-        G_CALLBACK (garcon_gtk_menu_reload), menu);
-    }
-  else
-    {
-       xfce_dialog_show_error (NULL, error, _("Failed to load the applications menu"));
-       g_error_free (error);
-    }
-
-  menu->priv->reload_id = 0;
-  menu->priv->is_loaded = TRUE;
 }
 
 
@@ -983,7 +1104,11 @@ garcon_gtk_menu_set_menu (GarconGtkMenu *menu,
     }
 
   if (garcon_menu != NULL)
-    menu->priv->menu = GARCON_MENU (g_object_ref (G_OBJECT (garcon_menu)));
+    {
+      menu->priv->menu = g_object_ref (garcon_menu);
+      g_signal_connect_swapped (menu->priv->menu, "reload-required",
+                                G_CALLBACK (garcon_gtk_menu_reload), menu);
+    }
   else
     menu->priv->menu = NULL;
 
