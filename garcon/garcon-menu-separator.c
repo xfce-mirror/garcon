@@ -89,21 +89,21 @@ garcon_menu_separator_finalize (GObject *object)
 /**
  * garcon_menu_separator_get_default: (constructor)
  *
- * Returns a new #GarconMenuSeparator. The returned object
+ * Returns the default #GarconMenuSeparator. The returned object
  * should be unreffed with g_object_unref() when no longer needed.
  *
- * Returns: (transfer full): a new #GarconMenuSeparator.
+ * Returns: (transfer full): the default #GarconMenuSeparator.
  */
 GarconMenuSeparator*
 garcon_menu_separator_get_default (void)
 {
-  GarconMenuSeparator *separator = NULL;
+  static GarconMenuSeparator *separator = NULL;
 
   if (G_UNLIKELY (separator == NULL))
     {
       /* Create a new separator */
       separator = g_object_new (GARCON_TYPE_MENU_SEPARATOR, NULL);
-      g_object_add_weak_pointer (G_OBJECT (separator), (gpointer) &separator);
+      g_object_add_weak_pointer (G_OBJECT (separator), (gpointer *) &separator);
     }
   else
     {
