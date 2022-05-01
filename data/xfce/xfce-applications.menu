@@ -166,6 +166,8 @@
             <All/>
         </Include>
     </Menu>
+
     <DefaultMergeDirs/>
+    <MergeDir>applications-merged</MergeDir>
 
 </Menu>
