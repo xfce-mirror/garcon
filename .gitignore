@@ -18,14 +18,11 @@ intltool-merge.in
 intltool-update.in
 libtool
 ltmain.sh
-m4/
 missing
 mkinstalldirs
 Makefile.in.in
 *.stamp
 version.xml
-*.tar.bz2
-*.tar.gz
 garcon-decl-list.txt
 garcon-decl-list.txt.bak
 garcon-decl.txt
@@ -41,6 +38,7 @@ garcon.signals
 docs/reference/html/*
 docs/reference/tmpl/*
 docs/reference/xml/*
+docs/reference/garcon.actions
 po/.intltool-merge-cache
 aclocal.m4
 autom4te.cache
@@ -85,7 +83,9 @@ garcon/Garcon-1.0.gir
 garcon/Garcon-1.0.typelib
 garcon-gtk/GarconGtk-1.0.gir
 garcon-gtk/GarconGtk-1.0.typelib
-gtk-doc.m4
+m4/gtk-doc.m4
+m4/libtool.m4
+m4/lt*.m4
 tests/test-display-menu
 tests/test-display-menu-gtk3
 po/.intltool-merge-cache*
