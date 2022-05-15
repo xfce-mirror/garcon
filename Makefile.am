@@ -49,12 +49,8 @@ EXTRA_DIST =								\
 	AUTHORS								\
 	COPYING								\
 	ChangeLog							\
-	HACKING								\
 	NEWS								\
 	README.md							\
-	THANKS								\
-	TODO								\
-	STATUS								\
 	intltool-extract.in						\
 	intltool-merge.in						\
 	intltool-update.in                                              \
