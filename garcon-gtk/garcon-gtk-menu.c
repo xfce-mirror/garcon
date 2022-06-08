@@ -68,6 +68,7 @@ static void                 garcon_gtk_menu_add                         (GarconG
                                                                          GtkMenu                 *gtk_menu,
                                                                          GarconMenu              *garcon_menu);
 static void                 garcon_gtk_menu_load                        (GarconGtkMenu           *menu);
+static void                 garcon_gtk_menu_reload                      (GarconGtkMenu           *menu);
 
 
 
@@ -230,7 +231,10 @@ garcon_gtk_menu_finalize (GObject *object)
 
   /* Release menu */
   if (menu->priv->menu != NULL)
-    g_object_unref (menu->priv->menu);
+    {
+      g_signal_handlers_disconnect_by_func (menu->priv->menu, garcon_gtk_menu_reload, menu);
+      g_object_unref (menu->priv->menu);
+    }
 
   g_mutex_clear (&menu->priv->load_lock);
   g_cond_clear (&menu->priv->load_cond);
