@@ -74,6 +74,9 @@ static void                 garcon_gtk_menu_reload                      (GarconG
 
 struct _GarconGtkMenuPrivate
 {
+  /* the GarconGtkMenu and GarconMenu lifecycles are independent, so any signal
+   * handler connection that links the two or any of their elements should use
+   * `g_signal_connect_object()` */
   GarconMenu *menu;
 
   /* asynchronous load */
@@ -231,10 +234,7 @@ garcon_gtk_menu_finalize (GObject *object)
 
   /* Release menu */
   if (menu->priv->menu != NULL)
-    {
-      g_signal_handlers_disconnect_by_func (menu->priv->menu, garcon_gtk_menu_reload, menu);
-      g_object_unref (menu->priv->menu);
-    }
+    g_object_unref (menu->priv->menu);
 
   g_mutex_clear (&menu->priv->load_lock);
   g_cond_clear (&menu->priv->load_cond);
@@ -794,8 +794,8 @@ garcon_gtk_menu_pack_actions_menu (GtkWidget      *menu,
                                              action_icon_name);
 
       gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
-      g_signal_connect (G_OBJECT (mi), "activate",
-                        G_CALLBACK (garcon_gtk_menu_item_action_activate), action);
+      g_signal_connect_object (G_OBJECT (mi), "activate",
+                               G_CALLBACK (garcon_gtk_menu_item_action_activate), action, 0);
       /* we need to store the parent associated with this item so we can
        * activate it properly */
       g_object_set_data (G_OBJECT (action), "GarconMenuItem", menu_item);
@@ -824,8 +824,8 @@ garcon_gtk_menu_add_actions (GarconGtkMenu  *menu,
   /* we need to store the GarconGtkMenu with this item so we can
    * use it if the user wants to edit a menu item */
   g_object_set_data (G_OBJECT (mi), "GarconGtkMenu", menu);
-  g_signal_connect (G_OBJECT (mi), "activate",
-                    G_CALLBACK (garcon_gtk_menu_item_activate), menu_item);
+  g_signal_connect_object (G_OBJECT (mi), "activate",
+                           G_CALLBACK (garcon_gtk_menu_item_activate), menu_item, 0);
   gtk_widget_show (mi);
 
   garcon_gtk_menu_pack_actions_menu (submenu, menu_item, actions,
@@ -940,8 +940,8 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
           GList *actions = NULL;
 
           /* watch for changes */
-          g_signal_connect_swapped (G_OBJECT (li->data), "changed",
-              G_CALLBACK (garcon_gtk_menu_reload), menu);
+          g_signal_connect_object (G_OBJECT (li->data), "changed",
+              G_CALLBACK (garcon_gtk_menu_reload), menu, G_CONNECT_SWAPPED);
 
           /* skip invisible items */
           if (!garcon_menu_element_get_visible (li->data))
@@ -980,8 +980,8 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
             }
           else
             {
-              g_signal_connect (G_OBJECT (mi), "activate",
-                                G_CALLBACK (garcon_gtk_menu_item_activate), li->data);
+              g_signal_connect_object (G_OBJECT (mi), "activate",
+                                       G_CALLBACK (garcon_gtk_menu_item_activate), li->data, 0);
               /* we need to store the GarconGtkMenu with this item so we can
                * use it if the user wants to edit a menu item */
               g_object_set_data (G_OBJECT (mi), "GarconGtkMenu", menu);
@@ -999,12 +999,12 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
           /* support for dnd item to for example the xfce4-panel */
           gtk_drag_source_set (mi, GDK_BUTTON1_MASK, dnd_target_list,
               G_N_ELEMENTS (dnd_target_list), GDK_ACTION_COPY);
-          g_signal_connect_swapped (G_OBJECT (mi), "drag-begin",
-              G_CALLBACK (garcon_gtk_menu_item_drag_begin), li->data);
-          g_signal_connect_swapped (G_OBJECT (mi), "drag-data-get",
-              G_CALLBACK (garcon_gtk_menu_item_drag_data_get), li->data);
-          g_signal_connect_swapped (G_OBJECT (mi), "drag-end",
-              G_CALLBACK (garcon_gtk_menu_item_drag_end), menu);
+          g_signal_connect_object (G_OBJECT (mi), "drag-begin",
+              G_CALLBACK (garcon_gtk_menu_item_drag_begin), li->data, G_CONNECT_SWAPPED);
+          g_signal_connect_object (G_OBJECT (mi), "drag-data-get",
+              G_CALLBACK (garcon_gtk_menu_item_drag_data_get), li->data, G_CONNECT_SWAPPED);
+          g_signal_connect_object (G_OBJECT (mi), "drag-end",
+              G_CALLBACK (garcon_gtk_menu_item_drag_end), menu, G_CONNECT_SWAPPED);
 
           /* doesn't happen, but anyway... */
           command = garcon_menu_item_get_command (li->data);
@@ -1034,11 +1034,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
               submenu = gtk_menu_new ();
               gtk_menu_set_reserve_toggle_size (GTK_MENU (submenu), FALSE);
 
-              /*
-               * Will be populated later, only if necessary, to save resources.
-               * The life cycles of the GtkMenu and the GarconMenu are independent,
-               * so use `g_signal_connect_object()` here.
-               */
+              /* will be populated later, only if necessary, to save resources */
               g_object_set_data (G_OBJECT (submenu), "GarconGtkMenu", menu);
               g_signal_connect_object (submenu, "show",
                                        G_CALLBACK (garcon_gtk_menu_submenu_shown), li->data, 0);
@@ -1114,8 +1110,8 @@ garcon_gtk_menu_set_menu (GarconGtkMenu *menu,
   if (garcon_menu != NULL)
     {
       menu->priv->menu = g_object_ref (garcon_menu);
-      g_signal_connect_swapped (menu->priv->menu, "reload-required",
-                                G_CALLBACK (garcon_gtk_menu_reload), menu);
+      g_signal_connect_object (menu->priv->menu, "reload-required",
+                               G_CALLBACK (garcon_gtk_menu_reload), menu, G_CONNECT_SWAPPED);
     }
   else
     menu->priv->menu = NULL;
