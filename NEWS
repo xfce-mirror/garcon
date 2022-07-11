@@ -1,3 +1,12 @@
+4.17.1 (2022-07-11)
+======
+- Bug Fixes:
+  - garcon-gtk: A more in-depth review of signal handler connections
+  - garcon-gtk: Disconnect reload callback on finalize (#27, !18)
+
+- Translation Updates:
+  English (United Kingdom), Greek
+
 4.17.0 (2022-05-15)
 ======
 - Bug Fixes:
