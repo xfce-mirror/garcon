@@ -289,6 +289,7 @@ garcon_menu_merger_get_type
 
 <SECTION>
 <FILE>garcon-menu-node</FILE>
+GarconMenuNodeType
 GarconMenuLayoutMergeType
 GarconMenuMergeFileType
 garcon_menu_node_new
@@ -328,7 +329,6 @@ GARCON_MENU_NODE_GET_CLASS
 GARCON_TYPE_MENU_NODE
 GarconMenuNode
 GarconMenuNodeClass
-GarconMenuNodeType
 garcon_menu_node_get_type
 garcon_menu_node_type_get_type
 </SECTION>
