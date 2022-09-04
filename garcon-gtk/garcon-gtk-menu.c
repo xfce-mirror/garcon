@@ -1225,6 +1225,7 @@ garcon_gtk_menu_get_show_menu_icons (GarconGtkMenu *menu)
 /**
  * garcon_gtk_menu_set_show_tooltips:
  * @menu  : A #GarconGtkMenu
+ * @show_tooltips : new value
  *
  *
  **/
