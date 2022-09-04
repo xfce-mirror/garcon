@@ -1,9 +1,4 @@
 <SECTION>
-<FILE>garcon</FILE>
-GARCON_INSIDE_GARCON_H
-</SECTION>
-
-<SECTION>
 <FILE>garcon-config</FILE>
 GARCON_MAJOR_VERSION
 GARCON_MINOR_VERSION
@@ -23,11 +18,6 @@ GARCON_ENVIRONMENT_XFCE
 garcon_set_environment
 garcon_get_environment
 garcon_set_environment_xdg
-</SECTION>
-
-<SECTION>
-<FILE>garcon-gtk</FILE>
-GARCON_INSIDE_GARCON_GTK_H
 </SECTION>
 
 <SECTION>

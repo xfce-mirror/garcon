@@ -24,10 +24,10 @@
 #include <gtk/gtk.h>
 #include <garcon/garcon.h>
 
-#define GARCON_INSIDE_GARCON_GTK_H
+#define _GARCON_INSIDE_GARCON_GTK_H
 
 #include <garcon-gtk/garcon-gtk-menu.h>
 
-#undef GARCON_INSIDE_GARCON_GTK_H
+#undef _GARCON_INSIDE_GARCON_GTK_H
 
 #endif /* !__GARCON_GTK_H__ */

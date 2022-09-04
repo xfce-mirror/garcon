@@ -23,7 +23,7 @@
 
 #include <gio/gio.h>
 
-#define GARCON_INSIDE_GARCON_H
+#define _GARCON_INSIDE_GARCON_H
 
 #include <garcon/garcon-config.h>
 #include <garcon/garcon-menu-directory.h>
@@ -40,6 +40,6 @@
 #include <garcon/garcon-menu-separator.h>
 #include <garcon/garcon-menu-tree-provider.h>
 
-#undef GARCON_INSIDE_GARCON_H
+#undef _GARCON_INSIDE_GARCON_H
 
 #endif /* !__GARCON_H__ */

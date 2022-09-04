@@ -68,8 +68,6 @@
   <part id="garcon-miscellaneous">
     <title>Miscellaneous</title>
     <xi:include href="xml/garcon-environment.xml"/>
-    <xi:include href="xml/garcon.xml"/>
-    <xi:include href="xml/garcon-gtk.xml"/>
     <xi:include href="xml/garcon-config.xml"/>
   </part>
 
