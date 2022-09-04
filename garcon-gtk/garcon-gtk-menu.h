@@ -32,10 +32,10 @@ G_BEGIN_DECLS
 
 #define GARCON_GTK_TYPE_MENU            (garcon_gtk_menu_get_type ())
 #define GARCON_GTK_MENU(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_GTK_TYPE_MENU, GarconGtkMenu))
-#define GARCON_GTK_MENU_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_GTK_TYPE_MENU, GarcontkMenuClass))
+#define GARCON_GTK_MENU_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_GTK_TYPE_MENU, GarconGtkMenuClass))
 #define GARCON_GTK_IS_MENU(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_GTK_TYPE_MENU))
 #define GARCON_GTK_IS_MENU_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_GTK_TYPE_MENU))
-#define GARCON_GTK_MENU_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_GTK_TYPE_MENU, GarcontkMenuClass))
+#define GARCON_GTK_MENU_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_GTK_TYPE_MENU, GarconGtkMenuClass))
 
 typedef struct _GarconGtkMenuPrivate GarconGtkMenuPrivate;
 typedef struct _GarconGtkMenuClass   GarconGtkMenuClass;
