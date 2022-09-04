@@ -33,8 +33,6 @@ GARCON_INSIDE_GARCON_GTK_H
 <SECTION>
 <FILE>garcon-gtk-menu</FILE>
 <TITLE>GarconGtkMenu</TITLE>
-GarconGtkMenuClass
-GarconGtkMenu
 garcon_gtk_menu_new
 garcon_gtk_menu_set_menu
 garcon_gtk_menu_get_menu
@@ -49,8 +47,10 @@ garcon_gtk_menu_get_show_desktop_actions
 garcon_gtk_menu_get_desktop_actions_menu
 garcon_gtk_menu_set_right_click_edits
 garcon_gtk_menu_get_right_click_edits
-GarconGtkMenuPrivate
 <SUBSECTION Standard>
+GarconGtkMenu
+GarconGtkMenuClass
+GarconGtkMenuPrivate
 GARCON_GTK_IS_MENU
 GARCON_GTK_IS_MENU_CLASS
 GARCON_GTK_MENU
@@ -183,6 +183,7 @@ garcon_menu_item_set_supports_startup_notification
 garcon_menu_item_get_categories
 garcon_menu_item_set_categories
 garcon_menu_item_has_category
+garcon_menu_item_has_keyword
 garcon_menu_item_get_keywords
 garcon_menu_item_set_keywords
 garcon_menu_item_get_actions

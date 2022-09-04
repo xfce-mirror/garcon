@@ -1065,8 +1065,8 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
 
 /**
  * garcon_gtk_menu_new:
- * @garcon_menu (nullable): The #GarconMenu to be associated with the
- *                          #GarconGtkMenu, or %NULL.
+ * @garcon_menu: (nullable): The #GarconMenu to be associated with the
+ *                           #GarconGtkMenu, or %NULL.
  *
  * Creates a new #GarconGtkMenu for the .menu file referred to by @garcon_menu.
  * This operation only fails if @garcon_menu is invalid.

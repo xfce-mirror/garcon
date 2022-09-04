@@ -36,6 +36,12 @@
 
 
 
+#ifndef G_KEY_FILE_DESKTOP_KEY_KEYWORDS
+#define G_KEY_FILE_DESKTOP_KEY_KEYWORDS "Keywords"
+#endif
+
+
+
 /* Property identifiers */
 enum
 {

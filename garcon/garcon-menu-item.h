@@ -45,8 +45,6 @@ typedef struct _GarconMenuItem        GarconMenuItem;
 #define GARCON_IS_MENU_ITEM_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_ITEM))
 #define GARCON_MENU_ITEM_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_ITEM, GarconMenuItemClass))
 
-#define  G_KEY_FILE_DESKTOP_KEY_KEYWORDS "Keywords"
-
 struct _GarconMenuItemClass
 {
   GObjectClass __parent__;
