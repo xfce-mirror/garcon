@@ -127,7 +127,7 @@ stamp-garcon-marshal.h: garcon-marshal.list Makefile
 	  && echo "#ifndef __GARCON_MARSHAL_H__" > xgen-emh \
 	  && echo "#define __GARCON_MARSHAL_H__" >> xgen-emh \
 	  && ( glib-genmarshal \
-	  	--prefix=garcon_marshal \
+	  	--prefix=_garcon_marshal \
 	  	--header $(srcdir)/garcon-marshal.list ) >> xgen-emh \
 	  && echo "#endif /* !__GARCON_MARSHAL_H__ */" >> xgen-emh \
 	  && ( cmp -s xgen-emh garcon-marshal.h \
@@ -141,7 +141,7 @@ garcon-marshal.c: garcon-marshal.list Makefile
 	  cd $(top_builddir)/garcon \
 	  && echo "#include <garcon/garcon-marshal.h>" > xgen-emc \
 	  && ( glib-genmarshal \
-	  	--prefix=garcon_marshal \
+	  	--prefix=_garcon_marshal \
 	  	--body $(srcdir)/garcon-marshal.list ) >> xgen-emc \
 	  && cp xgen-emc garcon-marshal.c \
 	  && rm -f xgen-emc \

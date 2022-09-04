@@ -288,7 +288,7 @@ garcon_menu_class_init (GarconMenuClass *klass)
                   0,
                   NULL,
                   NULL,
-                  garcon_marshal_VOID__OBJECT_OBJECT,
+                  _garcon_marshal_VOID__OBJECT_OBJECT,
                   G_TYPE_NONE,
                   2,
                   GARCON_TYPE_MENU_DIRECTORY,
@@ -690,7 +690,7 @@ garcon_menu_load (GarconMenu   *menu,
       /* Build the ${XDG_MENU_PREFIX}applications.menu filename */
       prefix = g_getenv ("XDG_MENU_PREFIX");
       relative_filename = g_strconcat ("menus", G_DIR_SEPARATOR_S,
-                                       prefix != NULL ? prefix : GARCON_DEFAULT_MENU_PREFIX,
+                                       prefix != NULL ? prefix : _GARCON_DEFAULT_MENU_PREFIX,
                                        "applications.menu", NULL);
 
       /* Search for the menu file in user and system config dirs */
@@ -1886,7 +1886,7 @@ garcon_menu_monitor_menu_files (GarconMenu *menu)
       /* Build ${XDG_MENU_PREFIX}applications.menu filename */
       prefix = g_getenv ("XDG_MENU_PREFIX");
       relative_filename = g_strconcat ("menus", G_DIR_SEPARATOR_S,
-                                       prefix != NULL ? prefix : GARCON_DEFAULT_MENU_PREFIX,
+                                       prefix != NULL ? prefix : _GARCON_DEFAULT_MENU_PREFIX,
                                        "applications.menu", NULL);
 
       /* Monitor all application menu candidates */
@@ -2160,7 +2160,7 @@ garcon_menu_file_changed (GarconMenu       *menu,
   /* Build the ${XDG_MENU_PREFIX}applications.menu filename */
   prefix = g_getenv ("XDG_MENU_PREFIX");
   relative_filename = g_strconcat ("menus", G_DIR_SEPARATOR_S,
-                                   prefix != NULL ? prefix : GARCON_DEFAULT_MENU_PREFIX,
+                                   prefix != NULL ? prefix : _GARCON_DEFAULT_MENU_PREFIX,
                                    "applications.menu", NULL);
 
   /* Get XDG config paths for the root spec (e.g. menus/xfce-applications.menu) */

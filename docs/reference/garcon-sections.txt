@@ -51,11 +51,6 @@ garcon_gtk_menu_get_type
 </SECTION>
 
 <SECTION>
-<FILE>garcon-marshal</FILE>
-garcon_marshal_VOID__OBJECT_OBJECT
-</SECTION>
-
-<SECTION>
 <FILE>garcon-menu</FILE>
 <TITLE>GarconMenu</TITLE>
 garcon_menu_new
@@ -380,9 +375,4 @@ GARCON_TYPE_MENU_TREE_PROVIDER
 GarconMenuTreeProvider
 GarconMenuTreeProviderIface
 garcon_menu_tree_provider_get_type
-</SECTION>
-
-<SECTION>
-<FILE>garcon-private</FILE>
-GARCON_DEFAULT_MENU_PREFIX
 </SECTION>

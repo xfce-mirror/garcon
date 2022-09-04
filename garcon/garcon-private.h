@@ -36,7 +36,7 @@ G_BEGIN_DECLS
 
 /* if XDG_MENU_PREFIX is not set, default to "xfce-" so garcon doesn't
  * break when xfce is not started with startxfce4 */
-#define GARCON_DEFAULT_MENU_PREFIX "xfce-"
+#define _GARCON_DEFAULT_MENU_PREFIX "xfce-"
 
 GFile    *_garcon_file_new_for_unknown_input    (const gchar *path,
                                                  GFile       *parent);

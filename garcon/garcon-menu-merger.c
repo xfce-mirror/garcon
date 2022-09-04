@@ -517,7 +517,7 @@ garcon_menu_merger_resolve_default_dirs (GNode                   *node,
 
       /* check if we have an application menu file */
       prefix = g_getenv ("XDG_MENU_PREFIX");
-      applications_filename = g_strconcat (prefix != NULL ? prefix : GARCON_DEFAULT_MENU_PREFIX, 
+      applications_filename = g_strconcat (prefix != NULL ? prefix : _GARCON_DEFAULT_MENU_PREFIX,
                                            "applications.menu", NULL);
       if (g_strcmp0 (filename, applications_filename) == 0)
         is_application_menu = TRUE;
