@@ -288,7 +288,7 @@ garcon_menu_class_init (GarconMenuClass *klass)
                   0,
                   NULL,
                   NULL,
-                  _garcon_marshal_VOID__OBJECT_OBJECT,
+                  garcon_marshal_VOID__OBJECT_OBJECT,
                   G_TYPE_NONE,
                   2,
                   GARCON_TYPE_MENU_DIRECTORY,

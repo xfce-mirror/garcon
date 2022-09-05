@@ -69,6 +69,7 @@
     <title>Miscellaneous</title>
     <xi:include href="xml/garcon-environment.xml"/>
     <xi:include href="xml/garcon-config.xml"/>
+    <xi:include href="xml/garcon-marshal.xml"/>
   </part>
 
   <part id="object-tree">
