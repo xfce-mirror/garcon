@@ -728,13 +728,19 @@ garcon_menu_item_lists_equal (GList *list1,
 static gchar *
 garcon_menu_item_url_exec (XfceRc *rc)
 {
+  GString     *string;
   const gchar *url;
   gchar       *url_exec = NULL;
 
   /* Support Type=Link items */
   url = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_URL, NULL);
   if (url != NULL)
-    url_exec = g_strdup_printf ("exo-open '%s'", url);
+    {
+      string = g_string_new (url);
+      g_string_replace (string, "%", "%%", 0);
+      url_exec = g_strdup_printf ("exo-open '%s'", string->str);
+      g_string_free (string, TRUE);
+    }
 
   return url_exec;
 }
