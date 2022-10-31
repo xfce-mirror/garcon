@@ -1,3 +1,24 @@
+4.17.2 (2022-10-31)
+======
+- Dependency Changes:
+  - GObject Introspection >= 1.66.0
+
+- Bug Fixes:
+  - garcon-gtk: Fix menu icon blurriness when UI scale factor != 1 (#33, !25)
+  - garcon: Escape '%' when building command from URL desktop files (#31)
+  - Bump GObject Introspection minim version to 1.66 (xfconf#8, !24)
+  - docs: Fix broken links
+  - docs: Remove pointless sections
+  - docs: Make GarconMenuNodeType public
+  - docs: Fix "parameter description" warnings
+  - docs: Make *_INSIDE_* macros private
+  - docs: Fix "unused declarations" warning
+  - docs: Do not track `garcon-overrides.txt`
+  - garcon-gtk: Fix typo in GObject macros
+
+- Translation Updates:
+  Kazakh, Korean, Occitan (post 1500), Welsh
+
 4.17.1 (2022-07-11)
 ======
 - Bug Fixes:
