@@ -328,6 +328,7 @@ garcon_menu_init (GarconMenu *menu)
   menu->priv->pool = garcon_menu_item_pool_new ();
   menu->priv->uses_custom_path = TRUE;
   menu->priv->changed_files = NULL;
+  menu->priv->file_changed_idle = 0;
   menu->priv->idle_reload_required_id = 0;
 
   /* Take reference on the menu item cache */
@@ -1797,12 +1798,6 @@ garcon_menu_start_monitoring (GarconMenu *menu)
   /* Let only the root menu monitor menu files, merge files/directories and app dirs */
   if (menu->priv->parent == NULL)
     {
-      /* Create the list for merging consecutive file change events */
-      menu->priv->changed_files = NULL;
-
-      /* Reset the idle source for handling file changes */
-      menu->priv->file_changed_idle = 0;
-
       garcon_menu_monitor_menu_files (menu);
 
       garcon_menu_monitor_files (menu, menu->priv->merge_files,
@@ -1849,7 +1844,10 @@ garcon_menu_stop_monitoring (GarconMenu *menu)
 
   /* Stop the idle source for handling file changes from being invoked */
   if (menu->priv->file_changed_idle != 0)
-    g_source_remove (menu->priv->file_changed_idle);
+    {
+      g_source_remove (menu->priv->file_changed_idle);
+      menu->priv->file_changed_idle = 0;
+    }
 
   /* Free the hash table for merging consecutive file change events */
   _garcon_g_slist_free_full (menu->priv->changed_files, g_object_unref);
