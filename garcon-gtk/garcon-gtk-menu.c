@@ -593,7 +593,7 @@ garcon_gtk_menu_load_finish (GObject      *source_object,
   g_list_free_full (children, (GDestroyNotify) gtk_widget_destroy);
 
   /* update the GtkMenu in place if shown */
-  if (gtk_widget_get_visible (GTK_WIDGET (menu)))
+  if (menu->priv->is_loaded && gtk_widget_get_visible (GTK_WIDGET (menu)))
     garcon_gtk_menu_add (menu, GTK_MENU (menu), menu->priv->menu);
   else
     menu->priv->is_populated = FALSE;
