@@ -1381,7 +1381,7 @@ garcon_menu_item_set_desktop_id (GarconMenuItem *item,
  *
  * Returns list of categories
  *
- * Returns: (element-type utf8) (transfer full):
+ * Returns: (element-type utf8) (transfer none):
  */
 GList*
 garcon_menu_item_get_categories (GarconMenuItem *item)
@@ -1418,7 +1418,7 @@ garcon_menu_item_set_categories (GarconMenuItem *item,
  * garcon_menu_item_get_keywords:
  * @item: a #GarconMenuItem
  *
- * Returns: (element-type utf8) (transfer full):
+ * Returns: (element-type utf8) (transfer none):
  */
 GList*
 garcon_menu_item_get_keywords (GarconMenuItem *item)
@@ -1838,7 +1838,7 @@ garcon_menu_item_has_keyword (GarconMenuItem *item,
  * garcon_menu_item_get_actions:
  * @item: a #GarconMenuItem
  *
- * Returns: (element-type GarconMenuItemAction) (transfer full):
+ * Returns: (element-type GarconMenuItemAction) (transfer container):
  */
 GList *
 garcon_menu_item_get_actions (GarconMenuItem *item)
@@ -1865,7 +1865,7 @@ garcon_menu_item_get_actions (GarconMenuItem *item)
  * @item: a #GarconMenuItem
  * @action_name:
  *
- * Returns: (nullable) (transfer full): a #GarconMenuItemAction
+ * Returns: (nullable) (transfer none): a #GarconMenuItemAction
  */
 GarconMenuItemAction *
 garcon_menu_item_get_action (GarconMenuItem *item,

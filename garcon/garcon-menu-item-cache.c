@@ -144,7 +144,7 @@ garcon_menu_item_cache_finalize (GObject *object)
  * @uri: URI to look for
  * @desktop_id: desktop id to update
  *
- * Returns: (transfer full) (nullable): a #GarconMenuItem
+ * Returns: (transfer none) (nullable): a #GarconMenuItem
  */
 GarconMenuItem*
 garcon_menu_item_cache_lookup (GarconMenuItemCache *cache,

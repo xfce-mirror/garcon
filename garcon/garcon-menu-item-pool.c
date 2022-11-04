@@ -129,7 +129,7 @@ garcon_menu_item_pool_insert (GarconMenuItemPool *pool,
  * @pool: a #GarconMenuItemPool
  * @desktop_id: (type filename): .desktop file
  *
- * Returns: (transfer full): a #GarconMenuItem object
+ * Returns: (transfer none): a #GarconMenuItem object
  */
 GarconMenuItem*
 garcon_menu_item_pool_lookup (GarconMenuItemPool *pool,
@@ -147,7 +147,7 @@ garcon_menu_item_pool_lookup (GarconMenuItemPool *pool,
  * @pool: a #GarconMenuItemPool
  * @file: a GFile instance
  *
- * Returns: (transfer full): a #GarconMenuItem object
+ * Returns: (transfer none): a #GarconMenuItem object
  */
 GarconMenuItem *
 garcon_menu_item_pool_lookup_file (GarconMenuItemPool *pool,

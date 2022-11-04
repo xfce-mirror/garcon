@@ -597,14 +597,11 @@ garcon_menu_get_name (GarconMenu *menu)
  * Returns the #GarconMenuDirectory of @menu or %NULL if @menu has
  * no valid directory element.
  *
- * The returned object should be unreffed with g_object_unref() when
- * no longer needed.
- *
  * The menu directory may contain a lot of useful information about
  * the menu like the display and icon name, desktop environments it
  * should show up in etc.
  *
- * Returns: (transfer full) (nullable): a #GarconMenuDirectory
+ * Returns: (transfer none) (nullable): a #GarconMenuDirectory
  */
 GarconMenuDirectory*
 garcon_menu_get_directory (GarconMenu *menu)
@@ -798,7 +795,7 @@ garcon_menu_load (GarconMenu   *menu,
  * Returns a sorted list of #GarconMenu submenus of @menu. The list
  * should be freed with g_list_free().
  *
- * Returns: (transfer full) (element-type GarconMenu): a sorted list
+ * Returns: (transfer container) (element-type GarconMenu): a sorted list
  * of #GarconMenu.
  */
 GList *
@@ -852,7 +849,7 @@ garcon_menu_add_menu (GarconMenu *menu,
  *
  * Looks in @menu for a submenu with @name as name.
  *
- * Returns: (transfer full) (nullable): a #GarconMenu or %NULL.
+ * Returns: (transfer none) (nullable): a #GarconMenu or %NULL.
  */
 GarconMenu *
 garcon_menu_get_menu_with_name (GarconMenu  *menu,
@@ -883,7 +880,7 @@ garcon_menu_get_menu_with_name (GarconMenu  *menu,
  *
  * Returns the parent #GarconMenu or @menu.
  *
- * Returns: (transfer full) (nullable): a #GarconMenu or %NULL
+ * Returns: (transfer none) (nullable): a #GarconMenu or %NULL
  * if @menu is the root menu.
  */
 GarconMenu *
@@ -1381,7 +1378,7 @@ garcon_menu_remove_deleted_menus (GarconMenu *menu)
  * Get the item pool of the menu. This pool contains all items in this
  * menu (for that of its submenus).
  *
- * Returns: (transfer full): a #GarconMenuItemPool.
+ * Returns: (transfer none): a #GarconMenuItemPool.
  */
 GarconMenuItemPool*
 garcon_menu_get_item_pool (GarconMenu *menu)
@@ -1413,7 +1410,7 @@ items_collect (const gchar    *desktop_id,
  * The caller is responsible to free the returned list using
  * g_list_free() when no longer needed.
  *
- * Returns: (element-type GarconMenuItem) (transfer full): list
+ * Returns: (element-type GarconMenuItem) (transfer container): list
  * of #GarconMenuItem included in @menu.
  */
 GList *
@@ -1542,7 +1539,7 @@ layout_elements_collect (GList **dest_list,
  * Returns a list of #GarconMenuItem or %NULL. Free the list with
  * g_list_free().
  *
- * Returns: (element-type GarconMenuItem) (nullable) (transfer full):
+ * Returns: (element-type GarconMenuItem) (nullable) (transfer container):
  */
 GList *
 garcon_menu_get_elements (GarconMenu *menu)

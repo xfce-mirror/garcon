@@ -549,7 +549,7 @@ collect_strings (GNode *node,
  * @type: type for the menu nodes
  * @reverse:
  *
- * Returns: (element-type GNode) (transfer full): list of #GNode
+ * Returns: (element-type GNode) (transfer container): list of #GNode
  */
 GList *
 garcon_menu_node_tree_get_string_children (GNode             *tree,
