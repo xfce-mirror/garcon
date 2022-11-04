@@ -215,6 +215,9 @@ struct _GarconMenuPrivate
 
   /* idle reload-required to group events */
   guint                idle_reload_required_id;
+
+  /* asynchronous load from GarconGtkMenu */
+  GMutex               load_lock;
 };
 
 
@@ -329,6 +332,7 @@ garcon_menu_init (GarconMenu *menu)
   menu->priv->uses_custom_path = TRUE;
   menu->priv->changed_files = NULL;
   menu->priv->file_changed_idle = 0;
+  g_mutex_init (&menu->priv->load_lock);
   menu->priv->idle_reload_required_id = 0;
 
   /* Take reference on the menu item cache */
@@ -392,6 +396,7 @@ garcon_menu_finalize (GObject *object)
 
   /* Clear resources allocated in the load process */
   garcon_menu_clear (menu);
+  g_mutex_clear (&menu->priv->load_lock);
 
   /* Free file */
   if (menu->priv->file != NULL)
@@ -675,6 +680,8 @@ garcon_menu_load (GarconMenu   *menu,
   g_return_val_if_fail (GARCON_IS_MENU (menu), FALSE);
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
+  g_mutex_lock (&menu->priv->load_lock);
+
   /* Make sure to reset the menu to a loadable state */
   garcon_menu_clear (menu);
 
@@ -707,6 +714,7 @@ garcon_menu_load (GarconMenu   *menu,
           g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_NOENT,
                        _("File \"%s\" not found"), relative_filename);
           g_free (relative_filename);
+          g_mutex_unlock (&menu->priv->load_lock);
           return FALSE;
         }
 
@@ -743,7 +751,10 @@ garcon_menu_load (GarconMenu   *menu,
   g_object_unref (parser);
 
   if (!success)
-    return FALSE;
+    {
+      g_mutex_unlock (&menu->priv->load_lock);
+      return FALSE;
+    }
 
   /* Generate submenus */
   garcon_menu_resolve_menus (menu);
@@ -753,7 +764,10 @@ garcon_menu_load (GarconMenu   *menu,
 
   /* Abort if the cancellable was cancelled */
   if (g_cancellable_set_error_if_cancelled (cancellable, error))
-    return FALSE;
+    {
+      g_mutex_unlock (&menu->priv->load_lock);
+      return FALSE;
+    }
 
   desktop_id_table = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 
@@ -769,6 +783,8 @@ garcon_menu_load (GarconMenu   *menu,
 
   /* Initiate file system monitoring */
   garcon_menu_start_monitoring (menu);
+
+  g_mutex_unlock (&menu->priv->load_lock);
 
   return TRUE;
 }
@@ -2141,11 +2157,14 @@ garcon_menu_file_changed (GarconMenu       *menu,
   g_return_if_fail (GARCON_IS_MENU (menu));
   g_return_if_fail (menu->priv->parent == NULL);
 
+  g_mutex_lock (&menu->priv->load_lock);
+
   /* Quick check: reloading is needed if the menu file being used has changed */
   if (g_file_equal (menu->priv->file, file))
     {
       garcon_menu_debug (file, event_type, "menu changed");
       garcon_menu_file_emit_reload_required (menu);
+      g_mutex_unlock (&menu->priv->load_lock);
       return;
     }
 
@@ -2153,7 +2172,10 @@ garcon_menu_file_changed (GarconMenu       *menu,
    * need to refresh if a menu file is removed that we're not using because
    * it is lower in priority (else we'd be using it already) */
   if (event_type == G_FILE_MONITOR_EVENT_DELETED)
-    return;
+    {
+      g_mutex_unlock (&menu->priv->load_lock);
+      return;
+    }
 
   /* Build the ${XDG_MENU_PREFIX}applications.menu filename */
   prefix = g_getenv ("XDG_MENU_PREFIX");
@@ -2197,6 +2219,8 @@ garcon_menu_file_changed (GarconMenu       *menu,
       garcon_menu_debug (file, event_type, "new menu has higher prio");
       garcon_menu_file_emit_reload_required (menu);
     }
+
+  g_mutex_unlock (&menu->priv->load_lock);
 }
 
 
@@ -2247,6 +2271,8 @@ garcon_menu_process_file_changes (gpointer user_data)
 
   g_return_val_if_fail (GARCON_IS_MENU (menu), FALSE);
   g_return_val_if_fail (menu->priv->parent == NULL, FALSE);
+
+  g_mutex_lock (&menu->priv->load_lock);
 
   for (lp = menu->priv->changed_files; !stop_processing && lp != NULL; lp = lp->next)
     {
@@ -2335,6 +2361,8 @@ garcon_menu_process_file_changes (gpointer user_data)
   /* reset the idle source ID */
   menu->priv->file_changed_idle = 0;
 
+  g_mutex_unlock (&menu->priv->load_lock);
+
   /* remove the idle source */
   return FALSE;
 }
@@ -2362,6 +2390,8 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
 
   g_return_if_fail (GARCON_IS_MENU (menu));
   g_return_if_fail (menu->priv->parent == NULL);
+
+  g_mutex_lock (&menu->priv->load_lock);
 
   if (event_type == G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT
       || event_type == G_FILE_MONITOR_EVENT_CREATED
@@ -2422,6 +2452,8 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
             }
         }
     }
+
+  g_mutex_unlock (&menu->priv->load_lock);
 }
 
 
@@ -2436,6 +2468,8 @@ garcon_menu_directory_file_changed (GarconMenu       *menu,
   GarconMenuDirectory *old_directory = NULL;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
+
+  g_mutex_lock (&menu->priv->load_lock);
 
   if (event_type == G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT
       || event_type == G_FILE_MONITOR_EVENT_ATTRIBUTE_CHANGED
@@ -2465,6 +2499,8 @@ garcon_menu_directory_file_changed (GarconMenu       *menu,
       if (old_directory != NULL)
         g_object_unref (old_directory);
     }
+
+  g_mutex_unlock (&menu->priv->load_lock);
 }
 
 
