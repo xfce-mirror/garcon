@@ -116,12 +116,12 @@ XDT_I18N([@LINGUAS@])
 dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
-XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.50.0])
-XDT_CHECK_PACKAGE([GIO], [gio-2.0], [2.50.0])
+XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.66.0])
+XDT_CHECK_PACKAGE([GIO], [gio-2.0], [2.66.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.15.6])
-XDT_CHECK_PACKAGE([GOBJECT], [gobject-2.0], [2.50.0])
-XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.50.0])
-XDT_CHECK_PACKAGE([GTK3], [gtk+-3.0], [3.20.0])
+XDT_CHECK_PACKAGE([GOBJECT], [gobject-2.0], [2.66.0])
+XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.66.0])
+XDT_CHECK_PACKAGE([GTK3], [gtk+-3.0], [3.24.0])
 XDT_CHECK_PACKAGE([LIBXFCE4UI2], [libxfce4ui-2], [4.15.7])
 
 dnl *************************
