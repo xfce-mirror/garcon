@@ -674,10 +674,10 @@ garcon_gtk_menu_load_icon_pixbuf (const gchar *icon_name,
   size = MIN (w, h);
 
   if (gtk_icon_theme_has_icon (icon_theme, icon_name))
-    {
-      pixbuf = gtk_icon_theme_load_icon (icon_theme,
-                                         icon_name, size * scale_factor,
-                                         GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
+  {
+      pixbuf = gtk_icon_theme_load_icon_for_scale (icon_theme, icon_name,
+                                                   size, scale_factor,
+                                                   GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
     }
   else
     {
@@ -692,8 +692,8 @@ garcon_gtk_menu_load_icon_pixbuf (const gchar *icon_name,
           if (p)
             {
               name = g_strndup (icon_name, p - icon_name);
-              pixbuf = gtk_icon_theme_load_icon (icon_theme,
-                                                 icon_name, size * scale_factor,
+              pixbuf = gtk_icon_theme_load_icon_for_scale (icon_theme, icon_name,
+                                                           size, scale_factor,
                                                  GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
               g_free (name);
               name = NULL;
