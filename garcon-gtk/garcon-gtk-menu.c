@@ -666,69 +666,70 @@ garcon_gtk_menu_reload (GarconGtkMenu *menu)
 static GtkWidget*
 garcon_gtk_menu_load_icon (const gchar *icon_name)
 {
-  GtkWidget *image = NULL;
-  gint w, h, size;
-  gchar *p, *name = NULL;
-  GdkPixbuf *pixbuf = NULL;
   GtkIconTheme *icon_theme = gtk_icon_theme_get_default ();
-
-  gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &w, &h);
-  size = MIN (w, h);
+  GIcon *icon = NULL;
+  GtkWidget *image = NULL;
 
   if (gtk_icon_theme_has_icon (icon_theme, icon_name))
     {
-	  pixbuf = gtk_icon_theme_load_icon (icon_theme, icon_name, size, 0, NULL);;
+      icon = g_themed_icon_new (icon_name);
     }
   else
     {
-      if (g_path_is_absolute (icon_name))
+      if (g_path_is_absolute (icon_name)
+          && g_file_test (icon_name, G_FILE_TEST_EXISTS)
+          && !g_file_test (icon_name, G_FILE_TEST_IS_DIR))
         {
-          pixbuf = gdk_pixbuf_new_from_file_at_scale (icon_name, w, h, TRUE, NULL);
+          GFile *file = g_file_new_for_path (icon_name);
+          icon = g_file_icon_new (file);
+          g_object_unref (file);
         }
       else
         {
           /* try to lookup names like application.png in the theme */
-          p = strrchr (icon_name, '.');
+          gchar *p = strrchr (icon_name, '.');
           if (p)
             {
-              name = g_strndup (icon_name, p - icon_name);
-              pixbuf = gtk_icon_theme_load_icon (icon_theme, name, size, 0, NULL);
+              const gchar *slash = strrchr (icon_name, '/');
+              const gchar *start = slash != NULL && slash < p ? slash + 1 : icon_name;
+              gchar *name = g_strndup (start, p - start);
+              if (gtk_icon_theme_has_icon (icon_theme, name))
+                {
+                  icon = g_themed_icon_new (name);
+                }
               g_free (name);
-              name = NULL;
             }
 
-          /* maybe they point to a file in the pixbufs folder */
-          if (G_UNLIKELY (pixbuf == NULL))
+          /* maybe they point to a file in the pixmaps folder */
+          if (G_UNLIKELY (icon == NULL))
             {
-              gchar *filename;
+              gchar *filename, *name;
 
               filename = g_build_filename ("pixmaps", icon_name, NULL);
               name = xfce_resource_lookup (XFCE_RESOURCE_DATA, filename);
               g_free (filename);
-            }
 
-          if (name)
-            {
-              pixbuf = gdk_pixbuf_new_from_file_at_scale (name, w, h, TRUE, NULL);
-              g_free (name);
+              if (name != NULL)
+                {
+                  GFile *file = g_file_new_for_path (name);
+                  icon = g_file_icon_new (file);
+                  g_object_unref (file);
+                  g_free (name);
+                }
             }
         }
     }
 
-  /* Turn the pixbuf into a gtk_image */
-  if (G_LIKELY (pixbuf))
-    {
-      /* scale the pixbuf down if it needs it */
-      GdkPixbuf *pixbuf_scaled = gdk_pixbuf_scale_simple (pixbuf, w, h, GDK_INTERP_BILINEAR);
-      g_object_unref (G_OBJECT (pixbuf));
 
-      image = gtk_image_new_from_pixbuf (pixbuf_scaled);
-      g_object_unref (G_OBJECT (pixbuf_scaled));
+  if (G_LIKELY (icon != NULL))
+    {
+      /* Turn the icon into a gtk_image */
+      image = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_MENU);
     }
   else
     {
-	  /* display the placeholder at least */
-	  image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
+      /* display the placeholder at least */
+      image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
     }
 
   return image;
