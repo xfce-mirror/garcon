@@ -663,87 +663,71 @@ garcon_gtk_menu_reload (GarconGtkMenu *menu)
 
 
 
-static GdkPixbuf*
-garcon_gtk_menu_load_icon_pixbuf (const gchar *icon_name,
-                                  gint         scale_factor)
+static GtkWidget*
+garcon_gtk_menu_load_icon (const gchar *icon_name)
 {
-  gint w, h, size;
-  gchar *p, *name = NULL;
-  GdkPixbuf *pixbuf = NULL;
   GtkIconTheme *icon_theme = gtk_icon_theme_get_default ();
-
-  gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, &w, &h);
-  size = MIN (w, h);
+  GIcon *icon = NULL;
+  GtkWidget *image = NULL;
 
   if (gtk_icon_theme_has_icon (icon_theme, icon_name))
     {
-      pixbuf = gtk_icon_theme_load_icon_for_scale (icon_theme, icon_name,
-                                                   size, scale_factor,
-                                                   GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
+      icon = g_themed_icon_new (icon_name);
+    }
+  else if (g_path_is_absolute (icon_name)
+           && g_file_test (icon_name, G_FILE_TEST_EXISTS)
+           && !g_file_test (icon_name, G_FILE_TEST_IS_DIR))
+    {
+      GFile *file = g_file_new_for_path (icon_name);
+      icon = g_file_icon_new (file);
+      g_object_unref (file);
     }
   else
     {
-      if (g_path_is_absolute (icon_name))
+      /* try to lookup names like application.png in the theme */
+      const gchar *p = strrchr (icon_name, '.');
+      if (p != NULL)
         {
-          pixbuf = gdk_pixbuf_new_from_file_at_scale (icon_name, w * scale_factor, h * scale_factor, TRUE, NULL);
+          const gchar *slash = strrchr (icon_name, '/');
+          const gchar *start = slash != NULL && slash < p ? slash + 1 : icon_name;
+          gchar *name = g_strndup (start, p - start);
+
+          if (gtk_icon_theme_has_icon (icon_theme, name))
+            {
+              icon = g_themed_icon_new (name);
+            }
+          g_free (name);
         }
-      else
+
+      /* maybe they point to a file in the pixmaps folder */
+      if (G_UNLIKELY (icon == NULL))
         {
-          /* try to lookup names like application.png in the theme */
-          p = strrchr (icon_name, '.');
-          if (p)
-            {
-              name = g_strndup (icon_name, p - icon_name);
-              pixbuf = gtk_icon_theme_load_icon_for_scale (icon_theme, icon_name,
-                                                           size, scale_factor,
-                                                           GTK_ICON_LOOKUP_FORCE_SIZE, NULL);
-              g_free (name);
-              name = NULL;
-            }
+          gchar *filename, *name;
 
-          /* maybe they point to a file in the pixmaps folder */
-          if (G_UNLIKELY (pixbuf == NULL))
-            {
-              gchar *filename;
+          filename = g_build_filename ("pixmaps", icon_name, NULL);
+          name = xfce_resource_lookup (XFCE_RESOURCE_DATA, filename);
+          g_free (filename);
 
-              filename = g_build_filename ("pixmaps", icon_name, NULL);
-              name = xfce_resource_lookup (XFCE_RESOURCE_DATA, filename);
-              g_free (filename);
-            }
-
-          if (name)
+          if (name != NULL)
             {
-              pixbuf = gdk_pixbuf_new_from_file_at_scale (name, w * scale_factor, h * scale_factor, TRUE, NULL);
+              GFile *file = g_file_new_for_path (name);
+              icon = g_file_icon_new (file);
+              g_object_unref (file);
               g_free (name);
             }
         }
     }
 
-  return pixbuf;
-}
-
-
-
-static GtkWidget*
-garcon_gtk_menu_load_icon (const gchar *icon_name,
-                           gint         scale_factor)
-{
-  GtkWidget *image = NULL;
-  GdkPixbuf *pixbuf = NULL;
-
-  pixbuf = garcon_gtk_menu_load_icon_pixbuf (icon_name, scale_factor);
-  if (G_LIKELY (pixbuf != NULL))
+  if (G_LIKELY (icon != NULL))
     {
-      cairo_surface_t *surface = gdk_cairo_surface_create_from_pixbuf (pixbuf, scale_factor, NULL);
-      g_object_unref (G_OBJECT (pixbuf));
-
-      image = gtk_image_new_from_surface (surface);
-      cairo_surface_destroy (surface);
+      /* Turn the icon into a GtkImage */
+      image = gtk_image_new_from_gicon (icon, GTK_ICON_SIZE_MENU);
+      g_object_unref (icon);
     }
   else
     {
-	  /* display the placeholder at least */
-	  image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
+      /* display the placeholder at least */
+      image = gtk_image_new_from_icon_name (icon_name, GTK_ICON_SIZE_MENU);
     }
 
   return image;
@@ -751,67 +735,17 @@ garcon_gtk_menu_load_icon (const gchar *icon_name,
 
 
 
-static void
-garcon_gtk_menu_item_scale_factor_changed (GtkWidget   *menu_item,
-                                           GParamSpec  *pspec,
-                                           const gchar *icon_name)
-{
-  GdkPixbuf *pixbuf;
-  gint       scale_factor;
-
-  g_return_if_fail (GTK_IS_MENU_ITEM (menu_item));
-  g_return_if_fail (icon_name != NULL);
-
-  scale_factor = gtk_widget_get_scale_factor (menu_item);
-  pixbuf = garcon_gtk_menu_load_icon_pixbuf (icon_name, scale_factor);
-
-  if (G_LIKELY (pixbuf))
-    {
-      GtkWidget *image = NULL;
-      GtkWidget *box;
-
-      box = gtk_bin_get_child (GTK_BIN (menu_item));
-      if (GTK_IS_BOX (box))
-        {
-          GList *children = gtk_container_get_children (GTK_CONTAINER (box));
-          for (GList *l = children; l != NULL; l = l->next)
-            {
-              if (GTK_IS_IMAGE (l->data))
-                {
-                  image = GTK_WIDGET (l->data);
-                  break;
-                }
-            }
-          g_list_free (children);
-        }
-
-      if (image != NULL)
-        {
-          GdkWindow       *window = gtk_widget_get_window (menu_item);
-          cairo_surface_t *surface = gdk_cairo_surface_create_from_pixbuf (pixbuf, scale_factor, window);
-          gtk_image_set_from_surface (GTK_IMAGE (image), surface);
-          cairo_surface_destroy (surface);
-        }
-
-      g_object_unref (G_OBJECT (pixbuf));
-    }
-}
-
-
-
 static GtkWidget*
 garcon_gtk_menu_create_menu_item (gboolean     show_menu_icons,
                                   const gchar *name,
-                                  const gchar *icon_name,
-                                  gint         scale_factor)
+                                  const gchar *icon_name)
 {
   GtkWidget *mi;
   GtkWidget *image;
-  gchar *icon_name_copy;
 
   if (show_menu_icons)
     {
-      image = garcon_gtk_menu_load_icon (icon_name, scale_factor);
+      image = garcon_gtk_menu_load_icon (icon_name);
       gtk_widget_show (image);
     }
   else
@@ -820,11 +754,6 @@ garcon_gtk_menu_create_menu_item (gboolean     show_menu_icons,
     }
 
   mi = xfce_gtk_image_menu_item_new (name, NULL, NULL, NULL, NULL, image, NULL);
-
-  icon_name_copy = g_strdup (icon_name);
-  g_object_set_data_full (G_OBJECT (mi), "--garcon-icon-name", icon_name_copy, g_free);
-  g_signal_connect (mi, "notify::scale-factor",
-                    G_CALLBACK (garcon_gtk_menu_item_scale_factor_changed), icon_name_copy);
 
   return mi;
 }
@@ -836,8 +765,7 @@ garcon_gtk_menu_pack_actions_menu (GtkWidget      *menu,
                                    GarconMenuItem *menu_item,
                                    GList          *actions,
                                    const gchar    *parent_icon_name,
-                                   gboolean        show_menu_icons,
-                                   gint            scale_factor)
+                                   gboolean        show_menu_icons)
 {
   GList     *iter;
   GtkWidget *mi;
@@ -864,8 +792,7 @@ garcon_gtk_menu_pack_actions_menu (GtkWidget      *menu,
 
       mi = garcon_gtk_menu_create_menu_item (show_menu_icons,
                                              garcon_menu_item_action_get_name (action),
-                                             action_icon_name,
-                                             scale_factor);
+                                             action_icon_name);
 
       gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
       g_signal_connect_object (G_OBJECT (mi), "activate",
@@ -886,14 +813,13 @@ garcon_gtk_menu_add_actions (GarconGtkMenu  *menu,
                              const gchar    *parent_icon_name)
 {
   GtkWidget *submenu, *mi;
-  gint scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (menu));
 
   submenu = gtk_menu_new ();
 
   /* Add the parent item again, this time something the user can click to execute */
   mi = garcon_gtk_menu_create_menu_item (menu->priv->show_menu_icons,
                                          garcon_menu_item_get_name (menu_item),
-                                         parent_icon_name, scale_factor);
+                                         parent_icon_name);
   gtk_menu_shell_append (GTK_MENU_SHELL (submenu), mi);
 
   /* we need to store the GarconGtkMenu with this item so we can
@@ -904,8 +830,7 @@ garcon_gtk_menu_add_actions (GarconGtkMenu  *menu,
   gtk_widget_show (mi);
 
   garcon_gtk_menu_pack_actions_menu (submenu, menu_item, actions,
-                                     parent_icon_name, menu->priv->show_menu_icons,
-                                     scale_factor);
+                                     parent_icon_name, menu->priv->show_menu_icons);
 
   return submenu;
 }
@@ -996,7 +921,6 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
 {
   GList               *elements, *li;
   GtkWidget           *mi;
-  gint                 scale_factor;
   const gchar         *name, *icon_name;
   const gchar         *comment;
   GtkWidget           *submenu;
@@ -1006,8 +930,6 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
   g_return_if_fail (GARCON_GTK_IS_MENU (menu));
   g_return_if_fail (GTK_IS_MENU (gtk_menu));
   g_return_if_fail (GARCON_IS_MENU (garcon_menu));
-
-  scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (menu));
 
   elements = garcon_menu_get_elements (garcon_menu);
   for (li = elements; li != NULL; li = li->next)
@@ -1041,7 +963,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
             icon_name = "applications-other";
 
           /* build the menu item */
-          mi = garcon_gtk_menu_create_menu_item (menu->priv->show_menu_icons, name, icon_name, scale_factor);
+          mi = garcon_gtk_menu_create_menu_item (menu->priv->show_menu_icons, name, icon_name);
           gtk_menu_shell_append (GTK_MENU_SHELL (gtk_menu), mi);
 
           /* if the menu item has actions such as "Private browsing mode"
@@ -1126,7 +1048,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
                 icon_name = "applications-other";
 
               /* build the menu item */
-              mi = garcon_gtk_menu_create_menu_item (menu->priv->show_menu_icons, name, icon_name, scale_factor);
+              mi = garcon_gtk_menu_create_menu_item (menu->priv->show_menu_icons, name, icon_name);
 
               gtk_menu_shell_append (GTK_MENU_SHELL (gtk_menu), mi);
               gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), submenu);
@@ -1394,15 +1316,13 @@ garcon_gtk_menu_get_desktop_actions_menu (GarconMenuItem *item)
   GList       *actions = NULL;
   const gchar *parent_icon_name;
   gboolean     show_menu_icons = FALSE;
-  gint         scale_factor;
 
   actions = garcon_menu_item_get_actions (item);
   g_return_val_if_fail (actions != NULL, NULL);
 
   parent_icon_name = garcon_menu_item_get_icon_name (item);
-  scale_factor = gtk_widget_get_scale_factor (GTK_WIDGET (submenu));
 
-  garcon_gtk_menu_pack_actions_menu (submenu, item, actions, parent_icon_name, show_menu_icons, scale_factor);
+  garcon_gtk_menu_pack_actions_menu (submenu, item, actions, parent_icon_name, show_menu_icons);
   g_list_free (actions);
 
   return GTK_MENU (submenu);
