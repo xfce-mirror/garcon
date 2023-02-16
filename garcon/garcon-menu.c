@@ -394,9 +394,13 @@ garcon_menu_finalize (GObject *object)
 {
   GarconMenu *menu = GARCON_MENU (object);
 
+  /* wait for any async operation to finish */
+  g_mutex_lock (&menu->priv->load_lock);
+  g_mutex_unlock (&menu->priv->load_lock);
+  g_mutex_clear (&menu->priv->load_lock);
+
   /* Clear resources allocated in the load process */
   garcon_menu_clear (menu);
-  g_mutex_clear (&menu->priv->load_lock);
 
   /* Free file */
   if (menu->priv->file != NULL)

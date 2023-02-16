@@ -232,12 +232,15 @@ garcon_gtk_menu_finalize (GObject *object)
 {
   GarconGtkMenu *menu = GARCON_GTK_MENU (object);
 
+  /* wait for any async operation to finish */
+  g_mutex_lock (&menu->priv->load_lock);
+  g_mutex_unlock (&menu->priv->load_lock);
+  g_mutex_clear (&menu->priv->load_lock);
+  g_cond_clear (&menu->priv->load_cond);
+
   /* Release menu */
   if (menu->priv->menu != NULL)
     g_object_unref (menu->priv->menu);
-
-  g_mutex_clear (&menu->priv->load_lock);
-  g_cond_clear (&menu->priv->load_cond);
 
   (*G_OBJECT_CLASS (garcon_gtk_menu_parent_class)->finalize) (object);
 }
