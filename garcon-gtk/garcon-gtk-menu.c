@@ -350,11 +350,13 @@ garcon_gtk_menu_show (GtkWidget *widget)
     }
 
   /* populate the GtkMenu at level 0 the first time it's shown */
+  g_mutex_lock (&menu->priv->load_lock);
   if (G_UNLIKELY (menu->priv->is_loaded && ! menu->priv->is_populated))
     {
       garcon_gtk_menu_add (menu, GTK_MENU (menu), menu->priv->menu);
       menu->priv->is_populated = TRUE;
     }
+  g_mutex_unlock (&menu->priv->load_lock);
 
   (*GTK_WIDGET_CLASS (garcon_gtk_menu_parent_class)->show) (widget);
 }
