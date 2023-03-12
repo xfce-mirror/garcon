@@ -2,5 +2,5 @@
 Version=1.0
 Type=Directory
 Icon=applications-science
-_Name=Education
-_Comment=Educational software
+Name=Education
+Comment=Educational software

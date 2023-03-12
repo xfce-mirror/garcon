@@ -2,5 +2,5 @@
 Version=1.0
 Type=Directory
 Icon=applications-multimedia
-_Name=Multimedia
-_Comment=Audio and video players and editors
+Name=Multimedia
+Comment=Audio and video players and editors
