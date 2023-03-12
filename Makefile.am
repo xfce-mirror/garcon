@@ -50,17 +50,7 @@ EXTRA_DIST =								\
 	COPYING								\
 	ChangeLog							\
 	NEWS								\
-	README.md							\
-	intltool-extract.in						\
-	intltool-merge.in						\
-	intltool-update.in                                              \
 	m4/introspection.m4
-
-DISTCLEANFILES =							\
-	intltool-extract						\
-	intltool-merge							\
-	intltool-update \
-	po/.intltool-merge-cache.lock
 
 DISTCHECK_CONFIGURE_FLAGS =						\
 	--enable-gtk-doc                                                \
