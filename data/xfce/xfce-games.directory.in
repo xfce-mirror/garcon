@@ -2,5 +2,5 @@
 Version=1.0
 Type=Directory
 Icon=applications-games
-_Name=Games
-_Comment=Games, puzzles, and other fun software
+Name=Games
+Comment=Games, puzzles, and other fun software
