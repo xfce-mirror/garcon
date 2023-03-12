@@ -25,6 +25,12 @@ m4_define([garcon_verinfo], [0:0:0])
 m4_define([garcon_version_api_major], [1])
 XDT_VERSION_INIT([4.18.0], [git])
 
+dnl minimum required versions
+m4_define([glib_min_version], [2.66.0])
+m4_define([gtk_min_version], [3.24.0])
+m4_define([libxfce4util_min_version], [4.15.6])
+m4_define([libxfce4ui_min_version], [4.15.7])
+
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
@@ -102,13 +108,13 @@ AM_GNU_GETTEXT_VERSION([0.19.8])
 dnl ***********************************
 dnl *** Check for required packages ***
 dnl ***********************************
-XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.66.0])
-XDT_CHECK_PACKAGE([GIO], [gio-2.0], [2.66.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.15.6])
-XDT_CHECK_PACKAGE([GOBJECT], [gobject-2.0], [2.66.0])
-XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.66.0])
-XDT_CHECK_PACKAGE([GTK3], [gtk+-3.0], [3.24.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UI2], [libxfce4ui-2], [4.15.7])
+XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [glib_min_version])
+XDT_CHECK_PACKAGE([GIO], [gio-2.0], [glib_min_version])
+XDT_CHECK_PACKAGE([GOBJECT], [gobject-2.0], [glib_min_version])
+XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [glib_min_version])
+XDT_CHECK_PACKAGE([GTK3], [gtk+-3.0], [gtk_min_version])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [libxfce4util_min_version])
+XDT_CHECK_PACKAGE([LIBXFCE4UI2], [libxfce4ui-2], [libxfce4ui_min_version])
 
 dnl *************************
 dnl *** Check for gtk-doc ***
@@ -154,6 +160,6 @@ dnl ***************************
 echo
 echo "Build Configuration:"
 echo
-echo "* Debug Support:  $enable_debug"
+echo "* Debug Support:                 $enable_debug"
 echo "* GObject Introspection support: $enable_introspection"
 echo
