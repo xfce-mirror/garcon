@@ -2,5 +2,5 @@
 Version=1.0
 Type=Directory
 Icon=applications-system
-_Name=System
-_Comment=System tools and utilities
+Name=System
+Comment=System tools and utilities

@@ -1,5 +1,4 @@
 *.gmo
-stamp-it
 .deps
 .libs
 stamp-h1
@@ -13,9 +12,6 @@ test-menu-spec
 *.so
 gtk-doc.make
 install-sh
-intltool-extract.in
-intltool-merge.in
-intltool-update.in
 libtool
 ltmain.sh
 missing
@@ -40,7 +36,6 @@ docs/reference/html/*
 docs/reference/tmpl/*
 docs/reference/xml/*
 docs/reference/garcon.actions
-po/.intltool-merge-cache
 aclocal.m4
 autom4te.cache
 compile
@@ -49,6 +44,7 @@ config.h
 config.h.in
 config.h.in~
 config.log
+config.rpath
 config.status
 config.sub
 configure
@@ -58,8 +54,20 @@ ChangeLog
 depcomp
 garcon-1.pc
 garcon-config.h
+ABOUT-NLS
 INSTALL
-POTFILES
+po/POTFILES
+po/stamp-po
+po/Makevars.template
+po/Rules-quot
+po/boldquot.sed
+po/en@boldquot.header
+po/en@quot.header
+po/insert-header.sin
+po/quot.sed
+po/remove-potcdate.sed
+po/remove-potcdate.sin
+po/xfce4-panel.pot
 data/xfce/xfce-accessories.directory
 data/xfce/xfce-development.directory
 data/xfce/xfce-education.directory
@@ -89,4 +97,3 @@ m4/libtool.m4
 m4/lt*.m4
 tests/test-display-menu
 tests/test-display-menu-gtk3
-po/.intltool-merge-cache*
