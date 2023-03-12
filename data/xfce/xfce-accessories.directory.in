@@ -2,5 +2,5 @@
 Version=1.0
 Type=Directory
 Icon=applications-accessories
-_Name=Accessories
-_Comment=Common desktop tools and applications
+Name=Accessories
+Comment=Common desktop tools and applications
