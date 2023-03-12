@@ -23,29 +23,17 @@ dnl *** Version information ***
 dnl ***************************
 m4_define([garcon_verinfo], [0:0:0])
 m4_define([garcon_version_api_major], [1])
-m4_define([garcon_version_major], [4])
-m4_define([garcon_version_minor], [18])
-m4_define([garcon_version_micro], [0])
-m4_define([garcon_version_build], [@REVISION@])
-m4_define([garcon_version_tag], [git])
-m4_define([garcon_version], [garcon_version_major().garcon_version_minor().garcon_version_micro()ifelse(garcon_version_tag(), [git], [garcon_version_tag()-garcon_version_build()], [garcon_version_tag()])])
-
-dnl ********************************************
-dnl *** Full debug support for GIT snapshots ***
-dnl ********************************************
-m4_define([garcon_debug_default], [ifelse(garcon_version_tag(), [git], [yes], [minimum])])
+XDT_VERSION_INIT([4.18.0], [git])
 
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2007-2011 Jannis Pohlmann <jannis@xfce.org>
-Copyright (c) 2012-2022 The Xfce development team
-              ])
-AC_INIT([garcon], [garcon_version], [https://gitlab.xfce.org/xfce/garcon])
+AC_COPYRIGHT([Copyright (c) 2007-2023 The Xfce development team. All rights reserved.
+  Written for Xfce by Jannis Pohlmann <jannis@xfce.org>.])
+AC_INIT([garcon], [xdt_version], [https://gitlab.xfce.org/xfce/garcon])
 AC_PREREQ([2.69])
 AC_CONFIG_MACRO_DIRS([m4])
-AC_REVISION([@REVISION@])
-AC_CANONICAL_TARGET()
+AC_REVISION([xdt_version_build])
 
 dnl ***************************
 dnl *** Initialize automake ***
@@ -64,9 +52,9 @@ AC_SUBST([GARCON_VERINFO])
 dnl ****************************
 dnl *** Subst garcon version ***
 dnl ****************************
-GARCON_VERSION_MAJOR=garcon_version_major()
-GARCON_VERSION_MINOR=garcon_version_minor()
-GARCON_VERSION_MICRO=garcon_version_micro()
+GARCON_VERSION_MAJOR=xdt_version_major()
+GARCON_VERSION_MINOR=xdt_version_minor()
+GARCON_VERSION_MICRO=xdt_version_micro()
 GARCON_VERSION_API_MAJOR=garcon_version_api_major()
 GARCON_VERSION_API=$GARCON_VERSION_API_MAJOR
 AC_SUBST([GARCON_VERSION_MAJOR])
@@ -135,7 +123,7 @@ GOBJECT_INTROSPECTION_CHECK([1.66.0])
 dnl ***********************************
 dnl *** Check for debugging support ***
 dnl ***********************************
-XDT_FEATURE_DEBUG([garcon_debug_default])
+XDT_FEATURE_DEBUG([xdt_debug_default])
 
 dnl **************************************
 dnl *** Check for linker optimizations ***

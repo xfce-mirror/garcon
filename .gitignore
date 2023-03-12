@@ -50,7 +50,6 @@ config.status
 config.sub
 configure
 configure.in
-configure.ac
 ChangeLog
 depcomp
 garcon-1.pc
