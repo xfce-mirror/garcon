@@ -9,143 +9,23 @@
 # Fitoschido, 2015
 # 629cf3e396111bb8c5fb6664e2dbc91d, 2016
 # mc <correomc2000-ing@yahoo.es>, 2013
-# prflr88 <prflr88@gmail.com>, 2014-2015
+# Pablo Lezaeta Reyes <prflr88@gmail.com>, 2014-2015
 # Toni Estévez <toni.estevez@gmail.com>, 2019,2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 00:45+0100\n"
-"PO-Revision-Date: 2022-02-01 22:10+0000\n"
-"Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
+"POT-Creation-Date: 2023-03-13 00:45+0100\n"
+"PO-Revision-Date: 2013-07-02 20:32+0000\n"
+"Last-Translator: Toni Estévez <toni.estevez@gmail.com>, 2019,2021-2022\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/garcon/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: ../data/xfce/xfce-accessories.directory.in.h:1
-msgid "Accessories"
-msgstr "Accesorios"
-
-#: ../data/xfce/xfce-accessories.directory.in.h:2
-msgid "Common desktop tools and applications"
-msgstr "Herramientas y aplicaciones de escritorio comunes"
-
-#: ../data/xfce/xfce-development.directory.in.h:1
-msgid "Development"
-msgstr "Desarrollo"
-
-#: ../data/xfce/xfce-development.directory.in.h:2
-msgid "Software development tools"
-msgstr "Herramientas de desarrollo de programas"
-
-#: ../data/xfce/xfce-education.directory.in.h:1
-msgid "Education"
-msgstr "Educación"
-
-#: ../data/xfce/xfce-education.directory.in.h:2
-msgid "Educational software"
-msgstr "Programas educativos"
-
-#: ../data/xfce/xfce-games.directory.in.h:1
-msgid "Games"
-msgstr "Juegos"
-
-#: ../data/xfce/xfce-games.directory.in.h:2
-msgid "Games, puzzles, and other fun software"
-msgstr "Juegos, rompecabezas y otros programas divertidos"
-
-#: ../data/xfce/xfce-graphics.directory.in.h:1
-msgid "Graphics"
-msgstr "Gráficos"
-
-#: ../data/xfce/xfce-graphics.directory.in.h:2
-msgid "Graphics creation and manipulation applications"
-msgstr "Aplicaciones de creación y manipulación de gráficos"
-
-#: ../data/xfce/xfce-hardware.directory.in.h:1
-msgid "Hardware"
-msgstr "Hardware"
-
-#: ../data/xfce/xfce-hardware.directory.in.h:2
-msgid "Settings for several hardware devices"
-msgstr "Configuración para varios dispositivos de hardware"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Multimedia"
-msgstr "Multimedia"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
-msgid "Audio and video players and editors"
-msgstr "Reproductores y editores de audio y video"
-
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Internet"
-msgstr "Internet"
-
-#: ../data/xfce/xfce-network.directory.in.h:2
-msgid "Applications for Internet access"
-msgstr "Aplicaciones para el acceso a internet"
-
-#: ../data/xfce/xfce-office.directory.in.h:1
-msgid "Office"
-msgstr "Oficina"
-
-#: ../data/xfce/xfce-office.directory.in.h:2
-msgid "Office and productivity applications"
-msgstr "Aplicaciones de oficina y productividad"
-
-#: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Other"
-msgstr "Otras"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
-msgid "Applications that don't fit into other categories"
-msgstr "Aplicaciones que no encajan en otras categorías"
-
-#: ../data/xfce/xfce-personal.directory.in.h:1
-msgid "Personal"
-msgstr "Personal"
-
-#: ../data/xfce/xfce-personal.directory.in.h:2
-msgid "Personal settings"
-msgstr "Configuración personal"
-
-#: ../data/xfce/xfce-science.directory.in.h:1
-msgid "Science"
-msgstr "Ciencia"
-
-#: ../data/xfce/xfce-science.directory.in.h:2
-msgid "Scientific software"
-msgstr "Programas científicos"
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensavers"
-msgstr "Salvapantallas"
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:2
-msgid "Screensaver applets"
-msgstr "Miniaplicaciones de salvapantallas"
-
-#: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Settings"
-msgstr "Configuración"
-
-#: ../data/xfce/xfce-settings.directory.in.h:2
-msgid "Desktop and system settings applications"
-msgstr "Aplicaciones de configuración del escritorio y del sistema"
-
-#: ../data/xfce/xfce-system.directory.in.h:1
-msgid "System"
-msgstr "Sistema"
-
-#: ../data/xfce/xfce-system.directory.in.h:2
-msgid "System tools and utilities"
-msgstr "Herramientas y utilidades del sistema"
-
-#: ../garcon/garcon-menu.c:707
+#: ../garcon/garcon-menu.c:716
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "No se ha encontrado el archivo «%s»"
@@ -160,25 +40,25 @@ msgstr "No se han podido cargar los datos del archivo de menú de %s: %s"
 msgid "Could not load menu file data from %s"
 msgstr "No se han podido cargar los datos del archivo de menú de %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:380
+#: ../garcon-gtk/garcon-gtk-menu.c:412
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "No se ha podido ejecutar la orden «%s»."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:406
+#: ../garcon-gtk/garcon-gtk-menu.c:438
 msgid "Launch Error"
 msgstr "Error de ejecución"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:408
+#: ../garcon-gtk/garcon-gtk-menu.c:440
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
 msgstr "No se puede ejecutar «exo-desktop-item-edit», que es imprescindible para crear y editar elementos del menú."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:410
+#: ../garcon-gtk/garcon-gtk-menu.c:442
 msgid "_Close"
 msgstr "_Cerrar"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:928
+#: ../garcon-gtk/garcon-gtk-menu.c:591
 msgid "Failed to load the applications menu"
 msgstr "No se ha podido cargar el menú de aplicaciones"
