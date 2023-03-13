@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 00:45+0100\n"
-"PO-Revision-Date: 2022-01-31 23:45+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"POT-Creation-Date: 2023-03-13 00:45+0100\n"
+"PO-Revision-Date: 2013-07-02 20:32+0000\n"
+"Last-Translator: Gheyret Kenji <gheyret@yahoo.com>, 2021\n"
 "Language-Team: Uyghur (http://www.transifex.com/xfce/garcon/language/ug/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,127 +18,7 @@ msgstr ""
 "Language: ug\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/xfce/xfce-accessories.directory.in.h:1
-msgid "Accessories"
-msgstr "قوشۇمچە دېتاللار"
-
-#: ../data/xfce/xfce-accessories.directory.in.h:2
-msgid "Common desktop tools and applications"
-msgstr "ئورتاق ئىشلىتىلىدىغان ئۈستەلئۈستى قوراللىرى ۋە پروگراممىلىرى"
-
-#: ../data/xfce/xfce-development.directory.in.h:1
-msgid "Development"
-msgstr "ئىجادىيەت"
-
-#: ../data/xfce/xfce-development.directory.in.h:2
-msgid "Software development tools"
-msgstr "يۇمشاق دېتال ئىجادىيەت قوراللىرى"
-
-#: ../data/xfce/xfce-education.directory.in.h:1
-msgid "Education"
-msgstr "مائارىپ"
-
-#: ../data/xfce/xfce-education.directory.in.h:2
-msgid "Educational software"
-msgstr "مائارىپ دېتاللىرى"
-
-#: ../data/xfce/xfce-games.directory.in.h:1
-msgid "Games"
-msgstr "ئويۇن"
-
-#: ../data/xfce/xfce-games.directory.in.h:2
-msgid "Games, puzzles, and other fun software"
-msgstr "ئويۇن، تېپىشماق ۋە باشقا قىزىقارلىق دېتاللار"
-
-#: ../data/xfce/xfce-graphics.directory.in.h:1
-msgid "Graphics"
-msgstr "گرافىك"
-
-#: ../data/xfce/xfce-graphics.directory.in.h:2
-msgid "Graphics creation and manipulation applications"
-msgstr "گرافىك ياساش ۋە باشقۇرۇش پروگراممىلىرى"
-
-#: ../data/xfce/xfce-hardware.directory.in.h:1
-msgid "Hardware"
-msgstr "قاتتىق دېتال"
-
-#: ../data/xfce/xfce-hardware.directory.in.h:2
-msgid "Settings for several hardware devices"
-msgstr "قاتتىق دېتاللار تەڭشىكى"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Multimedia"
-msgstr "كۆپ ۋاسىتە"
-
-#: ../data/xfce/xfce-multimedia.directory.in.h:2
-msgid "Audio and video players and editors"
-msgstr "ئۈن-سىن قويغۇ ۋە تەھرىرلىگۈ"
-
-#: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Internet"
-msgstr "ئىنتېرنېت"
-
-#: ../data/xfce/xfce-network.directory.in.h:2
-msgid "Applications for Internet access"
-msgstr "ئىنتېرنېتنى زىيارەت قىلىدىغان پروگراممىلار"
-
-#: ../data/xfce/xfce-office.directory.in.h:1
-msgid "Office"
-msgstr "ئىشخانا"
-
-#: ../data/xfce/xfce-office.directory.in.h:2
-msgid "Office and productivity applications"
-msgstr "ئىشخانا ۋە خىزمەت پروگراممىلىرى"
-
-#: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Other"
-msgstr "باشقىلار"
-
-#: ../data/xfce/xfce-other.directory.in.h:2
-msgid "Applications that don't fit into other categories"
-msgstr "باشقا كاتېگورىيەگە تەۋە بولمىغان پروگراممىلار"
-
-#: ../data/xfce/xfce-personal.directory.in.h:1
-msgid "Personal"
-msgstr "شەخسىي"
-
-#: ../data/xfce/xfce-personal.directory.in.h:2
-msgid "Personal settings"
-msgstr "شەخسىي تەڭشەكلەر"
-
-#: ../data/xfce/xfce-science.directory.in.h:1
-msgid "Science"
-msgstr ""
-
-#: ../data/xfce/xfce-science.directory.in.h:2
-msgid "Scientific software"
-msgstr ""
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensavers"
-msgstr "ئېكران قوغدىغۇچ"
-
-#: ../data/xfce/xfce-screensavers.directory.in.h:2
-msgid "Screensaver applets"
-msgstr "ئېكران قوغداش قوللانچاقلىرى"
-
-#: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Settings"
-msgstr "تەڭشەكلەر"
-
-#: ../data/xfce/xfce-settings.directory.in.h:2
-msgid "Desktop and system settings applications"
-msgstr "ئۈستەلئۈستى ۋە سىستېما تەڭشىكى پروگراممىلىرى"
-
-#: ../data/xfce/xfce-system.directory.in.h:1
-msgid "System"
-msgstr "سىستېما"
-
-#: ../data/xfce/xfce-system.directory.in.h:2
-msgid "System tools and utilities"
-msgstr "سىستېما قوراللىرى"
-
-#: ../garcon/garcon-menu.c:707
+#: ../garcon/garcon-menu.c:716
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "ھۆججەت «%s» تېپىلمىدى"
@@ -153,25 +33,25 @@ msgstr "%s دىن تىزىملىك ھۆججەت سانلىق-مەلۇماتلى�
 msgid "Could not load menu file data from %s"
 msgstr "%s دىن تىزىملىك ھۆججەت سانلىق-مەلۇماتلىرىنى ئوقۇغىلى بولمىدى"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:380
+#: ../garcon-gtk/garcon-gtk-menu.c:412
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "بۇيرۇق «%s»نى ئىجرا قىلىش مەغلۇپ بولدى."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:406
+#: ../garcon-gtk/garcon-gtk-menu.c:438
 msgid "Launch Error"
 msgstr "ئىجرا قىلىش خاتالىقى"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:408
+#: ../garcon-gtk/garcon-gtk-menu.c:440
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
 msgstr "ئۈستەلئۈستىگە تىزىملىك ياساش ياكى تەھرىرلەشتە زۆرۈر بولغان \"exo-desktop-item-edit\" نى ئىجرا قىلالمىدى."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:410
+#: ../garcon-gtk/garcon-gtk-menu.c:442
 msgid "_Close"
 msgstr "تاقا(_C)"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:928
+#: ../garcon-gtk/garcon-gtk-menu.c:591
 msgid "Failed to load the applications menu"
 msgstr "پروگرامما تىزىملىكىنى ئوقۇش مەغلۇپ بولدى"
