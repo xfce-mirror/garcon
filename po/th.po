@@ -1,17 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Theppitak Karoonboonyanan <thep@linux.thai.net>, 2013
+# Xfce Bot <transifex@xfce.org>, 2023
+# Theppitak Karoonboonyanan <theppitak@gmail.com>, 2023
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Garcon\n"
+"Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 00:45+0100\n"
-"PO-Revision-Date: 2022-01-31 23:45+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
-"Language-Team: Thai (http://www.transifex.com/xfce/garcon/language/th/)\n"
+"POT-Creation-Date: 2023-03-17 10:36+0100\n"
+"PO-Revision-Date: 2023-03-17 09:36+0000\n"
+"Last-Translator: Theppitak Karoonboonyanan <theppitak@gmail.com>, 2023\n"
+"Language-Team: Thai (https://www.transifex.com/xfce/teams/16840/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +24,7 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr "เครื่องใช้ไม้สอย"
+msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
@@ -60,7 +64,7 @@ msgstr "โปรแกรมสำหรับสร้างและปรั
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr "ฮาร์ดแวร์"
+msgstr ""
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
@@ -72,11 +76,11 @@ msgstr "สื่อผสม"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "โปรแกรมเล่นและแก้ไขเสียงและวีดิทัศน์"
+msgstr ""
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
-msgstr "อินเทอร์เน็ต"
+msgstr ""
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
@@ -116,15 +120,15 @@ msgstr ""
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr "โปรแกรมรักษาหน้าจอ"
+msgstr ""
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "แอพเพล็ตของโปรแกรมรักษาหน้าจอ"
+msgstr ""
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
-msgstr "ตั้งค่า"
+msgstr "การตั้งค่า"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Desktop and system settings applications"
@@ -136,9 +140,9 @@ msgstr "ระบบ"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr "เครื่องมือระบบ"
+msgstr ""
 
-#: ../garcon/garcon-menu.c:707
+#: ../garcon/garcon-menu.c:716
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "ไม่พบแฟ้ม \"%s\""
@@ -153,25 +157,27 @@ msgstr "ไม่สามารถโหลดข้อมูลแฟ้มเ
 msgid "Could not load menu file data from %s"
 msgstr "ไม่สามารถโหลดข้อมูลแฟ้มเมนูจาก %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:380
+#: ../garcon-gtk/garcon-gtk-menu.c:412
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "เรียกทำงานคำสั่ง \"%s\" ไม่สำเร็จ"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:406
+#: ../garcon-gtk/garcon-gtk-menu.c:438
 msgid "Launch Error"
-msgstr "ข้อผิดพลาดในการเรียกทำงาน"
+msgstr "เรียกทำงานผิดพลาด"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:408
+#: ../garcon-gtk/garcon-gtk-menu.c:440
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr "ไม่สามารถเรียกทำงาน \"exo-desktop-item-edit\" ซึ่งจำเป็นในการสร้างและแก้ไขรายการเมนูต่างๆ"
+msgstr ""
+"ไม่สามารถเรียกทำงาน \"exo-desktop-item-edit\" "
+"ซึ่งจำเป็นในการสร้างและแก้ไขรายการเมนูต่างๆ"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:410
+#: ../garcon-gtk/garcon-gtk-menu.c:442
 msgid "_Close"
 msgstr "ปิ_ด"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:928
+#: ../garcon-gtk/garcon-gtk-menu.c:591
 msgid "Failed to load the applications menu"
 msgstr "โหลดเมนูโปรแกรมไม่สำเร็จ"
