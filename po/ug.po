@@ -1,17 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Gheyret Kenji <gheyret@yahoo.com>, 2021
+# Nick Schermer <nick@xfce.org>, 2023
+# Xfce Bot <transifex@xfce.org>, 2023
+# Gheyret Kenji <gheyret@yahoo.com>, 2023
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Garcon\n"
+"Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 00:45+0100\n"
-"PO-Revision-Date: 2022-01-31 23:45+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
-"Language-Team: Uyghur (http://www.transifex.com/xfce/garcon/language/ug/)\n"
+"POT-Creation-Date: 2023-03-17 10:36+0100\n"
+"PO-Revision-Date: 2023-03-17 09:36+0000\n"
+"Last-Translator: Gheyret Kenji <gheyret@yahoo.com>, 2023\n"
+"Language-Team: Uyghur (https://www.transifex.com/xfce/teams/16840/ug/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,7 +25,7 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr "قوشۇمچە دېتاللار"
+msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
@@ -60,7 +65,7 @@ msgstr "گرافىك ياساش ۋە باشقۇرۇش پروگراممىلىرى
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr "قاتتىق دېتال"
+msgstr ""
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
@@ -72,11 +77,11 @@ msgstr "كۆپ ۋاسىتە"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "ئۈن-سىن قويغۇ ۋە تەھرىرلىگۈ"
+msgstr ""
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
-msgstr "ئىنتېرنېت"
+msgstr ""
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
@@ -116,11 +121,11 @@ msgstr ""
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr "ئېكران قوغدىغۇچ"
+msgstr ""
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "ئېكران قوغداش قوللانچاقلىرى"
+msgstr ""
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -136,9 +141,9 @@ msgstr "سىستېما"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr "سىستېما قوراللىرى"
+msgstr ""
 
-#: ../garcon/garcon-menu.c:707
+#: ../garcon/garcon-menu.c:716
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "ھۆججەت «%s» تېپىلمىدى"
@@ -153,25 +158,27 @@ msgstr "%s دىن تىزىملىك ھۆججەت سانلىق-مەلۇماتلى�
 msgid "Could not load menu file data from %s"
 msgstr "%s دىن تىزىملىك ھۆججەت سانلىق-مەلۇماتلىرىنى ئوقۇغىلى بولمىدى"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:380
+#: ../garcon-gtk/garcon-gtk-menu.c:412
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "بۇيرۇق «%s»نى ئىجرا قىلىش مەغلۇپ بولدى."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:406
+#: ../garcon-gtk/garcon-gtk-menu.c:438
 msgid "Launch Error"
 msgstr "ئىجرا قىلىش خاتالىقى"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:408
+#: ../garcon-gtk/garcon-gtk-menu.c:440
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr "ئۈستەلئۈستىگە تىزىملىك ياساش ياكى تەھرىرلەشتە زۆرۈر بولغان \"exo-desktop-item-edit\" نى ئىجرا قىلالمىدى."
+msgstr ""
+"ئۈستەلئۈستىگە تىزىملىك ياساش ياكى تەھرىرلەشتە زۆرۈر بولغان \"exo-desktop-"
+"item-edit\" نى ئىجرا قىلالمىدى."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:410
+#: ../garcon-gtk/garcon-gtk-menu.c:442
 msgid "_Close"
 msgstr "تاقا(_C)"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:928
+#: ../garcon-gtk/garcon-gtk-menu.c:591
 msgid "Failed to load the applications menu"
 msgstr "پروگرامما تىزىملىكىنى ئوقۇش مەغلۇپ بولدى"
