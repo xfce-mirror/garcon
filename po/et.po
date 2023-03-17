@@ -11,9 +11,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: garcon\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 10:36+0100\n"
+"POT-Creation-Date: 2023-03-17 10:38+0100\n"
 "PO-Revision-Date: 2023-03-17 09:36+0000\n"
 "Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>, 2023\n"
 "Language-Team: Estonian (https://www.transifex.com/xfce/teams/16840/et/)\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr ""
+msgstr "Tarvikud"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
@@ -65,7 +65,7 @@ msgstr "Graafika loomise ja muutmise rakendused"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr ""
+msgstr "Riistvara"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
@@ -77,11 +77,11 @@ msgstr "Multimeedia"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "Heli- ja videomängijad ja töötlejad"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
@@ -121,11 +121,11 @@ msgstr "Teadustööks mõeldud tarkvara"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr ""
+msgstr "Ekraanisäästjad"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Ekraanisäästmise rakendid"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -141,7 +141,7 @@ msgstr "Süsteem"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Süsteemi tööriistad ja vahendid"
 
 #: ../garcon/garcon-menu.c:716
 #, c-format
