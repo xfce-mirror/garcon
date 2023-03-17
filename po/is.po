@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Sveinn í Felli <sv1@fellsnet.is>, 2023
 # Xfce Bot <transifex@xfce.org>, 2023
+# Sveinn í Felli <sv1@fellsnet.is>, 2023
 # Nick Schermer <nick@xfce.org>, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: garcon\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 10:36+0100\n"
+"POT-Creation-Date: 2023-03-17 10:38+0100\n"
 "PO-Revision-Date: 2023-03-17 09:36+0000\n"
 "Last-Translator: Nick Schermer <nick@xfce.org>, 2023\n"
 "Language-Team: Icelandic (https://www.transifex.com/xfce/teams/16840/is/)\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr ""
+msgstr "Aukahlutir"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
@@ -65,7 +65,7 @@ msgstr "Forrit fyrir myndvinnslu og sköpun"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr ""
+msgstr "Vélbúnaður"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
@@ -77,11 +77,11 @@ msgstr "Margmiðlun"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "Spilarar og vinnslutól fyrir hljóð og myndskeið"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
-msgstr ""
+msgstr "Internetið"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
@@ -121,11 +121,11 @@ msgstr ""
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr ""
+msgstr "Skjáhvílur"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Smáforrit fyrir skjáhvílur"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -141,7 +141,7 @@ msgstr "Kerfis"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Kerfisforrit og nytjatól"
 
 #: ../garcon/garcon-menu.c:716
 #, c-format
