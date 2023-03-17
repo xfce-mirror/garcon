@@ -10,9 +10,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: garcon\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 10:36+0100\n"
+"POT-Creation-Date: 2023-03-17 10:38+0100\n"
 "PO-Revision-Date: 2023-03-17 09:36+0000\n"
 "Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2023\n"
 "Language-Team: Hindi (https://www.transifex.com/xfce/teams/16840/hi/)\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr ""
+msgstr "सहायक सॉफ्टवेयर"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
@@ -64,7 +64,7 @@ msgstr "ग्राफ़िक्स सृजन व संशोधन हे�
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr ""
+msgstr "हार्डवेयर"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
@@ -76,11 +76,11 @@ msgstr "मल्टीमीडिया"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "ऑडियो वीडियो प्लेयर व संपादक"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
-msgstr ""
+msgstr "इंटरनेट"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
@@ -120,11 +120,11 @@ msgstr "वैज्ञानिक सॉफ्टवेयर"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr ""
+msgstr "स्क्रीनसेवर"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr ""
+msgstr "स्क्रीनसेवर एप्लेट"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -140,7 +140,7 @@ msgstr "सिस्टम"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "सिस्टम साधन व उपयोगिताएँ"
 
 #: ../garcon/garcon-menu.c:716
 #, c-format
