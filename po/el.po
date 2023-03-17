@@ -12,9 +12,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: garcon\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 10:36+0100\n"
+"POT-Creation-Date: 2023-03-17 10:38+0100\n"
 "PO-Revision-Date: 2023-03-17 09:36+0000\n"
 "Last-Translator: Nick Schermer <nick@xfce.org>, 2023\n"
 "Language-Team: Greek (https://www.transifex.com/xfce/teams/16840/el/)\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr ""
+msgstr "Βοηθήματα"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
@@ -66,7 +66,7 @@ msgstr "Εφαρμογές δημιουργίας και επεξεργασία�
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr ""
+msgstr "Υλικό"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
@@ -78,11 +78,11 @@ msgstr "Πολυμέσα"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "Εφαρμογές αναπαραγωγής και επεξεργασίας ήχου και βίντεο"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
-msgstr ""
+msgstr "Διαδίκτυο"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
@@ -122,11 +122,11 @@ msgstr "Λογισμικό επιστημών"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr ""
+msgstr "Εφαρμογές προστασίας οθόνης"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Μικροεφαρμογές προστασίας οθόνης"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -142,7 +142,7 @@ msgstr "Σύστημα"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Εργαλεία και βοηθητικά προγράμματα συστήματος"
 
 #: ../garcon/garcon-menu.c:716
 #, c-format
