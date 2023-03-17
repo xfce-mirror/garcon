@@ -1,20 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012
-# Саша Петровић <salepetronije@gmail.com>, 2013
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012
-# Саша Петровић <salepetronije@gmail.com>, 2013,2016-2017
+# Xfce Bot <transifex@xfce.org>, 2023
+# Nick Schermer <nick@xfce.org>, 2023
+# Саша Петровић <salepetronije@gmail.com>, 2023
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Garcon\n"
+"Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 00:45+0100\n"
-"PO-Revision-Date: 2022-02-06 10:43+0000\n"
-"Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
-"Language-Team: Serbian (http://www.transifex.com/xfce/garcon/language/sr/)\n"
+"POT-Creation-Date: 2023-03-17 10:36+0100\n"
+"PO-Revision-Date: 2023-03-17 09:36+0000\n"
+"Last-Translator: Саша Петровић <salepetronije@gmail.com>, 2023\n"
+"Language-Team: Serbian (https://www.transifex.com/xfce/teams/16840/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,7 +25,7 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr "Прибор"
+msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
@@ -51,7 +53,7 @@ msgstr "Игре"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr "Игре, слагалице, и други забавни програми"
+msgstr "Игре, слагалице, и остала забава"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
@@ -63,7 +65,7 @@ msgstr "Програми за црталачко и сликарство ств�
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr "Уређаји"
+msgstr ""
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
@@ -71,27 +73,27 @@ msgstr "Подешавања неких уређаја"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Multimedia"
-msgstr "Звук и видео"
+msgstr "Мултимедија"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "Програми за извођење и уређивање звука и снимака"
+msgstr ""
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
-msgstr "Интернет"
+msgstr ""
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
-msgstr "Програми за приступање Интернету"
+msgstr "Програми за приступ мрежи"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
-msgstr "Уред"
+msgstr "Канцеларија"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "Програми за уређивање докуменеата и стваралаштво"
+msgstr "Канцеларијски и производни прогррами"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Other"
@@ -99,7 +101,7 @@ msgstr "Остало"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Applications that don't fit into other categories"
-msgstr "Програми који не припадају осталим врстама"
+msgstr "Програми који не припадају осталим категоријама"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -107,7 +109,7 @@ msgstr "Лично"
 
 #: ../data/xfce/xfce-personal.directory.in.h:2
 msgid "Personal settings"
-msgstr "Личне поставке"
+msgstr "Лична подешавања"
 
 #: ../data/xfce/xfce-science.directory.in.h:1
 msgid "Science"
@@ -119,11 +121,11 @@ msgstr "Научни програми"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr "Чувари екрана"
+msgstr ""
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "Програмчићи чувара екрана"
+msgstr ""
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -139,9 +141,9 @@ msgstr "Систем"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr "Системски програми и помагала"
+msgstr ""
 
-#: ../garcon/garcon-menu.c:707
+#: ../garcon/garcon-menu.c:716
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Датотека „%s“ није пронађена"
@@ -149,32 +151,34 @@ msgstr "Датотека „%s“ није пронађена"
 #: ../garcon/garcon-menu-parser.c:277
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Нисам успео да учитам податке датотеке изборника из %s: %s"
+msgstr "Не могу да учитам податке датотеке изборника из %s: %s"
 
 #: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Нисам успео да учитам податке датотеке изборника из %s"
+msgstr "Не могу да учитам податке датотеке изборника из %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:380
+#: ../garcon-gtk/garcon-gtk-menu.c:412
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Нисам успео да извршим наредбу „%s“."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:406
+#: ../garcon-gtk/garcon-gtk-menu.c:438
 msgid "Launch Error"
-msgstr "Грешка покретања"
+msgstr "Грешка покретања програма"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:408
+#: ../garcon-gtk/garcon-gtk-menu.c:440
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr "Нисам успео покренути „exo-desktop-item-edit“, што је неопходно за стварање и уређивање ставки изборника."
+msgstr ""
+"Нисам успео покренути „exo-desktop-item-edit“, што је неопходно за стварање "
+"и уређивање ставки изборника."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:410
+#: ../garcon-gtk/garcon-gtk-menu.c:442
 msgid "_Close"
-msgstr "Затвори"
+msgstr "_Затвори"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:928
+#: ../garcon-gtk/garcon-gtk-menu.c:591
 msgid "Failed to load the applications menu"
 msgstr "Нисам успео учитати изборник програма"
