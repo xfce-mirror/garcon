@@ -1,18 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Hayk Andreasyan <hayk.andreasyan@realschool.am>, 2019
-# Real School <localization@ehayq.am>, 2019
+# Xfce Bot <transifex@xfce.org>, 2023
+# Real School <localization@ehayq.am>, 2023
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Garcon\n"
+"Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 00:45+0100\n"
-"PO-Revision-Date: 2022-01-31 23:45+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
-"Language-Team: Eastern Armenian (http://www.transifex.com/xfce/garcon/language/hye/)\n"
+"POT-Creation-Date: 2023-03-17 10:36+0100\n"
+"PO-Revision-Date: 2023-03-17 09:36+0000\n"
+"Last-Translator: Real School <localization@ehayq.am>, 2023\n"
+"Language-Team: Eastern Armenian (https://www.transifex.com/xfce/teams/16840/hye/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,7 +24,7 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr "Պիտոյք"
+msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
@@ -61,7 +64,7 @@ msgstr "Գծապատկերների ստեղծում եւ խմբագրում"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr "Սարքաշար"
+msgstr ""
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
@@ -73,11 +76,11 @@ msgstr "Տեսաձայնային"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "Ձայնային/տեսա նիշերի նուագարկիչներ եւ խմբագրիչներ"
+msgstr ""
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
-msgstr "Համացանց"
+msgstr ""
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
@@ -117,11 +120,11 @@ msgstr ""
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr "Էկրանահաններ"
+msgstr ""
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "Էկրանահանների ծրագրոյթ"
+msgstr ""
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -137,9 +140,9 @@ msgstr "Համակարգ"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr "Համակարգային գործիքներ եւ  աւժանդակ ծրագրեր "
+msgstr ""
 
-#: ../garcon/garcon-menu.c:707
+#: ../garcon/garcon-menu.c:716
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "«%s» նիշը չի գտնուել"
@@ -154,25 +157,27 @@ msgstr "Չյաջողուեց բեռնել ընտրացանկի տուեալնե�
 msgid "Could not load menu file data from %s"
 msgstr "Չյաջողուեց բեռնել ընտրացանկի տուեալները %s֊ից"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:380
+#: ../garcon-gtk/garcon-gtk-menu.c:412
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr "Չյաջողուեց գործարկել «%s» հրամանը:"
+msgstr "Չյաջողոեւց գործարկել «%s» հրամանը:"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:406
+#: ../garcon-gtk/garcon-gtk-menu.c:438
 msgid "Launch Error"
 msgstr "Գործարկման սխալ"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:408
+#: ../garcon-gtk/garcon-gtk-menu.c:440
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr "Չյաջողուեց գործարկել «exo-desktop-item-edit»֊ը, որը պահանջուում է ցանկերի ստեղծման եւ խմբագրման համար։"
+msgstr ""
+"Չյաջողուեց գործարկել «exo-desktop-item-edit»֊ը, որը պահանջուում է ցանկերի "
+"ստեղծման եւ խմբագրման համար։"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:410
+#: ../garcon-gtk/garcon-gtk-menu.c:442
 msgid "_Close"
 msgstr "_Փակել"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:928
+#: ../garcon-gtk/garcon-gtk-menu.c:591
 msgid "Failed to load the applications menu"
 msgstr "Չյաջողուեց բեռնել յաւելուածների ցանկը"
