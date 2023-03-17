@@ -1,22 +1,24 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Ayhan YALÇINSOY <ayhanyalcinsoy@gmail.com>, 2010
-# Emin Tufan Çetin <etcetin@gmail.com>, 2022
-# Gökmen Görgen <gkmngrgn@gmail.com>, 2008
-# Necdet Yücel <necdetyucel@gmail.com>, 2013,2016
-# Nimet Senem Özkızıklı <nimetsenem@gmail.com>, 2008
-# Volkan Gezer <volkangezer@gmail.com>, 2013
+# Emin Tufan Çetin <etcetin@gmail.com>, 2023
+# Volkan Gezer <volkangezer@gmail.com>, 2023
+# Necdet Yücel <necdetyucel@gmail.com>, 2023
+# Xfce Bot <transifex@xfce.org>, 2023
+# Nick Schermer <nick@xfce.org>, 2023
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Garcon\n"
+"Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 00:45+0100\n"
-"PO-Revision-Date: 2022-02-01 18:47+0000\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/xfce/garcon/language/tr/)\n"
+"POT-Creation-Date: 2023-03-17 10:36+0100\n"
+"PO-Revision-Date: 2023-03-17 09:36+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>, 2023\n"
+"Language-Team: Turkish (https://www.transifex.com/xfce/teams/16840/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,7 +27,7 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr "Donatılar"
+msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
@@ -65,7 +67,7 @@ msgstr "Grafik oluşturma ve değiştirme uygulamaları"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr "Donanım"
+msgstr ""
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
@@ -73,15 +75,15 @@ msgstr "Çeşitli donanım aygıtları için ayarlar"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Multimedia"
-msgstr "Çokluortam"
+msgstr "Çoklu Ortam"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "Ses ve video oynatıcı ve düzenleyiciler"
+msgstr ""
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
-msgstr "İnternet"
+msgstr ""
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
@@ -121,11 +123,11 @@ msgstr "Bilimsel yazılım"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr "Ekran Koruyucular"
+msgstr ""
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "Ekran koruyucu uygulamaları"
+msgstr ""
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -141,9 +143,9 @@ msgstr "Sistem"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr "Sistem araçları ve uygulamaları"
+msgstr ""
 
-#: ../garcon/garcon-menu.c:707
+#: ../garcon/garcon-menu.c:716
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "\"%s\" dosyası bulunamadı"
@@ -158,25 +160,27 @@ msgstr "%s den menü dosya verisi yüklenemedi: %s"
 msgid "Could not load menu file data from %s"
 msgstr "%s den menü dosya verisi yüklenemedi"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:380
+#: ../garcon-gtk/garcon-gtk-menu.c:412
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "\"%s\" komutu çalıştırılamadı."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:406
+#: ../garcon-gtk/garcon-gtk-menu.c:438
 msgid "Launch Error"
 msgstr "Çalıştırma Hatası"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:408
+#: ../garcon-gtk/garcon-gtk-menu.c:440
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr "Menü nesnelerini oluşturmak ve düzenlemek için geçerli olan \"exo-desktop-item-edit\" başlatılamadı."
+msgstr ""
+"Menü nesnelerini oluşturmak ve düzenlemek için geçerli olan \"exo-desktop-"
+"item-edit\" başlatılamadı."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:410
+#: ../garcon-gtk/garcon-gtk-menu.c:442
 msgid "_Close"
 msgstr "_Kapat"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:928
+#: ../garcon-gtk/garcon-gtk-menu.c:591
 msgid "Failed to load the applications menu"
 msgstr "Uygulama menüsü yüklenemedi"
