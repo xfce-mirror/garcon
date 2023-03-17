@@ -1,22 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Andreas Eitel <github-aneitel@online.de>, 2022
-# Enrico Tröger <enrico@xfce.org>, 2009
-# Harald Judt <h.judt@gmx.at>, 2013
-# Jannis Pohlmann <jannis@xfce.org>, 2007,2009
-# Thomas Schütz <xfce@thschuetz.de>, 2012
-# Tobias Bannert <tobannert@gmail.com>, 2014,2016
+# Andreas Eitel <github-aneitel@online.de>, 2023
+# Xfce Bot <transifex@xfce.org>, 2023
+# Nick Schermer <nick@xfce.org>, 2023
+# Tobias Bannert <tobannert@gmail.com>, 2023
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Garcon\n"
+"Project-Id-Version: garcon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-01 00:45+0100\n"
-"PO-Revision-Date: 2022-02-01 07:36+0000\n"
-"Last-Translator: Andreas Eitel <github-aneitel@online.de>\n"
-"Language-Team: German (http://www.transifex.com/xfce/garcon/language/de/)\n"
+"POT-Creation-Date: 2023-03-17 10:36+0100\n"
+"PO-Revision-Date: 2023-03-17 09:36+0000\n"
+"Last-Translator: Tobias Bannert <tobannert@gmail.com>, 2023\n"
+"Language-Team: German (https://www.transifex.com/xfce/teams/16840/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,7 +26,7 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr "Zubehör"
+msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
@@ -65,7 +66,7 @@ msgstr "Bildbearbeitungsanwendungen"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr "Geräte"
+msgstr ""
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
@@ -73,15 +74,15 @@ msgstr "Einstellungen für verschiedene Geräte"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Multimedia"
-msgstr "Multimedia"
+msgstr "Unterhaltungsmedien"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "Musik-, Filmwiedergabe und Bearbeitungswerkzeuge"
+msgstr ""
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
-msgstr "Internet"
+msgstr ""
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
@@ -121,11 +122,11 @@ msgstr "Wissenschaftliche Programme"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr "Bildschirmschoner"
+msgstr ""
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr "Bildschirmschonerregler"
+msgstr ""
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -141,9 +142,9 @@ msgstr "System"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr "Systemwerkzeuge und Hilfsprogramme"
+msgstr ""
 
-#: ../garcon/garcon-menu.c:707
+#: ../garcon/garcon-menu.c:716
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Datei »%s« wurde nicht gefunden"
@@ -158,25 +159,27 @@ msgstr "Menüinformationen konnten nicht aus der Datei »%s« geladen werden: %s
 msgid "Could not load menu file data from %s"
 msgstr "Menüinformationen konnten nicht aus der Datei »%s« geladen werden"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:380
+#: ../garcon-gtk/garcon-gtk-menu.c:412
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr "Befehl »%s« konnte nicht ausführt werden."
+msgstr "Befehl »%s« konnte nicht ausgeführt werden."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:406
+#: ../garcon-gtk/garcon-gtk-menu.c:438
 msgid "Launch Error"
-msgstr "Startfehler"
+msgstr "Fehler beim Starten"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:408
+#: ../garcon-gtk/garcon-gtk-menu.c:440
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr "»exo-desktop-item-edit« kann nicht gestartet werden, was zum Erstellen und Bearbeiten von Menüeinträgen benötigt wird."
+msgstr ""
+"»exo-desktop-item-edit« kann nicht gestartet werden, was zum Erstellen und "
+"Bearbeiten von Menüeinträgen benötigt wird."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:410
+#: ../garcon-gtk/garcon-gtk-menu.c:442
 msgid "_Close"
-msgstr "S_chließen"
+msgstr "_Schließen"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:928
+#: ../garcon-gtk/garcon-gtk-menu.c:591
 msgid "Failed to load the applications menu"
 msgstr "Anwendungsmenü konnte nicht geladen werden"
