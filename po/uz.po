@@ -10,9 +10,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: garcon\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 10:36+0100\n"
+"POT-Creation-Date: 2023-03-17 10:38+0100\n"
 "PO-Revision-Date: 2023-03-17 09:36+0000\n"
 "Last-Translator: Umidjon Almasov <umidjon@almasov.uz>, 2023\n"
 "Language-Team: Uzbek (https://www.transifex.com/xfce/teams/16840/uz/)\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr ""
+msgstr "Tizim vositalari"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
@@ -64,7 +64,7 @@ msgstr "Grafika yaratish va ishlash dasturlari"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
-msgstr ""
+msgstr "Apparat ta'minoti"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:2
 msgid "Settings for several hardware devices"
@@ -76,11 +76,11 @@ msgstr "Multimedia"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "Audio va video pleyerlar va tahrirchilar"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
@@ -120,11 +120,11 @@ msgstr ""
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr ""
+msgstr "Ekran saqlovchilari"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Ekran saqlovchilari apletlari"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
@@ -140,7 +140,7 @@ msgstr "Tizim"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Tizim vositalari va utilitalar"
 
 #: ../garcon/garcon-menu.c:716
 #, c-format
