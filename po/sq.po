@@ -45,7 +45,7 @@ msgstr "Edukim"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr ""
+msgstr "Software edukativ"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
@@ -61,7 +61,7 @@ msgstr "Grafika"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr ""
+msgstr "Aplikacione për krijim dhe manipulim grafik"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
@@ -125,7 +125,7 @@ msgstr "Ekrankursyes"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
-msgstr ""
+msgstr "Aplikacionthe ekrankursyes"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
 msgid "Settings"
