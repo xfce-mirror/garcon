@@ -23,25 +23,27 @@ menu_DATA =								\
 
 directorydir = $(datadir)/desktop-directories
 directory_in_files =							\
-	xfce-accessories.directory.in					\
-	xfce-development.directory.in					\
-	xfce-education.directory.in					\
-	xfce-games.directory.in						\
-	xfce-graphics.directory.in					\
-	xfce-hardware.directory.in					\
-	xfce-multimedia.directory.in					\
-	xfce-network.directory.in					\
-	xfce-office.directory.in					\
-	xfce-other.directory.in						\
-	xfce-personal.directory.in					\
-	xfce-science.directory.in					\
-	xfce-screensavers.directory.in					\
-	xfce-settings.directory.in					\
-	xfce-system.directory.in
+	xfce-accessories.desktop.in					\
+	xfce-development.desktop.in					\
+	xfce-education.desktop.in					\
+	xfce-games.desktop.in						\
+	xfce-graphics.desktop.in					\
+	xfce-hardware.desktop.in					\
+	xfce-multimedia.desktop.in					\
+	xfce-network.desktop.in					\
+	xfce-office.desktop.in					\
+	xfce-other.desktop.in						\
+	xfce-personal.desktop.in					\
+	xfce-science.desktop.in					\
+	xfce-screensavers.desktop.in					\
+	xfce-settings.desktop.in					\
+	xfce-system.desktop.in
 
-directory_DATA = $(directory_in_files:.directory.in=.directory)
+directory_DATA = $(directory_in_files:.desktop.in=.directory)
 
-%.directory: %.directory.in
+# FIXME: xgettext doesn't recognize .directory.in files as desktop files so we
+# use .desktop.in for the translation: is there a proper solution?
+%.directory: %.desktop.in
 	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 EXTRA_DIST =								\
