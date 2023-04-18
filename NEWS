@@ -1,3 +1,34 @@
+4.19.0 (2023-04-18)
+======
+- build: Fix untranslated `.directory` files
+- Revert "build: Fix untranslated `.directory` files"
+- build: Fix untranslated `.directory` files
+- Update `.gitignore`
+- build: Use m4_defined min versions and cleanup
+- build: Use XDT_VERSION_INIT and get rid of configure.ac.in
+- build: Switch from intltool to gettext
+- garcon-gtk: Add missing lock when filling the GtkMenu
+- Wait for any async operation to finish before releasing locks
+- Use GIcons for menu icons instead of loading surfaces
+- Revert "garcon-gtk: Fix menu icon blurriness when UI scale factor != 
+1"
+- Revert "Load icons using icon theme scaling functions correctly"
+- garcon-gtk: Properly update GtkMenu is_populated state
+- Load icons using icon theme scaling functions correctly
+- Translation Updates:
+  Albanian, Amharic, Arabic, Armenian, Armenian (Armenia), Asturian,
+  Basque, Belarusian, Bengali, Bulgarian, Catalan, Chinese (China),
+  Chinese (Hong Kong), Chinese (Taiwan), Croatian, Czech, Danish,
+  Dutch, Eastern Armenian, English (Australia), English (United
+  Kingdom), Esperanto, Estonian, Finnish, French, Galician, Georgian,
+  German, Greek, Hebrew, Hindi, Hungarian, Icelandic, Indonesian,
+  Interlingue, Italian, Japanese, Kabyle, Kazakh, Korean, Latvian,
+  Lithuanian, Malay, Norwegian Bokmål, Norwegian Nynorsk, Occitan
+  (post 1500), Panjabi (Punjabi), Polish, Portuguese, Portuguese
+  (Brazil), Romanian, Russian, Serbian, Sinhala, Slovak, Slovenian,
+  Spanish, Swedish, Telugu, Thai, Turkish, Ukrainian, Uyghur, Uzbek,
+  Uzbek (Latin), Welsh
+
 4.18.0 (2022-12-15)
 ======
 - build: Bump requirements for Xfce 4.18
