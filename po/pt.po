@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/xfce/xfce-accessories.desktop.in:5
 msgid "applications-accessories"
-msgstr ""
+msgstr "applications-accessories"
 
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
@@ -34,7 +34,7 @@ msgstr "Ferramentas e aplicações do ambiente de trabalho"
 
 #: data/xfce/xfce-development.desktop.in:5
 msgid "applications-development"
-msgstr ""
+msgstr "applications-development"
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -46,7 +46,7 @@ msgstr "Ferramentas de desenvolvimento"
 
 #: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
 msgid "applications-science"
-msgstr ""
+msgstr "applications-science"
 
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
@@ -58,7 +58,7 @@ msgstr "Programas educacionais"
 
 #: data/xfce/xfce-games.desktop.in:5
 msgid "applications-games"
-msgstr ""
+msgstr "applications-games"
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -70,7 +70,7 @@ msgstr "Jogos, puzzles e outros programas de lazer"
 
 #: data/xfce/xfce-graphics.desktop.in:5
 msgid "applications-graphics"
-msgstr ""
+msgstr "applications-graphics"
 
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
@@ -82,7 +82,7 @@ msgstr "Aplicações para criação e manipulação de imagens e outros elemento
 
 #: data/xfce/xfce-hardware.desktop.in:5
 msgid "preferences-desktop-peripherals"
-msgstr ""
+msgstr "preferences-desktop-peripherals"
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -94,7 +94,7 @@ msgstr "Definições para os componentes do computador"
 
 #: data/xfce/xfce-multimedia.desktop.in:5
 msgid "applications-multimedia"
-msgstr ""
+msgstr "applications-multimedia"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
@@ -106,7 +106,7 @@ msgstr "Editores e reprodutores de vídeo e áudio"
 
 #: data/xfce/xfce-network.desktop.in:5
 msgid "applications-internet"
-msgstr ""
+msgstr "applications-internet"
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -118,7 +118,7 @@ msgstr "Aplicações para aceder à Internet"
 
 #: data/xfce/xfce-office.desktop.in:5
 msgid "applications-office"
-msgstr ""
+msgstr "applications-office"
 
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
@@ -130,7 +130,7 @@ msgstr "Aplicações de escritório e produtividade"
 
 #: data/xfce/xfce-other.desktop.in:5
 msgid "applications-other"
-msgstr ""
+msgstr "applications-other"
 
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
@@ -142,7 +142,7 @@ msgstr "Aplicações que não se enquadram noutras categorias"
 
 #: data/xfce/xfce-personal.desktop.in:5
 msgid "preferences-desktop-personal"
-msgstr ""
+msgstr "preferences-desktop-personal"
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -174,7 +174,7 @@ msgstr "Mini-aplicações de proteção de ecrã"
 
 #: data/xfce/xfce-settings.desktop.in:5
 msgid "preferences-desktop"
-msgstr ""
+msgstr "preferences-desktop"
 
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
@@ -186,7 +186,7 @@ msgstr "Aplicações de definições do sistema e do ambiente de trabalho"
 
 #: data/xfce/xfce-system.desktop.in:5
 msgid "applications-system"
-msgstr ""
+msgstr "applications-system"
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
