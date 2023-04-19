@@ -165,7 +165,7 @@ msgstr "科学软件"
 
 #: data/xfce/xfce-screensavers.desktop.in:5
 msgid "preferences-desktop-screensaver"
-msgstr ""
+msgstr "preferences-desktop-screensaver"
 
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
