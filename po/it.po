@@ -5,14 +5,14 @@
 # Translators:
 # Cristian Marchi <cri.penta@gmail.com>, 2010,2013,2016
 # Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2018
-# Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2022
+# Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2022-2023
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2023-04-18 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2022\n"
+"Last-Translator: Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2022-2023\n"
 "Language-Team: Italian (http://app.transifex.com/xfce/garcon/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/xfce/xfce-accessories.desktop.in:5
 msgid "applications-accessories"
-msgstr ""
+msgstr "applications-accessories"
 
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
@@ -34,7 +34,7 @@ msgstr "Applicazioni e strumenti comuni per la scrivania"
 
 #: data/xfce/xfce-development.desktop.in:5
 msgid "applications-development"
-msgstr ""
+msgstr "applications-development"
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -46,7 +46,7 @@ msgstr "Strumenti per lo sviluppo di programmi"
 
 #: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
 msgid "applications-science"
-msgstr ""
+msgstr "applications-science"
 
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
@@ -58,7 +58,7 @@ msgstr "Programmi educativi"
 
 #: data/xfce/xfce-games.desktop.in:5
 msgid "applications-games"
-msgstr ""
+msgstr "applications-games"
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -70,7 +70,7 @@ msgstr "Giochi, puzzle e altri programmi per lo svago"
 
 #: data/xfce/xfce-graphics.desktop.in:5
 msgid "applications-graphics"
-msgstr ""
+msgstr "applications-graphics"
 
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
@@ -82,7 +82,7 @@ msgstr "Applicazioni per la creazione e la manipolazione di immagini"
 
 #: data/xfce/xfce-hardware.desktop.in:5
 msgid "preferences-desktop-peripherals"
-msgstr ""
+msgstr "preferences-desktop-peripherals"
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -94,7 +94,7 @@ msgstr "Impostazioni per vari dispositivi hardware"
 
 #: data/xfce/xfce-multimedia.desktop.in:5
 msgid "applications-multimedia"
-msgstr ""
+msgstr "applications-multimedia"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
@@ -106,7 +106,7 @@ msgstr "Editor e riproduttori audio e video"
 
 #: data/xfce/xfce-network.desktop.in:5
 msgid "applications-internet"
-msgstr ""
+msgstr "applications-internet"
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -118,7 +118,7 @@ msgstr "Applicazioni per accedere a internet"
 
 #: data/xfce/xfce-office.desktop.in:5
 msgid "applications-office"
-msgstr ""
+msgstr "applications-office"
 
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
@@ -130,7 +130,7 @@ msgstr "Applicazioni per l'ufficio e la produttività"
 
 #: data/xfce/xfce-other.desktop.in:5
 msgid "applications-other"
-msgstr ""
+msgstr "applications-other"
 
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
@@ -142,7 +142,7 @@ msgstr "Applicazioni che non rientrano nelle altre categorie"
 
 #: data/xfce/xfce-personal.desktop.in:5
 msgid "preferences-desktop-personal"
-msgstr ""
+msgstr "preferences-desktop-personal"
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -174,7 +174,7 @@ msgstr "Applet salvaschermo"
 
 #: data/xfce/xfce-settings.desktop.in:5
 msgid "preferences-desktop"
-msgstr ""
+msgstr "preferences-desktop"
 
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
@@ -186,7 +186,7 @@ msgstr "Applicazioni per le impostazioni del sistema e della scrivania"
 
 #: data/xfce/xfce-system.desktop.in:5
 msgid "applications-system"
-msgstr ""
+msgstr "applications-system"
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
