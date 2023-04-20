@@ -23,7 +23,7 @@ msgstr ""
 
 #: data/xfce/xfce-accessories.desktop.in:5
 msgid "applications-accessories"
-msgstr ""
+msgstr "програми-прибор"
 
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
@@ -35,7 +35,7 @@ msgstr "Општи прибор и програми радног окружењ�
 
 #: data/xfce/xfce-development.desktop.in:5
 msgid "applications-development"
-msgstr ""
+msgstr "прибор-развој"
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -43,11 +43,11 @@ msgstr "Развој"
 
 #: data/xfce/xfce-development.desktop.in:7
 msgid "Software development tools"
-msgstr "Прибор за развој софтвера"
+msgstr "Прибор за развој мекотворина"
 
 #: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
 msgid "applications-science"
-msgstr ""
+msgstr "програми-наука"
 
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
@@ -59,7 +59,7 @@ msgstr "Образовни програми"
 
 #: data/xfce/xfce-games.desktop.in:5
 msgid "applications-games"
-msgstr ""
+msgstr "прорами-игре"
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -71,7 +71,7 @@ msgstr "Игре, слагалице, и остала забава"
 
 #: data/xfce/xfce-graphics.desktop.in:5
 msgid "applications-graphics"
-msgstr ""
+msgstr "програми-цртање"
 
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
@@ -79,11 +79,11 @@ msgstr "Цртање"
 
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
-msgstr "Програми за црталачко и сликарство стваралаштво и уређивање"
+msgstr "Програми за цртачко и сликарство стваралаштво и уређивање"
 
 #: data/xfce/xfce-hardware.desktop.in:5
 msgid "preferences-desktop-peripherals"
-msgstr ""
+msgstr "поставке-радна-површ-ободни-уређаји"
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -95,7 +95,7 @@ msgstr "Подешавања неких уређаја"
 
 #: data/xfce/xfce-multimedia.desktop.in:5
 msgid "applications-multimedia"
-msgstr ""
+msgstr "програми-мултимедија"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
@@ -107,7 +107,7 @@ msgstr "Програми за извођење и уређивање звука 
 
 #: data/xfce/xfce-network.desktop.in:5
 msgid "applications-internet"
-msgstr ""
+msgstr "програми-интернет"
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -119,19 +119,19 @@ msgstr "Програми за приступ мрежи"
 
 #: data/xfce/xfce-office.desktop.in:5
 msgid "applications-office"
-msgstr ""
+msgstr "програми-уред"
 
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
-msgstr "Канцеларија"
+msgstr "Уред"
 
 #: data/xfce/xfce-office.desktop.in:7
 msgid "Office and productivity applications"
-msgstr "Канцеларијски и производни прогррами"
+msgstr "Уреднички и производни програми"
 
 #: data/xfce/xfce-other.desktop.in:5
 msgid "applications-other"
-msgstr ""
+msgstr "програми-остало"
 
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
@@ -139,11 +139,11 @@ msgstr "Остало"
 
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
-msgstr "Програми који не припадају осталим категоријама"
+msgstr "Програми који не припадају осталим врстама"
 
 #: data/xfce/xfce-personal.desktop.in:5
 msgid "preferences-desktop-personal"
-msgstr ""
+msgstr "поставке-радна-површ-лично"
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -163,19 +163,19 @@ msgstr "Научни програми"
 
 #: data/xfce/xfce-screensavers.desktop.in:5
 msgid "preferences-desktop-screensaver"
-msgstr "preferences-desktop-screensaver"
+msgstr "поставке-радна-површ-чувар-заслона"
 
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
-msgstr "Чувари екрана"
+msgstr "Чувари заслона"
 
 #: data/xfce/xfce-screensavers.desktop.in:7
 msgid "Screensaver applets"
-msgstr "Програмчићи чувара екрана"
+msgstr "Програмчићи чувара заслона"
 
 #: data/xfce/xfce-settings.desktop.in:5
 msgid "preferences-desktop"
-msgstr ""
+msgstr "постакве-радна-површ"
 
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
@@ -187,7 +187,7 @@ msgstr "Програми за подешавање радне површи и с
 
 #: data/xfce/xfce-system.desktop.in:5
 msgid "applications-system"
-msgstr ""
+msgstr "програми-ситем"
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
