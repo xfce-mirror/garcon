@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the garcon.master package.
 # 
 # Translators:
-# Andi Chandler <andi@gowling.com>, 2017,2022
+# Andi Chandler <andi@gowling.com>, 2017,2022-2023
 # Jackson Doak <noskcaj@ubuntu.com>, 2013
 msgid ""
 msgstr ""
@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2023-04-18 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Andi Chandler <andi@gowling.com>, 2017,2022\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>, 2017,2022-2023\n"
 "Language-Team: English (United Kingdom) (http://app.transifex.com/xfce/garcon/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/xfce/xfce-accessories.desktop.in:5
 msgid "applications-accessories"
-msgstr ""
+msgstr "applications-accessories"
 
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
@@ -33,7 +33,7 @@ msgstr "Common desktop tools and applications"
 
 #: data/xfce/xfce-development.desktop.in:5
 msgid "applications-development"
-msgstr ""
+msgstr "applications-development"
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -45,7 +45,7 @@ msgstr "Software development tools"
 
 #: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
 msgid "applications-science"
-msgstr ""
+msgstr "applications-science"
 
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
@@ -57,7 +57,7 @@ msgstr "Educational software"
 
 #: data/xfce/xfce-games.desktop.in:5
 msgid "applications-games"
-msgstr ""
+msgstr "applications-games"
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -69,7 +69,7 @@ msgstr "Games, puzzles, and other fun software"
 
 #: data/xfce/xfce-graphics.desktop.in:5
 msgid "applications-graphics"
-msgstr ""
+msgstr "applications-graphics"
 
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
@@ -81,7 +81,7 @@ msgstr "Graphics creation and manipulation applications"
 
 #: data/xfce/xfce-hardware.desktop.in:5
 msgid "preferences-desktop-peripherals"
-msgstr ""
+msgstr "preferences-desktop-peripherals"
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -93,7 +93,7 @@ msgstr "Settings for several hardware devices"
 
 #: data/xfce/xfce-multimedia.desktop.in:5
 msgid "applications-multimedia"
-msgstr ""
+msgstr "applications-multimedia"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
@@ -105,7 +105,7 @@ msgstr "Audio and video players and editors"
 
 #: data/xfce/xfce-network.desktop.in:5
 msgid "applications-internet"
-msgstr ""
+msgstr "applications-internet"
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -117,7 +117,7 @@ msgstr "Applications for Internet access"
 
 #: data/xfce/xfce-office.desktop.in:5
 msgid "applications-office"
-msgstr ""
+msgstr "applications-office"
 
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
@@ -129,7 +129,7 @@ msgstr "Office and productivity applications"
 
 #: data/xfce/xfce-other.desktop.in:5
 msgid "applications-other"
-msgstr ""
+msgstr "applications-other"
 
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
@@ -141,7 +141,7 @@ msgstr "Applications that don't fit into other categories"
 
 #: data/xfce/xfce-personal.desktop.in:5
 msgid "preferences-desktop-personal"
-msgstr ""
+msgstr "preferences-desktop-personal"
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -173,7 +173,7 @@ msgstr "Screensaver applets"
 
 #: data/xfce/xfce-settings.desktop.in:5
 msgid "preferences-desktop"
-msgstr ""
+msgstr "preferences-desktop"
 
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
@@ -185,7 +185,7 @@ msgstr "Desktop and system settings applications"
 
 #: data/xfce/xfce-system.desktop.in:5
 msgid "applications-system"
-msgstr ""
+msgstr "applications-system"
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
