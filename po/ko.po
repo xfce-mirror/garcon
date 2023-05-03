@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Cybertramp <paran_son@outlook.com>, 2022
-# Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2013,2016,2022
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2013,2016,2022-2023
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2023-04-18 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2013,2016,2022\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2013,2016,2022-2023\n"
 "Language-Team: Korean (http://app.transifex.com/xfce/garcon/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/xfce/xfce-accessories.desktop.in:5
 msgid "applications-accessories"
-msgstr ""
+msgstr "applications-accessories"
 
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
@@ -33,7 +33,7 @@ msgstr "일반적인 데스크톱 툴과 프로그램"
 
 #: data/xfce/xfce-development.desktop.in:5
 msgid "applications-development"
-msgstr ""
+msgstr "applications-development"
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -45,7 +45,7 @@ msgstr "소프트웨어 개발 툴"
 
 #: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
 msgid "applications-science"
-msgstr ""
+msgstr "applications-science"
 
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
@@ -57,7 +57,7 @@ msgstr "교육적 소프트웨어"
 
 #: data/xfce/xfce-games.desktop.in:5
 msgid "applications-games"
-msgstr ""
+msgstr "applications-games"
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -69,7 +69,7 @@ msgstr "게임, 퍼즐, 그리고 다른 재밌는 소프트웨어"
 
 #: data/xfce/xfce-graphics.desktop.in:5
 msgid "applications-graphics"
-msgstr ""
+msgstr "applications-graphics"
 
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
@@ -81,7 +81,7 @@ msgstr "그래픽 저작 도구 및 편집 프로그램"
 
 #: data/xfce/xfce-hardware.desktop.in:5
 msgid "preferences-desktop-peripherals"
-msgstr ""
+msgstr "preferences-desktop-peripherals"
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -93,7 +93,7 @@ msgstr "다양한 하드웨어 장치 설정"
 
 #: data/xfce/xfce-multimedia.desktop.in:5
 msgid "applications-multimedia"
-msgstr ""
+msgstr "applications-multimedia"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
@@ -105,7 +105,7 @@ msgstr "음악과 동영상 재생기 및 편집기"
 
 #: data/xfce/xfce-network.desktop.in:5
 msgid "applications-internet"
-msgstr ""
+msgstr "applications-internet"
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -117,7 +117,7 @@ msgstr "인터넷에 접근하기 위한 프로그램"
 
 #: data/xfce/xfce-office.desktop.in:5
 msgid "applications-office"
-msgstr ""
+msgstr "applications-office"
 
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
@@ -129,7 +129,7 @@ msgstr "사무 및 생산성 프로그램"
 
 #: data/xfce/xfce-other.desktop.in:5
 msgid "applications-other"
-msgstr ""
+msgstr "applications-other"
 
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
@@ -141,7 +141,7 @@ msgstr "다른 분류에 맞지 않은 프로그램"
 
 #: data/xfce/xfce-personal.desktop.in:5
 msgid "preferences-desktop-personal"
-msgstr ""
+msgstr "preferences-desktop-personal"
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -161,7 +161,7 @@ msgstr "과학 프로그램"
 
 #: data/xfce/xfce-screensavers.desktop.in:5
 msgid "preferences-desktop-screensaver"
-msgstr ""
+msgstr "preferences-desktop-screensaver"
 
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
@@ -173,7 +173,7 @@ msgstr "화면 보호기 애플릿"
 
 #: data/xfce/xfce-settings.desktop.in:5
 msgid "preferences-desktop"
-msgstr ""
+msgstr "preferences-desktop"
 
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
@@ -185,7 +185,7 @@ msgstr "데스크톱 및 시스템 설정 프로그램"
 
 #: data/xfce/xfce-system.desktop.in:5
 msgid "applications-system"
-msgstr ""
+msgstr "applications-system"
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
