@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2023-05-05 10:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
 "Last-Translator: Moo, 2023\n"
 "Language-Team: Lithuanian (http://app.transifex.com/xfce/garcon/language/lt/)\n"
@@ -21,10 +21,6 @@ msgstr ""
 "Language: lt\n"
 "Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
 
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr "applications-accessories"
-
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
 msgstr "Reikmenys"
@@ -32,10 +28,6 @@ msgstr "Reikmenys"
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
 msgstr "Eiliniai darbalaukio įrankiai ir programos"
-
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr "applications-development"
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -45,10 +37,6 @@ msgstr "Kūrimas"
 msgid "Software development tools"
 msgstr "Programinės įrangos kūrimo įrankiai"
 
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr "applications-science"
-
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
 msgstr "Švietimas"
@@ -56,10 +44,6 @@ msgstr "Švietimas"
 #: data/xfce/xfce-education.desktop.in:7
 msgid "Educational software"
 msgstr "Mokomosios programos"
-
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr "applications-games"
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -69,10 +53,6 @@ msgstr "Žaidimai"
 msgid "Games, puzzles, and other fun software"
 msgstr "Žaidimai, galvosūkiai ir kitos programos laisvalaikiui"
 
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr "applications-graphics"
-
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
 msgstr "Grafika"
@@ -80,10 +60,6 @@ msgstr "Grafika"
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
 msgstr "Grafikos kūrimo ir tvarkymo programos"
-
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr "preferences-desktop-peripherals"
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -93,10 +69,6 @@ msgstr "Aparatinė įranga"
 msgid "Settings for several hardware devices"
 msgstr "Nustatymai keliems aparatinės įrangos įrenginiams"
 
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr "applications-multimedia"
-
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
 msgstr "Daugialypė terpė"
@@ -104,10 +76,6 @@ msgstr "Daugialypė terpė"
 #: data/xfce/xfce-multimedia.desktop.in:7
 msgid "Audio and video players and editors"
 msgstr "Garso ir vaizdo grotuvai bei redaktoriai"
-
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr "applications-internet"
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -117,10 +85,6 @@ msgstr "Internetas"
 msgid "Applications for Internet access"
 msgstr "Interneto prieigos programos"
 
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr "applications-office"
-
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
 msgstr "Raštinė"
@@ -129,10 +93,6 @@ msgstr "Raštinė"
 msgid "Office and productivity applications"
 msgstr "Raštinės ir darbo programos"
 
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr "applications-other"
-
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
 msgstr "Kita"
@@ -140,10 +100,6 @@ msgstr "Kita"
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
 msgstr "Programos, kurios nepatenka į kitas kategorijas"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr "preferences-desktop-personal"
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -161,10 +117,6 @@ msgstr "Mokslas"
 msgid "Scientific software"
 msgstr "Mokslinė programinė įranga"
 
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr "preferences-desktop-screensaver"
-
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
 msgstr "Ekrano užsklandos"
@@ -173,10 +125,6 @@ msgstr "Ekrano užsklandos"
 msgid "Screensaver applets"
 msgstr "Ekrano užsklandos programėlės"
 
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr "preferences-desktop"
-
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
 msgstr "Nustatymai"
@@ -184,10 +132,6 @@ msgstr "Nustatymai"
 #: data/xfce/xfce-settings.desktop.in:7
 msgid "Desktop and system settings applications"
 msgstr "Darbalaukio ir sistemos nustatymų programos"
-
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr "applications-system"
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
