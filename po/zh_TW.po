@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2023-05-05 10:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
 "Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2022-2023\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/xfce/garcon/language/zh_TW/)\n"
@@ -22,10 +22,6 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr "applications-accessories"
-
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
 msgstr "附屬應用"
@@ -33,10 +29,6 @@ msgstr "附屬應用"
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
 msgstr "常用的桌面工具與應用程式"
-
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr "applications-development"
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -46,10 +38,6 @@ msgstr "開發"
 msgid "Software development tools"
 msgstr "軟體開發工具"
 
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr "applications-science"
-
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
 msgstr "教育"
@@ -57,10 +45,6 @@ msgstr "教育"
 #: data/xfce/xfce-education.desktop.in:7
 msgid "Educational software"
 msgstr "教育軟體"
-
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr "applications-games"
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -70,10 +54,6 @@ msgstr "遊戲"
 msgid "Games, puzzles, and other fun software"
 msgstr "遊戲、拼圖與其他有趣軟體"
 
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr "applications-graphics"
-
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
 msgstr "美工繪圖"
@@ -81,10 +61,6 @@ msgstr "美工繪圖"
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
 msgstr "圖像建立與處理應用程式"
-
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr "preferences-desktop-peripherals"
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -94,10 +70,6 @@ msgstr "硬體"
 msgid "Settings for several hardware devices"
 msgstr "多種硬體裝置的設定值"
 
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr "applications-multimedia"
-
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
 msgstr "多媒體"
@@ -105,10 +77,6 @@ msgstr "多媒體"
 #: data/xfce/xfce-multimedia.desktop.in:7
 msgid "Audio and video players and editors"
 msgstr "音訊與視訊播放器、編輯器"
-
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr "applications-internet"
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -118,10 +86,6 @@ msgstr "網際網路"
 msgid "Applications for Internet access"
 msgstr "存取網際網路的應用程式"
 
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr "applications-office"
-
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
 msgstr "辦公"
@@ -130,10 +94,6 @@ msgstr "辦公"
 msgid "Office and productivity applications"
 msgstr "辦公與生產力應用程式"
 
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr "applications-other"
-
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
 msgstr "其他"
@@ -141,10 +101,6 @@ msgstr "其他"
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
 msgstr "不適合放在其他類別的應用程式"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr "preferences-desktop-personal"
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -162,10 +118,6 @@ msgstr "科學"
 msgid "Scientific software"
 msgstr "科學軟體"
 
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr "preferences-desktop-screensaver"
-
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
 msgstr "螢幕保護程式"
@@ -174,10 +126,6 @@ msgstr "螢幕保護程式"
 msgid "Screensaver applets"
 msgstr "螢幕保護面板程式"
 
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr "preferences-desktop"
-
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
 msgstr "設定值"
@@ -185,10 +133,6 @@ msgstr "設定值"
 #: data/xfce/xfce-settings.desktop.in:7
 msgid "Desktop and system settings applications"
 msgstr "桌面與系統設定值應用程式"
-
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr "applications-system"
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
