@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2023-05-05 10:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
 "Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2023\n"
 "Language-Team: Japanese (http://app.transifex.com/xfce/garcon/language/ja/)\n"
@@ -20,10 +20,6 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr "applications-accessories"
-
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
 msgstr "アクセサリー"
@@ -31,10 +27,6 @@ msgstr "アクセサリー"
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
 msgstr "一般的なデスクトップツールやアプリケーションです"
-
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr "applications-development"
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -44,10 +36,6 @@ msgstr "開発"
 msgid "Software development tools"
 msgstr "ソフトウェア開発ツールです"
 
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr "applications-science"
-
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
 msgstr "教育"
@@ -55,10 +43,6 @@ msgstr "教育"
 #: data/xfce/xfce-education.desktop.in:7
 msgid "Educational software"
 msgstr "教育用ソフトウェアです"
-
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr "applications-games"
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -68,10 +52,6 @@ msgstr "ゲーム"
 msgid "Games, puzzles, and other fun software"
 msgstr "ゲーム、パズル、その他楽しいソフトウェアです"
 
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr "applications-graphics"
-
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
 msgstr "グラフィックス"
@@ -79,10 +59,6 @@ msgstr "グラフィックス"
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
 msgstr "グラフィック作成および操作アプリケーションです"
-
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr "preferences-desktop-peripherals"
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -92,10 +68,6 @@ msgstr "ハードウェア"
 msgid "Settings for several hardware devices"
 msgstr "一部のハードウェアデバイスを設定します"
 
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr "applications-multimedia"
-
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
 msgstr "マルチメディア"
@@ -103,10 +75,6 @@ msgstr "マルチメディア"
 #: data/xfce/xfce-multimedia.desktop.in:7
 msgid "Audio and video players and editors"
 msgstr "オーディオおよびビデオのプレーヤーおよびエディターです"
-
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr "applications-internet"
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -116,10 +84,6 @@ msgstr "インターネット"
 msgid "Applications for Internet access"
 msgstr "インターネットアクセス用アプリケーションです"
 
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr "applications-office"
-
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
 msgstr "オフィス"
@@ -128,10 +92,6 @@ msgstr "オフィス"
 msgid "Office and productivity applications"
 msgstr "オフィスおよび生産性アプリケーションです"
 
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr "applications-other"
-
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
 msgstr "その他"
@@ -139,10 +99,6 @@ msgstr "その他"
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
 msgstr "他のカテゴリに含まれないアプリケーションです"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr "preferences-desktop-personal"
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -160,10 +116,6 @@ msgstr "科学"
 msgid "Scientific software"
 msgstr "科学ソフトウェア"
 
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr "preferences-desktop-screensaver"
-
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
 msgstr "スクリーンセーバー"
@@ -172,10 +124,6 @@ msgstr "スクリーンセーバー"
 msgid "Screensaver applets"
 msgstr "スクリーンセーバーアプレット"
 
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr "preferences-desktop"
-
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
 msgstr "設定"
@@ -183,10 +131,6 @@ msgstr "設定"
 #: data/xfce/xfce-settings.desktop.in:7
 msgid "Desktop and system settings applications"
 msgstr "デスクトップおよびシステム設定アプリケーションです"
-
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr "applications-system"
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
