@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2023-05-05 10:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012\n"
 "Language-Team: Serbian (http://app.transifex.com/xfce/garcon/language/sr/)\n"
@@ -21,10 +21,6 @@ msgstr ""
 "Language: sr\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr "програми-прибор"
-
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
 msgstr "Прибор"
@@ -32,10 +28,6 @@ msgstr "Прибор"
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
 msgstr "Општи прибор и програми радног окружења"
-
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr "прибор-развој"
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -45,10 +37,6 @@ msgstr "Развој"
 msgid "Software development tools"
 msgstr "Прибор за развој мекотворина"
 
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr "програми-наука"
-
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
 msgstr "Образовање"
@@ -56,10 +44,6 @@ msgstr "Образовање"
 #: data/xfce/xfce-education.desktop.in:7
 msgid "Educational software"
 msgstr "Образовни програми"
-
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr "прорами-игре"
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -69,10 +53,6 @@ msgstr "Игре"
 msgid "Games, puzzles, and other fun software"
 msgstr "Игре, слагалице, и остала забава"
 
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr "програми-цртање"
-
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
 msgstr "Цртање"
@@ -80,10 +60,6 @@ msgstr "Цртање"
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
 msgstr "Програми за цртачко и сликарство стваралаштво и уређивање"
-
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr "поставке-радна-површ-ободни-уређаји"
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -93,10 +69,6 @@ msgstr "Уређаји"
 msgid "Settings for several hardware devices"
 msgstr "Подешавања неких уређаја"
 
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr "програми-мултимедија"
-
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
 msgstr "Мултимедија"
@@ -104,10 +76,6 @@ msgstr "Мултимедија"
 #: data/xfce/xfce-multimedia.desktop.in:7
 msgid "Audio and video players and editors"
 msgstr "Програми за извођење и уређивање звука и снимака"
-
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr "програми-интернет"
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -117,10 +85,6 @@ msgstr "Мрежа"
 msgid "Applications for Internet access"
 msgstr "Програми за приступ мрежи"
 
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr "програми-уред"
-
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
 msgstr "Уред"
@@ -129,10 +93,6 @@ msgstr "Уред"
 msgid "Office and productivity applications"
 msgstr "Уреднички и производни програми"
 
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr "програми-остало"
-
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
 msgstr "Остало"
@@ -140,10 +100,6 @@ msgstr "Остало"
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
 msgstr "Програми који не припадају осталим врстама"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr "поставке-радна-површ-лично"
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -161,10 +117,6 @@ msgstr "Наука"
 msgid "Scientific software"
 msgstr "Научни програми"
 
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr "поставке-радна-површ-чувар-заслона"
-
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
 msgstr "Чувари заслона"
@@ -173,10 +125,6 @@ msgstr "Чувари заслона"
 msgid "Screensaver applets"
 msgstr "Програмчићи чувара заслона"
 
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr "постакве-радна-површ"
-
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
 msgstr "Поставке"
@@ -184,10 +132,6 @@ msgstr "Поставке"
 #: data/xfce/xfce-settings.desktop.in:7
 msgid "Desktop and system settings applications"
 msgstr "Програми за подешавање радне површи и система"
-
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr "програми-ситем"
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
