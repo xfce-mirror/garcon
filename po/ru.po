@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2023-05-05 10:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
 "Last-Translator: Andrei Stepanov, 2022-2023\n"
 "Language-Team: Russian (http://app.transifex.com/xfce/garcon/language/ru/)\n"
@@ -25,10 +25,6 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr "applications-accessories"
-
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
 msgstr "Инструменты"
@@ -36,10 +32,6 @@ msgstr "Инструменты"
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
 msgstr "Стандартные средства и приложения"
-
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr "applications-development"
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -49,10 +41,6 @@ msgstr "Разработка"
 msgid "Software development tools"
 msgstr "Средства разработки ПО"
 
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr "applications-science"
-
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
 msgstr "Образование"
@@ -60,10 +48,6 @@ msgstr "Образование"
 #: data/xfce/xfce-education.desktop.in:7
 msgid "Educational software"
 msgstr "Образовательное ПО"
-
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr "applications-games"
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -73,10 +57,6 @@ msgstr "Игры"
 msgid "Games, puzzles, and other fun software"
 msgstr "Игры, головоломки и другое развлекательное ПО"
 
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr "applications-graphics"
-
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
 msgstr "Графика"
@@ -84,10 +64,6 @@ msgstr "Графика"
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
 msgstr "Приложения для создания и обработки графики"
-
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr "preferences-desktop-peripherals"
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -97,10 +73,6 @@ msgstr "Оборудование"
 msgid "Settings for several hardware devices"
 msgstr "Настройка некоторых видов оборудования"
 
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr "applications-multimedia"
-
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
 msgstr "Мультимедиа"
@@ -108,10 +80,6 @@ msgstr "Мультимедиа"
 #: data/xfce/xfce-multimedia.desktop.in:7
 msgid "Audio and video players and editors"
 msgstr "Мультимедиа проигрыватели и редакторы"
-
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr "applications-internet"
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -121,10 +89,6 @@ msgstr "Интернет"
 msgid "Applications for Internet access"
 msgstr "Приложения для работы в интернете"
 
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr "applications-office"
-
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
 msgstr "Офис"
@@ -133,10 +97,6 @@ msgstr "Офис"
 msgid "Office and productivity applications"
 msgstr "Офисные приложения"
 
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr "applications-other"
-
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
 msgstr "Прочее"
@@ -144,10 +104,6 @@ msgstr "Прочее"
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
 msgstr "Приложения, не попавшие в остальные категории"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr "preferences-desktop-personal"
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -165,10 +121,6 @@ msgstr "Наука"
 msgid "Scientific software"
 msgstr "Научные программы"
 
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr "preferences-desktop-screensaver"
-
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
 msgstr "Экранные заставки"
@@ -177,10 +129,6 @@ msgstr "Экранные заставки"
 msgid "Screensaver applets"
 msgstr "Мини-программы экранных заставок"
 
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr "preferences-desktop"
-
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
 msgstr "Настройки"
@@ -188,10 +136,6 @@ msgstr "Настройки"
 #: data/xfce/xfce-settings.desktop.in:7
 msgid "Desktop and system settings applications"
 msgstr "Приложения для настройки рабочего стола и системы"
-
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr "applications-system"
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
