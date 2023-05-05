@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2023-05-05 10:48+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
 "Last-Translator: Pjotr <pjotrvertaalt@gmail.com>, 2013,2016-2017,2020,2022-2023\n"
 "Language-Team: Dutch (http://app.transifex.com/xfce/garcon/language/nl/)\n"
@@ -19,10 +19,6 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr "applications-accessories"
-
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
 msgstr "Hulpmiddelen"
@@ -30,10 +26,6 @@ msgstr "Hulpmiddelen"
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
 msgstr "Algemene gereedschappen en toepassingen"
-
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr "applications-development"
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -43,10 +35,6 @@ msgstr "Ontwikkeling"
 msgid "Software development tools"
 msgstr "Gereedschap voor programmatuurontwikkeling"
 
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr "applications-science"
-
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
 msgstr "Onderwijs"
@@ -54,10 +42,6 @@ msgstr "Onderwijs"
 #: data/xfce/xfce-education.desktop.in:7
 msgid "Educational software"
 msgstr "Educatieve programma's"
-
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr "applications-games"
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -67,10 +51,6 @@ msgstr "Spelletjes"
 msgid "Games, puzzles, and other fun software"
 msgstr "Spellen, puzzels en ander prettig tijdverdrijf"
 
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr "applications-graphics"
-
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
 msgstr "Afbeeldingen"
@@ -78,10 +58,6 @@ msgstr "Afbeeldingen"
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
 msgstr "Toepassingen voor het maken en bewerken van afbeeldingen"
-
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr "preferences-desktop-peripherals"
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -91,10 +67,6 @@ msgstr "Apparatuur"
 msgid "Settings for several hardware devices"
 msgstr "Instellingen voor verschillende apparaten"
 
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr "applications-multimedia"
-
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
 msgstr "Multimedia"
@@ -102,10 +74,6 @@ msgstr "Multimedia"
 #: data/xfce/xfce-multimedia.desktop.in:7
 msgid "Audio and video players and editors"
 msgstr "Geluid- en videospelers en -bewerkers"
-
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr "applications-internet"
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -115,10 +83,6 @@ msgstr "Internet"
 msgid "Applications for Internet access"
 msgstr "Toepassingen voor internettoegang"
 
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr "applications-office"
-
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
 msgstr "Kantoor"
@@ -127,10 +91,6 @@ msgstr "Kantoor"
 msgid "Office and productivity applications"
 msgstr "Kantoor- en productiviteittoepassingen"
 
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr "applications-other"
-
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
 msgstr "Overige"
@@ -138,10 +98,6 @@ msgstr "Overige"
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
 msgstr "Toepassingen die niet in andere categorieën passen"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr "preferences-desktop-personal"
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -159,10 +115,6 @@ msgstr "Wetenschap"
 msgid "Scientific software"
 msgstr "Wetenschappelijke programmatuur"
 
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr "preferences-desktop-screensaver"
-
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
 msgstr "Schermbeveiligingen"
@@ -171,10 +123,6 @@ msgstr "Schermbeveiligingen"
 msgid "Screensaver applets"
 msgstr "Schermbeveiligingtoepassinkjes"
 
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr "preferences-desktop"
-
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
 msgstr "Instellingen"
@@ -182,10 +130,6 @@ msgstr "Instellingen"
 #: data/xfce/xfce-settings.desktop.in:7
 msgid "Desktop and system settings applications"
 msgstr "Toepassingen voor werkomgeving- en systeeminstellingen"
-
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr "applications-system"
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
