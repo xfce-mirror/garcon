@@ -13,10 +13,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 10:38+0100\n"
+"POT-Creation-Date: 2023-05-29 11:53+0200\n"
 "PO-Revision-Date: 2023-03-17 09:36+0000\n"
 "Last-Translator: scootergrisen, 2023\n"
-"Language-Team: Danish (https://www.transifex.com/xfce/teams/16840/da/)\n"
+"Language-Team: Danish (https://app.transifex.com/xfce/teams/16840/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -77,7 +77,7 @@ msgstr "Multimedie"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr ""
+msgstr "Lyd- og videoafspillere, og redigeringsprogrammer"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
@@ -85,7 +85,7 @@ msgstr "Internet"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
-msgstr ""
+msgstr "Programmer til internetadgang"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -93,7 +93,7 @@ msgstr "Kontor"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr ""
+msgstr "Kontor- og produktivitetsprogrammer"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Other"
@@ -105,7 +105,7 @@ msgstr "Programmer som ikke passer i de andre kategorier"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
-msgstr ""
+msgstr "Personlige"
 
 #: ../data/xfce/xfce-personal.directory.in.h:2
 msgid "Personal settings"
@@ -121,7 +121,7 @@ msgstr "Videnskabelig software"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
-msgstr ""
+msgstr "Pauseskærme"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
 msgid "Screensaver applets"
@@ -146,7 +146,7 @@ msgstr "Systemværktøjer og -redskaber"
 #: ../garcon/garcon-menu.c:716
 #, c-format
 msgid "File \"%s\" not found"
-msgstr ""
+msgstr "Filen \"%s\" blev ikke fundet"
 
 #: ../garcon/garcon-menu-parser.c:277
 #, c-format
