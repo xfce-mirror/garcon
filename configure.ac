@@ -149,6 +149,7 @@ garcon-gtk/Makefile
 garcon-gtk/garcon-gtk3-1.pc
 icons/Makefile
 icons/32x32/Makefile
+icons/64x64/Makefile
 po/Makefile.in
 tests/Makefile
 ])
