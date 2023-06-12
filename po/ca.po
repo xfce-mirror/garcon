@@ -5,25 +5,22 @@
 # Translators:
 # Carles Muñoz Gorriz <carlesmu@internautas.org>, 2011
 # Davidmp <medipas@gmail.com>, 2015
+# Oscar Perez <oscarpc@gmail.com>, 2023
 # Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2017
 # Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2023-05-30 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2017\n"
+"Last-Translator: Oscar Perez <oscarpc@gmail.com>, 2023\n"
 "Language-Team: Catalan (http://app.transifex.com/xfce/garcon/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr ""
 
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
@@ -33,10 +30,6 @@ msgstr "Accessoris"
 msgid "Common desktop tools and applications"
 msgstr "Eines comunes d'escriptori i d'aplicacions"
 
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr ""
-
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
 msgstr "Desenvolupament"
@@ -44,10 +37,6 @@ msgstr "Desenvolupament"
 #: data/xfce/xfce-development.desktop.in:7
 msgid "Software development tools"
 msgstr "Eines de desenvolupament de programari"
-
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr ""
 
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
@@ -57,10 +46,6 @@ msgstr "Educació"
 msgid "Educational software"
 msgstr "Programari educatiu"
 
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr ""
-
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
 msgstr "Jocs"
@@ -68,10 +53,6 @@ msgstr "Jocs"
 #: data/xfce/xfce-games.desktop.in:7
 msgid "Games, puzzles, and other fun software"
 msgstr "Jocs, trencaclosques i altre programari de diversió"
-
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr ""
 
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
@@ -81,10 +62,6 @@ msgstr "Gràfics"
 msgid "Graphics creation and manipulation applications"
 msgstr "Aplicacions de creació i manipulació de gràfics"
 
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr ""
-
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
 msgstr "Maquinari"
@@ -92,10 +69,6 @@ msgstr "Maquinari"
 #: data/xfce/xfce-hardware.desktop.in:7
 msgid "Settings for several hardware devices"
 msgstr "Ajusts per a diversos dispositius de maquinari"
-
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr ""
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
@@ -105,10 +78,6 @@ msgstr "Multimèdia"
 msgid "Audio and video players and editors"
 msgstr "Reproductors i editors d'àudio i vídeo"
 
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr ""
-
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
 msgstr "Internet"
@@ -116,10 +85,6 @@ msgstr "Internet"
 #: data/xfce/xfce-network.desktop.in:7
 msgid "Applications for Internet access"
 msgstr "Aplicacions per a l'accés a Internet"
-
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr ""
 
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
@@ -129,10 +94,6 @@ msgstr "Ofimàtica"
 msgid "Office and productivity applications"
 msgstr "Aplicacions d’oficina i de productivitat"
 
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr ""
-
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
 msgstr "Altres"
@@ -140,10 +101,6 @@ msgstr "Altres"
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
 msgstr "Les aplicacions que no encaixen en les altres categories"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr ""
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -155,15 +112,11 @@ msgstr "Ajusts personals"
 
 #: data/xfce/xfce-science.desktop.in:6
 msgid "Science"
-msgstr ""
+msgstr "Ciència<br>"
 
 #: data/xfce/xfce-science.desktop.in:7
 msgid "Scientific software"
-msgstr ""
-
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr ""
+msgstr "Programari científic"
 
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
@@ -173,10 +126,6 @@ msgstr "Estalvis de pantalla"
 msgid "Screensaver applets"
 msgstr "Miniaplicacions d'estalvi de pantalla"
 
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr ""
-
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
 msgstr "Ajusts"
@@ -184,10 +133,6 @@ msgstr "Ajusts"
 #: data/xfce/xfce-settings.desktop.in:7
 msgid "Desktop and system settings applications"
 msgstr "Aplicacions dels ajusts de l'escriptori i del sistema"
-
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr ""
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
