@@ -619,7 +619,11 @@ garcon_gtk_menu_load_async (GTask        *task,
 
   g_mutex_lock (&menu->priv->load_lock);
 
-  menu->priv->is_loaded = garcon_menu_load (menu->priv->menu, cancellable, &error);
+  if (g_cancellable_set_error_if_cancelled (cancellable, &error))
+    menu->priv->is_loaded = FALSE;
+  else
+    menu->priv->is_loaded = garcon_menu_load (menu->priv->menu, cancellable, &error);
+
   if (! menu->priv->is_loaded)
     g_task_return_error (task, error);
 
@@ -1091,6 +1095,16 @@ garcon_gtk_menu_new (GarconMenu *garcon_menu)
 
 
 
+static void
+garcon_gtk_menu_load_cancel (gpointer data,
+                             GObject *garcon_menu)
+{
+  GarconGtkMenu *menu = data;
+  g_cancellable_cancel (menu->priv->load_cancel);
+}
+
+
+
 /**
  * garcon_gtk_menu_set_menu:
  * @menu  : A #GarconGtkMenu
@@ -1116,6 +1130,7 @@ garcon_gtk_menu_set_menu (GarconGtkMenu *menu,
   if (garcon_menu != NULL)
     {
       menu->priv->menu = g_object_ref (garcon_menu);
+      g_object_weak_ref (G_OBJECT (menu->priv->menu), garcon_gtk_menu_load_cancel, menu);
       g_signal_connect_object (menu->priv->menu, "reload-required",
                                G_CALLBACK (garcon_gtk_menu_reload), menu, G_CONNECT_SWAPPED);
     }
