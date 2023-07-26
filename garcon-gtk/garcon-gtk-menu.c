@@ -592,6 +592,9 @@ garcon_gtk_menu_load_finish (GObject      *source_object,
 
       g_error_free (error);
     }
+  else if (user_data != menu->priv->menu)
+    menu->priv->is_loaded = FALSE;
+
 
   /* destroy all GtkMenu items */
   children = gtk_container_get_children (GTK_CONTAINER (menu));
@@ -646,7 +649,7 @@ garcon_gtk_menu_load (GarconGtkMenu *menu)
 
   menu->priv->load_cancel = g_cancellable_new ();
   menu->priv->load_task = g_task_new (menu, menu->priv->load_cancel,
-                                      garcon_gtk_menu_load_finish, NULL);
+                                      garcon_gtk_menu_load_finish, menu->priv->menu);
   g_signal_connect_swapped (menu->priv->load_task, "notify::completed",
                             G_CALLBACK (garcon_gtk_menu_reset_load_task), menu);
   g_task_run_in_thread (menu->priv->load_task, garcon_gtk_menu_load_async);
