@@ -95,6 +95,7 @@ dnl *** Check for standard functions ***
 dnl ************************************
 AC_FUNC_MMAP()
 AC_CHECK_FUNCS([bind_textdomain_codeset])
+AC_CHECK_FUNCS(realpath)
 
 dnl ******************************
 dnl *** Check for i18n support ***
