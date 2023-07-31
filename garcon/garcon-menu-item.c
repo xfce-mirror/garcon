@@ -793,8 +793,36 @@ garcon_menu_item_new (GFile *file)
   g_return_val_if_fail (G_IS_FILE (file), NULL);
   g_return_val_if_fail (g_file_is_native (file), NULL);
 
-  /* Open the rc file */
   filename = g_file_get_path (file);
+
+  /* Use target file if current file is a symlink */
+  if (g_file_test (filename, G_FILE_TEST_IS_SYMLINK))
+    {
+      gchar *new_filename = g_file_read_link (filename, NULL);
+
+      if (!g_path_is_absolute (new_filename))
+        {
+          gchar *dirname = g_path_get_dirname (filename);
+          gchar *destination = new_filename;
+
+          new_filename = g_build_path ("/", dirname, destination, NULL);
+
+          g_free (dirname);
+          g_free (destination);
+        }
+
+      if (g_file_test (new_filename, G_FILE_TEST_EXISTS))
+        {
+          g_free (filename);
+
+          filename = new_filename;
+          file = g_file_new_for_path (filename);
+        }
+      else
+        g_free (new_filename);
+    }
+
+  /* Open the rc file */
   rc = xfce_rc_simple_open (filename, TRUE);
   g_free (filename);
   if (G_UNLIKELY (rc == NULL))
