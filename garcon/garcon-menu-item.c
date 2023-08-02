@@ -793,8 +793,18 @@ garcon_menu_item_new (GFile *file)
   g_return_val_if_fail (G_IS_FILE (file), NULL);
   g_return_val_if_fail (g_file_is_native (file), NULL);
 
+  if (g_file_query_file_type (file, G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS, NULL) == G_FILE_TYPE_SYMBOLIC_LINK
+      && (filename = realpath (g_file_peek_path (file), NULL)) != NULL)
+    {
+      file = g_file_new_for_path (filename);
+    }
+  else
+    {
+      filename = g_file_get_path (file);
+      g_object_ref (file);
+    }
+
   /* Open the rc file */
-  filename = g_file_get_path (file);
   rc = xfce_rc_simple_open (filename, TRUE);
   g_free (filename);
   if (G_UNLIKELY (rc == NULL))
