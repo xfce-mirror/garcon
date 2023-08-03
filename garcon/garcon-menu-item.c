@@ -25,6 +25,10 @@
 #include <config.h>
 #endif
 
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
+
 #include <gio/gio.h>
 #include <libxfce4util/libxfce4util.h>
 
@@ -40,6 +44,9 @@
 #define G_KEY_FILE_DESKTOP_KEY_KEYWORDS "Keywords"
 #endif
 
+#ifndef HAVE_REALPATH
+#define realpath(path, resolved_path) NULL
+#endif
 
 
 /* Property identifiers */
@@ -793,12 +800,26 @@ garcon_menu_item_new (GFile *file)
   g_return_val_if_fail (G_IS_FILE (file), NULL);
   g_return_val_if_fail (g_file_is_native (file), NULL);
 
+  /* Use absolute paths for symlinks. See bug #1 */
+  if (g_file_query_file_type (file, G_FILE_QUERY_INFO_NOFOLLOW_SYMLINKS, NULL) == G_FILE_TYPE_SYMBOLIC_LINK
+      && (filename = realpath (g_file_peek_path (file), NULL)) != NULL)
+    {
+      file = g_file_new_for_path (filename);
+    }
+  else
+    {
+      filename = g_file_get_path (file);
+      g_object_ref (file);
+    }
+
   /* Open the rc file */
-  filename = g_file_get_path (file);
   rc = xfce_rc_simple_open (filename, TRUE);
   g_free (filename);
   if (G_UNLIKELY (rc == NULL))
-    return NULL;
+    {
+      g_object_unref (file);
+      return NULL;
+    }
 
   xfce_rc_set_group (rc, G_KEY_FILE_DESKTOP_GROUP);
 
@@ -967,6 +988,7 @@ garcon_menu_item_new (GFile *file)
   /* Cleanup */
   xfce_rc_close (rc);
   g_free (url_exec);
+  g_object_unref (file);
 
   return item;
 }
