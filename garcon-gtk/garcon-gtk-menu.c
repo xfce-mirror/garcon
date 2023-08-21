@@ -69,6 +69,8 @@ static void                 garcon_gtk_menu_add                         (GarconG
                                                                          GarconMenu              *garcon_menu);
 static void                 garcon_gtk_menu_load                        (GarconGtkMenu           *menu);
 static void                 garcon_gtk_menu_reload                      (GarconGtkMenu           *menu);
+static void                 garcon_gtk_menu_load_cancel                 (gpointer                 data,
+                                                                         GObject                 *garcon_menu);
 
 
 
@@ -240,7 +242,10 @@ garcon_gtk_menu_finalize (GObject *object)
 
   /* Release menu */
   if (menu->priv->menu != NULL)
-    g_object_unref (menu->priv->menu);
+    {
+      g_object_weak_unref (G_OBJECT (menu->priv->menu), garcon_gtk_menu_load_cancel, menu);
+      g_object_unref (menu->priv->menu);
+    }
 
   (*G_OBJECT_CLASS (garcon_gtk_menu_parent_class)->finalize) (object);
 }
