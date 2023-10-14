@@ -8,16 +8,17 @@
 # Xfce Bot <transifex@xfce.org>, 2023
 # Nick Schermer <nick@xfce.org>, 2023
 # Tobias Bannert <tobannert@gmail.com>, 2023
+# Thomas Lange, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 10:38+0100\n"
+"POT-Creation-Date: 2023-05-30 00:45+0200\n"
 "PO-Revision-Date: 2023-03-17 09:36+0000\n"
-"Last-Translator: Tobias Bannert <tobannert@gmail.com>, 2023\n"
-"Language-Team: German (https://www.transifex.com/xfce/teams/16840/de/)\n"
+"Last-Translator: Thomas Lange, 2023\n"
+"Language-Team: German (https://app.transifex.com/xfce/teams/16840/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -74,7 +75,7 @@ msgstr "Einstellungen für verschiedene Geräte"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
 msgid "Multimedia"
-msgstr "Unterhaltungsmedien"
+msgstr "Multimedia"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
