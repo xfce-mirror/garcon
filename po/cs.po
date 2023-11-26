@@ -7,16 +7,17 @@
 # Pavel Borecki <pavel.borecki@gmail.com>, 2023
 # Xfce Bot <transifex@xfce.org>, 2023
 # Nick Schermer <nick@xfce.org>, 2023
+# Martin Šiška, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 10:38+0100\n"
+"POT-Creation-Date: 2023-05-30 00:45+0200\n"
 "PO-Revision-Date: 2023-03-17 09:36+0000\n"
-"Last-Translator: Nick Schermer <nick@xfce.org>, 2023\n"
-"Language-Team: Czech (https://www.transifex.com/xfce/teams/16840/cs/)\n"
+"Last-Translator: Martin Šiška, 2023\n"
+"Language-Team: Czech (https://app.transifex.com/xfce/teams/16840/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -113,11 +114,11 @@ msgstr "Osobní nastavení"
 
 #: ../data/xfce/xfce-science.directory.in.h:1
 msgid "Science"
-msgstr ""
+msgstr "Věda"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr ""
+msgstr "Vědecký software"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
