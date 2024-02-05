@@ -44,7 +44,7 @@ dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
 AC_COPYRIGHT([Copyright (c) 2007-2011 Jannis Pohlmann <jannis@xfce.org>
-Copyright (c) 2012-2023 The Xfce development team
+Copyright (c) 2012-2024 The Xfce development team
               ])
 AC_INIT([garcon], [garcon_version], [https://gitlab.xfce.org/xfce/garcon])
 AC_PREREQ([2.69])
