@@ -1,3 +1,15 @@
+4.18.2 (2024-02-05)
+======
+- Update copyright year
+- garcon-gtk: Remove weak ref on GarconMenu on finalize()
+- Use target desktop files instead of symlinks (Fixes #1)
+- garcon-gtk: Avoid populating a wrong menu
+- garcon-gtk: Prevent use-after-free when loading garcon menu
+- Add icon at 64px, clean up SVG metadata
+- Translation Updates:
+  Catalan, Czech, Danish, French, German, Italian, Kabyle, Portuguese
+  (Brazil)
+
 4.18.1 (2023-03-28)
 ======
 - garcon-gtk: Add missing lock when filling the GtkMenu
