@@ -34,7 +34,7 @@ m4_define([libxfce4ui_min_version], [4.15.7])
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2007-2023 The Xfce development team. All rights reserved.
+AC_COPYRIGHT([Copyright (c) 2007-2024 The Xfce development team. All rights reserved.
   Written for Xfce by Jannis Pohlmann <jannis@xfce.org>.])
 AC_INIT([garcon], [xdt_version], [https://gitlab.xfce.org/xfce/garcon])
 AC_PREREQ([2.69])
