@@ -1,3 +1,19 @@
+4.19.1 (2024-02-05)
+======
+- Update copyright year
+- garcon-gtk: Remove weak ref on GarconMenu on finalize()
+- Use target desktop files instead of symlinks (Fixes #1)
+- garcon-gtk: Avoid populating a wrong menu
+- garcon-gtk: Prevent use-after-free when loading garcon menu
+- Add icon at 64px, clean up SVG metadata
+- I18n: Update po/LINGUAS list
+- I18n: Update po/LINGUAS list
+- Translation Updates:
+  Bulgarian, Catalan, Chinese (China), Chinese (Taiwan), Czech, Danish,
+  Dutch, English (United Kingdom), French, German, Italian, Japanese,
+  Kabyle, Korean, Lithuanian, Norwegian Bokmål, Polish, Portuguese,
+  Portuguese (Brazil), Russian, Serbian, Slovenian, Swedish, Ukrainian
+
 4.19.0 (2023-04-18)
 ======
 - build: Fix untranslated `.directory` files
