@@ -615,9 +615,9 @@ static gboolean
 garcon_menu_item_get_element_visible (GarconMenuElement *element)
 {
   GarconMenuItem  *item;
-  const gchar     *try_exec;
+  const gchar     *exec;
   gchar          **mt;
-  gboolean         result = TRUE;
+  gboolean         result = FALSE;
   gchar           *command;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), FALSE);
@@ -629,9 +629,9 @@ garcon_menu_item_get_element_visible (GarconMenuElement *element)
       || !garcon_menu_item_get_show_in_environment (item))
     return FALSE;
 
-  /* Check the TryExec field */
-  try_exec = garcon_menu_item_get_try_exec (item);
-  if (try_exec != NULL && g_shell_parse_argv (try_exec, NULL, &mt, NULL))
+  /* Check the Exec field */
+  exec = garcon_menu_item_get_command (item);
+  if (exec != NULL && g_shell_parse_argv (exec, NULL, &mt, NULL))
     {
       /* Check if we have an absolute path to an existing file */
       result = g_file_test (mt[0], G_FILE_TEST_EXISTS);
