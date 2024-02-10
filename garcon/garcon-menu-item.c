@@ -615,10 +615,8 @@ static gboolean
 garcon_menu_item_get_element_visible (GarconMenuElement *element)
 {
   GarconMenuItem  *item;
-  const gchar     *exec;
+  const gchar     *try_exec, *exec;
   gchar          **mt;
-  gboolean         result = FALSE;
-  gchar           *command;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), FALSE);
 
@@ -629,20 +627,48 @@ garcon_menu_item_get_element_visible (GarconMenuElement *element)
       || !garcon_menu_item_get_show_in_environment (item))
     return FALSE;
 
+  /* Check first the TryExec field */
+  try_exec = garcon_menu_item_get_try_exec (item);
+  if (try_exec != NULL && g_shell_parse_argv (try_exec, NULL, &mt, NULL))
+    {
+      /* Check if we have an absolute path to an executable or a program in $PATH */
+      gchar *command = g_find_program_in_path (mt[0]);
+      gboolean result = (command != NULL);
+
+      /* Cleanup */
+      g_free (command);
+      g_strfreev (mt);
+
+      /*
+       * if (result), then Exec should also be valid below, but if (!result), then we must
+       * stop here to honor TryExec, as the author of the desktop file could have specified
+       * the real executable here, which is not necessarily trivially accessible to us in Exec.
+       * Example:
+       *   TryExec=command
+       *   Exec=env VAR=value command
+       * And if TryExec isn't valid when it should be, or if it's outdated, the author of the
+       * desktop file should fix it.
+       */
+      if (!result)
+        return FALSE;
+    }
+
   /* Check the Exec field */
   exec = garcon_menu_item_get_command (item);
   if (exec != NULL && g_shell_parse_argv (exec, NULL, &mt, NULL))
     {
       /* Check if we have an absolute path to an executable or a program in $PATH */
-      command = g_find_program_in_path (mt[0]);
-      result = (command != NULL);
+      gchar *command = g_find_program_in_path (mt[0]);
+      gboolean result = (command != NULL);
 
       /* Cleanup */
       g_free (command);
       g_strfreev (mt);
+
+      return result;
     }
 
-  return result;
+  return FALSE;
 }
 
 
