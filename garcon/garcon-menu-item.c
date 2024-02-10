@@ -633,18 +633,12 @@ garcon_menu_item_get_element_visible (GarconMenuElement *element)
   exec = garcon_menu_item_get_command (item);
   if (exec != NULL && g_shell_parse_argv (exec, NULL, &mt, NULL))
     {
-      /* Check if we have an absolute path to an existing file */
-      result = g_file_test (mt[0], G_FILE_TEST_EXISTS);
-
-      /* Else, we may have a program in $PATH */
-      if (!result)
-        {
-          command = g_find_program_in_path (mt[0]);
-          result = (command != NULL);
-          g_free (command);
-        }
+      /* Check if we have an absolute path to an executable or a program in $PATH */
+      command = g_find_program_in_path (mt[0]);
+      result = (command != NULL);
 
       /* Cleanup */
+      g_free (command);
       g_strfreev (mt);
     }
 
