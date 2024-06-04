@@ -52,6 +52,6 @@ EXTRA_DIST =								\
 	NEWS								\
 	m4/introspection.m4
 
-DISTCHECK_CONFIGURE_FLAGS =						\
+AM_DISTCHECK_CONFIGURE_FLAGS =						\
 	--enable-gtk-doc                                                \
 	--enable-introspection
