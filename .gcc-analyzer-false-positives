@@ -1,0 +1,3 @@
+# it's checked by g_list_length (iter) < 2 above
+glist.h:[0-9]+:[0-9]+: warning: check of 'iter' for NULL after already dereferencing it \[-Wanalyzer-deref-before-check\]
+glist.h:[0-9]+:[0-9]+: warning: check of 'iter' for NULL after already dereferencing it \[-Wanalyzer-deref-before-check\]
