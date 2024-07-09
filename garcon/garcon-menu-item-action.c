@@ -38,15 +38,18 @@ enum
   PROP_ICON_NAME,
 };
 
-static void garcon_menu_item_action_finalize     (GObject       *object);
-static void garcon_menu_item_action_get_property (GObject       *object,
-                                                  guint          prop_id,
-                                                  GValue        *value,
-                                                  GParamSpec    *pspec);
-static void garcon_menu_item_action_set_property (GObject       *object,
-                                                  guint          prop_id,
-                                                  const GValue  *value,
-                                                  GParamSpec    *pspec);
+static void
+garcon_menu_item_action_finalize (GObject *object);
+static void
+garcon_menu_item_action_get_property (GObject *object,
+                                      guint prop_id,
+                                      GValue *value,
+                                      GParamSpec *pspec);
+static void
+garcon_menu_item_action_set_property (GObject *object,
+                                      guint prop_id,
+                                      const GValue *value,
+                                      GParamSpec *pspec);
 
 struct _GarconMenuItemActionPrivate
 {
@@ -83,8 +86,8 @@ garcon_menu_item_action_class_init (GarconMenuItemActionClass *klass)
                                                         "Name",
                                                         "Name of the action",
                                                         NULL,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItemAction:command:
@@ -97,8 +100,8 @@ garcon_menu_item_action_class_init (GarconMenuItemActionClass *klass)
                                                         "Command",
                                                         "Application command",
                                                         NULL,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItemAction:icon-name:
@@ -111,8 +114,8 @@ garcon_menu_item_action_class_init (GarconMenuItemActionClass *klass)
                                                         "icon-name",
                                                         "Custom icon name",
                                                         NULL,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS));
 }
 
 static void
@@ -131,16 +134,16 @@ garcon_menu_item_action_finalize (GObject *object)
   g_free (action->priv->name);
   g_free (action->priv->command);
   g_free (action->priv->icon_name);
-  
+
   (*G_OBJECT_CLASS (garcon_menu_item_action_parent_class)->finalize) (object);
 }
 
 
 
 static void
-garcon_menu_item_action_get_property (GObject    *object,
-                                      guint       prop_id,
-                                      GValue     *value,
+garcon_menu_item_action_get_property (GObject *object,
+                                      guint prop_id,
+                                      GValue *value,
                                       GParamSpec *pspec)
 {
   GarconMenuItemAction *action = GARCON_MENU_ITEM_ACTION (object);
@@ -168,10 +171,10 @@ garcon_menu_item_action_get_property (GObject    *object,
 
 
 static void
-garcon_menu_item_action_set_property (GObject      *object,
-                                      guint         prop_id,
+garcon_menu_item_action_set_property (GObject *object,
+                                      guint prop_id,
                                       const GValue *value,
-                                      GParamSpec   *pspec)
+                                      GParamSpec *pspec)
 {
   GarconMenuItemAction *action = GARCON_MENU_ITEM_ACTION (object);
 
@@ -196,7 +199,7 @@ garcon_menu_item_action_set_property (GObject      *object,
 }
 
 
-const gchar*
+const gchar *
 garcon_menu_item_action_get_name (GarconMenuItemAction *action)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM_ACTION (action), NULL);
@@ -207,7 +210,7 @@ garcon_menu_item_action_get_name (GarconMenuItemAction *action)
 
 void
 garcon_menu_item_action_set_name (GarconMenuItemAction *action,
-                                  const gchar          *name)
+                                  const gchar *name)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM_ACTION (action));
   g_return_if_fail (g_utf8_validate (name, -1, NULL));
@@ -226,8 +229,8 @@ garcon_menu_item_action_set_name (GarconMenuItemAction *action,
 
 
 
-const gchar*
-garcon_menu_item_action_get_icon_name (GarconMenuItemAction  *action)
+const gchar *
+garcon_menu_item_action_get_icon_name (GarconMenuItemAction *action)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM_ACTION (action), NULL);
   return action->priv->icon_name;
@@ -236,8 +239,8 @@ garcon_menu_item_action_get_icon_name (GarconMenuItemAction  *action)
 
 
 void
-garcon_menu_item_action_set_icon_name (GarconMenuItemAction  *action,
-                                       const gchar           *icon_name)
+garcon_menu_item_action_set_icon_name (GarconMenuItemAction *action,
+                                       const gchar *icon_name)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM_ACTION (action));
 
@@ -262,7 +265,7 @@ garcon_menu_item_action_set_icon_name (GarconMenuItemAction  *action,
 
 
 
-const gchar*
+const gchar *
 garcon_menu_item_action_get_command (GarconMenuItemAction *action)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM_ACTION (action), NULL);
@@ -273,7 +276,7 @@ garcon_menu_item_action_get_command (GarconMenuItemAction *action)
 
 void
 garcon_menu_item_action_set_command (GarconMenuItemAction *action,
-                                     const gchar          *command)
+                                     const gchar *command)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM_ACTION (action));
   g_return_if_fail (command != NULL);

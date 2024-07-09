@@ -27,17 +27,26 @@
 
 
 
-static void         garcon_menu_separator_element_init                    (GarconMenuElementIface   *iface);
-static void         garcon_menu_separator_finalize                        (GObject                  *object);
+static void
+garcon_menu_separator_element_init (GarconMenuElementIface *iface);
+static void
+garcon_menu_separator_finalize (GObject *object);
 
-static const gchar *garcon_menu_separator_get_element_name                (GarconMenuElement        *element);
-static const gchar *garcon_menu_separator_get_element_comment             (GarconMenuElement        *element);
-static const gchar *garcon_menu_separator_get_element_icon_name           (GarconMenuElement        *element);
-static gboolean     garcon_menu_separator_get_element_visible             (GarconMenuElement        *element);
-static gboolean     garcon_menu_separator_get_element_show_in_environment (GarconMenuElement        *element);
-static gboolean     garcon_menu_separator_get_element_no_display          (GarconMenuElement        *element);
-static gboolean     garcon_menu_separator_get_element_equal               (GarconMenuElement        *element,
-                                                                           GarconMenuElement        *other);
+static const gchar *
+garcon_menu_separator_get_element_name (GarconMenuElement *element);
+static const gchar *
+garcon_menu_separator_get_element_comment (GarconMenuElement *element);
+static const gchar *
+garcon_menu_separator_get_element_icon_name (GarconMenuElement *element);
+static gboolean
+garcon_menu_separator_get_element_visible (GarconMenuElement *element);
+static gboolean
+garcon_menu_separator_get_element_show_in_environment (GarconMenuElement *element);
+static gboolean
+garcon_menu_separator_get_element_no_display (GarconMenuElement *element);
+static gboolean
+garcon_menu_separator_get_element_equal (GarconMenuElement *element,
+                                         GarconMenuElement *other);
 
 
 
@@ -94,7 +103,7 @@ garcon_menu_separator_finalize (GObject *object)
  *
  * Returns: (transfer full): the default #GarconMenuSeparator.
  */
-GarconMenuSeparator*
+GarconMenuSeparator *
 garcon_menu_separator_get_default (void)
 {
   static GarconMenuSeparator *separator = NULL;
@@ -116,7 +125,7 @@ garcon_menu_separator_get_default (void)
 
 
 
-static const gchar*
+static const gchar *
 garcon_menu_separator_get_element_name (GarconMenuElement *element)
 {
   return NULL;
@@ -124,7 +133,7 @@ garcon_menu_separator_get_element_name (GarconMenuElement *element)
 
 
 
-static const gchar*
+static const gchar *
 garcon_menu_separator_get_element_comment (GarconMenuElement *element)
 {
   return NULL;
@@ -132,7 +141,7 @@ garcon_menu_separator_get_element_comment (GarconMenuElement *element)
 
 
 
-static const gchar*
+static const gchar *
 garcon_menu_separator_get_element_icon_name (GarconMenuElement *element)
 {
   return NULL;

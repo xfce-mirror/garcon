@@ -42,7 +42,7 @@ GType
 garcon_menu_element_get_type (void)
 {
   static gsize static_type = 0;
-  GType        type;
+  GType type;
 
   if (g_once_init_enter (&static_type))
     {
@@ -64,7 +64,7 @@ garcon_menu_element_get_type (void)
 
 
 
-const gchar*
+const gchar *
 garcon_menu_element_get_name (GarconMenuElement *element)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ELEMENT (element), NULL);
@@ -73,7 +73,7 @@ garcon_menu_element_get_name (GarconMenuElement *element)
 
 
 
-const gchar*
+const gchar *
 garcon_menu_element_get_comment (GarconMenuElement *element)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ELEMENT (element), NULL);
@@ -82,7 +82,7 @@ garcon_menu_element_get_comment (GarconMenuElement *element)
 
 
 
-const gchar*
+const gchar *
 garcon_menu_element_get_icon_name (GarconMenuElement *element)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ELEMENT (element), NULL);

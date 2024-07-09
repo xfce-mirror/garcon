@@ -18,7 +18,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
- #if !defined(_GARCON_INSIDE_GARCON_H) && !defined(GARCON_COMPILATION)
+#if !defined(_GARCON_INSIDE_GARCON_H) && !defined(GARCON_COMPILATION)
 #error "Only <garcon/garcon.h> can be included directly. This file may disappear or change contents."
 #endif
 
@@ -31,15 +31,15 @@
 G_BEGIN_DECLS
 
 typedef struct _GarconMenuItemActionPrivate GarconMenuItemActionPrivate;
-typedef struct _GarconMenuItemActionClass   GarconMenuItemActionClass;
-typedef struct _GarconMenuItemAction        GarconMenuItemAction;
+typedef struct _GarconMenuItemActionClass GarconMenuItemActionClass;
+typedef struct _GarconMenuItemAction GarconMenuItemAction;
 
-#define GARCON_TYPE_MENU_ITEM_ACTION            (garcon_menu_item_action_get_type())
-#define GARCON_MENU_ITEM_ACTION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_ITEM_ACTION, GarconMenuItemAction))
-#define GARCON_MENU_ITEM_ACTION_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_ITEM_ACTION, GarconMenuItemActionClass))
-#define GARCON_IS_MENU_ITEM_ACTION(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_ITEM_ACTION))
+#define GARCON_TYPE_MENU_ITEM_ACTION (garcon_menu_item_action_get_type ())
+#define GARCON_MENU_ITEM_ACTION(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_ITEM_ACTION, GarconMenuItemAction))
+#define GARCON_MENU_ITEM_ACTION_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_ITEM_ACTION, GarconMenuItemActionClass))
+#define GARCON_IS_MENU_ITEM_ACTION(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_ITEM_ACTION))
 #define GARCON_IS_MENU_ITEM_ACTION_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_ITEM_ACTION))
-#define GARCON_MENU_ITEM_ACTION_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_ITEM_ACTION, GarconMenuItemActionClass))
+#define GARCON_MENU_ITEM_ACTION_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_ITEM_ACTION, GarconMenuItemActionClass))
 
 struct _GarconMenuItemActionClass
 {
@@ -51,26 +51,36 @@ struct _GarconMenuItemActionClass
 
 struct _GarconMenuItemAction
 {
-  GObject                  __parent__;
+  GObject __parent__;
 
   /* < private > */
   GarconMenuItemActionPrivate *priv;
 };
 
-GType                 garcon_menu_item_action_get_type           (void) G_GNUC_CONST;
-GarconMenuItemAction *garcon_menu_item_action_new                (void) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+GType
+garcon_menu_item_action_get_type (void) G_GNUC_CONST;
+GarconMenuItemAction *
+garcon_menu_item_action_new (void) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 
-const gchar          *garcon_menu_item_action_get_command        (GarconMenuItemAction  *action);
-void                  garcon_menu_item_action_set_command        (GarconMenuItemAction  *action,
-                                                                  const gchar           *command);
-const gchar          *garcon_menu_item_action_get_name           (GarconMenuItemAction  *action);
-void                  garcon_menu_item_action_set_name           (GarconMenuItemAction  *action,
-                                                                  const gchar           *name);
-const gchar          *garcon_menu_item_action_get_icon_name      (GarconMenuItemAction  *action);
-void                  garcon_menu_item_action_set_icon_name      (GarconMenuItemAction  *action,
-                                                                  const gchar           *icon_name);
-void                  garcon_menu_item_action_ref                (GarconMenuItemAction  *action);
-void                  garcon_menu_item_action_unref              (GarconMenuItemAction  *action);
+const gchar *
+garcon_menu_item_action_get_command (GarconMenuItemAction *action);
+void
+garcon_menu_item_action_set_command (GarconMenuItemAction *action,
+                                     const gchar *command);
+const gchar *
+garcon_menu_item_action_get_name (GarconMenuItemAction *action);
+void
+garcon_menu_item_action_set_name (GarconMenuItemAction *action,
+                                  const gchar *name);
+const gchar *
+garcon_menu_item_action_get_icon_name (GarconMenuItemAction *action);
+void
+garcon_menu_item_action_set_icon_name (GarconMenuItemAction *action,
+                                       const gchar *icon_name);
+void
+garcon_menu_item_action_ref (GarconMenuItemAction *action);
+void
+garcon_menu_item_action_unref (GarconMenuItemAction *action);
 
 G_END_DECLS
 

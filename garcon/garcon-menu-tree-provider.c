@@ -30,7 +30,7 @@ GType
 garcon_menu_tree_provider_get_type (void)
 {
   static gsize static_type = 0;
-  GType        type;
+  GType type;
 
   if (g_once_init_enter (&static_type))
     {

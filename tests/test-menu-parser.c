@@ -36,8 +36,9 @@
 
 
 
-static gboolean print_node (GNode   *node,
-                            gpointer depth);
+static gboolean
+print_node (GNode *node,
+            gpointer depth);
 
 
 
@@ -46,16 +47,26 @@ node_name (GNode *node)
 {
   switch (garcon_menu_node_tree_get_node_type (node))
     {
-      case GARCON_MENU_NODE_TYPE_MENU: return "Menu"; break;
-      case GARCON_MENU_NODE_TYPE_INCLUDE: return "Include"; break;
-      case GARCON_MENU_NODE_TYPE_EXCLUDE: return "Exclude"; break;
-      case GARCON_MENU_NODE_TYPE_OR: return "Or"; break;
-      case GARCON_MENU_NODE_TYPE_AND: return "And"; break;
-      case GARCON_MENU_NODE_TYPE_NOT: return "Not"; break;
-      case GARCON_MENU_NODE_TYPE_MOVE: return "Move"; break;
-      case GARCON_MENU_NODE_TYPE_DEFAULT_LAYOUT: return "DefaultLayout"; break;
-      case GARCON_MENU_NODE_TYPE_LAYOUT: return "Layout"; break;
-      default: return NULL; break;
+    case GARCON_MENU_NODE_TYPE_MENU:
+      return "Menu";
+    case GARCON_MENU_NODE_TYPE_INCLUDE:
+      return "Include";
+    case GARCON_MENU_NODE_TYPE_EXCLUDE:
+      return "Exclude";
+    case GARCON_MENU_NODE_TYPE_OR:
+      return "Or";
+    case GARCON_MENU_NODE_TYPE_AND:
+      return "And";
+    case GARCON_MENU_NODE_TYPE_NOT:
+      return "Not";
+    case GARCON_MENU_NODE_TYPE_MOVE:
+      return "Move";
+    case GARCON_MENU_NODE_TYPE_DEFAULT_LAYOUT:
+      return "DefaultLayout";
+    case GARCON_MENU_NODE_TYPE_LAYOUT:
+      return "Layout";
+    default:
+      return NULL;
     }
 }
 
@@ -63,93 +74,115 @@ node_name (GNode *node)
 
 static void
 print_child_nodes (GNode *node,
-                   gint   depth)
+                   gint depth)
 {
   GNode *child;
 
   for (child = g_node_first_child (node); child != NULL; child = g_node_next_sibling (child))
     {
       g_node_traverse (child, G_PRE_ORDER, G_TRAVERSE_ALL, 1,
-                       (GNodeTraverseFunc) print_node, GINT_TO_POINTER (depth+2));
+                       (GNodeTraverseFunc) print_node, GINT_TO_POINTER (depth + 2));
     }
 }
 
 
 
 static gboolean
-print_node (GNode    *node,
-            gpointer  data)
+print_node (GNode *node,
+            gpointer data)
 {
   gint i;
   gint depth = GPOINTER_TO_INT (data);
 
-#define INDENT {for (i = 0; i < depth; ++i) g_print (" ");}
+#define INDENT \
+  { \
+    for (i = 0; i < depth; ++i) \
+      g_print (" "); \
+  }
 
-  if (garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_MENU ||
-      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_INCLUDE ||
-      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_EXCLUDE ||
-      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_OR ||
-      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_AND ||
-      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_NOT ||
-      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_MOVE ||
-      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_DEFAULT_LAYOUT ||
-      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_LAYOUT)
+  if (garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_MENU
+      || garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_INCLUDE
+      || garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_EXCLUDE
+      || garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_OR
+      || garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_AND
+      || garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_NOT
+      || garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_MOVE
+      || garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_DEFAULT_LAYOUT
+      || garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_LAYOUT)
     {
-      INDENT; g_print ("<%s>\n", node_name (node));
+      INDENT;
+      g_print ("<%s>\n", node_name (node));
       print_child_nodes (node, depth);
-      INDENT; g_print ("</%s>\n", node_name (node));
+      INDENT;
+      g_print ("</%s>\n", node_name (node));
     }
   else
     {
       switch (garcon_menu_node_tree_get_node_type (node))
         {
         case GARCON_MENU_NODE_TYPE_NAME:
-          INDENT; g_print ("<Name>%s</Name>\n", garcon_menu_node_tree_get_string (node));
+          INDENT;
+          g_print ("<Name>%s</Name>\n", garcon_menu_node_tree_get_string (node));
           break;
         case GARCON_MENU_NODE_TYPE_DIRECTORY:
-          INDENT; g_print ("<Directory>%s</Directory>\n", garcon_menu_node_tree_get_string (node));
+          INDENT;
+          g_print ("<Directory>%s</Directory>\n", garcon_menu_node_tree_get_string (node));
           break;
         case GARCON_MENU_NODE_TYPE_DIRECTORY_DIR:
-          INDENT; g_print ("<DirectoryDir>%s</DirectoryDir>\n", garcon_menu_node_tree_get_string (node));
+          INDENT;
+          g_print ("<DirectoryDir>%s</DirectoryDir>\n", garcon_menu_node_tree_get_string (node));
           break;
         case GARCON_MENU_NODE_TYPE_DEFAULT_DIRECTORY_DIRS:
-          INDENT; g_print ("<DefaultDirectoryDirs/>\n");
+          INDENT;
+          g_print ("<DefaultDirectoryDirs/>\n");
           break;
         case GARCON_MENU_NODE_TYPE_APP_DIR:
-          INDENT; g_print ("<AppDir>%s</AppDir>\n", garcon_menu_node_tree_get_string (node));
+          INDENT;
+          g_print ("<AppDir>%s</AppDir>\n", garcon_menu_node_tree_get_string (node));
           break;
         case GARCON_MENU_NODE_TYPE_DEFAULT_APP_DIRS:
-          INDENT; g_print ("<DefaultAppDirs/>\n");
+          INDENT;
+          g_print ("<DefaultAppDirs/>\n");
           break;
         case GARCON_MENU_NODE_TYPE_ONLY_UNALLOCATED:
-          INDENT; g_print ("<OnlyUnallocated/>\n");
+          INDENT;
+          g_print ("<OnlyUnallocated/>\n");
           break;
         case GARCON_MENU_NODE_TYPE_NOT_ONLY_UNALLOCATED:
-          INDENT; g_print ("<NotOnlyUnallocated/>\n");
+          INDENT;
+          g_print ("<NotOnlyUnallocated/>\n");
           break;
         case GARCON_MENU_NODE_TYPE_DELETED:
-          INDENT; g_print ("<Deleted/>\n");
+          INDENT;
+          g_print ("<Deleted/>\n");
           break;
         case GARCON_MENU_NODE_TYPE_NOT_DELETED:
-          INDENT; g_print ("<NotDeleted/>\n");
+          INDENT;
+          g_print ("<NotDeleted/>\n");
           break;
         case GARCON_MENU_NODE_TYPE_FILENAME:
-          INDENT; g_print ("<Filename>%s</Filename>\n", garcon_menu_node_tree_get_string (node));
+          INDENT;
+          g_print ("<Filename>%s</Filename>\n", garcon_menu_node_tree_get_string (node));
           break;
         case GARCON_MENU_NODE_TYPE_CATEGORY:
-          INDENT; g_print ("<Category>%s</Category>\n", garcon_menu_node_tree_get_string (node));
+          INDENT;
+          g_print ("<Category>%s</Category>\n", garcon_menu_node_tree_get_string (node));
           break;
         case GARCON_MENU_NODE_TYPE_OLD:
-          INDENT; g_print ("<Old>%s</Old>\n", garcon_menu_node_tree_get_string (node));
+          INDENT;
+          g_print ("<Old>%s</Old>\n", garcon_menu_node_tree_get_string (node));
           break;
         case GARCON_MENU_NODE_TYPE_NEW:
-          INDENT; g_print ("<New>%s</New>\n", garcon_menu_node_tree_get_string (node));
+          INDENT;
+          g_print ("<New>%s</New>\n", garcon_menu_node_tree_get_string (node));
           break;
         case GARCON_MENU_NODE_TYPE_MENUNAME:
-          INDENT; g_print ("<Menuname>%s</Menuname>\n", garcon_menu_node_tree_get_string (node));
+          INDENT;
+          g_print ("<Menuname>%s</Menuname>\n", garcon_menu_node_tree_get_string (node));
           break;
         case GARCON_MENU_NODE_TYPE_SEPARATOR:
-          INDENT; g_print ("<Separator/>\n");
+          INDENT;
+          g_print ("<Separator/>\n");
           break;
         case GARCON_MENU_NODE_TYPE_MERGE:
           INDENT;
@@ -180,10 +213,12 @@ print_node (GNode    *node,
             }
           break;
         case GARCON_MENU_NODE_TYPE_MERGE_DIR:
-          INDENT; g_print ("<MergeDir>%s</MergeDir>\n", garcon_menu_node_tree_get_string (node));
+          INDENT;
+          g_print ("<MergeDir>%s</MergeDir>\n", garcon_menu_node_tree_get_string (node));
           break;
         case GARCON_MENU_NODE_TYPE_DEFAULT_MERGE_DIRS:
-          INDENT; g_print ("<DefaultMergeDirs/>\n");
+          INDENT;
+          g_print ("<DefaultMergeDirs/>\n");
           break;
         default:
           break;
@@ -210,17 +245,17 @@ print_tree (GarconMenuTreeProvider *provider)
 
 
 int
-main (int    argc,
+main (int argc,
       char **argv)
 {
   GarconMenuParser *parser;
   GarconMenuMerger *merger;
-  const gchar      *prefix;
-  GError           *error = NULL;
-  GFile            *file = NULL;
-  gchar            *filename;
-  gchar            *relative_filename;
-  gint              result = EXIT_SUCCESS;
+  const gchar *prefix;
+  GError *error = NULL;
+  GFile *file = NULL;
+  gchar *filename;
+  gchar *relative_filename;
+  gint result = EXIT_SUCCESS;
 
   garcon_set_environment ("XFCE");
 
@@ -260,7 +295,7 @@ main (int    argc,
 
   if (G_LIKELY (garcon_menu_parser_run (parser, NULL, &error)))
     {
-      g_print("\n\nafter parsing:\n\n");
+      g_print ("\n\nafter parsing:\n\n");
 
       print_tree (GARCON_MENU_TREE_PROVIDER (parser));
 

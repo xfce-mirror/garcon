@@ -35,16 +35,16 @@
 
 
 static void
-print_menu (GarconMenu  *menu,
+print_menu (GarconMenu *menu,
             const gchar *path)
 {
   GarconMenuDirectory *directory;
-  GFile               *file;
-  GList               *menus;
-  GList               *items;
-  GList               *iter;
-  gchar               *name;
-  gchar               *file_path;
+  GFile *file;
+  GList *menus;
+  GList *items;
+  GList *iter;
+  gchar *name;
+  gchar *file_path;
 
   if (!garcon_menu_element_get_visible (GARCON_MENU_ELEMENT (menu)))
     return;
@@ -58,8 +58,8 @@ print_menu (GarconMenu  *menu,
     {
       name = g_strdup_printf ("%s%s/", path,
                               (directory == NULL
-                               ? garcon_menu_element_get_name (GARCON_MENU_ELEMENT (menu))
-                               : garcon_menu_directory_get_name (directory)));
+                                 ? garcon_menu_element_get_name (GARCON_MENU_ELEMENT (menu))
+                                 : garcon_menu_directory_get_name (directory)));
     }
 
   /* Fetch submenus */
@@ -106,15 +106,15 @@ print_menu (GarconMenu  *menu,
 
 
 int
-main (int    argc,
+main (int argc,
       char **argv)
 {
   GarconMenu *menu;
-  GError     *error = NULL;
+  GError *error = NULL;
 #ifdef HAVE_STDLIB_H
-  int         exit_code = EXIT_SUCCESS;
+  int exit_code = EXIT_SUCCESS;
 #else
-  int         exit_code = 0;
+  int exit_code = 0;
 #endif
 
   g_set_prgname ("test-menu-spec");

@@ -76,31 +76,34 @@ enum
 
 
 
-static void garcon_menu_directory_finalize     (GObject                  *object);
-static void garcon_menu_directory_get_property (GObject                  *object,
-                                                guint                     prop_id,
-                                                GValue                   *value,
-                                                GParamSpec               *pspec);
-static void garcon_menu_directory_set_property (GObject                  *object,
-                                                guint                     prop_id,
-                                                const GValue             *value,
-                                                GParamSpec               *pspec);
+static void
+garcon_menu_directory_finalize (GObject *object);
+static void
+garcon_menu_directory_get_property (GObject *object,
+                                    guint prop_id,
+                                    GValue *value,
+                                    GParamSpec *pspec);
+static void
+garcon_menu_directory_set_property (GObject *object,
+                                    guint prop_id,
+                                    const GValue *value,
+                                    GParamSpec *pspec);
 
 
 
 struct _GarconMenuDirectoryPrivate
 {
   /* Directory file */
-  GFile  *file;
+  GFile *file;
 
   /* Directory name */
-  gchar  *name;
+  gchar *name;
 
   /* Directory description (comment) */
-  gchar  *comment;
+  gchar *comment;
 
   /* Icon */
-  gchar  *icon_name;
+  gchar *icon_name;
 
   /* Environments in which the menu should be displayed only */
   gchar **only_show_in;
@@ -109,10 +112,10 @@ struct _GarconMenuDirectoryPrivate
   gchar **not_show_in;
 
   /* Whether the menu should be ignored completely */
-  guint   hidden : 1;
+  guint hidden : 1;
 
   /* Whether the menu should be hidden */
-  guint   no_display : 1;
+  guint no_display : 1;
 };
 
 
@@ -143,9 +146,9 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
                                                         "File",
                                                         "File",
                                                         G_TYPE_FILE,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS |
-                                                        G_PARAM_CONSTRUCT_ONLY));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS
+                                                          | G_PARAM_CONSTRUCT_ONLY));
 
   /**
    * GarconMenuDirectory:name:
@@ -158,8 +161,8 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
                                                         "Name",
                                                         "Directory name",
                                                         NULL,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuDirectory:comment:
@@ -172,8 +175,8 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
                                                         "Description",
                                                         "Directory description",
                                                         NULL,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuDirectory:icon-name:
@@ -186,8 +189,8 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
                                                         "Icon",
                                                         "Directory icon",
                                                         NULL,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuDirectory:no-display:
@@ -200,9 +203,8 @@ garcon_menu_directory_class_init (GarconMenuDirectoryClass *klass)
                                                          "No Display",
                                                          "Visibility state of the related menu",
                                                          FALSE,
-                                                         G_PARAM_READWRITE |
-                                                         G_PARAM_STATIC_STRINGS));
-
+                                                         G_PARAM_READWRITE
+                                                           | G_PARAM_STATIC_STRINGS));
 }
 
 
@@ -250,9 +252,9 @@ garcon_menu_directory_finalize (GObject *object)
 
 
 static void
-garcon_menu_directory_get_property (GObject    *object,
-                                    guint       prop_id,
-                                    GValue     *value,
+garcon_menu_directory_get_property (GObject *object,
+                                    guint prop_id,
+                                    GValue *value,
                                     GParamSpec *pspec)
 {
   GarconMenuDirectory *directory = GARCON_MENU_DIRECTORY (object);
@@ -288,10 +290,10 @@ garcon_menu_directory_get_property (GObject    *object,
 
 
 static void
-garcon_menu_directory_set_property (GObject      *object,
-                                    guint         prop_id,
+garcon_menu_directory_set_property (GObject *object,
+                                    guint prop_id,
                                     const GValue *value,
-                                    GParamSpec   *pspec)
+                                    GParamSpec *pspec)
 {
   GarconMenuDirectory *directory = GARCON_MENU_DIRECTORY (object);
 
@@ -338,17 +340,17 @@ GarconMenuDirectory *
 garcon_menu_directory_new (GFile *file)
 {
   GarconMenuDirectory *directory = NULL;
-  XfceRc              *rc;
-  const gchar         *name;
-  const gchar         *comment;
-  const gchar         *icon_name;
-  gboolean             no_display;
-  gchar               *filename;
+  XfceRc *rc;
+  const gchar *name;
+  const gchar *comment;
+  const gchar *icon_name;
+  gboolean no_display;
+  gchar *filename;
 
   g_return_val_if_fail (G_IS_FILE (file), NULL);
   g_return_val_if_fail (g_file_is_native (file), NULL);
 
- /* Open the rc file */
+  /* Open the rc file */
   filename = g_file_get_path (file);
   rc = xfce_rc_simple_open (filename, TRUE);
   g_free (filename);
@@ -416,7 +418,7 @@ garcon_menu_directory_get_file (GarconMenuDirectory *directory)
  *
  * Returns: a the name for @directory.
  */
-const gchar*
+const gchar *
 garcon_menu_directory_get_name (GarconMenuDirectory *directory)
 {
   g_return_val_if_fail (GARCON_IS_MENU_DIRECTORY (directory), NULL);
@@ -434,7 +436,7 @@ garcon_menu_directory_get_name (GarconMenuDirectory *directory)
  */
 void
 garcon_menu_directory_set_name (GarconMenuDirectory *directory,
-                                const gchar         *name)
+                                const gchar *name)
 {
   g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
   g_return_if_fail (g_utf8_validate (name, -1, NULL));
@@ -462,7 +464,7 @@ garcon_menu_directory_set_name (GarconMenuDirectory *directory,
  *
  * Returns: a the description for @directory.
  */
-const gchar*
+const gchar *
 garcon_menu_directory_get_comment (GarconMenuDirectory *directory)
 {
   g_return_val_if_fail (GARCON_IS_MENU_DIRECTORY (directory), NULL);
@@ -480,7 +482,7 @@ garcon_menu_directory_get_comment (GarconMenuDirectory *directory)
  */
 void
 garcon_menu_directory_set_comment (GarconMenuDirectory *directory,
-                                   const gchar         *comment)
+                                   const gchar *comment)
 {
   g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
   g_return_if_fail (comment == NULL || g_utf8_validate (comment, -1, NULL));
@@ -508,7 +510,7 @@ garcon_menu_directory_set_comment (GarconMenuDirectory *directory,
  *
  * Returns: a the icon-name key for @directory.
  */
-const gchar*
+const gchar *
 garcon_menu_directory_get_icon_name (GarconMenuDirectory *directory)
 {
   g_return_val_if_fail (GARCON_IS_MENU_DIRECTORY (directory), NULL);
@@ -526,7 +528,7 @@ garcon_menu_directory_get_icon_name (GarconMenuDirectory *directory)
  */
 void
 garcon_menu_directory_set_icon_name (GarconMenuDirectory *directory,
-                                     const gchar         *icon_name)
+                                     const gchar *icon_name)
 {
   g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
 
@@ -572,7 +574,7 @@ garcon_menu_directory_get_no_display (GarconMenuDirectory *directory)
  */
 void
 garcon_menu_directory_set_no_display (GarconMenuDirectory *directory,
-                                      gboolean             no_display)
+                                      gboolean no_display)
 {
   g_return_if_fail (GARCON_IS_MENU_DIRECTORY (directory));
 
@@ -621,8 +623,8 @@ gboolean
 garcon_menu_directory_get_show_in_environment (GarconMenuDirectory *directory)
 {
   const gchar *env;
-  guint        i;
-  gboolean     show = TRUE;
+  guint i;
+  gboolean show = TRUE;
 
   g_return_val_if_fail (GARCON_IS_MENU_DIRECTORY (directory), FALSE);
 

@@ -18,7 +18,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#if !defined (_GARCON_INSIDE_GARCON_H) && !defined (GARCON_COMPILATION)
+#if !defined(_GARCON_INSIDE_GARCON_H) && !defined(GARCON_COMPILATION)
 #error "Only <garcon/garcon.h> can be included directly. This file may disappear or change contents."
 #endif
 
@@ -29,26 +29,29 @@
 
 G_BEGIN_DECLS
 
-#define GARCON_TYPE_MENU_TREE_PROVIDER            (garcon_menu_tree_provider_get_type ())
-#define GARCON_MENU_TREE_PROVIDER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_TREE_PROVIDER, GarconMenuTreeProvider))
-#define GARCON_IS_MENU_TREE_PROVIDER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_TREE_PROVIDER))
-#define GARCON_MENU_TREE_PROVIDER_GET_IFACE(obj)  (G_TYPE_INSTANCE_GET_INTERFACE ((obj), GARCON_TYPE_MENU_TREE_PROVIDER, GarconMenuTreeProviderIface))
+#define GARCON_TYPE_MENU_TREE_PROVIDER (garcon_menu_tree_provider_get_type ())
+#define GARCON_MENU_TREE_PROVIDER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_TREE_PROVIDER, GarconMenuTreeProvider))
+#define GARCON_IS_MENU_TREE_PROVIDER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_TREE_PROVIDER))
+#define GARCON_MENU_TREE_PROVIDER_GET_IFACE(obj) (G_TYPE_INSTANCE_GET_INTERFACE ((obj), GARCON_TYPE_MENU_TREE_PROVIDER, GarconMenuTreeProviderIface))
 
 typedef struct _GarconMenuTreeProviderIface GarconMenuTreeProviderIface;
-typedef struct _GarconMenuTreeProvider      GarconMenuTreeProvider;
+typedef struct _GarconMenuTreeProvider GarconMenuTreeProvider;
 
-GType  garcon_menu_tree_provider_get_type (void) G_GNUC_CONST;
+GType
+garcon_menu_tree_provider_get_type (void) G_GNUC_CONST;
 
-GNode *garcon_menu_tree_provider_get_tree (GarconMenuTreeProvider *provider) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
-GFile *garcon_menu_tree_provider_get_file (GarconMenuTreeProvider *provider) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+GNode *
+garcon_menu_tree_provider_get_tree (GarconMenuTreeProvider *provider) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+GFile *
+garcon_menu_tree_provider_get_file (GarconMenuTreeProvider *provider) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 
 struct _GarconMenuTreeProviderIface
 {
   GTypeInterface __parent__;
 
   /* Virtual methods */
-  GNode       *(*get_tree) (GarconMenuTreeProvider *provider);
-  GFile       *(*get_file) (GarconMenuTreeProvider *provider);
+  GNode *(*get_tree) (GarconMenuTreeProvider *provider);
+  GFile *(*get_file) (GarconMenuTreeProvider *provider);
 };
 
 G_END_DECLS

@@ -54,23 +54,31 @@ enum
 
 
 
-static void                 garcon_gtk_menu_finalize                    (GObject                 *object);
-static void                 garcon_gtk_menu_get_property                (GObject                 *object,
-                                                                         guint                    prop_id,
-                                                                         GValue                  *value,
-                                                                         GParamSpec              *pspec);
-static void                 garcon_gtk_menu_set_property                (GObject                 *object,
-                                                                         guint                    prop_id,
-                                                                         const GValue            *value,
-                                                                         GParamSpec              *pspec);
-static void                 garcon_gtk_menu_show                        (GtkWidget               *widget);
-static void                 garcon_gtk_menu_add                         (GarconGtkMenu           *menu,
-                                                                         GtkMenu                 *gtk_menu,
-                                                                         GarconMenu              *garcon_menu);
-static void                 garcon_gtk_menu_load                        (GarconGtkMenu           *menu);
-static void                 garcon_gtk_menu_reload                      (GarconGtkMenu           *menu);
-static void                 garcon_gtk_menu_load_cancel                 (gpointer                 data,
-                                                                         GObject                 *garcon_menu);
+static void
+garcon_gtk_menu_finalize (GObject *object);
+static void
+garcon_gtk_menu_get_property (GObject *object,
+                              guint prop_id,
+                              GValue *value,
+                              GParamSpec *pspec);
+static void
+garcon_gtk_menu_set_property (GObject *object,
+                              guint prop_id,
+                              const GValue *value,
+                              GParamSpec *pspec);
+static void
+garcon_gtk_menu_show (GtkWidget *widget);
+static void
+garcon_gtk_menu_add (GarconGtkMenu *menu,
+                     GtkMenu *gtk_menu,
+                     GarconMenu *garcon_menu);
+static void
+garcon_gtk_menu_load (GarconGtkMenu *menu);
+static void
+garcon_gtk_menu_reload (GarconGtkMenu *menu);
+static void
+garcon_gtk_menu_load_cancel (gpointer data,
+                             GObject *garcon_menu);
 
 
 
@@ -82,12 +90,12 @@ struct _GarconGtkMenuPrivate
   GarconMenu *menu;
 
   /* asynchronous load */
-  guint         is_loaded : 1;
-  guint         is_populated : 1;
-  GTask        *load_task;
+  guint is_loaded : 1;
+  guint is_populated : 1;
+  GTask *load_task;
   GCancellable *load_cancel;
-  GMutex        load_lock;
-  GCond         load_cond;
+  GMutex load_lock;
+  GCond load_cond;
 
   /* settings */
   guint show_generic_names : 1;
@@ -105,7 +113,9 @@ static const GtkTargetEntry dnd_target_list[] = {
 
 
 
-static GParamSpec *menu_props[N_PROPERTIES] = { NULL, };
+static GParamSpec *menu_props[N_PROPERTIES] = {
+  NULL,
+};
 
 
 
@@ -116,7 +126,7 @@ G_DEFINE_TYPE_WITH_PRIVATE (GarconGtkMenu, garcon_gtk_menu, GTK_TYPE_MENU)
 static void
 garcon_gtk_menu_class_init (GarconGtkMenuClass *klass)
 {
-  GObjectClass   *gobject_class;
+  GObjectClass *gobject_class;
   GtkWidgetClass *gtkwidget_class;
 
   gobject_class = G_OBJECT_CLASS (klass);
@@ -138,7 +148,7 @@ garcon_gtk_menu_class_init (GarconGtkMenuClass *klass)
                          "menu",
                          GARCON_TYPE_MENU,
                          G_PARAM_READWRITE
-                         | G_PARAM_STATIC_STRINGS);
+                           | G_PARAM_STATIC_STRINGS);
 
   /**
    * GarconMenu:show-generic-names:
@@ -151,7 +161,7 @@ garcon_gtk_menu_class_init (GarconGtkMenuClass *klass)
                           "show-generic-names",
                           FALSE,
                           G_PARAM_READWRITE
-                         | G_PARAM_STATIC_STRINGS);
+                            | G_PARAM_STATIC_STRINGS);
 
   /**
    * GarconMenu:show-menu-icons:
@@ -164,7 +174,7 @@ garcon_gtk_menu_class_init (GarconGtkMenuClass *klass)
                           "show-menu-icons",
                           TRUE,
                           G_PARAM_READWRITE
-                          | G_PARAM_STATIC_STRINGS);
+                            | G_PARAM_STATIC_STRINGS);
 
   /**
    * GarconMenu:show-tooltips:
@@ -177,7 +187,7 @@ garcon_gtk_menu_class_init (GarconGtkMenuClass *klass)
                           "show-tooltips",
                           FALSE,
                           G_PARAM_READWRITE
-                          | G_PARAM_STATIC_STRINGS);
+                            | G_PARAM_STATIC_STRINGS);
 
   /**
    * GarconMenu:show-desktop-actions:
@@ -190,7 +200,7 @@ garcon_gtk_menu_class_init (GarconGtkMenuClass *klass)
                           "show desktop actions in a submenu",
                           FALSE,
                           G_PARAM_READWRITE
-                          | G_PARAM_STATIC_STRINGS);
+                            | G_PARAM_STATIC_STRINGS);
 
   /**
    * GarconMenu:right-click-edits:
@@ -203,7 +213,7 @@ garcon_gtk_menu_class_init (GarconGtkMenuClass *klass)
                           "right click to edit menu items",
                           FALSE,
                           G_PARAM_READWRITE
-                          | G_PARAM_STATIC_STRINGS);
+                            | G_PARAM_STATIC_STRINGS);
 
   /* install all properties */
   g_object_class_install_properties (gobject_class, N_PROPERTIES, menu_props);
@@ -253,9 +263,9 @@ garcon_gtk_menu_finalize (GObject *object)
 
 
 static void
-garcon_gtk_menu_get_property (GObject    *object,
-                              guint       prop_id,
-                              GValue     *value,
+garcon_gtk_menu_get_property (GObject *object,
+                              guint prop_id,
+                              GValue *value,
                               GParamSpec *pspec)
 {
   GarconGtkMenu *menu = GARCON_GTK_MENU (object);
@@ -295,10 +305,10 @@ garcon_gtk_menu_get_property (GObject    *object,
 
 
 static void
-garcon_gtk_menu_set_property (GObject      *object,
-                              guint         prop_id,
+garcon_gtk_menu_set_property (GObject *object,
+                              guint prop_id,
                               const GValue *value,
-                              GParamSpec   *pspec)
+                              GParamSpec *pspec)
 {
   GarconGtkMenu *menu = GARCON_GTK_MENU (object);
 
@@ -341,14 +351,14 @@ garcon_gtk_menu_show (GtkWidget *widget)
 {
   GarconGtkMenu *menu = GARCON_GTK_MENU (widget);
 
-  if (! menu->priv->is_loaded)
+  if (!menu->priv->is_loaded)
     {
       /* if there was no problem, the GarconMenu should already be loading */
       garcon_gtk_menu_load (menu);
 
       /* wait until the GarconMenu is loaded asynchronously */
       g_mutex_lock (&menu->priv->load_lock);
-      while (! menu->priv->is_loaded && ! g_task_had_error (menu->priv->load_task))
+      while (!menu->priv->is_loaded && !g_task_had_error (menu->priv->load_task))
         g_cond_wait (&menu->priv->load_cond, &menu->priv->load_lock);
 
       g_mutex_unlock (&menu->priv->load_lock);
@@ -356,7 +366,7 @@ garcon_gtk_menu_show (GtkWidget *widget)
 
   /* populate the GtkMenu at level 0 the first time it's shown */
   g_mutex_lock (&menu->priv->load_lock);
-  if (G_UNLIKELY (menu->priv->is_loaded && ! menu->priv->is_populated))
+  if (G_UNLIKELY (menu->priv->is_loaded && !menu->priv->is_populated))
     {
       garcon_gtk_menu_add (menu, GTK_MENU (menu), menu->priv->menu);
       menu->priv->is_populated = TRUE;
@@ -369,23 +379,23 @@ garcon_gtk_menu_show (GtkWidget *widget)
 
 
 static void
-garcon_gtk_menu_item_activate_real (GtkWidget            *mi,
-                                    GarconMenuItem       *item,
+garcon_gtk_menu_item_activate_real (GtkWidget *mi,
+                                    GarconMenuItem *item,
                                     GarconMenuItemAction *action)
 {
-  gchar        *command, *uri;
-  gchar       **argv;
-  const gchar  *icon;
-  gboolean      result = FALSE;
-  GError       *error = NULL;
+  gchar *command, *uri;
+  gchar **argv;
+  const gchar *icon;
+  gboolean result = FALSE;
+  GError *error = NULL;
 
   g_return_if_fail (GTK_IS_WIDGET (mi));
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
   if (action != NULL)
-    command = (gchar*) garcon_menu_item_action_get_command (action);
+    command = (gchar *) garcon_menu_item_action_get_command (action);
   else
-    command = (gchar*) garcon_menu_item_get_command (item);
+    command = (gchar *) garcon_menu_item_get_command (item);
 
   if (xfce_str_is_empty (command))
     return;
@@ -426,9 +436,9 @@ garcon_gtk_menu_item_activate_real (GtkWidget            *mi,
 static void
 garcon_gtk_menu_item_edit_launcher (GarconMenuItem *item)
 {
-  GFile   *file;
-  gchar   *uri, *cmd;
-  GError  *error = NULL;
+  GFile *file;
+  gchar *uri, *cmd;
+  GError *error = NULL;
 
   file = garcon_menu_item_get_file (item);
 
@@ -439,37 +449,35 @@ garcon_gtk_menu_item_edit_launcher (GarconMenuItem *item)
 
       if (!xfce_spawn_command_line (NULL, cmd, FALSE, FALSE, TRUE, &error))
         {
-          xfce_message_dialog (NULL,
-                               _("Launch Error"),
-                               "dialog-error",
-                              _("Unable to launch \"exo-desktop-item-edit\", which is required to create and edit menu items."),
-                              error->message,
-                              XFCE_BUTTON_TYPE_MIXED, "window-close-symbolic", _("_Close"), GTK_RESPONSE_ACCEPT,
-                              NULL);
+          xfce_message_dialog (
+            NULL, _("Launch Error"),
+            "dialog-error", _("Unable to launch \"exo-desktop-item-edit\", which is required to create and edit menu items."),
+            error->message, XFCE_BUTTON_TYPE_MIXED, "window-close-symbolic", _("_Close"), GTK_RESPONSE_ACCEPT,
+            NULL);
 
           g_clear_error (&error);
         }
 
-      g_free(uri);
-      g_free(cmd);
-      g_object_unref(file);
+      g_free (uri);
+      g_free (cmd);
+      g_object_unref (file);
     }
 }
 
 
 static void
-garcon_gtk_menu_item_activate (GtkWidget      *mi,
+garcon_gtk_menu_item_activate (GtkWidget *mi,
                                GarconMenuItem *item)
 {
-  GarconGtkMenu  *menu = g_object_get_data (G_OBJECT (mi), "GarconGtkMenu");
+  GarconGtkMenu *menu = g_object_get_data (G_OBJECT (mi), "GarconGtkMenu");
   GdkEventButton *evt;
-  guint           button;
-  gboolean        right_click = FALSE;
+  guint button;
+  gboolean right_click = FALSE;
 
-  evt = (GdkEventButton *)gtk_get_current_event();
+  evt = (GdkEventButton *) gtk_get_current_event ();
 
   /* See if we're trying to edit the launcher */
-   if(menu->priv->right_click_edits && evt && GDK_BUTTON_RELEASE == evt->type)
+  if (menu->priv->right_click_edits && evt && GDK_BUTTON_RELEASE == evt->type)
     {
       button = evt->button;
 
@@ -489,14 +497,14 @@ garcon_gtk_menu_item_activate (GtkWidget      *mi,
 
   if (evt)
     {
-      gdk_event_free((GdkEvent*)evt);
+      gdk_event_free ((GdkEvent *) evt);
     }
 }
 
 
 
 static void
-garcon_gtk_menu_item_action_activate (GtkWidget            *mi,
+garcon_gtk_menu_item_action_activate (GtkWidget *mi,
                                       GarconMenuItemAction *action)
 {
   GarconMenuItem *item = g_object_get_data (G_OBJECT (action), "GarconMenuItem");
@@ -528,11 +536,11 @@ garcon_gtk_menu_item_drag_begin (GarconMenuItem *item,
 
 
 static void
-garcon_gtk_menu_item_drag_data_get (GarconMenuItem   *item,
-                                    GdkDragContext   *drag_context,
+garcon_gtk_menu_item_drag_data_get (GarconMenuItem *item,
+                                    GdkDragContext *drag_context,
                                     GtkSelectionData *selection_data,
-                                    guint             info,
-                                    guint             drag_time)
+                                    guint info,
+                                    guint drag_time)
 {
   gchar *uris[2] = { NULL, NULL };
 
@@ -563,7 +571,7 @@ garcon_gtk_menu_item_drag_end (GarconGtkMenu *menu)
 
 
 static void
-garcon_gtk_menu_deactivate (GtkWidget     *submenu,
+garcon_gtk_menu_deactivate (GtkWidget *submenu,
                             GarconGtkMenu *menu)
 {
   garcon_gtk_menu_item_drag_end (menu);
@@ -581,18 +589,18 @@ garcon_gtk_menu_reset_load_task (GarconGtkMenu *menu)
 
 
 static void
-garcon_gtk_menu_load_finish (GObject      *source_object,
+garcon_gtk_menu_load_finish (GObject *source_object,
                              GAsyncResult *res,
-                             gpointer      user_data)
+                             gpointer user_data)
 {
   GarconGtkMenu *menu = GARCON_GTK_MENU (source_object);
-  GError        *error = NULL;
-  GList         *children;
+  GError *error = NULL;
+  GList *children;
 
-  if (! menu->priv->is_loaded)
+  if (!menu->priv->is_loaded)
     {
       g_task_propagate_pointer (menu->priv->load_task, &error);
-      if (! g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
+      if (!g_error_matches (error, G_IO_ERROR, G_IO_ERROR_CANCELLED))
         xfce_dialog_show_error (NULL, error, _("Failed to load the applications menu"));
 
       g_error_free (error);
@@ -617,13 +625,13 @@ garcon_gtk_menu_load_finish (GObject      *source_object,
 
 
 static void
-garcon_gtk_menu_load_async (GTask        *task,
-                            gpointer      source_object,
-                            gpointer      task_data,
+garcon_gtk_menu_load_async (GTask *task,
+                            gpointer source_object,
+                            gpointer task_data,
                             GCancellable *cancellable)
 {
   GarconGtkMenu *menu = source_object;
-  GError        *error = NULL;
+  GError *error = NULL;
 
   g_mutex_lock (&menu->priv->load_lock);
 
@@ -632,7 +640,7 @@ garcon_gtk_menu_load_async (GTask        *task,
   else
     menu->priv->is_loaded = garcon_menu_load (menu->priv->menu, cancellable, &error);
 
-  if (! menu->priv->is_loaded)
+  if (!menu->priv->is_loaded)
     g_task_return_error (task, error);
 
   g_cond_signal (&menu->priv->load_cond);
@@ -680,7 +688,7 @@ garcon_gtk_menu_reload (GarconGtkMenu *menu)
 
 
 
-static GtkWidget*
+static GtkWidget *
 garcon_gtk_menu_load_icon (const gchar *icon_name)
 {
   GtkIconTheme *icon_theme = gtk_icon_theme_get_default ();
@@ -752,8 +760,8 @@ garcon_gtk_menu_load_icon (const gchar *icon_name)
 
 
 
-static GtkWidget*
-garcon_gtk_menu_create_menu_item (gboolean     show_menu_icons,
+static GtkWidget *
+garcon_gtk_menu_create_menu_item (gboolean show_menu_icons,
                                   const gchar *name,
                                   const gchar *icon_name)
 {
@@ -778,13 +786,13 @@ garcon_gtk_menu_create_menu_item (gboolean     show_menu_icons,
 
 
 static void
-garcon_gtk_menu_pack_actions_menu (GtkWidget      *menu,
+garcon_gtk_menu_pack_actions_menu (GtkWidget *menu,
                                    GarconMenuItem *menu_item,
-                                   GList          *actions,
-                                   const gchar    *parent_icon_name,
-                                   gboolean        show_menu_icons)
+                                   GList *actions,
+                                   const gchar *parent_icon_name,
+                                   gboolean show_menu_icons)
 {
-  GList     *iter;
+  GList *iter;
   GtkWidget *mi;
 
   gtk_menu_set_reserve_toggle_size (GTK_MENU (menu), FALSE);
@@ -793,7 +801,7 @@ garcon_gtk_menu_pack_actions_menu (GtkWidget      *menu,
   for (iter = g_list_first (actions); iter != NULL; iter = g_list_next (iter))
     {
       GarconMenuItemAction *action = garcon_menu_item_get_action (menu_item, iter->data);
-      const gchar          *action_icon_name;
+      const gchar *action_icon_name;
 
       if (action == NULL)
         continue;
@@ -823,11 +831,11 @@ garcon_gtk_menu_pack_actions_menu (GtkWidget      *menu,
 
 
 
-static GtkWidget*
-garcon_gtk_menu_add_actions (GarconGtkMenu  *menu,
+static GtkWidget *
+garcon_gtk_menu_add_actions (GarconGtkMenu *menu,
                              GarconMenuItem *menu_item,
-                             GList          *actions,
-                             const gchar    *parent_icon_name)
+                             GList *actions,
+                             const gchar *parent_icon_name)
 {
   GtkWidget *submenu, *mi;
 
@@ -855,7 +863,7 @@ garcon_gtk_menu_add_actions (GarconGtkMenu  *menu,
 
 
 static void
-garcon_gtk_menu_submenu_shown (GtkWidget  *gtk_menu,
+garcon_gtk_menu_submenu_shown (GtkWidget *gtk_menu,
                                GarconMenu *garcon_menu)
 {
   /* this callback is to be called only once */
@@ -869,11 +877,11 @@ garcon_gtk_menu_submenu_shown (GtkWidget  *gtk_menu,
 
 static gboolean
 garcon_gtk_menu_submenu_has_visible_children (GarconGtkMenu *menu,
-                                              GarconMenu    *garcon_menu)
+                                              GarconMenu *garcon_menu)
 {
-  GList               *elements, *li;
-  const gchar         *name;
-  gboolean             has_children = FALSE;
+  GList *elements, *li;
+  const gchar *name;
+  gboolean has_children = FALSE;
   GarconMenuDirectory *directory;
 
   g_return_val_if_fail (GARCON_GTK_IS_MENU (menu), FALSE);
@@ -933,15 +941,15 @@ garcon_gtk_menu_submenu_has_visible_children (GarconGtkMenu *menu,
 
 static void
 garcon_gtk_menu_add (GarconGtkMenu *menu,
-                     GtkMenu       *gtk_menu,
-                     GarconMenu    *garcon_menu)
+                     GtkMenu *gtk_menu,
+                     GarconMenu *garcon_menu)
 {
-  GList               *elements, *li;
-  GtkWidget           *mi;
-  const gchar         *name, *icon_name;
-  const gchar         *comment;
-  GtkWidget           *submenu;
-  const gchar         *command;
+  GList *elements, *li;
+  GtkWidget *mi;
+  const gchar *name, *icon_name;
+  const gchar *comment;
+  GtkWidget *submenu;
+  const gchar *command;
   GarconMenuDirectory *directory;
 
   g_return_if_fail (GARCON_GTK_IS_MENU (menu));
@@ -959,7 +967,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
 
           /* watch for changes */
           g_signal_connect_object (G_OBJECT (li->data), "changed",
-              G_CALLBACK (garcon_gtk_menu_reload), menu, G_CONNECT_SWAPPED);
+                                   G_CALLBACK (garcon_gtk_menu_reload), menu, G_CONNECT_SWAPPED);
 
           /* skip invisible items */
           if (!garcon_menu_element_get_visible (li->data))
@@ -1016,13 +1024,13 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
 
           /* support for dnd item to for example the xfce4-panel */
           gtk_drag_source_set (mi, GDK_BUTTON1_MASK, dnd_target_list,
-              G_N_ELEMENTS (dnd_target_list), GDK_ACTION_COPY);
+                               G_N_ELEMENTS (dnd_target_list), GDK_ACTION_COPY);
           g_signal_connect_object (G_OBJECT (mi), "drag-begin",
-              G_CALLBACK (garcon_gtk_menu_item_drag_begin), li->data, G_CONNECT_SWAPPED);
+                                   G_CALLBACK (garcon_gtk_menu_item_drag_begin), li->data, G_CONNECT_SWAPPED);
           g_signal_connect_object (G_OBJECT (mi), "drag-data-get",
-              G_CALLBACK (garcon_gtk_menu_item_drag_data_get), li->data, G_CONNECT_SWAPPED);
+                                   G_CALLBACK (garcon_gtk_menu_item_drag_data_get), li->data, G_CONNECT_SWAPPED);
           g_signal_connect_object (G_OBJECT (mi), "drag-end",
-              G_CALLBACK (garcon_gtk_menu_item_drag_end), menu, G_CONNECT_SWAPPED);
+                                   G_CALLBACK (garcon_gtk_menu_item_drag_end), menu, G_CONNECT_SWAPPED);
 
           /* doesn't happen, but anyway... */
           command = garcon_menu_item_get_command (li->data);
@@ -1070,7 +1078,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
               gtk_menu_shell_append (GTK_MENU_SHELL (gtk_menu), mi);
               gtk_menu_item_set_submenu (GTK_MENU_ITEM (mi), submenu);
               g_signal_connect (G_OBJECT (submenu), "selection-done",
-                  G_CALLBACK (garcon_gtk_menu_deactivate), menu);
+                                G_CALLBACK (garcon_gtk_menu_deactivate), menu);
               gtk_widget_show (mi);
             }
         }
@@ -1121,7 +1129,7 @@ garcon_gtk_menu_load_cancel (gpointer data,
  **/
 void
 garcon_gtk_menu_set_menu (GarconGtkMenu *menu,
-                          GarconMenu    *garcon_menu)
+                          GarconMenu *garcon_menu)
 {
   g_return_if_fail (GARCON_GTK_IS_MENU (menu));
   g_return_if_fail (garcon_menu == NULL || GARCON_IS_MENU (garcon_menu));
@@ -1182,7 +1190,7 @@ garcon_gtk_menu_get_menu (GarconGtkMenu *menu)
  **/
 void
 garcon_gtk_menu_set_show_generic_names (GarconGtkMenu *menu,
-                                        gboolean       show_generic_names)
+                                        gboolean show_generic_names)
 {
   g_return_if_fail (GARCON_GTK_IS_MENU (menu));
 
@@ -1221,7 +1229,7 @@ garcon_gtk_menu_get_show_generic_names (GarconGtkMenu *menu)
  **/
 void
 garcon_gtk_menu_set_show_menu_icons (GarconGtkMenu *menu,
-                                     gboolean       show_menu_icons)
+                                     gboolean show_menu_icons)
 {
   g_return_if_fail (GARCON_GTK_IS_MENU (menu));
 
@@ -1260,7 +1268,7 @@ garcon_gtk_menu_get_show_menu_icons (GarconGtkMenu *menu)
  **/
 void
 garcon_gtk_menu_set_show_tooltips (GarconGtkMenu *menu,
-                                   gboolean       show_tooltips)
+                                   gboolean show_tooltips)
 {
   g_return_if_fail (GARCON_GTK_IS_MENU (menu));
 
@@ -1298,7 +1306,7 @@ garcon_gtk_menu_get_show_tooltips (GarconGtkMenu *menu)
  **/
 void
 garcon_gtk_menu_set_show_desktop_actions (GarconGtkMenu *menu,
-                                          gboolean       show_desktop_actions)
+                                          gboolean show_desktop_actions)
 {
   g_return_if_fail (GARCON_GTK_IS_MENU (menu));
 
@@ -1340,10 +1348,10 @@ garcon_gtk_menu_get_show_desktop_actions (GarconGtkMenu *menu)
 GtkMenu *
 garcon_gtk_menu_get_desktop_actions_menu (GarconMenuItem *item)
 {
-  GtkWidget   *submenu = gtk_menu_new ();
-  GList       *actions = NULL;
+  GtkWidget *submenu = gtk_menu_new ();
+  GList *actions = NULL;
   const gchar *parent_icon_name;
-  gboolean     show_menu_icons = FALSE;
+  gboolean show_menu_icons = FALSE;
 
   actions = garcon_menu_item_get_actions (item);
   g_return_val_if_fail (actions != NULL, NULL);
@@ -1367,7 +1375,7 @@ garcon_gtk_menu_get_desktop_actions_menu (GarconMenuItem *item)
  **/
 void
 garcon_gtk_menu_set_right_click_edits (GarconGtkMenu *menu,
-                                       gboolean       enable_right_click_edits)
+                                       gboolean enable_right_click_edits)
 {
   g_return_if_fail (GARCON_GTK_IS_MENU (menu));
 
