@@ -22,21 +22,21 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
+#include "garcon-environment.h"
+#include "garcon-menu-element.h"
+#include "garcon-menu-item-action.h"
+#include "garcon-menu-item.h"
+#include "garcon-private.h"
 
 #include <gio/gio.h>
 #include <libxfce4util/libxfce4util.h>
 
-#include <garcon/garcon-environment.h>
-#include <garcon/garcon-menu-element.h>
-#include <garcon/garcon-menu-item.h>
-#include <garcon/garcon-menu-item-action.h>
-#include <garcon/garcon-private.h>
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
+#endif
 
 
 

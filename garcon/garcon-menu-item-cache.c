@@ -19,8 +19,11 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
+
+#include "garcon-menu-item-cache.h"
+#include "garcon-menu-item.h"
 
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
@@ -37,9 +40,6 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
-
-#include <garcon/garcon-menu-item.h>
-#include <garcon/garcon-menu-item-cache.h>
 
 
 

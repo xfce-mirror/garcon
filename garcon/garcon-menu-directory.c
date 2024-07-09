@@ -19,16 +19,16 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <locale.h>
+#include "garcon-environment.h"
+#include "garcon-menu-directory.h"
+#include "garcon-private.h"
+
 #include <glib.h>
 #include <libxfce4util/libxfce4util.h>
-
-#include <garcon/garcon-environment.h>
-#include <garcon/garcon-menu-directory.h>
-#include <garcon/garcon-private.h>
+#include <locale.h>
 
 
 

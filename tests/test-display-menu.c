@@ -20,15 +20,15 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <stdlib.h>
+#include "garcon-gtk/garcon-gtk.h"
+#include "garcon/garcon.h"
 
-#include <gtk/gtk.h>
 #include <glib.h>
-#include <garcon/garcon.h>
-#include <garcon-gtk/garcon-gtk.h>
+#include <gtk/gtk.h>
+#include <stdlib.h>
 
 
 

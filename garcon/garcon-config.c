@@ -19,10 +19,10 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <garcon/garcon-config.h>
+#include "garcon-config.h"
 
 
 

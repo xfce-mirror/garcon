@@ -25,8 +25,8 @@
 #ifndef __GARCON_MENU_H__
 #define __GARCON_MENU_H__
 
-#include <gio/gio.h>
 #include <garcon/garcon-menu-item-pool.h>
+#include <gio/gio.h>
 
 G_BEGIN_DECLS
 

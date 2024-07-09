@@ -19,18 +19,17 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <glib.h>
-#include <glib-object.h>
-#include <glib/gi18n.h>
+#include "garcon-menu-node.h"
+#include "garcon-menu-parser.h"
+#include "garcon-menu-tree-provider.h"
 
 #include <gio/gio.h>
-
-#include <garcon/garcon-menu-node.h>
-#include <garcon/garcon-menu-tree-provider.h>
-#include <garcon/garcon-menu-parser.h>
+#include <glib-object.h>
+#include <glib.h>
+#include <glib/gi18n.h>
 
 
 
@@ -711,4 +710,3 @@ garcon_menu_parser_characters (GMarkupParseContext *context,
   /* Invalidate node type information */
   parser_context->node_type = GARCON_MENU_PARSER_NODE_TYPE_NONE;
 }
-

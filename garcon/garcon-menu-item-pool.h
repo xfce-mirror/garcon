@@ -25,8 +25,8 @@
 #ifndef __GARCON_MENU_ITEM_POOL_H__
 #define __GARCON_MENU_ITEM_POOL_H__
 
-#include <glib-object.h>
 #include <garcon/garcon-menu-item.h>
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 

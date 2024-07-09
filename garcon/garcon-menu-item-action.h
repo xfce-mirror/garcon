@@ -25,8 +25,8 @@
 #ifndef __GARCON_MENU_ITEM_ACTION_H__
 #define __GARCON_MENU_ITEM_ACTION_H__
 
-#include <glib-object.h>
 #include <gio/gio.h>
+#include <glib-object.h>
 
 G_BEGIN_DECLS
 

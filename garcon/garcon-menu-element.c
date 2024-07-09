@@ -19,10 +19,10 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <garcon/garcon-menu-element.h>
+#include "garcon-menu-element.h"
 
 
 
@@ -130,4 +130,3 @@ garcon_menu_element_equal (GarconMenuElement *a,
 
   return (*GARCON_MENU_ELEMENT_GET_IFACE (a)->equal) (a, b);
 }
-

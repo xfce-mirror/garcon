@@ -19,12 +19,12 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <gio/gio.h>
+#include "garcon-private.h"
 
-#include <garcon/garcon-private.h>
+#include <gio/gio.h>
 
 
 

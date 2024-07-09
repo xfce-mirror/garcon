@@ -25,8 +25,8 @@
 #ifndef __GARCON_MENU_MERGER_H__
 #define __GARCON_MENU_MERGER_H__
 
-#include <garcon/garcon.h>
 #include <garcon/garcon-menu-tree-provider.h>
+#include <garcon/garcon.h>
 
 G_BEGIN_DECLS
 
