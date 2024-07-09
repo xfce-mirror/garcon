@@ -21,8 +21,8 @@
 #ifndef __GARCON_GTK_H__
 #define __GARCON_GTK_H__
 
-#include <gtk/gtk.h>
 #include <garcon/garcon.h>
+#include <gtk/gtk.h>
 
 #define _GARCON_INSIDE_GARCON_GTK_H
 

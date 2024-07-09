@@ -19,17 +19,17 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <glib.h>
-#include <glib-object.h>
+#include "garcon-menu-merger.h"
+#include "garcon-menu-node.h"
+#include "garcon-menu-parser.h"
+#include "garcon-menu-tree-provider.h"
+#include "garcon-private.h"
 
-#include <garcon/garcon-menu-node.h>
-#include <garcon/garcon-menu-tree-provider.h>
-#include <garcon/garcon-menu-parser.h>
-#include <garcon/garcon-menu-merger.h>
-#include <garcon/garcon-private.h>
+#include <glib-object.h>
+#include <glib.h>
 
 
 
@@ -46,54 +46,70 @@ enum
 
 
 
-static void     garcon_menu_merger_provider_init           (GarconMenuTreeProviderIface *iface);
-static void     garcon_menu_merger_constructed             (GObject                     *object);
-static void     garcon_menu_merger_finalize                (GObject                     *object);
-static void     garcon_menu_merger_get_property            (GObject                     *object,
-                                                            guint                        prop_id,
-                                                            GValue                      *value,
-                                                            GParamSpec                  *pspec);
-static void     garcon_menu_merger_set_property            (GObject                     *object,
-                                                            guint                        prop_id,
-                                                            const GValue                *value,
-                                                            GParamSpec                  *pspec);
-static GNode   *garcon_menu_merger_get_tree                (GarconMenuTreeProvider      *provider);
-static GFile   *garcon_menu_merger_get_file                (GarconMenuTreeProvider      *provider);
-static gboolean garcon_menu_merger_resolve_default_dirs    (GNode                       *node,
-                                                            GarconMenuMergerContext     *context);
-static gboolean garcon_menu_merger_resolve_relative_paths  (GNode                       *node,
-                                                            GarconMenuMergerContext     *context);
-static void     garcon_menu_merger_remove_duplicate_paths  (GNode                       *node,
-                                                            GarconMenuNodeType           type);
-static void     garcon_menu_merger_consolidate_child_menus (GNode                       *node);
-static gboolean garcon_menu_merger_resolve_merge_dirs      (GNode                       *node,
-                                                            GarconMenuMergerContext     *context);
-static gboolean garcon_menu_merger_process_merge_files     (GNode                       *node,
-                                                            GarconMenuMergerContext     *context);
-static void     garcon_menu_merger_clean_up_elements       (GNode                       *node,
-                                                            GarconMenuNodeType           type);
-static void     garcon_menu_merger_resolve_moves           (GNode                       *node);
-static void     garcon_menu_merger_prepend_default_layout  (GNode                       *node);
+static void
+garcon_menu_merger_provider_init (GarconMenuTreeProviderIface *iface);
+static void
+garcon_menu_merger_constructed (GObject *object);
+static void
+garcon_menu_merger_finalize (GObject *object);
+static void
+garcon_menu_merger_get_property (GObject *object,
+                                 guint prop_id,
+                                 GValue *value,
+                                 GParamSpec *pspec);
+static void
+garcon_menu_merger_set_property (GObject *object,
+                                 guint prop_id,
+                                 const GValue *value,
+                                 GParamSpec *pspec);
+static GNode *
+garcon_menu_merger_get_tree (GarconMenuTreeProvider *provider);
+static GFile *
+garcon_menu_merger_get_file (GarconMenuTreeProvider *provider);
+static gboolean
+garcon_menu_merger_resolve_default_dirs (GNode *node,
+                                         GarconMenuMergerContext *context);
+static gboolean
+garcon_menu_merger_resolve_relative_paths (GNode *node,
+                                           GarconMenuMergerContext *context);
+static void
+garcon_menu_merger_remove_duplicate_paths (GNode *node,
+                                           GarconMenuNodeType type);
+static void
+garcon_menu_merger_consolidate_child_menus (GNode *node);
+static gboolean
+garcon_menu_merger_resolve_merge_dirs (GNode *node,
+                                       GarconMenuMergerContext *context);
+static gboolean
+garcon_menu_merger_process_merge_files (GNode *node,
+                                        GarconMenuMergerContext *context);
+static void
+garcon_menu_merger_clean_up_elements (GNode *node,
+                                      GarconMenuNodeType type);
+static void
+garcon_menu_merger_resolve_moves (GNode *node);
+static void
+garcon_menu_merger_prepend_default_layout (GNode *node);
 
 
 
 struct _GarconMenuMergerPrivate
 {
   GarconMenuTreeProvider *tree_provider;
-  GNode                  *menu;
-  GList                  *file_stack;
+  GNode *menu;
+  GList *file_stack;
 };
 
 struct _GarconMenuMergerContext
 {
   GarconMenuNodeType node_type;
-  GarconMenuMerger  *merger;
-  GCancellable      *cancellable;
-  GError           **error;
-  gboolean           success;
-  GList             *file_stack;
-  GList            **merge_files;
-  GList            **merge_dirs;
+  GarconMenuMerger *merger;
+  GCancellable *cancellable;
+  GError **error;
+  gboolean success;
+  GList *file_stack;
+  GList **merge_files;
+  GList **merge_dirs;
 };
 
 
@@ -123,9 +139,9 @@ garcon_menu_merger_class_init (GarconMenuMergerClass *klass)
                                                         "tree-provider",
                                                         "tree-provider",
                                                         GARCON_TYPE_MENU_TREE_PROVIDER,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS |
-                                                        G_PARAM_CONSTRUCT_ONLY));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS
+                                                          | G_PARAM_CONSTRUCT_ONLY));
 }
 
 
@@ -175,9 +191,9 @@ garcon_menu_merger_finalize (GObject *object)
 
 
 static void
-garcon_menu_merger_get_property (GObject    *object,
-                                 guint       prop_id,
-                                 GValue     *value,
+garcon_menu_merger_get_property (GObject *object,
+                                 guint prop_id,
+                                 GValue *value,
                                  GParamSpec *pspec)
 {
   GarconMenuMerger *merger = GARCON_MENU_MERGER (object);
@@ -197,10 +213,10 @@ garcon_menu_merger_get_property (GObject    *object,
 
 
 static void
-garcon_menu_merger_set_property (GObject      *object,
-                                 guint         prop_id,
+garcon_menu_merger_set_property (GObject *object,
+                                 guint prop_id,
                                  const GValue *value,
-                                 GParamSpec   *pspec)
+                                 GParamSpec *pspec)
 {
   GarconMenuMerger *merger = GARCON_MENU_MERGER (object);
 
@@ -228,8 +244,8 @@ garcon_menu_merger_new (GarconMenuTreeProvider *provider)
 
 
 static gboolean
-garcon_menu_merger_prepare_merging (GarconMenuMerger        *merger,
-                                    GNode                   *tree,
+garcon_menu_merger_prepare_merging (GarconMenuMerger *merger,
+                                    GNode *tree,
                                     GarconMenuMergerContext *context)
 {
   g_return_val_if_fail (GARCON_IS_MENU_MERGER (merger), FALSE);
@@ -273,13 +289,13 @@ garcon_menu_merger_prepare_merging (GarconMenuMerger        *merger,
  */
 gboolean
 garcon_menu_merger_run (GarconMenuMerger *merger,
-                        GList           **merge_files,
-                        GList           **merge_dirs,
-                        GCancellable     *cancellable,
-                        GError          **error)
+                        GList **merge_files,
+                        GList **merge_dirs,
+                        GCancellable *cancellable,
+                        GError **error)
 {
   GarconMenuMergerContext context;
-  GFile                  *file;
+  GFile *file;
 
   g_return_val_if_fail (GARCON_IS_MENU_MERGER (merger), FALSE);
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
@@ -373,22 +389,22 @@ static void
 garcon_menu_merger_insert_default_dirs (GNode *parent,
                                         GNode *defaults_node)
 {
-  GarconMenuNodeType   type;
-  GNode               *node;
-  GNode               *prev_node;
-  const gchar * const *dirs;
-  const gchar         *kde_dir;
-  int                  i;
-  gchar               *path;
-  gchar               *kde_data_dir;
-  const gchar         *base_name;
+  GarconMenuNodeType type;
+  GNode *node;
+  GNode *prev_node;
+  const gchar *const *dirs;
+  const gchar *kde_dir;
+  int i;
+  gchar *path;
+  gchar *kde_data_dir;
+  const gchar *base_name;
 
   g_return_if_fail (parent != NULL);
   g_return_if_fail (defaults_node != NULL);
 
   prev_node = defaults_node;
 
-  if  (garcon_menu_node_tree_get_node_type (defaults_node) == GARCON_MENU_NODE_TYPE_DEFAULT_DIRECTORY_DIRS)
+  if (garcon_menu_node_tree_get_node_type (defaults_node) == GARCON_MENU_NODE_TYPE_DEFAULT_DIRECTORY_DIRS)
     {
       base_name = "desktop-directories";
       type = GARCON_MENU_NODE_TYPE_DIRECTORY_DIR;
@@ -450,17 +466,16 @@ compare_files (GFile *file,
 
 
 
-
 static void
-garcon_menu_merger_insert_default_merge_dirs (GNode       *parent,
-                                              GNode       *defaults_node,
+garcon_menu_merger_insert_default_merge_dirs (GNode *parent,
+                                              GNode *defaults_node,
                                               const gchar *merge_dir_basename)
 {
-  GNode               *node;
-  GNode               *prev_node;
-  const gchar * const *dirs;
-  int                  i;
-  gchar               *path;
+  GNode *node;
+  GNode *prev_node;
+  const gchar *const *dirs;
+  int i;
+  gchar *path;
 
   g_return_if_fail (parent != NULL);
   g_return_if_fail (defaults_node != NULL);
@@ -472,7 +487,7 @@ garcon_menu_merger_insert_default_merge_dirs (GNode       *parent,
   dirs = g_get_system_config_dirs ();
   for (i = 0; dirs[i] != NULL; i++)
     {
-      path = g_build_path (G_DIR_SEPARATOR_S, dirs[i], "menus", 
+      path = g_build_path (G_DIR_SEPARATOR_S, dirs[i], "menus",
                            merge_dir_basename, NULL);
       node = g_node_new (garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE_DIR, path));
       g_node_insert_after (parent, prev_node, node);
@@ -490,17 +505,17 @@ garcon_menu_merger_insert_default_merge_dirs (GNode       *parent,
 
 
 static gboolean
-garcon_menu_merger_resolve_default_dirs (GNode                   *node,
+garcon_menu_merger_resolve_default_dirs (GNode *node,
                                          GarconMenuMergerContext *context)
 {
   const gchar *prefix;
-  gboolean     is_application_menu = FALSE;
-  GFile       *file;
-  gchar       *applications_filename;
-  gchar       *extension;
-  gchar       *filename;
-  gchar       *menu_name;
-  gchar       *merge_dir_basename = NULL;
+  gboolean is_application_menu = FALSE;
+  GFile *file;
+  gchar *applications_filename;
+  gchar *extension;
+  gchar *filename;
+  gchar *menu_name;
+  gchar *merge_dir_basename = NULL;
 
   g_return_val_if_fail (context != NULL, FALSE);
 
@@ -545,7 +560,7 @@ garcon_menu_merger_resolve_default_dirs (GNode                   *node,
       if (merge_dir_basename == NULL)
         merge_dir_basename = g_strdup ("applications-merged");
 
-      garcon_menu_merger_insert_default_merge_dirs (node->parent, node, 
+      garcon_menu_merger_insert_default_merge_dirs (node->parent, node,
                                                     merge_dir_basename);
 
       /* free the merge dir name */
@@ -560,15 +575,15 @@ garcon_menu_merger_resolve_default_dirs (GNode                   *node,
 
 
 static gboolean
-garcon_menu_merger_resolve_relative_paths (GNode                   *node,
+garcon_menu_merger_resolve_relative_paths (GNode *node,
                                            GarconMenuMergerContext *context)
 {
-  GFile               *source_file;
-  const gchar * const *system_config_dirs;
-  const gchar        **config_dirs;
-  gchar               *absolute_path = NULL;
-  gchar               *relative_path = NULL;
-  guint                i;
+  GFile *source_file;
+  const gchar *const *system_config_dirs;
+  const gchar **config_dirs;
+  gchar *absolute_path = NULL;
+  gchar *relative_path = NULL;
+  guint i;
 
   g_return_val_if_fail (context != NULL, FALSE);
 
@@ -577,11 +592,11 @@ garcon_menu_merger_resolve_relative_paths (GNode                   *node,
 
   source_file = g_list_first (context->file_stack)->data;
 
-  if (garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_APP_DIR ||
-      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_DIRECTORY_DIR ||
-      garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_MERGE_DIR)
+  if (garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_APP_DIR
+      || garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_DIRECTORY_DIR
+      || garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_MERGE_DIR)
     {
-      relative_path = (gchar *)garcon_menu_node_tree_get_string (node);
+      relative_path = (gchar *) garcon_menu_node_tree_get_string (node);
       absolute_path = _garcon_file_get_uri_relative_to_file (relative_path, source_file);
       garcon_menu_node_tree_set_string (node, absolute_path);
       g_free (absolute_path);
@@ -590,7 +605,7 @@ garcon_menu_merger_resolve_relative_paths (GNode                   *node,
     {
       if (garcon_menu_node_tree_get_merge_file_type (node) == GARCON_MENU_MERGE_FILE_PATH)
         {
-          relative_path = (gchar *)garcon_menu_node_tree_get_merge_file_filename (node);
+          relative_path = (gchar *) garcon_menu_node_tree_get_merge_file_filename (node);
           absolute_path = _garcon_file_get_uri_relative_to_file (relative_path, source_file);
           garcon_menu_node_tree_set_merge_file_filename (node, absolute_path);
           g_free (absolute_path);
@@ -599,13 +614,13 @@ garcon_menu_merger_resolve_relative_paths (GNode                   *node,
         {
           system_config_dirs = g_get_system_config_dirs ();
 
-          config_dirs = g_new0 (const gchar *, 2 + g_strv_length ((gchar **)system_config_dirs));
+          config_dirs = g_new0 (const gchar *, 2 + g_strv_length ((gchar **) system_config_dirs));
 
           config_dirs[0] = g_get_user_config_dir ();
-          config_dirs[1 + g_strv_length ((gchar **)system_config_dirs)] = NULL;
+          config_dirs[1 + g_strv_length ((gchar **) system_config_dirs)] = NULL;
 
           for (i = 0; system_config_dirs[i] != NULL; ++i)
-            config_dirs[i+1] = system_config_dirs[i];
+            config_dirs[i + 1] = system_config_dirs[i];
 
           /* Find the parent XDG_CONFIG_DIRS entry for the current menu file */
           for (i = 0; relative_path == NULL && config_dirs[i] != NULL; ++i)
@@ -643,7 +658,7 @@ garcon_menu_merger_resolve_relative_paths (GNode                   *node,
             }
 
           /* No file with the same relative filename found in XDG_CONFIG_DIRS */
-          if (absolute_path == NULL || i >= g_strv_length ((gchar **)config_dirs))
+          if (absolute_path == NULL || i >= g_strv_length ((gchar **) config_dirs))
             {
               /* Remove the MenuFile type="parent" node */
               garcon_menu_node_tree_free (node);
@@ -661,12 +676,12 @@ garcon_menu_merger_resolve_relative_paths (GNode                   *node,
 
 
 static void
-garcon_menu_merger_remove_duplicate_paths (GNode             *node,
+garcon_menu_merger_remove_duplicate_paths (GNode *node,
                                            GarconMenuNodeType type)
 {
   GSList *destroy_nodes = NULL;
   GSList *remaining_nodes = NULL;
-  GNode  *child;
+  GNode *child;
 
   g_return_if_fail (node != NULL);
 
@@ -685,7 +700,8 @@ garcon_menu_merger_remove_duplicate_paths (GNode             *node,
         continue;
 
       if (G_LIKELY (g_slist_find_custom (remaining_nodes, child,
-                                         (GCompareFunc) garcon_menu_node_tree_compare) == NULL))
+                                         (GCompareFunc) garcon_menu_node_tree_compare)
+                    == NULL))
         {
           remaining_nodes = g_slist_prepend (remaining_nodes, child);
         }
@@ -702,7 +718,7 @@ garcon_menu_merger_remove_duplicate_paths (GNode             *node,
 
 
 static gboolean
-collect_name (GNode        *node,
+collect_name (GNode *node,
               const gchar **name)
 {
   if (garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_NAME)
@@ -733,10 +749,10 @@ garcon_menu_merger_move_nodes (GNode *source,
 static void
 garcon_menu_merger_consolidate_child_menus (GNode *node)
 {
-  GHashTable  *table;
-  GNode       *child;
-  GNode       *next_child;
-  GNode       *target;
+  GHashTable *table;
+  GNode *child;
+  GNode *next_child;
+  GNode *target;
   const gchar *name;
 
   if (garcon_menu_node_tree_get_node_type (node) != GARCON_MENU_NODE_TYPE_MENU)
@@ -758,7 +774,7 @@ garcon_menu_merger_consolidate_child_menus (GNode *node)
         g_hash_table_insert (table, g_strdup (name), child);
     }
 
-  for (child = g_node_first_child (node); child != NULL; )
+  for (child = g_node_first_child (node); child != NULL;)
     {
       if (garcon_menu_node_tree_get_node_type (child) == GARCON_MENU_NODE_TYPE_MENU)
         {
@@ -778,7 +794,7 @@ garcon_menu_merger_consolidate_child_menus (GNode *node)
             }
         }
 
-        child = g_node_next_sibling (child);
+      child = g_node_next_sibling (child);
     }
 
   for (child = g_node_first_child (node); child != NULL; child = g_node_next_sibling (child))
@@ -790,15 +806,15 @@ garcon_menu_merger_consolidate_child_menus (GNode *node)
 
 
 static gboolean
-garcon_menu_merger_resolve_merge_dirs (GNode                   *node,
+garcon_menu_merger_resolve_merge_dirs (GNode *node,
                                        GarconMenuMergerContext *context)
 {
   GFileEnumerator *enumerator;
-  GFileInfo       *file_info;
-  GFile           *file;
-  GFile           *dir;
-  GNode           *file_node;
-  gchar           *uri;
+  GFileInfo *file_info;
+  GFile *file;
+  GFile *dir;
+  GNode *file_node;
+  gchar *uri;
 
   g_return_val_if_fail (context != NULL, FALSE);
 
@@ -817,7 +833,7 @@ garcon_menu_merger_resolve_merge_dirs (GNode                   *node,
   if (G_UNLIKELY (enumerator != NULL))
     {
       /* Add merge dir to the list */
-      if (context->merge_dirs != NULL 
+      if (context->merge_dirs != NULL
           && !g_list_find_custom (*context->merge_dirs, dir, (GCompareFunc) compare_files))
         {
           *context->merge_dirs = g_list_prepend (*context->merge_dirs, g_object_ref (dir));
@@ -891,18 +907,18 @@ garcon_menu_merger_object_ref (gpointer data,
 
 
 static gboolean
-garcon_menu_merger_process_merge_files (GNode                   *node,
+garcon_menu_merger_process_merge_files (GNode *node,
                                         GarconMenuMergerContext *context)
 {
   GarconMenuMerger *merger;
   GarconMenuParser *parser;
-  GFile            *file;
-  GNode            *tree;
+  GFile *file;
+  GNode *tree;
 
   g_return_val_if_fail (context != NULL, FALSE);
 
-  if (garcon_menu_node_tree_get_node_type (node) != GARCON_MENU_NODE_TYPE_MERGE_FILE ||
-      garcon_menu_node_tree_get_merge_file_type (node) != GARCON_MENU_MERGE_FILE_PATH)
+  if (garcon_menu_node_tree_get_node_type (node) != GARCON_MENU_NODE_TYPE_MERGE_FILE
+      || garcon_menu_node_tree_get_merge_file_type (node) != GARCON_MENU_MERGE_FILE_PATH)
     {
       return FALSE;
     }
@@ -910,7 +926,8 @@ garcon_menu_merger_process_merge_files (GNode                   *node,
   file = g_file_new_for_uri (garcon_menu_node_tree_get_merge_file_filename (node));
 
   if (G_UNLIKELY (g_list_find_custom (context->file_stack, file,
-                                      (GCompareFunc) compare_files) != NULL))
+                                      (GCompareFunc) compare_files)
+                  != NULL))
     {
       g_object_unref (file);
       return FALSE;
@@ -926,9 +943,9 @@ garcon_menu_merger_process_merge_files (GNode                   *node,
       merger->priv->file_stack = g_list_copy (context->file_stack);
       g_list_foreach (merger->priv->file_stack, garcon_menu_merger_object_ref, NULL);
 
-      if (G_LIKELY (garcon_menu_merger_run (merger, 
-                                            context->merge_files, 
-                                            context->merge_dirs, 
+      if (G_LIKELY (garcon_menu_merger_run (merger,
+                                            context->merge_files,
+                                            context->merge_dirs,
                                             context->cancellable, NULL)))
         {
           tree = garcon_menu_tree_provider_get_tree (GARCON_MENU_TREE_PROVIDER (merger));
@@ -958,13 +975,13 @@ garcon_menu_merger_process_merge_files (GNode                   *node,
 
 
 static void
-garcon_menu_merger_clean_up_elements (GNode             *node,
+garcon_menu_merger_clean_up_elements (GNode *node,
                                       GarconMenuNodeType type)
 {
   GarconMenuNode *node_;
-  GNode          *child;
-  GNode          *remaining_node = NULL;
-  GList          *destroy_list = NULL;
+  GNode *child;
+  GNode *remaining_node = NULL;
+  GList *destroy_list = NULL;
 
   for (child = g_node_last_child (node); child != NULL; child = g_node_prev_sibling (child))
     {
@@ -1008,7 +1025,7 @@ garcon_menu_merger_clean_up_elements (GNode             *node,
 
   _garcon_g_list_free_full (destroy_list, garcon_menu_node_tree_free);
 
-  if (type == GARCON_MENU_NODE_TYPE_LAYOUT 
+  if (type == GARCON_MENU_NODE_TYPE_LAYOUT
       && remaining_node != NULL
       && G_NODE_IS_LEAF (remaining_node))
     {
@@ -1022,10 +1039,10 @@ garcon_menu_merger_clean_up_elements (GNode             *node,
       /* FIXME Fix empty <DefaultLayout> elements created due to a bug in
        * alacarte. See http://bugzilla.xfce.org/show_bug.cgi?id=6882#c2
        * for more information */
-      node_ = garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE, 
+      node_ = garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE,
                                        GUINT_TO_POINTER (GARCON_MENU_LAYOUT_MERGE_MENUS));
       g_node_append_data (remaining_node, node_);
-      node_ = garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE, 
+      node_ = garcon_menu_node_create (GARCON_MENU_NODE_TYPE_MERGE,
                                        GUINT_TO_POINTER (GARCON_MENU_LAYOUT_MERGE_FILES));
       g_node_append_data (remaining_node, node_);
     }
@@ -1034,7 +1051,7 @@ garcon_menu_merger_clean_up_elements (GNode             *node,
 
 
 static gboolean
-collect_moves (GNode  *node,
+collect_moves (GNode *node,
                GList **list)
 {
   if (garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_MOVE)
@@ -1046,7 +1063,7 @@ collect_moves (GNode  *node,
 
 
 static gboolean
-remove_moves (GNode   *node,
+remove_moves (GNode *node,
               gpointer data)
 {
   if (garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_MOVE)
@@ -1058,7 +1075,7 @@ remove_moves (GNode   *node,
 
 
 static gboolean
-collect_old_new (GNode  *node,
+collect_old_new (GNode *node,
                  GList **list)
 {
   if (garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_OLD)
@@ -1072,11 +1089,11 @@ collect_old_new (GNode  *node,
 
 
 static GNode *
-garcon_menu_merger_find_menu_with_name (GNode       *node,
+garcon_menu_merger_find_menu_with_name (GNode *node,
                                         const gchar *name)
 {
-  GNode       *result = NULL;
-  GNode       *child;
+  GNode *result = NULL;
+  GNode *child;
   const gchar *child_name;
 
   for (child = g_node_first_child (node); child != NULL; child = g_node_next_sibling (child))
@@ -1099,10 +1116,10 @@ garcon_menu_merger_find_menu_with_name (GNode       *node,
 
 
 static GNode *
-garcon_menu_merger_find_menu (GNode  *node,
+garcon_menu_merger_find_menu (GNode *node,
                               gchar **path,
-                              gint    position,
-                              gint    depth,
+                              gint position,
+                              gint depth,
                               GNode **parent)
 {
   GNode *result = NULL;
@@ -1131,7 +1148,7 @@ garcon_menu_merger_find_menu (GNode  *node,
         *parent = node;
     }
   else
-    result = garcon_menu_merger_find_menu (child, path, position+1, depth, parent);
+    result = garcon_menu_merger_find_menu (child, path, position + 1, depth, parent);
 
   return result;
 }
@@ -1139,10 +1156,10 @@ garcon_menu_merger_find_menu (GNode  *node,
 
 
 static GNode *
-garcon_menu_merger_create_menu (GNode  *node,
+garcon_menu_merger_create_menu (GNode *node,
                                 gchar **path,
-                                gint    position,
-                                gint    depth)
+                                gint position,
+                                gint depth)
 {
   GNode *result = NULL;
   GNode *child;
@@ -1166,7 +1183,7 @@ garcon_menu_merger_create_menu (GNode  *node,
   if (G_LIKELY (position == depth))
     result = child;
   else
-    result = garcon_menu_merger_create_menu (child, path, position+1, depth);
+    result = garcon_menu_merger_create_menu (child, path, position + 1, depth);
 
   return result;
 }
@@ -1176,12 +1193,12 @@ garcon_menu_merger_create_menu (GNode  *node,
 static void
 garcon_menu_merger_resolve_moves (GNode *node)
 {
-  GNode  *child;
-  GNode  *old_node;
-  GNode  *new_node;
-  GList  *moves = NULL;
-  GList  *pairs = NULL;
-  GList  *iter;
+  GNode *child;
+  GNode *old_node;
+  GNode *new_node;
+  GList *moves = NULL;
+  GList *pairs = NULL;
+  GList *iter;
   gchar **old_path;
   gchar **new_path;
 
@@ -1215,16 +1232,16 @@ garcon_menu_merger_resolve_moves (GNode *node)
       new_path = g_strsplit (iter->data, "/", -1);
 
       old_node = garcon_menu_merger_find_menu (node, old_path, 0,
-                                               g_strv_length (old_path)-1, NULL);
+                                               g_strv_length (old_path) - 1, NULL);
       new_node = garcon_menu_merger_find_menu (node, new_path, 0,
-                                               g_strv_length (new_path)-1, NULL);
+                                               g_strv_length (new_path) - 1, NULL);
 
       if (G_LIKELY (old_node != NULL && old_node != new_node))
         {
           if (G_LIKELY (new_node == NULL))
             {
               new_node = garcon_menu_merger_create_menu (node, new_path, 0,
-                                                         g_strv_length (new_path)-1);
+                                                         g_strv_length (new_path) - 1);
 
               garcon_menu_merger_move_nodes (old_node, new_node, NULL);
             }
@@ -1248,7 +1265,7 @@ static void
 garcon_menu_merger_prepend_default_layout (GNode *node)
 {
   GarconMenuNode *node_;
-  GNode        *layout;
+  GNode *layout;
 
   if (garcon_menu_node_tree_get_node_type (node) == GARCON_MENU_NODE_TYPE_MENU)
     {
@@ -1264,4 +1281,3 @@ garcon_menu_merger_prepend_default_layout (GNode *node)
       g_node_append_data (layout, node_);
     }
 }
-

@@ -19,12 +19,12 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <gio/gio.h>
+#include "garcon-private.h"
 
-#include <garcon/garcon-private.h>
+#include <gio/gio.h>
 
 
 
@@ -40,7 +40,8 @@ garcon_looks_like_an_uri (const gchar *string)
   if (g_ascii_isalpha (*s))
     {
       /* <scheme> continues with (alpha | digit | "+" | "-" | ".")* */
-      for (++s; g_ascii_isalnum (*s) || *s == '+' || *s == '-' || *s == '.'; ++s);
+      for (++s; g_ascii_isalnum (*s) || *s == '+' || *s == '-' || *s == '.'; ++s)
+        ;
 
       /* <scheme> must be followed by ":" */
       return (*s == ':');
@@ -53,7 +54,7 @@ garcon_looks_like_an_uri (const gchar *string)
 
 GFile *
 _garcon_file_new_for_unknown_input (const gchar *path,
-                                    GFile       *parent)
+                                    GFile *parent)
 {
   g_return_val_if_fail (path != NULL, NULL);
 
@@ -73,11 +74,11 @@ _garcon_file_new_for_unknown_input (const gchar *path,
 
 GFile *
 _garcon_file_new_relative_to_file (const gchar *path,
-                                   GFile       *file)
+                                   GFile *file)
 {
   GFileType type;
-  GFile    *result;
-  GFile    *dir;
+  GFile *result;
+  GFile *dir;
 
   g_return_val_if_fail (path != NULL, NULL);
   g_return_val_if_fail (G_IS_FILE (file), NULL);
@@ -99,7 +100,7 @@ _garcon_file_new_relative_to_file (const gchar *path,
 
 gchar *
 _garcon_file_get_uri_relative_to_file (const gchar *path,
-                                       GFile       *file)
+                                       GFile *file)
 {
   GFile *absolute_file;
   gchar *uri;
