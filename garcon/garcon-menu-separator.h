@@ -29,15 +29,15 @@
 
 G_BEGIN_DECLS
 
-#define GARCON_TYPE_MENU_SEPARATOR            (garcon_menu_separator_get_type())
-#define GARCON_MENU_SEPARATOR(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_SEPARATOR, GarconMenuSeparator))
-#define GARCON_MENU_SEPARATOR_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_SEPARATOR, GarconMenuSeparatorClass))
-#define GARCON_IS_MENU_SEPARATOR(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_SEPARATOR))
+#define GARCON_TYPE_MENU_SEPARATOR (garcon_menu_separator_get_type ())
+#define GARCON_MENU_SEPARATOR(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_SEPARATOR, GarconMenuSeparator))
+#define GARCON_MENU_SEPARATOR_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_SEPARATOR, GarconMenuSeparatorClass))
+#define GARCON_IS_MENU_SEPARATOR(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_SEPARATOR))
 #define GARCON_IS_MENU_SEPARATOR_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_SEPARATOR))
-#define GARCON_MENU_SEPARATOR_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_SEPARATOR, GarconMenuSeparatorClass))
+#define GARCON_MENU_SEPARATOR_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_SEPARATOR, GarconMenuSeparatorClass))
 
 typedef struct _GarconMenuSeparatorClass GarconMenuSeparatorClass;
-typedef struct _GarconMenuSeparator      GarconMenuSeparator;
+typedef struct _GarconMenuSeparator GarconMenuSeparator;
 
 struct _GarconMenuSeparatorClass
 {
@@ -51,9 +51,11 @@ struct _GarconMenuSeparator
 
 
 
-GType                garcon_menu_separator_get_type    (void) G_GNUC_CONST;
+GType
+garcon_menu_separator_get_type (void) G_GNUC_CONST;
 
-GarconMenuSeparator *garcon_menu_separator_get_default (void);
+GarconMenuSeparator *
+garcon_menu_separator_get_default (void);
 
 G_END_DECLS
 

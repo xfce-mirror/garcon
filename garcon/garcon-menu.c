@@ -19,27 +19,27 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
+
+#include "garcon-config.h"
+#include "garcon-environment.h"
+#include "garcon-marshal.h"
+#include "garcon-menu-directory.h"
+#include "garcon-menu-element.h"
+#include "garcon-menu-item-cache.h"
+#include "garcon-menu-item.h"
+#include "garcon-menu-merger.h"
+#include "garcon-menu-node.h"
+#include "garcon-menu-parser.h"
+#include "garcon-menu-separator.h"
+#include "garcon-private.h"
+
+#include <libxfce4util/libxfce4util.h>
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
-
-#include <libxfce4util/libxfce4util.h>
-
-#include <garcon/garcon-config.h>
-#include <garcon/garcon-environment.h>
-#include <garcon/garcon-marshal.h>
-#include <garcon/garcon-menu-element.h>
-#include <garcon/garcon-menu-item.h>
-#include <garcon/garcon-menu-directory.h>
-#include <garcon/garcon-menu-item-cache.h>
-#include <garcon/garcon-menu-separator.h>
-#include <garcon/garcon-menu-node.h>
-#include <garcon/garcon-menu-parser.h>
-#include <garcon/garcon-menu-merger.h>
-#include <garcon/garcon-private.h>
 
 
 
@@ -93,131 +93,166 @@ enum
 
 
 
-static void                 garcon_menu_element_init                    (GarconMenuElementIface  *iface);
-static void                 garcon_menu_clear                           (GarconMenu              *menu);
-static void                 garcon_menu_finalize                        (GObject                 *object);
-static void                 garcon_menu_get_property                    (GObject                 *object,
-                                                                         guint                    prop_id,
-                                                                         GValue                  *value,
-                                                                         GParamSpec              *pspec);
-static void                 garcon_menu_set_property                    (GObject                 *object,
-                                                                         guint                    prop_id,
-                                                                         const GValue            *value,
-                                                                         GParamSpec              *pspec);
-static void                 garcon_menu_set_directory                   (GarconMenu              *menu,
-                                                                         GarconMenuDirectory     *directory);
-static void                 garcon_menu_resolve_menus                   (GarconMenu              *menu);
-static void                 garcon_menu_resolve_directory               (GarconMenu              *menu,
-                                                                         GCancellable            *cancellable,
-                                                                         gboolean                 recursive);
-static GarconMenuDirectory *garcon_menu_lookup_directory                (GarconMenu              *menu,
-                                                                         const gchar             *filename);
-static void                 garcon_menu_collect_files                   (GarconMenu              *menu,
-                                                                         GHashTable              *desktop_id_table);
-static void                 garcon_menu_collect_files_from_path         (GarconMenu              *menu,
-                                                                         GHashTable              *desktop_id_table,
-                                                                         GFile                   *path,
-                                                                         const gchar             *id_prefix);
-static void                 garcon_menu_resolve_items                   (GarconMenu              *menu,
-                                                                         GHashTable              *desktop_id_table,
-                                                                         gboolean                 only_unallocated);
-static void                 garcon_menu_resolve_items_by_rule           (GarconMenu              *menu,
-                                                                         GHashTable              *desktop_id_table,
-                                                                         GNode                   *node);
-static void                 garcon_menu_resolve_item_by_rule            (const gchar             *desktop_id,
-                                                                         const gchar             *uri,
-                                                                         GarconMenuPair          *data);
-static void                 garcon_menu_remove_deleted_menus            (GarconMenu              *menu);
-static gint                 garcon_menu_compare_items                   (gconstpointer           *a,
-                                                                         gconstpointer           *b);
-static const gchar         *garcon_menu_get_element_name                (GarconMenuElement       *element);
-static const gchar         *garcon_menu_get_element_comment             (GarconMenuElement       *element);
-static const gchar         *garcon_menu_get_element_icon_name           (GarconMenuElement       *element);
-static gboolean             garcon_menu_get_element_visible             (GarconMenuElement       *element);
-static gboolean             garcon_menu_get_element_show_in_environment (GarconMenuElement       *element);
-static gboolean             garcon_menu_get_element_no_display          (GarconMenuElement       *element);
-static gboolean             garcon_menu_get_element_equal               (GarconMenuElement       *element,
-                                                                         GarconMenuElement       *other);
-static void                 garcon_menu_start_monitoring                (GarconMenu              *menu);
-static void                 garcon_menu_stop_monitoring                 (GarconMenu              *menu);
-static void                 garcon_menu_monitor_menu_files              (GarconMenu              *menu);
-static void                 garcon_menu_monitor_files                   (GarconMenu              *menu,
-                                                                         GList                   *files,
-                                                                         gpointer                 callback);
-static void                 garcon_menu_monitor_app_dirs                (GarconMenu              *menu);
-static void                 garcon_menu_monitor_directory_dirs          (GarconMenu              *menu);
-static void                 garcon_menu_file_changed                    (GarconMenu              *menu,
-                                                                         GFile                   *file,
-                                                                         GFile                   *other_file,
-                                                                         GFileMonitorEvent        event_type,
-                                                                         GFileMonitor            *monitor);
-static void                 garcon_menu_merge_file_changed              (GarconMenu              *menu,
-                                                                         GFile                   *file,
-                                                                         GFile                   *other_file,
-                                                                         GFileMonitorEvent        event_type,
-                                                                         GFileMonitor            *monitor);
-static void                 garcon_menu_merge_dir_changed               (GarconMenu              *menu,
-                                                                         GFile                   *file,
-                                                                         GFile                   *other_file,
-                                                                         GFileMonitorEvent        event_type,
-                                                                         GFileMonitor            *monitor);
-static void                 garcon_menu_app_dir_changed                 (GarconMenu              *menu,
-                                                                         GFile                   *file,
-                                                                         GFile                   *other_file,
-                                                                         GFileMonitorEvent        event_type,
-                                                                         GFileMonitor            *monitor);
-static void                 garcon_menu_directory_file_changed          (GarconMenu              *menu,
-                                                                         GFile                   *file,
-                                                                         GFile                   *other_file,
-                                                                         GFileMonitorEvent        event_type,
-                                                                         GFileMonitor            *monitor);
-static GarconMenuItem      *garcon_menu_find_file_item                  (GarconMenu              *menu,
-                                                                         GFile                   *file);
+static void
+garcon_menu_element_init (GarconMenuElementIface *iface);
+static void
+garcon_menu_clear (GarconMenu *menu);
+static void
+garcon_menu_finalize (GObject *object);
+static void
+garcon_menu_get_property (GObject *object,
+                          guint prop_id,
+                          GValue *value,
+                          GParamSpec *pspec);
+static void
+garcon_menu_set_property (GObject *object,
+                          guint prop_id,
+                          const GValue *value,
+                          GParamSpec *pspec);
+static void
+garcon_menu_set_directory (GarconMenu *menu,
+                           GarconMenuDirectory *directory);
+static void
+garcon_menu_resolve_menus (GarconMenu *menu);
+static void
+garcon_menu_resolve_directory (GarconMenu *menu,
+                               GCancellable *cancellable,
+                               gboolean recursive);
+static GarconMenuDirectory *
+garcon_menu_lookup_directory (GarconMenu *menu,
+                              const gchar *filename);
+static void
+garcon_menu_collect_files (GarconMenu *menu,
+                           GHashTable *desktop_id_table);
+static void
+garcon_menu_collect_files_from_path (GarconMenu *menu,
+                                     GHashTable *desktop_id_table,
+                                     GFile *path,
+                                     const gchar *id_prefix);
+static void
+garcon_menu_resolve_items (GarconMenu *menu,
+                           GHashTable *desktop_id_table,
+                           gboolean only_unallocated);
+static void
+garcon_menu_resolve_items_by_rule (GarconMenu *menu,
+                                   GHashTable *desktop_id_table,
+                                   GNode *node);
+static void
+garcon_menu_resolve_item_by_rule (const gchar *desktop_id,
+                                  const gchar *uri,
+                                  GarconMenuPair *data);
+static void
+garcon_menu_remove_deleted_menus (GarconMenu *menu);
+static gint
+garcon_menu_compare_items (gconstpointer *a,
+                           gconstpointer *b);
+static const gchar *
+garcon_menu_get_element_name (GarconMenuElement *element);
+static const gchar *
+garcon_menu_get_element_comment (GarconMenuElement *element);
+static const gchar *
+garcon_menu_get_element_icon_name (GarconMenuElement *element);
+static gboolean
+garcon_menu_get_element_visible (GarconMenuElement *element);
+static gboolean
+garcon_menu_get_element_show_in_environment (GarconMenuElement *element);
+static gboolean
+garcon_menu_get_element_no_display (GarconMenuElement *element);
+static gboolean
+garcon_menu_get_element_equal (GarconMenuElement *element,
+                               GarconMenuElement *other);
+static void
+garcon_menu_start_monitoring (GarconMenu *menu);
+static void
+garcon_menu_stop_monitoring (GarconMenu *menu);
+static void
+garcon_menu_monitor_menu_files (GarconMenu *menu);
+static void
+garcon_menu_monitor_files (GarconMenu *menu,
+                           GList *files,
+                           gpointer callback);
+static void
+garcon_menu_monitor_app_dirs (GarconMenu *menu);
+static void
+garcon_menu_monitor_directory_dirs (GarconMenu *menu);
+static void
+garcon_menu_file_changed (GarconMenu *menu,
+                          GFile *file,
+                          GFile *other_file,
+                          GFileMonitorEvent event_type,
+                          GFileMonitor *monitor);
+static void
+garcon_menu_merge_file_changed (GarconMenu *menu,
+                                GFile *file,
+                                GFile *other_file,
+                                GFileMonitorEvent event_type,
+                                GFileMonitor *monitor);
+static void
+garcon_menu_merge_dir_changed (GarconMenu *menu,
+                               GFile *file,
+                               GFile *other_file,
+                               GFileMonitorEvent event_type,
+                               GFileMonitor *monitor);
+static void
+garcon_menu_app_dir_changed (GarconMenu *menu,
+                             GFile *file,
+                             GFile *other_file,
+                             GFileMonitorEvent event_type,
+                             GFileMonitor *monitor);
+static void
+garcon_menu_directory_file_changed (GarconMenu *menu,
+                                    GFile *file,
+                                    GFile *other_file,
+                                    GFileMonitorEvent event_type,
+                                    GFileMonitor *monitor);
+static GarconMenuItem *
+garcon_menu_find_file_item (GarconMenu *menu,
+                            GFile *file);
 
 
 
 struct _GarconMenuPrivate
 {
   /* Menu file */
-  GFile               *file;
+  GFile *file;
 
   /* DOM tree */
-  GNode               *tree;
+  GNode *tree;
 
   /* Merged menu files and merge directories */
-  GList               *merge_files;
-  GList               *merge_dirs;
+  GList *merge_files;
+  GList *merge_dirs;
 
   /* File and directory monitors */
-  GList               *monitors;
+  GList *monitors;
 
   /* Directory */
   GarconMenuDirectory *directory;
 
   /* Submenus */
-  GList               *submenus;
+  GList *submenus;
 
   /* Parent menu */
-  GarconMenu          *parent;
+  GarconMenu *parent;
 
   /* Menu item pool */
-  GarconMenuItemPool  *pool;
+  GarconMenuItemPool *pool;
 
   /* Shared menu item cache */
   GarconMenuItemCache *cache;
 
   /* List to merge consecutive file changes into a a single event */
-  GSList              *changed_files;
-  guint                file_changed_idle;
+  GSList *changed_files;
+  guint file_changed_idle;
 
   /* Flag for marking custom path menus */
-  guint                uses_custom_path : 1;
+  guint uses_custom_path : 1;
 
   /* idle reload-required to group events */
-  guint                idle_reload_required_id;
+  guint idle_reload_required_id;
 
   /* asynchronous load from GarconGtkMenu */
-  GMutex               load_lock;
+  GMutex load_lock;
 };
 
 
@@ -255,9 +290,9 @@ garcon_menu_class_init (GarconMenuClass *klass)
                                                         "file",
                                                         "file",
                                                         G_TYPE_FILE,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS |
-                                                        G_PARAM_CONSTRUCT_ONLY));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS
+                                                          | G_PARAM_CONSTRUCT_ONLY));
 
   /**
    * GarconMenu:directory:
@@ -270,8 +305,8 @@ garcon_menu_class_init (GarconMenuClass *klass)
                                                         "Directory",
                                                         "Directory entry associated with this menu",
                                                         GARCON_TYPE_MENU_DIRECTORY,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS));
 
   menu_signals[RELOAD_REQUIRED] =
     g_signal_new ("reload-required",
@@ -418,9 +453,9 @@ garcon_menu_finalize (GObject *object)
 
 
 static void
-garcon_menu_get_property (GObject    *object,
-                          guint       prop_id,
-                          GValue     *value,
+garcon_menu_get_property (GObject *object,
+                          guint prop_id,
+                          GValue *value,
                           GParamSpec *pspec)
 {
   GarconMenu *menu = GARCON_MENU (object);
@@ -444,10 +479,10 @@ garcon_menu_get_property (GObject    *object,
 
 
 static void
-garcon_menu_set_property (GObject      *object,
-                          guint         prop_id,
+garcon_menu_set_property (GObject *object,
+                          guint prop_id,
                           const GValue *value,
-                          GParamSpec   *pspec)
+                          GParamSpec *pspec)
 {
   GarconMenu *menu = GARCON_MENU (object);
 
@@ -524,7 +559,7 @@ GarconMenu *
 garcon_menu_new_for_path (const gchar *filename)
 {
   GarconMenu *menu;
-  GFile      *file;
+  GFile *file;
 
   g_return_val_if_fail (filename != NULL, NULL);
 
@@ -583,7 +618,6 @@ garcon_menu_get_file (GarconMenu *menu)
 
 
 
-
 static const gchar *
 garcon_menu_get_name (GarconMenu *menu)
 {
@@ -607,7 +641,7 @@ garcon_menu_get_name (GarconMenu *menu)
  *
  * Returns: (transfer none) (nullable): a #GarconMenuDirectory
  */
-GarconMenuDirectory*
+GarconMenuDirectory *
 garcon_menu_get_directory (GarconMenu *menu)
 {
   g_return_val_if_fail (GARCON_IS_MENU (menu), NULL);
@@ -617,7 +651,7 @@ garcon_menu_get_directory (GarconMenu *menu)
 
 
 static void
-garcon_menu_set_directory (GarconMenu          *menu,
+garcon_menu_set_directory (GarconMenu *menu,
                            GarconMenuDirectory *directory)
 {
   g_return_if_fail (GARCON_IS_MENU (menu));
@@ -666,17 +700,17 @@ garcon_menu_set_directory (GarconMenu          *menu,
  *          cancelled.
  **/
 gboolean
-garcon_menu_load (GarconMenu   *menu,
+garcon_menu_load (GarconMenu *menu,
                   GCancellable *cancellable,
-                  GError      **error)
+                  GError **error)
 {
   GarconMenuParser *parser;
   GarconMenuMerger *merger;
-  GHashTable       *desktop_id_table;
-  const gchar      *prefix;
-  gboolean          success = TRUE;
-  gchar            *filename;
-  gchar            *relative_filename;
+  GHashTable *desktop_id_table;
+  const gchar *prefix;
+  gboolean success = TRUE;
+  gchar *filename;
+  gchar *relative_filename;
 
   g_return_val_if_fail (GARCON_IS_MENU (menu), FALSE);
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
@@ -722,7 +756,6 @@ garcon_menu_load (GarconMenu   *menu,
       /* Free the filename strings */
       g_free (relative_filename);
       g_free (filename);
-
     }
 
   parser = garcon_menu_parser_new (menu->priv->file);
@@ -856,11 +889,11 @@ garcon_menu_add_menu (GarconMenu *menu,
  * Returns: (transfer none) (nullable): a #GarconMenu or %NULL.
  */
 GarconMenu *
-garcon_menu_get_menu_with_name (GarconMenu  *menu,
+garcon_menu_get_menu_with_name (GarconMenu *menu,
                                 const gchar *name)
 {
   GarconMenu *result = NULL;
-  GList      *iter;
+  GList *iter;
 
   g_return_val_if_fail (GARCON_IS_MENU (menu), NULL);
   g_return_val_if_fail (name != NULL, NULL);
@@ -900,8 +933,8 @@ static void
 garcon_menu_resolve_menus (GarconMenu *menu)
 {
   GarconMenu *submenu;
-  GList      *menus = NULL;
-  GList      *iter;
+  GList *menus = NULL;
+  GList *iter;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
 
@@ -944,13 +977,13 @@ garcon_menu_get_directories (GarconMenu *menu)
 
 
 static void
-garcon_menu_resolve_directory (GarconMenu   *menu,
+garcon_menu_resolve_directory (GarconMenu *menu,
                                GCancellable *cancellable,
-                               gboolean      recursive)
+                               gboolean recursive)
 {
   GarconMenuDirectory *directory = NULL;
-  GList               *directories = NULL;
-  GList               *iter;
+  GList *directories = NULL;
+  GList *iter;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
   g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
@@ -1010,15 +1043,15 @@ garcon_menu_get_directory_dirs (GarconMenu *menu)
 
 
 static GarconMenuDirectory *
-garcon_menu_lookup_directory (GarconMenu  *menu,
+garcon_menu_lookup_directory (GarconMenu *menu,
                               const gchar *filename)
 {
   GarconMenuDirectory *directory = NULL;
-  GList               *dirs = NULL;
-  GList               *iter;
-  GFile               *file;
-  GFile               *dir;
-  gboolean             found = FALSE;
+  GList *dirs = NULL;
+  GList *iter;
+  GFile *file;
+  GFile *dir;
+  gboolean found = FALSE;
 
   g_return_val_if_fail (GARCON_IS_MENU (menu), NULL);
   g_return_val_if_fail (filename != NULL, NULL);
@@ -1056,7 +1089,7 @@ garcon_menu_lookup_directory (GarconMenu  *menu,
 
 static GList *
 garcon_menu_get_app_dirs (GarconMenu *menu,
-                          gboolean    recursive)
+                          gboolean recursive)
 {
   GList *dirs = NULL;
   GList *lp;
@@ -1116,17 +1149,17 @@ garcon_menu_collect_files (GarconMenu *menu,
 
 
 static void
-garcon_menu_collect_files_from_path (GarconMenu  *menu,
-                                     GHashTable  *desktop_id_table,
-                                     GFile       *dir,
+garcon_menu_collect_files_from_path (GarconMenu *menu,
+                                     GHashTable *desktop_id_table,
+                                     GFile *dir,
                                      const gchar *id_prefix)
 {
   GFileEnumerator *enumerator;
-  GFileInfo       *file_info;
-  GFile           *file;
-  gchar           *base_name;
-  gchar           *new_id_prefix;
-  gchar           *desktop_id;
+  GFileInfo *file_info;
+  GFile *file;
+  gchar *base_name;
+  gchar *new_id_prefix;
+  gchar *desktop_id;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
 
@@ -1135,8 +1168,7 @@ garcon_menu_collect_files_from_path (GarconMenu  *menu,
     return;
 
   /* Skip directory if it's not a directory */
-  if (G_UNLIKELY (g_file_query_file_type (dir, G_FILE_QUERY_INFO_NONE,
-                                          NULL) != G_FILE_TYPE_DIRECTORY))
+  if (G_UNLIKELY (g_file_query_file_type (dir, G_FILE_QUERY_INFO_NONE, NULL) != G_FILE_TYPE_DIRECTORY))
     {
       return;
     }
@@ -1206,15 +1238,15 @@ garcon_menu_collect_files_from_path (GarconMenu  *menu,
 
 
 static gboolean
-collect_rules (GNode   *node,
+collect_rules (GNode *node,
                GSList **list)
 {
   GarconMenuNodeType type;
 
   type = garcon_menu_node_tree_get_node_type (node);
 
-  if (type == GARCON_MENU_NODE_TYPE_INCLUDE ||
-      type == GARCON_MENU_NODE_TYPE_EXCLUDE)
+  if (type == GARCON_MENU_NODE_TYPE_INCLUDE
+      || type == GARCON_MENU_NODE_TYPE_EXCLUDE)
     {
       *list = g_slist_append (*list, node);
     }
@@ -1227,11 +1259,11 @@ collect_rules (GNode   *node,
 static void
 garcon_menu_resolve_items (GarconMenu *menu,
                            GHashTable *desktop_id_table,
-                           gboolean    only_unallocated)
+                           gboolean only_unallocated)
 {
-  GSList  *rules = NULL;
-  GSList  *iter;
-  GList   *submenu;
+  GSList *rules = NULL;
+  GSList *iter;
+  GList *submenu;
   gboolean menu_only_unallocated = FALSE;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
@@ -1282,7 +1314,7 @@ garcon_menu_resolve_items (GarconMenu *menu,
 static void
 garcon_menu_resolve_items_by_rule (GarconMenu *menu,
                                    GHashTable *desktop_id_table,
-                                   GNode      *node)
+                                   GNode *node)
 {
   GarconMenuPair pair;
 
@@ -1299,14 +1331,14 @@ garcon_menu_resolve_items_by_rule (GarconMenu *menu,
 
 
 static void
-garcon_menu_resolve_item_by_rule (const gchar    *desktop_id,
-                                  const gchar    *uri,
+garcon_menu_resolve_item_by_rule (const gchar *desktop_id,
+                                  const gchar *uri,
                                   GarconMenuPair *data)
 {
   GarconMenuItem *item = NULL;
-  GarconMenu     *menu = NULL;
-  GNode          *node = NULL;
-  gboolean        only_unallocated = FALSE;
+  GarconMenu *menu = NULL;
+  GNode *node = NULL;
+  gboolean only_unallocated = FALSE;
 
   g_return_if_fail (GARCON_IS_MENU (data->first));
   g_return_if_fail (data->second != NULL);
@@ -1340,8 +1372,8 @@ static void
 garcon_menu_remove_deleted_menus (GarconMenu *menu)
 {
   GarconMenu *submenu;
-  GList      *iter;
-  gboolean    deleted;
+  GList *iter;
+  gboolean deleted;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
 
@@ -1384,7 +1416,7 @@ garcon_menu_remove_deleted_menus (GarconMenu *menu)
  *
  * Returns: (transfer none): a #GarconMenuItemPool.
  */
-GarconMenuItemPool*
+GarconMenuItemPool *
 garcon_menu_get_item_pool (GarconMenu *menu)
 {
   g_return_val_if_fail (GARCON_IS_MENU (menu), NULL);
@@ -1395,9 +1427,9 @@ garcon_menu_get_item_pool (GarconMenu *menu)
 
 
 static void
-items_collect (const gchar    *desktop_id,
+items_collect (const gchar *desktop_id,
                GarconMenuItem *item,
-               GList         **listp)
+               GList **listp)
 {
   *listp = g_list_prepend (*listp, item);
 }
@@ -1437,7 +1469,7 @@ garcon_menu_get_items (GarconMenu *menu)
 
 static GNode *
 garcon_menu_get_layout (GarconMenu *menu,
-                        gboolean    default_only)
+                        gboolean default_only)
 {
   GNode *layout = NULL;
 
@@ -1466,11 +1498,11 @@ garcon_menu_get_layout (GarconMenu *menu,
 
 
 static gboolean
-layout_has_menuname (GNode       *layout,
+layout_has_menuname (GNode *layout,
                      const gchar *name)
 {
-  GList   *nodes;
-  GList   *iter;
+  GList *nodes;
+  GList *iter;
   gboolean has_menuname = FALSE;
 
   nodes = garcon_menu_node_tree_get_child_nodes (layout, GARCON_MENU_NODE_TYPE_MENUNAME,
@@ -1488,11 +1520,11 @@ layout_has_menuname (GNode       *layout,
 
 
 static gboolean
-layout_has_filename (GNode       *layout,
+layout_has_filename (GNode *layout,
                      const gchar *desktop_id)
 {
-  GList   *nodes;
-  GList   *iter;
+  GList *nodes;
+  GList *iter;
   gboolean has_filename = FALSE;
 
   nodes = garcon_menu_node_tree_get_child_nodes (layout, GARCON_MENU_NODE_TYPE_FILENAME,
@@ -1511,8 +1543,8 @@ layout_has_filename (GNode       *layout,
 
 static void
 layout_elements_collect (GList **dest_list,
-                         GList  *src_list,
-                         GNode  *layout)
+                         GList *src_list,
+                         GNode *layout)
 {
   GList *iter;
 
@@ -1549,13 +1581,13 @@ GList *
 garcon_menu_get_elements (GarconMenu *menu)
 {
   GarconMenuLayoutMergeType merge_type;
-  GarconMenuNodeType        type;
-  GarconMenuItem           *item;
-  GarconMenu               *submenu;
-  GList                    *items = NULL;
-  GList                    *menu_items;
-  GNode                    *layout = NULL;
-  GNode                    *node;
+  GarconMenuNodeType type;
+  GarconMenuItem *item;
+  GarconMenu *submenu;
+  GList *items = NULL;
+  GList *menu_items;
+  GNode *layout = NULL;
+  GNode *node;
 
   g_return_val_if_fail (GARCON_IS_MENU (menu), NULL);
 
@@ -1653,7 +1685,7 @@ garcon_menu_compare_items (gconstpointer *a,
                            gconstpointer *b)
 {
   gchar *casefold_a, *casefold_b;
-  gint   result;
+  gint result;
 
   /* do case insensitive sorting, see bug #10594 */
   /* TODO: this function is called often, maybe catch the casefolded name */
@@ -1670,11 +1702,11 @@ garcon_menu_compare_items (gconstpointer *a,
 
 
 
-static const gchar*
+static const gchar *
 garcon_menu_get_element_name (GarconMenuElement *element)
 {
-  GarconMenu    *menu;
-  const gchar   *name = NULL;
+  GarconMenu *menu;
+  const gchar *name = NULL;
 
   g_return_val_if_fail (GARCON_IS_MENU (element), NULL);
 
@@ -1693,7 +1725,7 @@ garcon_menu_get_element_name (GarconMenuElement *element)
 
 
 
-static const gchar*
+static const gchar *
 garcon_menu_get_element_comment (GarconMenuElement *element)
 {
   GarconMenu *menu;
@@ -1710,7 +1742,7 @@ garcon_menu_get_element_comment (GarconMenuElement *element)
 
 
 
-static const gchar*
+static const gchar *
 garcon_menu_get_element_icon_name (GarconMenuElement *element)
 {
   GarconMenu *menu;
@@ -1731,9 +1763,9 @@ static gboolean
 garcon_menu_get_element_visible (GarconMenuElement *element)
 {
   GarconMenu *menu;
-  GList      *items;
-  GList      *iter;
-  gboolean    visible = FALSE;
+  GList *items;
+  GList *iter;
+  gboolean visible = FALSE;
 
   g_return_val_if_fail (GARCON_IS_MENU (element), FALSE);
 
@@ -1831,7 +1863,6 @@ garcon_menu_start_monitoring (GarconMenu *menu)
   /* Recurse into submenus */
   for (lp = menu->priv->submenus; lp != NULL; lp = lp->next)
     garcon_menu_start_monitoring (lp->data);
-
 }
 
 
@@ -1877,11 +1908,11 @@ static void
 garcon_menu_monitor_menu_files (GarconMenu *menu)
 {
   GFileMonitor *monitor;
-  const gchar  *prefix;
-  GFile        *file;
-  gchar        *relative_filename;
-  gchar       **paths;
-  gint          n;
+  const gchar *prefix;
+  GFile *file;
+  gchar *relative_filename;
+  gchar **paths;
+  gint n;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
 
@@ -1907,7 +1938,7 @@ garcon_menu_monitor_menu_files (GarconMenu *menu)
       /* Monitor all application menu candidates */
       paths = garcon_config_build_paths (relative_filename);
 
-      for (n = g_strv_length (paths)-1; paths != NULL && n >= 0; --n)
+      for (n = g_strv_length (paths) - 1; paths != NULL && n >= 0; --n)
         {
           file = g_file_new_for_path (paths[n]);
 
@@ -1932,7 +1963,7 @@ garcon_menu_monitor_menu_files (GarconMenu *menu)
 
 static gint
 find_file_monitor (GFileMonitor *monitor,
-                   GFile        *file)
+                   GFile *file)
 {
   GFile *monitored_file;
 
@@ -1948,11 +1979,11 @@ find_file_monitor (GFileMonitor *monitor,
 
 static void
 garcon_menu_monitor_files (GarconMenu *menu,
-                           GList      *files,
-                           gpointer    callback)
+                           GList *files,
+                           gpointer callback)
 {
   GFileMonitor *monitor;
-  GList        *lp;
+  GList *lp;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
   g_return_if_fail (menu->priv->parent == NULL);
@@ -1961,8 +1992,7 @@ garcon_menu_monitor_files (GarconMenu *menu,
   for (lp = files; lp != NULL; lp = lp->next)
     {
       /* Monitor files only if they are not being monitored already */
-      if (g_list_find_custom (menu->priv->monitors, lp->data,
-                              (GCompareFunc) find_file_monitor) == NULL)
+      if (g_list_find_custom (menu->priv->monitors, lp->data, (GCompareFunc) find_file_monitor) == NULL)
         {
           /* Try to monitor the file */
           monitor = g_file_monitor (lp->data, G_FILE_MONITOR_NONE, NULL, NULL);
@@ -2024,12 +2054,12 @@ static void
 garcon_menu_monitor_directory_dirs (GarconMenu *menu)
 {
   GFileMonitor *monitor;
-  GFile        *file;
-  GFile        *dir;
-  GList        *directory_files;
-  GList        *directory_dirs;
-  GList        *dp;
-  GList        *lp;
+  GFile *file;
+  GFile *dir;
+  GList *directory_files;
+  GList *directory_dirs;
+  GList *dp;
+  GList *lp;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
 
@@ -2048,8 +2078,7 @@ garcon_menu_monitor_directory_dirs (GarconMenu *menu)
           file = _garcon_file_new_relative_to_file (lp->data, dir);
 
           /* Only try to monitor the .directory file if we don't do that already */
-          if (g_list_find_custom (menu->priv->monitors, file,
-                                  (GCompareFunc) find_file_monitor) == NULL)
+          if (g_list_find_custom (menu->priv->monitors, file, (GCompareFunc) find_file_monitor) == NULL)
             {
               /* Try to monitor the file */
               monitor = g_file_monitor (file, G_FILE_MONITOR_NONE, NULL, NULL);
@@ -2083,9 +2112,9 @@ garcon_menu_monitor_directory_dirs (GarconMenu *menu)
 
 #ifdef DEBUG
 static void
-garcon_menu_debug (GFile             *file,
-                   GFileMonitorEvent  event_type,
-                   const gchar       *comment)
+garcon_menu_debug (GFile *file,
+                   GFileMonitorEvent event_type,
+                   const gchar *comment)
 {
   gchar *path;
   gchar *msg = NULL;
@@ -2103,9 +2132,10 @@ garcon_menu_debug (GFile             *file,
   g_free (msg);
 }
 #else
-#define garcon_menu_debug(...) G_STMT_START{ (void)0; }G_STMT_END
+#define garcon_menu_debug(...) \
+  G_STMT_START { (void) 0; } \
+  G_STMT_END
 #endif
-
 
 
 
@@ -2141,19 +2171,19 @@ garcon_menu_file_emit_reload_required (GarconMenu *menu)
 
 
 static void
-garcon_menu_file_changed (GarconMenu       *menu,
-                          GFile            *file,
-                          GFile            *other_file,
+garcon_menu_file_changed (GarconMenu *menu,
+                          GFile *file,
+                          GFile *other_file,
                           GFileMonitorEvent event_type,
-                          GFileMonitor     *monitor)
+                          GFileMonitor *monitor)
 {
   const gchar *prefix;
-  gboolean     higher_priority = FALSE;
-  gboolean     lower_priority = FALSE;
-  GFile       *menu_file;
-  gchar      **paths;
-  gchar       *relative_filename;
-  guint        n;
+  gboolean higher_priority = FALSE;
+  gboolean lower_priority = FALSE;
+  GFile *menu_file;
+  gchar **paths;
+  gchar *relative_filename;
+  guint n;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
   g_return_if_fail (menu->priv->parent == NULL);
@@ -2227,11 +2257,11 @@ garcon_menu_file_changed (GarconMenu       *menu,
 
 
 static void
-garcon_menu_merge_file_changed (GarconMenu       *menu,
-                                GFile            *file,
-                                GFile            *other_file,
+garcon_menu_merge_file_changed (GarconMenu *menu,
+                                GFile *file,
+                                GFile *other_file,
                                 GFileMonitorEvent event_type,
-                                GFileMonitor     *monitor)
+                                GFileMonitor *monitor)
 {
   g_return_if_fail (GARCON_IS_MENU (menu));
   g_return_if_fail (menu->priv->parent == NULL);
@@ -2243,11 +2273,11 @@ garcon_menu_merge_file_changed (GarconMenu       *menu,
 
 
 static void
-garcon_menu_merge_dir_changed (GarconMenu       *menu,
-                               GFile            *file,
-                               GFile            *other_file,
+garcon_menu_merge_dir_changed (GarconMenu *menu,
+                               GFile *file,
+                               GFile *other_file,
                                GFileMonitorEvent event_type,
-                               GFileMonitor     *monitor)
+                               GFileMonitor *monitor)
 {
   g_return_if_fail (GARCON_IS_MENU (menu));
   g_return_if_fail (menu->priv->parent == NULL);
@@ -2263,12 +2293,12 @@ garcon_menu_process_file_changes (gpointer user_data)
 {
   GarconMenu *menu = user_data;
   GarconMenuItem *item;
-  GFileType       file_type;
-  gboolean        affects_the_outside = FALSE;
-  gboolean        stop_processing = FALSE;
-  GFile          *file;
-  GSList         *lp;
-  gchar          *path;
+  GFileType file_type;
+  gboolean affects_the_outside = FALSE;
+  gboolean stop_processing = FALSE;
+  GFile *file;
+  GSList *lp;
+  gchar *path;
 
   g_return_val_if_fail (GARCON_IS_MENU (menu), FALSE);
   g_return_val_if_fail (menu->priv->parent == NULL, FALSE);
@@ -2380,14 +2410,14 @@ compare_files (gconstpointer a,
 
 
 static void
-garcon_menu_app_dir_changed (GarconMenu       *menu,
-                             GFile            *file,
-                             GFile            *other_file,
+garcon_menu_app_dir_changed (GarconMenu *menu,
+                             GFile *file,
+                             GFile *other_file,
                              GFileMonitorEvent event_type,
-                             GFileMonitor     *monitor)
+                             GFileMonitor *monitor)
 {
   GarconMenuItem *item;
-  GFileType       file_type;
+  GFileType file_type;
 
   g_return_if_fail (GARCON_IS_MENU (menu));
   g_return_if_fail (menu->priv->parent == NULL);
@@ -2460,11 +2490,11 @@ garcon_menu_app_dir_changed (GarconMenu       *menu,
 
 
 static void
-garcon_menu_directory_file_changed (GarconMenu       *menu,
-                                    GFile            *file,
-                                    GFile            *other_file,
+garcon_menu_directory_file_changed (GarconMenu *menu,
+                                    GFile *file,
+                                    GFile *other_file,
                                     GFileMonitorEvent event_type,
-                                    GFileMonitor     *monitor)
+                                    GFileMonitor *monitor)
 {
   GarconMenuDirectory *old_directory = NULL;
 
@@ -2508,10 +2538,10 @@ garcon_menu_directory_file_changed (GarconMenu       *menu,
 
 static GarconMenuItem *
 garcon_menu_find_file_item (GarconMenu *menu,
-                            GFile      *file)
+                            GFile *file)
 {
   GarconMenuItem *item = NULL;
-  GList          *lp;
+  GList *lp;
 
   g_return_val_if_fail (GARCON_IS_MENU (menu), NULL);
   g_return_val_if_fail (G_IS_FILE (file), NULL);
@@ -2525,5 +2555,4 @@ garcon_menu_find_file_item (GarconMenu *menu,
     }
 
   return item;
-
 }

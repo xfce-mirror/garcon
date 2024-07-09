@@ -39,11 +39,14 @@
 
 G_BEGIN_DECLS
 
-void         garcon_set_environment     (const gchar *env);
+void
+garcon_set_environment (const gchar *env);
 
-const gchar *garcon_get_environment     (void);
+const gchar *
+garcon_get_environment (void);
 
-void         garcon_set_environment_xdg (const gchar *fallback_env);
+void
+garcon_set_environment_xdg (const gchar *fallback_env);
 
 G_END_DECLS
 

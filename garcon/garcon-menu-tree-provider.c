@@ -19,10 +19,10 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <garcon/garcon-menu-tree-provider.h>
+#include "garcon-menu-tree-provider.h"
 
 
 
@@ -30,7 +30,7 @@ GType
 garcon_menu_tree_provider_get_type (void)
 {
   static gsize static_type = 0;
-  GType        type;
+  GType type;
 
   if (g_once_init_enter (&static_type))
     {

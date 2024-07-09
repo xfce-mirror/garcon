@@ -18,7 +18,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#if !defined (_GARCON_INSIDE_GARCON_H) && !defined (GARCON_COMPILATION)
+#if !defined(_GARCON_INSIDE_GARCON_H) && !defined(GARCON_COMPILATION)
 #error "Only <garcon/garcon.h> can be included directly. This file may disappear or change contents."
 #endif
 
@@ -82,66 +82,95 @@ typedef enum
 
 
 
-typedef union  _GarconMenuNodeData  GarconMenuNodeData;
+typedef union _GarconMenuNodeData GarconMenuNodeData;
 typedef struct _GarconMenuNodeClass GarconMenuNodeClass;
-typedef struct _GarconMenuNode      GarconMenuNode;
+typedef struct _GarconMenuNode GarconMenuNode;
 
-#define GARCON_TYPE_MENU_NODE            (garcon_menu_node_get_type ())
-#define GARCON_MENU_NODE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_NODE, GarconMenuNode))
-#define GARCON_MENU_NODE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_NODE, GarconMenuNodeClass))
-#define GARCON_IS_MENU_NODE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_NODE))
+#define GARCON_TYPE_MENU_NODE (garcon_menu_node_get_type ())
+#define GARCON_MENU_NODE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_NODE, GarconMenuNode))
+#define GARCON_MENU_NODE_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_NODE, GarconMenuNodeClass))
+#define GARCON_IS_MENU_NODE(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_NODE))
 #define GARCON_IS_MENU_NODE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_NODE)
-#define GARCON_MENU_NODE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_NODE, GarconMenuNodeClass))
+#define GARCON_MENU_NODE_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_NODE, GarconMenuNodeClass))
 
-GType                     garcon_menu_node_type_get_type                (void);
-GType                     garcon_menu_node_get_type                     (void) G_GNUC_CONST;
+GType
+garcon_menu_node_type_get_type (void);
+GType
+garcon_menu_node_get_type (void) G_GNUC_CONST;
 
-GarconMenuNode           *garcon_menu_node_new                          (GarconMenuNodeType      node_type) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
-GarconMenuNodeType        garcon_menu_node_get_node_type                (GarconMenuNode         *node);
-GarconMenuNode           *garcon_menu_node_create                       (GarconMenuNodeType      node_type,
-                                                                         gpointer                first_value,
-                                                                         ...) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
-GarconMenuNode           *garcon_menu_node_copy                         (GarconMenuNode         *node,
-                                                                         gpointer                data) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
-const gchar              *garcon_menu_node_get_string                   (GarconMenuNode         *node);
-void                      garcon_menu_node_set_string                   (GarconMenuNode         *node,
-                                                                         const gchar            *value);
-GarconMenuMergeFileType   garcon_menu_node_get_merge_file_type          (GarconMenuNode         *node);
-void                      garcon_menu_node_set_merge_file_type          (GarconMenuNode         *node,
-                                                                         GarconMenuMergeFileType type);
-const gchar              *garcon_menu_node_get_merge_file_filename      (GarconMenuNode         *node);
-void                      garcon_menu_node_set_merge_file_filename      (GarconMenuNode         *node,
-                                                                         const gchar            *filename);
+GarconMenuNode *
+garcon_menu_node_new (GarconMenuNodeType node_type) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+GarconMenuNodeType
+garcon_menu_node_get_node_type (GarconMenuNode *node);
+GarconMenuNode *
+garcon_menu_node_create (GarconMenuNodeType node_type,
+                         gpointer first_value,
+                         ...) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+GarconMenuNode *
+garcon_menu_node_copy (GarconMenuNode *node,
+                       gpointer data) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+const gchar *
+garcon_menu_node_get_string (GarconMenuNode *node);
+void
+garcon_menu_node_set_string (GarconMenuNode *node,
+                             const gchar *value);
+GarconMenuMergeFileType
+garcon_menu_node_get_merge_file_type (GarconMenuNode *node);
+void
+garcon_menu_node_set_merge_file_type (GarconMenuNode *node,
+                                      GarconMenuMergeFileType type);
+const gchar *
+garcon_menu_node_get_merge_file_filename (GarconMenuNode *node);
+void
+garcon_menu_node_set_merge_file_filename (GarconMenuNode *node,
+                                          const gchar *filename);
 
-GNode                    *garcon_menu_node_tree_get_child_node          (GNode                  *tree,
-                                                                         GarconMenuNodeType      type,
-                                                                         gboolean                reverse);
-GList                    *garcon_menu_node_tree_get_child_nodes         (GNode                  *tree,
-                                                                         GarconMenuNodeType      type,
-                                                                         gboolean                reverse);
-GList                    *garcon_menu_node_tree_get_string_children     (GNode                  *tree,
-                                                                         GarconMenuNodeType      type,
-                                                                         gboolean                reverse);
-gboolean                  garcon_menu_node_tree_get_boolean_child       (GNode                  *tree,
-                                                                         GarconMenuNodeType      type);
-const gchar              *garcon_menu_node_tree_get_string_child        (GNode                  *tree,
-                                                                         GarconMenuNodeType      type);
-gboolean                  garcon_menu_node_tree_rule_matches            (GNode                  *tree,
-                                                                         GarconMenuItem         *item);
-GarconMenuNodeType        garcon_menu_node_tree_get_node_type           (GNode                  *tree);
-const gchar              *garcon_menu_node_tree_get_string              (GNode                  *tree);
-void                      garcon_menu_node_tree_set_string              (GNode                  *tree,
-                                                                         const gchar            *value);
-GarconMenuLayoutMergeType garcon_menu_node_tree_get_layout_merge_type   (GNode                  *tree);
-GarconMenuMergeFileType   garcon_menu_node_tree_get_merge_file_type     (GNode                  *tree);
-const gchar              *garcon_menu_node_tree_get_merge_file_filename (GNode                  *tree);
-void                      garcon_menu_node_tree_set_merge_file_filename (GNode                  *tree,
-                                                                         const gchar            *filename);
-gint                      garcon_menu_node_tree_compare                 (GNode                  *tree,
-                                                                         GNode                  *other_tree);
-GNode                    *garcon_menu_node_tree_copy                    (GNode                  *tree);
-void                      garcon_menu_node_tree_free                    (GNode                  *tree);
-void                      garcon_menu_node_tree_free_data               (GNode                  *tree);
+GNode *
+garcon_menu_node_tree_get_child_node (GNode *tree,
+                                      GarconMenuNodeType type,
+                                      gboolean reverse);
+GList *
+garcon_menu_node_tree_get_child_nodes (GNode *tree,
+                                       GarconMenuNodeType type,
+                                       gboolean reverse);
+GList *
+garcon_menu_node_tree_get_string_children (GNode *tree,
+                                           GarconMenuNodeType type,
+                                           gboolean reverse);
+gboolean
+garcon_menu_node_tree_get_boolean_child (GNode *tree,
+                                         GarconMenuNodeType type);
+const gchar *
+garcon_menu_node_tree_get_string_child (GNode *tree,
+                                        GarconMenuNodeType type);
+gboolean
+garcon_menu_node_tree_rule_matches (GNode *tree,
+                                    GarconMenuItem *item);
+GarconMenuNodeType
+garcon_menu_node_tree_get_node_type (GNode *tree);
+const gchar *
+garcon_menu_node_tree_get_string (GNode *tree);
+void
+garcon_menu_node_tree_set_string (GNode *tree,
+                                  const gchar *value);
+GarconMenuLayoutMergeType
+garcon_menu_node_tree_get_layout_merge_type (GNode *tree);
+GarconMenuMergeFileType
+garcon_menu_node_tree_get_merge_file_type (GNode *tree);
+const gchar *
+garcon_menu_node_tree_get_merge_file_filename (GNode *tree);
+void
+garcon_menu_node_tree_set_merge_file_filename (GNode *tree,
+                                               const gchar *filename);
+gint
+garcon_menu_node_tree_compare (GNode *tree,
+                               GNode *other_tree);
+GNode *
+garcon_menu_node_tree_copy (GNode *tree);
+void
+garcon_menu_node_tree_free (GNode *tree);
+void
+garcon_menu_node_tree_free_data (GNode *tree);
 
 
 G_END_DECLS

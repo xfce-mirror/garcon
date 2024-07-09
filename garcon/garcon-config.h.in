@@ -18,7 +18,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#if !defined (_GARCON_INSIDE_GARCON_H) && !defined (GARCON_COMPILATION)
+#if !defined(_GARCON_INSIDE_GARCON_H) && !defined(GARCON_COMPILATION)
 #error "Only <garcon/garcon.h> can be included directly, this file may disappear or change contents."
 #endif
 
@@ -70,7 +70,7 @@ G_BEGIN_DECLS
  * Returns: %TRUE if the version of the garcon header files is
  *          the same as or newer than the passed-in version.
  **/
-#define GARCON_CHECK_VERSION(major,minor,micro) \
+#define GARCON_CHECK_VERSION(major, minor, micro) \
   (GARCON_MAJOR_VERSION > (major) \
    || (GARCON_MAJOR_VERSION == (major) \
        && GARCON_MINOR_VERSION > (minor)) \
@@ -82,12 +82,15 @@ extern const guint garcon_major_version;
 extern const guint garcon_minor_version;
 extern const guint garcon_micro_version;
 
-const gchar *garcon_check_version      (guint        required_major,
-                                        guint        required_minor,
-                                        guint        required_micro);
+const gchar *
+garcon_check_version (guint required_major,
+                      guint required_minor,
+                      guint required_micro);
 
-gchar       *garcon_config_lookup      (const gchar *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
-gchar      **garcon_config_build_paths (const gchar *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+gchar *
+garcon_config_lookup (const gchar *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+gchar **
+garcon_config_build_paths (const gchar *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 
 G_END_DECLS
 

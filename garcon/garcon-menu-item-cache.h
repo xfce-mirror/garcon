@@ -31,15 +31,15 @@
 G_BEGIN_DECLS
 
 typedef struct _GarconMenuItemCachePrivate GarconMenuItemCachePrivate;
-typedef struct _GarconMenuItemCacheClass   GarconMenuItemCacheClass;
-typedef struct _GarconMenuItemCache        GarconMenuItemCache;
+typedef struct _GarconMenuItemCacheClass GarconMenuItemCacheClass;
+typedef struct _GarconMenuItemCache GarconMenuItemCache;
 
-#define GARCON_TYPE_MENU_ITEM_CACHE            (garcon_menu_item_cache_get_type ())
-#define GARCON_MENU_ITEM_CACHE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_ITEM_CACHE, GarconMenuItemCache))
-#define GARCON_MENU_ITEM_CACHE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_ITEM_CACHE, GarconMenuItemCacheClass))
-#define GARCON_IS_MENU_ITEM_CACHE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_ITEM_CACHE))
+#define GARCON_TYPE_MENU_ITEM_CACHE (garcon_menu_item_cache_get_type ())
+#define GARCON_MENU_ITEM_CACHE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_ITEM_CACHE, GarconMenuItemCache))
+#define GARCON_MENU_ITEM_CACHE_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_ITEM_CACHE, GarconMenuItemCacheClass))
+#define GARCON_IS_MENU_ITEM_CACHE(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_ITEM_CACHE))
 #define GARCON_IS_MENU_ITEM_CACHE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_ITEM_CACHE))
-#define GARCON_MENU_ITEM_CACHE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_ITEM_CACHE, GarconMenuItemCacheClass))
+#define GARCON_MENU_ITEM_CACHE_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_ITEM_CACHE, GarconMenuItemCacheClass))
 
 struct _GarconMenuItemCacheClass
 {
@@ -48,7 +48,7 @@ struct _GarconMenuItemCacheClass
 
 struct _GarconMenuItemCache
 {
-  GObject                     __parent__;
+  GObject __parent__;
 
   /* Private data */
   GarconMenuItemCachePrivate *priv;
@@ -56,19 +56,25 @@ struct _GarconMenuItemCache
 
 
 
-GType                garcon_menu_item_cache_get_type        (void) G_GNUC_CONST;
+GType
+garcon_menu_item_cache_get_type (void) G_GNUC_CONST;
 
-GarconMenuItemCache *garcon_menu_item_cache_get_default     (void);
+GarconMenuItemCache *
+garcon_menu_item_cache_get_default (void);
 
-GarconMenuItem      *garcon_menu_item_cache_lookup          (GarconMenuItemCache *cache,
-                                                             const gchar         *uri,
-                                                             const gchar         *desktop_id);
-void                 garcon_menu_item_cache_foreach         (GarconMenuItemCache *cache,
-                                                             GHFunc               func,
-                                                             gpointer             user_data);
-void                 garcon_menu_item_cache_invalidate      (GarconMenuItemCache *cache);
-void                 garcon_menu_item_cache_invalidate_file (GarconMenuItemCache *cache,
-                                                             GFile               *file);
+GarconMenuItem *
+garcon_menu_item_cache_lookup (GarconMenuItemCache *cache,
+                               const gchar *uri,
+                               const gchar *desktop_id);
+void
+garcon_menu_item_cache_foreach (GarconMenuItemCache *cache,
+                                GHFunc func,
+                                gpointer user_data);
+void
+garcon_menu_item_cache_invalidate (GarconMenuItemCache *cache);
+void
+garcon_menu_item_cache_invalidate_file (GarconMenuItemCache *cache,
+                                        GFile *file);
 
 G_END_DECLS
 

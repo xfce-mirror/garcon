@@ -18,7 +18,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#if !defined (_GARCON_INSIDE_GARCON_H) && !defined (GARCON_COMPILATION)
+#if !defined(_GARCON_INSIDE_GARCON_H) && !defined(GARCON_COMPILATION)
 #error "Only <garcon/garcon.h> can be included directly. This file may disappear or change contents."
 #endif
 
@@ -29,23 +29,26 @@
 
 G_BEGIN_DECLS
 
-#define GARCON_TYPE_MENU_PARSER            (garcon_menu_parser_get_type ())
-#define GARCON_MENU_PARSER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_PARSER, GarconMenuParser))
-#define GARCON_MENU_PARSER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_PARSER, GarconMenuParserClass))
-#define GARCON_IS_MENU_PARSER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_PARSER))
+#define GARCON_TYPE_MENU_PARSER (garcon_menu_parser_get_type ())
+#define GARCON_MENU_PARSER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_PARSER, GarconMenuParser))
+#define GARCON_MENU_PARSER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_PARSER, GarconMenuParserClass))
+#define GARCON_IS_MENU_PARSER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_PARSER))
 #define GARCON_IS_MENU_PARSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_PARSER)
-#define GARCON_MENU_PARSER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_PARSER, GarconMenuParserClass))
+#define GARCON_MENU_PARSER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_PARSER, GarconMenuParserClass))
 
 typedef struct _GarconMenuParserPrivate GarconMenuParserPrivate;
-typedef struct _GarconMenuParserClass   GarconMenuParserClass;
-typedef struct _GarconMenuParser        GarconMenuParser;
+typedef struct _GarconMenuParserClass GarconMenuParserClass;
+typedef struct _GarconMenuParser GarconMenuParser;
 
-GType             garcon_menu_parser_get_type (void) G_GNUC_CONST;
+GType
+garcon_menu_parser_get_type (void) G_GNUC_CONST;
 
-GarconMenuParser *garcon_menu_parser_new      (GFile              *file) G_GNUC_MALLOC;
-gboolean          garcon_menu_parser_run      (GarconMenuParser *parser,
-                                               GCancellable     *cancellable,
-                                               GError          **error);
+GarconMenuParser *
+garcon_menu_parser_new (GFile *file) G_GNUC_MALLOC;
+gboolean
+garcon_menu_parser_run (GarconMenuParser *parser,
+                        GCancellable *cancellable,
+                        GError **error);
 
 
 
@@ -56,7 +59,7 @@ struct _GarconMenuParserClass
 
 struct _GarconMenuParser
 {
-  GObject                  __parent__;
+  GObject __parent__;
 
   GarconMenuParserPrivate *priv;
 };
