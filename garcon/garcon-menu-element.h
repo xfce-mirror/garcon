@@ -18,7 +18,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#if !defined (_GARCON_INSIDE_GARCON_H) && !defined (GARCON_COMPILATION)
+#if !defined(_GARCON_INSIDE_GARCON_H) && !defined(GARCON_COMPILATION)
 #error "Only <garcon/garcon.h> can be included directly. This file may disappear or change contents."
 #endif
 
@@ -29,12 +29,12 @@
 
 G_BEGIN_DECLS
 
-#define GARCON_TYPE_MENU_ELEMENT           (garcon_menu_element_get_type ())
-#define GARCON_MENU_ELEMENT(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_ELEMENT, GarconMenuElement))
-#define GARCON_IS_MENU_ELEMENT(obj)        (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_ELEMENT))
+#define GARCON_TYPE_MENU_ELEMENT (garcon_menu_element_get_type ())
+#define GARCON_MENU_ELEMENT(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_ELEMENT, GarconMenuElement))
+#define GARCON_IS_MENU_ELEMENT(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_ELEMENT))
 #define GARCON_MENU_ELEMENT_GET_IFACE(obj) (G_TYPE_INSTANCE_GET_INTERFACE ((obj), GARCON_TYPE_MENU_ELEMENT, GarconMenuElementIface))
 
-typedef struct _GarconMenuElement      GarconMenuElement;
+typedef struct _GarconMenuElement GarconMenuElement;
 typedef struct _GarconMenuElementIface GarconMenuElementIface;
 
 struct _GarconMenuElementIface
@@ -42,26 +42,34 @@ struct _GarconMenuElementIface
   GTypeInterface __parent__;
 
   /* Virtual methods */
-  const gchar *(*get_name)                (GarconMenuElement *element);
-  const gchar *(*get_comment)             (GarconMenuElement *element);
-  const gchar *(*get_icon_name)           (GarconMenuElement *element);
-  gboolean     (*get_visible)             (GarconMenuElement *element);
-  gboolean     (*get_show_in_environment) (GarconMenuElement *element);
-  gboolean     (*get_no_display)          (GarconMenuElement *element);
-  gboolean     (*equal)                   (GarconMenuElement *element,
-                                           GarconMenuElement *other);
+  const gchar *(*get_name) (GarconMenuElement *element);
+  const gchar *(*get_comment) (GarconMenuElement *element);
+  const gchar *(*get_icon_name) (GarconMenuElement *element);
+  gboolean (*get_visible) (GarconMenuElement *element);
+  gboolean (*get_show_in_environment) (GarconMenuElement *element);
+  gboolean (*get_no_display) (GarconMenuElement *element);
+  gboolean (*equal) (GarconMenuElement *element,
+                     GarconMenuElement *other);
 };
 
-GType        garcon_menu_element_get_type                (void) G_GNUC_CONST;
+GType
+garcon_menu_element_get_type (void) G_GNUC_CONST;
 
-const gchar *garcon_menu_element_get_name                (GarconMenuElement *element);
-const gchar *garcon_menu_element_get_comment             (GarconMenuElement *element);
-const gchar *garcon_menu_element_get_icon_name           (GarconMenuElement *element);
-gboolean     garcon_menu_element_get_visible             (GarconMenuElement *element);
-gboolean     garcon_menu_element_get_show_in_environment (GarconMenuElement *element);
-gboolean     garcon_menu_element_get_no_display          (GarconMenuElement *element);
-gboolean     garcon_menu_element_equal                   (GarconMenuElement *a,
-                                                          GarconMenuElement *b);
+const gchar *
+garcon_menu_element_get_name (GarconMenuElement *element);
+const gchar *
+garcon_menu_element_get_comment (GarconMenuElement *element);
+const gchar *
+garcon_menu_element_get_icon_name (GarconMenuElement *element);
+gboolean
+garcon_menu_element_get_visible (GarconMenuElement *element);
+gboolean
+garcon_menu_element_get_show_in_environment (GarconMenuElement *element);
+gboolean
+garcon_menu_element_get_no_display (GarconMenuElement *element);
+gboolean
+garcon_menu_element_equal (GarconMenuElement *a,
+                           GarconMenuElement *b);
 
 G_END_DECLS
 

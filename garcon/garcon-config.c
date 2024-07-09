@@ -19,10 +19,10 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <garcon/garcon-config.h>
+#include "garcon-config.h"
 
 
 
@@ -79,7 +79,6 @@ const guint garcon_micro_version = GARCON_MICRO_VERSION;
 
 
 
-
 /**
  * garcon_check_version:
  * @required_major : the required major version.
@@ -112,7 +111,7 @@ const guint garcon_micro_version = GARCON_MICRO_VERSION;
  *          string is owned by the library and must not be freed or
  *          modified by the caller.
  **/
-const gchar*
+const gchar *
 garcon_check_version (guint required_major,
                       guint required_minor,
                       guint required_micro)
@@ -131,19 +130,19 @@ garcon_check_version (guint required_major,
 gchar **
 garcon_config_build_paths (const gchar *filename)
 {
-  const gchar * const *dirs;
-  gchar              **paths;
-  guint                n;
+  const gchar *const *dirs;
+  gchar **paths;
+  guint n;
 
   g_return_val_if_fail (filename != NULL && *filename != '\0', NULL);
 
   dirs = g_get_system_config_dirs ();
 
-  paths = g_new0 (gchar *, 1 + g_strv_length ((gchar **)dirs) + 1);
-  
+  paths = g_new0 (gchar *, 1 + g_strv_length ((gchar **) dirs) + 1);
+
   paths[0] = g_build_filename (g_get_user_config_dir (), filename, NULL);
-  for (n = 1; dirs[n-1] != NULL; ++n)
-    paths[n] = g_build_filename (dirs[n-1], filename, NULL);
+  for (n = 1; dirs[n - 1] != NULL; ++n)
+    paths[n] = g_build_filename (dirs[n - 1], filename, NULL);
   paths[n] = NULL;
 
   return paths;
@@ -165,9 +164,9 @@ garcon_config_build_paths (const gchar *filename)
 gchar *
 garcon_config_lookup (const gchar *filename)
 {
-  const gchar * const *dirs;
-  gchar               *path;
-  guint                i;
+  const gchar *const *dirs;
+  gchar *path;
+  guint i;
 
   g_return_val_if_fail (filename != NULL && *filename != '\0', NULL);
 

@@ -19,18 +19,20 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <garcon/garcon-menu-node.h>
-#include <garcon/garcon-menu-item-pool.h>
+#include "garcon-menu-item-pool.h"
+#include "garcon-menu-node.h"
 
 
 
-static void     garcon_menu_item_pool_finalize       (GObject                 *object);
-static gboolean garcon_menu_item_pool_filter_exclude (const gchar             *desktop_id,
-                                                      GarconMenuItem          *item,
-                                                      GNode                   *node);
+static void
+garcon_menu_item_pool_finalize (GObject *object);
+static gboolean
+garcon_menu_item_pool_filter_exclude (const gchar *desktop_id,
+                                      GarconMenuItem *item,
+                                      GNode *node);
 
 
 
@@ -47,7 +49,7 @@ struct _GarconMenuItemPoolPrivate
 
 struct _GarconMenuItemPool
 {
-  GObject                    __parent__;
+  GObject __parent__;
 
   /* < private > */
   GarconMenuItemPoolPrivate *priv;
@@ -97,7 +99,7 @@ garcon_menu_item_pool_finalize (GObject *object)
  *
  * Returns: (transfer full): a #GarconMenuItemPool
  */
-GarconMenuItemPool*
+GarconMenuItemPool *
 garcon_menu_item_pool_new (void)
 {
   return g_object_new (GARCON_TYPE_MENU_ITEM_POOL, NULL);
@@ -111,7 +113,7 @@ garcon_menu_item_pool_new (void)
  */
 void
 garcon_menu_item_pool_insert (GarconMenuItemPool *pool,
-                              GarconMenuItem     *item)
+                              GarconMenuItem *item)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM_POOL (pool));
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
@@ -131,9 +133,9 @@ garcon_menu_item_pool_insert (GarconMenuItemPool *pool,
  *
  * Returns: (transfer none): a #GarconMenuItem object
  */
-GarconMenuItem*
+GarconMenuItem *
 garcon_menu_item_pool_lookup (GarconMenuItemPool *pool,
-                              const gchar        *desktop_id)
+                              const gchar *desktop_id)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM_POOL (pool), NULL);
   g_return_val_if_fail (desktop_id != NULL, NULL);
@@ -151,12 +153,12 @@ garcon_menu_item_pool_lookup (GarconMenuItemPool *pool,
  */
 GarconMenuItem *
 garcon_menu_item_pool_lookup_file (GarconMenuItemPool *pool,
-                                   GFile              *file)
+                                   GFile *file)
 {
   GarconMenuItem *result = NULL;
-  GHashTableIter  iter;
-  gpointer        item;
-  GFile          *item_file;
+  GHashTableIter iter;
+  gpointer item;
+  GFile *item_file;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM_POOL (pool), NULL);
   g_return_val_if_fail (G_IS_FILE (file), NULL);
@@ -184,8 +186,8 @@ garcon_menu_item_pool_lookup_file (GarconMenuItemPool *pool,
  */
 void
 garcon_menu_item_pool_foreach (GarconMenuItemPool *pool,
-                               GHFunc              func,
-                               gpointer            user_data)
+                               GHFunc func,
+                               gpointer user_data)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM_POOL (pool));
 
@@ -196,7 +198,7 @@ garcon_menu_item_pool_foreach (GarconMenuItemPool *pool,
 
 void
 garcon_menu_item_pool_apply_exclude_rule (GarconMenuItemPool *pool,
-                                          GNode              *node)
+                                          GNode *node)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM_POOL (pool));
   g_return_if_fail (node != NULL);
@@ -208,9 +210,9 @@ garcon_menu_item_pool_apply_exclude_rule (GarconMenuItemPool *pool,
 
 
 static gboolean
-garcon_menu_item_pool_filter_exclude (const gchar    *desktop_id,
+garcon_menu_item_pool_filter_exclude (const gchar *desktop_id,
                                       GarconMenuItem *item,
-                                      GNode          *node)
+                                      GNode *node)
 {
   gboolean matches;
 

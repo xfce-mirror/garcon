@@ -19,8 +19,11 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
+
+#include "garcon-menu-item-cache.h"
+#include "garcon-menu-item.h"
 
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
@@ -38,18 +41,16 @@
 #include <string.h>
 #endif
 
-#include <garcon/garcon-menu-item.h>
-#include <garcon/garcon-menu-item-cache.h>
 
 
-
-static void garcon_menu_item_cache_finalize   (GObject                  *object);
+static void
+garcon_menu_item_cache_finalize (GObject *object);
 
 
 
 /* Object Mutex Lock */
-#define _item_cache_lock(cache)    g_mutex_lock (&((cache)->priv->lock))
-#define _item_cache_unlock(cache)  g_mutex_unlock (&((cache)->priv->lock))
+#define _item_cache_lock(cache) g_mutex_lock (&((cache)->priv->lock))
+#define _item_cache_unlock(cache) g_mutex_unlock (&((cache)->priv->lock))
 
 
 
@@ -58,7 +59,7 @@ struct _GarconMenuItemCachePrivate
   /* Hash table for mapping absolute filenames to GarconMenuItem's */
   GHashTable *items;
 
-  GMutex      lock;
+  GMutex lock;
 };
 
 
@@ -101,7 +102,7 @@ garcon_menu_item_cache_init (GarconMenuItemCache *cache)
  *
  * Returns: (transfer full): a new #GarconMenuItemCache.
  */
-GarconMenuItemCache*
+GarconMenuItemCache *
 garcon_menu_item_cache_get_default (void)
 {
   static GarconMenuItemCache *cache = NULL;
@@ -146,10 +147,10 @@ garcon_menu_item_cache_finalize (GObject *object)
  *
  * Returns: (transfer none) (nullable): a #GarconMenuItem
  */
-GarconMenuItem*
+GarconMenuItem *
 garcon_menu_item_cache_lookup (GarconMenuItemCache *cache,
-                               const gchar         *uri,
-                               const gchar         *desktop_id)
+                               const gchar *uri,
+                               const gchar *desktop_id)
 {
   GarconMenuItem *item = NULL;
 
@@ -204,8 +205,8 @@ garcon_menu_item_cache_lookup (GarconMenuItemCache *cache,
  */
 void
 garcon_menu_item_cache_foreach (GarconMenuItemCache *cache,
-                                GHFunc               func,
-                                gpointer             user_data)
+                                GHFunc func,
+                                gpointer user_data)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM_CACHE (cache));
 
@@ -239,7 +240,7 @@ garcon_menu_item_cache_invalidate (GarconMenuItemCache *cache)
 
 void
 garcon_menu_item_cache_invalidate_file (GarconMenuItemCache *cache,
-                                        GFile               *file)
+                                        GFile *file)
 {
   gchar *uri;
 
