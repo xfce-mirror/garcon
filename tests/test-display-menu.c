@@ -39,8 +39,7 @@
 
 /* Root menu */
 static GarconMenu *root = NULL;
-static GtkWidget  *gtk_root = NULL;
-
+static GtkWidget *gtk_root = NULL;
 
 
 
@@ -64,7 +63,7 @@ main_window_destroy (GtkWidget *window)
 
 static void
 generic_names_toggled (GtkToggleButton *togglebutton,
-                       gpointer         user_data)
+                       gpointer user_data)
 {
   garcon_gtk_menu_set_show_generic_names (GARCON_GTK_MENU (gtk_root),
                                           gtk_toggle_button_get_active (togglebutton));
@@ -72,7 +71,7 @@ generic_names_toggled (GtkToggleButton *togglebutton,
 
 static void
 menu_icons_toggled (GtkToggleButton *togglebutton,
-                    gpointer         user_data)
+                    gpointer user_data)
 {
   garcon_gtk_menu_set_show_menu_icons (GARCON_GTK_MENU (gtk_root),
                                        gtk_toggle_button_get_active (togglebutton));
@@ -80,7 +79,7 @@ menu_icons_toggled (GtkToggleButton *togglebutton,
 
 static void
 tooltips_toggled (GtkToggleButton *togglebutton,
-                  gpointer         user_data)
+                  gpointer user_data)
 {
   garcon_gtk_menu_set_show_tooltips (GARCON_GTK_MENU (gtk_root),
                                      gtk_toggle_button_get_active (togglebutton));
@@ -88,7 +87,7 @@ tooltips_toggled (GtkToggleButton *togglebutton,
 
 static void
 desktop_actions_toggled (GtkToggleButton *togglebutton,
-                         gpointer         user_data)
+                         gpointer user_data)
 {
   garcon_gtk_menu_set_show_desktop_actions (GARCON_GTK_MENU (gtk_root),
                                             gtk_toggle_button_get_active (togglebutton));
@@ -96,7 +95,7 @@ desktop_actions_toggled (GtkToggleButton *togglebutton,
 
 static void
 edit_launchers_toggled (GtkToggleButton *togglebutton,
-                        gpointer         user_data)
+                        gpointer user_data)
 {
   garcon_gtk_menu_set_right_click_edits (GARCON_GTK_MENU (gtk_root),
                                          gtk_toggle_button_get_active (togglebutton));
@@ -187,10 +186,10 @@ create_main_window (void)
 
 
 gint
-main (gint    argc,
+main (gint argc,
       gchar **argv)
 {
-  gint    exit_code = EXIT_SUCCESS;
+  gint exit_code = EXIT_SUCCESS;
 
   /* Initialize the menu library */
   garcon_set_environment ("XFCE");

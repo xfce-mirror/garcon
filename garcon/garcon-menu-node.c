@@ -39,16 +39,20 @@ enum
 
 
 
-static void garcon_menu_node_finalize     (GObject             *object);
-static void garcon_menu_node_get_property (GObject             *object,
-                                           guint                prop_id,
-                                           GValue              *value,
-                                           GParamSpec          *pspec);
-static void garcon_menu_node_set_property (GObject             *object,
-                                           guint                prop_id,
-                                           const GValue        *value,
-                                           GParamSpec          *pspec);
-static void garcon_menu_node_free_data    (GarconMenuNode      *node);
+static void
+garcon_menu_node_finalize (GObject *object);
+static void
+garcon_menu_node_get_property (GObject *object,
+                               guint prop_id,
+                               GValue *value,
+                               GParamSpec *pspec);
+static void
+garcon_menu_node_set_property (GObject *object,
+                               guint prop_id,
+                               const GValue *value,
+                               GParamSpec *pspec);
+static void
+garcon_menu_node_free_data (GarconMenuNode *node);
 
 
 
@@ -63,14 +67,14 @@ union _GarconMenuNodeData
   struct
   {
     GarconMenuMergeFileType type;
-    gchar                  *filename;
+    gchar *filename;
   } merge_file;
-  gchar                    *string;
+  gchar *string;
 };
 
 struct _GarconMenuNode
 {
-  GObject            __parent__;
+  GObject __parent__;
 
   GarconMenuNodeType node_type;
   GarconMenuNodeData data;
@@ -81,9 +85,8 @@ struct _GarconMenuNode
 GType
 garcon_menu_node_type_get_type (void)
 {
-  static GType      type = G_TYPE_INVALID;
-  static GEnumValue values[] =
-  {
+  static GType type = G_TYPE_INVALID;
+  static GEnumValue values[] = {
     { GARCON_MENU_NODE_TYPE_INVALID, "GARCON_MENU_NODE_TYPE_INVALID", "Invalid" },
     { GARCON_MENU_NODE_TYPE_MENU, "GARCON_MENU_NODE_TYPE_MENU", "Menu" },
     { GARCON_MENU_NODE_TYPE_NAME, "GARCON_MENU_NODE_TYPE_NAME", "Name" },
@@ -147,8 +150,8 @@ garcon_menu_node_class_init (GarconMenuNodeClass *klass)
                                                       "node-type",
                                                       garcon_menu_node_type_get_type (),
                                                       GARCON_MENU_NODE_TYPE_MENU,
-                                                      G_PARAM_READWRITE |
-                                                      G_PARAM_STATIC_STRINGS));
+                                                      G_PARAM_READWRITE
+                                                        | G_PARAM_STATIC_STRINGS));
 }
 
 
@@ -173,9 +176,9 @@ garcon_menu_node_finalize (GObject *object)
 
 
 static void
-garcon_menu_node_get_property (GObject    *object,
-                               guint       prop_id,
-                               GValue     *value,
+garcon_menu_node_get_property (GObject *object,
+                               guint prop_id,
+                               GValue *value,
                                GParamSpec *pspec)
 {
   GarconMenuNode *node = GARCON_MENU_NODE (object);
@@ -195,10 +198,10 @@ garcon_menu_node_get_property (GObject    *object,
 
 
 static void
-garcon_menu_node_set_property (GObject      *object,
-                               guint         prop_id,
+garcon_menu_node_set_property (GObject *object,
+                               guint prop_id,
                                const GValue *value,
-                               GParamSpec   *pspec)
+                               GParamSpec *pspec)
 {
   GarconMenuNode *node = GARCON_MENU_NODE (object);
 
@@ -225,7 +228,8 @@ garcon_menu_node_new (GarconMenuNodeType node_type)
 
 
 
-GarconMenuNodeType garcon_menu_node_get_node_type (GarconMenuNode *node)
+GarconMenuNodeType
+garcon_menu_node_get_node_type (GarconMenuNode *node)
 {
   g_return_val_if_fail (GARCON_IS_MENU_NODE (node), 0);
   return node->node_type;
@@ -242,7 +246,7 @@ GarconMenuNodeType garcon_menu_node_get_node_type (GarconMenuNode *node)
  */
 GarconMenuNode *
 garcon_menu_node_create (GarconMenuNodeType node_type,
-                         gpointer           first_value,
+                         gpointer first_value,
                          ...)
 {
   GarconMenuNode *node;
@@ -290,7 +294,7 @@ garcon_menu_node_create (GarconMenuNodeType node_type,
  */
 GarconMenuNode *
 garcon_menu_node_copy (GarconMenuNode *node,
-                       gpointer        data)
+                       gpointer data)
 {
   GarconMenuNode *copy;
 
@@ -374,7 +378,7 @@ garcon_menu_node_get_string (GarconMenuNode *node)
 
 void
 garcon_menu_node_set_string (GarconMenuNode *node,
-                             const gchar    *value)
+                             const gchar *value)
 {
   g_return_if_fail (GARCON_IS_MENU_NODE (node));
   g_return_if_fail (value != NULL);
@@ -396,7 +400,7 @@ garcon_menu_node_get_merge_file_type (GarconMenuNode *node)
 
 
 void
-garcon_menu_node_set_merge_file_type (GarconMenuNode         *node,
+garcon_menu_node_set_merge_file_type (GarconMenuNode *node,
                                       GarconMenuMergeFileType type)
 {
   g_return_if_fail (GARCON_IS_MENU_NODE (node));
@@ -418,7 +422,7 @@ garcon_menu_node_get_merge_file_filename (GarconMenuNode *node)
 
 void
 garcon_menu_node_set_merge_file_filename (GarconMenuNode *node,
-                                          const gchar    *filename)
+                                          const gchar *filename)
 {
   g_return_if_fail (GARCON_IS_MENU_NODE (node));
   g_return_if_fail (filename != NULL);
@@ -433,15 +437,15 @@ garcon_menu_node_set_merge_file_filename (GarconMenuNode *node,
 typedef struct
 {
   GarconMenuNodeType type;
-  GNode             *self;
-  gpointer           value;
+  GNode *self;
+  gpointer value;
 } Pair;
 
 
 
 static gboolean
 collect_children (GNode *node,
-                  Pair  *pair)
+                  Pair *pair)
 {
   if (node == pair->self)
     return FALSE;
@@ -462,15 +466,15 @@ collect_children (GNode *node,
  * Returns: a #GNode if @type is valid menu nodes type.
  */
 GNode *
-garcon_menu_node_tree_get_child_node (GNode             *tree,
+garcon_menu_node_tree_get_child_node (GNode *tree,
                                       GarconMenuNodeType type,
-                                      gboolean           reverse)
+                                      gboolean reverse)
 {
   GNode *child = NULL;
 
   if (reverse)
     {
-      for (child = g_node_last_child (tree); 
+      for (child = g_node_last_child (tree);
            child != NULL;
            child = g_node_prev_sibling (child))
         {
@@ -502,9 +506,9 @@ garcon_menu_node_tree_get_child_node (GNode             *tree,
  * Returns: (element-type GNode) (transfer full): list of #GNode
  */
 GList *
-garcon_menu_node_tree_get_child_nodes (GNode             *tree,
+garcon_menu_node_tree_get_child_nodes (GNode *tree,
                                        GarconMenuNodeType type,
-                                       gboolean           reverse)
+                                       gboolean reverse)
 {
   Pair pair;
 
@@ -526,7 +530,7 @@ garcon_menu_node_tree_get_child_nodes (GNode             *tree,
 
 static gboolean
 collect_strings (GNode *node,
-                 Pair  *pair)
+                 Pair *pair)
 {
   gpointer string;
 
@@ -552,9 +556,9 @@ collect_strings (GNode *node,
  * Returns: (element-type GNode) (transfer container): list of #GNode
  */
 GList *
-garcon_menu_node_tree_get_string_children (GNode             *tree,
+garcon_menu_node_tree_get_string_children (GNode *tree,
                                            GarconMenuNodeType type,
-                                           gboolean           reverse)
+                                           gboolean reverse)
 {
   Pair pair;
 
@@ -576,7 +580,7 @@ garcon_menu_node_tree_get_string_children (GNode             *tree,
 
 static gboolean
 collect_boolean (GNode *node,
-                 Pair  *pair)
+                 Pair *pair)
 {
   if (node == pair->self)
     return FALSE;
@@ -593,7 +597,7 @@ collect_boolean (GNode *node,
 
 
 gboolean
-garcon_menu_node_tree_get_boolean_child (GNode             *tree,
+garcon_menu_node_tree_get_boolean_child (GNode *tree,
                                          GarconMenuNodeType type)
 {
   Pair pair;
@@ -612,7 +616,7 @@ garcon_menu_node_tree_get_boolean_child (GNode             *tree,
 
 static gboolean
 collect_string (GNode *node,
-                Pair  *pair)
+                Pair *pair)
 {
   const gchar **string = pair->value;
 
@@ -631,10 +635,10 @@ collect_string (GNode *node,
 
 
 const gchar *
-garcon_menu_node_tree_get_string_child (GNode             *tree,
+garcon_menu_node_tree_get_string_child (GNode *tree,
                                         GarconMenuNodeType type)
 {
-  Pair         pair;
+  Pair pair;
   const gchar *string = NULL;
 
   pair.type = type;
@@ -650,10 +654,10 @@ garcon_menu_node_tree_get_string_child (GNode             *tree,
 
 
 gboolean
-garcon_menu_node_tree_rule_matches (GNode          *node,
+garcon_menu_node_tree_rule_matches (GNode *node,
                                     GarconMenuItem *item)
 {
-  GNode   *child;
+  GNode *child;
   gboolean matches = FALSE;
   gboolean child_matches = FALSE;
 
@@ -700,9 +704,6 @@ garcon_menu_node_tree_rule_matches (GNode          *node,
 
 
 
-
-
-
 GarconMenuNodeType
 garcon_menu_node_tree_get_node_type (GNode *tree)
 {
@@ -729,23 +730,23 @@ garcon_menu_node_tree_get_string (GNode *tree)
 
 
 void
-garcon_menu_node_tree_set_string (GNode       *tree,
+garcon_menu_node_tree_set_string (GNode *tree,
                                   const gchar *value)
 {
   GarconMenuNodeType type;
 
   type = garcon_menu_node_tree_get_node_type (tree);
 
-  g_return_if_fail (type == GARCON_MENU_NODE_TYPE_NAME ||
-                    type == GARCON_MENU_NODE_TYPE_DIRECTORY ||
-                    type == GARCON_MENU_NODE_TYPE_DIRECTORY_DIR ||
-                    type == GARCON_MENU_NODE_TYPE_APP_DIR ||
-                    type == GARCON_MENU_NODE_TYPE_FILENAME ||
-                    type == GARCON_MENU_NODE_TYPE_CATEGORY ||
-                    type == GARCON_MENU_NODE_TYPE_OLD ||
-                    type == GARCON_MENU_NODE_TYPE_NEW ||
-                    type == GARCON_MENU_NODE_TYPE_MENUNAME ||
-                    type == GARCON_MENU_NODE_TYPE_MERGE_DIR);
+  g_return_if_fail (type == GARCON_MENU_NODE_TYPE_NAME
+                    || type == GARCON_MENU_NODE_TYPE_DIRECTORY
+                    || type == GARCON_MENU_NODE_TYPE_DIRECTORY_DIR
+                    || type == GARCON_MENU_NODE_TYPE_APP_DIR
+                    || type == GARCON_MENU_NODE_TYPE_FILENAME
+                    || type == GARCON_MENU_NODE_TYPE_CATEGORY
+                    || type == GARCON_MENU_NODE_TYPE_OLD
+                    || type == GARCON_MENU_NODE_TYPE_NEW
+                    || type == GARCON_MENU_NODE_TYPE_MENUNAME
+                    || type == GARCON_MENU_NODE_TYPE_MERGE_DIR);
 
   garcon_menu_node_set_string (tree->data, value);
 }
@@ -755,7 +756,7 @@ GarconMenuLayoutMergeType
 garcon_menu_node_tree_get_layout_merge_type (GNode *tree)
 {
   g_return_val_if_fail (garcon_menu_node_tree_get_node_type (tree) == GARCON_MENU_NODE_TYPE_MERGE, 0);
-  return ((GarconMenuNode *)tree->data)->data.layout_merge_type;
+  return ((GarconMenuNode *) tree->data)->data.layout_merge_type;
 }
 
 
@@ -779,8 +780,8 @@ garcon_menu_node_tree_get_merge_file_filename (GNode *tree)
 
 
 void
-garcon_menu_node_tree_set_merge_file_filename (GNode       *tree,
-                                                  const gchar *filename)
+garcon_menu_node_tree_set_merge_file_filename (GNode *tree,
+                                               const gchar *filename)
 {
   g_return_if_fail (garcon_menu_node_tree_get_node_type (tree) == GARCON_MENU_NODE_TYPE_MERGE_FILE);
   garcon_menu_node_set_merge_file_filename (tree->data, filename);
@@ -848,7 +849,7 @@ garcon_menu_node_tree_copy (GNode *tree)
 
 
 static gboolean
-free_children (GNode   *tree,
+free_children (GNode *tree,
                gpointer data)
 {
   garcon_menu_node_tree_free_data (tree);

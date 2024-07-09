@@ -78,26 +78,38 @@ enum
 
 
 
-static void         garcon_menu_item_element_init                    (GarconMenuElementIface *iface);
-static void         garcon_menu_item_finalize                        (GObject                *object);
-static void         garcon_menu_item_get_property                    (GObject                *object,
-                                                                      guint                   prop_id,
-                                                                      GValue                 *value,
-                                                                      GParamSpec             *pspec);
-static void         garcon_menu_item_set_property                    (GObject                *object,
-                                                                      guint                   prop_id,
-                                                                      const GValue           *value,
-                                                                      GParamSpec             *pspec);
-static const gchar *garcon_menu_item_get_element_name                (GarconMenuElement      *element);
-static const gchar *garcon_menu_item_get_element_comment             (GarconMenuElement      *element);
-static const gchar *garcon_menu_item_get_element_icon_name           (GarconMenuElement      *element);
-static gboolean     garcon_menu_item_get_element_visible             (GarconMenuElement      *element);
-static gboolean     garcon_menu_item_get_element_show_in_environment (GarconMenuElement      *element);
-static gboolean     garcon_menu_item_get_element_no_display          (GarconMenuElement      *element);
-static gboolean     garcon_menu_item_get_element_equal               (GarconMenuElement      *element,
-                                                                      GarconMenuElement      *other);
-static gboolean     garcon_menu_item_lists_equal                     (GList                  *list1,
-                                                                      GList                  *list2);
+static void
+garcon_menu_item_element_init (GarconMenuElementIface *iface);
+static void
+garcon_menu_item_finalize (GObject *object);
+static void
+garcon_menu_item_get_property (GObject *object,
+                               guint prop_id,
+                               GValue *value,
+                               GParamSpec *pspec);
+static void
+garcon_menu_item_set_property (GObject *object,
+                               guint prop_id,
+                               const GValue *value,
+                               GParamSpec *pspec);
+static const gchar *
+garcon_menu_item_get_element_name (GarconMenuElement *element);
+static const gchar *
+garcon_menu_item_get_element_comment (GarconMenuElement *element);
+static const gchar *
+garcon_menu_item_get_element_icon_name (GarconMenuElement *element);
+static gboolean
+garcon_menu_item_get_element_visible (GarconMenuElement *element);
+static gboolean
+garcon_menu_item_get_element_show_in_environment (GarconMenuElement *element);
+static gboolean
+garcon_menu_item_get_element_no_display (GarconMenuElement *element);
+static gboolean
+garcon_menu_item_get_element_equal (GarconMenuElement *element,
+                                    GarconMenuElement *other);
+static gboolean
+garcon_menu_item_lists_equal (GList *list1,
+                              GList *list2);
 
 
 
@@ -108,66 +120,66 @@ static guint item_signals[LAST_SIGNAL];
 struct _GarconMenuItemPrivate
 {
   /* Source file of the menu item */
-  GFile      *file;
+  GFile *file;
 
   /* Desktop file id */
-  gchar      *desktop_id;
+  gchar *desktop_id;
 
   /* List of categories */
-  GList      *categories;
+  GList *categories;
 
   /* List of keywords */
-  GList      *keywords;
+  GList *keywords;
 
   /* Whether this application requires a terminal to be started in */
-  guint       requires_terminal : 1;
+  guint requires_terminal : 1;
 
   /* Whether this menu item should be hidden */
-  guint       no_display : 1;
+  guint no_display : 1;
 
   /* Whether this application supports startup notification */
-  guint       supports_startup_notification : 1;
+  guint supports_startup_notification : 1;
 
   /* Name to be displayed for the menu item */
-  gchar      *name;
+  gchar *name;
 
   /* Generic name of the menu item */
-  gchar      *generic_name;
+  gchar *generic_name;
 
   /* Comment/description of the item */
-  gchar      *comment;
+  gchar *comment;
 
   /* Command to be executed when the menu item is clicked */
-  gchar      *command;
+  gchar *command;
 
   /* TryExec value */
-  gchar      *try_exec;
+  gchar *try_exec;
 
   /* Menu item icon name */
-  gchar      *icon_name;
+  gchar *icon_name;
 
   /* Environments in which the menu item should be displayed only */
-  gchar     **only_show_in;
+  gchar **only_show_in;
 
   /* Environments in which the menu item should be hidden */
-  gchar     **not_show_in;
+  gchar **not_show_in;
 
   /* Working directory */
-  gchar      *path;
+  gchar *path;
 
   /* List of application actions of type GarconMenuItemAction */
-  GList      *actions;
+  GList *actions;
 
   /* Hidden value */
-  guint       hidden : 1;
+  guint hidden : 1;
 
   /* Whether prefers non-default GPU */
-  guint       prefers_non_default_gpu : 1;
+  guint prefers_non_default_gpu : 1;
 
   /* Counter keeping the number of menus which use this item. This works
    * like a reference counter and should be increased / decreased by GarconMenu
    * items whenever the item is added to or removed from the menu. */
-  guint       num_allocated;
+  guint num_allocated;
 };
 
 
@@ -200,9 +212,9 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "file",
                                                         "file",
                                                         G_TYPE_FILE,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS |
-                                                        G_PARAM_CONSTRUCT_ONLY));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS
+                                                          | G_PARAM_CONSTRUCT_ONLY));
 
   /**
    * GarconMenuItem:desktop-id:
@@ -215,8 +227,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "Desktop-File Id",
                                                         "Desktop-File Id of the application",
                                                         NULL,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:requires-terminal:
@@ -229,8 +241,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                          "Requires a terminal",
                                                          "Whether this application requires a terminal",
                                                          FALSE,
-                                                         G_PARAM_READWRITE |
-                                                         G_PARAM_STATIC_STRINGS));
+                                                         G_PARAM_READWRITE
+                                                           | G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:no-display:
@@ -243,8 +255,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                          "No Display",
                                                          "Visibility state of the menu item",
                                                          FALSE,
-                                                         G_PARAM_READWRITE |
-                                                         G_PARAM_STATIC_STRINGS));
+                                                         G_PARAM_READWRITE
+                                                           | G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:startup-notification:
@@ -257,8 +269,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                          "Startup notification",
                                                          "Startup notification support",
                                                          FALSE,
-                                                         G_PARAM_READWRITE |
-                                                         G_PARAM_STATIC_STRINGS));
+                                                         G_PARAM_READWRITE
+                                                           | G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:name:
@@ -271,8 +283,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "Name",
                                                         "Name of the application",
                                                         NULL,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:generic-name:
@@ -285,8 +297,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "Generic name",
                                                         "Generic name of the application",
                                                         NULL,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:comment:
@@ -300,8 +312,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "Comment",
                                                         "Comment/description for the application",
                                                         NULL,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:command:
@@ -314,8 +326,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "Command",
                                                         "Application command",
                                                         NULL,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:try-exec:
@@ -332,8 +344,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "TryExec",
                                                         "Command to check if application is installed",
                                                         NULL,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem:icon-name:
@@ -346,10 +358,10 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "Icon name",
                                                         "Name of the application icon",
                                                         NULL,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS));
 
- /**
+  /**
    * GarconMenuItem:hidden:
    *
    * It means the user deleted (at his level) something that was present
@@ -361,11 +373,11 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                    g_param_spec_boolean ("hidden",
                                                          "Hidden",
                                                          "Whether the application has been deleted",
-                                                          FALSE,
-                                                          G_PARAM_READWRITE |
-                                                          G_PARAM_STATIC_STRINGS));
+                                                         FALSE,
+                                                         G_PARAM_READWRITE
+                                                           | G_PARAM_STATIC_STRINGS));
 
- /**
+  /**
    * GarconMenuItem:prefers-non-default-gpu:
    *
    * If true, the application prefers to be run on a more powerful discrete GPU
@@ -376,11 +388,11 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                    g_param_spec_boolean ("prefers-non-default-gpu",
                                                          "Prefers non-default GPU",
                                                          "Whether the application prefers to be run on a discrete GPU",
-                                                          FALSE,
-                                                          G_PARAM_READWRITE |
-                                                          G_PARAM_STATIC_STRINGS));
+                                                         FALSE,
+                                                         G_PARAM_READWRITE
+                                                           | G_PARAM_STATIC_STRINGS));
 
- /**
+  /**
    * GarconMenuItem:path:
    *
    * Working directory the application should be started in.
@@ -391,8 +403,8 @@ garcon_menu_item_class_init (GarconMenuItemClass *klass)
                                                         "Path",
                                                         "Working directory path",
                                                         NULL,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
+                                                        G_PARAM_READWRITE
+                                                          | G_PARAM_STATIC_STRINGS));
 
   /**
    * GarconMenuItem::changed:
@@ -464,9 +476,9 @@ garcon_menu_item_finalize (GObject *object)
 
 
 static void
-garcon_menu_item_get_property (GObject    *object,
-                               guint       prop_id,
-                               GValue     *value,
+garcon_menu_item_get_property (GObject *object,
+                               guint prop_id,
+                               GValue *value,
                                GParamSpec *pspec)
 {
   GarconMenuItem *item = GARCON_MENU_ITEM (object);
@@ -538,10 +550,10 @@ garcon_menu_item_get_property (GObject    *object,
 
 
 static void
-garcon_menu_item_set_property (GObject      *object,
-                               guint         prop_id,
+garcon_menu_item_set_property (GObject *object,
+                               guint prop_id,
                                const GValue *value,
-                               GParamSpec   *pspec)
+                               GParamSpec *pspec)
 {
   GarconMenuItem *item = GARCON_MENU_ITEM (object);
 
@@ -614,9 +626,9 @@ garcon_menu_item_set_property (GObject      *object,
 static gboolean
 garcon_menu_item_get_element_visible (GarconMenuElement *element)
 {
-  GarconMenuItem  *item;
-  const gchar     *try_exec, *exec;
-  gchar          **mt;
+  GarconMenuItem *item;
+  const gchar *try_exec, *exec;
+  gchar **mt;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), FALSE);
 
@@ -704,7 +716,7 @@ garcon_menu_item_get_element_equal (GarconMenuElement *element,
 
 
 
-static const gchar*
+static const gchar *
 garcon_menu_item_get_element_name (GarconMenuElement *element)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), NULL);
@@ -713,7 +725,7 @@ garcon_menu_item_get_element_name (GarconMenuElement *element)
 
 
 
-static const gchar*
+static const gchar *
 garcon_menu_item_get_element_comment (GarconMenuElement *element)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), NULL);
@@ -722,7 +734,7 @@ garcon_menu_item_get_element_comment (GarconMenuElement *element)
 
 
 
-static const gchar*
+static const gchar *
 garcon_menu_item_get_element_icon_name (GarconMenuElement *element)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (element), NULL);
@@ -735,8 +747,8 @@ static gboolean
 garcon_menu_item_lists_equal (GList *list1,
                               GList *list2)
 {
-  gboolean  element_missing = FALSE;
-  GList    *lp;
+  gboolean element_missing = FALSE;
+  GList *lp;
 
   if (g_list_length (list1) != g_list_length (list2))
     return FALSE;
@@ -755,19 +767,19 @@ garcon_menu_item_lists_equal (GList *list1,
 static gchar *
 garcon_menu_item_url_exec (XfceRc *rc)
 {
-  GString     *string;
+  GString *string;
   const gchar *url;
-  gchar       *url_exec = NULL;
+  gchar *url_exec = NULL;
 
   /* Support Type=Link items */
   url = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_URL, NULL);
   if (url != NULL)
     {
-#if GLIB_CHECK_VERSION (2, 68, 0)
+#if GLIB_CHECK_VERSION(2, 68, 0)
       string = g_string_new (url);
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+      G_GNUC_BEGIN_IGNORE_DEPRECATIONS
       g_string_replace (string, "%", "%%", 0);
-G_GNUC_END_IGNORE_DEPRECATIONS
+      G_GNUC_END_IGNORE_DEPRECATIONS
 #else
       string = g_string_sized_new (2 * strlen (url));
       for (const gchar *p = url; *p != '\0'; p++)
@@ -794,28 +806,28 @@ G_GNUC_END_IGNORE_DEPRECATIONS
 GarconMenuItem *
 garcon_menu_item_new (GFile *file)
 {
-  GarconMenuItem       *item = NULL;
+  GarconMenuItem *item = NULL;
   GarconMenuItemAction *action = NULL;
-  XfceRc               *rc;
-  GList                *categories = NULL;
-  GList                *keywords = NULL;
-  gchar                *filename;
-  gboolean              terminal;
-  gboolean              no_display;
-  gboolean              startup_notify;
-  gboolean              hidden;
-  gboolean              prefers_non_default_gpu;
-  const gchar          *path;
-  const gchar          *name;
-  const gchar          *generic_name;
-  const gchar          *comment;
-  const gchar          *exec;
-  const gchar          *try_exec;
-  const gchar          *icon;
-  gchar                *action_group;
-  gchar               **mt;
-  gchar               **str_list;
-  gchar                *url_exec = NULL;
+  XfceRc *rc;
+  GList *categories = NULL;
+  GList *keywords = NULL;
+  gchar *filename;
+  gboolean terminal;
+  gboolean no_display;
+  gboolean startup_notify;
+  gboolean hidden;
+  gboolean prefers_non_default_gpu;
+  const gchar *path;
+  const gchar *name;
+  const gchar *generic_name;
+  const gchar *comment;
+  const gchar *exec;
+  const gchar *try_exec;
+  const gchar *icon;
+  gchar *action_group;
+  gchar **mt;
+  gchar **str_list;
+  gchar *url_exec = NULL;
 
   g_return_val_if_fail (G_IS_FILE (file), NULL);
   g_return_val_if_fail (g_file_is_native (file), NULL);
@@ -1023,7 +1035,7 @@ garcon_menu_item_new (GFile *file)
 GarconMenuItem *
 garcon_menu_item_new_for_path (const gchar *filename)
 {
-  GFile          *file;
+  GFile *file;
   GarconMenuItem *item;
 
   g_return_val_if_fail (filename != NULL, NULL);
@@ -1045,7 +1057,7 @@ garcon_menu_item_new_for_path (const gchar *filename)
 GarconMenuItem *
 garcon_menu_item_new_for_uri (const gchar *uri)
 {
-  GFile          *file;
+  GFile *file;
   GarconMenuItem *item;
 
   g_return_val_if_fail (uri != NULL, NULL);
@@ -1060,9 +1072,9 @@ garcon_menu_item_new_for_uri (const gchar *uri)
 
 
 gboolean
-garcon_menu_item_reload (GarconMenuItem  *item,
-                         gboolean        *affects_the_outside,
-                         GError         **error)
+garcon_menu_item_reload (GarconMenuItem *item,
+                         gboolean *affects_the_outside,
+                         GError **error)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
@@ -1073,28 +1085,28 @@ garcon_menu_item_reload (GarconMenuItem  *item,
 
 
 gboolean
-garcon_menu_item_reload_from_file (GarconMenuItem  *item,
-                                   GFile           *file,
-                                   gboolean        *affects_the_outside,
-                                   GError         **error)
+garcon_menu_item_reload_from_file (GarconMenuItem *item,
+                                   GFile *file,
+                                   gboolean *affects_the_outside,
+                                   GError **error)
 {
-  XfceRc               *rc;
+  XfceRc *rc;
   GarconMenuItemAction *action = NULL;
-  gboolean              boolean;
-  GList                *categories = NULL;
-  GList                *old_categories = NULL;
-  GList                *keywords = NULL;
-  GList                *old_keywords = NULL;
-  GList                *lp;
-  gchar               **mt;
-  gchar               **str_list;
-  const gchar          *string;
-  const gchar          *name;
-  const gchar          *exec;
-  const gchar          *icon;
-  gchar                *filename;
-  gchar                *action_group;
-  gchar                *url_exec = NULL;
+  gboolean boolean;
+  GList *categories = NULL;
+  GList *old_categories = NULL;
+  GList *keywords = NULL;
+  GList *old_keywords = NULL;
+  GList *lp;
+  gchar **mt;
+  gchar **str_list;
+  const gchar *string;
+  const gchar *name;
+  const gchar *exec;
+  const gchar *icon;
+  gchar *filename;
+  gchar *action_group;
+  gchar *url_exec = NULL;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (G_IS_FILE (file), FALSE);
@@ -1399,7 +1411,7 @@ garcon_menu_item_get_desktop_id (GarconMenuItem *item)
 
 void
 garcon_menu_item_set_desktop_id (GarconMenuItem *item,
-                                 const gchar    *desktop_id)
+                                 const gchar *desktop_id)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
   g_return_if_fail (desktop_id != NULL);
@@ -1425,7 +1437,7 @@ garcon_menu_item_set_desktop_id (GarconMenuItem *item,
  *
  * Returns: (element-type utf8) (transfer none):
  */
-GList*
+GList *
 garcon_menu_item_get_categories (GarconMenuItem *item)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
@@ -1440,7 +1452,7 @@ garcon_menu_item_get_categories (GarconMenuItem *item)
  */
 void
 garcon_menu_item_set_categories (GarconMenuItem *item,
-                                 GList          *categories)
+                                 GList *categories)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
@@ -1462,7 +1474,7 @@ garcon_menu_item_set_categories (GarconMenuItem *item,
  *
  * Returns: (element-type utf8) (transfer none):
  */
-GList*
+GList *
 garcon_menu_item_get_keywords (GarconMenuItem *item)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
@@ -1477,7 +1489,7 @@ garcon_menu_item_get_keywords (GarconMenuItem *item)
  */
 void
 garcon_menu_item_set_keywords (GarconMenuItem *item,
-                               GList          *keywords)
+                               GList *keywords)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
@@ -1493,7 +1505,7 @@ garcon_menu_item_set_keywords (GarconMenuItem *item,
 }
 
 
-const gchar*
+const gchar *
 garcon_menu_item_get_command (GarconMenuItem *item)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
@@ -1503,7 +1515,7 @@ garcon_menu_item_get_command (GarconMenuItem *item)
 
 void
 garcon_menu_item_set_command (GarconMenuItem *item,
-                              const gchar    *command)
+                              const gchar *command)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
   g_return_if_fail (command != NULL);
@@ -1522,7 +1534,7 @@ garcon_menu_item_set_command (GarconMenuItem *item,
 
 
 
-const gchar*
+const gchar *
 garcon_menu_item_get_try_exec (GarconMenuItem *item)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
@@ -1533,7 +1545,7 @@ garcon_menu_item_get_try_exec (GarconMenuItem *item)
 
 void
 garcon_menu_item_set_try_exec (GarconMenuItem *item,
-                               const gchar    *try_exec)
+                               const gchar *try_exec)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
@@ -1551,7 +1563,7 @@ garcon_menu_item_set_try_exec (GarconMenuItem *item,
 
 
 
-const gchar*
+const gchar *
 garcon_menu_item_get_name (GarconMenuItem *item)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
@@ -1562,7 +1574,7 @@ garcon_menu_item_get_name (GarconMenuItem *item)
 
 void
 garcon_menu_item_set_name (GarconMenuItem *item,
-                           const gchar    *name)
+                           const gchar *name)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
   g_return_if_fail (g_utf8_validate (name, -1, NULL));
@@ -1581,7 +1593,7 @@ garcon_menu_item_set_name (GarconMenuItem *item,
 
 
 
-const gchar*
+const gchar *
 garcon_menu_item_get_generic_name (GarconMenuItem *item)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
@@ -1592,7 +1604,7 @@ garcon_menu_item_get_generic_name (GarconMenuItem *item)
 
 void
 garcon_menu_item_set_generic_name (GarconMenuItem *item,
-                                   const gchar    *generic_name)
+                                   const gchar *generic_name)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
   g_return_if_fail (generic_name == NULL || g_utf8_validate (generic_name, -1, NULL));
@@ -1611,7 +1623,7 @@ garcon_menu_item_set_generic_name (GarconMenuItem *item,
 
 
 
-const gchar*
+const gchar *
 garcon_menu_item_get_comment (GarconMenuItem *item)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
@@ -1622,7 +1634,7 @@ garcon_menu_item_get_comment (GarconMenuItem *item)
 
 void
 garcon_menu_item_set_comment (GarconMenuItem *item,
-                              const gchar    *comment)
+                              const gchar *comment)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
   g_return_if_fail (comment == NULL || g_utf8_validate (comment, -1, NULL));
@@ -1641,7 +1653,7 @@ garcon_menu_item_set_comment (GarconMenuItem *item,
 
 
 
-const gchar*
+const gchar *
 garcon_menu_item_get_icon_name (GarconMenuItem *item)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
@@ -1652,7 +1664,7 @@ garcon_menu_item_get_icon_name (GarconMenuItem *item)
 
 void
 garcon_menu_item_set_icon_name (GarconMenuItem *item,
-                                const gchar    *icon_name)
+                                const gchar *icon_name)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
@@ -1670,7 +1682,7 @@ garcon_menu_item_set_icon_name (GarconMenuItem *item,
 
 
 
-const gchar*
+const gchar *
 garcon_menu_item_get_path (GarconMenuItem *item)
 {
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
@@ -1681,7 +1693,7 @@ garcon_menu_item_get_path (GarconMenuItem *item)
 
 void
 garcon_menu_item_set_path (GarconMenuItem *item,
-                           const gchar    *path)
+                           const gchar *path)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
@@ -1710,7 +1722,7 @@ garcon_menu_item_get_hidden (GarconMenuItem *item)
 
 void
 garcon_menu_item_set_hidden (GarconMenuItem *item,
-                             gboolean        hidden)
+                             gboolean hidden)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
@@ -1738,7 +1750,7 @@ garcon_menu_item_get_prefers_non_default_gpu (GarconMenuItem *item)
 
 void
 garcon_menu_item_set_prefers_non_default_gpu (GarconMenuItem *item,
-                                              gboolean        prefers_non_default_gpu)
+                                              gboolean prefers_non_default_gpu)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
@@ -1766,7 +1778,7 @@ garcon_menu_item_requires_terminal (GarconMenuItem *item)
 
 void
 garcon_menu_item_set_requires_terminal (GarconMenuItem *item,
-                                        gboolean        requires_terminal)
+                                        gboolean requires_terminal)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
@@ -1794,7 +1806,7 @@ garcon_menu_item_get_no_display (GarconMenuItem *item)
 
 void
 garcon_menu_item_set_no_display (GarconMenuItem *item,
-                                 gboolean        no_display)
+                                 gboolean no_display)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
@@ -1822,7 +1834,7 @@ garcon_menu_item_supports_startup_notification (GarconMenuItem *item)
 
 void
 garcon_menu_item_set_supports_startup_notification (GarconMenuItem *item,
-                                                    gboolean        supports_startup_notification)
+                                                    gboolean supports_startup_notification)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
@@ -1841,9 +1853,9 @@ garcon_menu_item_set_supports_startup_notification (GarconMenuItem *item,
 
 gboolean
 garcon_menu_item_has_category (GarconMenuItem *item,
-                               const gchar    *category)
+                               const gchar *category)
 {
-  GList   *iter;
+  GList *iter;
   gboolean found = FALSE;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
@@ -1860,9 +1872,9 @@ garcon_menu_item_has_category (GarconMenuItem *item,
 
 gboolean
 garcon_menu_item_has_keyword (GarconMenuItem *item,
-                              const gchar    *keyword)
+                              const gchar *keyword)
 {
-  GList   *iter;
+  GList *iter;
   gboolean found = FALSE;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
@@ -1885,16 +1897,16 @@ garcon_menu_item_has_keyword (GarconMenuItem *item,
 GList *
 garcon_menu_item_get_actions (GarconMenuItem *item)
 {
-  GList                *action_names = NULL;
-  GList                *iter;
+  GList *action_names = NULL;
+  GList *iter;
   GarconMenuItemAction *action;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
 
-  for (iter = item->priv->actions; iter != NULL ; iter = g_list_next (iter))
+  for (iter = item->priv->actions; iter != NULL; iter = g_list_next (iter))
     {
       action = GARCON_MENU_ITEM_ACTION (iter->data);
-      action_names = g_list_prepend (action_names, (gchar*)garcon_menu_item_action_get_name (action));
+      action_names = g_list_prepend (action_names, (gchar *) garcon_menu_item_action_get_name (action));
     }
   action_names = g_list_reverse (action_names);
 
@@ -1911,9 +1923,9 @@ garcon_menu_item_get_actions (GarconMenuItem *item)
  */
 GarconMenuItemAction *
 garcon_menu_item_get_action (GarconMenuItem *item,
-                             const gchar    *action_name)
+                             const gchar *action_name)
 {
-  GList                *iter;
+  GList *iter;
   GarconMenuItemAction *action;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), NULL);
@@ -1931,15 +1943,14 @@ garcon_menu_item_get_action (GarconMenuItem *item,
 
 
 
-
 void
-garcon_menu_item_set_action (GarconMenuItem       *item,
-                             const gchar          *action_name,
+garcon_menu_item_set_action (GarconMenuItem *item,
+                             const gchar *action_name,
                              GarconMenuItemAction *action)
 {
-  GList                *iter;
+  GList *iter;
   GarconMenuItemAction *old_action;
-  gboolean             found = FALSE;
+  gboolean found = FALSE;
 
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
   g_return_if_fail (GARCON_IS_MENU_ITEM_ACTION (action));
@@ -1951,15 +1962,15 @@ garcon_menu_item_set_action (GarconMenuItem       *item,
       old_action = GARCON_MENU_ITEM_ACTION (iter->data);
       if (g_strcmp0 (garcon_menu_item_action_get_name (old_action), action_name) == 0)
         {
-           /* Release reference on action currently stored at action name */
-           garcon_menu_item_action_unref (old_action);
+          /* Release reference on action currently stored at action name */
+          garcon_menu_item_action_unref (old_action);
 
-           /* Replace action in list at action name and grab a reference */
-           iter->data = action;
-           garcon_menu_item_action_ref (action);
+          /* Replace action in list at action name and grab a reference */
+          iter->data = action;
+          garcon_menu_item_action_ref (action);
 
-           /* Set flag that action was found */
-           found = TRUE;
+          /* Set flag that action was found */
+          found = TRUE;
         }
     }
 
@@ -1967,7 +1978,7 @@ garcon_menu_item_set_action (GarconMenuItem       *item,
   if (found == FALSE)
     {
       /* Add action to list and grab a reference */
-      item->priv->actions=g_list_append (item->priv->actions, action);
+      item->priv->actions = g_list_append (item->priv->actions, action);
       garcon_menu_item_action_ref (action);
     }
 }
@@ -1975,12 +1986,12 @@ garcon_menu_item_set_action (GarconMenuItem       *item,
 
 
 gboolean
-garcon_menu_item_has_action (GarconMenuItem  *item,
-                             const gchar     *action_name)
+garcon_menu_item_has_action (GarconMenuItem *item,
+                             const gchar *action_name)
 {
-  GList                *iter;
+  GList *iter;
   GarconMenuItemAction *action;
-  gboolean             found = FALSE;
+  gboolean found = FALSE;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
   g_return_val_if_fail (action_name != NULL, FALSE);
@@ -2001,9 +2012,9 @@ gboolean
 garcon_menu_item_get_show_in_environment (GarconMenuItem *item)
 {
   const gchar *env;
-  guint        i, j;
-  gboolean     show = TRUE;
-  gchar**      path = NULL;
+  guint i, j;
+  gboolean show = TRUE;
+  gchar **path = NULL;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
 
@@ -2021,23 +2032,23 @@ garcon_menu_item_get_show_in_environment (GarconMenuItem *item)
     {
       /* Check if your environemnt is in OnlyShowIn list */
       show = FALSE;
-      path = g_strsplit(env, ":", 0);
+      path = g_strsplit (env, ":", 0);
       for (j = 0; path[j] != NULL; j++)
         for (i = 0; !show && item->priv->only_show_in[i] != NULL; i++)
           if (g_strcmp0 (item->priv->only_show_in[i], path[j]) == 0)
             show = TRUE;
-      g_strfreev(path);
+      g_strfreev (path);
     }
   else if (G_UNLIKELY (item->priv->not_show_in != NULL))
     {
       /* Check if your environemnt is in NotShowIn list */
       show = TRUE;
-      path = g_strsplit(env, ":", 0);
+      path = g_strsplit (env, ":", 0);
       for (j = 0; path[j] != NULL; j++)
         for (i = 0; show && item->priv->not_show_in[i] != NULL; i++)
           if (g_strcmp0 (item->priv->not_show_in[i], path[j]) == 0)
             show = FALSE;
-      g_strfreev(path);
+      g_strfreev (path);
     }
 
   return show;
@@ -2049,9 +2060,9 @@ gboolean
 garcon_menu_item_only_show_in_environment (GarconMenuItem *item)
 {
   const gchar *env;
-  guint        i, j;
-  gboolean     show = FALSE;
-  gchar**      path = NULL;
+  guint i, j;
+  gboolean show = FALSE;
+  gchar **path = NULL;
 
   g_return_val_if_fail (GARCON_IS_MENU_ITEM (item), FALSE);
 
@@ -2067,8 +2078,8 @@ garcon_menu_item_only_show_in_environment (GarconMenuItem *item)
     {
       /* Check if your environemnt is in OnlyShowIn list */
       show = FALSE;
-      path = g_strsplit(env, ":", 0);
-      for (j= 0; path[j] != NULL; j++)
+      path = g_strsplit (env, ":", 0);
+      for (j = 0; path[j] != NULL; j++)
         for (i = 0; !show && item->priv->only_show_in[i] != NULL; i++)
           if (g_strcmp0 (item->priv->only_show_in[i], path[j]) == 0)
             show = TRUE;

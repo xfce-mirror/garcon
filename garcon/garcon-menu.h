@@ -30,36 +30,50 @@
 
 G_BEGIN_DECLS
 
-#define GARCON_TYPE_MENU            (garcon_menu_get_type ())
-#define GARCON_MENU(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU, GarconMenu))
-#define GARCON_MENU_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU, GarconMenuClass))
-#define GARCON_IS_MENU(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU))
+#define GARCON_TYPE_MENU (garcon_menu_get_type ())
+#define GARCON_MENU(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU, GarconMenu))
+#define GARCON_MENU_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU, GarconMenuClass))
+#define GARCON_IS_MENU(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU))
 #define GARCON_IS_MENU_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU))
-#define GARCON_MENU_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU, GarconMenuClass))
+#define GARCON_MENU_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU, GarconMenuClass))
 
 typedef struct _GarconMenuPrivate GarconMenuPrivate;
-typedef struct _GarconMenuClass   GarconMenuClass;
-typedef struct _GarconMenu        GarconMenu;
+typedef struct _GarconMenuClass GarconMenuClass;
+typedef struct _GarconMenu GarconMenu;
 
-GType                garcon_menu_get_type           (void) G_GNUC_CONST;
+GType
+garcon_menu_get_type (void) G_GNUC_CONST;
 
-GarconMenu          *garcon_menu_new                (GFile        *file) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
-GarconMenu          *garcon_menu_new_for_path       (const gchar  *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
-GarconMenu          *garcon_menu_new_applications   (void) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
-gboolean             garcon_menu_load               (GarconMenu   *menu,
-                                                     GCancellable *cancellable,
-                                                     GError      **error);
-GFile               *garcon_menu_get_file           (GarconMenu   *menu);
-GarconMenuDirectory *garcon_menu_get_directory      (GarconMenu   *menu);
-GList               *garcon_menu_get_menus          (GarconMenu   *menu);
-void                 garcon_menu_add_menu           (GarconMenu   *menu,
-                                                     GarconMenu   *submenu);
-GarconMenu          *garcon_menu_get_menu_with_name (GarconMenu   *menu,
-                                                     const gchar  *name);
-GarconMenu          *garcon_menu_get_parent         (GarconMenu   *menu);
-GarconMenuItemPool  *garcon_menu_get_item_pool      (GarconMenu   *menu);
-GList               *garcon_menu_get_items          (GarconMenu   *menu);
-GList               *garcon_menu_get_elements       (GarconMenu   *menu);
+GarconMenu *
+garcon_menu_new (GFile *file) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+GarconMenu *
+garcon_menu_new_for_path (const gchar *filename) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+GarconMenu *
+garcon_menu_new_applications (void) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
+gboolean
+garcon_menu_load (GarconMenu *menu,
+                  GCancellable *cancellable,
+                  GError **error);
+GFile *
+garcon_menu_get_file (GarconMenu *menu);
+GarconMenuDirectory *
+garcon_menu_get_directory (GarconMenu *menu);
+GList *
+garcon_menu_get_menus (GarconMenu *menu);
+void
+garcon_menu_add_menu (GarconMenu *menu,
+                      GarconMenu *submenu);
+GarconMenu *
+garcon_menu_get_menu_with_name (GarconMenu *menu,
+                                const gchar *name);
+GarconMenu *
+garcon_menu_get_parent (GarconMenu *menu);
+GarconMenuItemPool *
+garcon_menu_get_item_pool (GarconMenu *menu);
+GList *
+garcon_menu_get_items (GarconMenu *menu);
+GList *
+garcon_menu_get_elements (GarconMenu *menu);
 
 struct _GarconMenuClass
 {
@@ -68,7 +82,7 @@ struct _GarconMenuClass
 
 struct _GarconMenu
 {
-  GObject              __parent__;
+  GObject __parent__;
 
   /* < private > */
   GarconMenuPrivate *priv;
