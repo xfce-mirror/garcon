@@ -19,15 +19,15 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
+
+#include "garcon-environment.h"
+#include "garcon-menu-item-action.h"
+#include "garcon-private.h"
 
 #include <gio/gio.h>
 #include <libxfce4util/libxfce4util.h>
-
-#include <garcon/garcon-environment.h>
-#include <garcon/garcon-menu-item-action.h>
-#include <garcon/garcon-private.h>
 
 /* Property identifiers */
 enum

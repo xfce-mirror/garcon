@@ -19,27 +19,27 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
+
+#include "garcon-config.h"
+#include "garcon-environment.h"
+#include "garcon-marshal.h"
+#include "garcon-menu-directory.h"
+#include "garcon-menu-element.h"
+#include "garcon-menu-item-cache.h"
+#include "garcon-menu-item.h"
+#include "garcon-menu-merger.h"
+#include "garcon-menu-node.h"
+#include "garcon-menu-parser.h"
+#include "garcon-menu-separator.h"
+#include "garcon-private.h"
+
+#include <libxfce4util/libxfce4util.h>
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
-
-#include <libxfce4util/libxfce4util.h>
-
-#include <garcon/garcon-config.h>
-#include <garcon/garcon-environment.h>
-#include <garcon/garcon-marshal.h>
-#include <garcon/garcon-menu-element.h>
-#include <garcon/garcon-menu-item.h>
-#include <garcon/garcon-menu-directory.h>
-#include <garcon/garcon-menu-item-cache.h>
-#include <garcon/garcon-menu-separator.h>
-#include <garcon/garcon-menu-node.h>
-#include <garcon/garcon-menu-parser.h>
-#include <garcon/garcon-menu-merger.h>
-#include <garcon/garcon-private.h>
 
 
 

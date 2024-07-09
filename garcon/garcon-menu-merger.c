@@ -19,17 +19,17 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <glib.h>
-#include <glib-object.h>
+#include "garcon-menu-merger.h"
+#include "garcon-menu-node.h"
+#include "garcon-menu-parser.h"
+#include "garcon-menu-tree-provider.h"
+#include "garcon-private.h"
 
-#include <garcon/garcon-menu-node.h>
-#include <garcon/garcon-menu-tree-provider.h>
-#include <garcon/garcon-menu-parser.h>
-#include <garcon/garcon-menu-merger.h>
-#include <garcon/garcon-private.h>
+#include <glib-object.h>
+#include <glib.h>
 
 
 
@@ -1264,4 +1264,3 @@ garcon_menu_merger_prepend_default_layout (GNode *node)
       g_node_append_data (layout, node_);
     }
 }
-

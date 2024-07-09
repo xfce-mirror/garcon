@@ -19,10 +19,10 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <garcon/garcon-menu-tree-provider.h>
+#include "garcon-menu-tree-provider.h"
 
 
 

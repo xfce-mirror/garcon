@@ -25,8 +25,8 @@
 #ifndef __GARCON_GTK_MENU_H__
 #define __GARCON_GTK_MENU_H__
 
-#include <gtk/gtk.h>
 #include <garcon/garcon.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 

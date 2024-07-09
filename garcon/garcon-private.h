@@ -26,6 +26,8 @@
 #ifndef __GARCON_PRIVATE_H__
 #define __GARCON_PRIVATE_H__
 
+#include <gio/gio.h>
+
 G_BEGIN_DECLS
 
 /* Macro for new g_?list_free_full function */

@@ -19,16 +19,16 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
+
+#include "garcon/garcon.h"
+
+#include <glib.h>
 
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
-
-#include <glib.h>
-
-#include <garcon/garcon.h>
 
 
 

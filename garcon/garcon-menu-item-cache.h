@@ -26,6 +26,7 @@
 #ifndef __GARCON_MENU_ITEM_CACHE_H__
 #define __GARCON_MENU_ITEM_CACHE_H__
 
+#include <garcon/garcon-menu-item.h>
 #include <glib-object.h>
 
 G_BEGIN_DECLS

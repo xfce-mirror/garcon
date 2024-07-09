@@ -19,14 +19,14 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include "config.h"
 #endif
 
-#include <glib.h>
-#include <glib-object.h>
+#include "garcon-menu-item.h"
+#include "garcon-menu-node.h"
 
-#include <garcon/garcon-menu-item.h>
-#include <garcon/garcon-menu-node.h>
+#include <glib-object.h>
+#include <glib.h>
 
 
 
@@ -877,4 +877,3 @@ garcon_menu_node_tree_free_data (GNode *tree)
   if (tree != NULL && tree->data != NULL)
     g_object_unref (tree->data);
 }
-
