@@ -4,6 +4,7 @@
 # 
 # Translators:
 # enolp <enolp@softastur.org>, 2015,2020,2024
+# Ḥavi Margallo, 2024
 # Ḷḷumex03, 2014
 # Ḷḷumex03, 2014
 msgid ""
@@ -12,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2023-05-30 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: enolp <enolp@softastur.org>, 2015,2020,2024\n"
+"Last-Translator: Ḥavi Margallo, 2024\n"
 "Language-Team: Asturian (http://app.transifex.com/xfce/garcon/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,7 +115,7 @@ msgstr "Ciencia"
 
 #: data/xfce/xfce-science.desktop.in:7
 msgid "Scientific software"
-msgstr ""
+msgstr "Software científicu"
 
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
