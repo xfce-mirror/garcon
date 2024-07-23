@@ -6,6 +6,7 @@
 # Translators:
 # Xfce Bot <transifex@xfce.org>, 2023
 # enolp <enolp@softastur.org>, 2024
+# Ḥavi Margallo, 2024
 # 
 #, fuzzy
 msgid ""
@@ -14,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-30 00:45+0200\n"
 "PO-Revision-Date: 2023-03-17 09:36+0000\n"
-"Last-Translator: enolp <enolp@softastur.org>, 2024\n"
+"Last-Translator: Ḥavi Margallo, 2024\n"
 "Language-Team: Asturian (https://app.transifex.com/xfce/teams/16840/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,7 +117,7 @@ msgstr "Ciencia"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr ""
+msgstr "Software científicu"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
