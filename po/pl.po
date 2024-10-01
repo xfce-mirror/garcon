@@ -4,16 +4,16 @@
 # 
 # Translators:
 # marcin mikołajczak <me@mkljczk.pl>, 2016
-# Marek Adamski, 2022-2023
+# Marek Adamski, 2022-2024
 # Piotr Sokół <psokol.l10n@gmail.com>, 2010,2013
 # Piotr Strębski <strebski@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-05-05 10:48+0200\n"
+"POT-Creation-Date: 2023-05-30 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Marek Adamski, 2022-2023\n"
+"Last-Translator: Marek Adamski, 2022-2024\n"
 "Language-Team: Polish (http://app.transifex.com/xfce/garcon/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +35,7 @@ msgstr "Programowanie"
 
 #: data/xfce/xfce-development.desktop.in:7
 msgid "Software development tools"
-msgstr "Zawiera narzędzia programistyczne"
+msgstr "Obejmuje narzędzia programistyczne"
 
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
@@ -43,7 +43,7 @@ msgstr "Edukacja"
 
 #: data/xfce/xfce-education.desktop.in:7
 msgid "Educational software"
-msgstr "Przechowuje oprogramowanie edukacyjne"
+msgstr "Obejmuje oprogramowanie edukacyjne"
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -51,7 +51,7 @@ msgstr "Gry"
 
 #: data/xfce/xfce-games.desktop.in:7
 msgid "Games, puzzles, and other fun software"
-msgstr "Gromadzi gry i inne oprogramowanie rozrywkowe"
+msgstr "Obejmuje gry i inne oprogramowanie rozrywkowe"
 
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
@@ -59,7 +59,7 @@ msgstr "Grafika"
 
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
-msgstr "Przechowuje programy służące do tworzenia i modyfikowania grafiki"
+msgstr "Obejmuje programy służące do tworzenia i modyfikowania grafiki"
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -91,7 +91,7 @@ msgstr "Biuro"
 
 #: data/xfce/xfce-office.desktop.in:7
 msgid "Office and productivity applications"
-msgstr "Przechowuje programy biurowe"
+msgstr "Obejmuje programy biurowe i zwiększające produktywność"
 
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
@@ -99,7 +99,7 @@ msgstr "Inne"
 
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
-msgstr "Zawiera programy nie pasujące do innych kategorii"
+msgstr "Obejmuje programy niepasujące do innych kategorii"
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -123,7 +123,7 @@ msgstr "Wygaszacze ekranu"
 
 #: data/xfce/xfce-screensavers.desktop.in:7
 msgid "Screensaver applets"
-msgstr "Gromadzi aplety wygaszacza ekranu"
+msgstr "Obejmuje aplety wygaszacza ekranu"
 
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
@@ -139,7 +139,7 @@ msgstr "System"
 
 #: data/xfce/xfce-system.desktop.in:7
 msgid "System tools and utilities"
-msgstr "Przechowuje narzędzia do zarządzania systemem"
+msgstr "Obejmuje narzędzia do zarządzania systemem"
 
 #: garcon/garcon-menu.c:716
 #, c-format
@@ -169,7 +169,7 @@ msgstr "Problem z uruchamianiem"
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr "Nie udało się uruchomić \"exo-desktop-item-edit\", który jest wymagany do tworzenia i edytowania pozycji w menu."
+msgstr "Nie udało się uruchomić „exo-desktop-item-edit”, który jest wymagany do tworzenia i edytowania pozycji w menu."
 
 #: garcon-gtk/garcon-gtk-menu.c:442
 msgid "_Close"
