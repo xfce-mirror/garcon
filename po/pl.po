@@ -67,7 +67,7 @@ msgstr "Sprzęt"
 
 #: data/xfce/xfce-hardware.desktop.in:7
 msgid "Settings for several hardware devices"
-msgstr "Ustawienia do różnych urządzeń sprzętowych"
+msgstr "Obejmuje ustawienia różnych urządzeń sprzętowych"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
@@ -107,7 +107,7 @@ msgstr "Osobiste"
 
 #: data/xfce/xfce-personal.desktop.in:7
 msgid "Personal settings"
-msgstr "Ustawienia osobiste"
+msgstr "Obejmuje ustawienia osobiste"
 
 #: data/xfce/xfce-science.desktop.in:6
 msgid "Science"
@@ -115,7 +115,7 @@ msgstr "Nauka"
 
 #: data/xfce/xfce-science.desktop.in:7
 msgid "Scientific software"
-msgstr "Oprogramowanie naukowe"
+msgstr "Obejmuje oprogramowanie naukowe"
 
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
