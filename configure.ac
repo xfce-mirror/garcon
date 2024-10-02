@@ -26,7 +26,7 @@ m4_define([garcon_version_api_major], [1])
 XDT_VERSION_INIT([4.19.1], [git])
 
 dnl minimum required versions
-m4_define([glib_min_version], [2.66.0])
+m4_define([glib_min_version], [2.72.0])
 m4_define([gtk_min_version], [3.24.0])
 m4_define([libxfce4util_min_version], [4.15.6])
 m4_define([libxfce4ui_min_version], [4.15.7])
@@ -124,7 +124,7 @@ GTK_DOC_CHECK([1.20])
 dnl ***************************************
 dnl *** Check for GObject Introspection ***
 dnl ***************************************
-GOBJECT_INTROSPECTION_CHECK([1.66.0])
+GOBJECT_INTROSPECTION_CHECK([1.72.0])
 
 dnl ***********************************
 dnl *** Check for debugging support ***
