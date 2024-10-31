@@ -1892,7 +1892,7 @@ garcon_menu_item_has_keyword (GarconMenuItem *item,
  * garcon_menu_item_get_actions:
  * @item: a #GarconMenuItem
  *
- * Returns: (element-type GarconMenuItemAction) (transfer container):
+ * Returns: (element-type utf8) (transfer container): list of action name
  */
 GList *
 garcon_menu_item_get_actions (GarconMenuItem *item)
