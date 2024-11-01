@@ -1,3 +1,19 @@
+4.19.2 (2024-11-01)
+======
+- Fix doc annotation
+- build: Bump requirements for Xfce 4.20
+- Apply .clang-format file
+- Sort includes
+- clang-format: Add file
+- gcc-analyzer: Add false positive file
+- scan-build: Add false positive file
+- build: Use AM_DISTCHECK_CONFIGURE_FLAGS
+- menu-item: Honor TryExec again
+- menu-item: Let glib check for absolute path to executable
+- Use Exec instead of TryExec for menu item visibility (#22)
+- Translation Updates:
+  Asturian, Catalan, Polish
+
 4.19.1 (2024-02-05)
 ======
 - Update copyright year
