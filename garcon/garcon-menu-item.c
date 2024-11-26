@@ -1409,6 +1409,34 @@ garcon_menu_item_get_desktop_id (GarconMenuItem *item)
 
 
 
+static void
+set_utf8_string (GarconMenuItem *item,
+                 const gchar *str,
+                 gchar **item_str,
+                 const gchar *prop_str)
+{
+  /* Abort if old and new string are equal */
+  if (g_strcmp0 (*item_str, str) == 0)
+    return;
+
+  /* Assign new string */
+  g_free (*item_str);
+  if (str != NULL && !g_utf8_validate (str, -1, NULL))
+    {
+      *item_str = g_utf8_make_valid (str, -1);
+      g_warning ("String '%s' is not valid UTF-8, converted to '%s'", str, *item_str);
+    }
+  else
+    {
+      *item_str = g_strdup (str);
+    }
+
+  /* Notify listeners */
+  g_object_notify (G_OBJECT (item), prop_str);
+}
+
+
+
 void
 garcon_menu_item_set_desktop_id (GarconMenuItem *item,
                                  const gchar *desktop_id)
@@ -1416,16 +1444,7 @@ garcon_menu_item_set_desktop_id (GarconMenuItem *item,
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
   g_return_if_fail (desktop_id != NULL);
 
-  /* Abort if old and new desktop_id are equal */
-  if (g_strcmp0 (item->priv->desktop_id, desktop_id) == 0)
-    return;
-
-  /* Assign the new desktop_id */
-  g_free (item->priv->desktop_id);
-  item->priv->desktop_id = g_strdup (desktop_id);
-
-  /* Notify listeners */
-  g_object_notify (G_OBJECT (item), "desktop-id");
+  set_utf8_string (item, desktop_id, &item->priv->desktop_id, "desktop-id");
 }
 
 
@@ -1520,16 +1539,7 @@ garcon_menu_item_set_command (GarconMenuItem *item,
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
   g_return_if_fail (command != NULL);
 
-  /* Abort if old and new command are equal */
-  if (g_strcmp0 (item->priv->command, command) == 0)
-    return;
-
-  /* Assign new command */
-  g_free (item->priv->command);
-  item->priv->command = g_strdup (command);
-
-  /* Notify listeners */
-  g_object_notify (G_OBJECT (item), "command");
+  set_utf8_string (item, command, &item->priv->command, "command");
 }
 
 
@@ -1549,16 +1559,7 @@ garcon_menu_item_set_try_exec (GarconMenuItem *item,
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
-  /* Abort if old and new try_exec are equal */
-  if (g_strcmp0 (item->priv->try_exec, try_exec) == 0)
-    return;
-
-  /* Assign new try_exec */
-  g_free (item->priv->try_exec);
-  item->priv->try_exec = g_strdup (try_exec);
-
-  /* Notify listeners */
-  g_object_notify (G_OBJECT (item), "try-exec");
+  set_utf8_string (item, try_exec, &item->priv->try_exec, "try-exec");
 }
 
 
@@ -1577,18 +1578,9 @@ garcon_menu_item_set_name (GarconMenuItem *item,
                            const gchar *name)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
-  g_return_if_fail (g_utf8_validate (name, -1, NULL));
+  g_return_if_fail (name != NULL);
 
-  /* Abort if old and new name are equal */
-  if (g_strcmp0 (item->priv->name, name) == 0)
-    return;
-
-  /* Assign new name */
-  g_free (item->priv->name);
-  item->priv->name = g_strdup (name);
-
-  /* Notify listeners */
-  g_object_notify (G_OBJECT (item), "name");
+  set_utf8_string (item, name, &item->priv->name, "name");
 }
 
 
@@ -1607,18 +1599,8 @@ garcon_menu_item_set_generic_name (GarconMenuItem *item,
                                    const gchar *generic_name)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
-  g_return_if_fail (generic_name == NULL || g_utf8_validate (generic_name, -1, NULL));
 
-  /* Abort if old and new generic name are equal */
-  if (g_strcmp0 (item->priv->generic_name, generic_name) == 0)
-    return;
-
-  /* Assign new generic_name */
-  g_free (item->priv->generic_name);
-  item->priv->generic_name = g_strdup (generic_name);
-
-  /* Notify listeners */
-  g_object_notify (G_OBJECT (item), "generic-name");
+  set_utf8_string (item, generic_name, &item->priv->generic_name, "generic-name");
 }
 
 
@@ -1637,18 +1619,8 @@ garcon_menu_item_set_comment (GarconMenuItem *item,
                               const gchar *comment)
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
-  g_return_if_fail (comment == NULL || g_utf8_validate (comment, -1, NULL));
 
-  /* Abort if old and new comment are equal */
-  if (g_strcmp0 (item->priv->comment, comment) == 0)
-    return;
-
-  /* Assign new comment */
-  g_free (item->priv->comment);
-  item->priv->comment = g_strdup (comment);
-
-  /* Notify listeners */
-  g_object_notify (G_OBJECT (item), "comment");
+  set_utf8_string (item, comment, &item->priv->comment, "comment");
 }
 
 
@@ -1668,16 +1640,7 @@ garcon_menu_item_set_icon_name (GarconMenuItem *item,
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
-  /* Abort if old and new icon name are equal */
-  if (g_strcmp0 (item->priv->icon_name, icon_name) == 0)
-    return;
-
-  /* Assign new icon name */
-  g_free (item->priv->icon_name);
-  item->priv->icon_name = g_strdup (icon_name);
-
-  /* Notify listeners */
-  g_object_notify (G_OBJECT (item), "icon-name");
+  set_utf8_string (item, icon_name, &item->priv->icon_name, "icon-name");
 }
 
 
@@ -1697,16 +1660,7 @@ garcon_menu_item_set_path (GarconMenuItem *item,
 {
   g_return_if_fail (GARCON_IS_MENU_ITEM (item));
 
-  /* Abort if old and new path are equal */
-  if (g_strcmp0 (item->priv->path, path) == 0)
-    return;
-
-  /* Assign new path */
-  g_free (item->priv->path);
-  item->priv->path = g_strdup (path);
-
-  /* Notify listeners */
-  g_object_notify (G_OBJECT (item), "path");
+  set_utf8_string (item, path, &item->priv->path, "path");
 }
 
 
