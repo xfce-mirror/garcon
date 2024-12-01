@@ -1,3 +1,9 @@
+4.19.3 (2024-12-01)
+======
+- menu-item: Ensure UTF-8 strings
+- Translation Updates:
+  Galician
+
 4.19.2 (2024-11-01)
 ======
 - Fix doc annotation
