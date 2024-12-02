@@ -169,7 +169,7 @@ msgstr "Problem z uruchamianiem"
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr "Nie udało się uruchomić „exo-desktop-item-edit”, który jest wymagany do tworzenia i edytowania pozycji w menu."
+msgstr "Nie udało się uruchomić „exo-desktop-item-edit”, który jest wymagany do tworzenia i edytowania pozycji w menu."
 
 #: garcon-gtk/garcon-gtk-menu.c:442
 msgid "_Close"
