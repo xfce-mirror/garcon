@@ -3,16 +3,19 @@
 # This file is distributed under the same license as the garcon.master package.
 # 
 # Translators:
-# Alexe Moldovan, 2017
+# ThinkRoot99, 2017
 # Mișu Moldovan <dumol@xfce.org>, 2015
+# Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>, 2024
+# ThinkRoot99, 2017
+# vyper <xvirusxx@gmail.com>, 2016
 # vyper <xvirusxx@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2023-05-30 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Alexe Moldovan, 2017\n"
+"Last-Translator: Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>, 2024\n"
 "Language-Team: Romanian (http://app.transifex.com/xfce/garcon/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,21 +23,13 @@ msgstr ""
 "Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr ""
-
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
 msgstr "Accesorii"
 
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
-msgstr "Programe și unelte comune pentru desktop"
-
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr ""
+msgstr "Aplicații și instrumente comune pentru birou"
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -42,11 +37,7 @@ msgstr "Dezvoltare"
 
 #: data/xfce/xfce-development.desktop.in:7
 msgid "Software development tools"
-msgstr "Unelte pentru dezvoltare de software"
-
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr ""
+msgstr "Instrumente pentru dezvoltare de software"
 
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
@@ -56,21 +47,13 @@ msgstr "Educație"
 msgid "Educational software"
 msgstr "Software educațional"
 
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr ""
-
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
 msgstr "Jocuri"
 
 #: data/xfce/xfce-games.desktop.in:7
 msgid "Games, puzzles, and other fun software"
-msgstr "Jocuri, puzzle-uri și alte amuzamente"
-
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr ""
+msgstr "Jocuri, puzzle-uri și alte aplicații amuzamente"
 
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
@@ -78,11 +61,7 @@ msgstr "Grafică"
 
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
-msgstr "Programe de creație și editare grafică"
-
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr ""
+msgstr "Aplicații de creație și editare grafică"
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -92,21 +71,13 @@ msgstr "Hardware"
 msgid "Settings for several hardware devices"
 msgstr "Configurații ale dispozitivelor hardware"
 
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr ""
-
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
 msgstr "Multimedia"
 
 #: data/xfce/xfce-multimedia.desktop.in:7
 msgid "Audio and video players and editors"
-msgstr "Playere și editoare audio și video"
-
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr ""
+msgstr "Reproducătoare și editoare audio și video"
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -114,11 +85,7 @@ msgstr "Internet"
 
 #: data/xfce/xfce-network.desktop.in:7
 msgid "Applications for Internet access"
-msgstr "Programe pentru accesul la net"
-
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr ""
+msgstr "Aplicații pentru accesul la Internet"
 
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
@@ -126,11 +93,7 @@ msgstr "Birou"
 
 #: data/xfce/xfce-office.desktop.in:7
 msgid "Office and productivity applications"
-msgstr "Programe de birou"
-
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr ""
+msgstr "Aplicații de birou și de organizare"
 
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
@@ -138,11 +101,7 @@ msgstr "Altele"
 
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
-msgstr "Programe ce nu se potrivesc în alte categorii"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr ""
+msgstr "Aplicații ce nu se potrivesc în alte categorii"
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -160,10 +119,6 @@ msgstr "Știință"
 msgid "Scientific software"
 msgstr "Software științific"
 
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr ""
-
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
 msgstr "Protectoare de ecran"
@@ -172,21 +127,13 @@ msgstr "Protectoare de ecran"
 msgid "Screensaver applets"
 msgstr "Module ale protectorului de ecran"
 
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr ""
-
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
 msgstr "Opțiuni"
 
 #: data/xfce/xfce-settings.desktop.in:7
 msgid "Desktop and system settings applications"
-msgstr "Programe de configurare a desktopului și a sistemului"
-
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr ""
+msgstr "Programe de configurare a biroului și a sistemului"
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
@@ -194,7 +141,7 @@ msgstr "Sistem"
 
 #: data/xfce/xfce-system.desktop.in:7
 msgid "System tools and utilities"
-msgstr "Utilitare de sistem"
+msgstr "Instrumente și ustensile de sistem"
 
 #: garcon/garcon-menu.c:716
 #, c-format
@@ -214,7 +161,7 @@ msgstr "Nu s-au putut încărca datele fișierului meniu din %s"
 #: garcon-gtk/garcon-gtk-menu.c:412
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr "Nu s-a putut executa comanda „%s”."
+msgstr "Nu s-a putut executa comanda «%s»"
 
 #: garcon-gtk/garcon-gtk-menu.c:438
 msgid "Launch Error"
@@ -224,7 +171,7 @@ msgstr "Eroare de lansare"
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr "Nu se poate lansa \"exo-desktop-item-edit\", care este necesar pentru a crea și edita elemente de meniu."
+msgstr "Nu se poate lansa «exo-desktop-item-edit», care este necesar pentru a crea și edita elemente de meniu."
 
 #: garcon-gtk/garcon-gtk-menu.c:442
 msgid "_Close"
@@ -232,4 +179,4 @@ msgstr "_Închide"
 
 #: garcon-gtk/garcon-gtk-menu.c:591
 msgid "Failed to load the applications menu"
-msgstr "Nu s-a putut încărca meniul programelor"
+msgstr "Nu s-a putut încărca meniul aplicațiilor"
