@@ -4,21 +4,20 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Alexe Moldovan, 2023
-# Dumitru Moldovan <dumol@gnome.org>, 2023
 # Xfce Bot <transifex@xfce.org>, 2023
 # Nick Schermer <nick@xfce.org>, 2023
 # Marius Ghita, 2023
+# Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>, 2024
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 10:38+0100\n"
+"POT-Creation-Date: 2023-05-30 00:45+0200\n"
 "PO-Revision-Date: 2023-03-17 09:36+0000\n"
-"Last-Translator: Marius Ghita, 2023\n"
-"Language-Team: Romanian (https://www.transifex.com/xfce/teams/16840/ro/)\n"
+"Last-Translator: Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>, 2024\n"
+"Language-Team: Romanian (https://app.transifex.com/xfce/teams/16840/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,7 +30,7 @@ msgstr "Accesorii"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr "Programe și unelte comune pentru desktop"
+msgstr "Aplicații și instrumente comune pentru birou"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
@@ -39,7 +38,7 @@ msgstr "Dezvoltare"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr "Unelte pentru dezvoltare de software"
+msgstr "Instrumente pentru dezvoltare de software"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
@@ -55,7 +54,7 @@ msgstr "Jocuri"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr "Jocuri, puzzle-uri și alte amuzamente"
+msgstr "Jocuri, puzzle-uri și alte aplicații amuzamente"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
@@ -63,7 +62,7 @@ msgstr "Grafică"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr "Programe de creație și editare grafică"
+msgstr "Aplicații de creație și editare grafică"
 
 #: ../data/xfce/xfce-hardware.directory.in.h:1
 msgid "Hardware"
@@ -79,7 +78,7 @@ msgstr "Multimedia"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
 msgid "Audio and video players and editors"
-msgstr "Playere și editoare audio și video"
+msgstr "Reproducătoare și editoare audio și video"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
 msgid "Internet"
@@ -87,7 +86,7 @@ msgstr "Internet"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
 msgid "Applications for Internet access"
-msgstr "Programe pentru accesul la net"
+msgstr "Aplicații pentru accesul la Internet"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
@@ -95,7 +94,7 @@ msgstr "Birou"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr "Programe de birou"
+msgstr "Aplicații de birou și de organizare"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
 msgid "Other"
@@ -103,7 +102,7 @@ msgstr "Altele"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
 msgid "Applications that don't fit into other categories"
-msgstr "Programe ce nu se potrivesc în alte categorii"
+msgstr "Aplicații ce nu se potrivesc în alte categorii"
 
 #: ../data/xfce/xfce-personal.directory.in.h:1
 msgid "Personal"
@@ -135,7 +134,7 @@ msgstr "Opțiuni"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
 msgid "Desktop and system settings applications"
-msgstr "Programe de configurare a desktopului și a sistemului"
+msgstr "Programe de configurare a biroului și a sistemului"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
@@ -143,7 +142,7 @@ msgstr "Sistem"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr "Utilitare de sistem"
+msgstr "Instrumente și ustensile de sistem"
 
 #: ../garcon/garcon-menu.c:716
 #, c-format
@@ -174,8 +173,8 @@ msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
 msgstr ""
-"Nu se poate lansa \"exo-desktop-item-edit\", care este necesar pentru a crea"
-" și edita elemente de meniu."
+"Nu se poate lansa «exo-desktop-item-edit», care este necesar pentru a crea "
+"și edita elemente de meniu."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:442
 msgid "_Close"
@@ -183,4 +182,4 @@ msgstr "În_chide"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:591
 msgid "Failed to load the applications menu"
-msgstr "Nu s-a putut încărca meniul programelor"
+msgstr "Nu s-a putut încărca meniul aplicațiilor"
