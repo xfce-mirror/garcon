@@ -24,6 +24,7 @@
 
 #include "garcon-menu-element.h"
 #include "garcon-menu-separator.h"
+#include "garcon-visibility.h"
 
 
 
@@ -180,3 +181,6 @@ garcon_menu_separator_get_element_equal (GarconMenuElement *element,
   /* FIXME this is inherently broken as the separator is a singleton class */
   return FALSE;
 }
+
+#define __GARCON_MENU_SEPARATOR_C__
+#include "garcon-visibility.c"

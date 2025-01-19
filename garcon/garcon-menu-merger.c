@@ -27,6 +27,7 @@
 #include "garcon-menu-parser.h"
 #include "garcon-menu-tree-provider.h"
 #include "garcon-private.h"
+#include "garcon-visibility.h"
 
 #include <glib-object.h>
 #include <glib.h>
@@ -1281,3 +1282,6 @@ garcon_menu_merger_prepend_default_layout (GNode *node)
       g_node_append_data (layout, node_);
     }
 }
+
+#define __GARCON_MENU_MERGER_C__
+#include "garcon-visibility.c"

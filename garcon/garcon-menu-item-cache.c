@@ -24,6 +24,7 @@
 
 #include "garcon-menu-item-cache.h"
 #include "garcon-menu-item.h"
+#include "garcon-visibility.h"
 
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
@@ -260,3 +261,6 @@ garcon_menu_item_cache_invalidate_file (GarconMenuItemCache *cache,
 
   g_free (uri);
 }
+
+#define __GARCON_MENU_ITEM_CACHE_C__
+#include "garcon-visibility.c"

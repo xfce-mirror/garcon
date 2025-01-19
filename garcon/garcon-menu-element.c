@@ -23,6 +23,7 @@
 #endif
 
 #include "garcon-menu-element.h"
+#include "garcon-visibility.h"
 
 
 
@@ -130,3 +131,6 @@ garcon_menu_element_equal (GarconMenuElement *a,
 
   return (*GARCON_MENU_ELEMENT_GET_IFACE (a)->equal) (a, b);
 }
+
+#define __GARCON_MENU_ELEMENT_C__
+#include "garcon-visibility.c"

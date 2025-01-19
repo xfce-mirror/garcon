@@ -30,6 +30,7 @@
 #include "garcon-menu-item-action.h"
 #include "garcon-menu-item.h"
 #include "garcon-private.h"
+#include "garcon-visibility.h"
 
 #include <gio/gio.h>
 #include <libxfce4util/libxfce4util.h>
@@ -2097,3 +2098,6 @@ garcon_menu_item_decrement_allocated (GarconMenuItem *item)
   if (item->priv->num_allocated > 0)
     item->priv->num_allocated--;
 }
+
+#define __GARCON_MENU_ITEM_C__
+#include "garcon-visibility.c"

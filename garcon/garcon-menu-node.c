@@ -24,6 +24,7 @@
 
 #include "garcon-menu-item.h"
 #include "garcon-menu-node.h"
+#include "garcon-visibility.h"
 
 #include <glib-object.h>
 #include <glib.h>
@@ -878,3 +879,6 @@ garcon_menu_node_tree_free_data (GNode *tree)
   if (tree != NULL && tree->data != NULL)
     g_object_unref (tree->data);
 }
+
+#define __GARCON_MENU_NODE_C__
+#include "garcon-visibility.c"

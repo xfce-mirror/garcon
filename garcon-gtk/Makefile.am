@@ -28,11 +28,17 @@ AM_CPPFLAGS = \
 lib_LTLIBRARIES = \
 	libgarcon-gtk3-1.la
 
+libgarcon_gtk_built_sources = \
+	garcon-gtk-visibility.c \
+	garcon-gtk-visibility.h \
+	$(NULL)
+
 libgarcon_gtk_headers = \
 	garcon-gtk.h \
 	garcon-gtk-menu.h
 
 libgarcon_gtk_sources = \
+	$(libgarcon_gtk_built_sources) \
 	garcon-gtk-menu.c
 
 
@@ -76,10 +82,26 @@ libgarcon_gtk3_1_la_LIBADD = \
 libgarcon_gtk3_1_la_DEPENDENCIES = \
 	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la
 
+EXTRA_DIST = \
+	garcon-gtk.symbols \
+	$(NULL)
+
+DISTCLEANFILES = \
+	$(libgarcon_gtk_built_sources) \
+	$(NULL)
+
+BUILT_SOURCES = \
+	$(libgarcon_gtk_built_sources) \
+	$(NULL)
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = garcon-gtk3-1.pc
 
+garcon-gtk-visibility.h: garcon-gtk.symbols Makefile
+	$(AM_V_GEN) $(XDT_GEN_VISIBILITY) --kind=header $< $@
+
+garcon-gtk-visibility.c: garcon-gtk.symbols Makefile
+	$(AM_V_GEN) $(XDT_GEN_VISIBILITY) --kind=source $< $@
 
 # Required for gtk-doc and make distcheck
 dist-hook: all
@@ -119,5 +141,5 @@ gir_DATA = $(INTROSPECTION_GIRS)
 typelibdir = $(libdir)/girepository-1.0
 typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
 
-DISTCLEANFILES = $(gir_DATA) $(typelib_DATA)
+DISTCLEANFILES += $(gir_DATA) $(typelib_DATA)
 endif

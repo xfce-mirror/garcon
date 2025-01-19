@@ -28,17 +28,16 @@ AM_CPPFLAGS = 								\
 lib_LTLIBRARIES = 							\
 	libgarcon-1.la
 
-libgarcon_built_public_sources =					\
-	garcon-marshal.h
-
 libgarcon_built_sources =						\
-	$(libgarcon_built_public_sources)				\
-	garcon-marshal.c
+	garcon-marshal.c \
+	garcon-marshal.h \
+	garcon-visibility.c \
+	garcon-visibility.h \
+	$(NULL)
 
 libgarcon_headers =							\
 	garcon.h							\
 	garcon-config.h							\
-	garcon-marshal.h						\
 	garcon-menu-element.h						\
 	garcon-menu-separator.h						\
 	garcon-menu-directory.h						\
@@ -54,8 +53,8 @@ libgarcon_headers =							\
 	garcon-menu-parser.h
 
 libgarcon_sources =							\
+	$(libgarcon_built_sources) \
 	garcon-config.c							\
-	garcon-marshal.c						\
 	garcon-menu-element.c						\
 	garcon-menu-separator.c						\
 	garcon-menu-directory.c						\
@@ -105,7 +104,9 @@ libgarcon_1_la_LIBADD = 						\
 
 EXTRA_DIST =								\
 	garcon-config.h.in						\
-	garcon-marshal.list
+	garcon-marshal.list \
+	garcon.symbols \
+	$(NULL)
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = garcon-1.pc
@@ -146,6 +147,12 @@ garcon-marshal.c: garcon-marshal.list Makefile
 	  && cp xgen-emc garcon-marshal.c \
 	  && rm -f xgen-emc \
 	)
+
+garcon-visibility.h: garcon.symbols Makefile
+	$(AM_V_GEN) $(XDT_GEN_VISIBILITY) --kind=header $< $@
+
+garcon-visibility.c: garcon.symbols Makefile
+	$(AM_V_GEN) $(XDT_GEN_VISIBILITY) --kind=source $< $@
 
 # Required for gtk-doc and make distcheck
 dist-hook: all

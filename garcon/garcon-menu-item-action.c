@@ -25,6 +25,7 @@
 #include "garcon-environment.h"
 #include "garcon-menu-item-action.h"
 #include "garcon-private.h"
+#include "garcon-visibility.h"
 
 #include <gio/gio.h>
 #include <libxfce4util/libxfce4util.h>
@@ -312,3 +313,6 @@ garcon_menu_item_action_unref (GarconMenuItemAction *action)
   /* Decrement the reference counter */
   g_object_unref (G_OBJECT (action));
 }
+
+#define __GARCON_MENU_ITEM_ACTION_C__
+#include "garcon-visibility.c"
