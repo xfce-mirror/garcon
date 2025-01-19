@@ -22,6 +22,11 @@ FIXXREF_OPTIONS=
 HFILE_GLOB=
 CFILE_GLOB=
 
+# Header files to ignore when scanning
+IGNORE_HFILES= \
+	garcon-marshal.h \
+	$(NULL)
+
 # Extra files to add when scanning (relative to $srcdir)
 EXTRA_HFILES=
 

@@ -28,17 +28,14 @@ AM_CPPFLAGS = 								\
 lib_LTLIBRARIES = 							\
 	libgarcon-1.la
 
-libgarcon_built_public_sources =					\
-	garcon-marshal.h
-
 libgarcon_built_sources =						\
-	$(libgarcon_built_public_sources)				\
-	garcon-marshal.c
+	garcon-marshal.c \
+	garcon-marshal.h \
+	$(NULL)
 
 libgarcon_headers =							\
 	garcon.h							\
 	garcon-config.h							\
-	garcon-marshal.h						\
 	garcon-menu-element.h						\
 	garcon-menu-separator.h						\
 	garcon-menu-directory.h						\
@@ -54,8 +51,8 @@ libgarcon_headers =							\
 	garcon-menu-parser.h
 
 libgarcon_sources =							\
+	$(libgarcon_built_sources) \
 	garcon-config.c							\
-	garcon-marshal.c						\
 	garcon-menu-element.c						\
 	garcon-menu-separator.c						\
 	garcon-menu-directory.c						\

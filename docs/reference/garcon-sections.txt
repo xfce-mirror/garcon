@@ -51,11 +51,6 @@ garcon_gtk_menu_get_type
 </SECTION>
 
 <SECTION>
-<FILE>garcon-marshal</FILE>
-garcon_marshal_VOID__OBJECT_OBJECT
-</SECTION>
-
-<SECTION>
 <FILE>garcon-menu</FILE>
 <TITLE>GarconMenu</TITLE>
 garcon_menu_new
