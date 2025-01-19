@@ -19,10 +19,6 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#if !defined(_GARCON_INSIDE_GARCON_H) && !defined(GARCON_COMPILATION)
-#error "Only <garcon/garcon.h> can be included directly. This file may disappear or change contents."
-#endif
-
 #ifndef __GARCON_PRIVATE_H__
 #define __GARCON_PRIVATE_H__
 
