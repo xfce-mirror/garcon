@@ -23,6 +23,7 @@
 #endif
 
 #include "garcon-menu-tree-provider.h"
+#include "garcon-visibility.h"
 
 
 
@@ -77,3 +78,6 @@ garcon_menu_tree_provider_get_file (GarconMenuTreeProvider *provider)
   g_return_val_if_fail (GARCON_IS_MENU_TREE_PROVIDER (provider), NULL);
   return (*GARCON_MENU_TREE_PROVIDER_GET_IFACE (provider)->get_file) (provider);
 }
+
+#define __GARCON_MENU_TREE_PROVIDER_C__
+#include "garcon-visibility.c"

@@ -23,6 +23,7 @@
 #endif
 
 #include "garcon-gtk-menu.h"
+#include "garcon-gtk-visibility.h"
 
 #include <libxfce4ui/libxfce4ui.h>
 #include <libxfce4util/libxfce4util.h>
@@ -1402,3 +1403,6 @@ garcon_gtk_menu_get_right_click_edits (GarconGtkMenu *menu)
   g_return_val_if_fail (GARCON_GTK_IS_MENU (menu), FALSE);
   return menu->priv->right_click_edits;
 }
+
+#define __GARCON_GTK_MENU_C__
+#include "garcon-gtk-visibility.c"

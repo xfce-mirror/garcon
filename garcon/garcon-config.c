@@ -23,6 +23,7 @@
 #endif
 
 #include "garcon-config.h"
+#include "garcon-visibility.h"
 
 
 
@@ -203,3 +204,6 @@ garcon_config_lookup (const gchar *filename)
   /* Return the path or NULL if the file could not be found */
   return path;
 }
+
+#define __GARCON_CONFIG_C__
+#include "garcon-visibility.c"

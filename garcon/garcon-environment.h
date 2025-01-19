@@ -22,8 +22,8 @@
 #error "Only <garcon/garcon.h> can be included directly. This file may disappear or change contents."
 #endif
 
-#ifndef __GARCON_MENU_ENVIRONMENT_H__
-#define __GARCON_MENU_ENVIRONMENT_H__
+#ifndef __GARCON_ENVIRONMENT_H__
+#define __GARCON_ENVIRONMENT_H__
 
 /**
  * GARCON_ENVIRONMENT_XFCE:
@@ -50,4 +50,4 @@ garcon_set_environment_xdg (const gchar *fallback_env);
 
 G_END_DECLS
 
-#endif /* !__GARCON_MENU_ENVIRONMENT_H__ */
+#endif /* !__GARCON_ENVIRONMENT_H__ */

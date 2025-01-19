@@ -24,6 +24,7 @@
 #endif
 
 #include "garcon-environment.h"
+#include "garcon-visibility.h"
 
 
 /**
@@ -102,3 +103,6 @@ garcon_set_environment_xdg (const gchar *fallback_env)
 
   garcon_set_environment (desktop);
 }
+
+#define __GARCON_ENVIRONMENT_C__
+#include "garcon-visibility.c"

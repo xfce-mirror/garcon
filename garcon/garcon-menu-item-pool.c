@@ -24,6 +24,7 @@
 
 #include "garcon-menu-item-pool.h"
 #include "garcon-menu-node.h"
+#include "garcon-visibility.h"
 
 
 
@@ -244,3 +245,6 @@ garcon_menu_item_pool_clear (GarconMenuItemPool *pool)
   g_return_if_fail (GARCON_IS_MENU_ITEM_POOL (pool));
   g_hash_table_remove_all (pool->priv->items);
 }
+
+#define __GARCON_MENU_ITEM_POOL_C__
+#include "garcon-visibility.c"

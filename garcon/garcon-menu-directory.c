@@ -25,6 +25,7 @@
 #include "garcon-environment.h"
 #include "garcon-menu-directory.h"
 #include "garcon-private.h"
+#include "garcon-visibility.h"
 
 #include <glib.h>
 #include <libxfce4util/libxfce4util.h>
@@ -701,3 +702,6 @@ garcon_menu_directory_equal (GarconMenuDirectory *directory,
   g_return_val_if_fail (GARCON_IS_MENU_DIRECTORY (other), FALSE);
   return g_file_equal (directory->priv->file, other->priv->file);
 }
+
+#define __GARCON_MENU_DIRECTORY_C__
+#include "garcon-visibility.c"

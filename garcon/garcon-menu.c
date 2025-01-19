@@ -34,6 +34,7 @@
 #include "garcon-menu-parser.h"
 #include "garcon-menu-separator.h"
 #include "garcon-private.h"
+#include "garcon-visibility.h"
 
 #include <libxfce4util/libxfce4util.h>
 
@@ -2556,3 +2557,6 @@ garcon_menu_find_file_item (GarconMenu *menu,
 
   return item;
 }
+
+#define __GARCON_MENU_C__
+#include "garcon-visibility.c"

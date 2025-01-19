@@ -92,8 +92,12 @@ garcon/garcon-marshal.h
 garcon/stamp-garcon-marshal.h
 garcon/Garcon-1.0.gir
 garcon/Garcon-1.0.typelib
+garcon/garcon-visibility.c
+garcon/garcon-visibility.h
 garcon-gtk/GarconGtk-1.0.gir
 garcon-gtk/GarconGtk-1.0.typelib
+garcon-gtk/garcon-gtk-visibility.c
+garcon-gtk/garcon-gtk-visibility.h
 m4/gtk-doc.m4
 m4/libtool.m4
 m4/lt*.m4

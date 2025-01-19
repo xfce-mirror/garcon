@@ -59,8 +59,6 @@ struct _GarconMenuItemAction
 
 GType
 garcon_menu_item_action_get_type (void) G_GNUC_CONST;
-GarconMenuItemAction *
-garcon_menu_item_action_new (void) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 
 const gchar *
 garcon_menu_item_action_get_command (GarconMenuItemAction *action);

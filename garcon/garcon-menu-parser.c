@@ -25,6 +25,7 @@
 #include "garcon-menu-node.h"
 #include "garcon-menu-parser.h"
 #include "garcon-menu-tree-provider.h"
+#include "garcon-visibility.h"
 
 #include <gio/gio.h>
 #include <glib-object.h>
@@ -719,3 +720,6 @@ garcon_menu_parser_characters (GMarkupParseContext *context,
   /* Invalidate node type information */
   parser_context->node_type = GARCON_MENU_PARSER_NODE_TYPE_NONE;
 }
+
+#define __GARCON_MENU_PARSER_C__
+#include "garcon-visibility.c"

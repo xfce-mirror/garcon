@@ -31,6 +31,8 @@ lib_LTLIBRARIES = 							\
 libgarcon_built_sources =						\
 	garcon-marshal.c \
 	garcon-marshal.h \
+	garcon-visibility.c \
+	garcon-visibility.h \
 	$(NULL)
 
 libgarcon_headers =							\
@@ -102,7 +104,9 @@ libgarcon_1_la_LIBADD = 						\
 
 EXTRA_DIST =								\
 	garcon-config.h.in						\
-	garcon-marshal.list
+	garcon-marshal.list \
+	garcon.symbols \
+	$(NULL)
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = garcon-1.pc
@@ -143,6 +147,12 @@ garcon-marshal.c: garcon-marshal.list Makefile
 	  && cp xgen-emc garcon-marshal.c \
 	  && rm -f xgen-emc \
 	)
+
+garcon-visibility.h: garcon.symbols Makefile
+	$(AM_V_GEN) $(XDT_GEN_VISIBILITY) --kind=header $< $@
+
+garcon-visibility.c: garcon.symbols Makefile
+	$(AM_V_GEN) $(XDT_GEN_VISIBILITY) --kind=source $< $@
 
 # Required for gtk-doc and make distcheck
 dist-hook: all
