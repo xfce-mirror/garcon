@@ -20,9 +20,8 @@
 AM_CPPFLAGS = 								\
 	-I$(top_srcdir)							\
 	-DGARCON_COMPILATION						\
-	-DGARCON_VERSION_API=\"$(GARCON_VERSION_API)\"			\
 	-DG_LOG_DOMAIN=\"garcon\"					\
-	-DSYSCONFIGDIR=\"$(sysconfdir)/xdg\"				\
+	-DSYSCONFDIR=\"$(sysconfdir)/xdg\"				\
 	$(PLATFORM_CFLAGS)
 
 lib_LTLIBRARIES = 							\
@@ -106,6 +105,7 @@ EXTRA_DIST =								\
 	garcon-config.h.in						\
 	garcon-marshal.list \
 	garcon.symbols \
+	meson.build \
 	$(NULL)
 
 pkgconfigdir = $(libdir)/pkgconfig

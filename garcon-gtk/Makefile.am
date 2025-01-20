@@ -19,10 +19,8 @@
 
 AM_CPPFLAGS = \
 	-I$(top_srcdir) \
-	-DGARCON_COMPILATION \
-	-DGARCON_VERSION_API=\"$(GARCON_VERSION_API)\" \
-	-DG_LOG_DOMAIN=\"garcon\" \
-	-DSYSCONFIGDIR=\"$(sysconfdir)/xdg\" \
+	-DGARCON_GTK_COMPILATION \
+	-DG_LOG_DOMAIN=\"garcon-gtk\" \
 	$(PLATFORM_CFLAGS)
 
 lib_LTLIBRARIES = \
@@ -84,6 +82,7 @@ libgarcon_gtk3_1_la_DEPENDENCIES = \
 
 EXTRA_DIST = \
 	garcon-gtk.symbols \
+	meson.build \
 	$(NULL)
 
 DISTCLEANFILES = \
@@ -114,7 +113,7 @@ INTROSPECTION_SCANNER_ARGS = \
 	--add-include-path=$(top_buildir)/garcon \
 	--include-uninstalled=$(top_builddir)/garcon/Garcon-1.0.gir \
 	--warn-all \
-	-DGARCON_COMPILATION \
+	-DGARCON_GTK_COMPILATION \
 	--c-include=garcon-gtk/garcon-gtk.h
 INTROSPECTION_COMPILER_ARGS = \
 	--includedir=$(srcdir) \

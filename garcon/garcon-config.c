@@ -194,7 +194,7 @@ garcon_config_lookup (const gchar *filename)
 
   /* Also try the install prefix of garcon in case XDG_CONFIG_DIRS is not
    * properly set (startxfce4 for exaple should take care of that) */
-  path = g_build_filename (SYSCONFIGDIR, filename, NULL);
+  path = g_build_filename (SYSCONFDIR, filename, NULL);
   if (g_path_is_absolute (path) && g_file_test (path, G_FILE_TEST_IS_REGULAR))
     return path;
 
