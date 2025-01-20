@@ -88,3 +88,7 @@ test_display_menu_gtk3_LDADD =					\
 	$(GTK3_LIBS)							\
 	$(top_builddir)/garcon/libgarcon-$(GARCON_VERSION_API).la	\
 	$(top_builddir)/garcon-gtk/libgarcon-gtk3-1.la
+
+EXTRA_DIST = \
+	meson.build \
+	$(NULL)

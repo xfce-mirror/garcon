@@ -106,6 +106,7 @@ EXTRA_DIST =								\
 	garcon-config.h.in						\
 	garcon-marshal.list \
 	garcon.symbols \
+	meson.build \
 	$(NULL)
 
 pkgconfigdir = $(libdir)/pkgconfig

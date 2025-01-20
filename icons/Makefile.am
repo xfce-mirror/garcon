@@ -1,5 +1,9 @@
 SUBDIRS = 32x32 64x64
 
+EXTRA_DIST = \
+	meson.build \
+	$(NULL)
+
 gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
 
 install-data-hook:
