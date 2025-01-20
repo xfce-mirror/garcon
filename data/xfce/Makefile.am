@@ -48,7 +48,9 @@ directory_DATA = $(directory_in_files:.desktop.in=.directory)
 
 EXTRA_DIST =								\
 	$(directory_in_files)						\
-	$(menu_DATA)
+	$(menu_DATA) \
+	meson.build \
+	$(NULL)
 
 DISTCLEANFILES =							\
 	$(directory_DATA)

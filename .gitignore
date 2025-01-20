@@ -57,7 +57,7 @@ garcon-config.h
 ABOUT-NLS
 INSTALL
 m4/*
-!m4/introspection
+!m4/introspection.m4
 po/POTFILES
 po/stamp-po
 po/Makevars.template
