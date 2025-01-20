@@ -50,7 +50,12 @@ EXTRA_DIST =								\
 	COPYING								\
 	ChangeLog							\
 	NEWS								\
-	m4/introspection.m4
+	m4/introspection.m4 \
+	meson.build \
+	meson_options.txt \
+	po/meson.build \
+	xfce-revision.h.in \
+	$(NULL)
 
 AM_DISTCHECK_CONFIGURE_FLAGS =						\
 	--enable-gtk-doc                                                \

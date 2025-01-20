@@ -22,6 +22,7 @@
 #include "config.h"
 #endif
 
+#include "garcon/garcon-private.h"
 #include "garcon/garcon.h"
 
 #include <glib.h>
@@ -265,7 +266,7 @@ main (int argc,
     {
       prefix = g_getenv ("XDG_MENU_PREFIX");
       relative_filename = g_strconcat ("menus", G_DIR_SEPARATOR_S,
-                                       prefix != NULL ? prefix : "", "applications.menu",
+                                       prefix != NULL ? prefix : _GARCON_DEFAULT_MENU_PREFIX, "applications.menu",
                                        NULL);
 
       /* Search for the menu file */

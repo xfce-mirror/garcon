@@ -61,3 +61,8 @@ GTKDOC_LIBS =								\
 	$(top_builddir)/garcon-gtk/libgarcon-gtk3-1.la
 
 include $(top_srcdir)/gtk-doc.make
+
+EXTRA_DIST = \
+	gtkdocentities.ent.in \
+	meson.build \
+	$(NULL)
