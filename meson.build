@@ -154,4 +154,6 @@ subdir('garcon-gtk')
 subdir('docs' / 'reference')
 subdir('icons')
 subdir('po')
-subdir('tests')
+if get_option('tests')
+  subdir('tests')
+endif

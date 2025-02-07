@@ -18,3 +18,10 @@ option(
   value: true,
   description: 'Build with GNU symbol visibility',
 )
+
+option(
+  'tests',
+  type: 'boolean',
+  value: true,
+  description: 'Whether or not to build test programs',
+)
