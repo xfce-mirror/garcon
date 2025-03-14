@@ -5,23 +5,20 @@
 # Translators:
 # Edson César Cunha de Oliveira <edsono@gmail.com>, 2014
 # Pierre Vittet, 2012
+# Warut Bunprasert <warut.b@disroot.org>, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2023-05-30 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Edson César Cunha de Oliveira <edsono@gmail.com>, 2014\n"
+"Last-Translator: Warut Bunprasert <warut.b@disroot.org>, 2025\n"
 "Language-Team: Esperanto (http://app.transifex.com/xfce/garcon/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: eo\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr ""
 
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
@@ -31,10 +28,6 @@ msgstr "Akcesoraĵoj"
 msgid "Common desktop tools and applications"
 msgstr "Kutimaj Labortablaj iloj kaj aplikaĵoj"
 
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr ""
-
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
 msgstr "Programado"
@@ -42,10 +35,6 @@ msgstr "Programado"
 #: data/xfce/xfce-development.desktop.in:7
 msgid "Software development tools"
 msgstr "Programadaj iloj"
-
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr ""
 
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
@@ -55,10 +44,6 @@ msgstr "Edukado"
 msgid "Educational software"
 msgstr "Edukada programaro"
 
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr ""
-
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
 msgstr "Ludoj"
@@ -66,10 +51,6 @@ msgstr "Ludoj"
 #: data/xfce/xfce-games.desktop.in:7
 msgid "Games, puzzles, and other fun software"
 msgstr "Ludoj, puzloj, kay alia plezura programaro"
-
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr ""
 
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
@@ -79,10 +60,6 @@ msgstr "Grafikoj"
 msgid "Graphics creation and manipulation applications"
 msgstr "Grafikoj kreaĵoj kaj manipulada programaro"
 
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr ""
-
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
 msgstr "Aparataro"
@@ -90,10 +67,6 @@ msgstr "Aparataro"
 #: data/xfce/xfce-hardware.desktop.in:7
 msgid "Settings for several hardware devices"
 msgstr "Agordoj pri diversaj aparatoj"
-
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr ""
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
@@ -103,10 +76,6 @@ msgstr "Plurmedio"
 msgid "Audio and video players and editors"
 msgstr "Plurmedialudiloj kaj -redaktiloj"
 
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr ""
-
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
 msgstr "Interreto"
@@ -114,10 +83,6 @@ msgstr "Interreto"
 #: data/xfce/xfce-network.desktop.in:7
 msgid "Applications for Internet access"
 msgstr "Programaj pri Interretaliro"
-
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr ""
 
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
@@ -127,10 +92,6 @@ msgstr "Oficejo"
 msgid "Office and productivity applications"
 msgstr "Officeja kaj produktiveca programaro"
 
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr ""
-
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
 msgstr "Alio"
@@ -138,10 +99,6 @@ msgstr "Alio"
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
 msgstr "Programoj kio ne estas en aliaj kategorioj"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr ""
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -153,15 +110,11 @@ msgstr "Personaj agordoj"
 
 #: data/xfce/xfce-science.desktop.in:6
 msgid "Science"
-msgstr ""
+msgstr "Scienco"
 
 #: data/xfce/xfce-science.desktop.in:7
 msgid "Scientific software"
-msgstr ""
-
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr ""
+msgstr "Scienca softvaro"
 
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
@@ -171,10 +124,6 @@ msgstr "Ekrankurtenoj"
 msgid "Screensaver applets"
 msgstr "Ekrankurtenaj aplikaĵetoj"
 
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr ""
-
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
 msgstr "Agordoj"
@@ -182,10 +131,6 @@ msgstr "Agordoj"
 #: data/xfce/xfce-settings.desktop.in:7
 msgid "Desktop and system settings applications"
 msgstr "Programoj pri sistemaj kaj labortablaj agordoj"
-
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr ""
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
@@ -217,13 +162,13 @@ msgstr "Fiaskis lanĉi la komando \"%s\"."
 
 #: garcon-gtk/garcon-gtk-menu.c:438
 msgid "Launch Error"
-msgstr ""
+msgstr "Lanĉa eraro"
 
 #: garcon-gtk/garcon-gtk-menu.c:440
 msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
-msgstr ""
+msgstr "Ne povas lanĉi \"exo-desktop-item-edit\", kiu estas bezonata por krei kaj readkti menueron."
 
 #: garcon-gtk/garcon-gtk-menu.c:442
 msgid "_Close"
