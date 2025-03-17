@@ -790,7 +790,7 @@ garcon_menu_item_url_exec (XfceRc *rc)
           string = g_string_append_c (string, *p);
       string = g_string_append_c (string, '\0');
 #endif
-      url_exec = g_strdup_printf ("exo-open '%s'", string->str);
+      url_exec = g_strdup_printf ("xfce-open '%s'", string->str);
       g_string_free (string, TRUE);
     }
 

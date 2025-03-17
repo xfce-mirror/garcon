@@ -19,7 +19,7 @@ i18n = import('i18n')
 dependency_versions = {
   'glib': '>= 2.72.0',
   'gtk': '>= 3.24.0',
-  'libxfce4ui': '>= 4.15.7',
+  'libxfce4ui': '>= 4.21.0',
   'libxfce4util': '>= 4.15.6',
 
   'gir': '>= 1.72.0',

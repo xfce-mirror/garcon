@@ -29,7 +29,7 @@ dnl minimum required versions
 m4_define([glib_min_version], [2.72.0])
 m4_define([gtk_min_version], [3.24.0])
 m4_define([libxfce4util_min_version], [4.15.6])
-m4_define([libxfce4ui_min_version], [4.15.7])
+m4_define([libxfce4ui_min_version], [4.21.0])
 
 dnl ***************************
 dnl *** Initialize autoconf ***
