@@ -19,8 +19,8 @@ i18n = import('i18n')
 dependency_versions = {
   'glib': '>= 2.72.0',
   'gtk': '>= 3.24.0',
+  'xfce4': '>= 4.18.0',
   'libxfce4ui': '>= 4.21.0',
-  'libxfce4util': '>= 4.15.6',
 
   'gir': '>= 1.72.0',
 }
@@ -31,7 +31,7 @@ gobject = dependency('gobject-2.0', version: dependency_versions['glib'])
 gthread = dependency('gthread-2.0', version: dependency_versions['glib'])
 gtk = dependency('gtk+-3.0', version: dependency_versions['gtk'])
 libxfce4ui = dependency('libxfce4ui-2', version: dependency_versions['libxfce4ui'])
-libxfce4util = dependency('libxfce4util-1.0', version: dependency_versions['libxfce4util'])
+libxfce4util = dependency('libxfce4util-1.0', version: dependency_versions['xfce4'])
 
 xdt_gen_visibility = find_program('xdt-gen-visibility', required: true)
 

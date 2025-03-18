@@ -28,7 +28,7 @@ XDT_VERSION_INIT([4.20.0], [git])
 dnl minimum required versions
 m4_define([glib_min_version], [2.72.0])
 m4_define([gtk_min_version], [3.24.0])
-m4_define([libxfce4util_min_version], [4.15.6])
+m4_define([xfce4_min_version], [4.18.0])
 m4_define([libxfce4ui_min_version], [4.21.0])
 
 dnl ***************************
@@ -114,7 +114,7 @@ XDT_CHECK_PACKAGE([GIO], [gio-2.0], [glib_min_version])
 XDT_CHECK_PACKAGE([GOBJECT], [gobject-2.0], [glib_min_version])
 XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [glib_min_version])
 XDT_CHECK_PACKAGE([GTK3], [gtk+-3.0], [gtk_min_version])
-XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [libxfce4util_min_version])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [xfce4_min_version])
 XDT_CHECK_PACKAGE([LIBXFCE4UI2], [libxfce4ui-2], [libxfce4ui_min_version])
 
 dnl *************************
