@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2025-03-19 00:45+0100\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
 "Last-Translator: Triyan W. Nugroho <triyan.wn@gmail.com>, 2022\n"
 "Language-Team: Indonesian (http://app.transifex.com/xfce/garcon/language/id/)\n"
@@ -21,10 +21,6 @@ msgstr ""
 "Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr ""
-
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
 msgstr "Aksesoris"
@@ -32,10 +28,6 @@ msgstr "Aksesoris"
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
 msgstr "Peralatan dan aplikasi desktop umum"
-
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr ""
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -45,10 +37,6 @@ msgstr "Pengembangan"
 msgid "Software development tools"
 msgstr "Peralatan pengembangan perangkat lunak"
 
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr ""
-
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
 msgstr "Edukasi"
@@ -56,10 +44,6 @@ msgstr "Edukasi"
 #: data/xfce/xfce-education.desktop.in:7
 msgid "Educational software"
 msgstr "Perangkat lunak edukasi"
-
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr ""
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -69,10 +53,6 @@ msgstr "Permainan"
 msgid "Games, puzzles, and other fun software"
 msgstr "Permainan, teka-teki, dan perangkat lunak hiburan lain"
 
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr ""
-
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
 msgstr "Grafis"
@@ -80,10 +60,6 @@ msgstr "Grafis"
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
 msgstr "Aplikasi kreasi dan sunting grafis"
-
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr ""
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -93,10 +69,6 @@ msgstr "Peranti keras"
 msgid "Settings for several hardware devices"
 msgstr "Pengaturan untuk beberapa divais peranti keras"
 
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr ""
-
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
 msgstr "Multimedia"
@@ -104,10 +76,6 @@ msgstr "Multimedia"
 #: data/xfce/xfce-multimedia.desktop.in:7
 msgid "Audio and video players and editors"
 msgstr "Aplikasi pemutar dan editor audio-video"
-
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr ""
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -117,10 +85,6 @@ msgstr "Internet"
 msgid "Applications for Internet access"
 msgstr "Aplikasi untuk Mengakses Internet"
 
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr ""
-
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
 msgstr "Perkantoran"
@@ -129,10 +93,6 @@ msgstr "Perkantoran"
 msgid "Office and productivity applications"
 msgstr "Aplikasi kantor dan produktivitas"
 
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr ""
-
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
 msgstr "Lainnya"
@@ -140,10 +100,6 @@ msgstr "Lainnya"
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
 msgstr "Aplikasi lainnya"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr ""
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -161,10 +117,6 @@ msgstr "Sains"
 msgid "Scientific software"
 msgstr "Perangkat lunak ilmiah"
 
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr ""
-
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
 msgstr "Penyimpan Layar"
@@ -172,10 +124,6 @@ msgstr "Penyimpan Layar"
 #: data/xfce/xfce-screensavers.desktop.in:7
 msgid "Screensaver applets"
 msgstr "Aplet penyimpan layar"
-
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr ""
 
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
@@ -185,10 +133,6 @@ msgstr "Konfigurasi"
 msgid "Desktop and system settings applications"
 msgstr "Aplikasi penyetel sistem dan desktop"
 
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr ""
-
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
 msgstr "Sistem"
@@ -197,40 +141,40 @@ msgstr "Sistem"
 msgid "System tools and utilities"
 msgstr "Utilitas sistem"
 
-#: garcon/garcon-menu.c:716
+#: garcon/garcon-menu.c:751
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Berkas \"%s\" tak ditemukan"
 
-#: garcon/garcon-menu-parser.c:277
+#: garcon/garcon-menu-parser.c:286
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Gagal memuat data berkas menu dari %s: %s"
 
-#: garcon/garcon-menu-parser.c:284
+#: garcon/garcon-menu-parser.c:293
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Gagal memuat data berkas menu dari %s"
 
-#: garcon-gtk/garcon-gtk-menu.c:412
+#: garcon-gtk/garcon-gtk-menu.c:428
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Gagal menjalankan perintah \"%s\"."
 
-#: garcon-gtk/garcon-gtk-menu.c:438
+#: garcon-gtk/garcon-gtk-menu.c:454
 msgid "Launch Error"
 msgstr "Peluncuran Gagal"
 
-#: garcon-gtk/garcon-gtk-menu.c:440
+#: garcon-gtk/garcon-gtk-menu.c:455
 msgid ""
-"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
-"edit menu items."
-msgstr "Tidak dapat meluncurkan \"exo-desktop-item-edit\", yang diperlukan untuk membuat dan menyunting item menu."
+"Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
+" edit menu items."
+msgstr ""
 
-#: garcon-gtk/garcon-gtk-menu.c:442
+#: garcon-gtk/garcon-gtk-menu.c:456
 msgid "_Close"
 msgstr "_Tutup"
 
-#: garcon-gtk/garcon-gtk-menu.c:591
+#: garcon-gtk/garcon-gtk-menu.c:605
 msgid "Failed to load the applications menu"
 msgstr "Gagal memuat menu aplikasi"
