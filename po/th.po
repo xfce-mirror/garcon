@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2025-03-19 00:45+0100\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>, 2013\n"
 "Language-Team: Thai (http://app.transifex.com/xfce/garcon/language/th/)\n"
@@ -18,10 +18,6 @@ msgstr ""
 "Language: th\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr ""
-
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
 msgstr "เครื่องใช้ไม้สอย"
@@ -29,10 +25,6 @@ msgstr "เครื่องใช้ไม้สอย"
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
 msgstr "เครื่องมือและโปรแกรมเดสก์ท็อปทั่วไป"
-
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr ""
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -42,10 +34,6 @@ msgstr "พัฒนาโปรแกรม"
 msgid "Software development tools"
 msgstr "เครื่องมือพัฒนาโปรแกรม"
 
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr ""
-
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
 msgstr "การศึกษา"
@@ -53,10 +41,6 @@ msgstr "การศึกษา"
 #: data/xfce/xfce-education.desktop.in:7
 msgid "Educational software"
 msgstr "ซอฟต์แวร์เพื่อการศึกษา"
-
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr ""
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -66,10 +50,6 @@ msgstr "เกม"
 msgid "Games, puzzles, and other fun software"
 msgstr "เกม, ปริศนา และซอฟต์แวร์เพื่อความสนุกสนานอื่นๆ"
 
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr ""
-
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
 msgstr "รูปภาพ"
@@ -77,10 +57,6 @@ msgstr "รูปภาพ"
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
 msgstr "โปรแกรมสำหรับสร้างและปรับแต่งรูปภาพ"
-
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr ""
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -90,10 +66,6 @@ msgstr "ฮาร์ดแวร์"
 msgid "Settings for several hardware devices"
 msgstr "ตั้งค่าอุปกรณ์ฮาร์ดแวร์ต่างๆ"
 
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr ""
-
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
 msgstr "สื่อผสม"
@@ -101,10 +73,6 @@ msgstr "สื่อผสม"
 #: data/xfce/xfce-multimedia.desktop.in:7
 msgid "Audio and video players and editors"
 msgstr "โปรแกรมเล่นและแก้ไขเสียงและวีดิทัศน์"
-
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr ""
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -114,10 +82,6 @@ msgstr "อินเทอร์เน็ต"
 msgid "Applications for Internet access"
 msgstr "โปรแกรมสำหรับเข้าอินเทอร์เน็ต"
 
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr ""
-
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
 msgstr "สำนักงาน"
@@ -126,10 +90,6 @@ msgstr "สำนักงาน"
 msgid "Office and productivity applications"
 msgstr "โปรแกรมสำหรับสำนักงานและผลิตภาพ"
 
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr ""
-
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
 msgstr "อื่นๆ"
@@ -137,10 +97,6 @@ msgstr "อื่นๆ"
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
 msgstr "โปรแกรมที่ไม่อยู่ในหมวดอื่นๆ"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr ""
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -158,10 +114,6 @@ msgstr ""
 msgid "Scientific software"
 msgstr ""
 
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr ""
-
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
 msgstr "โปรแกรมรักษาหน้าจอ"
@@ -169,10 +121,6 @@ msgstr "โปรแกรมรักษาหน้าจอ"
 #: data/xfce/xfce-screensavers.desktop.in:7
 msgid "Screensaver applets"
 msgstr "แอพเพล็ตของโปรแกรมรักษาหน้าจอ"
-
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr ""
 
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
@@ -182,10 +130,6 @@ msgstr "ตั้งค่า"
 msgid "Desktop and system settings applications"
 msgstr "โปรแกรมสำหรับตั้งค่าเดสก์ท็อปและระบบ"
 
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr ""
-
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
 msgstr "ระบบ"
@@ -194,40 +138,40 @@ msgstr "ระบบ"
 msgid "System tools and utilities"
 msgstr "เครื่องมือระบบ"
 
-#: garcon/garcon-menu.c:716
+#: garcon/garcon-menu.c:751
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "ไม่พบแฟ้ม \"%s\""
 
-#: garcon/garcon-menu-parser.c:277
+#: garcon/garcon-menu-parser.c:286
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "ไม่สามารถโหลดข้อมูลแฟ้มเมนูจาก %s: %s"
 
-#: garcon/garcon-menu-parser.c:284
+#: garcon/garcon-menu-parser.c:293
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "ไม่สามารถโหลดข้อมูลแฟ้มเมนูจาก %s"
 
-#: garcon-gtk/garcon-gtk-menu.c:412
+#: garcon-gtk/garcon-gtk-menu.c:428
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "เรียกทำงานคำสั่ง \"%s\" ไม่สำเร็จ"
 
-#: garcon-gtk/garcon-gtk-menu.c:438
+#: garcon-gtk/garcon-gtk-menu.c:454
 msgid "Launch Error"
 msgstr "ข้อผิดพลาดในการเรียกทำงาน"
 
-#: garcon-gtk/garcon-gtk-menu.c:440
+#: garcon-gtk/garcon-gtk-menu.c:455
 msgid ""
-"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
-"edit menu items."
-msgstr "ไม่สามารถเรียกทำงาน \"exo-desktop-item-edit\" ซึ่งจำเป็นในการสร้างและแก้ไขรายการเมนูต่างๆ"
+"Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
+" edit menu items."
+msgstr ""
 
-#: garcon-gtk/garcon-gtk-menu.c:442
+#: garcon-gtk/garcon-gtk-menu.c:456
 msgid "_Close"
 msgstr "ปิ_ด"
 
-#: garcon-gtk/garcon-gtk-menu.c:591
+#: garcon-gtk/garcon-gtk-menu.c:605
 msgid "Failed to load the applications menu"
 msgstr "โหลดเมนูโปรแกรมไม่สำเร็จ"
