@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2025-03-19 00:45+0100\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
 "Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2020,2022\n"
 "Language-Team: Estonian (http://app.transifex.com/xfce/garcon/language/et/)\n"
@@ -19,10 +19,6 @@ msgstr ""
 "Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr ""
-
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
 msgstr "Tarvikud"
@@ -30,10 +26,6 @@ msgstr "Tarvikud"
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
 msgstr "Tavalised töölaua tööriistad ja rakendused"
-
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr ""
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -43,10 +35,6 @@ msgstr "Arendus"
 msgid "Software development tools"
 msgstr "Tarkvaraarenduse tööriistad"
 
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr ""
-
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
 msgstr "Haridus"
@@ -54,10 +42,6 @@ msgstr "Haridus"
 #: data/xfce/xfce-education.desktop.in:7
 msgid "Educational software"
 msgstr "Hariduslik tarkvara"
-
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr ""
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -67,10 +51,6 @@ msgstr "Mängud"
 msgid "Games, puzzles, and other fun software"
 msgstr "Mängud, pusled ja muu lõbus tarkvara"
 
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr ""
-
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
 msgstr "Graafika"
@@ -78,10 +58,6 @@ msgstr "Graafika"
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
 msgstr "Graafika loomise ja muutmise rakendused"
-
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr ""
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -91,10 +67,6 @@ msgstr "Riistvara"
 msgid "Settings for several hardware devices"
 msgstr "Erinevate riistvaraliste seadmete sätted"
 
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr ""
-
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
 msgstr "Multimeedia"
@@ -102,10 +74,6 @@ msgstr "Multimeedia"
 #: data/xfce/xfce-multimedia.desktop.in:7
 msgid "Audio and video players and editors"
 msgstr "Heli- ja videomängijad ja töötlejad"
-
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr ""
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -115,10 +83,6 @@ msgstr "Internet"
 msgid "Applications for Internet access"
 msgstr "Rakendused interneti kasutamiseks"
 
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr ""
-
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
 msgstr "Kontor"
@@ -127,10 +91,6 @@ msgstr "Kontor"
 msgid "Office and productivity applications"
 msgstr "Kontoritarkvara ja teised tööprogrammid"
 
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr ""
-
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
 msgstr "Muud"
@@ -138,10 +98,6 @@ msgstr "Muud"
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
 msgstr "Ülejäänud rakendused, mis mujale ei sobinud"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr ""
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -159,10 +115,6 @@ msgstr "Teadus"
 msgid "Scientific software"
 msgstr "Teadustööks mõeldud tarkvara"
 
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr ""
-
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
 msgstr "Ekraanisäästjad"
@@ -170,10 +122,6 @@ msgstr "Ekraanisäästjad"
 #: data/xfce/xfce-screensavers.desktop.in:7
 msgid "Screensaver applets"
 msgstr "Ekraanisäästmise rakendid"
-
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr ""
 
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
@@ -183,10 +131,6 @@ msgstr "Seaded"
 msgid "Desktop and system settings applications"
 msgstr "Töölaua ja süsteemi seadistuse muutmise rakendused"
 
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr ""
-
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
 msgstr "Süsteem"
@@ -195,40 +139,40 @@ msgstr "Süsteem"
 msgid "System tools and utilities"
 msgstr "Süsteemi tööriistad ja vahendid"
 
-#: garcon/garcon-menu.c:716
+#: garcon/garcon-menu.c:751
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Faili „%s“ ei leidunud"
 
-#: garcon/garcon-menu-parser.c:277
+#: garcon/garcon-menu-parser.c:286
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Menüüfaili andmeid ei suudetud laadida failist %s: %s"
 
-#: garcon/garcon-menu-parser.c:284
+#: garcon/garcon-menu-parser.c:293
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Menüüfaili andmeid ei suudetud laadida failist %s"
 
-#: garcon-gtk/garcon-gtk-menu.c:412
+#: garcon-gtk/garcon-gtk-menu.c:428
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Käsu „%s“ käivitamine ebaõnnestus."
 
-#: garcon-gtk/garcon-gtk-menu.c:438
+#: garcon-gtk/garcon-gtk-menu.c:454
 msgid "Launch Error"
 msgstr "Viga käivitamisel"
 
-#: garcon-gtk/garcon-gtk-menu.c:440
+#: garcon-gtk/garcon-gtk-menu.c:455
 msgid ""
-"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
-"edit menu items."
-msgstr "Ei saa käivitada „exo-desktop-item-edit“, mida on vaja menüükirjete loomiseks ja muutmiseks."
+"Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
+" edit menu items."
+msgstr ""
 
-#: garcon-gtk/garcon-gtk-menu.c:442
+#: garcon-gtk/garcon-gtk-menu.c:456
 msgid "_Close"
 msgstr "_Sulge"
 
-#: garcon-gtk/garcon-gtk-menu.c:591
+#: garcon-gtk/garcon-gtk-menu.c:605
 msgid "Failed to load the applications menu"
 msgstr "Rakenduste menüü laadimine nurjus"
