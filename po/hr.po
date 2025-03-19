@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2025-03-19 00:45+0100\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
 "Last-Translator: Lovro Kudelić <lovro.kudelic@outlook.com>, 2016\n"
 "Language-Team: Croatian (http://app.transifex.com/xfce/garcon/language/hr/)\n"
@@ -21,10 +21,6 @@ msgstr ""
 "Language: hr\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr ""
-
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
 msgstr "Pomagala"
@@ -32,10 +28,6 @@ msgstr "Pomagala"
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
 msgstr "Uobičajeni alati i pogrami radne površine"
-
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr ""
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -45,10 +37,6 @@ msgstr "Razvoj"
 msgid "Software development tools"
 msgstr "Alati za razvoj softwera"
 
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr ""
-
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
 msgstr "Obrazovanje"
@@ -56,10 +44,6 @@ msgstr "Obrazovanje"
 #: data/xfce/xfce-education.desktop.in:7
 msgid "Educational software"
 msgstr "Obrazovni software"
-
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr ""
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -69,10 +53,6 @@ msgstr "Igre"
 msgid "Games, puzzles, and other fun software"
 msgstr "Igre,zagonetke i drugi zabavni software"
 
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr ""
-
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
 msgstr "Grafika"
@@ -80,10 +60,6 @@ msgstr "Grafika"
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
 msgstr "Programi za kreiranje i manipulaciju grafikom"
-
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr ""
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -93,10 +69,6 @@ msgstr "Sklopovlje"
 msgid "Settings for several hardware devices"
 msgstr "Postavke za nekoliko uređaja sklopovlja"
 
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr ""
-
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
 msgstr "Multimedija"
@@ -104,10 +76,6 @@ msgstr "Multimedija"
 #: data/xfce/xfce-multimedia.desktop.in:7
 msgid "Audio and video players and editors"
 msgstr "Audio i video svirači i uređivači"
-
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr ""
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -117,10 +85,6 @@ msgstr "Internet"
 msgid "Applications for Internet access"
 msgstr "Programi za pristup internetu"
 
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr ""
-
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
 msgstr "Ured"
@@ -129,10 +93,6 @@ msgstr "Ured"
 msgid "Office and productivity applications"
 msgstr "Programi ureda i produktivnosti"
 
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr ""
-
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
 msgstr "Ostalo"
@@ -140,10 +100,6 @@ msgstr "Ostalo"
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
 msgstr "Programi koji ne spadaju u druge kategorije"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr ""
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -161,10 +117,6 @@ msgstr ""
 msgid "Scientific software"
 msgstr ""
 
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr ""
-
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
 msgstr "Čuvari zaslona"
@@ -172,10 +124,6 @@ msgstr "Čuvari zaslona"
 #: data/xfce/xfce-screensavers.desktop.in:7
 msgid "Screensaver applets"
 msgstr "Programčići čuvara zaslona"
-
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr ""
 
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
@@ -185,10 +133,6 @@ msgstr "Postavke"
 msgid "Desktop and system settings applications"
 msgstr "Programi postavki radne površine i sustava"
 
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr ""
-
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
 msgstr "Sustav"
@@ -197,40 +141,40 @@ msgstr "Sustav"
 msgid "System tools and utilities"
 msgstr "Alati i pomagala sustava"
 
-#: garcon/garcon-menu.c:716
+#: garcon/garcon-menu.c:751
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Datoteka \"%s\" nije pronađena"
 
-#: garcon/garcon-menu-parser.c:277
+#: garcon/garcon-menu-parser.c:286
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Ne mogu učitati datoteku izbornika iz %s: %s"
 
-#: garcon/garcon-menu-parser.c:284
+#: garcon/garcon-menu-parser.c:293
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Ne mogu učitati datoteku izbornika iz %s"
 
-#: garcon-gtk/garcon-gtk-menu.c:412
+#: garcon-gtk/garcon-gtk-menu.c:428
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Neuspjlo izvršenje naredbe \"%s\"."
 
-#: garcon-gtk/garcon-gtk-menu.c:438
+#: garcon-gtk/garcon-gtk-menu.c:454
 msgid "Launch Error"
 msgstr "Greška pokretanja"
 
-#: garcon-gtk/garcon-gtk-menu.c:440
+#: garcon-gtk/garcon-gtk-menu.c:455
 msgid ""
-"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
-"edit menu items."
-msgstr "Ne mogu pokrenuti \"exo-desktop-item-edit\" što je potrebno za kreiranje i uređivanje stavki izbornika."
+"Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
+" edit menu items."
+msgstr ""
 
-#: garcon-gtk/garcon-gtk-menu.c:442
+#: garcon-gtk/garcon-gtk-menu.c:456
 msgid "_Close"
 msgstr "_Zatvori"
 
-#: garcon-gtk/garcon-gtk-menu.c:591
+#: garcon-gtk/garcon-gtk-menu.c:605
 msgid "Failed to load the applications menu"
 msgstr "Neuspjelo učitavanje izbornika programa"
