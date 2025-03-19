@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-05-05 10:48+0200\n"
+"POT-Creation-Date: 2025-03-19 00:45+0100\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>, 2017,2022-2023\n"
 "Language-Team: English (United Kingdom) (http://app.transifex.com/xfce/garcon/language/en_GB/)\n"
@@ -139,40 +139,40 @@ msgstr "System"
 msgid "System tools and utilities"
 msgstr "System tools and utilities"
 
-#: garcon/garcon-menu.c:716
+#: garcon/garcon-menu.c:751
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "File \"%s\" not found"
 
-#: garcon/garcon-menu-parser.c:277
+#: garcon/garcon-menu-parser.c:286
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Could not load menu file data from %s: %s"
 
-#: garcon/garcon-menu-parser.c:284
+#: garcon/garcon-menu-parser.c:293
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Could not load menu file data from %s"
 
-#: garcon-gtk/garcon-gtk-menu.c:412
+#: garcon-gtk/garcon-gtk-menu.c:428
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Failed to execute command \"%s\"."
 
-#: garcon-gtk/garcon-gtk-menu.c:438
+#: garcon-gtk/garcon-gtk-menu.c:454
 msgid "Launch Error"
 msgstr "Launch Error"
 
-#: garcon-gtk/garcon-gtk-menu.c:440
+#: garcon-gtk/garcon-gtk-menu.c:455
 msgid ""
-"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
-"edit menu items."
-msgstr "Unable to launch \"exo-desktop-item-edit\", which is required to create and edit menu items."
+"Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
+" edit menu items."
+msgstr ""
 
-#: garcon-gtk/garcon-gtk-menu.c:442
+#: garcon-gtk/garcon-gtk-menu.c:456
 msgid "_Close"
 msgstr "_Close"
 
-#: garcon-gtk/garcon-gtk-menu.c:591
+#: garcon-gtk/garcon-gtk-menu.c:605
 msgid "Failed to load the applications menu"
 msgstr "Failed to load the applications menu"
