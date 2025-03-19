@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2025-03-19 00:45+0100\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
 "Last-Translator: Ioannis LM, 2022-2023\n"
 "Language-Team: Greek (http://app.transifex.com/xfce/garcon/language/el/)\n"
@@ -22,10 +22,6 @@ msgstr ""
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr ""
-
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
 msgstr "Βοηθήματα"
@@ -33,10 +29,6 @@ msgstr "Βοηθήματα"
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
 msgstr "Εφαρμογές και εργαλεία διαμοιραζόμενου υπολογιστή"
-
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr ""
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -46,10 +38,6 @@ msgstr "Ανάπτυξη"
 msgid "Software development tools"
 msgstr "Εργαλεία ανάπτυξης λογισμικού"
 
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr ""
-
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
 msgstr "Εκπαίδευση"
@@ -57,10 +45,6 @@ msgstr "Εκπαίδευση"
 #: data/xfce/xfce-education.desktop.in:7
 msgid "Educational software"
 msgstr "Εκπαιδευτικό λογισμικό"
-
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr ""
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -70,10 +54,6 @@ msgstr "Παιχνίδια"
 msgid "Games, puzzles, and other fun software"
 msgstr "Παιχνίδια, παζλ, και άλλο λογισμικό διασκέδασης"
 
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr ""
-
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
 msgstr "Γραφικά"
@@ -81,10 +61,6 @@ msgstr "Γραφικά"
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
 msgstr "Εφαρμογές δημιουργίας και επεξεργασίας γραφικών"
-
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr ""
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -94,10 +70,6 @@ msgstr "Υλικό"
 msgid "Settings for several hardware devices"
 msgstr "Ρυθμίσεις για διάφορες συσκευές"
 
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr ""
-
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
 msgstr "Πολυμέσα"
@@ -105,10 +77,6 @@ msgstr "Πολυμέσα"
 #: data/xfce/xfce-multimedia.desktop.in:7
 msgid "Audio and video players and editors"
 msgstr "Εφαρμογές αναπαραγωγής και επεξεργασίας ήχου και βίντεο"
-
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr ""
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -118,10 +86,6 @@ msgstr "Διαδίκτυο"
 msgid "Applications for Internet access"
 msgstr "Εφαρμογές για πρόσβαση στο διαδίκτυο"
 
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr ""
-
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
 msgstr "Γραφείο"
@@ -130,10 +94,6 @@ msgstr "Γραφείο"
 msgid "Office and productivity applications"
 msgstr "Εφαρμογές γραφείου και παραγωγικότητας"
 
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr ""
-
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
 msgstr "Άλλα"
@@ -141,10 +101,6 @@ msgstr "Άλλα"
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
 msgstr "Εφαρμογές που δεν εντάσσονται σε άλλες κατηγορίες"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr ""
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -162,10 +118,6 @@ msgstr "Επιστήμη"
 msgid "Scientific software"
 msgstr "Λογισμικό επιστημών"
 
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr ""
-
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
 msgstr "Εφαρμογές προστασίας οθόνης"
@@ -173,10 +125,6 @@ msgstr "Εφαρμογές προστασίας οθόνης"
 #: data/xfce/xfce-screensavers.desktop.in:7
 msgid "Screensaver applets"
 msgstr "Μικροεφαρμογές προστασίας οθόνης"
-
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr ""
 
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
@@ -186,10 +134,6 @@ msgstr "Ρυθμίσεις"
 msgid "Desktop and system settings applications"
 msgstr "Εφαρμογές ρύθμισης συστήματος και επιφάνειας εργασίας"
 
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr ""
-
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
 msgstr "Σύστημα"
@@ -198,40 +142,40 @@ msgstr "Σύστημα"
 msgid "System tools and utilities"
 msgstr "Εργαλεία και βοηθητικά προγράμματα συστήματος"
 
-#: garcon/garcon-menu.c:716
+#: garcon/garcon-menu.c:751
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "Το αρχείο \"%s\" δε βρέθηκε"
 
-#: garcon/garcon-menu-parser.c:277
+#: garcon/garcon-menu-parser.c:286
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Δεν μπορούν να φορτωθούν τα δεδομένα από το αρχείο μενού %s: %s"
 
-#: garcon/garcon-menu-parser.c:284
+#: garcon/garcon-menu-parser.c:293
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Δεν μπορούν να φορτωθούν τα δεδομένα από το αρχείο μενού %s"
 
-#: garcon-gtk/garcon-gtk-menu.c:412
+#: garcon-gtk/garcon-gtk-menu.c:428
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Απέτυχε η εκτέλεση της εντολής \"%s\"."
 
-#: garcon-gtk/garcon-gtk-menu.c:438
+#: garcon-gtk/garcon-gtk-menu.c:454
 msgid "Launch Error"
 msgstr "Σφάλμα εκκίνησης"
 
-#: garcon-gtk/garcon-gtk-menu.c:440
+#: garcon-gtk/garcon-gtk-menu.c:455
 msgid ""
-"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
-"edit menu items."
-msgstr "Αδύνατη η έναρξη του \"exo-desktop-item-edit\", που απαιτείται για τη δημιουργία και επεξεργασία αντικειμένων των μενού."
+"Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
+" edit menu items."
+msgstr ""
 
-#: garcon-gtk/garcon-gtk-menu.c:442
+#: garcon-gtk/garcon-gtk-menu.c:456
 msgid "_Close"
 msgstr "_Κλείσιμο"
 
-#: garcon-gtk/garcon-gtk-menu.c:591
+#: garcon-gtk/garcon-gtk-menu.c:605
 msgid "Failed to load the applications menu"
 msgstr "Αποτυχία φόρτωσης μενού εφαρμογών"
