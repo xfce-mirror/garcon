@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Mattias Põldaru <mahfiaz@gmail.com>, 2014
-# Priit Jõerüüt <transifex@joeruut.com>, 2020,2022
+# Priit Jõerüüt <transifex@joeruut.com>, 2020,2022,2025
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2025-03-19 00:45+0100\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2020,2022\n"
+"Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2020,2022,2025\n"
 "Language-Team: Estonian (http://app.transifex.com/xfce/garcon/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -167,7 +167,7 @@ msgstr "Viga käivitamisel"
 msgid ""
 "Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
 " edit menu items."
-msgstr ""
+msgstr "Ei saa käivitada käsku „xfce-desktop-item-edit“, mida on vaja menüükirjete loomiseks ja muutmiseks."
 
 #: garcon-gtk/garcon-gtk-menu.c:456
 msgid "_Close"
@@ -175,4 +175,4 @@ msgstr "_Sulge"
 
 #: garcon-gtk/garcon-gtk-menu.c:605
 msgid "Failed to load the applications menu"
-msgstr "Rakenduste menüü laadimine nurjus"
+msgstr "Rakenduste menüü laadimine ei õnnestunud"
