@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2025-03-19 00:45+0100\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
 "Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2018-2019,2022\n"
 "Language-Team: Hindi (http://app.transifex.com/xfce/garcon/language/hi/)\n"
@@ -18,10 +18,6 @@ msgstr ""
 "Language: hi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr ""
-
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
 msgstr "सहायक सॉफ्टवेयर"
@@ -29,10 +25,6 @@ msgstr "सहायक सॉफ्टवेयर"
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
 msgstr "डेस्कटॉप हेतु सामान्य साधन व अनुप्रयोग"
-
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr ""
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -42,10 +34,6 @@ msgstr "सॉफ्टवेयर विकास"
 msgid "Software development tools"
 msgstr "सॉफ्टवेयर विकास हेतु साधन"
 
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr ""
-
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
 msgstr "शिक्षा"
@@ -53,10 +41,6 @@ msgstr "शिक्षा"
 #: data/xfce/xfce-education.desktop.in:7
 msgid "Educational software"
 msgstr "शिक्षा संबंधी सॉफ्टवेयर"
-
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr ""
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -66,10 +50,6 @@ msgstr "खेल"
 msgid "Games, puzzles, and other fun software"
 msgstr "खेल, पहेलियाँ व अन्य मनोरंजक सॉफ्टवेयर"
 
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr ""
-
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
 msgstr "ग्राफ़िक्स"
@@ -77,10 +57,6 @@ msgstr "ग्राफ़िक्स"
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
 msgstr "ग्राफ़िक्स सृजन व संशोधन हेतु अनुप्रयोग"
-
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr ""
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -90,10 +66,6 @@ msgstr "हार्डवेयर"
 msgid "Settings for several hardware devices"
 msgstr "हार्डवेयर डिवाइस हेतु सेटिंग्स"
 
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr ""
-
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
 msgstr "मल्टीमीडिया"
@@ -101,10 +73,6 @@ msgstr "मल्टीमीडिया"
 #: data/xfce/xfce-multimedia.desktop.in:7
 msgid "Audio and video players and editors"
 msgstr "ऑडियो वीडियो प्लेयर व संपादक"
-
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr ""
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -114,10 +82,6 @@ msgstr "इंटरनेट"
 msgid "Applications for Internet access"
 msgstr "इंटरनेट उपयोग हेतु अनुप्रयोग"
 
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr ""
-
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
 msgstr "ऑफिस"
@@ -126,10 +90,6 @@ msgstr "ऑफिस"
 msgid "Office and productivity applications"
 msgstr "ऑफिस व उत्पादकता हेतु अनुप्रयोग"
 
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr ""
-
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
 msgstr "अन्य"
@@ -137,10 +97,6 @@ msgstr "अन्य"
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
 msgstr "अनुप्रयोग जो अन्य श्रेणियों के अंतर्गत नहीं आते हैं"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr ""
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -158,10 +114,6 @@ msgstr "विज्ञान"
 msgid "Scientific software"
 msgstr "वैज्ञानिक सॉफ्टवेयर"
 
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr ""
-
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
 msgstr "स्क्रीनसेवर"
@@ -169,10 +121,6 @@ msgstr "स्क्रीनसेवर"
 #: data/xfce/xfce-screensavers.desktop.in:7
 msgid "Screensaver applets"
 msgstr "स्क्रीनसेवर एप्लेट"
-
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr ""
 
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
@@ -182,10 +130,6 @@ msgstr "सेटिंग्स"
 msgid "Desktop and system settings applications"
 msgstr "डेस्कटॉप व सिस्टम सेटिंग्स अनुप्रयोग"
 
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr ""
-
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
 msgstr "सिस्टम"
@@ -194,40 +138,40 @@ msgstr "सिस्टम"
 msgid "System tools and utilities"
 msgstr "सिस्टम साधन व उपयोगिताएँ"
 
-#: garcon/garcon-menu.c:716
+#: garcon/garcon-menu.c:751
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "फ़ाइल \"%s\" नहीं मिली"
 
-#: garcon/garcon-menu-parser.c:277
+#: garcon/garcon-menu-parser.c:286
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "%s से मेन्यू फाइल का डाटा लोड नहीं हो सका : %s"
 
-#: garcon/garcon-menu-parser.c:284
+#: garcon/garcon-menu-parser.c:293
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "%s से मेन्यू फाइल का डाटा लोड नहीं हो सका"
 
-#: garcon-gtk/garcon-gtk-menu.c:412
+#: garcon-gtk/garcon-gtk-menu.c:428
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "\"%s\" कमांड निष्पादित करने में त्रुटि।"
 
-#: garcon-gtk/garcon-gtk-menu.c:438
+#: garcon-gtk/garcon-gtk-menu.c:454
 msgid "Launch Error"
 msgstr "लॉन्च त्रुटि"
 
-#: garcon-gtk/garcon-gtk-menu.c:440
+#: garcon-gtk/garcon-gtk-menu.c:455
 msgid ""
-"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
-"edit menu items."
-msgstr "\"exo-desktop-item-edit\" को लॉन्च नहीं किया जा सका, जो मेन्यू वस्तुओं को बनाने व संपादित करने हेतु आवश्यक है।"
+"Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
+" edit menu items."
+msgstr ""
 
-#: garcon-gtk/garcon-gtk-menu.c:442
+#: garcon-gtk/garcon-gtk-menu.c:456
 msgid "_Close"
 msgstr "बंद करें (_C)"
 
-#: garcon-gtk/garcon-gtk-menu.c:591
+#: garcon-gtk/garcon-gtk-menu.c:605
 msgid "Failed to load the applications menu"
 msgstr "अनुप्रयोग मेन्यू लोड करने में विफल"
