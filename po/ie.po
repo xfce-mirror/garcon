@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2023-04-18 00:45+0200\n"
+"POT-Creation-Date: 2025-03-19 00:45+0100\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Interlingue (http://app.transifex.com/xfce/garcon/language/ie/)\n"
@@ -17,10 +17,6 @@ msgstr ""
 "Language: ie\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/xfce/xfce-accessories.desktop.in:5
-msgid "applications-accessories"
-msgstr ""
-
 #: data/xfce/xfce-accessories.desktop.in:6
 msgid "Accessories"
 msgstr "Accessories"
@@ -28,10 +24,6 @@ msgstr "Accessories"
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
 msgstr "Trivial utensiles e applicationes"
-
-#: data/xfce/xfce-development.desktop.in:5
-msgid "applications-development"
-msgstr ""
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -41,10 +33,6 @@ msgstr "Developation"
 msgid "Software development tools"
 msgstr "Instrumentarium por developation de programmas"
 
-#: data/xfce/xfce-education.desktop.in:5 data/xfce/xfce-science.desktop.in:5
-msgid "applications-science"
-msgstr ""
-
 #: data/xfce/xfce-education.desktop.in:6
 msgid "Education"
 msgstr "Education"
@@ -52,10 +40,6 @@ msgstr "Education"
 #: data/xfce/xfce-education.desktop.in:7
 msgid "Educational software"
 msgstr "Programmas por education"
-
-#: data/xfce/xfce-games.desktop.in:5
-msgid "applications-games"
-msgstr ""
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -65,10 +49,6 @@ msgstr "Ludes"
 msgid "Games, puzzles, and other fun software"
 msgstr "Ludes, rébuses e altri programmas de divertissement"
 
-#: data/xfce/xfce-graphics.desktop.in:5
-msgid "applications-graphics"
-msgstr ""
-
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
 msgstr "Graphica"
@@ -76,10 +56,6 @@ msgstr "Graphica"
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
 msgstr "Applicationes por creation e manipulation de grafica"
-
-#: data/xfce/xfce-hardware.desktop.in:5
-msgid "preferences-desktop-peripherals"
-msgstr ""
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -89,10 +65,6 @@ msgstr "Hardware"
 msgid "Settings for several hardware devices"
 msgstr "Parametres de quelc aparates de hardware"
 
-#: data/xfce/xfce-multimedia.desktop.in:5
-msgid "applications-multimedia"
-msgstr ""
-
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
 msgstr "Multimedia"
@@ -100,10 +72,6 @@ msgstr "Multimedia"
 #: data/xfce/xfce-multimedia.desktop.in:7
 msgid "Audio and video players and editors"
 msgstr "Audio e video reproductores e redactores"
-
-#: data/xfce/xfce-network.desktop.in:5
-msgid "applications-internet"
-msgstr ""
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -113,10 +81,6 @@ msgstr "Internet"
 msgid "Applications for Internet access"
 msgstr "Applicationes por accesser Internet"
 
-#: data/xfce/xfce-office.desktop.in:5
-msgid "applications-office"
-msgstr ""
-
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
 msgstr "Oficia"
@@ -125,10 +89,6 @@ msgstr "Oficia"
 msgid "Office and productivity applications"
 msgstr "Applicationes de officia e productivitá"
 
-#: data/xfce/xfce-other.desktop.in:5
-msgid "applications-other"
-msgstr ""
-
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
 msgstr "Altris"
@@ -136,10 +96,6 @@ msgstr "Altris"
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
 msgstr "Applicationes quel ne convene por li altri categories"
-
-#: data/xfce/xfce-personal.desktop.in:5
-msgid "preferences-desktop-personal"
-msgstr ""
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -157,10 +113,6 @@ msgstr ""
 msgid "Scientific software"
 msgstr ""
 
-#: data/xfce/xfce-screensavers.desktop.in:5
-msgid "preferences-desktop-screensaver"
-msgstr ""
-
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
 msgstr "Garda-ecranes"
@@ -168,10 +120,6 @@ msgstr "Garda-ecranes"
 #: data/xfce/xfce-screensavers.desktop.in:7
 msgid "Screensaver applets"
 msgstr "Applettes de garda-ecran"
-
-#: data/xfce/xfce-settings.desktop.in:5
-msgid "preferences-desktop"
-msgstr ""
 
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
@@ -181,10 +129,6 @@ msgstr "Parametres"
 msgid "Desktop and system settings applications"
 msgstr "Parametres del ambientie e sistema"
 
-#: data/xfce/xfce-system.desktop.in:5
-msgid "applications-system"
-msgstr ""
-
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
 msgstr "Sistema"
@@ -193,40 +137,40 @@ msgstr "Sistema"
 msgid "System tools and utilities"
 msgstr "Utensiles del sistema"
 
-#: garcon/garcon-menu.c:716
+#: garcon/garcon-menu.c:751
 #, c-format
 msgid "File \"%s\" not found"
 msgstr "File «%s» ne esset trovat"
 
-#: garcon/garcon-menu-parser.c:277
+#: garcon/garcon-menu-parser.c:286
 #, c-format
 msgid "Could not load menu file data from %s: %s"
 msgstr "Ne successat cargar data de menú ex %s: %s"
 
-#: garcon/garcon-menu-parser.c:284
+#: garcon/garcon-menu-parser.c:293
 #, c-format
 msgid "Could not load menu file data from %s"
 msgstr "Ne successat cargar data de menú ex %s"
 
-#: garcon-gtk/garcon-gtk-menu.c:412
+#: garcon-gtk/garcon-gtk-menu.c:428
 #, c-format
 msgid "Failed to execute command \"%s\"."
 msgstr "Ne successat executer li comande «%s»"
 
-#: garcon-gtk/garcon-gtk-menu.c:438
+#: garcon-gtk/garcon-gtk-menu.c:454
 msgid "Launch Error"
 msgstr "Errore de lansa"
 
-#: garcon-gtk/garcon-gtk-menu.c:440
+#: garcon-gtk/garcon-gtk-menu.c:455
 msgid ""
-"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
-"edit menu items."
-msgstr "Ne successat lansar «exo-desktop-item-edit» quel es necesse por crear e modificar elementes del menú."
+"Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
+" edit menu items."
+msgstr ""
 
-#: garcon-gtk/garcon-gtk-menu.c:442
+#: garcon-gtk/garcon-gtk-menu.c:456
 msgid "_Close"
 msgstr "_Cluder"
 
-#: garcon-gtk/garcon-gtk-menu.c:591
+#: garcon-gtk/garcon-gtk-menu.c:605
 msgid "Failed to load the applications menu"
 msgstr "Ne successat cargar li menú de applicationes"
