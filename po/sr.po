@@ -135,11 +135,11 @@ msgstr "Програми за подешавање радне површи и с
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
-msgstr "Систем"
+msgstr "Склоп"
 
 #: data/xfce/xfce-system.desktop.in:7
 msgid "System tools and utilities"
-msgstr "Системски програми и помагала"
+msgstr "Програми и помагала радног склопа"
 
 #: garcon/garcon-menu.c:751
 #, c-format
@@ -169,7 +169,7 @@ msgstr "Грешка покретања"
 msgid ""
 "Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
 " edit menu items."
-msgstr ""
+msgstr "Нисам успео да покренем „xfce-desktop-item-edit“, неопходно ради стварања и уређивања ставки изборника."
 
 #: garcon-gtk/garcon-gtk-menu.c:456
 msgid "_Close"
