@@ -23,6 +23,7 @@ dnl *** Version information ***
 dnl ***************************
 m4_define([garcon_verinfo], [0:0:0])
 m4_define([garcon_version_api_major], [1])
+m4_define([copyright_year], [2025])
 XDT_VERSION_INIT([4.20.0], [git])
 
 dnl minimum required versions
@@ -34,12 +35,15 @@ m4_define([libxfce4ui_min_version], [4.21.0])
 dnl ***************************
 dnl *** Initialize autoconf ***
 dnl ***************************
-AC_COPYRIGHT([Copyright (c) 2007-2024 The Xfce development team. All rights reserved.
+AC_COPYRIGHT([Copyright (c) 2007-copyright_year() The Xfce development team. All rights reserved.
   Written for Xfce by Jannis Pohlmann <jannis@xfce.org>.])
 AC_INIT([garcon], [xdt_version], [https://gitlab.xfce.org/xfce/garcon])
 AC_PREREQ([2.69])
 AC_CONFIG_MACRO_DIRS([m4])
 AC_REVISION([xdt_version_build])
+COPYRIGHT_YEAR=copyright_year()
+AC_DEFINE_UNQUOTED([COPYRIGHT_YEAR], ["$COPYRIGHT_YEAR"], [Copyright year])
+AC_SUBST([COPYRIGHT_YEAR])
 
 dnl ***************************
 dnl *** Initialize automake ***
