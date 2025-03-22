@@ -37,6 +37,7 @@ docs/reference/html/*
 docs/reference/tmpl/*
 docs/reference/xml/*
 docs/reference/garcon.actions
+docs/reference/garcon-docs.xml
 aclocal.m4
 autom4te.cache
 compile

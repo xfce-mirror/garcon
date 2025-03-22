@@ -12,6 +12,15 @@ if get_option('gtk-doc')
     configuration: conf_data,
   )
 
+  configure_file(
+    configuration: configuration_data({
+      'COPYRIGHT_YEAR': copyright_year,
+    }),
+    input: 'garcon-docs.xml.in',
+    output: 'garcon-docs.xml',
+    install: false,
+  )
+
   gnome.gtkdoc(
     garcon_doc_name,
     src_dir: [
@@ -23,7 +32,7 @@ if get_option('gtk-doc')
       'garcon-gtk-visibility.h',
       'garcon-marshal.h',
     ],
-    main_xml: 'garcon-docs.xml',
+    main_xml: meson.project_build_root() / 'docs' / 'reference' / 'garcon-docs.xml',
     dependencies: [
       garcon_dep,
       garcon_gtk_dep,
