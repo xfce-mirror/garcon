@@ -1,3 +1,29 @@
+4.21.0 (2025-03-23)
+======
+- build: Automate copyright year management
+- build: Define xfce4 min version >= 4.18
+- Replace deprecated exo with libxfce4ui 4.21.0
+- meson-build: Add tests option
+- meson-build: Use SPDX license expression
+- meson-build: Update debug/optimization flag management
+- autotools-build: Fix EXTRA_DIST redefinition
+- Add meson build
+- Set up GNU symbol visibility
+- garcon: Remove include guard from private header
+- garcon: Don't install garcon-marshal.h
+- Translation Updates:
+  Albanian, Amharic, Arabic, Armenian, Armenian (Armenia), Asturian,
+  Basque, Belarusian, Bengali, Bulgarian, Catalan, Chinese (China),
+  Chinese (Hong Kong), Chinese (Taiwan), Croatian, Czech, Danish,
+  Dutch, Eastern Armenian, English (Australia), English (United
+  Kingdom), Esperanto, Estonian, Finnish, French, Galician, Georgian,
+  German, Greek, Hebrew, Hindi, Hungarian, Icelandic, Indonesian,
+  Interlingue, Italian, Japanese, Kabyle, Kazakh, Korean, Lithuanian,
+  Malay, Norwegian Bokmål, Norwegian Nynorsk, Occitan (post 1500),
+  Polish, Portuguese, Portuguese (Brazil), Romanian, Russian, Serbian,
+  Slovak, Slovenian, Spanish, Swedish, Thai, Turkish, Ukrainian,
+  Uyghur, Welsh
+
 4.20.0 (2024-12-15)
 ======
 
