@@ -9,13 +9,14 @@
 # Necdet Yücel <necdetyucel@gmail.com>, 2013,2016
 # Nimet Senem Özkızıklı <nimetsenem@gmail.com>, 2008
 # Volkan Gezer <volkangezer@gmail.com>, 2013
+# x x, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2025-03-19 00:45+0100\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>, 2022\n"
+"Last-Translator: x x, 2025\n"
 "Language-Team: Turkish (http://app.transifex.com/xfce/garcon/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -171,7 +172,7 @@ msgstr "Çalıştırma Hatası"
 msgid ""
 "Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
 " edit menu items."
-msgstr ""
+msgstr "Menü öğelerini oluşturmak ve düzenlemek için gerekli olan \"xfce-desktop-item-edit\" başlatılamıyor."
 
 #: garcon-gtk/garcon-gtk-menu.c:456
 msgid "_Close"
