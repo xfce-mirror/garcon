@@ -13,14 +13,12 @@ garcon_gtk_sources = [
   'garcon-gtk-menu.c',
 ]
 
-garcon_gtk_sources += custom_target(
-  'garcon-gtk-visibility.h',
+garcon_gtk_sources += configure_file(
   input: 'garcon-gtk.symbols',
   output: 'garcon-gtk-visibility.h',
   command: [xdt_gen_visibility, '--kind=header', '@INPUT@', '@OUTPUT@'],
 )
-garcon_gtk_sources += custom_target(
-  'garcon-gtk-visibility.c',
+garcon_gtk_sources += configure_file(
   input: 'garcon-gtk.symbols',
   output: 'garcon-gtk-visibility.c',
   command: [xdt_gen_visibility, '--kind=source', '@INPUT@', '@OUTPUT@'],

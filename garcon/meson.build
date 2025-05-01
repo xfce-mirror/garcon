@@ -59,14 +59,12 @@ garcon_sources += gnome.genmarshal(
   install_header: false,
 )
 
-garcon_sources += custom_target(
-  'garcon-visibility.h',
+garcon_sources += configure_file(
   input: 'garcon.symbols',
   output: 'garcon-visibility.h',
   command: [xdt_gen_visibility, '--kind=header', '@INPUT@', '@OUTPUT@'],
 )
-garcon_sources += custom_target(
-  'garcon-visibility.c',
+garcon_sources += configure_file(
   input: 'garcon.symbols',
   output: 'garcon-visibility.c',
   command: [xdt_gen_visibility, '--kind=source', '@INPUT@', '@OUTPUT@'],
