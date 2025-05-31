@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the garcon.master package.
 # 
 # Translators:
+# Abdualrahman Hasan, 2025
 # كريم أولاد الشلحة <herr.linux88@gmail.com>, 2013
 # Salem Yaslem <xlmnxp@outlook.sa>, 2021
 # كريم أولاد الشلحة <herr.linux88@gmail.com>, 2013
@@ -12,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2025-03-19 00:45+0100\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Salem Yaslem <xlmnxp@outlook.sa>, 2021\n"
+"Last-Translator: Abdualrahman Hasan, 2025\n"
 "Language-Team: Arabic (http://app.transifex.com/xfce/garcon/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,11 +111,11 @@ msgstr "إعدادات الشخصية"
 
 #: data/xfce/xfce-science.desktop.in:6
 msgid "Science"
-msgstr ""
+msgstr "علوم"
 
 #: data/xfce/xfce-science.desktop.in:7
 msgid "Scientific software"
-msgstr ""
+msgstr "برمجيات علمية"
 
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
@@ -158,7 +159,7 @@ msgstr "لا يمكن تحميل ملف قائمة البيانات من %s"
 #: garcon-gtk/garcon-gtk-menu.c:428
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr "فشل تفنيد الأمر \"%s\"."
+msgstr "فشل تنفيذ الأمر \"%s\"."
 
 #: garcon-gtk/garcon-gtk-menu.c:454
 msgid "Launch Error"
@@ -168,7 +169,7 @@ msgstr "خطأ في الإقلاع"
 msgid ""
 "Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
 " edit menu items."
-msgstr ""
+msgstr "تعذر بدء \"xfce-desktop-item-edit\"، الذي هو مطلوب لإنشاء وتحرير عناصر القائمة."
 
 #: garcon-gtk/garcon-gtk-menu.c:456
 msgid "_Close"
