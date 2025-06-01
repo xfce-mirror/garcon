@@ -8,13 +8,14 @@
 # Daniel Muñiz Fontoira <dani@damufo.eu>, 2017
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2008-2009
 # Xosé, 2015,2017
+# Yago Raña Gayoso <yago.rana.gayoso@gmail.com>, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2025-03-19 00:45+0100\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Daniel Muñiz Fontoira <dani@damufo.eu>, 2024\n"
+"Last-Translator: Yago Raña Gayoso <yago.rana.gayoso@gmail.com>, 2025\n"
 "Language-Team: Galician (http://app.transifex.com/xfce/garcon/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -170,7 +171,7 @@ msgstr "Produciuse un fallo ao iniciar"
 msgid ""
 "Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
 " edit menu items."
-msgstr ""
+msgstr "Non se puido iniciar «xfce-desktop-item-edit», que é necesario para crear e editar elementos do menú."
 
 #: garcon-gtk/garcon-gtk-menu.c:456
 msgid "_Close"
