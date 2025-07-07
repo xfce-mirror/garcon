@@ -18,6 +18,7 @@
         <Filename>xfce4-file-manager.desktop</Filename>
         <Filename>xfce4-mail-reader.desktop</Filename>
         <Filename>xfce4-web-browser.desktop</Filename>
+        <Filename>xfce4-text-editor.desktop</Filename>
         <Separator/>
         <Menuname>Settings</Menuname>
         <Separator/>
