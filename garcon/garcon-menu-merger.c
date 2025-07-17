@@ -18,10 +18,6 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "garcon-menu-merger.h"
 #include "garcon-menu-node.h"
 #include "garcon-menu-parser.h"
