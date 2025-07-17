@@ -18,10 +18,6 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "garcon-gtk-menu.h"
 #include "garcon-gtk-visibility.h"
 
