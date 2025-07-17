@@ -19,10 +19,6 @@
  */
 
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include "garcon-environment.h"
 #include "garcon-visibility.h"
 
