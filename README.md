@@ -36,17 +36,17 @@ See [NEWS](https://gitlab.xfce.org/xfce/garcon/-/blob/master/NEWS) for details o
 From source: 
 
     % cd garcon
-    % ./autogen.sh
-    % make
-    % make install
+    % meson setup build
+    % meson compile -C build
+    % meson install -C build
 
 From release tarball:
 
-    % tar xf garcon-<version>.tar.bz2
+    % tar xf garcon-<version>.tar.xz
     % cd garcon-<version>
-    % ./configure
-    % make
-    % make install
+    % meson setup build
+    % meson compile -C build
+    % meson install -C build
 
 ### Reporting Bugs
 
