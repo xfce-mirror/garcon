@@ -168,7 +168,7 @@ msgstr "Lanĉa eraro"
 msgid ""
 "Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
 " edit menu items."
-msgstr ""
+msgstr "Ne povas lanĉi \"xfce-desktop-item-edit\", kiu estas bezonata por krei kaj redakti menuerojn."
 
 #: garcon-gtk/garcon-gtk-menu.c:452
 msgid "_Close"
