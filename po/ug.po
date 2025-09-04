@@ -24,7 +24,7 @@ msgstr "قوشۇمچە دېتاللار"
 
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
-msgstr "ئورتاق ئىشلىتىلىدىغان ئۈستەلئۈستى قوراللىرى ۋە پروگراممىلىرى"
+msgstr "دائىم ئىشلىتىلىدىغان ئۈستەلئۈستى قوراللىرى ۋە پىروگراممىلىرى"
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -40,7 +40,7 @@ msgstr "مائارىپ"
 
 #: data/xfce/xfce-education.desktop.in:7
 msgid "Educational software"
-msgstr "مائارىپ دېتاللىرى"
+msgstr "مائارىپ يۇمشاق دېتالى"
 
 #: data/xfce/xfce-games.desktop.in:6
 msgid "Games"
@@ -48,15 +48,15 @@ msgstr "ئويۇن"
 
 #: data/xfce/xfce-games.desktop.in:7
 msgid "Games, puzzles, and other fun software"
-msgstr "ئويۇن، تېپىشماق ۋە باشقا قىزىقارلىق دېتاللار"
+msgstr "ئويۇن، تېپىشماق ۋە باشقا قىزىقارلىق يۇمشاق دېتاللار"
 
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
-msgstr "گرافىك"
+msgstr "گىرافىك"
 
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
-msgstr "گرافىك ياساش ۋە باشقۇرۇش پروگراممىلىرى"
+msgstr "گىرافىك ياساش ۋە باشقۇرۇش پىروگراممىلىرى"
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -72,7 +72,7 @@ msgstr "كۆپ ۋاسىتە"
 
 #: data/xfce/xfce-multimedia.desktop.in:7
 msgid "Audio and video players and editors"
-msgstr "ئۈن-سىن قويغۇ ۋە تەھرىرلىگۈ"
+msgstr "ئۈن-سىن قويغۇچ ۋە تەھرىرلىگۈچ"
 
 #: data/xfce/xfce-network.desktop.in:6
 msgid "Internet"
@@ -80,7 +80,7 @@ msgstr "ئىنتېرنېت"
 
 #: data/xfce/xfce-network.desktop.in:7
 msgid "Applications for Internet access"
-msgstr "ئىنتېرنېتنى زىيارەت قىلىدىغان پروگراممىلار"
+msgstr "ئىنتېرنېتنى زىيارەت قىلىدىغان پىروگراممىلار"
 
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
@@ -88,7 +88,7 @@ msgstr "ئىشخانا"
 
 #: data/xfce/xfce-office.desktop.in:7
 msgid "Office and productivity applications"
-msgstr "ئىشخانا ۋە خىزمەت پروگراممىلىرى"
+msgstr "ئىشخانا ۋە خىزمەت پىروگراممىلىرى"
 
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
@@ -96,7 +96,7 @@ msgstr "باشقىلار"
 
 #: data/xfce/xfce-other.desktop.in:7
 msgid "Applications that don't fit into other categories"
-msgstr "باشقا كاتېگورىيەگە تەۋە بولمىغان پروگراممىلار"
+msgstr "باشقا كاتېگورىيەگە تەۋە بولمىغان پىروگراممىلار"
 
 #: data/xfce/xfce-personal.desktop.in:6
 msgid "Personal"
@@ -108,11 +108,11 @@ msgstr "شەخسىي تەڭشەكلەر"
 
 #: data/xfce/xfce-science.desktop.in:6
 msgid "Science"
-msgstr ""
+msgstr "ئىلىم-پەن"
 
 #: data/xfce/xfce-science.desktop.in:7
 msgid "Scientific software"
-msgstr ""
+msgstr "ئىلىم پەن يۇمشاق دېتاللىرى"
 
 #: data/xfce/xfce-screensavers.desktop.in:6
 msgid "Screensavers"
@@ -124,11 +124,11 @@ msgstr "ئېكران قوغداش قوللانچاقلىرى"
 
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
-msgstr "تەڭشەكلەر"
+msgstr "تەڭشەك"
 
 #: data/xfce/xfce-settings.desktop.in:7
 msgid "Desktop and system settings applications"
-msgstr "ئۈستەلئۈستى ۋە سىستېما تەڭشىكى پروگراممىلىرى"
+msgstr "ئۈستەلئۈستى ۋە سىستېما تەڭشىكى پىروگراممىلىرى"
 
 #: data/xfce/xfce-system.desktop.in:6
 msgid "System"
@@ -166,12 +166,12 @@ msgstr "ئىجرا قىلىش خاتالىقى"
 msgid ""
 "Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
 " edit menu items."
-msgstr ""
+msgstr "ئۈستەلئۈستىگە تىزىملىك ياساش ياكى تەھرىرلەشتە زۆرۈر بولغان «xfce-desktop-item-edit» نى قوزغىتالمىدى."
 
 #: garcon-gtk/garcon-gtk-menu.c:452
 msgid "_Close"
-msgstr "تاقا(_C)"
+msgstr "ياپ(_C)"
 
 #: garcon-gtk/garcon-gtk-menu.c:601
 msgid "Failed to load the applications menu"
-msgstr "پروگرامما تىزىملىكىنى ئوقۇش مەغلۇپ بولدى"
+msgstr "پىروگرامما تىزىملىكىنى يۈكلىيەلمىدى"
