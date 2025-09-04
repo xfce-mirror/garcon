@@ -7,16 +7,17 @@
 # Nick Schermer <nick@xfce.org>, 2023
 # Xfce Bot <transifex@xfce.org>, 2023
 # Gheyret Kenji <gheyret@yahoo.com>, 2023
+# Abduqadir Abliz <sahranbay@gmail.com>, 2025
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 10:38+0100\n"
+"POT-Creation-Date: 2023-05-30 00:45+0200\n"
 "PO-Revision-Date: 2023-03-17 09:36+0000\n"
-"Last-Translator: Gheyret Kenji <gheyret@yahoo.com>, 2023\n"
-"Language-Team: Uyghur (https://www.transifex.com/xfce/teams/16840/ug/)\n"
+"Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>, 2025\n"
+"Language-Team: Uyghur (https://app.transifex.com/xfce/teams/16840/ug/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -113,11 +114,11 @@ msgstr "شەخسىي تەڭشەكلەر"
 
 #: ../data/xfce/xfce-science.directory.in.h:1
 msgid "Science"
-msgstr ""
+msgstr "ئىلىم-پەن"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr ""
+msgstr "ئىلىم پەن يۇمشاق دېتاللىرى"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
 msgid "Screensavers"
