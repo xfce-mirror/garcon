@@ -89,7 +89,7 @@ msgstr "Aplicații pentru accesul la Internet"
 
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
-msgstr "Birou"
+msgstr "Birotică"
 
 #: data/xfce/xfce-office.desktop.in:7
 msgid "Office and productivity applications"
