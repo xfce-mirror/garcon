@@ -4,8 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Duy Truong Nguyen <truongap.ars@gmail.com>, 2023
 # Xfce Bot <transifex@xfce.org>, 2023
+# Duy Truong Nguyen <truongap.ars@gmail.com>, 2023
 # Loc Huynh, 2025
 # 
 #, fuzzy
@@ -141,12 +141,12 @@ msgstr "Hệ thống"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr "Công cụ và tiện ích hệ thống"
+msgstr "Công cụ và tiện ích Hệ thống"
 
 #: ../garcon/garcon-menu.c:716
 #, c-format
 msgid "File \"%s\" not found"
-msgstr "Không tìm thấy tệp \"%s\""
+msgstr "Không tìm thấy Tệp \"%s\""
 
 #: ../garcon/garcon-menu-parser.c:277
 #, c-format
@@ -172,10 +172,12 @@ msgid ""
 "Unable to launch \"exo-desktop-item-edit\", which is required to create and "
 "edit menu items."
 msgstr ""
+"Không thể khởi chạy \"exo-desktop-item-edit\", cần thiết để tạo và chỉnh "
+"chỉnh chỉnh chỉnh chỉnh sửa các mục menu."
 
 #: ../garcon-gtk/garcon-gtk-menu.c:442
 msgid "_Close"
-msgstr "Đóng"
+msgstr "Đó_ng"
 
 #: ../garcon-gtk/garcon-gtk-menu.c:591
 msgid "Failed to load the applications menu"
