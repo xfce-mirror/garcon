@@ -1,0 +1,182 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Duy Truong Nguyen <truongap.ars@gmail.com>, 2023
+# Xfce Bot <transifex@xfce.org>, 2023
+# Loc Huynh, 2025
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-30 00:45+0200\n"
+"PO-Revision-Date: 2023-03-17 09:36+0000\n"
+"Last-Translator: Loc Huynh, 2025\n"
+"Language-Team: Vietnamese (https://app.transifex.com/xfce/teams/16840/vi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:1
+msgid "Accessories"
+msgstr "Phụ kiện"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:2
+msgid "Common desktop tools and applications"
+msgstr "Các công cụ và ứng dụng máy tính để bàn phổ biến"
+
+#: ../data/xfce/xfce-development.directory.in.h:1
+msgid "Development"
+msgstr "Phát triển"
+
+#: ../data/xfce/xfce-development.directory.in.h:2
+msgid "Software development tools"
+msgstr "Công cụ phát triển phần mềm"
+
+#: ../data/xfce/xfce-education.directory.in.h:1
+msgid "Education"
+msgstr "Giáo dục"
+
+#: ../data/xfce/xfce-education.directory.in.h:2
+msgid "Educational software"
+msgstr "Phần mềm giáo dục"
+
+#: ../data/xfce/xfce-games.directory.in.h:1
+msgid "Games"
+msgstr "Trò chơi"
+
+#: ../data/xfce/xfce-games.directory.in.h:2
+msgid "Games, puzzles, and other fun software"
+msgstr "Trò chơi, câu đố và phần mềm thú vị khác"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:1
+msgid "Graphics"
+msgstr "Đồ họa"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:2
+msgid "Graphics creation and manipulation applications"
+msgstr "Ứng dụng tạo và xử lý đồ họa"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Phần cứng"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Cài đặt cho một số thiết bị phần cứng"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:1
+msgid "Multimedia"
+msgstr "Đa phương tiện"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "Trình phát và chỉnh sửa âm thanh và video"
+
+#: ../data/xfce/xfce-network.directory.in.h:1
+msgid "Internet"
+msgstr "Internet"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "Ứng dụng truy cập Internet"
+
+#: ../data/xfce/xfce-office.directory.in.h:1
+msgid "Office"
+msgstr "Văn phòng"
+
+#: ../data/xfce/xfce-office.directory.in.h:2
+msgid "Office and productivity applications"
+msgstr "Ứng dụng văn phòng và năng suất"
+
+#: ../data/xfce/xfce-other.directory.in.h:1
+msgid "Other"
+msgstr "Khác"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "Các ứng dụng không phù hợp với các danh mục khác"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Riêng tư"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Cài đặt cá nhân"
+
+#: ../data/xfce/xfce-science.directory.in.h:1
+msgid "Science"
+msgstr "Khoa học"
+
+#: ../data/xfce/xfce-science.directory.in.h:2
+msgid "Scientific software"
+msgstr "Phần mềm khoa học"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:1
+msgid "Screensavers"
+msgstr "Trình bảo vệ màn hình"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "Ứng dụng bảo vệ màn hình"
+
+#: ../data/xfce/xfce-settings.directory.in.h:1
+msgid "Settings"
+msgstr "Cài đặt"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "Ứng dụng cài đặt hệ thống và máy tính để bàn"
+
+#: ../data/xfce/xfce-system.directory.in.h:1
+msgid "System"
+msgstr "Hệ thống"
+
+#: ../data/xfce/xfce-system.directory.in.h:2
+msgid "System tools and utilities"
+msgstr "Công cụ và tiện ích hệ thống"
+
+#: ../garcon/garcon-menu.c:716
+#, c-format
+msgid "File \"%s\" not found"
+msgstr "Không tìm thấy tệp \"%s\""
+
+#: ../garcon/garcon-menu-parser.c:277
+#, c-format
+msgid "Could not load menu file data from %s: %s"
+msgstr "Không thể tải dữ liệu tệp menu từ %s: %s"
+
+#: ../garcon/garcon-menu-parser.c:284
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr "Không thể tải dữ liệu tệp menu từ %s"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:412
+#, c-format
+msgid "Failed to execute command \"%s\"."
+msgstr "Thực thi lệnh \"%s\", thất bại."
+
+#: ../garcon-gtk/garcon-gtk-menu.c:438
+msgid "Launch Error"
+msgstr "Lỗi chạy"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:440
+msgid ""
+"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
+"edit menu items."
+msgstr ""
+
+#: ../garcon-gtk/garcon-gtk-menu.c:442
+msgid "_Close"
+msgstr "Đóng"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:591
+msgid "Failed to load the applications menu"
+msgstr "Không tải được menu ứng dụng"
