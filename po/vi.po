@@ -1,0 +1,176 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the garcon.master package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: Garcon\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2025-07-18 10:53+0200\n"
+"PO-Revision-Date: 2013-07-02 20:32+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Vietnamese (http://app.transifex.com/xfce/garcon/language/vi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: data/xfce/xfce-accessories.desktop.in:6
+msgid "Accessories"
+msgstr "Phụ kiện"
+
+#: data/xfce/xfce-accessories.desktop.in:7
+msgid "Common desktop tools and applications"
+msgstr "Các công cụ và ứng dụng máy tính để bàn phổ biến"
+
+#: data/xfce/xfce-development.desktop.in:6
+msgid "Development"
+msgstr "Phát triển"
+
+#: data/xfce/xfce-development.desktop.in:7
+msgid "Software development tools"
+msgstr "Công cụ phát triển phần mềm"
+
+#: data/xfce/xfce-education.desktop.in:6
+msgid "Education"
+msgstr "Giáo dục"
+
+#: data/xfce/xfce-education.desktop.in:7
+msgid "Educational software"
+msgstr "Phần mềm giáo dục"
+
+#: data/xfce/xfce-games.desktop.in:6
+msgid "Games"
+msgstr "Trò chơi"
+
+#: data/xfce/xfce-games.desktop.in:7
+msgid "Games, puzzles, and other fun software"
+msgstr "Trò chơi, câu đố và phần mềm thú vị khác"
+
+#: data/xfce/xfce-graphics.desktop.in:6
+msgid "Graphics"
+msgstr "Đồ họa"
+
+#: data/xfce/xfce-graphics.desktop.in:7
+msgid "Graphics creation and manipulation applications"
+msgstr "Ứng dụng tạo và xử lý đồ họa"
+
+#: data/xfce/xfce-hardware.desktop.in:6
+msgid "Hardware"
+msgstr "Phần cứng"
+
+#: data/xfce/xfce-hardware.desktop.in:7
+msgid "Settings for several hardware devices"
+msgstr "Cài đặt cho một số thiết bị phần cứng"
+
+#: data/xfce/xfce-multimedia.desktop.in:6
+msgid "Multimedia"
+msgstr "Đa phương tiện"
+
+#: data/xfce/xfce-multimedia.desktop.in:7
+msgid "Audio and video players and editors"
+msgstr "Trình phát và chỉnh sửa âm thanh và video"
+
+#: data/xfce/xfce-network.desktop.in:6
+msgid "Internet"
+msgstr "Internet"
+
+#: data/xfce/xfce-network.desktop.in:7
+msgid "Applications for Internet access"
+msgstr "Ứng dụng truy cập Internet"
+
+#: data/xfce/xfce-office.desktop.in:6
+msgid "Office"
+msgstr "Văn phòng"
+
+#: data/xfce/xfce-office.desktop.in:7
+msgid "Office and productivity applications"
+msgstr "Ứng dụng văn phòng và năng suất"
+
+#: data/xfce/xfce-other.desktop.in:6
+msgid "Other"
+msgstr "Khác"
+
+#: data/xfce/xfce-other.desktop.in:7
+msgid "Applications that don't fit into other categories"
+msgstr "Các ứng dụng không phù hợp với các danh mục khác"
+
+#: data/xfce/xfce-personal.desktop.in:6
+msgid "Personal"
+msgstr "Riêng tư"
+
+#: data/xfce/xfce-personal.desktop.in:7
+msgid "Personal settings"
+msgstr "Cài đặt cá nhân"
+
+#: data/xfce/xfce-science.desktop.in:6
+msgid "Science"
+msgstr "Khoa học"
+
+#: data/xfce/xfce-science.desktop.in:7
+msgid "Scientific software"
+msgstr "Phần mềm khoa học"
+
+#: data/xfce/xfce-screensavers.desktop.in:6
+msgid "Screensavers"
+msgstr "Trình bảo vệ màn hình"
+
+#: data/xfce/xfce-screensavers.desktop.in:7
+msgid "Screensaver applets"
+msgstr "Ứng dụng bảo vệ màn hình"
+
+#: data/xfce/xfce-settings.desktop.in:6
+msgid "Settings"
+msgstr "Cài đặt"
+
+#: data/xfce/xfce-settings.desktop.in:7
+msgid "Desktop and system settings applications"
+msgstr "Ứng dụng cài đặt hệ thống và máy tính để bàn"
+
+#: data/xfce/xfce-system.desktop.in:6
+msgid "System"
+msgstr "Hệ thống"
+
+#: data/xfce/xfce-system.desktop.in:7
+msgid "System tools and utilities"
+msgstr "Công cụ và tiện ích hệ thống"
+
+#: garcon/garcon-menu.c:747
+#, c-format
+msgid "File \"%s\" not found"
+msgstr "Không tìm thấy tệp \"%s\""
+
+#: garcon/garcon-menu-parser.c:282
+#, c-format
+msgid "Could not load menu file data from %s: %s"
+msgstr "Không thể tải dữ liệu tệp menu từ %s: %s"
+
+#: garcon/garcon-menu-parser.c:289
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr "Không thể tải dữ liệu tệp menu từ %s"
+
+#: garcon-gtk/garcon-gtk-menu.c:424
+#, c-format
+msgid "Failed to execute command \"%s\"."
+msgstr "Thực thi lệnh \"%s\", thất bại."
+
+#: garcon-gtk/garcon-gtk-menu.c:450
+msgid "Launch Error"
+msgstr "Lỗi chạy"
+
+#: garcon-gtk/garcon-gtk-menu.c:451
+msgid ""
+"Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
+" edit menu items."
+msgstr "Không thể khởi chạy \"xfce-desktop-item-edit\", cần thiết để tạo và chỉnh sửa các mục menu."
+
+#: garcon-gtk/garcon-gtk-menu.c:452
+msgid "_Close"
+msgstr "Đó_ng"
+
+#: garcon-gtk/garcon-gtk-menu.c:601
+msgid "Failed to load the applications menu"
+msgstr "Không tải được menu ứng dụng"
