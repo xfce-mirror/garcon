@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the garcon.master package.
 # 
 # Translators:
-# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2010,2013,2016,2022
+# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2010,2013,2016,2022,2026
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2025-07-18 10:53+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2010,2013,2016,2022\n"
+"Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2010,2013,2016,2022,2026\n"
 "Language-Team: Kazakh (http://app.transifex.com/xfce/garcon/language/kk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -166,7 +166,7 @@ msgstr "Жөнелту қатесі"
 msgid ""
 "Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
 " edit menu items."
-msgstr ""
+msgstr "\"xfce-desktop-item-edit\" жөнелту қатесі, ол мәзір элементтерін жасау және түзету үшін керек."
 
 #: garcon-gtk/garcon-gtk-menu.c:452
 msgid "_Close"
