@@ -104,6 +104,14 @@
     </Menu>
 
     <Menu>
+        <Name>Health</Name>
+        <Directory>xfce-health.directory</Directory>
+        <Include>
+            <Category>HealthFitness</Category>
+        </Include>
+    </Menu>
+
+    <Menu>
         <Name>Multimedia</Name>
         <Directory>xfce-multimedia.directory</Directory>
         <Include>

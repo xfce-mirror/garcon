@@ -4,11 +4,14 @@ desktop_files = [
   'xfce-education.desktop.in',
   'xfce-games.desktop.in',
   'xfce-graphics.desktop.in',
+  # used in xfce4-settings/xfce4-settings-manager/xfce-settings-manager.menu
   'xfce-hardware.desktop.in',
+  'xfce-health.desktop.in',
   'xfce-multimedia.desktop.in',
   'xfce-network.desktop.in',
   'xfce-office.desktop.in',
   'xfce-other.desktop.in',
+  # used in xfce4-settings/xfce4-settings-manager/xfce-settings-manager.menu
   'xfce-personal.desktop.in',
   'xfce-science.desktop.in',
   'xfce-screensavers.desktop.in',
