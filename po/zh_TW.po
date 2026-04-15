@@ -7,14 +7,14 @@
 # Hsiu-Ming Chang <cges30901@gmail.com>, 2018
 # 黃柏諺 <s8321414@gmail.com>, 2016
 # Walter Cheuk <wwycheuk@gmail.com>, 2013,2019
-# 黃柏諺 <s8321414@gmail.com>, 2022-2023,2025
+# 黃柏諺 <s8321414@gmail.com>, 2022-2023,2025-2026
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 10:53+0200\n"
+"POT-Creation-Date: 2026-04-15 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2022-2023,2025\n"
+"Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2022-2023,2025-2026\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/xfce/garcon/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,6 +69,14 @@ msgstr "硬體"
 #: data/xfce/xfce-hardware.desktop.in:7
 msgid "Settings for several hardware devices"
 msgstr "多種硬體裝置的設定值"
+
+#: data/xfce/xfce-health.desktop.in:6
+msgid "Health"
+msgstr "健康"
+
+#: data/xfce/xfce-health.desktop.in:7
+msgid "Applications related to physical or mental health and fitness"
+msgstr "與身體或心理健康及體能相關的應用"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
