@@ -5,16 +5,16 @@
 # Translators:
 # Alois Nešpor <info@aloisnespor.info>, 2013
 # b537cbea55af75c3f49fe8b21c4cf8ea_f0ce149, 2023
-# Michal Várady <miko.vaji@gmail.com>, 2016,2025
+# Michal Várady <miko.vaji@gmail.com>, 2016,2025-2026
 # Miro Hrončok <churchyard@gmail.com>, 2008
 # Pavel Borecki <pavel.borecki@gmail.com>, 2018-2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 10:53+0200\n"
+"POT-Creation-Date: 2026-04-15 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2016,2025\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2016,2025-2026\n"
 "Language-Team: Czech (http://app.transifex.com/xfce/garcon/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,6 +69,14 @@ msgstr "Hardware"
 #: data/xfce/xfce-hardware.desktop.in:7
 msgid "Settings for several hardware devices"
 msgstr "Nastavení různých hardwarových zařízení"
+
+#: data/xfce/xfce-health.desktop.in:6
+msgid "Health"
+msgstr "Zdraví"
+
+#: data/xfce/xfce-health.desktop.in:7
+msgid "Applications related to physical or mental health and fitness"
+msgstr "Aplikace související s fyzickým a duševním zdravím a fyzickou kondicí"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
