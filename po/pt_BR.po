@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 10:53+0200\n"
+"POT-Creation-Date: 2026-04-15 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
 "Last-Translator: Michael Martins, 2025\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/xfce/garcon/language/pt_BR/)\n"
@@ -71,6 +71,14 @@ msgstr "Hardware"
 #: data/xfce/xfce-hardware.desktop.in:7
 msgid "Settings for several hardware devices"
 msgstr "Configuração para vários dispositivos de hardware"
+
+#: data/xfce/xfce-health.desktop.in:6
+msgid "Health"
+msgstr ""
+
+#: data/xfce/xfce-health.desktop.in:7
+msgid "Applications related to physical or mental health and fitness"
+msgstr ""
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
