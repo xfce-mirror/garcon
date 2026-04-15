@@ -5,7 +5,7 @@
 # Translators:
 # Carles Muñoz Gorriz <carlesmu@internautas.org>, 2011
 # Marc Riera <marcriera@softcatala.org>, 2024
-# Davidmp <medipas@gmail.com>, 2015,2025
+# Davidmp <medipas@gmail.com>, 2015,2025-2026
 # Oscar Perez <oscarpc@gmail.com>, 2023
 # Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2017
 # Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2016
@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 10:53+0200\n"
+"POT-Creation-Date: 2026-04-15 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Davidmp <medipas@gmail.com>, 2015,2025\n"
+"Last-Translator: Davidmp <medipas@gmail.com>, 2015,2025-2026\n"
 "Language-Team: Catalan (http://app.transifex.com/xfce/garcon/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,6 +70,14 @@ msgstr "Maquinari"
 #: data/xfce/xfce-hardware.desktop.in:7
 msgid "Settings for several hardware devices"
 msgstr "Ajusts per a diversos dispositius de maquinari"
+
+#: data/xfce/xfce-health.desktop.in:6
+msgid "Health"
+msgstr "Salut"
+
+#: data/xfce/xfce-health.desktop.in:7
+msgid "Applications related to physical or mental health and fitness"
+msgstr "Aplicacions relacionades amb la salut física o mental i la forma física"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
