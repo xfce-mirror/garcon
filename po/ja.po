@@ -5,14 +5,14 @@
 # Translators:
 # Daichi Kawahata <daichi@xfce.org>, 2007
 # Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2016,2022,2025
-# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2023
+# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2023,2026
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 10:53+0200\n"
+"POT-Creation-Date: 2026-04-15 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2016,2022,2025\n"
+"Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2023,2026\n"
 "Language-Team: Japanese (http://app.transifex.com/xfce/garcon/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,6 +67,14 @@ msgstr "ハードウェア"
 #: data/xfce/xfce-hardware.desktop.in:7
 msgid "Settings for several hardware devices"
 msgstr "一部のハードウェアデバイスを設定します"
+
+#: data/xfce/xfce-health.desktop.in:6
+msgid "Health"
+msgstr "健康"
+
+#: data/xfce/xfce-health.desktop.in:7
+msgid "Applications related to physical or mental health and fitness"
+msgstr "肉体的または精神的な健康とフィットネスに関するアプリケーション"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
