@@ -6,7 +6,7 @@
 # Aleksandr P, 2010,2012
 # Aleksey Kabanov <ak099@mail.ru>, 2013
 # Alexander Matveyev <a.s.matveyev@gmail.com>, 2010
-# Andrei Stepanov, 2022-2023,2025
+# Andrei Stepanov, 2022-2023,2025-2026
 # Artem Zolochevskiy <artem.zolochevskiy@gmail.com>, 2011-2012
 # Denis Koryavov <dkoryavov@yandex.ru>, 2010
 # Sergey Alyoshin <alyoshin.s@gmail.com>, 2016
@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 10:53+0200\n"
+"POT-Creation-Date: 2026-04-15 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Andrei Stepanov, 2022-2023,2025\n"
+"Last-Translator: Andrei Stepanov, 2022-2023,2025-2026\n"
 "Language-Team: Russian (http://app.transifex.com/xfce/garcon/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,6 +72,14 @@ msgstr "Оборудование"
 #: data/xfce/xfce-hardware.desktop.in:7
 msgid "Settings for several hardware devices"
 msgstr "Настройка некоторых видов оборудования"
+
+#: data/xfce/xfce-health.desktop.in:6
+msgid "Health"
+msgstr "Здоровье"
+
+#: data/xfce/xfce-health.desktop.in:7
+msgid "Applications related to physical or mental health and fitness"
+msgstr "Приложения, связанные с физическим или психическим здоровьем и физкультурой"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
