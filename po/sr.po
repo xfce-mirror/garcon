@@ -6,14 +6,14 @@
 # Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012
 # Саша Петровић <salepetronije@gmail.com>, 2013
 # Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012
-# Саша Петровић <salepetronije@gmail.com>, 2013,2016-2017
+# Саша Петровић <salepetronije@gmail.com>, 2013,2016-2017,2026
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 10:53+0200\n"
+"POT-Creation-Date: 2026-04-15 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012\n"
+"Last-Translator: Саша Петровић <salepetronije@gmail.com>, 2013,2016-2017,2026\n"
 "Language-Team: Serbian (http://app.transifex.com/xfce/garcon/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,6 +68,14 @@ msgstr "Уређаји"
 #: data/xfce/xfce-hardware.desktop.in:7
 msgid "Settings for several hardware devices"
 msgstr "Подешавања неких уређаја"
+
+#: data/xfce/xfce-health.desktop.in:6
+msgid "Health"
+msgstr "Здравље"
+
+#: data/xfce/xfce-health.desktop.in:7
+msgid "Applications related to physical or mental health and fitness"
+msgstr "Програм који се односи на телесно или душевно здравље и способност"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
