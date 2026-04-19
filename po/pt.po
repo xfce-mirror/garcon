@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the garcon.master package.
 # 
 # Translators:
-# Hugo Carvalho <hugokarvalho@hotmail.com>, 2020,2022-2023,2025
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2020,2022-2023,2025-2026
 # José Vieira <jvieira33@sapo.pt>, 2020
 # Nuno Miguel <nunomgue@gmail.com>, 2013,2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 10:53+0200\n"
+"POT-Creation-Date: 2026-04-15 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2020,2022-2023,2025\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2020,2022-2023,2025-2026\n"
 "Language-Team: Portuguese (http://app.transifex.com/xfce/garcon/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,6 +67,14 @@ msgstr "Equipamento"
 #: data/xfce/xfce-hardware.desktop.in:7
 msgid "Settings for several hardware devices"
 msgstr "Definições para os componentes do computador"
+
+#: data/xfce/xfce-health.desktop.in:6
+msgid "Health"
+msgstr "Saúde"
+
+#: data/xfce/xfce-health.desktop.in:7
+msgid "Applications related to physical or mental health and fitness"
+msgstr "Aplicações relacionadas com a saúde física ou mental e a boa forma física"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
