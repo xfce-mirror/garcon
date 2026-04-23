@@ -1,0 +1,182 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# BoneNI, 2026
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-30 00:45+0200\n"
+"PO-Revision-Date: 2023-03-17 09:36+0000\n"
+"Last-Translator: BoneNI, 2026\n"
+"Language-Team: Lao (https://app.transifex.com/xfce/teams/16840/lo/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lo\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:1
+msgid "Accessories"
+msgstr "ເຄື່ອງໃຊ້ສອຍ"
+
+#: ../data/xfce/xfce-accessories.directory.in.h:2
+msgid "Common desktop tools and applications"
+msgstr "ເຄື່ອງມື ແລະ ແອັບພລິເຄຊັນພື້ນຖານຂອງເດດທັອບ"
+
+#: ../data/xfce/xfce-development.directory.in.h:1
+msgid "Development"
+msgstr "ການພັດທະນາ"
+
+#: ../data/xfce/xfce-development.directory.in.h:2
+msgid "Software development tools"
+msgstr "ເຄື່ອງມືພັດທະນາຊອບແວ"
+
+#: ../data/xfce/xfce-education.directory.in.h:1
+msgid "Education"
+msgstr "ການສຶກສາ"
+
+#: ../data/xfce/xfce-education.directory.in.h:2
+msgid "Educational software"
+msgstr "ຊອບແວການສຶກສາ"
+
+#: ../data/xfce/xfce-games.directory.in.h:1
+msgid "Games"
+msgstr "ເກມ"
+
+#: ../data/xfce/xfce-games.directory.in.h:2
+msgid "Games, puzzles, and other fun software"
+msgstr "ເກມ, ປິດສະໜາ, ແລະ ຊອບແວຄວາມບັນເທີງອື່ນໆ"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:1
+msgid "Graphics"
+msgstr "ກຣາຟິກ"
+
+#: ../data/xfce/xfce-graphics.directory.in.h:2
+msgid "Graphics creation and manipulation applications"
+msgstr "ແອັບພລິເຄຊັນສ້າງ ແລະ ຈັດການກຣາຟິກ"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "ຮາດແວ"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "ການຕັ້ງຄ່າສຳລັບອຸປະກອນຮາດແວຕ່າງໆ"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:1
+msgid "Multimedia"
+msgstr "ມັລຕິມີເດຍ"
+
+#: ../data/xfce/xfce-multimedia.directory.in.h:2
+msgid "Audio and video players and editors"
+msgstr "ເຄື່ອງຫຼິ້ນ ແລະ ເຄື່ອງມືແກ້ໄຂສຽງ ແລະ ວິດີໂອ"
+
+#: ../data/xfce/xfce-network.directory.in.h:1
+msgid "Internet"
+msgstr "ອິນເຕີເນັດ"
+
+#: ../data/xfce/xfce-network.directory.in.h:2
+msgid "Applications for Internet access"
+msgstr "ແອັບພລິເຄຊັນສຳລັບການເຂົ້າເຖິງອິນເຕີເນັດ"
+
+#: ../data/xfce/xfce-office.directory.in.h:1
+msgid "Office"
+msgstr "ສຳນັກງານ"
+
+#: ../data/xfce/xfce-office.directory.in.h:2
+msgid "Office and productivity applications"
+msgstr "ແອັບພລິເຄຊັນສຳນັກງານ ແລະ ການເພີ່ມຜົນຜະລິດ"
+
+#: ../data/xfce/xfce-other.directory.in.h:1
+msgid "Other"
+msgstr "ອື່ນໆ"
+
+#: ../data/xfce/xfce-other.directory.in.h:2
+msgid "Applications that don't fit into other categories"
+msgstr "ແອັບພລິເຄຊັນທີ່ບໍ່ຈັດຢູ່ໃນໝວດໝູ່ອື່ນ"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "ສ່ວນຕົວ"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "ການຕັ້ງຄ່າສ່ວນຕົວ"
+
+#: ../data/xfce/xfce-science.directory.in.h:1
+msgid "Science"
+msgstr "ວິທະຍາສາດ"
+
+#: ../data/xfce/xfce-science.directory.in.h:2
+msgid "Scientific software"
+msgstr "ຊອບແວວິທະຍາສາດ"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:1
+msgid "Screensavers"
+msgstr "ໂປຣແກຣມຮັກສາໜ້າຈໍ"
+
+#: ../data/xfce/xfce-screensavers.directory.in.h:2
+msgid "Screensaver applets"
+msgstr "ແອັບເປັດຮັກສາໜ້າຈໍ"
+
+#: ../data/xfce/xfce-settings.directory.in.h:1
+msgid "Settings"
+msgstr "ການຕັ້ງຄ່າ"
+
+#: ../data/xfce/xfce-settings.directory.in.h:2
+msgid "Desktop and system settings applications"
+msgstr "ແອັບພລິເຄຊັນຕັ້ງຄ່າເດດທັອບ ແລະ ລະບົບ"
+
+#: ../data/xfce/xfce-system.directory.in.h:1
+msgid "System"
+msgstr "ລະບົບ"
+
+#: ../data/xfce/xfce-system.directory.in.h:2
+msgid "System tools and utilities"
+msgstr "ເຄື່ອງມື ແລະ ຢູທິລິຕີ້ຂອງລະບົບ"
+
+#: ../garcon/garcon-menu.c:716
+#, c-format
+msgid "File \"%s\" not found"
+msgstr "ບໍ່ພົບໄຟລ໌ \"%s\""
+
+#: ../garcon/garcon-menu-parser.c:277
+#, c-format
+msgid "Could not load menu file data from %s: %s"
+msgstr "ບໍ່ສາມາດໂຫຼດຂໍ້ມູນໄຟລ໌ເມນູຈາກ %s: %s"
+
+#: ../garcon/garcon-menu-parser.c:284
+#, c-format
+msgid "Could not load menu file data from %s"
+msgstr "ບໍ່ສາມາດໂຫຼດຂໍ້ມູນໄຟລ໌ເມນູຈາກ %s"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:412
+#, c-format
+msgid "Failed to execute command \"%s\"."
+msgstr "ບໍ່ສາມາດປະຕິບັດຄຳສັ່ງ \"%s\"."
+
+#: ../garcon-gtk/garcon-gtk-menu.c:438
+msgid "Launch Error"
+msgstr "ເກີດຂໍ້ຜິດພາດໃນການເປີດ"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:440
+msgid ""
+"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
+"edit menu items."
+msgstr ""
+"ບໍ່ສາມາດເປີດ \"exo-desktop-item-edit\", ເຊິ່ງຈຳເປັນໃນການສ້າງ ແລະ "
+"ແກ້ໄຂລາຍການເມນູ."
+
+#: ../garcon-gtk/garcon-gtk-menu.c:442
+msgid "_Close"
+msgstr "_ປິດ"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:591
+msgid "Failed to load the applications menu"
+msgstr "ໂຫຼດເມນູແອັບພລິເຄຊັນບໍ່ສຳເລັດ"
