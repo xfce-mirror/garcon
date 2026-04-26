@@ -4,17 +4,17 @@
 # 
 # Translators:
 # Ápo. <apostolos.papadimitriu@gmail.com>, 2017
-# Efstathios Iosifidis <iefstathios@gmail.com>, 2014
+# Efstathios Iosifidis <eiosifidis@gmail.com>, 2014
 # Efstathios Iosifidis <iosifidis@opensuse.org>, 2012
 # ebal <ebalaskas@ebalaskas.gr>, 2008
-# Ioannis LM, 2022-2023,2025
+# Ioannis LM, 2022-2023,2025-2026
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 10:53+0200\n"
+"POT-Creation-Date: 2026-04-15 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Ioannis LM, 2022-2023,2025\n"
+"Last-Translator: Ioannis LM, 2022-2023,2025-2026\n"
 "Language-Team: Greek (http://app.transifex.com/xfce/garcon/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,6 +69,14 @@ msgstr "Υλικό"
 #: data/xfce/xfce-hardware.desktop.in:7
 msgid "Settings for several hardware devices"
 msgstr "Ρυθμίσεις για διάφορες συσκευές"
+
+#: data/xfce/xfce-health.desktop.in:6
+msgid "Health"
+msgstr "Υγεία"
+
+#: data/xfce/xfce-health.desktop.in:7
+msgid "Applications related to physical or mental health and fitness"
+msgstr "Εφαρμογές σχετικές με την σωματική ή ψυχική υγεία και τη φυσική κατάσταση"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
