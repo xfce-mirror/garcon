@@ -169,6 +169,8 @@ garcon_menu_merger_constructed (GObject *object)
   GarconMenuMerger *merger = GARCON_MENU_MERGER (object);
 
   merger->priv->menu = garcon_menu_tree_provider_get_tree (merger->priv->tree_provider);
+
+  (*G_OBJECT_CLASS (garcon_menu_merger_parent_class)->constructed) (object);
 }
 
 
