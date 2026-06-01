@@ -388,17 +388,14 @@ garcon_menu_clear (GarconMenu *menu)
       g_clear_pointer (&menu->priv->tree, garcon_menu_node_tree_free);
 
       /* Release the merge files */
-      _garcon_g_list_free_full (menu->priv->merge_files, g_object_unref);
-      menu->priv->merge_files = NULL;
+      g_clear_list (&menu->priv->merge_files, g_object_unref);
 
       /* Release the merge dirs */
-      _garcon_g_list_free_full (menu->priv->merge_dirs, g_object_unref);
-      menu->priv->merge_dirs = NULL;
+      g_clear_list (&menu->priv->merge_dirs, g_object_unref);
     }
 
   /* Free submenus */
-  _garcon_g_list_free_full (menu->priv->submenus, g_object_unref);
-  menu->priv->submenus = NULL;
+  g_clear_list (&menu->priv->submenus, g_object_unref);
 
   /* Free directory */
   g_clear_object (&menu->priv->directory);
@@ -1873,8 +1870,7 @@ garcon_menu_stop_monitoring (GarconMenu *menu)
   g_clear_handle_id (&menu->priv->file_changed_idle, g_source_remove);
 
   /* Free the hash table for merging consecutive file change events */
-  _garcon_g_slist_free_full (menu->priv->changed_files, g_object_unref);
-  menu->priv->changed_files = NULL;
+  g_clear_slist (&menu->priv->changed_files, g_object_unref);
 }
 
 
@@ -2017,7 +2013,7 @@ garcon_menu_monitor_app_dirs (GarconMenu *menu)
   garcon_menu_monitor_files (menu, dirs, garcon_menu_app_dir_changed);
 
   /* Release the allocated GFiles and free the list */
-  _garcon_g_list_free_full (dirs, g_object_unref);
+  g_list_free_full (dirs, g_object_unref);
 
   /* Free app dir list */
   g_list_free (app_dirs);
@@ -2361,8 +2357,7 @@ garcon_menu_process_file_changes (gpointer user_data)
     }
 
   /* reset the changed files list, all events processed */
-  _garcon_g_slist_free_full (menu->priv->changed_files, g_object_unref);
-  menu->priv->changed_files = NULL;
+  g_clear_slist (&menu->priv->changed_files, g_object_unref);
 
   /* reset the idle source ID */
   menu->priv->file_changed_idle = 0;

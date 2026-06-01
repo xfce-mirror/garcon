@@ -26,12 +26,6 @@
 
 G_BEGIN_DECLS
 
-/* Macro for new g_?list_free_full function */
-#define _garcon_g_slist_free_full(list, free_func) \
-  g_slist_free_full (list, (GDestroyNotify) free_func)
-#define _garcon_g_list_free_full(list, free_func) \
-  g_list_free_full (list, (GDestroyNotify) free_func)
-
 /* if XDG_MENU_PREFIX is not set, default to "xfce-" so garcon doesn't
  * break when xfce is not started with startxfce4 */
 #define _GARCON_DEFAULT_MENU_PREFIX "xfce-"
