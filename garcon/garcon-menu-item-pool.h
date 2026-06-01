@@ -31,18 +31,7 @@
 G_BEGIN_DECLS
 
 #define GARCON_TYPE_MENU_ITEM_POOL (garcon_menu_item_pool_get_type ())
-#define GARCON_MENU_ITEM_POOL(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_ITEM_POOL, GarconMenuItemPool))
-#define GARCON_MENU_ITEM_POOL_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_ITEM_POOL, GarconMenuItemPoolClass))
-#define GARCON_IS_MENU_ITEM_POOL(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_ITEM_POOL))
-#define GARCON_IS_MENU_ITEM_POOL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_ITEM_POOL))
-#define GARCON_MENU_ITEM_POOL_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_ITEM_POOL, GarconMenuItemPoolClass))
-
-typedef struct _GarconMenuItemPoolPrivate GarconMenuItemPoolPrivate;
-typedef struct _GarconMenuItemPoolClass GarconMenuItemPoolClass;
-typedef struct _GarconMenuItemPool GarconMenuItemPool;
-
-GType
-garcon_menu_item_pool_get_type (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (GarconMenuItemPool, garcon_menu_item_pool, GARCON, MENU_ITEM_POOL, GObject)
 
 GarconMenuItemPool *
 garcon_menu_item_pool_new (void) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;

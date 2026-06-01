@@ -44,6 +44,7 @@ typedef struct _GarconMenuItem GarconMenuItem;
 #define GARCON_IS_MENU_ITEM(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_ITEM))
 #define GARCON_IS_MENU_ITEM_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_ITEM))
 #define GARCON_MENU_ITEM_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_ITEM, GarconMenuItemClass))
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (GarconMenuItem, g_object_unref)
 
 struct _GarconMenuItemClass
 {

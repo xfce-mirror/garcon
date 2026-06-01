@@ -30,22 +30,16 @@
 G_BEGIN_DECLS
 
 #define GARCON_TYPE_MENU_TREE_PROVIDER (garcon_menu_tree_provider_get_type ())
-#define GARCON_MENU_TREE_PROVIDER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_TREE_PROVIDER, GarconMenuTreeProvider))
-#define GARCON_IS_MENU_TREE_PROVIDER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_TREE_PROVIDER))
-#define GARCON_MENU_TREE_PROVIDER_GET_IFACE(obj) (G_TYPE_INSTANCE_GET_INTERFACE ((obj), GARCON_TYPE_MENU_TREE_PROVIDER, GarconMenuTreeProviderIface))
-
-typedef struct _GarconMenuTreeProviderIface GarconMenuTreeProviderIface;
-typedef struct _GarconMenuTreeProvider GarconMenuTreeProvider;
-
-GType
-garcon_menu_tree_provider_get_type (void) G_GNUC_CONST;
+G_DECLARE_INTERFACE (GarconMenuTreeProvider, garcon_menu_tree_provider, GARCON, MENU_TREE_PROVIDER, GObject)
 
 GNode *
 garcon_menu_tree_provider_get_tree (GarconMenuTreeProvider *provider) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 GFile *
 garcon_menu_tree_provider_get_file (GarconMenuTreeProvider *provider) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;
 
-struct _GarconMenuTreeProviderIface
+typedef GarconMenuTreeProviderInterface GarconMenuTreeProviderIface;
+
+struct _GarconMenuTreeProviderInterface
 {
   GTypeInterface __parent__;
 

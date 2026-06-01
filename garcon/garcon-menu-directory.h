@@ -29,16 +29,17 @@
 
 G_BEGIN_DECLS
 
+typedef struct _GarconMenuDirectoryPrivate GarconMenuDirectoryPrivate;
+typedef struct _GarconMenuDirectoryClass GarconMenuDirectoryClass;
+typedef struct _GarconMenuDirectory GarconMenuDirectory;
+
 #define GARCON_TYPE_MENU_DIRECTORY (garcon_menu_directory_get_type ())
 #define GARCON_MENU_DIRECTORY(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_DIRECTORY, GarconMenuDirectory))
 #define GARCON_MENU_DIRECTORY_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_DIRECTORY, GarconMenuDirectoryClass))
 #define GARCON_IS_MENU_DIRECTORY(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_DIRECTORY))
 #define GARCON_IS_MENU_DIRECTORY_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_DIRECTORY))
 #define GARCON_MENU_DIRECTORY_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_DIRECTORY, GarconMenuDirectoryClass))
-
-typedef struct _GarconMenuDirectoryPrivate GarconMenuDirectoryPrivate;
-typedef struct _GarconMenuDirectoryClass GarconMenuDirectoryClass;
-typedef struct _GarconMenuDirectory GarconMenuDirectory;
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (GarconMenuDirectory, g_object_unref)
 
 struct _GarconMenuDirectoryClass
 {

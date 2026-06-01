@@ -40,6 +40,7 @@ typedef struct _GarconMenuItemAction GarconMenuItemAction;
 #define GARCON_IS_MENU_ITEM_ACTION(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_ITEM_ACTION))
 #define GARCON_IS_MENU_ITEM_ACTION_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_ITEM_ACTION))
 #define GARCON_MENU_ITEM_ACTION_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_ITEM_ACTION, GarconMenuItemActionClass))
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (GarconMenuItemAction, g_object_unref)
 
 struct _GarconMenuItemActionClass
 {

@@ -33,16 +33,11 @@ garcon_menu_item_pool_filter_exclude (const gchar *desktop_id,
 
 
 
-struct _GarconMenuItemPoolClass
-{
-  GObjectClass __parent__;
-};
-
-struct _GarconMenuItemPoolPrivate
+typedef struct _GarconMenuItemPoolPrivate
 {
   /* Hash table for mapping desktop-file id's to GarconMenuItem's */
   GHashTable *items;
-};
+} GarconMenuItemPoolPrivate;
 
 struct _GarconMenuItemPool
 {

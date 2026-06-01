@@ -30,14 +30,11 @@
 G_BEGIN_DECLS
 
 #define GARCON_TYPE_MENU_ELEMENT (garcon_menu_element_get_type ())
-#define GARCON_MENU_ELEMENT(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_ELEMENT, GarconMenuElement))
-#define GARCON_IS_MENU_ELEMENT(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_ELEMENT))
-#define GARCON_MENU_ELEMENT_GET_IFACE(obj) (G_TYPE_INSTANCE_GET_INTERFACE ((obj), GARCON_TYPE_MENU_ELEMENT, GarconMenuElementIface))
+G_DECLARE_INTERFACE (GarconMenuElement, garcon_menu_element, GARCON, MENU_ELEMENT, GObject)
 
-typedef struct _GarconMenuElement GarconMenuElement;
-typedef struct _GarconMenuElementIface GarconMenuElementIface;
+typedef GarconMenuElementInterface GarconMenuElementIface;
 
-struct _GarconMenuElementIface
+struct _GarconMenuElementInterface
 {
   GTypeInterface __parent__;
 
@@ -51,9 +48,6 @@ struct _GarconMenuElementIface
   gboolean (*equal) (GarconMenuElement *element,
                      GarconMenuElement *other);
 };
-
-GType
-garcon_menu_element_get_type (void) G_GNUC_CONST;
 
 const gchar *
 garcon_menu_element_get_name (GarconMenuElement *element);

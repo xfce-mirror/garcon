@@ -41,6 +41,7 @@ typedef struct _GarconMenuItemCache GarconMenuItemCache;
 #define GARCON_IS_MENU_ITEM_CACHE(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_ITEM_CACHE))
 #define GARCON_IS_MENU_ITEM_CACHE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_ITEM_CACHE))
 #define GARCON_MENU_ITEM_CACHE_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_ITEM_CACHE, GarconMenuItemCacheClass))
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (GarconMenuItemCache, g_object_unref)
 
 struct _GarconMenuItemCacheClass
 {

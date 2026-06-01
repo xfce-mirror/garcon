@@ -29,16 +29,17 @@
 
 G_BEGIN_DECLS
 
+typedef struct _GarconMenuParserPrivate GarconMenuParserPrivate;
+typedef struct _GarconMenuParserClass GarconMenuParserClass;
+typedef struct _GarconMenuParser GarconMenuParser;
+
 #define GARCON_TYPE_MENU_PARSER (garcon_menu_parser_get_type ())
 #define GARCON_MENU_PARSER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_PARSER, GarconMenuParser))
 #define GARCON_MENU_PARSER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_PARSER, GarconMenuParserClass))
 #define GARCON_IS_MENU_PARSER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_PARSER))
 #define GARCON_IS_MENU_PARSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_PARSER)
 #define GARCON_MENU_PARSER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_PARSER, GarconMenuParserClass))
-
-typedef struct _GarconMenuParserPrivate GarconMenuParserPrivate;
-typedef struct _GarconMenuParserClass GarconMenuParserClass;
-typedef struct _GarconMenuParser GarconMenuParser;
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (GarconMenuParser, g_object_unref)
 
 GType
 garcon_menu_parser_get_type (void) G_GNUC_CONST;

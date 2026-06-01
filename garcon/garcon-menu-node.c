@@ -53,11 +53,6 @@ garcon_menu_node_free_data (GarconMenuNode *node);
 
 
 
-struct _GarconMenuNodeClass
-{
-  GObjectClass __parent__;
-};
-
 union _GarconMenuNodeData
 {
   GarconMenuLayoutMergeType layout_merge_type;

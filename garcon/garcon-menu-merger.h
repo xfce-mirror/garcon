@@ -30,16 +30,17 @@
 
 G_BEGIN_DECLS
 
+typedef struct _GarconMenuMergerPrivate GarconMenuMergerPrivate;
+typedef struct _GarconMenuMergerClass GarconMenuMergerClass;
+typedef struct _GarconMenuMerger GarconMenuMerger;
+
 #define GARCON_TYPE_MENU_MERGER (garcon_menu_merger_get_type ())
 #define GARCON_MENU_MERGER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_MERGER, GarconMenuMerger))
 #define GARCON_MENU_MERGER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_MERGER, GarconMenuMergerClass))
 #define GARCON_IS_MENU_MERGER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_MERGER))
 #define GARCON_IS_MENU_MERGER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_MERGER)
 #define GARCON_MENU_MERGER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_MERGER, GarconMenuMergerClass))
-
-typedef struct _GarconMenuMergerPrivate GarconMenuMergerPrivate;
-typedef struct _GarconMenuMergerClass GarconMenuMergerClass;
-typedef struct _GarconMenuMerger GarconMenuMerger;
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (GarconMenuMerger, g_object_unref)
 
 GType
 garcon_menu_merger_get_type (void) G_GNUC_CONST;
