@@ -72,10 +72,8 @@ typedef struct _GarconMenuPair
 enum
 {
   PROP_0,
-  PROP_ENVIRONMENT,
   PROP_FILE,
   PROP_DIRECTORY,
-  PROP_PARENT, /* TODO */
 };
 
 
