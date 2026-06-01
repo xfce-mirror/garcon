@@ -460,9 +460,9 @@ garcon_menu_item_finalize (GObject *object)
   g_strfreev (item->priv->only_show_in);
   g_strfreev (item->priv->not_show_in);
 
-  _garcon_g_list_free_full (item->priv->categories, g_free);
-  _garcon_g_list_free_full (item->priv->keywords, g_free);
-  _garcon_g_list_free_full (item->priv->actions, garcon_menu_item_action_unref);
+  g_list_free_full (item->priv->categories, g_free);
+  g_list_free_full (item->priv->keywords, g_free);
+  g_list_free_full (item->priv->actions, (GDestroyNotify) garcon_menu_item_action_unref);
 
   if (item->priv->file != NULL)
     g_object_unref (G_OBJECT (item->priv->file));
@@ -1224,7 +1224,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem *item,
       if (!garcon_menu_item_lists_equal (old_categories, categories))
         *affects_the_outside = TRUE;
 
-      _garcon_g_list_free_full (old_categories, g_free);
+      g_list_free_full (old_categories, g_free);
     }
 
 
@@ -1266,7 +1266,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem *item,
       if (!garcon_menu_item_lists_equal (old_keywords, keywords))
         *affects_the_outside = TRUE;
 
-      _garcon_g_list_free_full (old_keywords, g_free);
+      g_list_free_full (old_keywords, g_free);
     }
 
   /* Set the rest of the private data directly */
@@ -1276,8 +1276,7 @@ garcon_menu_item_reload_from_file (GarconMenuItem *item,
   item->priv->not_show_in = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_NOT_SHOW_IN, ";");
 
   /* Update application actions */
-  _garcon_g_list_free_full (item->priv->actions, garcon_menu_item_action_unref);
-  item->priv->actions = NULL;
+  g_clear_list (&item->priv->actions, (GDestroyNotify) garcon_menu_item_action_unref);
 
   str_list = xfce_rc_read_list_entry (rc, G_KEY_FILE_DESKTOP_KEY_ACTIONS, ";");
   if (G_LIKELY (str_list != NULL))
@@ -1473,7 +1472,7 @@ garcon_menu_item_set_categories (GarconMenuItem *item,
     return;
 
   /* Free old list */
-  _garcon_g_list_free_full (item->priv->categories, g_free);
+  g_list_free_full (item->priv->categories, g_free);
 
   /* Assign new list */
   item->priv->categories = categories;
@@ -1510,7 +1509,7 @@ garcon_menu_item_set_keywords (GarconMenuItem *item,
     return;
 
   /* Free old list */
-  _garcon_g_list_free_full (item->priv->keywords, g_free);
+  g_list_free_full (item->priv->keywords, g_free);
 
   /* Assign new list */
   item->priv->keywords = keywords;

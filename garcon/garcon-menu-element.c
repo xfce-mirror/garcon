@@ -35,28 +35,13 @@
 
 
 
-GType
-garcon_menu_element_get_type (void)
+G_DEFINE_INTERFACE (GarconMenuElement, garcon_menu_element, G_TYPE_OBJECT)
+
+
+
+static void
+garcon_menu_element_default_init (GarconMenuElementInterface *iface)
 {
-  static gsize static_type = 0;
-  GType type;
-
-  if (g_once_init_enter (&static_type))
-    {
-      type = g_type_register_static_simple (G_TYPE_INTERFACE,
-                                            g_intern_static_string ("GarconMenuElement"),
-                                            sizeof (GarconMenuElementIface),
-                                            NULL,
-                                            0,
-                                            NULL,
-                                            0);
-
-      g_type_interface_add_prerequisite (type, G_TYPE_OBJECT);
-
-      g_once_init_leave (&static_type, type);
-    }
-
-  return static_type;
 }
 
 

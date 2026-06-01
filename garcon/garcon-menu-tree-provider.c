@@ -23,29 +23,15 @@
 
 
 
-GType
-garcon_menu_tree_provider_get_type (void)
+G_DEFINE_INTERFACE (GarconMenuTreeProvider, garcon_menu_tree_provider, G_TYPE_OBJECT)
+
+
+
+static void
+garcon_menu_tree_provider_default_init (GarconMenuTreeProviderInterface *iface)
 {
-  static gsize static_type = 0;
-  GType type;
-
-  if (g_once_init_enter (&static_type))
-    {
-      type = g_type_register_static_simple (G_TYPE_INTERFACE,
-                                            g_intern_static_string ("GarconMenuTreeProvider"),
-                                            sizeof (GarconMenuTreeProviderIface),
-                                            NULL,
-                                            0,
-                                            NULL,
-                                            0);
-
-      g_type_interface_add_prerequisite (type, G_TYPE_OBJECT);
-
-      g_once_init_leave (&static_type, type);
-    }
-
-  return static_type;
 }
+
 
 
 /**

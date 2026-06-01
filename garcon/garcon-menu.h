@@ -30,16 +30,17 @@
 
 G_BEGIN_DECLS
 
+typedef struct _GarconMenuPrivate GarconMenuPrivate;
+typedef struct _GarconMenuClass GarconMenuClass;
+typedef struct _GarconMenu GarconMenu;
+
 #define GARCON_TYPE_MENU (garcon_menu_get_type ())
 #define GARCON_MENU(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU, GarconMenu))
 #define GARCON_MENU_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU, GarconMenuClass))
 #define GARCON_IS_MENU(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU))
 #define GARCON_IS_MENU_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU))
 #define GARCON_MENU_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU, GarconMenuClass))
-
-typedef struct _GarconMenuPrivate GarconMenuPrivate;
-typedef struct _GarconMenuClass GarconMenuClass;
-typedef struct _GarconMenu GarconMenu;
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (GarconMenu, g_object_unref)
 
 GType
 garcon_menu_get_type (void) G_GNUC_CONST;

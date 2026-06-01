@@ -33,16 +33,11 @@ garcon_menu_item_pool_filter_exclude (const gchar *desktop_id,
 
 
 
-struct _GarconMenuItemPoolClass
-{
-  GObjectClass __parent__;
-};
-
-struct _GarconMenuItemPoolPrivate
+typedef struct _GarconMenuItemPoolPrivate
 {
   /* Hash table for mapping desktop-file id's to GarconMenuItem's */
   GHashTable *items;
-};
+} GarconMenuItemPoolPrivate;
 
 struct _GarconMenuItemPool
 {
@@ -54,7 +49,7 @@ struct _GarconMenuItemPool
 
 
 
-G_DEFINE_TYPE_WITH_PRIVATE (GarconMenuItemPool, garcon_menu_item_pool, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE_WITH_PRIVATE (GarconMenuItemPool, garcon_menu_item_pool, G_TYPE_OBJECT)
 
 
 

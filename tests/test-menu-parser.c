@@ -275,8 +275,7 @@ main (int argc,
 
           if (!g_file_query_exists (file, NULL))
             {
-              g_object_unref (file);
-              file = NULL;
+              g_clear_object (&file);
             }
         }
 

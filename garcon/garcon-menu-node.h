@@ -83,20 +83,12 @@ typedef enum
 
 
 typedef union _GarconMenuNodeData GarconMenuNodeData;
-typedef struct _GarconMenuNodeClass GarconMenuNodeClass;
-typedef struct _GarconMenuNode GarconMenuNode;
 
 #define GARCON_TYPE_MENU_NODE (garcon_menu_node_get_type ())
-#define GARCON_MENU_NODE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GARCON_TYPE_MENU_NODE, GarconMenuNode))
-#define GARCON_MENU_NODE_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GARCON_TYPE_MENU_NODE, GarconMenuNodeClass))
-#define GARCON_IS_MENU_NODE(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GARCON_TYPE_MENU_NODE))
-#define GARCON_IS_MENU_NODE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GARCON_TYPE_MENU_NODE)
-#define GARCON_MENU_NODE_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GARCON_TYPE_MENU_NODE, GarconMenuNodeClass))
+G_DECLARE_FINAL_TYPE (GarconMenuNode, garcon_menu_node, GARCON, MENU_NODE, GObject)
 
 GType
 garcon_menu_node_type_get_type (void);
-GType
-garcon_menu_node_get_type (void) G_GNUC_CONST;
 
 GarconMenuNode *
 garcon_menu_node_new (GarconMenuNodeType node_type) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;

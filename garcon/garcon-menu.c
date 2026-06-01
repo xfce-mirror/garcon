@@ -72,10 +72,8 @@ typedef struct _GarconMenuPair
 enum
 {
   PROP_0,
-  PROP_ENVIRONMENT,
   PROP_FILE,
   PROP_DIRECTORY,
-  PROP_PARENT, /* TODO */
 };
 
 
@@ -385,38 +383,26 @@ garcon_menu_clear (GarconMenu *menu)
       garcon_menu_stop_monitoring (menu);
 
       /* Destroy the menu tree */
-      garcon_menu_node_tree_free (menu->priv->tree);
-      menu->priv->tree = NULL;
+      g_clear_pointer (&menu->priv->tree, garcon_menu_node_tree_free);
 
       /* Release the merge files */
-      _garcon_g_list_free_full (menu->priv->merge_files, g_object_unref);
-      menu->priv->merge_files = NULL;
+      g_clear_list (&menu->priv->merge_files, g_object_unref);
 
       /* Release the merge dirs */
-      _garcon_g_list_free_full (menu->priv->merge_dirs, g_object_unref);
-      menu->priv->merge_dirs = NULL;
+      g_clear_list (&menu->priv->merge_dirs, g_object_unref);
     }
 
   /* Free submenus */
-  _garcon_g_list_free_full (menu->priv->submenus, g_object_unref);
-  menu->priv->submenus = NULL;
+  g_clear_list (&menu->priv->submenus, g_object_unref);
 
   /* Free directory */
-  if (G_LIKELY (menu->priv->directory != NULL))
-    {
-      g_object_unref (menu->priv->directory);
-      menu->priv->directory = NULL;
-    }
+  g_clear_object (&menu->priv->directory);
 
   /* Clear the item pool */
   garcon_menu_item_pool_clear (menu->priv->pool);
 
   /* Stop reload-required emit */
-  if (menu->priv->idle_reload_required_id != 0)
-    {
-      g_source_remove (menu->priv->idle_reload_required_id);
-      menu->priv->idle_reload_required_id = 0;
-    }
+  g_clear_handle_id (&menu->priv->idle_reload_required_id, g_source_remove);
 }
 
 
@@ -721,11 +707,7 @@ garcon_menu_load (GarconMenu *menu,
   if (!menu->priv->uses_custom_path)
     {
       /* Release the old file if there is one */
-      if (menu->priv->file != NULL)
-        {
-          g_object_unref (menu->priv->file);
-          menu->priv->file = NULL;
-        }
+      g_clear_object (&menu->priv->file);
 
       /* Build the ${XDG_MENU_PREFIX}applications.menu filename */
       prefix = g_getenv ("XDG_MENU_PREFIX");
@@ -986,11 +968,7 @@ garcon_menu_resolve_directory (GarconMenu *menu,
   g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
 
   /* release the old directory if there is one */
-  if (menu->priv->directory != NULL)
-    {
-      g_object_unref (menu->priv->directory);
-      menu->priv->directory = NULL;
-    }
+  g_clear_object (&menu->priv->directory);
 
   /* Determine all directories for this menu */
   directories = garcon_menu_get_directories (menu);
@@ -1884,19 +1862,13 @@ garcon_menu_stop_monitoring (GarconMenu *menu)
     }
 
   /* Free the monitor list */
-  g_list_free (menu->priv->monitors);
-  menu->priv->monitors = NULL;
+  g_clear_list (&menu->priv->monitors, NULL);
 
   /* Stop the idle source for handling file changes from being invoked */
-  if (menu->priv->file_changed_idle != 0)
-    {
-      g_source_remove (menu->priv->file_changed_idle);
-      menu->priv->file_changed_idle = 0;
-    }
+  g_clear_handle_id (&menu->priv->file_changed_idle, g_source_remove);
 
   /* Free the hash table for merging consecutive file change events */
-  _garcon_g_slist_free_full (menu->priv->changed_files, g_object_unref);
-  menu->priv->changed_files = NULL;
+  g_clear_slist (&menu->priv->changed_files, g_object_unref);
 }
 
 
@@ -2039,7 +2011,7 @@ garcon_menu_monitor_app_dirs (GarconMenu *menu)
   garcon_menu_monitor_files (menu, dirs, garcon_menu_app_dir_changed);
 
   /* Release the allocated GFiles and free the list */
-  _garcon_g_list_free_full (dirs, g_object_unref);
+  g_list_free_full (dirs, g_object_unref);
 
   /* Free app dir list */
   g_list_free (app_dirs);
@@ -2383,8 +2355,7 @@ garcon_menu_process_file_changes (gpointer user_data)
     }
 
   /* reset the changed files list, all events processed */
-  _garcon_g_slist_free_full (menu->priv->changed_files, g_object_unref);
-  menu->priv->changed_files = NULL;
+  g_clear_slist (&menu->priv->changed_files, g_object_unref);
 
   /* reset the idle source ID */
   menu->priv->file_changed_idle = 0;
