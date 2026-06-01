@@ -49,7 +49,7 @@ struct _GarconMenuItemPool
 
 
 
-G_DEFINE_TYPE_WITH_PRIVATE (GarconMenuItemPool, garcon_menu_item_pool, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE_WITH_PRIVATE (GarconMenuItemPool, garcon_menu_item_pool, G_TYPE_OBJECT)
 
 
 

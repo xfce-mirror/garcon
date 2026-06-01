@@ -121,7 +121,7 @@ garcon_menu_node_type_get_type (void)
 
 
 
-G_DEFINE_TYPE (GarconMenuNode, garcon_menu_node, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (GarconMenuNode, garcon_menu_node, G_TYPE_OBJECT)
 
 
 
