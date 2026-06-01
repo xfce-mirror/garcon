@@ -172,8 +172,7 @@ garcon_config_lookup (const gchar *filename)
   if (g_path_is_absolute (path) && g_file_test (path, G_FILE_TEST_IS_REGULAR))
     return path;
 
-  g_free (path);
-  path = NULL;
+  g_clear_pointer (&path, g_free);
 
   /* Look for the file in the system config directories */
   dirs = g_get_system_config_dirs ();
@@ -184,8 +183,7 @@ garcon_config_lookup (const gchar *filename)
       if (g_path_is_absolute (path) && g_file_test (path, G_FILE_TEST_IS_REGULAR))
         return path;
 
-      g_free (path);
-      path = NULL;
+      g_clear_pointer (&path, g_free);
     }
 
   /* Also try the install prefix of garcon in case XDG_CONFIG_DIRS is not
@@ -194,8 +192,7 @@ garcon_config_lookup (const gchar *filename)
   if (g_path_is_absolute (path) && g_file_test (path, G_FILE_TEST_IS_REGULAR))
     return path;
 
-  g_free (path);
-  path = NULL;
+  g_clear_pointer (&path, g_free);
 
   /* Return the path or NULL if the file could not be found */
   return path;
