@@ -1,0 +1,4 @@
+nullPointerRedundantCheck:garcon/garcon-menu-parser.c:568
+nullPointerRedundantCheck:garcon/garcon-menu-parser.c:586
+nullPointerRedundantCheck:garcon/garcon-menu-parser.c:602
+nullPointerRedundantCheck:garcon/garcon-menu-parser.c:618
