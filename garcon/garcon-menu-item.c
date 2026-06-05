@@ -1921,7 +1921,7 @@ garcon_menu_item_set_action (GarconMenuItem *item,
     }
 
   /* If action name was not found in list, then simply add it to list */
-  if (found == FALSE)
+  if (!found)
     {
       /* Add action to list and grab a reference */
       item->priv->actions = g_list_append (item->priv->actions, action);
