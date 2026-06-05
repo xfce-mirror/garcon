@@ -772,20 +772,8 @@ garcon_menu_item_url_exec (XfceRc *rc)
   url = xfce_rc_read_entry_untranslated (rc, G_KEY_FILE_DESKTOP_KEY_URL, NULL);
   if (url != NULL)
     {
-#if GLIB_CHECK_VERSION(2, 68, 0)
       string = g_string_new (url);
-      G_GNUC_BEGIN_IGNORE_DEPRECATIONS
       g_string_replace (string, "%", "%%", 0);
-      G_GNUC_END_IGNORE_DEPRECATIONS
-#else
-      string = g_string_sized_new (2 * strlen (url));
-      for (const gchar *p = url; *p != '\0'; p++)
-        if (*p == '%')
-          string = g_string_append (string, "%%");
-        else
-          string = g_string_append_c (string, *p);
-      string = g_string_append_c (string, '\0');
-#endif
       url_exec = g_strdup_printf ("xfce-open '%s'", string->str);
       g_string_free (string, TRUE);
     }
@@ -1921,7 +1909,7 @@ garcon_menu_item_set_action (GarconMenuItem *item,
     }
 
   /* If action name was not found in list, then simply add it to list */
-  if (found == FALSE)
+  if (!found)
     {
       /* Add action to list and grab a reference */
       item->priv->actions = g_list_append (item->priv->actions, action);

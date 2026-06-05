@@ -128,7 +128,7 @@ main (int argc,
       gchar *uri;
 
       uri = g_file_get_uri (garcon_menu_get_file (menu));
-      g_error ("Could not load menu from %s: %s", uri, error->message);
+      g_warning ("Could not load menu from %s: %s", uri, error->message);
       g_free (uri);
 
       g_error_free (error);

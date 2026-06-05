@@ -322,7 +322,7 @@ main (int argc,
     {
       if (error != NULL)
         {
-          g_error ("Could not parse %s: %s", argc > 1 ? argv[1] : FILENAME, error->message);
+          g_warning ("Could not parse %s: %s", argc > 1 ? argv[1] : FILENAME, error->message);
           g_error_free (error);
         }
 

@@ -1313,7 +1313,6 @@ garcon_menu_resolve_item_by_rule (const gchar *desktop_id,
   GarconMenuItem *item = NULL;
   GarconMenu *menu = NULL;
   GNode *node = NULL;
-  gboolean only_unallocated = FALSE;
 
   g_return_if_fail (GARCON_IS_MENU (data->first));
   g_return_if_fail (data->second != NULL);
@@ -1327,12 +1326,10 @@ garcon_menu_resolve_item_by_rule (const gchar *desktop_id,
 
   if (G_LIKELY (item != NULL))
     {
-      only_unallocated = garcon_menu_node_tree_get_boolean_child (menu->priv->tree,
-                                                                  GARCON_MENU_NODE_TYPE_ONLY_UNALLOCATED);
-
       /* Only include item if menu not only includes unallocated items
        * or if the item is not allocated yet */
-      if (!only_unallocated || garcon_menu_item_get_allocated (item) == 0)
+      if (!garcon_menu_node_tree_get_boolean_child (menu->priv->tree, GARCON_MENU_NODE_TYPE_ONLY_UNALLOCATED)
+          || garcon_menu_item_get_allocated (item) == 0)
         {
           /* Add item to the pool if it matches the include rule */
           if (G_LIKELY (garcon_menu_node_tree_rule_matches (node, item)))
