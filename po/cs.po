@@ -28,7 +28,7 @@ msgstr "Příslušenství"
 
 #: data/xfce/xfce-accessories.desktop.in:7
 msgid "Common desktop tools and applications"
-msgstr "Běžné nástroje pracovní plochy a aplikace"
+msgstr "Běžné nástroje a aplikace pracovního prostředí"
 
 #: data/xfce/xfce-development.desktop.in:6
 msgid "Development"
@@ -52,7 +52,7 @@ msgstr "Hry"
 
 #: data/xfce/xfce-games.desktop.in:7
 msgid "Games, puzzles, and other fun software"
-msgstr "Hry, hříčky a jiný zábavný software"
+msgstr "Hry, hlavolamy a další zábavný software"
 
 #: data/xfce/xfce-graphics.desktop.in:6
 msgid "Graphics"
@@ -60,7 +60,7 @@ msgstr "Grafika"
 
 #: data/xfce/xfce-graphics.desktop.in:7
 msgid "Graphics creation and manipulation applications"
-msgstr "Aplikace pro vytváření a manipulaci s grafikou"
+msgstr "Aplikace pro tvorbu a úpravy grafiky"
 
 #: data/xfce/xfce-hardware.desktop.in:6
 msgid "Hardware"
@@ -76,7 +76,7 @@ msgstr "Zdraví"
 
 #: data/xfce/xfce-health.desktop.in:7
 msgid "Applications related to physical or mental health and fitness"
-msgstr "Aplikace související s fyzickým a duševním zdravím a fyzickou kondicí"
+msgstr "Aplikace pro fyzické a duševní zdraví a kondici"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
@@ -92,7 +92,7 @@ msgstr "Internet"
 
 #: data/xfce/xfce-network.desktop.in:7
 msgid "Applications for Internet access"
-msgstr "Aplikace pro přístup k Internetu"
+msgstr "Aplikace pro přístup k internetu"
 
 #: data/xfce/xfce-office.desktop.in:6
 msgid "Office"
@@ -100,7 +100,7 @@ msgstr "Kancelář"
 
 #: data/xfce/xfce-office.desktop.in:7
 msgid "Office and productivity applications"
-msgstr "Kancelářské aplikace"
+msgstr "Kancelářské aplikace a nástroje pro produktivitu"
 
 #: data/xfce/xfce-other.desktop.in:6
 msgid "Other"
@@ -132,7 +132,7 @@ msgstr "Spořiče obrazovky"
 
 #: data/xfce/xfce-screensavers.desktop.in:7
 msgid "Screensaver applets"
-msgstr "Aplety spořičů obrazovek"
+msgstr "Aplety spořičů obrazovky"
 
 #: data/xfce/xfce-settings.desktop.in:6
 msgid "Settings"
@@ -153,17 +153,17 @@ msgstr "Systémové nástroje"
 #: garcon/garcon-menu.c:747
 #, c-format
 msgid "File \"%s\" not found"
-msgstr "Soubor „%s“ nenalezen"
+msgstr "Soubor „%s“ nebyl nalezen"
 
 #: garcon/garcon-menu-parser.c:282
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Nedaří se načíst data souboru nabídky z %s: %s"
+msgstr "Nepodařilo se načíst data souboru nabídky z %s: %s"
 
 #: garcon/garcon-menu-parser.c:289
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Nedaří se načíst data souboru nabídky z %s"
+msgstr "Nepodařilo se načíst data souboru nabídky z %s"
 
 #: garcon-gtk/garcon-gtk-menu.c:424
 #, c-format
@@ -178,12 +178,12 @@ msgstr "Chyba při spuštění"
 msgid ""
 "Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
 " edit menu items."
-msgstr "Nedaří se spustit „xfce-desktop-item-edit“. Tato aplikace je potřebná pro vytváření a úpravu položek nabídky."
+msgstr "Nepodařilo se spustit „xfce-desktop-item-edit“. Tato aplikace je potřebná pro vytváření a úpravu položek nabídky."
 
 #: garcon-gtk/garcon-gtk-menu.c:452
 msgid "_Close"
-msgstr "_Zavřit"
+msgstr "_Zavřít"
 
 #: garcon-gtk/garcon-gtk-menu.c:601
 msgid "Failed to load the applications menu"
-msgstr "Načtení nabídky aplikací se nezdařilo"
+msgstr "Nepodařilo se načíst nabídku aplikací"
