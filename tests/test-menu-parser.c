@@ -306,9 +306,9 @@ main (int argc,
         {
           if (error != NULL)
             {
-              g_error ("Could not merge menus in %s: %s",
-                       argc > 1 ? argv[1] : FILENAME,
-                       error->message);
+              g_warning ("Could not merge menus in %s: %s",
+                         argc > 1 ? argv[1] : FILENAME,
+                         error->message);
 
               g_error_free (error);
             }
