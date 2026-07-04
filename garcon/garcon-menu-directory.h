@@ -57,7 +57,7 @@ struct _GarconMenuDirectory
 
 
 GType
-garcon_menu_directory_get_type (void) G_GNUC_CONST;
+garcon_menu_directory_get_type (void);
 
 GarconMenuDirectory *
 garcon_menu_directory_new (GFile *file) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;

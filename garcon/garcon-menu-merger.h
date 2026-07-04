@@ -43,7 +43,7 @@ typedef struct _GarconMenuMerger GarconMenuMerger;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (GarconMenuMerger, g_object_unref)
 
 GType
-garcon_menu_merger_get_type (void) G_GNUC_CONST;
+garcon_menu_merger_get_type (void);
 
 GarconMenuMerger *
 garcon_menu_merger_new (GarconMenuTreeProvider *provider) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;

@@ -43,7 +43,7 @@ typedef struct _GarconMenu GarconMenu;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (GarconMenu, g_object_unref)
 
 GType
-garcon_menu_get_type (void) G_GNUC_CONST;
+garcon_menu_get_type (void);
 
 GarconMenu *
 garcon_menu_new (GFile *file) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;

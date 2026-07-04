@@ -59,7 +59,7 @@ struct _GarconMenuItemAction
 };
 
 GType
-garcon_menu_item_action_get_type (void) G_GNUC_CONST;
+garcon_menu_item_action_get_type (void);
 
 const gchar *
 garcon_menu_item_action_get_command (GarconMenuItemAction *action);

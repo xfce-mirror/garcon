@@ -65,7 +65,7 @@ struct _GarconMenuItem
 
 
 GType
-garcon_menu_item_get_type (void) G_GNUC_CONST;
+garcon_menu_item_get_type (void);
 
 GarconMenuItem *
 garcon_menu_item_new (GFile *file) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;

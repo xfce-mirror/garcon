@@ -53,7 +53,7 @@ struct _GarconMenuSeparator
 
 
 GType
-garcon_menu_separator_get_type (void) G_GNUC_CONST;
+garcon_menu_separator_get_type (void);
 
 GarconMenuSeparator *
 garcon_menu_separator_get_default (void);

@@ -56,7 +56,7 @@ struct _GarconGtkMenu
 };
 
 GType
-garcon_gtk_menu_get_type (void) G_GNUC_CONST;
+garcon_gtk_menu_get_type (void);
 
 GtkWidget *
 garcon_gtk_menu_new (GarconMenu *garcon_menu) G_GNUC_MALLOC G_GNUC_WARN_UNUSED_RESULT;

@@ -1,5 +1,5 @@
 # file:garcon-gtk-menu
-garcon_gtk_menu_get_type attr:G_GNUC_CONST
+garcon_gtk_menu_get_type
 garcon_gtk_menu_new attr:G_GNUC_MALLOC attr:G_GNUC_WARN_UNUSED_RESULT
 garcon_gtk_menu_set_menu
 garcon_gtk_menu_get_menu

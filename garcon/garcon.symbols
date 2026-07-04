@@ -12,7 +12,7 @@ garcon_get_environment
 garcon_set_environment_xdg
 
 # file:garcon-menu
-garcon_menu_get_type attr:G_GNUC_CONST
+garcon_menu_get_type
 garcon_menu_new attr:G_GNUC_MALLOC attr:G_GNUC_WARN_UNUSED_RESULT
 garcon_menu_new_for_path attr:G_GNUC_MALLOC attr:G_GNUC_WARN_UNUSED_RESULT
 garcon_menu_new_applications attr:G_GNUC_MALLOC attr:G_GNUC_WARN_UNUSED_RESULT
@@ -28,7 +28,7 @@ garcon_menu_get_items
 garcon_menu_get_elements
 
 # file:garcon-menu-directory
-garcon_menu_directory_get_type attr:G_GNUC_CONST
+garcon_menu_directory_get_type
 garcon_menu_directory_new attr:G_GNUC_MALLOC attr:G_GNUC_WARN_UNUSED_RESULT
 garcon_menu_directory_get_file
 garcon_menu_directory_get_name
@@ -45,7 +45,7 @@ garcon_menu_directory_get_visible
 garcon_menu_directory_equal
 
 # file:garcon-menu-element
-garcon_menu_element_get_type attr:G_GNUC_CONST
+garcon_menu_element_get_type
 garcon_menu_element_get_name
 garcon_menu_element_get_comment
 garcon_menu_element_get_icon_name
@@ -55,7 +55,7 @@ garcon_menu_element_get_no_display
 garcon_menu_element_equal
 
 # file:garcon-menu-item
-garcon_menu_item_get_type attr:G_GNUC_CONST
+garcon_menu_item_get_type
 garcon_menu_item_new attr:G_GNUC_MALLOC attr:G_GNUC_WARN_UNUSED_RESULT
 garcon_menu_item_new_for_path attr:G_GNUC_MALLOC attr:G_GNUC_WARN_UNUSED_RESULT
 garcon_menu_item_new_for_uri attr:G_GNUC_MALLOC attr:G_GNUC_WARN_UNUSED_RESULT
@@ -108,7 +108,7 @@ garcon_menu_item_increment_allocated
 garcon_menu_item_decrement_allocated
 
 # file:garcon-menu-item-action
-garcon_menu_item_action_get_type attr:G_GNUC_CONST
+garcon_menu_item_action_get_type
 garcon_menu_item_action_get_command
 garcon_menu_item_action_set_command
 garcon_menu_item_action_get_name
@@ -119,7 +119,7 @@ garcon_menu_item_action_ref
 garcon_menu_item_action_unref
 
 # file:garcon-menu-item-cache
-garcon_menu_item_cache_get_type attr:G_GNUC_CONST
+garcon_menu_item_cache_get_type
 garcon_menu_item_cache_get_default
 garcon_menu_item_cache_lookup
 garcon_menu_item_cache_foreach
@@ -127,7 +127,7 @@ garcon_menu_item_cache_invalidate
 garcon_menu_item_cache_invalidate_file
 
 # file:garcon-menu-item-pool
-garcon_menu_item_pool_get_type attr:G_GNUC_CONST
+garcon_menu_item_pool_get_type
 garcon_menu_item_pool_new attr:G_GNUC_MALLOC attr:G_GNUC_WARN_UNUSED_RESULT
 garcon_menu_item_pool_insert
 garcon_menu_item_pool_lookup
@@ -138,13 +138,13 @@ garcon_menu_item_pool_get_empty
 garcon_menu_item_pool_clear
 
 # file:garcon-menu-merger
-garcon_menu_merger_get_type attr:G_GNUC_CONST
+garcon_menu_merger_get_type
 garcon_menu_merger_new attr:G_GNUC_MALLOC attr:G_GNUC_WARN_UNUSED_RESULT
 garcon_menu_merger_run
 
 # file:garcon-menu-node
-garcon_menu_node_get_type attr:G_GNUC_CONST
-garcon_menu_node_type_get_type attr:G_GNUC_CONST
+garcon_menu_node_get_type
+garcon_menu_node_type_get_type
 garcon_menu_node_new attr:G_GNUC_MALLOC attr:G_GNUC_WARN_UNUSED_RESULT
 garcon_menu_node_get_node_type
 garcon_menu_node_create attr:G_GNUC_MALLOC attr:G_GNUC_WARN_UNUSED_RESULT
@@ -174,15 +174,15 @@ garcon_menu_node_tree_free
 garcon_menu_node_tree_free_data
 
 # file:garcon-menu-parser
-garcon_menu_parser_get_type attr:G_GNUC_CONST
+garcon_menu_parser_get_type
 garcon_menu_parser_new attr:G_GNUC_MALLOC attr:G_GNUC_WARN_UNUSED_RESULT
 garcon_menu_parser_run
 
 # file:garcon-menu-separator
-garcon_menu_separator_get_type attr:G_GNUC_CONST
+garcon_menu_separator_get_type
 garcon_menu_separator_get_default
 
 # file:garcon-menu-tree-provider
-garcon_menu_tree_provider_get_type attr:G_GNUC_CONST
+garcon_menu_tree_provider_get_type
 garcon_menu_tree_provider_get_tree attr:G_GNUC_MALLOC attr:G_GNUC_WARN_UNUSED_RESULT
 garcon_menu_tree_provider_get_file attr:G_GNUC_MALLOC attr:G_GNUC_WARN_UNUSED_RESULT

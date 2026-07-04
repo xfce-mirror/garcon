@@ -59,7 +59,7 @@ struct _GarconMenuItemCache
 
 
 GType
-garcon_menu_item_cache_get_type (void) G_GNUC_CONST;
+garcon_menu_item_cache_get_type (void);
 
 GarconMenuItemCache *
 garcon_menu_item_cache_get_default (void);

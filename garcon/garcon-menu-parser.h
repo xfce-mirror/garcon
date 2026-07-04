@@ -42,7 +42,7 @@ typedef struct _GarconMenuParser GarconMenuParser;
 G_DEFINE_AUTOPTR_CLEANUP_FUNC (GarconMenuParser, g_object_unref)
 
 GType
-garcon_menu_parser_get_type (void) G_GNUC_CONST;
+garcon_menu_parser_get_type (void);
 
 GarconMenuParser *
 garcon_menu_parser_new (GFile *file) G_GNUC_MALLOC;
