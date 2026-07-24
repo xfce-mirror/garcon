@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Dušan Kazik <prescott66@gmail.com>, 2016
-# Slavko <linux@slavino.sk>, 2015
+# Slavko <linux@slavino.sk>, 2015,2026
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 10:53+0200\n"
+"POT-Creation-Date: 2026-04-15 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Dušan Kazik <prescott66@gmail.com>, 2016\n"
+"Last-Translator: Slavko <linux@slavino.sk>, 2015,2026\n"
 "Language-Team: Slovak (http://app.transifex.com/xfce/garcon/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,6 +66,14 @@ msgstr "Hardvér"
 #: data/xfce/xfce-hardware.desktop.in:7
 msgid "Settings for several hardware devices"
 msgstr "Nastavenia viacerých hardvérových zariadení"
+
+#: data/xfce/xfce-health.desktop.in:6
+msgid "Health"
+msgstr "Zdravie"
+
+#: data/xfce/xfce-health.desktop.in:7
+msgid "Applications related to physical or mental health and fitness"
+msgstr "Aplikácie súvisiace s fyzickým alebo mentálnym zdravím a kondíciou"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
@@ -167,7 +175,7 @@ msgstr "Chyba pri spustení"
 msgid ""
 "Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
 " edit menu items."
-msgstr ""
+msgstr "Nemožno spustiť „xfce-desktop-item-edit”, ktorý je nutný na vytvorenie a úpravu položiek menu."
 
 #: garcon-gtk/garcon-gtk-menu.c:452
 msgid "_Close"
