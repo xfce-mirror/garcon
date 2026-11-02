@@ -51,10 +51,7 @@ static gchar *environment = NULL;
 void
 garcon_set_environment (const gchar *env)
 {
-  if (G_LIKELY (environment != NULL))
-    g_free (environment);
-
-  environment = g_strdup (env);
+  g_set_str (&environment, env);
 }
 
 

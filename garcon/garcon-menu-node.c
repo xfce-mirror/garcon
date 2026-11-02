@@ -375,8 +375,7 @@ garcon_menu_node_set_string (GarconMenuNode *node,
   g_return_if_fail (GARCON_IS_MENU_NODE (node));
   g_return_if_fail (value != NULL);
 
-  g_free (node->data.string);
-  node->data.string = g_strdup (value);
+  g_set_str (&node->data.string, value);
 }
 
 
@@ -420,8 +419,7 @@ garcon_menu_node_set_merge_file_filename (GarconMenuNode *node,
   g_return_if_fail (filename != NULL);
   g_return_if_fail (node->node_type == GARCON_MENU_NODE_TYPE_MERGE_FILE);
 
-  g_free (node->data.merge_file.filename);
-  node->data.merge_file.filename = g_strdup (filename);
+  g_set_str (&node->data.merge_file.filename, filename);
 }
 
 

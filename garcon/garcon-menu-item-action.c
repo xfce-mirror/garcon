@@ -217,8 +217,7 @@ garcon_menu_item_action_set_name (GarconMenuItemAction *action,
     return;
 
   /* Assign new name */
-  g_free (action->priv->name);
-  action->priv->name = g_strdup (name);
+  g_set_str (&action->priv->name, name);
 
   /* Notify listeners */
   g_object_notify (G_OBJECT (action), "name");
@@ -283,8 +282,7 @@ garcon_menu_item_action_set_command (GarconMenuItemAction *action,
     return;
 
   /* Assign new command */
-  g_free (action->priv->command);
-  action->priv->command = g_strdup (command);
+  g_set_str (&action->priv->command, command);
 
   /* Notify listeners */
   g_object_notify (G_OBJECT (action), "command");

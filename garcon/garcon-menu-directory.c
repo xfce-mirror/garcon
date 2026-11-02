@@ -444,11 +444,8 @@ garcon_menu_directory_set_name (GarconMenuDirectory *directory,
   if (g_strcmp0 (directory->priv->name, name) == 0)
     return;
 
-  /* Free old name */
-  g_free (directory->priv->name);
-
   /* Set the new filename */
-  directory->priv->name = g_strdup (name);
+  g_set_str (&directory->priv->name, name);
 
   /* Notify listeners */
   g_object_notify (G_OBJECT (directory), "name");
@@ -490,11 +487,8 @@ garcon_menu_directory_set_comment (GarconMenuDirectory *directory,
   if (g_strcmp0 (directory->priv->comment, comment) == 0)
     return;
 
-  /* Free old name */
-  g_free (directory->priv->comment);
-
   /* Set the new filename */
-  directory->priv->comment = g_strdup (comment);
+  g_set_str (&directory->priv->comment, comment);
 
   /* Notify listeners */
   g_object_notify (G_OBJECT (directory), "comment");
@@ -535,11 +529,8 @@ garcon_menu_directory_set_icon_name (GarconMenuDirectory *directory,
   if (g_strcmp0 (directory->priv->icon_name, icon_name) == 0)
     return;
 
-  /* Free old name */
-  g_free (directory->priv->icon_name);
-
   /* Set the new filename */
-  directory->priv->icon_name = g_strdup (icon_name);
+  g_set_str (&directory->priv->icon_name, icon_name);
 
   /* Notify listeners */
   g_object_notify (G_OBJECT (directory), "icon-name");
