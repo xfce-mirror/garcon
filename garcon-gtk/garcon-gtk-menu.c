@@ -818,7 +818,7 @@ garcon_gtk_menu_pack_actions_menu (GtkWidget *menu,
 
       gtk_menu_shell_append (GTK_MENU_SHELL (menu), mi);
       g_signal_connect_object (G_OBJECT (mi), "activate",
-                               G_CALLBACK (garcon_gtk_menu_item_action_activate), action, 0);
+                               G_CALLBACK (garcon_gtk_menu_item_action_activate), action, G_CONNECT_DEFAULT);
       /* we need to store the parent associated with this item so we can
        * activate it properly */
       g_object_set_data (G_OBJECT (action), "GarconMenuItem", menu_item);
@@ -848,7 +848,7 @@ garcon_gtk_menu_add_actions (GarconGtkMenu *menu,
    * use it if the user wants to edit a menu item */
   g_object_set_data (G_OBJECT (mi), "GarconGtkMenu", menu);
   g_signal_connect_object (G_OBJECT (mi), "activate",
-                           G_CALLBACK (garcon_gtk_menu_item_activate), menu_item, 0);
+                           G_CALLBACK (garcon_gtk_menu_item_activate), menu_item, G_CONNECT_DEFAULT);
   gtk_widget_show (mi);
 
   garcon_gtk_menu_pack_actions_menu (submenu, menu_item, actions,
@@ -1004,7 +1004,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
           else
             {
               g_signal_connect_object (G_OBJECT (mi), "activate",
-                                       G_CALLBACK (garcon_gtk_menu_item_activate), li->data, 0);
+                                       G_CALLBACK (garcon_gtk_menu_item_activate), li->data, G_CONNECT_DEFAULT);
               /* we need to store the GarconGtkMenu with this item so we can
                * use it if the user wants to edit a menu item */
               g_object_set_data (G_OBJECT (mi), "GarconGtkMenu", menu);
@@ -1060,7 +1060,7 @@ garcon_gtk_menu_add (GarconGtkMenu *menu,
               /* will be populated later, only if necessary, to save resources */
               g_object_set_data (G_OBJECT (submenu), "GarconGtkMenu", menu);
               g_signal_connect_object (submenu, "show",
-                                       G_CALLBACK (garcon_gtk_menu_submenu_shown), li->data, 0);
+                                       G_CALLBACK (garcon_gtk_menu_submenu_shown), li->data, G_CONNECT_DEFAULT);
 
               /* attach submenu */
               name = garcon_menu_element_get_name (li->data);

@@ -2105,20 +2105,18 @@ garcon_menu_debug (GFile *file,
 
 
 
-static gboolean
+static void
 garcon_menu_file_emit_reload_required_idle (gpointer data)
 {
   GarconMenu *menu = GARCON_MENU (data);
 
-  g_return_val_if_fail (GARCON_IS_MENU (menu), FALSE);
+  g_return_if_fail (GARCON_IS_MENU (menu));
 
   menu->priv->idle_reload_required_id = 0;
 
   garcon_menu_debug (NULL, 0, "emit reload-required");
 
   g_signal_emit (menu, menu_signals[RELOAD_REQUIRED], 0);
-
-  return FALSE;
 }
 
 
@@ -2130,7 +2128,7 @@ garcon_menu_file_emit_reload_required (GarconMenu *menu)
     {
       garcon_menu_debug (NULL, 0, "schedule idle menu reload");
       menu->priv->idle_reload_required_id =
-        g_idle_add (garcon_menu_file_emit_reload_required_idle, menu);
+        g_idle_add_once (garcon_menu_file_emit_reload_required_idle, menu);
     }
 }
 
@@ -2254,7 +2252,7 @@ garcon_menu_merge_dir_changed (GarconMenu *menu,
 
 
 
-static gboolean
+static void
 garcon_menu_process_file_changes (gpointer user_data)
 {
   GarconMenu *menu = user_data;
@@ -2266,8 +2264,8 @@ garcon_menu_process_file_changes (gpointer user_data)
   GSList *lp;
   gchar *path;
 
-  g_return_val_if_fail (GARCON_IS_MENU (menu), FALSE);
-  g_return_val_if_fail (menu->priv->parent == NULL, FALSE);
+  g_return_if_fail (GARCON_IS_MENU (menu));
+  g_return_if_fail (menu->priv->parent == NULL);
 
   g_mutex_lock (&menu->priv->load_lock);
 
@@ -2358,9 +2356,6 @@ garcon_menu_process_file_changes (gpointer user_data)
   menu->priv->file_changed_idle = 0;
 
   g_mutex_unlock (&menu->priv->load_lock);
-
-  /* remove the idle source */
-  return FALSE;
 }
 
 
@@ -2406,7 +2401,7 @@ garcon_menu_app_dir_changed (GarconMenu *menu,
             {
               garcon_menu_debug (NULL, 0, "schedule process file changes");
               menu->priv->file_changed_idle =
-                g_idle_add (garcon_menu_process_file_changes, menu);
+                g_idle_add_once (garcon_menu_process_file_changes, menu);
             }
         }
     }
