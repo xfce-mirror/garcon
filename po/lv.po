@@ -1,147 +1,184 @@
-# Latvian translations for libxfce4menu.
-# Copyright (C) 2007 Jannis Pohlmann <jannis@xfce.org>
-# This file is distributed under the same license as the libxfce4menu package.
-#
-# Rihards Prieditis <rprieditis@inbox.lv>, 2007.
-# Rihards Prieditis <rprieditis@gmail.com>, 2009.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Xfce Bot <transifex@xfce.org>, 2023
+# Nick Schermer <nick@xfce.org>, 2023
+# Rihards Priedītis <rprieditis@gmail.com>, 2026
+# 
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4menu 0.1.0svn\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-16 14:36+0100\n"
-"PO-Revision-Date: 2009-09-18 21:23+0100\n"
-"Last-Translator: Rihards Prieditis <rprieditis@gmail.com>\n"
-"Language-Team: Latvian <translation-team-lv@lists.sourceforge.net>\n"
-"Language: lv\n"
+"POT-Creation-Date: 2023-05-30 00:45+0200\n"
+"PO-Revision-Date: 2023-03-17 09:36+0000\n"
+"Last-Translator: Rihards Priedītis <rprieditis@gmail.com>, 2026\n"
+"Language-Team: Latvian (https://app.transifex.com/xfce/teams/16840/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
-"2);\n"
+"Language: lv\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:1
 msgid "Accessories"
-msgstr ""
+msgstr "Piederumi"
 
 #: ../data/xfce/xfce-accessories.directory.in.h:2
 msgid "Common desktop tools and applications"
-msgstr ""
+msgstr "Bieži lietoti darbvirsmas rīki un lietotnes"
 
 #: ../data/xfce/xfce-development.directory.in.h:1
 msgid "Development"
-msgstr ""
+msgstr "Izstrāde"
 
 #: ../data/xfce/xfce-development.directory.in.h:2
 msgid "Software development tools"
-msgstr ""
+msgstr "Programmatūras izstrādes rīki"
 
 #: ../data/xfce/xfce-education.directory.in.h:1
 msgid "Education"
-msgstr ""
+msgstr "Izglītība"
 
 #: ../data/xfce/xfce-education.directory.in.h:2
 msgid "Educational software"
-msgstr ""
+msgstr "Izglītības programmatūra"
 
 #: ../data/xfce/xfce-games.directory.in.h:1
 msgid "Games"
-msgstr ""
+msgstr "Spēles"
 
 #: ../data/xfce/xfce-games.directory.in.h:2
 msgid "Games, puzzles, and other fun software"
-msgstr ""
+msgstr "Spēles, mīklas un cita izklaides programmatūra"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:1
 msgid "Graphics"
-msgstr ""
+msgstr "Grafika"
 
 #: ../data/xfce/xfce-graphics.directory.in.h:2
 msgid "Graphics creation and manipulation applications"
-msgstr ""
+msgstr "Grafikas veidošanas un apstrādes lietotnes"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:1
+msgid "Hardware"
+msgstr "Aparatūra"
+
+#: ../data/xfce/xfce-hardware.directory.in.h:2
+msgid "Settings for several hardware devices"
+msgstr "Dažādu aparatūras ierīču iestatījumi"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:1
-msgid "Audio and video players and editors"
-msgstr ""
+msgid "Multimedia"
+msgstr "Multivide"
 
 #: ../data/xfce/xfce-multimedia.directory.in.h:2
-msgid "Multimedia"
-msgstr ""
+msgid "Audio and video players and editors"
+msgstr "Audio un video atskaņotāji un redaktori"
 
 #: ../data/xfce/xfce-network.directory.in.h:1
-msgid "Network"
-msgstr ""
+msgid "Internet"
+msgstr "Internets"
 
 #: ../data/xfce/xfce-network.directory.in.h:2
-msgid "Network applications and utilities"
-msgstr ""
+msgid "Applications for Internet access"
+msgstr "Lietotnes darbam internetā"
 
 #: ../data/xfce/xfce-office.directory.in.h:1
 msgid "Office"
-msgstr ""
+msgstr "Birojs"
 
 #: ../data/xfce/xfce-office.directory.in.h:2
 msgid "Office and productivity applications"
-msgstr ""
+msgstr "Biroja un produktivitātes lietotnes"
 
 #: ../data/xfce/xfce-other.directory.in.h:1
-msgid "Applications that don't fit into other categories"
-msgstr ""
+msgid "Other"
+msgstr "Citas lietotnes"
 
 #: ../data/xfce/xfce-other.directory.in.h:2
-msgid "Other"
-msgstr ""
+msgid "Applications that don't fit into other categories"
+msgstr "Lietotnes, kas neiederas citās kategorijās"
+
+#: ../data/xfce/xfce-personal.directory.in.h:1
+msgid "Personal"
+msgstr "Personīgie"
+
+#: ../data/xfce/xfce-personal.directory.in.h:2
+msgid "Personal settings"
+msgstr "Personīgie iestatījumi"
 
 #: ../data/xfce/xfce-science.directory.in.h:1
 msgid "Science"
-msgstr ""
+msgstr "Zinātne"
 
 #: ../data/xfce/xfce-science.directory.in.h:2
 msgid "Scientific software"
-msgstr ""
+msgstr "Zinātniskā programmatūra"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:1
-msgid "Screensaver applets"
-msgstr ""
+msgid "Screensavers"
+msgstr "Ekrānsaudzētāji"
 
 #: ../data/xfce/xfce-screensavers.directory.in.h:2
-msgid "Screensavers"
-msgstr ""
+msgid "Screensaver applets"
+msgstr "Ekrānsaudzētāju sīklietotnes"
 
 #: ../data/xfce/xfce-settings.directory.in.h:1
-msgid "Desktop and system settings applications"
-msgstr ""
+msgid "Settings"
+msgstr "Iestatījumi"
 
 #: ../data/xfce/xfce-settings.directory.in.h:2
-msgid "Settings"
-msgstr ""
+msgid "Desktop and system settings applications"
+msgstr "Darbvirsmas un sistēmas iestatījumu lietotnes"
 
 #: ../data/xfce/xfce-system.directory.in.h:1
 msgid "System"
-msgstr ""
+msgstr "Sistēma"
 
 #: ../data/xfce/xfce-system.directory.in.h:2
 msgid "System tools and utilities"
-msgstr ""
+msgstr "Sistēmas rīki un utilītas"
 
-#: ../garcon/garcon-menu.c:698
+#: ../garcon/garcon-menu.c:716
 #, c-format
 msgid "File \"%s\" not found"
-msgstr ""
+msgstr "Fails „%s” nav atrasts"
 
-#: ../garcon/garcon-menu-parser.c:278
+#: ../garcon/garcon-menu-parser.c:277
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Nevarēja ielādēt izvēlnes faila datus no %s: %s"
+msgstr "Neizdevās ielādēt izvēlnes faila datus no %s: %s"
 
 #: ../garcon/garcon-menu-parser.c:284
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Nevarēja ielādēt izvēlnes faila datus no %s"
+msgstr "Neizdevās ielādēt izvēlnes faila datus no %s"
 
-#, fuzzy
-#~ msgid "Failed to locate the system menu"
-#~ msgstr "Netika atrasta lietotņu saknes izvēlne"
+#: ../garcon-gtk/garcon-gtk-menu.c:412
+#, c-format
+msgid "Failed to execute command \"%s\"."
+msgstr "Neizdevās izpildīt komandu „%s”."
 
-#~ msgid "Failed to create the libxfce4menu item cache in %s."
-#~ msgstr "Nevarēja izveidot libxfce4menu vienuma kešatmiņu iekš %s."
+#: ../garcon-gtk/garcon-gtk-menu.c:438
+msgid "Launch Error"
+msgstr "Palaišanas kļūda"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:440
+msgid ""
+"Unable to launch \"exo-desktop-item-edit\", which is required to create and "
+"edit menu items."
+msgstr ""
+"Neizdevās palaist „exo-desktop-item-edit”, kas vajadzīgs izvēlnes vienumu "
+"izveidei un rediģēšanai."
+
+#: ../garcon-gtk/garcon-gtk-menu.c:442
+msgid "_Close"
+msgstr "_Aizvērt"
+
+#: ../garcon-gtk/garcon-gtk-menu.c:591
+msgid "Failed to load the applications menu"
+msgstr "Neizdevās ielādēt lietotņu izvēlni"
