@@ -1,18 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the garcon.master package.
 # 
 # Translators:
 # Andre Miranda <andre@andreldm.com>, 2019
+# Andre Miranda <andre@andreldm.com>, 2019
 # Rihards Priedītis <rprieditis@gmail.com>, 2009
+# Rihards Priedītis <rprieditis@gmail.com>, 2007,2009,2026
 # Rihards Prieditis <rprieditis@inbox.lv>, 2007
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-18 00:45+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2026-04-15 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Andre Miranda <andre@andreldm.com>, 2019\n"
+"Last-Translator: Rihards Priedītis <rprieditis@gmail.com>, 2007,2009,2026\n"
 "Language-Team: Latvian (http://app.transifex.com/xfce/garcon/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,40 +22,168 @@ msgstr ""
 "Language: lv\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
-#: ../garcon/garcon-menu.c:747
+#: data/xfce/xfce-accessories.desktop.in:6
+msgid "Accessories"
+msgstr "Piederumi"
+
+#: data/xfce/xfce-accessories.desktop.in:7
+msgid "Common desktop tools and applications"
+msgstr "Bieži lietoti darbvirsmas rīki un lietotnes"
+
+#: data/xfce/xfce-development.desktop.in:6
+msgid "Development"
+msgstr "Izstrāde"
+
+#: data/xfce/xfce-development.desktop.in:7
+msgid "Software development tools"
+msgstr "Programmatūras izstrādes rīki"
+
+#: data/xfce/xfce-education.desktop.in:6
+msgid "Education"
+msgstr "Izglītība"
+
+#: data/xfce/xfce-education.desktop.in:7
+msgid "Educational software"
+msgstr "Izglītības programmatūra"
+
+#: data/xfce/xfce-games.desktop.in:6
+msgid "Games"
+msgstr "Spēles"
+
+#: data/xfce/xfce-games.desktop.in:7
+msgid "Games, puzzles, and other fun software"
+msgstr "Spēles, mīklas un cita izklaides programmatūra"
+
+#: data/xfce/xfce-graphics.desktop.in:6
+msgid "Graphics"
+msgstr "Grafika"
+
+#: data/xfce/xfce-graphics.desktop.in:7
+msgid "Graphics creation and manipulation applications"
+msgstr "Grafikas veidošanas un apstrādes lietotnes"
+
+#: data/xfce/xfce-hardware.desktop.in:6
+msgid "Hardware"
+msgstr "Aparatūra"
+
+#: data/xfce/xfce-hardware.desktop.in:7
+msgid "Settings for several hardware devices"
+msgstr "Dažādu aparatūras ierīču iestatījumi"
+
+#: data/xfce/xfce-health.desktop.in:6
+msgid "Health"
+msgstr "Veselība"
+
+#: data/xfce/xfce-health.desktop.in:7
+msgid "Applications related to physical or mental health and fitness"
+msgstr "Ar fizisko vai garīgo veselību un fizisko sagatavotību saistītas lietotnes"
+
+#: data/xfce/xfce-multimedia.desktop.in:6
+msgid "Multimedia"
+msgstr "Multivide"
+
+#: data/xfce/xfce-multimedia.desktop.in:7
+msgid "Audio and video players and editors"
+msgstr "Audio un video atskaņotāji un redaktori"
+
+#: data/xfce/xfce-network.desktop.in:6
+msgid "Internet"
+msgstr "Internets"
+
+#: data/xfce/xfce-network.desktop.in:7
+msgid "Applications for Internet access"
+msgstr "Lietotnes darbam internetā"
+
+#: data/xfce/xfce-office.desktop.in:6
+msgid "Office"
+msgstr "Birojs"
+
+#: data/xfce/xfce-office.desktop.in:7
+msgid "Office and productivity applications"
+msgstr "Biroja un produktivitātes lietotnes"
+
+#: data/xfce/xfce-other.desktop.in:6
+msgid "Other"
+msgstr "Citas lietotnes"
+
+#: data/xfce/xfce-other.desktop.in:7
+msgid "Applications that don't fit into other categories"
+msgstr "Lietotnes, kas neiederas citās kategorijās"
+
+#: data/xfce/xfce-personal.desktop.in:6
+msgid "Personal"
+msgstr "Personīgie"
+
+#: data/xfce/xfce-personal.desktop.in:7
+msgid "Personal settings"
+msgstr "Personīgie iestatījumi"
+
+#: data/xfce/xfce-science.desktop.in:6
+msgid "Science"
+msgstr "Zinātne"
+
+#: data/xfce/xfce-science.desktop.in:7
+msgid "Scientific software"
+msgstr "Zinātniskā programmatūra"
+
+#: data/xfce/xfce-screensavers.desktop.in:6
+msgid "Screensavers"
+msgstr "Ekrānsaudzētāji"
+
+#: data/xfce/xfce-screensavers.desktop.in:7
+msgid "Screensaver applets"
+msgstr "Ekrānsaudzētāju sīklietotnes"
+
+#: data/xfce/xfce-settings.desktop.in:6
+msgid "Settings"
+msgstr "Iestatījumi"
+
+#: data/xfce/xfce-settings.desktop.in:7
+msgid "Desktop and system settings applications"
+msgstr "Darbvirsmas un sistēmas iestatījumu lietotnes"
+
+#: data/xfce/xfce-system.desktop.in:6
+msgid "System"
+msgstr "Sistēma"
+
+#: data/xfce/xfce-system.desktop.in:7
+msgid "System tools and utilities"
+msgstr "Sistēmas rīki un utilītas"
+
+#: garcon/garcon-menu.c:747
 #, c-format
 msgid "File \"%s\" not found"
-msgstr ""
+msgstr "Fails „%s” nav atrasts"
 
-#: ../garcon/garcon-menu-parser.c:282
+#: garcon/garcon-menu-parser.c:282
 #, c-format
 msgid "Could not load menu file data from %s: %s"
-msgstr "Nevarēja ielādēt izvēlnes faila datus no %s: %s"
+msgstr "Neizdevās ielādēt izvēlnes faila datus no %s: %s"
 
-#: ../garcon/garcon-menu-parser.c:289
+#: garcon/garcon-menu-parser.c:289
 #, c-format
 msgid "Could not load menu file data from %s"
-msgstr "Nevarēja ielādēt izvēlnes faila datus no %s"
+msgstr "Neizdevās ielādēt izvēlnes faila datus no %s"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:424
+#: garcon-gtk/garcon-gtk-menu.c:424
 #, c-format
 msgid "Failed to execute command \"%s\"."
-msgstr ""
+msgstr "Neizdevās izpildīt komandu „%s”."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:450
+#: garcon-gtk/garcon-gtk-menu.c:450
 msgid "Launch Error"
-msgstr "Palaišanas Kļūda"
+msgstr "Palaišanas kļūda"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:451
+#: garcon-gtk/garcon-gtk-menu.c:451
 msgid ""
 "Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
 " edit menu items."
-msgstr ""
+msgstr "Neizdevās palaist „xfce-desktop-item-edit”, kas vajadzīgs izvēlnes vienumu izveidei un rediģēšanai."
 
-#: ../garcon-gtk/garcon-gtk-menu.c:452
+#: garcon-gtk/garcon-gtk-menu.c:452
 msgid "_Close"
 msgstr "_Aizvērt"
 
-#: ../garcon-gtk/garcon-gtk-menu.c:601
+#: garcon-gtk/garcon-gtk-menu.c:601
 msgid "Failed to load the applications menu"
-msgstr ""
+msgstr "Neizdevās ielādēt lietotņu izvēlni"
