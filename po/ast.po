@@ -4,16 +4,16 @@
 # 
 # Translators:
 # enolp <enolp@softastur.org>, 2015,2020,2024
-# Ḥavi Margallo, 2024
+# Ḥavi Margallo, 2024,2026
 # Ḷḷumex03, 2014
 # Ḷḷumex03, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Garcon\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2025-07-18 10:53+0200\n"
+"POT-Creation-Date: 2026-04-15 00:45+0200\n"
 "PO-Revision-Date: 2013-07-02 20:32+0000\n"
-"Last-Translator: Ḥavi Margallo, 2024\n"
+"Last-Translator: Ḥavi Margallo, 2024,2026\n"
 "Language-Team: Asturian (http://app.transifex.com/xfce/garcon/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,6 +68,14 @@ msgstr "Hardware"
 #: data/xfce/xfce-hardware.desktop.in:7
 msgid "Settings for several hardware devices"
 msgstr "Axustes pa varios preseos del hardware"
+
+#: data/xfce/xfce-health.desktop.in:6
+msgid "Health"
+msgstr "Salú"
+
+#: data/xfce/xfce-health.desktop.in:7
+msgid "Applications related to physical or mental health and fitness"
+msgstr "Aplicaciones rellacionaes con salú física o mental ya fitness"
 
 #: data/xfce/xfce-multimedia.desktop.in:6
 msgid "Multimedia"
@@ -169,7 +177,7 @@ msgstr "Fallu de llanzamientu"
 msgid ""
 "Unable to launch \"xfce-desktop-item-edit\", which is required to create and"
 " edit menu items."
-msgstr ""
+msgstr "Nun se pudo executar \"xfce-desktop-item-edit\", que ríquese pa crear ya editar oxetos del menú"
 
 #: garcon-gtk/garcon-gtk-menu.c:452
 msgid "_Close"
